@@ -1,0 +1,114 @@
+[
+  {
+    "viewport": "desktop",
+    "target": "/about/",
+    "anchorCount": 2,
+    "visibleIndex": 1,
+    "actual": {
+      "route": "/about/",
+      "title": "About - Angel Creations - A Creative Powerhouse",
+      "root": 65600
+    },
+    "pass": true
+  },
+  {
+    "viewport": "desktop",
+    "target": "/works/",
+    "anchorCount": 2,
+    "visibleIndex": 1,
+    "actual": {
+      "route": "/works/",
+      "title": "Works Archive - Angel Creations - A Creative Powerhouse",
+      "root": 10107
+    },
+    "pass": true
+  },
+  {
+    "viewport": "desktop",
+    "target": "/contact/",
+    "anchorCount": 2,
+    "visibleIndex": 1,
+    "actual": {
+      "route": "/contact/",
+      "title": "Contact - Angel Creations - A Creative Powerhouse",
+      "root": 12168
+    },
+    "pass": true
+  },
+  {
+    "viewport": "desktop",
+    "target": "/terms-of-service",
+    "anchorCount": 1,
+    "visibleIndex": 0,
+    "actual": {
+      "route": "/terms-of-service",
+      "title": "Terms of Service - Angel Creations - A Creative Powerhouse",
+      "root": 7377
+    },
+    "pass": true
+  },
+  {
+    "viewport": "desktop",
+    "target": "/privacy-policy",
+    "anchorCount": 1,
+    "visibleIndex": 0,
+    "actual": {
+      "route": "/privacy-policy",
+      "title": "Privacy Policy - Angel Creations - A Creative Powerhouse",
+      "root": 9723
+    },
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "target": "/about/",
+    "anchorCount": 2,
+    "visibleIndex": 1,
+    "actual": {
+      "route": "/about/",
+      "title": "About - Angel Creations - A Creative Powerhouse",
+      "root": 65600
+    },
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "target": "/works/",
+    "anchorCount": 2,
+    "visibleIndex": 1,
+    "actual": {
+      "route": "/works/",
+      "title": "Works Archive - Angel Creations - A Creative Powerhouse",
+      "root": 10107
+    },
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "target": "/contact/",
+    "anchorCount": 2,
+    "visibleIndex": 1,
+    "actual": {
+      "route": "/contact/",
+      "title": "Contact - Angel Creations - A Creative Powerhouse",
+      "root": 12168
+    },
+    "pass": true
+  },
+  {
+    "viewport": "mobile",
+    "target": "/terms-of-service",
+    "anchorCount": 1,
+    "visibleIndex": 0,
+    "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#menuNav a[href=\"/terms-of-service\"]').first()\n    - locator resolved to <a href=\"/terms-of-service\">Terms of Service</a>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - element is outside of the viewport\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - element is outside of the viewport\n    - retrying click action\n      - waiting 100ms\n    57 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - element is outside of the viewport\n     - retrying click action\n       - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n",
+    "pass": false
+  },
+  {
+    "viewport": "mobile",
+    "target": "/privacy-policy",
+    "anchorCount": 1,
+    "visibleIndex": 0,
+    "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#menuNav a[href=\"/privacy-policy\"]').first()\n    - locator resolved to <a href=\"/privacy-policy\">Privacy Policy</a>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - element is outside of the viewport\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - element is outside of the viewport\n    - retrying click action\n      - waiting 100ms\n    58 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - element is outside of the viewport\n     - retrying click action\n       - waiting 500ms\n",
+    "pass": false
+  }
+]

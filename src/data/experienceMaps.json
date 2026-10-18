@@ -1,0 +1,227 @@
+{
+  "/metaverse/": {
+    "mode": "spatial",
+    "title": "The experience map",
+    "intro": "A virtual world is only as valuable as the experience inside it.",
+    "steps": [
+      [
+        "World",
+        "Where does the audience go?"
+      ],
+      [
+        "Story",
+        "Why are they there?"
+      ],
+      [
+        "Interaction",
+        "What can they do?"
+      ],
+      [
+        "People",
+        "Who else is there?"
+      ],
+      [
+        "Content",
+        "What do they discover?"
+      ],
+      [
+        "Return",
+        "Why would they come back?"
+      ]
+    ],
+    "work": {
+      "title": "Worlds made real",
+      "bridge": "Ideas are only interesting when they become something."
+    }
+  },
+  "/mixed-reality/": {
+    "mode": "layered",
+    "title": "Real world + digital layer",
+    "intro": "Mixed Reality becomes useful when the physical setting and the digital element have a clear relationship.",
+    "steps": [
+      [
+        "Real world",
+        "The physical environment gives the experience context."
+      ],
+      [
+        "Digital layer",
+        "The digital object adds information, possibility or perspective."
+      ],
+      [
+        "Interaction",
+        "People examine, manipulate or understand something through the relationship."
+      ],
+      [
+        "Purpose",
+        "The experience needs a reason beyond technical possibility."
+      ]
+    ],
+    "work": {
+      "title": "When digital meets the real world",
+      "bridge": "Ideas become useful when the physical and digital meet with purpose."
+    }
+  },
+  "/virtual-reality/": {
+    "mode": "immersive",
+    "title": "The VR experience journey",
+    "intro": "The headset is the interface. The experience is everything behind it.",
+    "steps": [
+      [
+        "Enter",
+        "The audience enters a new environment."
+      ],
+      [
+        "Discover",
+        "The environment gives them a reason to explore."
+      ],
+      [
+        "Interact",
+        "They become part of the experience."
+      ],
+      [
+        "Understand",
+        "The experience communicates something meaningful."
+      ],
+      [
+        "Remember",
+        "The experience stays with them after they leave."
+      ]
+    ],
+    "work": {
+      "title": "Inside the idea",
+      "bridge": "The most immersive ideas need to become something people can enter."
+    }
+  },
+  "/augment-reality/": {
+    "mode": "contextual",
+    "title": "The AR discovery path",
+    "intro": "The best AR experiences can feel surprisingly simple.",
+    "steps": [
+      [
+        "See",
+        "A user sees something in the world they already occupy."
+      ],
+      [
+        "Point",
+        "They choose to activate a contextual digital layer."
+      ],
+      [
+        "Discover",
+        "Information, story or interaction appears where it matters."
+      ],
+      [
+        "Interact",
+        "The experience gives them something meaningful to do."
+      ],
+      [
+        "Continue",
+        "The technology becomes invisible and the experience becomes memorable."
+      ]
+    ],
+    "work": {
+      "title": "A layer worth discovering",
+      "bridge": "The strongest digital layer gives the real world another reason to be explored."
+    }
+  },
+  "/animation/": {
+    "mode": "kinetic",
+    "title": "From thought to moving image",
+    "intro": "A strong animation is not simply beautiful. It has a reason to move.",
+    "steps": [
+      [
+        "Idea",
+        "What needs to be communicated?"
+      ],
+      [
+        "Design",
+        "What should the world look like?"
+      ],
+      [
+        "Motion",
+        "How should it move?"
+      ],
+      [
+        "Frame",
+        "How should every frame be built?"
+      ],
+      [
+        "Story",
+        "How should people experience it?"
+      ]
+    ],
+    "work": {
+      "title": "Frame by frame",
+      "bridge": "Movement becomes meaningful when every frame serves the story."
+    }
+  },
+  "/brand-advertisement/": {
+    "mode": "campaign",
+    "title": "From campaign to ecosystem",
+    "intro": "A campaign can begin with one idea and expand across connected ways of communicating.",
+    "steps": [
+      [
+        "Idea",
+        "A clear thought gives communication a reason to exist."
+      ],
+      [
+        "Message",
+        "The thought becomes something an audience can understand."
+      ],
+      [
+        "Identity",
+        "Visual language gives the message a recognizable form."
+      ],
+      [
+        "Content",
+        "Film, animation and digital material give it momentum."
+      ],
+      [
+        "Experience",
+        "Interaction turns communication into participation."
+      ],
+      [
+        "Audience",
+        "The work meets people where they can notice and remember it."
+      ]
+    ],
+    "work": {
+      "title": "Ideas in public",
+      "bridge": "A campaign comes alive when an idea becomes something audiences can encounter."
+    }
+  },
+  "/media-production/": {
+    "mode": "production",
+    "title": "From pre-production to final frame",
+    "intro": "Production is where the idea becomes real.",
+    "steps": [
+      [
+        "Idea",
+        "Understand the idea and the audience."
+      ],
+      [
+        "Script",
+        "Shape narrative, sequence and visual storytelling."
+      ],
+      [
+        "Pre-production",
+        "Define people, plan and production requirements."
+      ],
+      [
+        "Production",
+        "Bring the idea into cameras, animation, sound and performance."
+      ],
+      [
+        "Post",
+        "Edit, animate, design and complete the story."
+      ],
+      [
+        "Delivery",
+        "Prepare the final experience for its intended platform."
+      ]
+    ],
+    "work": {
+      "title": "From idea to final frame",
+      "bridge": "Production gives an idea its final form."
+    }
+  }
+}

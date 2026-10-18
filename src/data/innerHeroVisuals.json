@@ -1,0 +1,9 @@
+{
+  "/metaverse/": "/inner-library/world.webp",
+  "/mixed-reality/": "/inner-library/training.webp",
+  "/virtual-reality/": "/inner-library/vr.webp",
+  "/augment-reality/": "/inner-library/tourism.webp",
+  "/animation/": "/inner-library/campaign.webp",
+  "/brand-advertisement/": "/inner-library/retail.webp",
+  "/media-production/": "/inner-library/media.webp"
+}

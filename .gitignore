@@ -1,0 +1,13 @@
+# Dependencies and build output
+node_modules/
+dist/
+
+# Arena workspace tooling and preservation snapshots
+.agents/
+.preservation-snapshot-*/
+skills-lock.json
+.arena/
+
+# Local operating-system and log files
+.DS_Store
+*.log

@@ -1,0 +1,46 @@
+[
+  {
+    "viewport": "desktop",
+    "initial": {
+      "step": 0,
+      "form": true,
+      "method": "",
+      "fields": 8
+    },
+    "invalidNext": {
+      "step": 0,
+      "error": ""
+    },
+    "validNext": {
+      "step": 1,
+      "value": "Parity Tester"
+    },
+    "previous": {
+      "step": 0
+    },
+    "errors": [],
+    "requestFailures": []
+  },
+  {
+    "viewport": "mobile",
+    "initial": {
+      "step": 0,
+      "form": true,
+      "method": "",
+      "fields": 8
+    },
+    "invalidNext": {
+      "step": 0,
+      "error": ""
+    },
+    "validNext": {
+      "step": 1,
+      "value": "Parity Tester"
+    },
+    "previous": {
+      "step": 0
+    },
+    "errors": [],
+    "requestFailures": []
+  }
+]

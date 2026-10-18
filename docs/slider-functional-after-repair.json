@@ -1,0 +1,4915 @@
+{
+  "generatedAt": "2026-10-05T08:30:18.626Z",
+  "cases": [
+    {
+      "site": "local",
+      "viewport": "desktop-1440x900",
+      "initial": {
+        "label": "initial",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 0.490693
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          }
+        ]
+      },
+      "noAutoplay": {
+        "label": "no-autoplay-after-3.5s",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 2.904816
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          }
+        ]
+      },
+      "keyboard": {
+        "label": "after-keyboard-arrow-right",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 3.164499
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          }
+        ]
+      },
+      "swipe": {
+        "label": "after-synthetic-touch-swipe",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 3.437021
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          }
+        ]
+      },
+      "pointerControl": {
+        "next": {
+          "ok": true
+        }
+      },
+      "next100": {
+        "label": "next-100ms-with-second-click-during-wait",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 3.694147
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": "transform: translateX(-0.39959px); opacity: 0.997503;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 3.9959px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 1440px; transform: translateX(-1292.4px); opacity: 0.102497;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          }
+        ]
+      },
+      "next500": {
+        "label": "next-500ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 4.109531
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": false,
+            "currentTime": 0.058242
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": "transform: translateX(-13.8063px); opacity: 0.91371;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 138.063px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 1440px; transform: translateX(-1171.74px); opacity: 0.18629;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          }
+        ]
+      },
+      "next1550": {
+        "label": "next-1550ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": true,
+            "currentTime": 4.204488
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": false,
+            "currentTime": 1.114674
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide q_current is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4952
+          }
+        ]
+      },
+      "next1900": {
+        "label": "next-1900ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": true,
+            "currentTime": 4.204488
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": false,
+            "currentTime": 1.468737
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide q_current is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4952
+          }
+        ]
+      },
+      "previous": {
+        "label": "previous-from-one",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 5.623624
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.180422
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": "",
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4952
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6779.199999999721
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6979.199999999721
+          }
+        ]
+      },
+      "wrapPrevious": {
+        "label": "wrap-previous-from-zero",
+        "route": "/",
+        "slideCount": 7,
+        "active": 6,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": true,
+            "currentTime": 6.04
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.180422
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": false,
+            "currentTime": 0.313728
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 6,
+            "className": "slide q_current is-loaded",
+            "style": "",
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4952
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6779.199999999721
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6979.199999999721
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 8705.69999999972
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8905.599999999627
+          }
+        ]
+      },
+      "wrapNext": {
+        "label": "wrap-next-from-six",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 6.840629
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.180422
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0.702458
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4952
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6779.199999999721
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6979.199999999721
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 8705.69999999972
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8905.599999999627
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 10631.599999999627
+          },
+          {
+            "type": "pause",
+            "index": 6,
+            "at": 10831.399999999907
+          }
+        ]
+      },
+      "final": {
+        "label": "final",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 6.844687
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.180422
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0.702458
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 686.3999999999069
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4751.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4952
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6779.199999999721
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6979.199999999721
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 8705.69999999972
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8905.599999999627
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 10631.599999999627
+          },
+          {
+            "type": "pause",
+            "index": 6,
+            "at": 10831.399999999907
+          }
+        ]
+      },
+      "errors": [],
+      "requestFailures": [
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "site": "live",
+      "viewport": "desktop-1440x900",
+      "initial": {
+        "label": "initial",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 0.870375
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          }
+        ]
+      },
+      "noAutoplay": {
+        "label": "no-autoplay-after-3.5s",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 3.276588
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          }
+        ]
+      },
+      "keyboard": {
+        "label": "after-keyboard-arrow-right",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 3.531972
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          }
+        ]
+      },
+      "swipe": {
+        "label": "after-synthetic-touch-swipe",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 3.788892
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          }
+        ]
+      },
+      "pointerControl": {
+        "next": {
+          "ok": false,
+          "error": "TimeoutError: locator.click: Timeout 2500ms exceeded.\nCall log:\n  - waiting for locator('.arrows .next')\n    - locator resolved to <div class=\"arrow next font_caps magnet\">…</div>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div id=\"loader-wrapper\">…</div> intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × "
+        }
+      },
+      "next100": {
+        "label": "next-100ms-with-second-click-during-wait",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 6.451882
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 0.074112
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": "transform: translate3d(-0.1645px, 0px, 0px); opacity: 0.999;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 2px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 1440px; transform: translate3d(-1294.52px, 0px, 0px); opacity: 0.101;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          }
+        ]
+      },
+      "next500": {
+        "label": "next-500ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 6.857088
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 0.479298
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": "transform: translate3d(-7.6207px, 0px, 0px); opacity: 0.9524;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 76px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 1440px; transform: translate3d(-1227.41px, 0px, 0px); opacity: 0.1476;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          }
+        ]
+      },
+      "next1550": {
+        "label": "next-1550ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 7.030894
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 1.531977
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8076.600000000093
+          }
+        ]
+      },
+      "next1900": {
+        "label": "next-1900ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 7.030894
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 1.88634
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8076.600000000093
+          }
+        ]
+      },
+      "previous": {
+        "label": "previous-from-one",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 7.030894
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 3.804809
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8076.600000000093
+          }
+        ]
+      },
+      "wrapPrevious": {
+        "label": "wrap-previous-from-zero",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 7.030894
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 5.720477
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8076.600000000093
+          }
+        ]
+      },
+      "wrapNext": {
+        "label": "wrap-next-from-six",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 7.030894
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 7.636999
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8076.600000000093
+          }
+        ]
+      },
+      "final": {
+        "label": "final",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 7.030894
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 7.642731
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "matrix(1, 0, 0, 1, 0, -551.25)",
+          "top": 213.75,
+          "nextTop": 753.75,
+          "nextBottom": 837.265625,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1393
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7876.699999999721
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8076.600000000093
+          }
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'style')"
+        ]
+      ],
+      "requestFailures": [
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "site": "local",
+      "viewport": "mobile-390x844",
+      "initial": {
+        "label": "initial",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 0.529468
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          }
+        ]
+      },
+      "noAutoplay": {
+        "label": "no-autoplay-after-3.5s",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 2.937447
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          }
+        ]
+      },
+      "keyboard": {
+        "label": "after-keyboard-arrow-right",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 3.188467
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          }
+        ]
+      },
+      "swipe": {
+        "label": "after-synthetic-touch-swipe",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 3.448622
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          }
+        ]
+      },
+      "pointerControl": {
+        "next": {
+          "ok": true
+        }
+      },
+      "next100": {
+        "label": "next-100ms-with-second-click-during-wait",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 3.702124
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": "transform: translateX(-0.096237px); opacity: 0.997779;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 0.96237px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 390px; transform: translateX(-350.134px); opacity: 0.102221;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          }
+        ]
+      },
+      "next500": {
+        "label": "next-500ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 4.108239
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": false,
+            "currentTime": 0.057737
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": "transform: translateX(-4.52338px); opacity: 0.895614;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 45.2338px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 390px; transform: translateX(-310.29px); opacity: 0.204386;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          }
+        ]
+      },
+      "next1550": {
+        "label": "next-1550ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": true,
+            "currentTime": 4.207075
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": false,
+            "currentTime": 1.112201
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide q_current is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4891
+          }
+        ]
+      },
+      "next1900": {
+        "label": "next-1900ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": true,
+            "currentTime": 4.207075
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": false,
+            "currentTime": 1.46631
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide q_current is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4891
+          }
+        ]
+      },
+      "previous": {
+        "label": "previous-from-one",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 5.625926
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.185025
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": "",
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4891
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6715.399999999907
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6915.399999999907
+          }
+        ]
+      },
+      "wrapPrevious": {
+        "label": "wrap-previous-from-zero",
+        "route": "/",
+        "slideCount": 7,
+        "active": 6,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": true,
+            "currentTime": 6.06
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.185025
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": false,
+            "currentTime": 0.404575
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 6,
+            "className": "slide q_current is-loaded",
+            "style": "",
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4891
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6715.399999999907
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6915.399999999907
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 8629.100000000093
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8829.100000000093
+          }
+        ]
+      },
+      "wrapNext": {
+        "label": "wrap-next-from-six",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 6.894332
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.185025
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0.89933
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4891
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6715.399999999907
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6915.399999999907
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 8629.100000000093
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8829.100000000093
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 10541.700000000186
+          },
+          {
+            "type": "pause",
+            "index": 6,
+            "at": 10741.600000000093
+          }
+        ]
+      },
+      "final": {
+        "label": "final",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+            "paused": false,
+            "currentTime": 6.900277
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+            "paused": true,
+            "currentTime": 2.185025
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+            "paused": true,
+            "currentTime": 0.89933
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current is-loaded scrollanim_fade_container",
+            "style": null,
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 639.2000000001863
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 4691
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 4891
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 6715.399999999907
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 6915.399999999907
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 8629.100000000093
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8829.100000000093
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 10541.700000000186
+          },
+          {
+            "type": "pause",
+            "index": 6,
+            "at": 10741.600000000093
+          }
+        ]
+      },
+      "errors": [],
+      "requestFailures": [
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "site": "live",
+      "viewport": "mobile-390x844",
+      "initial": {
+        "label": "initial",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 0.881831
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          }
+        ]
+      },
+      "noAutoplay": {
+        "label": "no-autoplay-after-3.5s",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 3.28692
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          }
+        ]
+      },
+      "keyboard": {
+        "label": "after-keyboard-arrow-right",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 3.54783
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          }
+        ]
+      },
+      "swipe": {
+        "label": "after-synthetic-touch-swipe",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": null,
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 3.787503
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          }
+        ]
+      },
+      "pointerControl": {
+        "next": {
+          "ok": false,
+          "error": "TimeoutError: locator.click: Timeout 2500ms exceeded.\nCall log:\n  - waiting for locator('.arrows .next')\n    - locator resolved to <div class=\"arrow next font_caps magnet\">…</div>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div id=\"loader-wrapper\">…</div> intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × "
+        }
+      },
+      "next100": {
+        "label": "next-100ms-with-second-click-during-wait",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 6.404446
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": "transform: translate3d(-0.0561px, 0px, 0px); opacity: 0.9987;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 1px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 390px; transform: translate3d(-350.495px, 0px, 0px); opacity: 0.1013;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          }
+        ]
+      },
+      "next500": {
+        "label": "next-500ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 6.808483
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 0.377812
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide q_current scrollanim_fade_container is-loaded",
+            "style": null,
+            "imageStyle": "transform: translate3d(-2.2223px, 0px, 0px); opacity: 0.9487;"
+          },
+          {
+            "index": 1,
+            "className": "slide is-loaded is-new",
+            "style": "display: block; width: 22px; right: 0px; left: auto; z-index: 2;",
+            "imageStyle": "width: 390px; transform: translate3d(-330.999px, 0px, 0px); opacity: 0.1513;"
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          }
+        ]
+      },
+      "next1550": {
+        "label": "next-1550ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "true",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 6.996274
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 1.439384
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8053
+          }
+        ]
+      },
+      "next1900": {
+        "label": "next-1900ms",
+        "route": "/",
+        "slideCount": 7,
+        "active": 1,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 6.996274
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": false,
+            "currentTime": 1.792992
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 1,
+            "className": "slide is-loaded q_current",
+            "style": null,
+            "imageStyle": null
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8053
+          }
+        ]
+      },
+      "previous": {
+        "label": "previous-from-one",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 8.403247
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 2.509838
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 0
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide scrollanim_fade_container is-loaded q_current",
+            "style": "",
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8053
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 9795.599999999627
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 9997.19999999972
+          }
+        ]
+      },
+      "wrapPrevious": {
+        "label": "wrap-previous-from-zero",
+        "route": "/",
+        "slideCount": 7,
+        "active": 6,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": true,
+            "currentTime": 8.98
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 2.509838
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": false,
+            "currentTime": 0.619822
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 6,
+            "className": "slide is-loaded q_current",
+            "style": "",
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8053
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 9795.599999999627
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 9997.19999999972
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 11709.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 11909.69999999972
+          }
+        ]
+      },
+      "wrapNext": {
+        "label": "wrap-next-from-six",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 10.02902
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 2.509838
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 1.066898
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide scrollanim_fade_container is-loaded q_current",
+            "style": null,
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8053
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 9795.599999999627
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 9997.19999999972
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 11709.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 11909.69999999972
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 13632.299999999814
+          },
+          {
+            "type": "pause",
+            "index": 6,
+            "at": 13832.099999999627
+          }
+        ]
+      },
+      "final": {
+        "label": "final",
+        "route": "/",
+        "slideCount": 7,
+        "active": 0,
+        "wait": "false",
+        "autoplay": null,
+        "loaded": [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        "labels": [
+          "/ Metaverse",
+          "/ Mixed Reality",
+          "/ Virtual Reality",
+          "/ Augment Reality",
+          "/ Animation",
+          "/ Brand Advertisement",
+          "/ Media Production"
+        ],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4 ",
+            "paused": false,
+            "currentTime": 10.032293
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 2.509838
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4 ",
+            "paused": true,
+            "currentTime": 0
+          },
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov ",
+            "paused": true,
+            "currentTime": 1.066898
+          }
+        ],
+        "arrow": {
+          "transform": "none",
+          "top": 745,
+          "nextTop": 745,
+          "nextBottom": 829,
+          "clickable": true
+        },
+        "transition": [
+          {
+            "index": 0,
+            "className": "slide scrollanim_fade_container is-loaded q_current",
+            "style": null,
+            "imageStyle": ""
+          }
+        ],
+        "videoCalls": [
+          {
+            "type": "play",
+            "index": 0,
+            "at": 1359.1999999997206
+          },
+          {
+            "type": "play",
+            "index": 1,
+            "at": 7853.0999999996275
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 8053
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 9795.599999999627
+          },
+          {
+            "type": "pause",
+            "index": 1,
+            "at": 9997.19999999972
+          },
+          {
+            "type": "play",
+            "index": 6,
+            "at": 11709.899999999907
+          },
+          {
+            "type": "pause",
+            "index": 0,
+            "at": 11909.69999999972
+          },
+          {
+            "type": "play",
+            "index": 0,
+            "at": 13632.299999999814
+          },
+          {
+            "type": "pause",
+            "index": 6,
+            "at": 13832.099999999627
+          }
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'style')"
+        ]
+      ],
+      "requestFailures": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,669 @@
+{
+  "generatedAt": "2026-10-05T08:57:08.010Z",
+  "logo": [
+    {
+      "viewport": "desktop",
+      "source": "/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/360-video/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/?s=",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/about/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/animation/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/augment-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/brand-advertisement/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/category/uncategorized/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/contact/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/enter-metabox/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/hello-world/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/media-production/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/mixed-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/privacy-policy/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/terms-of-service/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/test/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/this-route-does-not-exist-for-forensics-2026/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/virtual-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/vertual-work-copy-2/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/vertual-work-copy/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/vertual-work/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/virtual-reality-copy-2/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/virtual-reality-copy/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/virtual-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/terms-of-service",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/privacy-policy",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/page/3/?s=",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/page/2/?s=",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/animation/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/animation/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/lustica",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/karma",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/raia",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/vold",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/arc",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/prodotti",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/clorova",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/samsara",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/bodyshop",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/jannata",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/apprentice-search",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works/relationshift",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/brand-advertisement/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/brand-advertisement/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/author/admin/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/media-production/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/media-production/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/mixed-reality/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/mixed-reality/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/virtual-reality/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/virtual-reality/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works%20types/karma-group/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "source": "/works%20types/lustica-bay/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/360-video/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/?s=",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/about/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/animation/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/augment-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/brand-advertisement/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/category/uncategorized/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/contact/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/enter-metabox/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/hello-world/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/media-production/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/mixed-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/privacy-policy/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/terms-of-service/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/test/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/this-route-does-not-exist-for-forensics-2026/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/virtual-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/vertual-work-copy-2/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/vertual-work-copy/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/vertual-work/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/virtual-reality-copy-2/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/virtual-reality-copy/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/virtual-reality/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/terms-of-service",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/privacy-policy",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/page/3/?s=",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/page/2/?s=",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/animation/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/animation/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/lustica",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/karma",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/raia",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/vold",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/arc",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/prodotti",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/clorova",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/samsara",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/bodyshop",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/jannata",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/apprentice-search",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works/relationshift",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/brand-advertisement/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/brand-advertisement/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/author/admin/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/media-production/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/media-production/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/mixed-reality/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/mixed-reality/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/virtual-reality/about.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/virtual-reality/awards.html",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works%20types/karma-group/",
+      "route": "/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "source": "/works%20types/lustica-bay/",
+      "route": "/",
+      "pass": true
+    }
+  ],
+  "history": [
+    {
+      "viewport": "desktop",
+      "afterClick": "/about/",
+      "back": "/",
+      "forward": "/about/",
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "afterClick": "/about/",
+      "back": "/",
+      "forward": "/about/",
+      "pass": true
+    }
+  ]
+}

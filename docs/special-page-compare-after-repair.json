@@ -1,0 +1,618 @@
+{
+  "generatedAt": "2026-10-05T08:29:08.888Z",
+  "checks": [
+    {
+      "site": "local",
+      "route": "/metaverse/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "state": {
+        "route": "/metaverse/",
+        "title": "Unity WebGL Player | MetaScore",
+        "unity": true,
+        "unityWarning": "",
+        "unityLoader": [
+          "http://127.0.0.1:4173/metaverse/Build/Metaverse05_Browser_Jan31.loader.js",
+          "http://127.0.0.1:4173/metaverse/Build/Metaverse05_Browser_Jan31.framework.js"
+        ],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 551
+      },
+      "errors": [],
+      "failed": [],
+      "bad": []
+    },
+    {
+      "site": "local",
+      "route": "/metaverse/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "state": {
+        "route": "/metaverse/",
+        "title": "Unity WebGL Player | MetaScore",
+        "unity": true,
+        "unityWarning": "",
+        "unityLoader": [
+          "http://127.0.0.1:4173/metaverse/Build/Metaverse05_Browser_Jan31.loader.js",
+          "http://127.0.0.1:4173/metaverse/Build/Metaverse05_Browser_Jan31.framework.js"
+        ],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 551
+      },
+      "errors": [],
+      "failed": [],
+      "bad": []
+    },
+    {
+      "site": "local",
+      "route": "/360-video/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "state": {
+        "route": "/360-video/",
+        "title": "360 video - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": true,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 4154
+      },
+      "errors": [
+        [
+          "warning",
+          "[.WebGL-0x1cc400165600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        ],
+        [
+          "warning",
+          "[.WebGL-0x1cc400165600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        ],
+        [
+          "warning",
+          "[.WebGL-0x1cc400165600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+        ],
+        [
+          "warning",
+          "[.WebGL-0x1cc400165600]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": []
+    },
+    {
+      "site": "local",
+      "route": "/360-video/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "state": {
+        "route": "/360-video/",
+        "title": "360 video - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": true,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 4154
+      },
+      "errors": [],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "http://127.0.0.1:4173/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": []
+    },
+    {
+      "site": "local",
+      "route": "/contact/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "state": {
+        "route": "/contact/",
+        "title": "Contact - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": true,
+        "contactStep": "step1",
+        "forms": [
+          {
+            "id": "booking-form",
+            "method": "get",
+            "action": "http://127.0.0.1:4173/contact/",
+            "inputs": 29
+          }
+        ],
+        "rootLength": 12135
+      },
+      "errors": [],
+      "failed": [],
+      "bad": []
+    },
+    {
+      "site": "local",
+      "route": "/contact/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "state": {
+        "route": "/contact/",
+        "title": "Contact - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": true,
+        "contactStep": "step1",
+        "forms": [
+          {
+            "id": "booking-form",
+            "method": "get",
+            "action": "http://127.0.0.1:4173/contact/",
+            "inputs": 29
+          }
+        ],
+        "rootLength": 12135
+      },
+      "errors": [],
+      "failed": [],
+      "bad": []
+    },
+    {
+      "site": "live",
+      "route": "/metaverse/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "state": {
+        "route": "/metaverse/",
+        "title": "Unity WebGL Player | MetaScore",
+        "unity": true,
+        "unityWarning": "HTTP Response Header \"Content-Type\" configured incorrectly on the server for file Build/Metaverse05_Browser_Jan31.wasm , should be \"application/wasm\". Startup time performance will suffer.",
+        "unityLoader": [
+          "https://angelcreations.in/metaverse/Build/Metaverse05_Browser_Jan31.loader.js",
+          "https://angelcreations.in/metaverse/Build/Metaverse05_Browser_Jan31.framework.js"
+        ],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 0
+      },
+      "errors": [
+        [
+          "error",
+          "wasm streaming compile failed: TypeError: Failed to execute 'compile' on 'WebAssembly': Incorrect response MIME type. Expected 'application/wasm'."
+        ],
+        [
+          "error",
+          "falling back to ArrayBuffer instantiation"
+        ]
+      ],
+      "failed": [],
+      "bad": []
+    },
+    {
+      "site": "live",
+      "route": "/metaverse/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "state": {
+        "route": "/metaverse/",
+        "title": "Unity WebGL Player | MetaScore",
+        "unity": true,
+        "unityWarning": "HTTP Response Header \"Content-Type\" configured incorrectly on the server for file Build/Metaverse05_Browser_Jan31.wasm , should be \"application/wasm\". Startup time performance will suffer.",
+        "unityLoader": [
+          "https://angelcreations.in/metaverse/Build/Metaverse05_Browser_Jan31.loader.js",
+          "https://angelcreations.in/metaverse/Build/Metaverse05_Browser_Jan31.framework.js"
+        ],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 0
+      },
+      "errors": [
+        [
+          "error",
+          "wasm streaming compile failed: TypeError: Failed to execute 'compile' on 'WebAssembly': Incorrect response MIME type. Expected 'application/wasm'."
+        ],
+        [
+          "error",
+          "falling back to ArrayBuffer instantiation"
+        ]
+      ],
+      "failed": [],
+      "bad": []
+    },
+    {
+      "site": "live",
+      "route": "/360-video/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "state": {
+        "route": "/360-video/",
+        "title": "360 video - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": true,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 0
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'style')"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": []
+    },
+    {
+      "site": "live",
+      "route": "/360-video/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "state": {
+        "route": "/360-video/",
+        "title": "360 video - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": true,
+        "panoramaVideo": "",
+        "contactForm": false,
+        "contactStep": "",
+        "forms": [],
+        "rootLength": 0
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'style')"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://angelcreations.in/wp-content/uploads/2023/01/Y2meta.app-360%C2%B0-VR-TERRIFYING-Sea-Creatures-_-Deep-Ocean-Horror-720p60.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": []
+    },
+    {
+      "site": "live",
+      "route": "/contact/",
+      "viewport": "desktop",
+      "httpStatus": 200,
+      "state": {
+        "route": "/contact/",
+        "title": "Contact - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": true,
+        "contactStep": "",
+        "forms": [
+          {
+            "id": "booking-form",
+            "method": "post",
+            "action": "https://angelcreations.in/contact-us/#wpcf7-f518-p519-o1",
+            "inputs": 30
+          }
+        ],
+        "rootLength": 0
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'style')"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        }
+      ],
+      "bad": []
+    },
+    {
+      "site": "live",
+      "route": "/contact/",
+      "viewport": "mobile",
+      "httpStatus": 200,
+      "state": {
+        "route": "/contact/",
+        "title": "Contact - Angel Creations - A Creative Powerhouse",
+        "unity": false,
+        "unityWarning": "",
+        "unityLoader": [],
+        "panorama": false,
+        "panoramaVideo": "",
+        "contactForm": true,
+        "contactStep": "",
+        "forms": [
+          {
+            "id": "booking-form",
+            "method": "post",
+            "action": "https://angelcreations.in/contact-us/#wpcf7-f518-p519-o1",
+            "inputs": 30
+          }
+        ],
+        "rootLength": 0
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'style')"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        }
+      ],
+      "bad": []
+    }
+  ]
+}

@@ -1,0 +1,1405 @@
+{
+  "generatedAt": "2026-10-05T09:01:27.270Z",
+  "cases": [
+    {
+      "site": "local",
+      "viewport": "mobile-390x844",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 65567,
+        "rootTextLength": 192,
+        "rootText": "METAVERSE 360 VIDEO MENU We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards We're all around Braintree, UK Jaipur, IN",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 js",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 6184.296875,
+            "top": 0,
+            "right": 390,
+            "bottom": 6184.296875,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "6184.3px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Different cultures, languages and landscapes trigger our work. That’s why we love airports. It’s a hub with all those lines going to far different points. Not in one single direction, but various. We pack light and quick and we’re ready to fly anywhere. Which means that we’re not stuck in a given address. But being all over the place. That’s not the future of work. That’s our reality.",
+          "We build our teams around the projects, not the other way round. The makeup of the team is crucial. It’s the difference between good and great. At Angel Creations we understand that a deeply personal passion piece needs a different set of skills from, say, a vast-scale multicam stunt.",
+          "And so, Angel Creations is home to a range of talents, from directors of projects and sound-people to graphic designers, animators, event experts and editors, each with many years’ experience in their specialist fields. It means we cherry pick our teams specifically for each project, and purely based on the needs of the client.",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [],
+        "forms": [],
+        "scripts": [
+          "http://127.0.0.1:4173/assets/index-BiOOjRZM.js"
+        ],
+        "stylesheets": [
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
+          "/legacy-assets/other/wp-content/themes/fleava/style.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
+          "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
+          "/assets/index-CZ_aWtLj.css"
+        ]
+      },
+      "errors": [],
+      "failed": [],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "local",
+      "viewport": "mobile-430x932",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 65567,
+        "rootTextLength": 192,
+        "rootText": "METAVERSE 360 VIDEO MENU We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards We're all around Braintree, UK Jaipur, IN",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 js",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 5999.296875,
+            "top": 0,
+            "right": 430,
+            "bottom": 5999.296875,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "5999.3px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Different cultures, languages and landscapes trigger our work. That’s why we love airports. It’s a hub with all those lines going to far different points. Not in one single direction, but various. We pack light and quick and we’re ready to fly anywhere. Which means that we’re not stuck in a given address. But being all over the place. That’s not the future of work. That’s our reality.",
+          "We build our teams around the projects, not the other way round. The makeup of the team is crucial. It’s the difference between good and great. At Angel Creations we understand that a deeply personal passion piece needs a different set of skills from, say, a vast-scale multicam stunt.",
+          "And so, Angel Creations is home to a range of talents, from directors of projects and sound-people to graphic designers, animators, event experts and editors, each with many years’ experience in their specialist fields. It means we cherry pick our teams specifically for each project, and purely based on the needs of the client.",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [],
+        "forms": [],
+        "scripts": [
+          "http://127.0.0.1:4173/assets/index-BiOOjRZM.js"
+        ],
+        "stylesheets": [
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
+          "/legacy-assets/other/wp-content/themes/fleava/style.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
+          "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
+          "/assets/index-CZ_aWtLj.css"
+        ]
+      },
+      "errors": [],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "local",
+      "viewport": "tablet-834x1194",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 65567,
+        "rootTextLength": 192,
+        "rootText": "METAVERSE 360 VIDEO MENU We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards We're all around Braintree, UK Jaipur, IN",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 js",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 834,
+            "height": 5359.03125,
+            "top": 0,
+            "right": 834,
+            "bottom": 5359.03125,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "5359.03px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Different cultures, languages and landscapes trigger our work. That’s why we love airports. It’s a hub with all those lines going to far different points. Not in one single direction, but various. We pack light and quick and we’re ready to fly anywhere. Which means that we’re not stuck in a given address. But being all over the place. That’s not the future of work. That’s our reality.",
+          "We build our teams around the projects, not the other way round. The makeup of the team is crucial. It’s the difference between good and great. At Angel Creations we understand that a deeply personal passion piece needs a different set of skills from, say, a vast-scale multicam stunt.",
+          "And so, Angel Creations is home to a range of talents, from directors of projects and sound-people to graphic designers, animators, event experts and editors, each with many years’ experience in their specialist fields. It means we cherry pick our teams specifically for each project, and purely based on the needs of the client.",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [],
+        "forms": [],
+        "scripts": [
+          "http://127.0.0.1:4173/assets/index-BiOOjRZM.js"
+        ],
+        "stylesheets": [
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
+          "/legacy-assets/other/wp-content/themes/fleava/style.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
+          "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
+          "/assets/index-CZ_aWtLj.css"
+        ]
+      },
+      "errors": [],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "local",
+      "viewport": "desktop-1440x900",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 65567,
+        "rootTextLength": 192,
+        "rootText": "METAVERSE 360 VIDEO MENU We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards We're all around Braintree, UK Jaipur, IN",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 js",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 3952.578125,
+            "top": 0,
+            "right": 1440,
+            "bottom": 3952.578125,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "3952.58px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Different cultures, languages and landscapes trigger our work. That’s why we love airports. It’s a hub with all those lines going to far different points. Not in one single direction, but various. We pack light and quick and we’re ready to fly anywhere. Which means that we’re not stuck in a given address. But being all over the place. That’s not the future of work. That’s our reality.",
+          "We build our teams around the projects, not the other way round. The makeup of the team is crucial. It’s the difference between good and great. At Angel Creations we understand that a deeply personal passion piece needs a different set of skills from, say, a vast-scale multicam stunt.",
+          "And so, Angel Creations is home to a range of talents, from directors of projects and sound-people to graphic designers, animators, event experts and editors, each with many years’ experience in their specialist fields. It means we cherry pick our teams specifically for each project, and purely based on the needs of the client.",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [],
+        "forms": [],
+        "scripts": [
+          "http://127.0.0.1:4173/assets/index-BiOOjRZM.js"
+        ],
+        "stylesheets": [
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
+          "/legacy-assets/other/wp-content/themes/fleava/style.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
+          "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
+          "/assets/index-CZ_aWtLj.css"
+        ]
+      },
+      "errors": [],
+      "failed": [
+        {
+          "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "local",
+      "viewport": "desktop-1920x1080",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 65567,
+        "rootTextLength": 192,
+        "rootText": "METAVERSE 360 VIDEO MENU We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards We're all around Braintree, UK Jaipur, IN",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 js",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 4217.5,
+            "top": 0,
+            "right": 1920,
+            "bottom": 4217.5,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "4217.5px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Different cultures, languages and landscapes trigger our work. That’s why we love airports. It’s a hub with all those lines going to far different points. Not in one single direction, but various. We pack light and quick and we’re ready to fly anywhere. Which means that we’re not stuck in a given address. But being all over the place. That’s not the future of work. That’s our reality.",
+          "We build our teams around the projects, not the other way round. The makeup of the team is crucial. It’s the difference between good and great. At Angel Creations we understand that a deeply personal passion piece needs a different set of skills from, say, a vast-scale multicam stunt.",
+          "And so, Angel Creations is home to a range of talents, from directors of projects and sound-people to graphic designers, animators, event experts and editors, each with many years’ experience in their specialist fields. It means we cherry pick our teams specifically for each project, and purely based on the needs of the client.",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [],
+        "forms": [],
+        "scripts": [
+          "http://127.0.0.1:4173/assets/index-BiOOjRZM.js"
+        ],
+        "stylesheets": [
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
+          "/legacy-assets/other/wp-content/themes/fleava/style.css",
+          "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
+          "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
+          "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
+          "/assets/index-CZ_aWtLj.css"
+        ]
+      },
+      "errors": [],
+      "failed": [],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "live",
+      "viewport": "mobile-390x844",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 0,
+        "rootTextLength": 0,
+        "rootText": "",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 safari",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 6041.296875,
+            "top": 0,
+            "right": 390,
+            "bottom": 6041.296875,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "6041.3px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications",
+          "copyright 2023"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [
+          "#"
+        ],
+        "forms": [],
+        "scripts": [
+          "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "https://angelcreations.in/wp-includes/js/wp-emoji-release.min.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://code.jquery.com/jquery-2.2.4.min.js",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/scripts.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js",
+          "https://www.krowd.com.au/js/slick.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js",
+          "https://angelcreations.in/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+          "https://angelcreations.in/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/primary-navigation.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/responsive-embeds.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"
+        ],
+        "stylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/app.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/custom.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/style.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/print.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/style-dark-mode.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.32.5",
+          "https://angelcreations.in/wp-content/uploads/elementor/css/post-594.css?ver=1791185026",
+          "https://angelcreations.in/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.22.1",
+          "https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap",
+          "https://fonts.googleapis.com/css?family=Roboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "live",
+      "viewport": "mobile-430x932",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 0,
+        "rootTextLength": 0,
+        "rootText": "",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 safari",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 430,
+            "height": 5856.296875,
+            "top": 0,
+            "right": 430,
+            "bottom": 5856.296875,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "5856.3px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications",
+          "copyright 2023"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [
+          "#"
+        ],
+        "forms": [],
+        "scripts": [
+          "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "https://angelcreations.in/wp-includes/js/wp-emoji-release.min.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://code.jquery.com/jquery-2.2.4.min.js",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/scripts.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js",
+          "https://www.krowd.com.au/js/slick.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js",
+          "https://angelcreations.in/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+          "https://angelcreations.in/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/primary-navigation.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/responsive-embeds.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"
+        ],
+        "stylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/app.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/custom.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/style.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/print.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/style-dark-mode.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.32.5",
+          "https://angelcreations.in/wp-content/uploads/elementor/css/post-594.css?ver=1791185026",
+          "https://angelcreations.in/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.22.1",
+          "https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap",
+          "https://fonts.googleapis.com/css?family=Roboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "live",
+      "viewport": "tablet-834x1194",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 0,
+        "rootTextLength": 0,
+        "rootText": "",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 chrome",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 834,
+            "height": 4908.03125,
+            "top": 0,
+            "right": 834,
+            "bottom": 4908.03125,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "4908.03px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications",
+          "copyright 2023"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [
+          "#"
+        ],
+        "forms": [],
+        "scripts": [
+          "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "https://angelcreations.in/wp-includes/js/wp-emoji-release.min.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://code.jquery.com/jquery-2.2.4.min.js",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/scripts.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js",
+          "https://www.krowd.com.au/js/slick.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js",
+          "https://angelcreations.in/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+          "https://angelcreations.in/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/primary-navigation.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/responsive-embeds.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"
+        ],
+        "stylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/app.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/custom.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/style.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/print.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/style-dark-mode.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.32.5",
+          "https://angelcreations.in/wp-content/uploads/elementor/css/post-594.css?ver=1791185026",
+          "https://angelcreations.in/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.22.1",
+          "https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap",
+          "https://fonts.googleapis.com/css?family=Roboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "live",
+      "viewport": "desktop-1440x900",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 0,
+        "rootTextLength": 0,
+        "rootText": "",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 chrome",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 3897.578125,
+            "top": 0,
+            "right": 1440,
+            "bottom": 3897.578125,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "3897.58px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications",
+          "copyright 2023"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [
+          "#"
+        ],
+        "forms": [],
+        "scripts": [
+          "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "https://angelcreations.in/wp-includes/js/wp-emoji-release.min.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://code.jquery.com/jquery-2.2.4.min.js",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/scripts.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js",
+          "https://www.krowd.com.au/js/slick.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js",
+          "https://angelcreations.in/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+          "https://angelcreations.in/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/primary-navigation.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/responsive-embeds.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"
+        ],
+        "stylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/app.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/custom.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/style.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/print.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/style-dark-mode.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.32.5",
+          "https://angelcreations.in/wp-content/uploads/elementor/css/post-594.css?ver=1791185026",
+          "https://angelcreations.in/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.22.1",
+          "https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap",
+          "https://fonts.googleapis.com/css?family=Roboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    },
+    {
+      "site": "live",
+      "viewport": "desktop-1920x1080",
+      "httpStatus": 200,
+      "state": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "rootHtmlLength": 0,
+        "rootTextLength": 0,
+        "rootText": "",
+        "bodyClass": "wp-singular page-template page-template-about-page page-template-about-page-php page page-id-10 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-10 chrome",
+        "main": {
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 1920,
+            "height": 4177.5,
+            "top": 0,
+            "right": 1920,
+            "bottom": 4177.5,
+            "left": 0
+          },
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "height": "4177.5px",
+          "overflow": "visible",
+          "transform": "none"
+        },
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
+          },
+          {
+            "tag": "H2",
+            "text": "Who we are"
+          },
+          {
+            "tag": "H2",
+            "text": "Capabilities"
+          },
+          {
+            "tag": "H2",
+            "text": "We're all around"
+          },
+          {
+            "tag": "H2",
+            "text": "Even in these times, our culture strongly stands for true global commuters."
+          },
+          {
+            "tag": "H2",
+            "text": "Our Client"
+          },
+          {
+            "tag": "H2",
+            "text": "Sectors"
+          }
+        ],
+        "paragraphs": [
+          "Angel Creations is an India based Creative Studio, with the mission of building value through design and development. Although we are Indian based Studio but has completed many projects globally.",
+          "We deal with a diverse selection of clients, small or big companies and organizations, delivering solutions rooted in usability, creativity, aesthetics and craft. We believe in work that comes from collaborations, joint ambition and mutual respect.",
+          "We use design to make a positive impact for our customer and our surrounding, generating results that are progressive, enduring and engaging.",
+          "Metaverse",
+          "Virtual Reality",
+          "Augment Reality",
+          "Mixed Reality",
+          "Animation",
+          "Media Production",
+          "Braintree, UK Jaipur, IN",
+          "Agriculture Apparel & Sportswear Arts & Culture Aviation Banking & Finance Chemical Industries Defence Design & Architecture Education",
+          "Energy and Utilities Entertainment Fashion & Beauty Fintech Food & Drink Furniture Gaming Hospitality",
+          "Manufacturing & Industries Marketing & Media Oil & Gas Publishing Real Estate Retail & Luxury Technology Telecommunications",
+          "copyright 2023"
+        ],
+        "images": [],
+        "videos": [
+          {
+            "src": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "poster": ""
+          }
+        ],
+        "links": [
+          "#"
+        ],
+        "forms": [],
+        "scripts": [
+          "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "https://angelcreations.in/wp-includes/js/wp-emoji-release.min.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://code.jquery.com/jquery-2.2.4.min.js",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/scripts.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js",
+          "https://www.krowd.com.au/js/slick.min.js",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js",
+          "https://angelcreations.in/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+          "https://angelcreations.in/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/primary-navigation.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/js/responsive-embeds.js?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+          "https://angelcreations.in/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"
+        ],
+        "stylesheets": [
+          "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/app.css",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/custom.css",
+          "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css",
+          "https://angelcreations.in/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.3",
+          "https://angelcreations.in/wp-content/themes/fleava/style.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/print.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/themes/fleava/assets/css/style-dark-mode.css?ver=db8409c0e4e8b69e05f5f7bde868a51f",
+          "https://angelcreations.in/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.32.5",
+          "https://angelcreations.in/wp-content/uploads/elementor/css/post-594.css?ver=1791185026",
+          "https://angelcreations.in/wp-content/plugins/elementor-pro/assets/css/frontend.min.css?ver=3.22.1",
+          "https://fonts.googleapis.com/css?family=Roboto:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap",
+          "https://fonts.googleapis.com/css?family=Roboto+Slab:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+        ]
+      },
+      "errors": [
+        [
+          "warning",
+          "<link rel=preload> has an unsupported `type` value"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+        ],
+        [
+          "error",
+          "Failed to load resource: net::ERR_FAILED"
+        ],
+        [
+          "pageerror",
+          "TypeError: Cannot read properties of undefined (reading 'top')"
+        ],
+        [
+          "warning",
+          "GSAP target .line span not found. https://greensock.com"
+        ],
+        [
+          "warning",
+          "GSAP target  not found. https://greensock.com"
+        ],
+        [
+          "pageerror",
+          "Error: Barba.js: no container found"
+        ]
+      ],
+      "failed": [
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://www.krowd.com.au/js/slick.min.js",
+          "error": "net::ERR_NAME_NOT_RESOLVED"
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+          "error": "net::ERR_FAILED"
+        }
+      ],
+      "bad": [],
+      "resources": []
+    }
+  ]
+}

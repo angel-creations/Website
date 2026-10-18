@@ -1,0 +1,79 @@
+{
+  "intro": [
+    "The internet gave us places to visit.",
+    "The metaverse gives us places to enter.",
+    "Angel Creations creates virtual worlds and connected digital environments designed around how people explore, interact, communicate, learn, play and experience brands.",
+    "From virtual events and immersive education to gaming, digital commerce and virtual product experiences, we approach the metaverse as a creative medium — not simply a piece of technology."
+  ],
+  "worldStatement": [
+    "A successful virtual world needs more than a 3D environment.",
+    "It needs a reason to exist.",
+    "It needs a story.",
+    "It needs a visual language.",
+    "It needs interaction.",
+    "And most importantly, it needs people who want to stay.",
+    "Angel brings together storytelling, design, animation, experience design and emerging technology to create environments where digital spaces become experiences."
+  ],
+  "experienceTypes": [
+    {
+      "title": "Virtual Worlds",
+      "description": "Create persistent or event-based environments where audiences can explore spaces, discover content and interact with others.",
+      "applications": ["branded virtual worlds", "destination environments", "cultural experiences", "entertainment worlds", "educational environments", "community spaces", "virtual campuses", "digital showrooms", "virtual exhibitions", "branded social spaces"]
+    },
+    {
+      "title": "Virtual Events",
+      "description": "Move beyond the limitations of a physical venue. A virtual environment can bring audiences together regardless of location.",
+      "applications": ["conferences", "exhibitions", "product launches", "corporate events", "networking environments", "virtual ceremonies", "brand activations", "community events", "educational events", "entertainment experiences"],
+      "closing": "The environment itself becomes part of the event."
+    },
+    {
+      "title": "Virtual Brand Experiences",
+      "description": "A brand doesn't always need another website. Sometimes it needs a place. A virtual brand environment can become a destination where people discover products, stories, campaigns and experiences in a more immersive way.",
+      "applications": ["virtual brand worlds", "campaign environments", "digital activations", "product discovery", "interactive storytelling", "branded communities", "virtual showrooms", "experiential marketing"]
+    },
+    {
+      "title": "Gaming",
+      "description": "Games create participation. Metaverse environments can use game mechanics to make audiences explore rather than simply consume.",
+      "applications": ["branded games", "interactive challenges", "multiplayer environments", "educational games", "promotional experiences", "gamified learning", "virtual competitions", "entertainment worlds"]
+    },
+    {
+      "title": "Virtual Marketplaces",
+      "description": "A virtual environment can become a new way to discover and experience products.",
+      "applications": ["virtual marketplaces", "digital storefronts", "product discovery", "virtual shopping environments", "branded commerce experiences", "collectible experiences", "digital product showcases"]
+    },
+    {
+      "title": "Virtual Economies",
+      "description": "Where appropriate, virtual environments can support systems in which digital participation, ownership, exchange or rewards become part of the experience.",
+      "closing": "The creative challenge is not simply creating an economy. It is designing a reason for people to participate in it.",
+      "applications": []
+    },
+    {
+      "title": "Virtual Education",
+      "description": "Learning does not have to happen inside a rectangle. Virtual environments can create spaces for:",
+      "applications": ["immersive lessons", "virtual classrooms", "simulations", "collaborative learning", "interactive museums", "cultural education", "skill development", "experiential training"],
+      "closing": "The environment becomes part of the lesson."
+    },
+    {
+      "title": "Virtual Workspaces",
+      "description": "Distributed teams can use shared virtual environments for:",
+      "applications": ["collaboration", "presentations", "workshops", "meetings", "demonstrations", "training", "internal events"],
+      "closing": "The objective is not to recreate an office pixel for pixel. It is to create a better digital space for a particular kind of interaction."
+    },
+    {
+      "title": "Virtual Product Showcases",
+      "description": "Products can be experienced from angles and environments that physical space may not allow.",
+      "applications": ["product visualization", "interactive demonstrations", "virtual launches", "product configuration", "immersive storytelling", "technical visualization", "showroom experiences"]
+    }
+  ],
+  "experienceLayer": [
+    ["Space", "Where does the audience go?"],
+    ["Story", "Why are they there?"],
+    ["Interaction", "What can they do?"],
+    ["People", "Who else is there?"],
+    ["Content", "What do they discover?"],
+    ["Return", "Why would they come back?"]
+  ],
+  "whoCanUse": ["Entertainment", "Education", "Gaming", "Retail", "Marketing", "Media", "Architecture", "Real estate", "Hospitality", "Events", "Corporate communication", "Training", "Cultural experiences", "Product launches", "Community building"],
+  "evolution": ["Idea", "Story", "World", "Interaction", "Content", "Technology", "Experience"],
+  "relatedCapabilityRoutes": ["/capabilities/brand/", "/capabilities/design/", "/capabilities/content/", "/capabilities/animation-3d/", "/capabilities/digital/", "/capabilities/experiences/", "/capabilities/creative-technology/"]
+}

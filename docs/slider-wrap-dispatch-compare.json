@@ -1,0 +1,116 @@
+[
+  {
+    "site": "local",
+    "initial": {
+      "x": "init",
+      "a": 0,
+      "w": null,
+      "visibleAtNext": true
+    },
+    "one100": {
+      "x": "one100",
+      "a": 0,
+      "w": "true",
+      "visibleAtNext": true
+    },
+    "one": {
+      "x": "one",
+      "a": 1,
+      "w": "false",
+      "visibleAtNext": true
+    },
+    "zero100": {
+      "x": "zero100",
+      "a": 1,
+      "w": "true",
+      "visibleAtNext": true
+    },
+    "zero": {
+      "x": "zero",
+      "a": 0,
+      "w": "false",
+      "visibleAtNext": true
+    },
+    "six100": {
+      "x": "six100",
+      "a": 0,
+      "w": "true",
+      "visibleAtNext": true
+    },
+    "six": {
+      "x": "six",
+      "a": 6,
+      "w": "false",
+      "visibleAtNext": true
+    },
+    "zero wrap100": {
+      "x": "zero wrap100",
+      "a": 6,
+      "w": "true",
+      "visibleAtNext": true
+    },
+    "zero wrap": {
+      "x": "zero wrap",
+      "a": 0,
+      "w": "false",
+      "visibleAtNext": true
+    }
+  },
+  {
+    "site": "live",
+    "initial": {
+      "x": "init",
+      "a": 0,
+      "w": null,
+      "visibleAtNext": false
+    },
+    "one100": {
+      "x": "one100",
+      "a": 0,
+      "w": "true",
+      "visibleAtNext": false
+    },
+    "one": {
+      "x": "one",
+      "a": 1,
+      "w": "false",
+      "visibleAtNext": false
+    },
+    "zero100": {
+      "x": "zero100",
+      "a": 1,
+      "w": "true",
+      "visibleAtNext": false
+    },
+    "zero": {
+      "x": "zero",
+      "a": 0,
+      "w": "false",
+      "visibleAtNext": false
+    },
+    "six100": {
+      "x": "six100",
+      "a": 0,
+      "w": "true",
+      "visibleAtNext": false
+    },
+    "six": {
+      "x": "six",
+      "a": 6,
+      "w": "false",
+      "visibleAtNext": true
+    },
+    "zero wrap100": {
+      "x": "zero wrap100",
+      "a": 6,
+      "w": "true",
+      "visibleAtNext": true
+    },
+    "zero wrap": {
+      "x": "zero wrap",
+      "a": 0,
+      "w": "false",
+      "visibleAtNext": true
+    }
+  }
+]

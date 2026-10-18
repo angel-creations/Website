@@ -1,0 +1,637 @@
+{
+  "generatedAt": "2026-10-05T07:50:41.900Z",
+  "local": {
+    "httpStatus": 200,
+    "snapshot": {
+      "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+      "route": "/",
+      "bodyClass": "home wp-singular page-template page-template-front-page page-template-front-page-php page page-id-8 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-8 js",
+      "rootTextLength": 707,
+      "rootHtmlLength": 10117,
+      "slides": [
+        {
+          "i": 0,
+          "className": "slide q_current is-loaded scrollanim_fade_container",
+          "display": "block",
+          "opacity": "1",
+          "text": "01 / Metaverse  Dive into new world, live the world you want."
+        },
+        {
+          "i": 1,
+          "className": "slide",
+          "display": "none",
+          "opacity": "0",
+          "text": "02 / Mixed Reality  Tech immersion: Real & digital objects interact."
+        },
+        {
+          "i": 2,
+          "className": "slide",
+          "display": "none",
+          "opacity": "0",
+          "text": "03 / Virtual Reality  You’re not imagining it, you’re experiencing it!"
+        },
+        {
+          "i": 3,
+          "className": "slide",
+          "display": "none",
+          "opacity": "0",
+          "text": "04 / Augment Reality  Blending real & virtual worlds, Immersive experience!"
+        },
+        {
+          "i": 4,
+          "className": "slide",
+          "display": "none",
+          "opacity": "0",
+          "text": "05 / Animation  We give you amazing animation in both 2D & 3D."
+        },
+        {
+          "i": 5,
+          "className": "slide",
+          "display": "none",
+          "opacity": "0",
+          "text": "06 / Brand Advertisement  Elevating Brands through Digital Innovation."
+        },
+        {
+          "i": 6,
+          "className": "slide",
+          "display": "none",
+          "opacity": "0",
+          "text": "07 / Media Production  Think with us, act with us, create with us!"
+        }
+      ],
+      "arrows": [
+        {
+          "text": "Prev",
+          "rect": {
+            "x": 194.390625,
+            "y": 1305,
+            "width": 92.59375,
+            "height": 83.515625,
+            "top": 1305,
+            "right": 286.984375,
+            "bottom": 1388.515625,
+            "left": 194.390625
+          },
+          "pointerEvents": "auto",
+          "zIndex": "auto"
+        },
+        {
+          "text": "Next",
+          "rect": {
+            "x": 293.984375,
+            "y": 1305,
+            "width": 94.59375,
+            "height": 83.515625,
+            "top": 1305,
+            "right": 388.578125,
+            "bottom": 1388.515625,
+            "left": 293.984375
+          },
+          "pointerEvents": "auto",
+          "zIndex": "auto"
+        }
+      ],
+      "nextElement": {}
+    },
+    "clicks": [
+      [
+        {
+          "i": 0,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 1,
+          "active": true,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 2,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 3,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 4,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 5,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 6,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 1,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 2,
+          "active": true,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 3,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 4,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 5,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 6,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 1,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 2,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 3,
+          "active": true,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 4,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 5,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        },
+        {
+          "i": 6,
+          "active": false,
+          "display": "none",
+          "opacity": "0"
+        }
+      ]
+    ],
+    "afterWait": [
+      {
+        "i": 0,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 1,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 2,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 3,
+        "active": true,
+        "display": "block",
+        "opacity": "1"
+      },
+      {
+        "i": 4,
+        "active": false,
+        "display": "none",
+        "opacity": "0"
+      },
+      {
+        "i": 5,
+        "active": false,
+        "display": "none",
+        "opacity": "0"
+      },
+      {
+        "i": 6,
+        "active": false,
+        "display": "none",
+        "opacity": "0"
+      }
+    ],
+    "consoleErrors": [
+      {
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_CONNECTION_CLOSED"
+      }
+    ],
+    "pageErrors": [],
+    "requestFailures": [
+      {
+        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+        "error": "net::ERR_CONNECTION_CLOSED"
+      },
+      {
+        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "badResponses": []
+  },
+  "live": {
+    "httpStatus": 200,
+    "snapshot": {
+      "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+      "route": "/",
+      "bodyClass": "home wp-singular page-template page-template-front-page page-template-front-page-php page page-id-8 wp-custom-logo wp-embed-responsive wp-theme-fleava is-light-theme singular has-main-navigation elementor-default elementor-kit-594 elementor-page elementor-page-8 chrome custom_cursor",
+      "rootTextLength": 32311,
+      "rootHtmlLength": 49371,
+      "slides": [
+        {
+          "i": 0,
+          "className": "slide q_current scrollanim_fade_container is-loaded",
+          "display": "block",
+          "opacity": "1",
+          "text": "01\n\n                                                    \n                                                        / Metav"
+        },
+        {
+          "i": 1,
+          "className": "slide is-loaded",
+          "display": "none",
+          "opacity": "1",
+          "text": "02\n                                                            \n                                                        "
+        },
+        {
+          "i": 2,
+          "className": "slide is-loaded",
+          "display": "none",
+          "opacity": "1",
+          "text": "03\n                                                            \n                                                        "
+        },
+        {
+          "i": 3,
+          "className": "slide is-loaded",
+          "display": "none",
+          "opacity": "1",
+          "text": "04\n                                                            \n                                                        "
+        },
+        {
+          "i": 4,
+          "className": "slide is-loaded",
+          "display": "none",
+          "opacity": "1",
+          "text": "05\n                                                            \n                                                        "
+        },
+        {
+          "i": 5,
+          "className": "slide is-loaded",
+          "display": "none",
+          "opacity": "1",
+          "text": "06\n                                                            \n                                                        "
+        },
+        {
+          "i": 6,
+          "className": "slide is-loaded",
+          "display": "none",
+          "opacity": "1",
+          "text": "07\n                                                            \n                                                        "
+        }
+      ],
+      "arrows": [
+        {
+          "text": "Prev",
+          "rect": {
+            "x": 194.390625,
+            "y": 753.75,
+            "width": 92.59375,
+            "height": 83.515625,
+            "top": 753.75,
+            "right": 286.984375,
+            "bottom": 837.265625,
+            "left": 194.390625
+          },
+          "pointerEvents": "all",
+          "zIndex": "auto"
+        },
+        {
+          "text": "Next",
+          "rect": {
+            "x": 293.984375,
+            "y": 753.75,
+            "width": 94.59375,
+            "height": 83.515625,
+            "top": 753.75,
+            "right": 388.578125,
+            "bottom": 837.265625,
+            "left": 293.984375
+          },
+          "pointerEvents": "all",
+          "zIndex": "auto"
+        }
+      ],
+      "nextElement": {
+        "tag": "DIV",
+        "className": ""
+      }
+    },
+    "clicks": [
+      [
+        {
+          "i": 0,
+          "active": true,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 1,
+          "active": false,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 2,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 3,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 4,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 5,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 6,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 1,
+          "active": true,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 2,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 3,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 4,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 5,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 6,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        }
+      ],
+      [
+        {
+          "i": 0,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 1,
+          "active": true,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 2,
+          "active": false,
+          "display": "block",
+          "opacity": "1"
+        },
+        {
+          "i": 3,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 4,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 5,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        },
+        {
+          "i": 6,
+          "active": false,
+          "display": "none",
+          "opacity": "1"
+        }
+      ]
+    ],
+    "afterWait": [
+      {
+        "i": 0,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 1,
+        "active": true,
+        "display": "block",
+        "opacity": "1"
+      },
+      {
+        "i": 2,
+        "active": false,
+        "display": "block",
+        "opacity": "1"
+      },
+      {
+        "i": 3,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 4,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 5,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      },
+      {
+        "i": 6,
+        "active": false,
+        "display": "none",
+        "opacity": "1"
+      }
+    ],
+    "consoleErrors": [
+      {
+        "type": "warning",
+        "text": "<link rel=preload> has an unsupported `type` value"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_FAILED"
+      },
+      {
+        "type": "error",
+        "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "type": "warning",
+        "text": "GSAP target .line span not found. https://greensock.com"
+      },
+      {
+        "type": "warning",
+        "text": "GSAP target  not found. https://greensock.com"
+      }
+    ],
+    "pageErrors": [
+      "TypeError: Cannot read properties of undefined (reading 'top')",
+      "TypeError: Cannot read properties of undefined (reading 'style')"
+    ],
+    "requestFailures": [
+      {
+        "url": "https://www.googletagmanager.com/gtag/js?id=G-T4G74DNBP9",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://www.googletagmanager.com/gtm.js?id=GTM-MMFB2VZ",
+        "error": "net::ERR_FAILED"
+      },
+      {
+        "url": "https://www.krowd.com.au/js/slick.min.js",
+        "error": "net::ERR_NAME_NOT_RESOLVED"
+      },
+      {
+        "url": "https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "badResponses": []
+  }
+}

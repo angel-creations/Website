@@ -1,0 +1,263 @@
+[
+  {
+    "number": "01",
+    "label": "Metaverse",
+    "heading": "Dive into new world, live the world you want.",
+    "route": "/metaverse/",
+    "video": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+    "poster": "/legacy-assets/images/generated-home-posters/metaverse.jpg",
+    "summary": "Angel Creations creates virtual worlds and connected digital environments designed around how people explore, interact, communicate, learn, play and experience brands.",
+    "creates": [
+      "Metaverse",
+      "Virtual Worlds",
+      "Virtual events platforms",
+      "Virtual product showcase"
+    ],
+    "applications": [
+      "Virtual Workspaces",
+      "Virtual Marketplaces",
+      "Virtual Education",
+      "VR Gaming"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/brand/",
+      "/capabilities/design/",
+      "/capabilities/content/",
+      "/capabilities/animation-3d/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/"
+    ],
+    "workTitleTerms": [],
+    "hasUnityArtifact": true
+  },
+  {
+    "number": "02",
+    "label": "Mixed Reality",
+    "heading": "Tech immersion: Real & digital objects interact.",
+    "route": "/mixed-reality/",
+    "video": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+    "poster": "/legacy-assets/images/generated-home-posters/mixed-reality.jpg",
+    "summary": "Angel Creations explores Mixed Reality as a medium for training, education, entertainment, gaming, architecture, marketing, collaboration, retail and spatial experiences.",
+    "creates": [
+      "MR Content Creation",
+      "MR Architecture & Design",
+      "MR Design & Architecture",
+      "MR Media"
+    ],
+    "applications": [
+      "MR Training & Education",
+      "MR Entertainment",
+      "MR Retail",
+      "MR Remote Collaboration"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/design/",
+      "/capabilities/animation-3d/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/",
+      "/capabilities/content/"
+    ],
+    "workTitleTerms": [],
+    "hasExpandedStory": true,
+    "storySectionCount": 6,
+    "ctaLead": "Make reality more interactive.",
+    "ctaAction": "Talk to Angel Creations about your next Mixed Reality experience."
+  },
+  {
+    "number": "03",
+    "label": "Virtual Reality",
+    "heading": "You’re not imagining it, you’re experiencing it!",
+    "route": "/virtual-reality/",
+    "video": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+    "poster": "/legacy-assets/images/generated-home-posters/virtual-reality.jpg",
+    "summary": "Angel Creations develops VR experiences across content, gaming, training, education, marketing, architecture, healthcare, conferencing and immersive communication.",
+    "creates": [
+      "VR Content Development",
+      "VR Training & Simulation",
+      "VR Streaming & Broadcasting",
+      "VR Video conferencing"
+    ],
+    "applications": [
+      "VR Architectural Visualization",
+      "VR Education",
+      "VR Gaming",
+      "VR for Marketing & Branding"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/animation-3d/",
+      "/capabilities/content/",
+      "/capabilities/film/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/",
+      "/capabilities/design/"
+    ],
+    "workTitleTerms": [
+      "virtual reality"
+    ],
+    "hasExpandedStory": true,
+    "storySectionCount": 7,
+    "ctaLead": "Step inside the idea.",
+    "ctaAction": "Let's create an experience people don't just watch — they enter."
+  },
+  {
+    "number": "04",
+    "label": "Augment Reality",
+    "heading": "Blending real & virtual worlds, Immersive experience!",
+    "route": "/augment-reality/",
+    "video": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+    "poster": "/legacy-assets/images/generated-home-posters/augmented-reality.jpg",
+    "summary": "Angel Creations explores AR across industrial applications, tourism, navigation, retail, marketing, gaming, education, healthcare, entertainment and creative experiences.",
+    "creates": [
+      "AR Applications",
+      "AR Animation",
+      "AR Art & Creativity",
+      "AR Industrial Applications"
+    ],
+    "applications": [
+      "AR Marketing",
+      "AR Navigation",
+      "AR Retail",
+      "AR Tourism & Travel"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/brand/",
+      "/capabilities/design/",
+      "/capabilities/animation-3d/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/",
+      "/capabilities/content/"
+    ],
+    "workTitleTerms": [
+      "augmented reality"
+    ],
+    "hasExpandedStory": true,
+    "storySectionCount": 6,
+    "ctaLead": "Add another layer to reality.",
+    "ctaAction": "Tell us what you want people to discover."
+  },
+  {
+    "number": "05",
+    "label": "Animation",
+    "heading": "We give you amazing animation in both 2D & 3D.",
+    "route": "/animation/",
+    "video": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+    "poster": "/legacy-assets/images/generated-home-posters/animation.jpg",
+    "summary": "Angel Creations works across 2D and 3D animation, motion graphics, visual effects, character animation, interactive animation, explainer content, pre-visualization and AR animation.",
+    "creates": [
+      "Concept Development",
+      "Pre-visualization",
+      "2D Animation",
+      "3D Animation",
+      "Motion Graphics",
+      "Visual Effects (VFX)",
+      "Character Animation"
+    ],
+    "applications": [
+      "Interactive Animations",
+      "Animated Explainer Videos",
+      "AR Animation"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/brand/",
+      "/capabilities/design/",
+      "/capabilities/content/",
+      "/capabilities/film/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/"
+    ],
+    "workTitleTerms": [
+      "animation",
+      "motion graphics",
+      "3d animation"
+    ],
+    "hasExpandedStory": true,
+    "storySectionCount": 7,
+    "ctaLead": "Give the idea motion.",
+    "ctaAction": "Let's make something move."
+  },
+  {
+    "number": "06",
+    "label": "Brand Advertisement",
+    "heading": "Elevating Brands through Digital Innovation.",
+    "route": "/brand-advertisement/",
+    "video": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+    "poster": "/legacy-assets/images/generated-home-posters/brand-advertisement.jpg",
+    "summary": "Angel Creations brings creative thinking, design, content, animation, film and digital experience together to help brands communicate in ways people notice and remember.",
+    "creates": [
+      "Marketing & Branding",
+      "Brand Advertisement",
+      "AR Marketing",
+      "VR for Marketing & Branding"
+    ],
+    "applications": [
+      "MR Marketing & Branding",
+      "Virtual product showcase",
+      "Virtual Marketplaces",
+      "AR Retail"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/brand/",
+      "/capabilities/design/",
+      "/capabilities/content/",
+      "/capabilities/film/",
+      "/capabilities/animation-3d/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/"
+    ],
+    "workTitleTerms": [
+      "advertisement",
+      "marketing"
+    ],
+    "hasExpandedStory": true,
+    "storySectionCount": 8,
+    "ctaLead": "Make the brand experience matter.",
+    "ctaAction": "Bring us the idea. We'll explore what it could become."
+  },
+  {
+    "number": "07",
+    "label": "Media Production",
+    "heading": "Think with us, act with us, create with us!",
+    "route": "/media-production/",
+    "video": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+    "mediaType": "video/mp4",
+    "remote": true,
+    "summary": "Angel Creations brings media production disciplines together to create visual stories across film, video, animation, photography, events and digital experiences.",
+    "creates": [
+      "Film Production",
+      "Video Production",
+      "Television Production",
+      "Photography Services",
+      "Scriptwriting and Storyboarding"
+    ],
+    "applications": [
+      "Live Event Production",
+      "Post-Production Services",
+      "Audio Production",
+      "Media Consulting"
+    ],
+    "capabilityRoutes": [
+      "/capabilities/brand/",
+      "/capabilities/design/",
+      "/capabilities/content/",
+      "/capabilities/film/",
+      "/capabilities/animation-3d/",
+      "/capabilities/digital/",
+      "/capabilities/experiences/",
+      "/capabilities/creative-technology/"
+    ],
+    "workTitleTerms": [
+      "media production",
+      "film"
+    ],
+    "hasExpandedStory": true,
+    "storySectionCount": 8,
+    "ctaLead": "Have something worth making?",
+    "ctaAction": "Let's bring it to life."
+  }
+]

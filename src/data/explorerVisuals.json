@@ -1,0 +1,472 @@
+{
+  "/metaverse/": {
+    "hero": {
+      "src": "/inner-library/world.webp",
+      "caption": "Online library visual / Metaverse"
+    },
+    "map": [
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / World"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Story"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Interaction"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / People"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Content"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Return"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Virtual Worlds"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Virtual Events"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Virtual Brand Experiences"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Gaming"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Virtual Marketplaces"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Virtual Economies"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Virtual Education"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Virtual Workspaces"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Virtual Product Showcases"
+      }
+    ]
+  },
+  "/mixed-reality/": {
+    "hero": {
+      "src": "/inner-library/training.webp",
+      "caption": "Online library visual / Mixed Reality"
+    },
+    "map": [
+      {
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Real world"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Digital layer"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Interaction"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Purpose"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Training"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Education"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Entertainment"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Gaming"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Marketing & Branding"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Architecture & Design"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Remote Collaboration"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Retail"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Media"
+      }
+    ]
+  },
+  "/virtual-reality/": {
+    "hero": {
+      "src": "/inner-library/vr.webp",
+      "caption": "Online library visual / Virtual Reality"
+    },
+    "map": [
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Enter"
+      },
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Discover"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Interact"
+      },
+      {
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Understand"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Remember"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / VR Content"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / VR Video Conferencing"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / VR Gaming"
+      },
+      {
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Training & Simulation"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Education"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Marketing & Branding"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Architectural Visualization"
+      },
+      {
+        "src": "/inner-library/healthcare.webp",
+        "caption": "Online library visual / Healthcare"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Streaming & Broadcasting"
+      }
+    ]
+  },
+  "/augment-reality/": {
+    "hero": {
+      "src": "/inner-library/tourism.webp",
+      "caption": "Online library visual / Augment Reality"
+    },
+    "map": [
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / See"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Point"
+      },
+      {
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / Discover"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Interact"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Continue"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Industrial AR"
+      },
+      {
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / Tourism & Travel"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / AR Navigation"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Retail"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / AR Marketing"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / AR Gaming"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / AR Education"
+      },
+      {
+        "src": "/inner-library/healthcare.webp",
+        "caption": "Online library visual / AR Healthcare"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / AR Entertainment"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / AR Art & Creativity"
+      }
+    ]
+  },
+  "/animation/": {
+    "hero": {
+      "src": "/inner-library/campaign.webp",
+      "caption": "Online library visual / Animation"
+    },
+    "map": [
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Idea"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Design"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Motion"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Frame"
+      },
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Story"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Concept Development"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Pre-visualization"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / 2D Animation"
+      },
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / 3D Animation"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Motion Graphics"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Visual Effects"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Character Animation"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Interactive Animation"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Explainer Videos"
+      },
+      {
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / AR Animation"
+      }
+    ]
+  },
+  "/brand-advertisement/": {
+    "hero": {
+      "src": "/inner-library/retail.webp",
+      "caption": "Online library visual / Brand Advertisement"
+    },
+    "map": [
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Idea"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Message"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Identity"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Content"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Experience"
+      },
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Audience"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Brand Campaigns"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Digital Campaigns"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Product Launches"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Brand Films"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Explainer Communication"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Social & Digital Content"
+      }
+    ]
+  },
+  "/media-production/": {
+    "hero": {
+      "src": "/inner-library/media.webp",
+      "caption": "Online library visual / Media Production"
+    },
+    "map": [
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Idea"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Script"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Pre-production"
+      },
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Production"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Post"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Delivery"
+      }
+    ],
+    "applications": [
+      {
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Video Production"
+      },
+      {
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Film Production"
+      },
+      {
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Television Production"
+      },
+      {
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Animation Production"
+      },
+      {
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Photography"
+      },
+      {
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / Live Event Production"
+      },
+      {
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Audio Production"
+      },
+      {
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Post-Production"
+      },
+      {
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Scriptwriting & Storyboarding"
+      },
+      {
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Media Consulting"
+      }
+    ]
+  }
+}

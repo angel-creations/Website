@@ -1,0 +1,5010 @@
+{
+  "generatedAt": "2026-10-05T09:10:27.432Z",
+  "target": "http://127.0.0.1:4173",
+  "source": "https://angelcreations.in/about/",
+  "viewports": [
+    {
+      "viewport": {
+        "name": "mobile-390x844",
+        "width": 390,
+        "height": 844
+      },
+      "directStatus": 200,
+      "initial": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 34.5,
+            "y": 0,
+            "width": 321,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 34.5,
+            "y": 481,
+            "width": 321,
+            "height": 727
+          },
+          ".about__services": {
+            "x": 34.5,
+            "y": 1258,
+            "width": 321,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3622,
+            "width": 360,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3854,
+            "width": 360,
+            "height": 708.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4612,
+            "width": 360,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5407,
+            "width": 360,
+            "height": 574
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 6041,
+            "width": 390,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 158
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "scrolled": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 34.5,
+            "y": 0,
+            "width": 321,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 34.5,
+            "y": 481,
+            "width": 321,
+            "height": 727
+          },
+          ".about__services": {
+            "x": 34.5,
+            "y": 1258,
+            "width": 321,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3622,
+            "width": 360,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3854,
+            "width": 360,
+            "height": 708.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4612,
+            "width": 360,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5407,
+            "width": 360,
+            "height": 574
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 6041,
+            "width": 390,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 101,
+          "hidden": 0,
+          "splitLines": 158
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "refreshed": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 34.5,
+            "y": 0,
+            "width": 321,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 34.5,
+            "y": 481,
+            "width": 321,
+            "height": 727
+          },
+          ".about__services": {
+            "x": 34.5,
+            "y": 1258,
+            "width": 321,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3622,
+            "width": 360,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3854,
+            "width": 360,
+            "height": 708.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4612,
+            "width": 360,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5407,
+            "width": 360,
+            "height": 574
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 6041,
+            "width": 390,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 158
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "httpErrors": [],
+        "failedRequests": [],
+        "mediaResponses": [
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "aboutResponses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          }
+        ]
+      },
+      "noSlashAlias": {
+        "finalStatus": 200,
+        "finalUrl": "http://127.0.0.1:4173/about/",
+        "snapshot": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 34.5,
+              "y": 0,
+              "width": 321,
+              "height": 431.125
+            },
+            ".about__who": {
+              "x": 34.5,
+              "y": 481,
+              "width": 321,
+              "height": 727
+            },
+            ".about__services": {
+              "x": 34.5,
+              "y": 1258,
+              "width": 321,
+              "height": 750
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3622,
+              "width": 360,
+              "height": 182
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3854,
+              "width": 360,
+              "height": 708.171875
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 4612,
+              "width": 360,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 5407,
+              "width": 360,
+              "height": 574
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 6041,
+              "width": 390,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 3,
+            "hidden": 98,
+            "splitLines": 158
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            }
+          ],
+          "aboutResponses": [
+            {
+              "status": 301,
+              "url": "http://127.0.0.1:4173/about",
+              "location": "/about/"
+            },
+            {
+              "status": 200,
+              "url": "http://127.0.0.1:4173/about/",
+              "location": null
+            }
+          ]
+        }
+      },
+      "clickAndHistory": {
+        "afterHomeClick": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 34.5,
+              "y": 0,
+              "width": 321,
+              "height": 431.125
+            },
+            ".about__who": {
+              "x": 34.5,
+              "y": 481,
+              "width": 321,
+              "height": 727
+            },
+            ".about__services": {
+              "x": 34.5,
+              "y": 1258,
+              "width": 321,
+              "height": 750
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3622,
+              "width": 360,
+              "height": 182
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3854,
+              "width": 360,
+              "height": 708.171875
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 4612,
+              "width": 360,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 5407,
+              "width": 360,
+              "height": 574
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 6041,
+              "width": 390,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 3,
+            "hidden": 98,
+            "splitLines": 158
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "backUrl": "http://127.0.0.1:4173/",
+        "forward": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 34.5,
+              "y": 0,
+              "width": 321,
+              "height": 431.125
+            },
+            ".about__who": {
+              "x": 34.5,
+              "y": 481,
+              "width": 321,
+              "height": 727
+            },
+            ".about__services": {
+              "x": 34.5,
+              "y": 1258,
+              "width": 321,
+              "height": 750
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3622,
+              "width": 360,
+              "height": 182
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3854,
+              "width": 360,
+              "height": 708.171875
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 4612,
+              "width": 360,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 5407,
+              "width": 360,
+              "height": 574
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 6041,
+              "width": 390,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 3,
+            "hidden": 98,
+            "splitLines": 170
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "aboutResponses": []
+        }
+      }
+    },
+    {
+      "viewport": {
+        "name": "mobile-430x932",
+        "width": 430,
+        "height": 932
+      },
+      "directStatus": 200,
+      "initial": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 36.5,
+            "y": 0,
+            "width": 357,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 36.5,
+            "y": 481,
+            "width": 357,
+            "height": 612
+          },
+          ".about__services": {
+            "x": 36.5,
+            "y": 1143,
+            "width": 357,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3575,
+            "width": 400,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3807,
+            "width": 400,
+            "height": 662.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4519,
+            "width": 400,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5314,
+            "width": 400,
+            "height": 482
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 5856,
+            "width": 430,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 151
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "scrolled": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 36.5,
+            "y": 0,
+            "width": 357,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 36.5,
+            "y": 481,
+            "width": 357,
+            "height": 612
+          },
+          ".about__services": {
+            "x": 36.5,
+            "y": 1143,
+            "width": 357,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3575,
+            "width": 400,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3807,
+            "width": 400,
+            "height": 662.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4519,
+            "width": 400,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5314,
+            "width": 400,
+            "height": 482
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 5856,
+            "width": 430,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 101,
+          "hidden": 0,
+          "splitLines": 151
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "refreshed": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 36.5,
+            "y": 0,
+            "width": 357,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 36.5,
+            "y": 481,
+            "width": 357,
+            "height": 612
+          },
+          ".about__services": {
+            "x": 36.5,
+            "y": 1143,
+            "width": 357,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3575,
+            "width": 400,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3807,
+            "width": 400,
+            "height": 662.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4519,
+            "width": 400,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5314,
+            "width": 400,
+            "height": 482
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 5856,
+            "width": 430,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 158
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "httpErrors": [],
+        "failedRequests": [],
+        "mediaResponses": [
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "aboutResponses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          }
+        ]
+      },
+      "noSlashAlias": {
+        "finalStatus": 200,
+        "finalUrl": "http://127.0.0.1:4173/about/",
+        "snapshot": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 36.5,
+              "y": 0,
+              "width": 357,
+              "height": 431.125
+            },
+            ".about__who": {
+              "x": 36.5,
+              "y": 481,
+              "width": 357,
+              "height": 612
+            },
+            ".about__services": {
+              "x": 36.5,
+              "y": 1143,
+              "width": 357,
+              "height": 750
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3575,
+              "width": 400,
+              "height": 182
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3807,
+              "width": 400,
+              "height": 662.171875
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 4519,
+              "width": 400,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 5314,
+              "width": 400,
+              "height": 482
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 5856,
+              "width": 430,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 3,
+            "hidden": 98,
+            "splitLines": 151
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            }
+          ],
+          "aboutResponses": [
+            {
+              "status": 301,
+              "url": "http://127.0.0.1:4173/about",
+              "location": "/about/"
+            },
+            {
+              "status": 200,
+              "url": "http://127.0.0.1:4173/about/",
+              "location": null
+            }
+          ]
+        }
+      },
+      "clickAndHistory": {
+        "afterHomeClick": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 36.5,
+              "y": 0,
+              "width": 357,
+              "height": 431.125
+            },
+            ".about__who": {
+              "x": 36.5,
+              "y": 481,
+              "width": 357,
+              "height": 612
+            },
+            ".about__services": {
+              "x": 36.5,
+              "y": 1143,
+              "width": 357,
+              "height": 750
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3575,
+              "width": 400,
+              "height": 182
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3807,
+              "width": 400,
+              "height": 662.171875
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 4519,
+              "width": 400,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 5314,
+              "width": 400,
+              "height": 482
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 5856,
+              "width": 430,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 4,
+            "hidden": 97,
+            "splitLines": 151
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "backUrl": "http://127.0.0.1:4173/",
+        "forward": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 36.5,
+              "y": 0,
+              "width": 357,
+              "height": 431.125
+            },
+            ".about__who": {
+              "x": 36.5,
+              "y": 481,
+              "width": 357,
+              "height": 612
+            },
+            ".about__services": {
+              "x": 36.5,
+              "y": 1143,
+              "width": 357,
+              "height": 750
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3575,
+              "width": 400,
+              "height": 182
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3807,
+              "width": 400,
+              "height": 662.171875
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 4519,
+              "width": 400,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 5314,
+              "width": 400,
+              "height": 482
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 5856,
+              "width": 430,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 3,
+            "hidden": 98,
+            "splitLines": 158
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "aboutResponses": []
+        }
+      }
+    },
+    {
+      "viewport": {
+        "name": "tablet-834x1194",
+        "width": 834,
+        "height": 1194
+      },
+      "directStatus": 200,
+      "initial": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 56.703125,
+            "y": 83,
+            "width": 720.59375,
+            "height": 87.75
+          },
+          ".about__who": {
+            "x": 56.703125,
+            "y": 221,
+            "width": 720.59375,
+            "height": 276
+          },
+          ".about__services": {
+            "x": 56.703125,
+            "y": 547,
+            "width": 720.59375,
+            "height": 690
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3196,
+            "width": 804,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3291,
+            "width": 804,
+            "height": 336.5
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 3678,
+            "width": 804,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 4473,
+            "width": 804,
+            "height": 352
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4908,
+            "width": 834,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 141
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "scrolled": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 56.703125,
+            "y": 83,
+            "width": 720.59375,
+            "height": 87.75
+          },
+          ".about__who": {
+            "x": 56.703125,
+            "y": 221,
+            "width": 720.59375,
+            "height": 276
+          },
+          ".about__services": {
+            "x": 56.703125,
+            "y": 547,
+            "width": 720.59375,
+            "height": 690
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3196,
+            "width": 804,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3291,
+            "width": 804,
+            "height": 336.5
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 3678,
+            "width": 804,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 4473,
+            "width": 804,
+            "height": 352
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4908,
+            "width": 834,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 101,
+          "hidden": 0,
+          "splitLines": 141
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "refreshed": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 56.703125,
+            "y": 83,
+            "width": 720.59375,
+            "height": 87.75
+          },
+          ".about__who": {
+            "x": 56.703125,
+            "y": 221,
+            "width": 720.59375,
+            "height": 276
+          },
+          ".about__services": {
+            "x": 56.703125,
+            "y": 547,
+            "width": 720.59375,
+            "height": 690
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3196,
+            "width": 804,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3291,
+            "width": 804,
+            "height": 336.5
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 3678,
+            "width": 804,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 4473,
+            "width": 804,
+            "height": 352
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4908,
+            "width": 834,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 141
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "httpErrors": [],
+        "failedRequests": [],
+        "mediaResponses": [
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "aboutResponses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          }
+        ]
+      },
+      "noSlashAlias": {
+        "finalStatus": 200,
+        "finalUrl": "http://127.0.0.1:4173/about/",
+        "snapshot": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 56.703125,
+              "y": 83,
+              "width": 720.59375,
+              "height": 87.75
+            },
+            ".about__who": {
+              "x": 56.703125,
+              "y": 221,
+              "width": 720.59375,
+              "height": 276
+            },
+            ".about__services": {
+              "x": 56.703125,
+              "y": 547,
+              "width": 720.59375,
+              "height": 690
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3196,
+              "width": 804,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3291,
+              "width": 804,
+              "height": 336.5
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 3678,
+              "width": 804,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 4473,
+              "width": 804,
+              "height": 352
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 4908,
+              "width": 834,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 38,
+            "hidden": 63,
+            "splitLines": 135
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            }
+          ],
+          "aboutResponses": [
+            {
+              "status": 301,
+              "url": "http://127.0.0.1:4173/about",
+              "location": "/about/"
+            },
+            {
+              "status": 200,
+              "url": "http://127.0.0.1:4173/about/",
+              "location": null
+            }
+          ]
+        }
+      },
+      "clickAndHistory": {
+        "afterHomeClick": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 56.703125,
+              "y": 83,
+              "width": 720.59375,
+              "height": 87.75
+            },
+            ".about__who": {
+              "x": 56.703125,
+              "y": 221,
+              "width": 720.59375,
+              "height": 276
+            },
+            ".about__services": {
+              "x": 56.703125,
+              "y": 547,
+              "width": 720.59375,
+              "height": 690
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3196,
+              "width": 804,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3291,
+              "width": 804,
+              "height": 336.5
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 3678,
+              "width": 804,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 4473,
+              "width": 804,
+              "height": 352
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 4908,
+              "width": 834,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 40,
+            "hidden": 61,
+            "splitLines": 135
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "backUrl": "http://127.0.0.1:4173/",
+        "forward": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 56.703125,
+              "y": 83,
+              "width": 720.59375,
+              "height": 87.75
+            },
+            ".about__who": {
+              "x": 56.703125,
+              "y": 221,
+              "width": 720.59375,
+              "height": 276
+            },
+            ".about__services": {
+              "x": 56.703125,
+              "y": 547,
+              "width": 720.59375,
+              "height": 690
+            },
+            ".about__around": {
+              "x": 15,
+              "y": 3196,
+              "width": 804,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 15,
+              "y": 3291,
+              "width": 804,
+              "height": 336.5
+            },
+            ".about__clients": {
+              "x": 15,
+              "y": 3678,
+              "width": 804,
+              "height": 745
+            },
+            ".about__sectors": {
+              "x": 15,
+              "y": 4473,
+              "width": 804,
+              "height": 352
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 4908,
+              "width": 834,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 38,
+            "hidden": 63,
+            "splitLines": 141
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "aboutResponses": []
+        }
+      }
+    },
+    {
+      "viewport": {
+        "name": "desktop-1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "directStatus": 200,
+      "initial": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 279,
+            "y": 144,
+            "width": 882,
+            "height": 233.984375
+          },
+          ".about__who": {
+            "x": 279,
+            "y": 458,
+            "width": 882,
+            "height": 253
+          },
+          ".about__services": {
+            "x": 279,
+            "y": 791,
+            "width": 882,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 279,
+            "y": 2331,
+            "width": 882,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 279,
+            "y": 2441,
+            "width": 882,
+            "height": 524.59375
+          },
+          ".about__clients": {
+            "x": 279,
+            "y": 3046,
+            "width": 882,
+            "height": 351
+          },
+          ".about__sectors": {
+            "x": 279,
+            "y": 3477,
+            "width": 882,
+            "height": 277
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 3898,
+            "width": 1440,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 23,
+          "hidden": 78,
+          "splitLines": 175
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "scrolled": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 279,
+            "y": 144,
+            "width": 882,
+            "height": 233.984375
+          },
+          ".about__who": {
+            "x": 279,
+            "y": 458,
+            "width": 882,
+            "height": 253
+          },
+          ".about__services": {
+            "x": 279,
+            "y": 791,
+            "width": 882,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 279,
+            "y": 2331,
+            "width": 882,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 279,
+            "y": 2441,
+            "width": 882,
+            "height": 524.59375
+          },
+          ".about__clients": {
+            "x": 279,
+            "y": 3046,
+            "width": 882,
+            "height": 351
+          },
+          ".about__sectors": {
+            "x": 279,
+            "y": 3477,
+            "width": 882,
+            "height": 277
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 3898,
+            "width": 1440,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 101,
+          "hidden": 0,
+          "splitLines": 175
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "refreshed": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 279,
+            "y": 144,
+            "width": 882,
+            "height": 233.984375
+          },
+          ".about__who": {
+            "x": 279,
+            "y": 458,
+            "width": 882,
+            "height": 253
+          },
+          ".about__services": {
+            "x": 279,
+            "y": 791,
+            "width": 882,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 279,
+            "y": 2331,
+            "width": 882,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 279,
+            "y": 2441,
+            "width": 882,
+            "height": 524.59375
+          },
+          ".about__clients": {
+            "x": 279,
+            "y": 3046,
+            "width": 882,
+            "height": 351
+          },
+          ".about__sectors": {
+            "x": 279,
+            "y": 3477,
+            "width": 882,
+            "height": 277
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 3898,
+            "width": 1440,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 23,
+          "hidden": 78,
+          "splitLines": 175
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "httpErrors": [],
+        "failedRequests": [],
+        "mediaResponses": [
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "aboutResponses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          }
+        ]
+      },
+      "noSlashAlias": {
+        "finalStatus": 200,
+        "finalUrl": "http://127.0.0.1:4173/about/",
+        "snapshot": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 279,
+              "y": 144,
+              "width": 882,
+              "height": 233.984375
+            },
+            ".about__who": {
+              "x": 279,
+              "y": 458,
+              "width": 882,
+              "height": 253
+            },
+            ".about__services": {
+              "x": 279,
+              "y": 791,
+              "width": 882,
+              "height": 250
+            },
+            ".about__around": {
+              "x": 279,
+              "y": 2331,
+              "width": 882,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 279,
+              "y": 2441,
+              "width": 882,
+              "height": 524.59375
+            },
+            ".about__clients": {
+              "x": 279,
+              "y": 3046,
+              "width": 882,
+              "height": 351
+            },
+            ".about__sectors": {
+              "x": 279,
+              "y": 3477,
+              "width": 882,
+              "height": 277
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 3898,
+              "width": 1440,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 23,
+            "hidden": 78,
+            "splitLines": 194
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            }
+          ],
+          "aboutResponses": [
+            {
+              "status": 301,
+              "url": "http://127.0.0.1:4173/about",
+              "location": "/about/"
+            },
+            {
+              "status": 200,
+              "url": "http://127.0.0.1:4173/about/",
+              "location": null
+            }
+          ]
+        }
+      },
+      "clickAndHistory": {
+        "afterHomeClick": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 279,
+              "y": 144,
+              "width": 882,
+              "height": 233.984375
+            },
+            ".about__who": {
+              "x": 279,
+              "y": 458,
+              "width": 882,
+              "height": 253
+            },
+            ".about__services": {
+              "x": 279,
+              "y": 791,
+              "width": 882,
+              "height": 250
+            },
+            ".about__around": {
+              "x": 279,
+              "y": 2331,
+              "width": 882,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 279,
+              "y": 2441,
+              "width": 882,
+              "height": 524.59375
+            },
+            ".about__clients": {
+              "x": 279,
+              "y": 3046,
+              "width": 882,
+              "height": 351
+            },
+            ".about__sectors": {
+              "x": 279,
+              "y": 3477,
+              "width": 882,
+              "height": 277
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 3898,
+              "width": 1440,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 38,
+            "hidden": 63,
+            "splitLines": 175
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "backUrl": "http://127.0.0.1:4173/",
+        "forward": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 279,
+              "y": 144,
+              "width": 882,
+              "height": 233.984375
+            },
+            ".about__who": {
+              "x": 279,
+              "y": 458,
+              "width": 882,
+              "height": 253
+            },
+            ".about__services": {
+              "x": 279,
+              "y": 791,
+              "width": 882,
+              "height": 250
+            },
+            ".about__around": {
+              "x": 279,
+              "y": 2331,
+              "width": 882,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 279,
+              "y": 2441,
+              "width": 882,
+              "height": 524.59375
+            },
+            ".about__clients": {
+              "x": 279,
+              "y": 3046,
+              "width": 882,
+              "height": 351
+            },
+            ".about__sectors": {
+              "x": 279,
+              "y": 3477,
+              "width": 882,
+              "height": 277
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 3898,
+              "width": 1440,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 23,
+            "hidden": 78,
+            "splitLines": 194
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "aboutResponses": []
+        }
+      }
+    },
+    {
+      "viewport": {
+        "name": "desktop-1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "directStatus": 200,
+      "initial": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 390,
+            "y": 192,
+            "width": 1140,
+            "height": 292.5
+          },
+          ".about__who": {
+            "x": 390,
+            "y": 585,
+            "width": 1140,
+            "height": 161
+          },
+          ".about__services": {
+            "x": 390,
+            "y": 846,
+            "width": 1140,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 390,
+            "y": 2576,
+            "width": 1140,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 390,
+            "y": 2696,
+            "width": 1140,
+            "height": 535
+          },
+          ".about__clients": {
+            "x": 390,
+            "y": 3331,
+            "width": 1140,
+            "height": 364
+          },
+          ".about__sectors": {
+            "x": 390,
+            "y": 3795,
+            "width": 1140,
+            "height": 191
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4178,
+            "width": 1920,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 161
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "scrolled": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 390,
+            "y": 192,
+            "width": 1140,
+            "height": 292.5
+          },
+          ".about__who": {
+            "x": 390,
+            "y": 585,
+            "width": 1140,
+            "height": 161
+          },
+          ".about__services": {
+            "x": 390,
+            "y": 846,
+            "width": 1140,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 390,
+            "y": 2576,
+            "width": 1140,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 390,
+            "y": 2696,
+            "width": 1140,
+            "height": 535
+          },
+          ".about__clients": {
+            "x": 390,
+            "y": 3331,
+            "width": 1140,
+            "height": 364
+          },
+          ".about__sectors": {
+            "x": 390,
+            "y": 3795,
+            "width": 1140,
+            "height": 191
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4178,
+            "width": 1920,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 101,
+          "hidden": 0,
+          "splitLines": 161
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "refreshed": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 390,
+            "y": 192,
+            "width": 1140,
+            "height": 292.5
+          },
+          ".about__who": {
+            "x": 390,
+            "y": 585,
+            "width": 1140,
+            "height": 161
+          },
+          ".about__services": {
+            "x": 390,
+            "y": 846,
+            "width": 1140,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 390,
+            "y": 2576,
+            "width": 1140,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 390,
+            "y": 2696,
+            "width": 1140,
+            "height": 535
+          },
+          ".about__clients": {
+            "x": 390,
+            "y": 3331,
+            "width": 1140,
+            "height": 364
+          },
+          ".about__sectors": {
+            "x": 390,
+            "y": 3795,
+            "width": 1140,
+            "height": 191
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4178,
+            "width": 1920,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 171
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "httpErrors": [],
+        "failedRequests": [],
+        "mediaResponses": [
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          },
+          {
+            "status": 206,
+            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "type": "video/mp4"
+          }
+        ],
+        "aboutResponses": [
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          },
+          {
+            "status": 200,
+            "url": "http://127.0.0.1:4173/about/",
+            "location": null
+          }
+        ]
+      },
+      "noSlashAlias": {
+        "finalStatus": 200,
+        "finalUrl": "http://127.0.0.1:4173/about/",
+        "snapshot": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 390,
+              "y": 192,
+              "width": 1140,
+              "height": 292.5
+            },
+            ".about__who": {
+              "x": 390,
+              "y": 585,
+              "width": 1140,
+              "height": 161
+            },
+            ".about__services": {
+              "x": 390,
+              "y": 846,
+              "width": 1140,
+              "height": 250
+            },
+            ".about__around": {
+              "x": 390,
+              "y": 2576,
+              "width": 1140,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 390,
+              "y": 2696,
+              "width": 1140,
+              "height": 535
+            },
+            ".about__clients": {
+              "x": 390,
+              "y": 3331,
+              "width": 1140,
+              "height": 364
+            },
+            ".about__sectors": {
+              "x": 390,
+              "y": 3795,
+              "width": 1140,
+              "height": 191
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 4178,
+              "width": 1920,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 38,
+            "hidden": 63,
+            "splitLines": 171
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            }
+          ],
+          "aboutResponses": [
+            {
+              "status": 301,
+              "url": "http://127.0.0.1:4173/about",
+              "location": "/about/"
+            },
+            {
+              "status": 200,
+              "url": "http://127.0.0.1:4173/about/",
+              "location": null
+            }
+          ]
+        }
+      },
+      "clickAndHistory": {
+        "afterHomeClick": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 390,
+              "y": 192,
+              "width": 1140,
+              "height": 292.5
+            },
+            ".about__who": {
+              "x": 390,
+              "y": 585,
+              "width": 1140,
+              "height": 161
+            },
+            ".about__services": {
+              "x": 390,
+              "y": 846,
+              "width": 1140,
+              "height": 250
+            },
+            ".about__around": {
+              "x": 390,
+              "y": 2576,
+              "width": 1140,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 390,
+              "y": 2696,
+              "width": 1140,
+              "height": 535
+            },
+            ".about__clients": {
+              "x": 390,
+              "y": 3331,
+              "width": 1140,
+              "height": 364
+            },
+            ".about__sectors": {
+              "x": 390,
+              "y": 3795,
+              "width": 1140,
+              "height": 191
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 4178,
+              "width": 1920,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 51,
+            "hidden": 50,
+            "splitLines": 161
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "backUrl": "http://127.0.0.1:4173/",
+        "forward": {
+          "url": "http://127.0.0.1:4173/about/",
+          "title": "About - Angel Creations - A Creative Powerhouse",
+          "canonical": "https://angelcreations.in/about/",
+          "headings": [
+            "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+            "Who we are",
+            "Capabilities",
+            "We're all around",
+            "Even in these times, our culture strongly stands for true global commuters.",
+            "Our Client",
+            "Sectors"
+          ],
+          "sections": {
+            ".about__header": {
+              "x": 390,
+              "y": 192,
+              "width": 1140,
+              "height": 292.5
+            },
+            ".about__who": {
+              "x": 390,
+              "y": 585,
+              "width": 1140,
+              "height": 161
+            },
+            ".about__services": {
+              "x": 390,
+              "y": 846,
+              "width": 1140,
+              "height": 250
+            },
+            ".about__around": {
+              "x": 390,
+              "y": 2576,
+              "width": 1140,
+              "height": 70
+            },
+            ".about__global": {
+              "x": 390,
+              "y": 2696,
+              "width": 1140,
+              "height": 535
+            },
+            ".about__clients": {
+              "x": 390,
+              "y": 3331,
+              "width": 1140,
+              "height": 364
+            },
+            ".about__sectors": {
+              "x": 390,
+              "y": 3795,
+              "width": 1140,
+              "height": 191
+            },
+            "footer.color_creme": {
+              "x": 0,
+              "y": 4178,
+              "width": 1920,
+              "height": 92
+            }
+          },
+          "reveal": {
+            "total": 101,
+            "visible": 38,
+            "hidden": 63,
+            "splitLines": 171
+          },
+          "media": {
+            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "videoReadyState": 4,
+            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          },
+          "rotatingWords": [
+            {
+              "text": "Braintree, UK",
+              "opacity": "1",
+              "letters": 13
+            },
+            {
+              "text": "Jaipur, IN",
+              "opacity": "1",
+              "letters": 10
+            }
+          ],
+          "footer": {
+            "present": true,
+            "links": [
+              {
+                "text": "Privacy Policy",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              },
+              {
+                "text": "",
+                "href": "#"
+              }
+            ]
+          }
+        },
+        "diagnostics": {
+          "pageErrors": [],
+          "consoleErrors": [],
+          "httpErrors": [],
+          "failedRequests": [
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            },
+            {
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "media",
+              "error": "net::ERR_ABORTED"
+            }
+          ],
+          "mediaResponses": [
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "type": "video/mp4"
+            },
+            {
+              "status": 206,
+              "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+              "type": "video/quicktime"
+            }
+          ],
+          "aboutResponses": []
+        }
+      }
+    }
+  ],
+  "sourceVisualComparisons": [
+    {
+      "viewport": {
+        "name": "mobile-390x844",
+        "width": 390,
+        "height": 844
+      },
+      "local": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 34.5,
+            "y": 0,
+            "width": 321,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 34.5,
+            "y": 481,
+            "width": 321,
+            "height": 727
+          },
+          ".about__services": {
+            "x": 34.5,
+            "y": 1258,
+            "width": 321,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3622,
+            "width": 360,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3854,
+            "width": 360,
+            "height": 708.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4612,
+            "width": 360,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5407,
+            "width": 360,
+            "height": 574
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 6041,
+            "width": 390,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 158
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "live": {
+        "url": "https://angelcreations.in/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 34.5,
+            "y": 0,
+            "width": 321,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 34.5,
+            "y": 481,
+            "width": 321,
+            "height": 727
+          },
+          ".about__services": {
+            "x": 34.5,
+            "y": 1258,
+            "width": 321,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3622,
+            "width": 360,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3854,
+            "width": 360,
+            "height": 708.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4612,
+            "width": 360,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5407,
+            "width": 360,
+            "height": 574
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 6041,
+            "width": 390,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 170
+        },
+        "media": {
+          "backgroundVideo": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "https://angelcreations.in/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "rectsMatch": true
+    },
+    {
+      "viewport": {
+        "name": "mobile-430x932",
+        "width": 430,
+        "height": 932
+      },
+      "local": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 36.5,
+            "y": 0,
+            "width": 357,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 36.5,
+            "y": 481,
+            "width": 357,
+            "height": 612
+          },
+          ".about__services": {
+            "x": 36.5,
+            "y": 1143,
+            "width": 357,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3575,
+            "width": 400,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3807,
+            "width": 400,
+            "height": 662.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4519,
+            "width": 400,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5314,
+            "width": 400,
+            "height": 482
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 5856,
+            "width": 430,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 151
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "live": {
+        "url": "https://angelcreations.in/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 36.5,
+            "y": 0,
+            "width": 357,
+            "height": 431.125
+          },
+          ".about__who": {
+            "x": 36.5,
+            "y": 481,
+            "width": 357,
+            "height": 612
+          },
+          ".about__services": {
+            "x": 36.5,
+            "y": 1143,
+            "width": 357,
+            "height": 750
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3575,
+            "width": 400,
+            "height": 182
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3807,
+            "width": 400,
+            "height": 662.171875
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 4519,
+            "width": 400,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 5314,
+            "width": 400,
+            "height": 482
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 5856,
+            "width": 430,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 3,
+          "hidden": 98,
+          "splitLines": 158
+        },
+        "media": {
+          "backgroundVideo": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "https://angelcreations.in/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "rectsMatch": true
+    },
+    {
+      "viewport": {
+        "name": "tablet-834x1194",
+        "width": 834,
+        "height": 1194
+      },
+      "local": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 56.703125,
+            "y": 83,
+            "width": 720.59375,
+            "height": 87.75
+          },
+          ".about__who": {
+            "x": 56.703125,
+            "y": 221,
+            "width": 720.59375,
+            "height": 276
+          },
+          ".about__services": {
+            "x": 56.703125,
+            "y": 547,
+            "width": 720.59375,
+            "height": 690
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3196,
+            "width": 804,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3291,
+            "width": 804,
+            "height": 336.5
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 3678,
+            "width": 804,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 4473,
+            "width": 804,
+            "height": 352
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4908,
+            "width": 834,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 135
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "live": {
+        "url": "https://angelcreations.in/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 56.703125,
+            "y": 83,
+            "width": 720.59375,
+            "height": 87.75
+          },
+          ".about__who": {
+            "x": 56.703125,
+            "y": 221,
+            "width": 720.59375,
+            "height": 276
+          },
+          ".about__services": {
+            "x": 56.703125,
+            "y": 547,
+            "width": 720.59375,
+            "height": 690
+          },
+          ".about__around": {
+            "x": 15,
+            "y": 3196,
+            "width": 804,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 15,
+            "y": 3291,
+            "width": 804,
+            "height": 336.5
+          },
+          ".about__clients": {
+            "x": 15,
+            "y": 3678,
+            "width": 804,
+            "height": 745
+          },
+          ".about__sectors": {
+            "x": 15,
+            "y": 4473,
+            "width": 804,
+            "height": 352
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4908,
+            "width": 834,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 141
+        },
+        "media": {
+          "backgroundVideo": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "https://angelcreations.in/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "rectsMatch": true
+    },
+    {
+      "viewport": {
+        "name": "desktop-1440x900",
+        "width": 1440,
+        "height": 900
+      },
+      "local": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 279,
+            "y": 144,
+            "width": 882,
+            "height": 233.984375
+          },
+          ".about__who": {
+            "x": 279,
+            "y": 458,
+            "width": 882,
+            "height": 253
+          },
+          ".about__services": {
+            "x": 279,
+            "y": 791,
+            "width": 882,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 279,
+            "y": 2331,
+            "width": 882,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 279,
+            "y": 2441,
+            "width": 882,
+            "height": 524.59375
+          },
+          ".about__clients": {
+            "x": 279,
+            "y": 3046,
+            "width": 882,
+            "height": 351
+          },
+          ".about__sectors": {
+            "x": 279,
+            "y": 3477,
+            "width": 882,
+            "height": 277
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 3898,
+            "width": 1440,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 23,
+          "hidden": 78,
+          "splitLines": 194
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "live": {
+        "url": "https://angelcreations.in/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 279,
+            "y": 144,
+            "width": 882,
+            "height": 233.984375
+          },
+          ".about__who": {
+            "x": 279,
+            "y": 458,
+            "width": 882,
+            "height": 253
+          },
+          ".about__services": {
+            "x": 279,
+            "y": 791,
+            "width": 882,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 279,
+            "y": 2331,
+            "width": 882,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 279,
+            "y": 2441,
+            "width": 882,
+            "height": 524.59375
+          },
+          ".about__clients": {
+            "x": 279,
+            "y": 3046,
+            "width": 882,
+            "height": 351
+          },
+          ".about__sectors": {
+            "x": 279,
+            "y": 3477,
+            "width": 882,
+            "height": 277
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 3898,
+            "width": 1440,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 23,
+          "hidden": 78,
+          "splitLines": 194
+        },
+        "media": {
+          "backgroundVideo": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "https://angelcreations.in/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "rectsMatch": true
+    },
+    {
+      "viewport": {
+        "name": "desktop-1920x1080",
+        "width": 1920,
+        "height": 1080
+      },
+      "local": {
+        "url": "http://127.0.0.1:4173/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 390,
+            "y": 192,
+            "width": 1140,
+            "height": 292.5
+          },
+          ".about__who": {
+            "x": 390,
+            "y": 585,
+            "width": 1140,
+            "height": 161
+          },
+          ".about__services": {
+            "x": 390,
+            "y": 846,
+            "width": 1140,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 390,
+            "y": 2576,
+            "width": 1140,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 390,
+            "y": 2696,
+            "width": 1140,
+            "height": 535
+          },
+          ".about__clients": {
+            "x": 390,
+            "y": 3331,
+            "width": 1140,
+            "height": 364
+          },
+          ".about__sectors": {
+            "x": 390,
+            "y": 3795,
+            "width": 1140,
+            "height": 191
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4178,
+            "width": 1920,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 171
+        },
+        "media": {
+          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "live": {
+        "url": "https://angelcreations.in/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "canonical": "https://angelcreations.in/about/",
+        "headings": [
+          "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+          "Who we are",
+          "Capabilities",
+          "We're all around",
+          "Even in these times, our culture strongly stands for true global commuters.",
+          "Our Client",
+          "Sectors"
+        ],
+        "sections": {
+          ".about__header": {
+            "x": 390,
+            "y": 192,
+            "width": 1140,
+            "height": 292.5
+          },
+          ".about__who": {
+            "x": 390,
+            "y": 585,
+            "width": 1140,
+            "height": 161
+          },
+          ".about__services": {
+            "x": 390,
+            "y": 846,
+            "width": 1140,
+            "height": 250
+          },
+          ".about__around": {
+            "x": 390,
+            "y": 2576,
+            "width": 1140,
+            "height": 70
+          },
+          ".about__global": {
+            "x": 390,
+            "y": 2696,
+            "width": 1140,
+            "height": 535
+          },
+          ".about__clients": {
+            "x": 390,
+            "y": 3331,
+            "width": 1140,
+            "height": 364
+          },
+          ".about__sectors": {
+            "x": 390,
+            "y": 3795,
+            "width": 1140,
+            "height": 191
+          },
+          "footer.color_creme": {
+            "x": 0,
+            "y": 4178,
+            "width": 1920,
+            "height": 92
+          }
+        },
+        "reveal": {
+          "total": 101,
+          "visible": 38,
+          "hidden": 63,
+          "splitLines": 171
+        },
+        "media": {
+          "backgroundVideo": "https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "videoReadyState": 4,
+          "logo": "https://angelcreations.in/wp-content/uploads/2023/01/logo-rectangle-1.png"
+        },
+        "rotatingWords": [
+          {
+            "text": "Braintree, UK",
+            "opacity": "1",
+            "letters": 13
+          },
+          {
+            "text": "Jaipur, IN",
+            "opacity": "1",
+            "letters": 10
+          }
+        ],
+        "footer": {
+          "present": true,
+          "links": [
+            {
+              "text": "Privacy Policy",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            },
+            {
+              "text": "",
+              "href": "#"
+            }
+          ]
+        }
+      },
+      "rectsMatch": true
+    }
+  ],
+  "failures": []
+}

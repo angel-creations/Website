@@ -1,0 +1,1233 @@
+{
+  "generatedAt": "2026-10-05T08:56:28.397Z",
+  "discoveredInventoryRoutes": [
+    "/",
+    "/360-video/",
+    "/?s=",
+    "/about/",
+    "/animation/",
+    "/animation/about.html",
+    "/animation/awards.html",
+    "/augment-reality/",
+    "/author/admin/",
+    "/brand-advertisement/",
+    "/brand-advertisement/about.html",
+    "/brand-advertisement/awards.html",
+    "/category/uncategorized/",
+    "/comments/feed/",
+    "/contact/",
+    "/enter-metabox/",
+    "/feed/",
+    "/hello-world/",
+    "/media-production/",
+    "/media-production/about.html",
+    "/media-production/awards.html",
+    "/metaverse/",
+    "/mixed-reality/",
+    "/mixed-reality/about.html",
+    "/mixed-reality/awards.html",
+    "/page/2/?s=",
+    "/page/3/?s=",
+    "/privacy-policy",
+    "/privacy-policy/",
+    "/terms-of-service",
+    "/terms-of-service/",
+    "/test/",
+    "/this-route-does-not-exist-for-forensics-2026/",
+    "/virtual-reality/",
+    "/virtual-reality/about.html",
+    "/virtual-reality/awards.html",
+    "/works%20types/karma-group/",
+    "/works%20types/lustica-bay/",
+    "/works/",
+    "/works/apprentice-search",
+    "/works/arc",
+    "/works/bodyshop",
+    "/works/clorova",
+    "/works/jannata",
+    "/works/karma",
+    "/works/lustica",
+    "/works/prodotti",
+    "/works/raia",
+    "/works/relationshift",
+    "/works/samsara",
+    "/works/vertual-work-copy-2/",
+    "/works/vertual-work-copy/",
+    "/works/vertual-work/",
+    "/works/virtual-reality-copy-2/",
+    "/works/virtual-reality-copy/",
+    "/works/virtual-reality/",
+    "/works/vold"
+  ],
+  "clickedTargets": [
+    {
+      "viewport": "desktop",
+      "target": "/",
+      "source": "/",
+      "href": "/",
+      "text": "Digital",
+      "actual": {
+        "route": "/",
+        "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+        "htmlLength": 10166,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/metaverse/",
+      "source": "/",
+      "href": "/metaverse/",
+      "text": "metaverse",
+      "actual": {
+        "route": "/metaverse/",
+        "title": "Unity WebGL Player | MetaScore",
+        "htmlLength": 550,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/360-video/",
+      "source": "/",
+      "href": "/360-video/",
+      "text": "360 video",
+      "actual": {
+        "route": "/360-video/",
+        "title": "360 video - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 4186,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/test/",
+      "source": "/?s=",
+      "href": "/test/",
+      "text": "test",
+      "actual": {
+        "route": "/test/",
+        "title": "test - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 5227,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/virtual-reality-copy-2/",
+      "source": "/?s=",
+      "href": "/works/virtual-reality-copy-2/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/virtual-reality-copy-2/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 10009,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/virtual-reality-copy/",
+      "source": "/?s=",
+      "href": "/works/virtual-reality-copy/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/virtual-reality-copy/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 10009,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/vertual-work-copy-2/",
+      "source": "/?s=",
+      "href": "/works/vertual-work-copy-2/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/vertual-work-copy-2/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 6149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/vertual-work-copy/",
+      "source": "/?s=",
+      "href": "/works/vertual-work-copy/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/vertual-work-copy/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 6149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/vertual-work/",
+      "source": "/?s=",
+      "href": "/works/vertual-work/",
+      "text": "Redifining luxury in the heart of Montenegro.",
+      "actual": {
+        "route": "/works/vertual-work/",
+        "title": "Redifining luxury in the heart of Montenegro. - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 6144,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/terms-of-service/",
+      "source": "/?s=",
+      "href": "/terms-of-service/",
+      "text": "Terms of Service",
+      "actual": {
+        "route": "/terms-of-service/",
+        "title": "Terms of Service - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 7378,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/media-production/",
+      "source": "/?s=",
+      "href": "/media-production/",
+      "text": "Media Production",
+      "actual": {
+        "route": "/media-production/",
+        "title": "Media Production - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8354,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/brand-advertisement/",
+      "source": "/?s=",
+      "href": "/brand-advertisement/",
+      "text": "Brand Advertisement",
+      "actual": {
+        "route": "/brand-advertisement/",
+        "title": "Brand Advertisement - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8354,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/enter-metabox/",
+      "source": "/?s=",
+      "href": "/enter-metabox/",
+      "text": "Enter Metabox",
+      "actual": {
+        "route": "/enter-metabox/",
+        "title": "Enter Metabox - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3518,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/page/3/?s",
+      "source": "/?s=",
+      "href": "/page/3/?s",
+      "text": "Page 3",
+      "actual": {
+        "route": "/page/3/?s",
+        "title": "You searched for - Page 3 of 3 - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 5806,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/page/2/?s",
+      "source": "/?s=",
+      "href": "/page/2/?s",
+      "text": "Older posts",
+      "actual": {
+        "route": "/page/2/?s",
+        "title": "You searched for - Page 2 of 3 - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8878,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/lustica",
+      "source": "/augment-reality/",
+      "href": "/works/lustica",
+      "text": "Luštica Bay Redifining luxury in the heart of Montenegro. Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/lustica",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/karma",
+      "source": "/augment-reality/",
+      "href": "/works/karma",
+      "text": "Karma Group Revamping Lifestyle Brand Experience. Strategy UI/UX Design iOS App Android App",
+      "actual": {
+        "route": "/works/karma",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/raia",
+      "source": "/augment-reality/",
+      "href": "/works/raia",
+      "text": "Club Raia Revolutionizing the Nightlife Experience. Strategy UI/UX Design Website Copywriting Media Production",
+      "actual": {
+        "route": "/works/raia",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/vold",
+      "source": "/augment-reality/",
+      "href": "/works/vold",
+      "text": "Vold Next generation Web Management System. Strategy Branding UI/UX Design Website CMS Platform",
+      "actual": {
+        "route": "/works/vold",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/arc",
+      "source": "/augment-reality/",
+      "href": "/works/arc",
+      "text": "ARC Changing the way People see Change. Strategy Campaign UI/UX Design Website Digital Marketing Media Production",
+      "actual": {
+        "route": "/works/arc",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/prodotti",
+      "source": "/augment-reality/",
+      "href": "/works/prodotti",
+      "text": "Prodotti Integrating Prestigious + Luxury. Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/prodotti",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/clorova",
+      "source": "/augment-reality/",
+      "href": "/works/clorova",
+      "text": "Clorova Award-winning interactive Portfolio for Clorova. Branding Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/clorova",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/samsara",
+      "source": "/augment-reality/",
+      "href": "/works/samsara",
+      "text": "Samsara Resort Bringing the ultimate luxury to the Web. Strategy UI/UX Design Website Digital Marketing Media Production",
+      "actual": {
+        "route": "/works/samsara",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/bodyshop",
+      "source": "/augment-reality/",
+      "href": "/works/bodyshop",
+      "text": "The Body Shop® Aesthetic Ecommerce Experience. Strategy Concept UI/UX Design Web Design Mobile App",
+      "actual": {
+        "route": "/works/bodyshop",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/jannata",
+      "source": "/augment-reality/",
+      "href": "/works/jannata",
+      "text": "Jannata Resort Rich artistry meets Cultural heritage. Strategy UI/UX Design Website Digital Marketing Media Production",
+      "actual": {
+        "route": "/works/jannata",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/apprentice-search",
+      "source": "/augment-reality/",
+      "href": "/works/apprentice-search",
+      "text": "Apprentice Search Connecting Employers and Apprentices across Ontario. Strategy UI/UX Design",
+      "actual": {
+        "route": "/works/apprentice-search",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/relationshift",
+      "source": "/augment-reality/",
+      "href": "/works/relationshift",
+      "text": "The RelationShift® Rediscover positive elements of relationships. Branding Strategy UI/UX Design Website Web App Mobile App Digital Marketing",
+      "actual": {
+        "route": "/works/relationshift",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/hello-world/",
+      "source": "/category/uncategorized/",
+      "href": "/hello-world/",
+      "text": "Hello world!",
+      "actual": {
+        "route": "/hello-world/",
+        "title": "Hello world! - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 7591,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/category/uncategorized/",
+      "source": "/category/uncategorized/",
+      "href": "/category/uncategorized/",
+      "text": "Uncategorized",
+      "actual": {
+        "route": "/category/uncategorized/",
+        "title": "Uncategorized Archives - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 4149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/author/admin/",
+      "source": "/hello-world/",
+      "href": "/author/admin/",
+      "text": "Angel Creations",
+      "actual": {
+        "route": "/author/admin/",
+        "title": "Angel Creations, Author at Angel Creations - A Creative Powerhouse",
+        "htmlLength": 4149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works%20types/karma-group/",
+      "source": "/works/",
+      "href": "/works%20types/karma-group/",
+      "text": "Karma Group",
+      "actual": {
+        "route": "/works%20types/karma-group/",
+        "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+        "htmlLength": 10800,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works%20types/lustica-bay/",
+      "source": "/works/",
+      "href": "/works%20types/lustica-bay/",
+      "text": "Luštica Bay",
+      "actual": {
+        "route": "/works%20types/lustica-bay/",
+        "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+        "htmlLength": 10800,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/works/virtual-reality/",
+      "source": "/works/",
+      "href": "/works/virtual-reality/",
+      "text": "Karma Group Redifining luxury in the heart of Montenegro. Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/virtual-reality/",
+        "title": "Redifining luxury in the heart of Montenegro. - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 10004,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/privacy-policy/",
+      "source": "/page/3/?s=",
+      "href": "/privacy-policy/",
+      "text": "Privacy Policy",
+      "actual": {
+        "route": "/privacy-policy/",
+        "title": "Privacy Policy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 9723,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/?s",
+      "source": "/page/3/?s=",
+      "href": "/?s",
+      "text": "Page 1",
+      "actual": {
+        "route": "/?s",
+        "title": "You searched for - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 12734,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/contact/",
+      "source": "/page/2/?s=",
+      "href": "/contact/",
+      "text": "Contact",
+      "actual": {
+        "route": "/contact/",
+        "title": "Contact - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 12168,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/animation/",
+      "source": "/page/2/?s=",
+      "href": "/animation/",
+      "text": "Animation",
+      "actual": {
+        "route": "/animation/",
+        "title": "Animation - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8353,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/augment-reality/",
+      "source": "/page/2/?s=",
+      "href": "/augment-reality/",
+      "text": "Augment Reality",
+      "actual": {
+        "route": "/augment-reality/",
+        "title": "Augment Reality - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 14938,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/virtual-reality/",
+      "source": "/page/2/?s=",
+      "href": "/virtual-reality/",
+      "text": "Virtual Reality",
+      "actual": {
+        "route": "/virtual-reality/",
+        "title": "Virtual Reality - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8353,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/mixed-reality/",
+      "source": "/page/2/?s=",
+      "href": "/mixed-reality/",
+      "text": "Mixed Reality",
+      "actual": {
+        "route": "/mixed-reality/",
+        "title": "Mixed Reality - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8353,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "desktop",
+      "target": "/about/",
+      "source": "/page/2/?s=",
+      "href": "/about/",
+      "text": "About",
+      "actual": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 65600,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/",
+      "source": "/",
+      "href": "/",
+      "text": "Digital",
+      "actual": {
+        "route": "/",
+        "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+        "htmlLength": 10166,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/metaverse/",
+      "source": "/",
+      "href": "/metaverse/",
+      "text": "metaverse",
+      "actual": {
+        "route": "/metaverse/",
+        "title": "Unity WebGL Player | MetaScore",
+        "htmlLength": 550,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/360-video/",
+      "source": "/",
+      "href": "/360-video/",
+      "text": "360 video",
+      "actual": {
+        "route": "/360-video/",
+        "title": "360 video - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 4186,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/test/",
+      "source": "/?s=",
+      "href": "/test/",
+      "text": "test",
+      "actual": {
+        "route": "/test/",
+        "title": "test - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 5225,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/virtual-reality-copy-2/",
+      "source": "/?s=",
+      "href": "/works/virtual-reality-copy-2/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/virtual-reality-copy-2/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 10009,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/virtual-reality-copy/",
+      "source": "/?s=",
+      "href": "/works/virtual-reality-copy/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/virtual-reality-copy/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 10009,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/vertual-work-copy-2/",
+      "source": "/?s=",
+      "href": "/works/vertual-work-copy-2/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/vertual-work-copy-2/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 6149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/vertual-work-copy/",
+      "source": "/?s=",
+      "href": "/works/vertual-work-copy/",
+      "text": "Redifining luxury in the heart of Montenegro. Copy",
+      "actual": {
+        "route": "/works/vertual-work-copy/",
+        "title": "Redifining luxury in the heart of Montenegro. Copy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 6149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/vertual-work/",
+      "source": "/?s=",
+      "href": "/works/vertual-work/",
+      "text": "Redifining luxury in the heart of Montenegro.",
+      "actual": {
+        "route": "/works/vertual-work/",
+        "title": "Redifining luxury in the heart of Montenegro. - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 6144,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/terms-of-service/",
+      "source": "/?s=",
+      "href": "/terms-of-service/",
+      "text": "Terms of Service",
+      "actual": {
+        "route": "/terms-of-service/",
+        "title": "Terms of Service - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 7376,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/media-production/",
+      "source": "/?s=",
+      "href": "/media-production/",
+      "text": "Media Production",
+      "actual": {
+        "route": "/media-production/",
+        "title": "Media Production - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8353,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/brand-advertisement/",
+      "source": "/?s=",
+      "href": "/brand-advertisement/",
+      "text": "Brand Advertisement",
+      "actual": {
+        "route": "/brand-advertisement/",
+        "title": "Brand Advertisement - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8354,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/enter-metabox/",
+      "source": "/?s=",
+      "href": "/enter-metabox/",
+      "text": "Enter Metabox",
+      "actual": {
+        "route": "/enter-metabox/",
+        "title": "Enter Metabox - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3517,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/page/3/?s",
+      "source": "/?s=",
+      "href": "/page/3/?s",
+      "text": "Page 3",
+      "actual": {
+        "route": "/page/3/?s",
+        "title": "You searched for - Page 3 of 3 - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 5806,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/page/2/?s",
+      "source": "/?s=",
+      "href": "/page/2/?s",
+      "text": "Older posts",
+      "actual": {
+        "route": "/page/2/?s",
+        "title": "You searched for - Page 2 of 3 - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8878,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/lustica",
+      "source": "/augment-reality/",
+      "href": "/works/lustica",
+      "text": "Luštica Bay Redifining luxury in the heart of Montenegro. Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/lustica",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3793,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/karma",
+      "source": "/augment-reality/",
+      "href": "/works/karma",
+      "text": "Karma Group Revamping Lifestyle Brand Experience. Strategy UI/UX Design iOS App Android App",
+      "actual": {
+        "route": "/works/karma",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/raia",
+      "source": "/augment-reality/",
+      "href": "/works/raia",
+      "text": "Club Raia Revolutionizing the Nightlife Experience. Strategy UI/UX Design Website Copywriting Media Production",
+      "actual": {
+        "route": "/works/raia",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/vold",
+      "source": "/augment-reality/",
+      "href": "/works/vold",
+      "text": "Vold Next generation Web Management System. Strategy Branding UI/UX Design Website CMS Platform",
+      "actual": {
+        "route": "/works/vold",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/arc",
+      "source": "/augment-reality/",
+      "href": "/works/arc",
+      "text": "ARC Changing the way People see Change. Strategy Campaign UI/UX Design Website Digital Marketing Media Production",
+      "actual": {
+        "route": "/works/arc",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/prodotti",
+      "source": "/augment-reality/",
+      "href": "/works/prodotti",
+      "text": "Prodotti Integrating Prestigious + Luxury. Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/prodotti",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/clorova",
+      "source": "/augment-reality/",
+      "href": "/works/clorova",
+      "text": "Clorova Award-winning interactive Portfolio for Clorova. Branding Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/clorova",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/samsara",
+      "source": "/augment-reality/",
+      "href": "/works/samsara",
+      "text": "Samsara Resort Bringing the ultimate luxury to the Web. Strategy UI/UX Design Website Digital Marketing Media Production",
+      "actual": {
+        "route": "/works/samsara",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/bodyshop",
+      "source": "/augment-reality/",
+      "href": "/works/bodyshop",
+      "text": "The Body Shop® Aesthetic Ecommerce Experience. Strategy Concept UI/UX Design Web Design Mobile App",
+      "actual": {
+        "route": "/works/bodyshop",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/jannata",
+      "source": "/augment-reality/",
+      "href": "/works/jannata",
+      "text": "Jannata Resort Rich artistry meets Cultural heritage. Strategy UI/UX Design Website Digital Marketing Media Production",
+      "actual": {
+        "route": "/works/jannata",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/apprentice-search",
+      "source": "/augment-reality/",
+      "href": "/works/apprentice-search",
+      "text": "Apprentice Search Connecting Employers and Apprentices across Ontario. Strategy UI/UX Design",
+      "actual": {
+        "route": "/works/apprentice-search",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/relationshift",
+      "source": "/augment-reality/",
+      "href": "/works/relationshift",
+      "text": "The RelationShift® Rediscover positive elements of relationships. Branding Strategy UI/UX Design Website Web App Mobile App Digital Marketing",
+      "actual": {
+        "route": "/works/relationshift",
+        "title": "Page not found - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 3794,
+        "is404": true
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/hello-world/",
+      "source": "/category/uncategorized/",
+      "href": "/hello-world/",
+      "text": "Hello world!",
+      "actual": {
+        "route": "/hello-world/",
+        "title": "Hello world! - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 7589,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/category/uncategorized/",
+      "source": "/category/uncategorized/",
+      "href": "/category/uncategorized/",
+      "text": "Uncategorized",
+      "actual": {
+        "route": "/category/uncategorized/",
+        "title": "Uncategorized Archives - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 4149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/author/admin/",
+      "source": "/hello-world/",
+      "href": "/author/admin/",
+      "text": "Angel Creations",
+      "actual": {
+        "route": "/author/admin/",
+        "title": "Angel Creations, Author at Angel Creations - A Creative Powerhouse",
+        "htmlLength": 4149,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works%20types/karma-group/",
+      "source": "/works/",
+      "href": "/works%20types/karma-group/",
+      "text": "Karma Group",
+      "actual": {
+        "route": "/works%20types/karma-group/",
+        "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+        "htmlLength": 10798,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works%20types/lustica-bay/",
+      "source": "/works/",
+      "href": "/works%20types/lustica-bay/",
+      "text": "Luštica Bay",
+      "actual": {
+        "route": "/works%20types/lustica-bay/",
+        "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
+        "htmlLength": 10799,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/works/virtual-reality/",
+      "source": "/works/",
+      "href": "/works/virtual-reality/",
+      "text": "Karma Group Redifining luxury in the heart of Montenegro. Strategy UI/UX Design Website Digital Marketing",
+      "actual": {
+        "route": "/works/virtual-reality/",
+        "title": "Redifining luxury in the heart of Montenegro. - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 10004,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/privacy-policy/",
+      "source": "/page/3/?s=",
+      "href": "/privacy-policy/",
+      "text": "Privacy Policy",
+      "actual": {
+        "route": "/privacy-policy/",
+        "title": "Privacy Policy - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 9722,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/?s",
+      "source": "/page/3/?s=",
+      "href": "/?s",
+      "text": "Page 1",
+      "actual": {
+        "route": "/?s",
+        "title": "You searched for - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 12734,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/contact/",
+      "source": "/page/2/?s=",
+      "href": "/contact/",
+      "text": "Contact",
+      "actual": {
+        "route": "/contact/",
+        "title": "Contact - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 12168,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/animation/",
+      "source": "/page/2/?s=",
+      "href": "/animation/",
+      "text": "Animation",
+      "actual": {
+        "route": "/animation/",
+        "title": "Animation - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8352,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/augment-reality/",
+      "source": "/page/2/?s=",
+      "href": "/augment-reality/",
+      "text": "Augment Reality",
+      "actual": {
+        "route": "/augment-reality/",
+        "title": "Augment Reality - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 14937,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/virtual-reality/",
+      "source": "/page/2/?s=",
+      "href": "/virtual-reality/",
+      "text": "Virtual Reality",
+      "actual": {
+        "route": "/virtual-reality/",
+        "title": "Virtual Reality - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8352,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/mixed-reality/",
+      "source": "/page/2/?s=",
+      "href": "/mixed-reality/",
+      "text": "Mixed Reality",
+      "actual": {
+        "route": "/mixed-reality/",
+        "title": "Mixed Reality - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 8352,
+        "is404": false
+      },
+      "pass": true
+    },
+    {
+      "viewport": "mobile",
+      "target": "/about/",
+      "source": "/page/2/?s=",
+      "href": "/about/",
+      "text": "About",
+      "actual": {
+        "route": "/about/",
+        "title": "About - Angel Creations - A Creative Powerhouse",
+        "htmlLength": 65600,
+        "is404": false
+      },
+      "pass": true
+    }
+  ],
+  "inventoryTargetsWithoutRenderedAnchor": [
+    "/?s=",
+    "/animation/about.html",
+    "/animation/awards.html",
+    "/brand-advertisement/about.html",
+    "/brand-advertisement/awards.html",
+    "/comments/feed/",
+    "/feed/",
+    "/media-production/about.html",
+    "/media-production/awards.html",
+    "/mixed-reality/about.html",
+    "/mixed-reality/awards.html",
+    "/page/2/?s=",
+    "/page/3/?s=",
+    "/privacy-policy",
+    "/terms-of-service",
+    "/this-route-does-not-exist-for-forensics-2026/",
+    "/virtual-reality/about.html",
+    "/virtual-reality/awards.html",
+    "/works/"
+  ]
+}

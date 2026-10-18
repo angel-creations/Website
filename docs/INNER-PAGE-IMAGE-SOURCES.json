@@ -1,0 +1,65 @@
+{
+  "licenseNote": "Images were downloaded from Unsplash result pages for use as contextual inner-page reference photography. Verify final licensing/attribution requirements before production deployment.",
+  "sources": {
+    "world": {
+      "file": "/inner-library/world.webp",
+      "sourceUrl": "https://unsplash.com/photos/a-futuristic-lab-with-technology-and-robotics-FaP7jIwgoE0",
+      "library": "Unsplash"
+    },
+    "event": {
+      "file": "/inner-library/event.webp",
+      "sourceUrl": "https://unsplash.com/photos/men-performing-live-band-on-stage-in-front-of-crowd-RV5ysTEx3o8",
+      "library": "Unsplash"
+    },
+    "training": {
+      "file": "/inner-library/training.webp",
+      "sourceUrl": "https://unsplash.com/photos/a-dark-workshop-is-filled-with-tools-and-wood-uqh5Pbv0d4s",
+      "library": "Unsplash"
+    },
+    "learning": {
+      "file": "/inner-library/learning.webp",
+      "sourceUrl": "https://unsplash.com/photos/teacher-giving-question-dark-skinned-professional-teacher-giving-the-question-for-her-smart-pupils-IfG0gYY32G4",
+      "library": "Unsplash"
+    },
+    "vr": {
+      "file": "/inner-library/vr.webp",
+      "sourceUrl": "https://unsplash.com/photos/a-woman-sitting-on-a-bean-bag-chair-wearing-a-virtual-headset-jU1uTwlN3Ss",
+      "library": "Unsplash"
+    },
+    "campaign": {
+      "file": "/inner-library/campaign.webp",
+      "sourceUrl": "https://unsplash.com/photos/abstract-installation-art-with-hanging-translucent-panels-L0lih7j5sRk",
+      "library": "Unsplash"
+    },
+    "architecture": {
+      "file": "/inner-library/architecture.webp",
+      "sourceUrl": "https://unsplash.com/photos/dark-archway-frames-a-distant-city-building-zDjMOHjPrxE",
+      "library": "Unsplash"
+    },
+    "collaboration": {
+      "file": "/inner-library/collaboration.webp",
+      "sourceUrl": "https://unsplash.com/photos/a-professional-studio-light-with-barn-doors-_rZTmc06nQ0",
+      "library": "Unsplash"
+    },
+    "retail": {
+      "file": "/inner-library/retail.webp",
+      "sourceUrl": "https://unsplash.com/photos/a-storefront-window-displays-various-trinkets-and-artwork-BkFwenIUfLg",
+      "library": "Unsplash"
+    },
+    "media": {
+      "file": "/inner-library/media.webp",
+      "sourceUrl": "https://unsplash.com/photos/empty-studio-with-photography-lighting-2CBpK2Z-ry0",
+      "library": "Unsplash"
+    },
+    "healthcare": {
+      "file": "/inner-library/healthcare.webp",
+      "sourceUrl": "https://unsplash.com/photos/health-care-researchers-working-in-medicals-science-technology-research-laboratory-health-care-researchers-working-in-life-science-laboratory-mvIKUmIeLLY",
+      "library": "Unsplash"
+    },
+    "tourism": {
+      "file": "/inner-library/tourism.webp",
+      "sourceUrl": "https://unsplash.com/photos/landmark-tower-JY6q5uNU3Es",
+      "library": "Unsplash"
+    }
+  }
+}

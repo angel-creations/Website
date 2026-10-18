@@ -1,0 +1,110 @@
+/* Phase 1 preservation baseline. The legacy stylesheets are linked from index.html as local archive files,
+   so Vite does not parse or "clean up" their historically malformed-but-browser-tolerated CSS. */
+
+/* The original custom.css paths target its theme-relative font directory. The archive is categorised,
+   so these equivalent source files are explicitly mapped without changing the original archive. */
+@font-face {
+  font-family: 'Graphik';
+  src: url('/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geograph Edit';
+  src: url('/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Geograph';
+  src: url('/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'geographweblight';
+  src: url('/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* React state applies the legacy classes previously toggled by scripts.js. */
+.menu.active,
+.menu__bg.active { opacity: 1; transition: opacity .45s ease; }
+.menu-cover.active { opacity: .7; pointer-events: auto; transition: opacity .45s ease; }
+.nav-menu { border: 0; background: transparent; color: inherit; font: inherit; }
+.nav-menu:focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
+.slideshow .slide.is-loaded { opacity: 1; }
+.slideshow .arrow { border: 0; background: transparent; color: inherit; font: inherit; }
+
+/* LocomotiveScroll applies this initial desktop transform to the source slider arrow
+   (data-scroll-speed="-9"). The migration intentionally does not load the old global
+   scrolling runtime, so reproduce this one source-dependent placement locally. */
+@media screen and (min-width: 1025px) {
+  .slideshow .arrows[data-scroll][data-scroll-speed="-9"] { transform: translateY(-61.25vh); }
+}
+
+
+/* Captured contact template CSS (the original was an inline page block). */
+body.page-template-contact { overflow-x: hidden; }
+#booking-form { margin: auto; }
+section.section-contact { width: 100%; padding-top: 100px; }
+#booking-form ul { padding-left: 0; }
+#booking-form li { list-style: none; }
+#booking-form input:focus, #booking-form textarea:focus, #booking-form select:focus { outline: none; border-top: none !important; border-left: hidden !important; border-right: hidden !important; }
+#booking-form input, #booking-form textarea, #booking-form select { top: 0; left: 0; width: 100%; height: 70px; color: #fff; background-color: transparent; border-top: none; border-left: hidden; border-right: hidden; border-bottom-color: #efecea !important; overflow: auto; outline: 0; box-shadow: none; resize: none; position: relative; margin-bottom: 2rem; }
+.genralinformation { width: 60%; margin: auto; }
+.supcom.rightsupport { float: right; }
+.supcom { display: inline-block; }
+.supportmail h4 { line-height: 0; font-size: 25px; color: rgba(255, 255, 255, .3); }
+.downicon { display: inline-flex; }
+.downicon img { width: 40px; margin-top: -15px; opacity: .3; }
+.downicon p { padding-left: 8px; color: rgba(255, 255, 255, .3); }
+#booking-form label { font-size: 2.5rem; font-weight: 300; display: block; margin-bottom: 1rem; }
+.tab-pane { display: none; }
+.tab-pane:first-child { display: block; }
+span.error { font-size: 12px; font-family: "helvetica neue", arial, sans-serif; color: #D6041D; text-transform: uppercase; display: block; margin-bottom: 10px; }
+form#booking-form h3 { font-size: 36px; }
+li.action_li button { margin-top: 0; margin-bottom: 0 !important; }
+button.prev-btn, .next-btn { width: 33px; height: 13px; background: #fff !important; box-shadow: none; outline: none; cursor: pointer; border: 0; }
+.errorTxt { position: relative; margin-bottom: 2.5rem; height: 21px; }
+.ac-slider-progress { position: relative; font-weight: 400; font-size: 20px; margin-right: 7px; }
+.ac-slider-prefix { margin-right: 22px; pointer-events: none; }
+.ac-slider-prefix small { position: absolute; top: .4rem; line-height: 0; font-size: .7rem; left: 1rem; }
+.ac-slider-progress::before { content: ''; position: absolute; top: 12px; left: 57px; background-color: #fff; height: 1px; width: 86px; }
+button.prev-btn img, .next-btn img { filter: brightness(0) invert(1); }
+
+/* Standalone source faithful Unity shell. Build binaries remain remote/unarchived; see docs. */
+.unity-page { background: #231F20; padding: 0; min-height: 100vh; }
+#unity-container.unity-desktop { width: 960px; height: 600px; margin: 0 auto; position: relative; }
+#unity-container.unity-mobile { width: 100%; height: 100%; position: absolute; inset: 0; }
+#unity-canvas { width: 960px; height: 600px; background: #231F20; }
+.unity-mobile #unity-canvas { width: 100%; height: 100%; }
+.unity-mobile #unity-footer { display: none; }
+#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+#unity-logo { width: 154px; height: 130px; background: url('/legacy-assets/logos/metaverse/TemplateData/unity-logo-dark.png') no-repeat center; }
+#unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('/legacy-assets/images/metaverse/TemplateData/progress-bar-empty-dark.png') no-repeat center; }
+#unity-progress-bar-full { height: 18px; margin-top: 10px; background: url('/legacy-assets/images/metaverse/TemplateData/progress-bar-full-dark.png') no-repeat center; }
+#unity-footer { position: relative; margin-top: -38px; line-height: 38px; font-family: arial; font-size: 18px; color: #fff; }
+#unity-webgl-logo { float: left; width: 204px; height: 38px; background: url('/legacy-assets/logos/metaverse/TemplateData/webgl-logo.png') no-repeat center; }
+#unity-build-title { float: right; margin-right: 10px; }
+#unity-fullscreen-button { float: right; width: 38px; height: 38px; border: 0; background: url('/legacy-assets/images/metaverse/TemplateData/fullscreen-button.png') no-repeat center; }
+#unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none; }
+#unity-warning:not(:empty) { display: block; }
+
+/* Captured from the panorama plugin's inline view stylesheet. */
+.wp-block-panorama-video { box-sizing: border-box; }
+.wp-block-panorama-video * { box-sizing: border-box; }
+.wp-block-panorama-video .bBlocksVideoViewer { display: flex; flex-direction: column; }
+.wp-block-panorama-video .bBlocksVideoViewer .panoramaVideoViewer { overflow: hidden; }
+.wp-block-panorama-video .bBlocksVideoViewer .panoramaVideoViewer .panolens-canvas { width: 100% !important; height: 100% !important; }
+.panorama-notice { position: absolute; left: 20px; bottom: 20px; padding: 10px; color: #fff; background: rgba(0,0,0,.7); max-width: 520px; }
+
+@media (max-width: 600px) {
+  #unity-container.unity-desktop, #unity-canvas { width: 100vw; height: 100vh; }
+  #unity-container.unity-desktop { margin: 0; }
+}
