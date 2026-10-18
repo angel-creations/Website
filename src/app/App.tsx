@@ -107,19 +107,29 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (capability) {
     return <main id="main" className="site-main"><Suspense fallback={<p className="angel-capability-loading" aria-live="polite">Loading capability.</p>}><CapabilityDetail capability={capability} /></Suspense></main>;
   }
-  if (page.status === 404) return <NotFoundPage />;
-  if (page.route === '/') return <HomeSlideshow />;
-  if (page.route === '/360-video/') return <PanoramaPage />;
-  if (page.route === '/contact/') {
+  if (route === '/360-video/' || page.route === '/360-video/') return <PanoramaPage />;
+  if (route === '/contact/' || page.route === '/contact/') {
     return (
-      <div id="content" className="site-content"><div id="primary" className="content-area"><main id="main" className="site-main"><ContactWizard /><LegacyFooter /></main></div></div>
+      <main id="main" className="site-main">
+        <ContactWizard />
+      </main>
     );
   }
+  if (route === '/works/' || page.route === '/works/') {
+    return (
+      <main id="main" className="site-main">
+        <Suspense fallback={<p className="angel-archive-loading" aria-live="polite">Loading archive.</p>}>
+          <VideoArchive />
+        </Suspense>
+      </main>
+    );
+  }
+  if (page.status === 404) return <NotFoundPage />;
+  if (page.route === '/') return <HomeSlideshow />;
   const isAbout = page.route === '/about/';
-  const isWorks = page.route === '/works/';
   return (
     <div id="content" className="site-content" data-about-page-reveal={isAbout || undefined}>
-      <div id="primary" className="content-area"><main id="main" className="site-main"><LegacyRenderer nodes={page.children} />{isWorks && <Suspense fallback={<p className="angel-archive-loading" aria-live="polite">Loading archive.</p>}><VideoArchive /></Suspense>}{isAbout && <CapabilityIndex />}{isAbout && <AboutReveal />}{isAbout && <LegacyFooter />}</main></div>
+      <div id="primary" className="content-area"><main id="main" className="site-main"><LegacyRenderer nodes={page.children} />{isAbout && <CapabilityIndex />}{isAbout && <AboutReveal />}{isAbout && <LegacyFooter />}</main></div>
     </div>
   );
 }
@@ -128,7 +138,14 @@ export function App(): JSX.Element {
   const route = useRoute();
   const capability = useMemo(() => capabilityForRoute(route), [route]);
   const experience = useMemo(() => slideExperienceForRoute(route), [route]);
-  const legacyPages = useLegacyPages(route, Boolean(capability || experience));
+  const isDedicatedSpatialRoute = Boolean(
+    capability ||
+      experience ||
+      route === '/works/' ||
+      route === '/contact/' ||
+      route === '/360-video/'
+  );
+  const legacyPages = useLegacyPages(route, isDedicatedSpatialRoute);
   const page = useMemo(() => legacyPages ? routePage(route, legacyPages) : homeFallback, [route, legacyPages]);
 
   useEffect(() => {
@@ -137,7 +154,7 @@ export function App(): JSX.Element {
   }, [route]);
 
   useEffect(() => {
-    const routeDescription = routeSeo[page.route as keyof typeof routeSeo]?.description ?? '';
+    const routeDescription = routeSeo[route as keyof typeof routeSeo]?.description ?? routeSeo[page.route as keyof typeof routeSeo]?.description ?? '';
     const sourceDescription = page.description || page.meta.description || routeDescription;
     const seoPage = capability ? {
       ...page,
@@ -155,17 +172,35 @@ export function App(): JSX.Element {
       canonical: `https://angelcreations.in${experience.route}`,
       meta: { ...page.meta, 'og:title': `${experience.label} | Angel Creations`, 'og:description': experience.summary, 'og:url': `https://angelcreations.in${experience.route}` },
       jsonLd: [],
+    } : route === '/works/' ? {
+      ...page,
+      route: '/works/',
+      title: 'Works Archive - Angel Creations - A Creative Powerhouse',
+      description: routeDescription,
+      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      canonical: 'https://angelcreations.in/works/',
+      meta: { ...page.meta, 'og:title': 'Works Archive', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/works/' },
+      jsonLd: [],
+    } : route === '/contact/' ? {
+      ...page,
+      route: '/contact/',
+      title: 'Contact - Angel Creations - A Creative Powerhouse',
+      description: routeDescription,
+      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      canonical: 'https://angelcreations.in/contact/',
+      meta: { ...page.meta, 'og:title': 'Contact', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/contact/' },
+      jsonLd: [],
     } : {
       ...page,
       description: sourceDescription,
       meta: sourceDescription ? { ...page.meta, 'og:description': page.meta['og:description'] || sourceDescription } : page.meta,
     };
     applySeo(seoPage);
-    document.body.className = experience
+    document.body.className = isDedicatedSpatialRoute
       ? 'angel-experience-route js'
       : [...page.bodyClasses.filter((className) => className !== 'no-js'), 'js'].join(' ') || 'js';
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }, [page, capability, experience]);
+  }, [page, capability, experience, route, isDedicatedSpatialRoute]);
 
   const handleInternalLink = (event: ReactMouseEvent<HTMLDivElement>): void => {
     const target = event.target as HTMLElement;
@@ -177,7 +212,7 @@ export function App(): JSX.Element {
     navigate(toLocalRoute(href));
   };
 
-  const waitingForLegacyPage = !legacyPages && route !== '/' && !capability && !experience;
+  const waitingForLegacyPage = !legacyPages && route !== '/' && !isDedicatedSpatialRoute;
   return (
     <div className="legacy-shell" onClick={handleInternalLink}>
       <div id="page" className="site">
