@@ -7,9 +7,18 @@ restore-verification/
 ├── README.md                        this file
 ├── before/                          screenshots of the rejected redesign (HEAD 4a44117)
 ├── after/                           screenshots of the restored original + enhancements (current state)
+├── original-vs-restored/
+│   ├── original/                    screenshots of the original 9d806ca build
+│   └── restored/                    screenshots of the restored build, same harness
 ├── route-audit-original.json        per-route DOM/computed-style audit of the 9d806ca build
 └── route-audit-restored.json        per-route DOM/computed-style audit of the current build
 ```
+
+`original-vs-restored/` was produced by a second, independent harness (see
+[`../INDEPENDENT-RESTORE-VERIFICATION.md`](../INDEPENDENT-RESTORE-VERIFICATION.md)), so the
+original and the restored build could be compared at the same moment, at the same viewport, with
+the same scroll routine. Its route list is the same seven routes the `before/` and `after/` sets
+use, and its filenames follow the same `<route>__<viewport>.jpg` pattern.
 
 ## How the screenshots were produced
 

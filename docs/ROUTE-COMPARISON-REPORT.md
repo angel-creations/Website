@@ -1,5 +1,11 @@
 # Route-by-route comparison — original vs restored + enhanced
 
+> A second, independent verification of the same restore — using a different harness, different
+> servers and a fresh rebuild of both trees — is in
+> [`INDEPENDENT-RESTORE-VERIFICATION.md`](./INDEPENDENT-RESTORE-VERIFICATION.md). It reaches the
+> same conclusion and additionally measures what the **static deployment** serves, which exposed
+> the blank-page defect (R15 / D1) in the original build's generated route documents.
+
 **Baseline ("original"):** production build of commit `9d806ca`.
 **Subject ("restored"):** production build of the current working tree on `arena/7708303c-website`.
 
