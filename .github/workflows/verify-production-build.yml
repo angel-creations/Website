@@ -109,6 +109,61 @@ jobs:
           retention-days: 14
 
 
+  hostinger-connection-preflight:
+    name: Hostinger SSH preflight (no deployment)
+    # Run manually from this branch to verify credentials and server access only.
+    # This job must never upload, delete, back up, or alter website files.
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Verify required settings and SSH access
+        shell: bash
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USERNAME: ${{ secrets.HOSTINGER_USERNAME }}
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+          HOSTINGER_DOCUMENT_ROOT: ${{ vars.HOSTINGER_DOCUMENT_ROOT }}
+        run: |
+          set -Eeuo pipefail
+          : "${HOSTINGER_HOST:?Missing HOSTINGER_HOST secret}"
+          : "${HOSTINGER_PORT:?Missing HOSTINGER_PORT secret}"
+          : "${HOSTINGER_USERNAME:?Missing HOSTINGER_USERNAME secret}"
+          : "${HOSTINGER_SSH_PRIVATE_KEY:?Missing HOSTINGER_SSH_PRIVATE_KEY secret}"
+          : "${HOSTINGER_KNOWN_HOSTS:?Missing HOSTINGER_KNOWN_HOSTS secret}"
+          : "${HOSTINGER_DOCUMENT_ROOT:?Missing HOSTINGER_DOCUMENT_ROOT variable}"
+
+          DOCROOT="$HOSTINGER_DOCUMENT_ROOT"
+          if [[ "$DOCROOT" != /*/public_html || "$DOCROOT" == *"/../"* || "$DOCROOT" == *"/.." || "$DOCROOT" == *" "* ]]; then
+            echo "Refusing preflight: document root must be an absolute verified path ending in /public_html."
+            exit 1
+          fi
+
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$HOSTINGER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          eval "$(ssh-agent -s)" >/dev/null
+          trap 'ssh-agent -k >/dev/null 2>&1 || true' EXIT
+          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - >/dev/null
+
+          TARGET="$HOSTINGER_USERNAME@$HOSTINGER_HOST"
+          ssh -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes -o "UserKnownHostsFile=$HOME/.ssh/known_hosts" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          set -Eeuo pipefail
+          DOCROOT="$1"
+          test -d "$DOCROOT" || { echo "Document root does not exist" >&2; exit 1; }
+          test -s "$DOCROOT/index.html" || { echo "Existing homepage not found" >&2; exit 1; }
+          test -w "$DOCROOT" || { echo "Document root is not writable" >&2; exit 1; }
+          test -w "$HOME" || { echo "Home directory is not writable" >&2; exit 1; }
+          command -v tar >/dev/null || { echo "tar unavailable" >&2; exit 1; }
+          command -v rsync >/dev/null || { echo "rsync unavailable" >&2; exit 1; }
+          printf 'SSH authentication passed.\nDocument root exists and is writable.\nrsync and tar are available.\n'
+          printf 'No website files were changed.\n'
+          REMOTE
+
   deploy-to-hostinger:
     name: Deploy verified build to Hostinger
     needs: build-and-verify
