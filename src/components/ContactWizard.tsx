@@ -272,7 +272,7 @@ export function ContactWizard(): JSX.Element {
   const selectedOption = selectOptions.find((option) => option.value === currentValue);
 
   const answeredCount = fields.filter((item) => isValid(item, values[item.id])).length;
-  const progressPct = Math.round(((step + 1) / fields.length) * 100);
+  const progressPct = Math.round((answeredCount / fields.length) * 100);
 
   useEffect(() => {
     if (!prepared) {
@@ -308,6 +308,22 @@ export function ContactWizard(): JSX.Element {
   }, []);
 
   const showCurrentError = (): boolean => attempted.has(step) && !currentValid;
+
+  // HIG › Entering data: validate dynamically as people switch fields — an invalid
+  // value flags on blur so it can be fixed immediately, not only after pressing Next.
+  const handleFieldBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+      if (event.target.value.trim() && !isValid(field, event.target.value)) {
+        setAttempted((current) => new Set(current).add(step));
+      }
+    },
+    [field, step]
+  );
+
+  const clearCurrentField = useCallback((): void => {
+    updateFieldValue(field.id, '');
+    controlRef.current?.focus();
+  }, [field.id, updateFieldValue]);
 
   const next = (): void => {
     if (honeypot.trim()) {
@@ -490,6 +506,7 @@ export function ContactWizard(): JSX.Element {
           onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
             updateFieldValue(field.id, event.target.value)
           }
+          onBlur={handleFieldBlur}
         />
       ) : (
         <input
@@ -508,9 +525,21 @@ export function ContactWizard(): JSX.Element {
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
             updateFieldValue(field.id, event.target.value)
           }
+          onBlur={handleFieldBlur}
         />
       )}
       <span className="ac-focus-line" aria-hidden="true" />
+      {currentValue.trim() !== '' && !currentValid && (
+        <button
+          type="button"
+          className="ac-clear-btn"
+          aria-label={`Clear ${field.name}`}
+          title="Clear this field"
+          onClick={clearCurrentField}
+        >
+          ✕
+        </button>
+      )}
       {currentValid && (
         <span className="ac-ready-badge" aria-live="polite">
           ✓ Ready
@@ -800,7 +829,15 @@ export function ContactWizard(): JSX.Element {
                   <span className="ac-step-category-pill">{field.category}</span>
                 </div>
 
-                <div className="ac-progress-line" aria-hidden="true">
+                <div
+                  className="ac-progress-line"
+                  role="progressbar"
+                  aria-valuenow={answeredCount}
+                  aria-valuemin={0}
+                  aria-valuemax={fields.length}
+                  aria-valuetext={`${answeredCount} of ${fields.length} questions answered`}
+                  aria-label="Questions answered"
+                >
                   <span
                     className="ac-progress-line__fill"
                     style={{ width: `${progressPct}%` }}

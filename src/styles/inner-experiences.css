@@ -2222,7 +2222,7 @@ body .angel-contact-redesign .ac-ambient-backdrop__orb--violet {
   width: 58vmax;
   height: 58vmax;
   background: radial-gradient(circle at 35% 35%, rgba(94, 92, 230, 0.4), transparent 62%);
-  animation: ac-orb-drift-a 26s var(--ac-ease-snappy) infinite alternate;
+  animation: ac-orb-drift-a 46s var(--ac-ease-snappy) infinite alternate;
 }
 
 body .angel-contact-redesign .ac-ambient-backdrop__orb--cyan {
@@ -2231,7 +2231,7 @@ body .angel-contact-redesign .ac-ambient-backdrop__orb--cyan {
   width: 52vmax;
   height: 52vmax;
   background: radial-gradient(circle at 60% 40%, rgba(var(--ac-accent-rgb), 0.3), transparent 64%);
-  animation: ac-orb-drift-b 32s var(--ac-ease-snappy) infinite alternate;
+  animation: ac-orb-drift-b 54s var(--ac-ease-snappy) infinite alternate;
 }
 
 body .angel-contact-redesign .ac-ambient-backdrop__orb--magenta {
@@ -2239,8 +2239,8 @@ body .angel-contact-redesign .ac-ambient-backdrop__orb--magenta {
   left: 46%;
   width: 34vmax;
   height: 34vmax;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 55, 146, 0.16), transparent 66%);
-  animation: ac-orb-drift-c 24s var(--ac-ease-snappy) infinite alternate;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 55, 146, 0.12), transparent 66%);
+  animation: ac-orb-drift-c 40s var(--ac-ease-snappy) infinite alternate;
 }
 
 body .angel-contact-redesign .ac-ambient-backdrop__grid {
@@ -2256,17 +2256,17 @@ body .angel-contact-redesign .ac-ambient-backdrop__grid {
 
 @keyframes ac-orb-drift-a {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(-9vw, 7vh, 0) scale(1.12); }
+  to { transform: translate3d(-5vw, 4vh, 0) scale(1.07); }
 }
 
 @keyframes ac-orb-drift-b {
-  from { transform: translate3d(0, 0, 0) scale(1.06); }
-  to { transform: translate3d(10vw, -8vh, 0) scale(0.96); }
+  from { transform: translate3d(0, 0, 0) scale(1.04); }
+  to { transform: translate3d(6vw, -4vh, 0) scale(0.98); }
 }
 
 @keyframes ac-orb-drift-c {
-  from { transform: translate3d(-4vw, 2vh, 0) scale(0.94); }
-  to { transform: translate3d(6vw, -4vh, 0) scale(1.1); }
+  from { transform: translate3d(-3vw, 1vh, 0) scale(0.96); }
+  to { transform: translate3d(4vw, -3vh, 0) scale(1.05); }
 }
 
 /* ---- Editorial studio hero ---------------------------------------------- */
@@ -2311,6 +2311,8 @@ body .angel-contact-redesign .ac-studio-hero__title {
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.035em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
   color: var(--ac-ink);
 }
 
@@ -2407,20 +2409,21 @@ body .angel-contact-redesign section.section-contact.ac-wizard-section {
   padding: 0 0 clamp(3.5rem, 6vw, 5.5rem) !important;
 }
 
+/* HIG › Liquid Glass is reserved for the floating functional layer. The wizard
+   stage is content, so it uses a near-opaque elevated material with vibrant
+   text instead of a glass blur (liquid-glass.md › checklist 1–2). */
 body .angel-contact-redesign .ac-wizard-shell {
   position: relative;
   width: min(1080px, calc(100% - 3rem));
   margin-inline: auto;
   padding: clamp(1.75rem, 4vw, 3.25rem) clamp(1.4rem, 4vw, 3.4rem) clamp(1.9rem, 3.5vw, 2.9rem);
   border-radius: var(--ac-radius-shell);
-  background: var(--ac-glass-bg);
-  border: 1px solid var(--ac-glass-border);
+  background: linear-gradient(180deg, rgba(23, 25, 35, 0.96) 0%, rgba(13, 14, 20, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
     0 44px 96px -28px rgba(0, 0, 0, 0.85),
     0 0 0 1px rgba(255, 255, 255, 0.03),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(30px) saturate(190%);
-  -webkit-backdrop-filter: blur(30px) saturate(190%);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
   overflow: hidden;
 }
 
@@ -2598,11 +2601,13 @@ body .angel-contact-redesign .ac-step-dot.is-answered {
   color: var(--ac-accent);
 }
 
+/* HIG › color budget: one solid-accent moment per view (the Next/primary CTA).
+   "You are here" reads through a monochrome solid instead of a second accent fill. */
 body .angel-contact-redesign .ac-step-dot.is-current {
-  background: var(--ac-accent);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #04070d;
-  box-shadow: 0 10px 26px -8px rgba(var(--ac-accent-rgb), 0.6);
+  background: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #05060a;
+  box-shadow: 0 10px 26px -10px rgba(255, 255, 255, 0.4);
 }
 
 body .angel-contact-redesign .ac-step-dot:disabled {
@@ -2614,11 +2619,11 @@ body .angel-contact-redesign .ac-step-dot:disabled {
 body .angel-contact-redesign .tab-pane.ac-step-pane,
 body .angel-contact-redesign #booking-form .tab-pane {
   display: block !important;
-  animation: ac-pane-in 460ms var(--ac-ease-snappy);
+  animation: ac-pane-in 260ms var(--ac-ease-snappy);
 }
 
 @keyframes ac-pane-in {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -2645,6 +2650,8 @@ body .angel-contact-redesign .ac-question-title {
   font-weight: 650;
   line-height: 1.12;
   letter-spacing: -0.025em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
   color: var(--ac-ink);
 }
 
@@ -2782,6 +2789,51 @@ body .angel-contact-redesign .ac-ready-badge--inline {
   to { opacity: 1; transform: scale(1); }
 }
 
+/* Trailing Clear control (HIG › Text fields: erase input without repeated Delete) */
+body .angel-contact-redesign .ac-clear-btn {
+  position: absolute;
+  right: 0.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--ac-ink-3);
+  font-family: inherit;
+  font-size: 0.82rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 100ms ease-out,
+    background-color 170ms ease,
+    border-color 170ms ease,
+    color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.26);
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-clear-btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+body .angel-contact-redesign .ac-field--textarea .ac-clear-btn {
+  top: 0.9rem;
+  transform: none;
+}
+
+body .angel-contact-redesign .ac-field--textarea .ac-clear-btn:active {
+  transform: scale(0.92);
+}
+
 /* ---- Quick-select preset pills ------------------------------------------- */
 body .angel-contact-redesign #booking-form .ac-preset-bar {
   display: flex;
@@ -2855,11 +2907,9 @@ body .angel-contact-redesign .ac-custom-select__trigger {
   min-height: 68px;
   padding: 0.75rem 1.15rem 0.75rem 1.3rem;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.055);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
   color: var(--ac-ink);
   font-family: inherit;
   font-size: 1.05rem;
@@ -2958,9 +3008,11 @@ body .angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__chevro
 }
 
 /* 2-column popover menu */
+/* Functional-layer glass: the popover is the one true Liquid Glass surface —
+   regular variant over text-heavy content, anchored to its trigger's origin. */
 body .angel-contact-redesign .ac-custom-select__popover {
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 10px);
   left: 0;
   right: 0;
   z-index: 60;
@@ -2972,15 +3024,18 @@ body .angel-contact-redesign .ac-custom-select__popover {
   overscroll-behavior: contain;
   padding: 0.75rem;
   border-radius: 24px;
-  background: rgba(13, 15, 23, 0.86);
+  background: rgba(13, 15, 23, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow:
     0 40px 80px -20px rgba(0, 0, 0, 0.9),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(34px) saturate(200%);
-  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
   outline: none;
-  animation: ac-popover-in 300ms var(--ac-ease-spring);
+  transform-origin: 50% 0;
+  animation: ac-popover-in 240ms var(--ac-ease-spring);
+  mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
 }
@@ -3176,8 +3231,6 @@ body .angel-contact-redesign li.action_li button.ac-nav-btn--prev,
 body .angel-contact-redesign #booking-form button.prev-btn {
   background: rgba(255, 255, 255, 0.06) !important;
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
 }
 
 body .angel-contact-redesign li.action_li button.ac-nav-btn--next,
@@ -3252,8 +3305,8 @@ body .angel-contact-redesign .ac-answered-chip {
   max-width: 100%;
   padding: 0 0.85rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(var(--ac-accent-rgb), 0.08);
-  border: 1px solid rgba(var(--ac-accent-rgb), 0.26);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--ac-ink-2);
   font-family: inherit;
   font-size: 0.78rem;
@@ -3266,8 +3319,8 @@ body .angel-contact-redesign .ac-answered-chip {
 }
 
 body .angel-contact-redesign .ac-answered-chip:hover {
-  background: rgba(var(--ac-accent-rgb), 0.15);
-  border-color: rgba(var(--ac-accent-rgb), 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(var(--ac-accent-rgb), 0.45);
   color: var(--ac-ink);
 }
 
@@ -3304,7 +3357,7 @@ body .angel-contact-redesign .ac-answered-trail__empty {
 
 /* ---- Prepared Enquiry Summary screen -------------------------------------- */
 body .angel-contact-redesign .ac-summary {
-  animation: ac-pane-in 460ms var(--ac-ease-snappy);
+  animation: ac-pane-in 300ms var(--ac-ease-snappy);
 }
 
 body .angel-contact-redesign .ac-summary__badge-row {
@@ -3455,8 +3508,6 @@ body .angel-contact-redesign .ac-cta--ghost {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
   color: var(--ac-ink);
 }
 
@@ -3548,13 +3599,11 @@ body .angel-contact-redesign .ac-support-card {
   min-height: 190px;
   padding: 1.5rem 1.45rem 1.4rem;
   border-radius: 26px;
-  background: rgba(15, 17, 25, 0.6);
+  background: linear-gradient(180deg, rgba(22, 24, 34, 0.94) 0%, rgba(13, 14, 21, 0.96) 100%);
   border: 1px solid var(--ac-glass-border);
   box-shadow:
     0 26px 56px -22px rgba(0, 0, 0, 0.8),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(24px) saturate(185%);
-  -webkit-backdrop-filter: blur(24px) saturate(185%);
   overflow: hidden;
   transition:
     transform 220ms var(--ac-ease-spring),
@@ -3668,12 +3717,10 @@ body .angel-contact-redesign + footer.color_creme {
   min-height: 0 !important;
   overflow: visible !important;
   padding: 2.4rem 0 2.6rem !important;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(2, 3, 8, 0.6)) !important;
-  background-color: rgba(4, 5, 10, 0.72) !important;
+  background: linear-gradient(180deg, rgba(14, 15, 22, 0.98), rgba(6, 7, 12, 0.98)) !important;
+  background-color: #07080d !important;
   border-top: 1px solid rgba(255, 255, 255, 0.09);
   color: rgba(235, 235, 245, 0.6) !important;
-  backdrop-filter: blur(20px) saturate(170%);
-  -webkit-backdrop-filter: blur(20px) saturate(170%);
 }
 
 body .angel-contact-redesign + footer.color_creme .footer_inner {
@@ -3808,6 +3855,21 @@ body .angel-contact-redesign + footer.color_creme .footer_inner .soical a:hover 
     align-items: center;
     text-align: center;
   }
+}
+
+/* ---- Instant press feedback — response lives on pointer-down, never at the end ---- */
+body .angel-contact-redesign .ac-jump-pill:active,
+body .angel-contact-redesign .ac-preset-pill:not(:disabled):active,
+body .angel-contact-redesign .ac-step-dot:not(:disabled):active,
+body .angel-contact-redesign .ac-answered-chip:active,
+body .angel-contact-redesign .ac-nav-btn:not(:disabled):active,
+body .angel-contact-redesign .ac-cta:active,
+body .angel-contact-redesign .ac-support-card__copy:active,
+body .angel-contact-redesign .ac-summary__item:active,
+body .angel-contact-redesign .ac-custom-select__option:active {
+  transform: scale(0.97);
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
 }
 
 /* ---- Accessibility: reduced motion / transparency / contrast --------------- */
