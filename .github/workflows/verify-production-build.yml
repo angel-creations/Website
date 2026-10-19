@@ -107,3 +107,121 @@ jobs:
           path: dist/
           if-no-files-found: error
           retention-days: 14
+
+
+  deploy-to-hostinger:
+    name: Deploy verified build to Hostinger
+    needs: build-and-verify
+    # Production deployment remains disabled until the verified document root,
+    # SSH credentials, host key, and rollback procedure are configured.
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.HOSTINGER_DEPLOY_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    permissions:
+      contents: read
+    concurrency:
+      group: hostinger-production
+      cancel-in-progress: false
+    steps:
+      - name: Download verified static build
+        uses: actions/download-artifact@v4
+        with:
+          name: angel-creations-dist
+          path: dist
+
+      - name: Back up and deploy dist over SSH
+        shell: bash
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USERNAME: ${{ secrets.HOSTINGER_USERNAME }}
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+          HOSTINGER_DOCUMENT_ROOT: ${{ vars.HOSTINGER_DOCUMENT_ROOT }}
+        run: |
+          set -Eeuo pipefail
+
+          : "${HOSTINGER_HOST:?Add the HOSTINGER_HOST Actions secret}"
+          : "${HOSTINGER_PORT:?Add the HOSTINGER_PORT Actions secret}"
+          : "${HOSTINGER_USERNAME:?Add the HOSTINGER_USERNAME Actions secret}"
+          : "${HOSTINGER_SSH_PRIVATE_KEY:?Add the HOSTINGER_SSH_PRIVATE_KEY Actions secret}"
+          : "${HOSTINGER_KNOWN_HOSTS:?Add verified HOSTINGER_KNOWN_HOSTS to Actions secrets}"
+          : "${HOSTINGER_DOCUMENT_ROOT:?Set HOSTINGER_DOCUMENT_ROOT only after verifying the live document root}"
+
+          DOCROOT="$HOSTINGER_DOCUMENT_ROOT"
+          if [[ "$DOCROOT" != /*/public_html || "$DOCROOT" == *"/../"* || "$DOCROOT" == *"/.." || "$DOCROOT" == *" "* ]]; then
+            echo "Refusing deployment: HOSTINGER_DOCUMENT_ROOT must be a verified absolute path ending in /public_html, without traversal or spaces."
+            exit 1
+          fi
+          test -s dist/index.html
+          test -d dist/assets
+          if ! grep -Eq 'src="[^"]*/assets/[^"]+\.js"' dist/index.html; then
+            echo "Refusing deployment: dist/index.html does not reference a compiled JavaScript asset."
+            exit 1
+          fi
+
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$HOSTINGER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          eval "$(ssh-agent -s)" >/dev/null
+          trap 'ssh-agent -k >/dev/null 2>&1 || true' EXIT
+          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - >/dev/null
+
+          TARGET="$HOSTINGER_USERNAME@$HOSTINGER_HOST"
+          SSH=(ssh -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes -o "UserKnownHostsFile=$HOME/.ssh/known_hosts")
+          RSYNC_RSH="ssh -p $HOSTINGER_PORT -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
+
+          # Back up the complete current document root outside public_html before touching it.
+          BACKUP_PATH="$("${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          set -Eeuo pipefail
+          DOCROOT="$1"
+          test -d "$DOCROOT" || { echo "Document root does not exist" >&2; exit 1; }
+          test -s "$DOCROOT/index.html" || { echo "Expected existing index.html; refusing first deployment until the target is verified" >&2; exit 1; }
+          BACKUP_DIR="$HOME/angel-creations-deploy-backups"
+          mkdir -p "$BACKUP_DIR"
+          chmod 700 "$BACKUP_DIR"
+          BACKUP_PATH="$BACKUP_DIR/public_html-$(date -u +%Y%m%dT%H%M%SZ).tar.gz"
+          tar -czf "$BACKUP_PATH" -C "$DOCROOT" .
+          test -s "$BACKUP_PATH"
+          printf '%s\n' "$BACKUP_PATH"
+          REMOTE
+          )"
+          echo "Created a pre-deployment backup on the Hostinger account."
+
+          rollback() {
+            echo "Deployment failed; attempting to restore the pre-deployment backup."
+            "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" "$BACKUP_PATH" <<'REMOTE'
+          set -Eeuo pipefail
+          DOCROOT="$1"
+          BACKUP_PATH="$2"
+          RESTORE_DIR="$(mktemp -d "$HOME/angel-creations-restore.XXXXXX")"
+          trap 'rm -rf "$RESTORE_DIR"' EXIT
+          tar -xzf "$BACKUP_PATH" -C "$RESTORE_DIR"
+          rsync -a --delete "$RESTORE_DIR/" "$DOCROOT/"
+          REMOTE
+          echo "Rollback completed from the saved backup."
+          }
+
+          if ! rsync -az --delete --delay-updates \
+            --exclude='.htaccess' \
+            --exclude='.well-known/' \
+            -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/"; then
+            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
+            exit 1
+          fi
+
+          if ! "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          set -Eeuo pipefail
+          DOCROOT="$1"
+          test -s "$DOCROOT/index.html"
+          test -d "$DOCROOT/assets"
+          grep -Eq 'src="[^"]*/assets/[^"]+\.js"' "$DOCROOT/index.html"
+          REMOTE
+          then
+            echo "Remote output verification failed."
+            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
+            exit 1
+          fi
+
+          echo "Hostinger files verified. Backup retained at: $BACKUP_PATH"
