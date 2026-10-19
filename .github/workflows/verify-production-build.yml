@@ -178,6 +178,10 @@ jobs:
           DOCROOT="$1"
           test -d "$DOCROOT" || { echo "Document root does not exist" >&2; exit 1; }
           test -s "$DOCROOT/index.html" || { echo "Expected existing index.html; refusing first deployment until the target is verified" >&2; exit 1; }
+          test -w "$DOCROOT" || { echo "Document root is not writable" >&2; exit 1; }
+          test -w "$HOME" || { echo "Home directory is not writable for backups" >&2; exit 1; }
+          command -v tar >/dev/null || { echo "tar is unavailable; refusing deployment" >&2; exit 1; }
+          command -v rsync >/dev/null || { echo "rsync is unavailable; refusing deployment because safe deployment and rollback require it" >&2; exit 1; }
           BACKUP_DIR="$HOME/angel-creations-deploy-backups"
           mkdir -p "$BACKUP_DIR"
           chmod 700 "$BACKUP_DIR"
