@@ -1,4 +1,5 @@
 import type { SeoData } from '../types/legacy';
+import { resolveJsonLdUploads, socialTagsFor } from './social';
 
 function upsertMeta(selector: string, attributes: Record<string, string>): void {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -28,7 +29,10 @@ export function applySeo(page: SeoData): void {
     upsertCanonical(page.canonical);
   }
 
-  Object.entries(page.meta).forEach(([key, content]) => {
+  // The captured social tags are kept, and the ones the source never carried are filled in. Any
+  // captured upload under /wp-content is replaced by the site's share card, because the static
+  // build does not serve that path.
+  Object.entries(socialTagsFor(page.meta)).forEach(([key, content]) => {
     if (key.startsWith('og:')) {
       upsertMeta(`meta[property="${key}"]`, { property: key, content });
     }
@@ -44,7 +48,8 @@ export function applySeo(page: SeoData): void {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
       script.dataset.legacyJsonld = 'true';
-      script.text = data;
+      // Captured upload URLs point at the preserved copies the build actually serves.
+      script.text = resolveJsonLdUploads(data);
       document.head.appendChild(script);
     } catch {
       // A malformed legacy structured-data block stays in the raw evidence but is not executed locally.

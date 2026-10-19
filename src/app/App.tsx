@@ -11,15 +11,23 @@ import { CapabilityIndex } from '../components/CapabilityIndex';
 import { capabilityForRoute } from '../data/capabilities';
 import { slideExperienceForRoute } from '../data/slideExperiences';
 import routeSeo from '../data/routeSeo.json';
+import innerHeroVisuals from '../data/innerHeroVisuals.json';
 import type { LegacyPage } from '../types/legacy';
 import { currentRoute, isInternalHref, navigate, normaliseRoute, toLocalRoute } from '../utils/routes';
 import { applySeo } from '../utils/seo';
 import { observeReveals } from '../utils/reveal';
+import { SHARE_CARD } from '../utils/social';
 
 // Capability and slide-experience routes are rendered by dedicated React components rather than
 // the captured WordPress archive, so they have no source JSON-LD of their own. This single
 // organisation/website record keeps their structured data truthful: it only restates what the
 // preserved About, menu and footer content already publishes publicly.
+
+// The preserved hero visual an experience route already shows, published as its share image.
+function experienceHeroImage(route: string): string {
+  const visual = (innerHeroVisuals as Record<string, string>)[route];
+  return visual ? `https://angelcreations.in${visual}` : SHARE_CARD;
+}
 const organisationJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@graph': [
@@ -222,7 +230,9 @@ export function App(): JSX.Element {
       description: experience.summary,
       robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       canonical: `https://angelcreations.in${experience.route}`,
-      meta: { ...page.meta, 'og:title': `${experience.label} | Angel Creations`, 'og:description': experience.summary, 'og:url': `https://angelcreations.in${experience.route}` },
+      // The preserved hero visual for this route is also its share image, exactly as the
+      // statically generated document publishes it.
+      meta: { ...page.meta, 'og:title': `${experience.label} | Angel Creations`, 'og:description': experience.summary, 'og:url': `https://angelcreations.in${experience.route}`, 'og:image': experienceHeroImage(experience.route) },
       jsonLd: [organisationJsonLd],
     } : {
       ...page,

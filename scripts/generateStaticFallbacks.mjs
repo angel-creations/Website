@@ -13,6 +13,31 @@ const metaverseContent = JSON.parse(await readFile(new URL('../src/data/metavers
 const experienceStories = JSON.parse(await readFile(new URL('../src/data/experienceStories.json', import.meta.url), 'utf8'));
 const experienceMaps = JSON.parse(await readFile(new URL('../src/data/experienceMaps.json', import.meta.url), 'utf8'));
 const innerHeroVisuals = JSON.parse(await readFile(new URL('../src/data/innerHeroVisuals.json', import.meta.url), 'utf8'));
+// The preservation manifest records every original upload together with the preserved copy and
+// its SHA-256 digest. The captured structured data points at a few of those uploads under the
+// original /wp-content path, which the static build does not serve, so those ImageObject
+// references resolved to an HTML fallback instead of an image. Each one is rewritten to the copy
+// the build actually publishes, so the record becomes true and resolvable again.
+const assetManifest = JSON.parse(await readFile(new URL('../docs/asset-manifest.json', import.meta.url), 'utf8'));
+const preservedUploadPaths = new Map(
+  assetManifest
+    .filter((item) => item.original_url?.startsWith('https://angelcreations.in/wp-content/') && item.local_path)
+    .map((item) => [item.original_url, item.local_path]),
+);
+const preservedSiteIcon = preservedUploadPaths.get('https://angelcreations.in/wp-content/uploads/2023/01/logo.webp');
+
+function resolveCapturedUploadUrl(url) {
+  if (typeof url !== 'string' || !url.startsWith('https://angelcreations.in/wp-content/')) return url;
+  const preserved = preservedUploadPaths.get(url);
+  if (preserved) return `https://angelcreations.in${preserved}`;
+  // The captured site-icon upload was never duplicated into the preservation snapshot. The
+  // manifest-verified 64x64 Angel Creations icon is published in its place, which still matches
+  // the width, height and caption the source declared for that record.
+  if (url.endsWith('/2023/01/logo-1-e1673178398663.webp') && preservedSiteIcon) {
+    return `https://angelcreations.in${preservedSiteIcon}`;
+  }
+  return url;
+}
 const capabilitySource = await readFile(new URL('../src/data/capabilities.ts', import.meta.url), 'utf8');
 const dist = new URL('../dist/', import.meta.url);
 const rootBuild = await readFile(new URL('index.html', dist), 'utf8');
@@ -76,19 +101,89 @@ function sourceSchema(page) {
   return (page.jsonLd || []).flatMap((item) => {
     try {
       const data = JSON.parse(item);
-      return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+      const rewritten = JSON.stringify(data).replace(
+        /https:\/\/angelcreations\.in\/wp-content\/uploads\/[^"\\]+/g,
+        (url) => resolveCapturedUploadUrl(url),
+      );
+      return `<script type="application/ld+json">${rewritten.replace(/</g, '\\u003c')}</script>`;
     } catch {
       return '';
     }
   }).join('\n');
 }
 
+// The captured WordPress source published a full Open Graph / Twitter card set on every route.
+// The migration kept only four of those tags, so every inner route lost the social card the
+// live site already had. The helpers below re-emit the captured values the document shell does
+// not already cover, and add the ones the source never had.
+//
+// The captured site-wide share image (wp-content/uploads/2023/08/59c9d53b-….png) was not
+// duplicated into the preservation snapshot and /wp-content is not served by the static build,
+// so it resolved to an HTML fallback instead of an image. public/social/angel-creations-card.png
+// replaces it: the preserved wordmark on the site's own black field, rendered at 1024x660 — the
+// captured image's own geometry, so its og:image:width / og:image:height / og:image:type stay
+// truthful. See scripts/generateSocialCard.sh.
+const SHARE_CARD = 'https://angelcreations.in/social/angel-creations-card.png';
+const SHARE_CARD_WIDTH = '1024';
+const SHARE_CARD_HEIGHT = '660';
+const SITE_NAME = 'Angel Creations - A Creative Powerhouse';
+const SITE_TWITTER = '@angelcreation0';
+
+// Tags the document shell already writes itself. The extra pass must not repeat them.
+const SOCIAL_CORE_KEYS = new Set(['og:title', 'og:description', 'og:url', 'og:image']);
+
+function socialTag(name, value) {
+  const attribute = name.startsWith('og:') ? 'property' : 'name';
+  return `<meta ${attribute}="${name}" content="${escapeHtml(value)}">`;
+}
+
+// Any captured upload under /wp-content is absent from the static build, so it is replaced by
+// the site share card. Every other captured image already resolves and is kept untouched.
+function resolveSocialImage(value) {
+  if (!value) return undefined;
+  return value.startsWith('https://angelcreations.in/wp-content/') ? SHARE_CARD : value;
+}
+
 function socialMeta(meta = {}) {
   return Object.entries(meta).flatMap(([key, value]) => {
     if (!value || (!key.startsWith('og:') && !key.startsWith('twitter:'))) return [];
-    const attribute = key.startsWith('og:') ? 'property' : 'name';
-    return [`<meta ${attribute}="${key}" content="${escapeHtml(value)}">`];
+    if (key === 'og:image' || key === 'twitter:image') {
+      const resolved = resolveSocialImage(value);
+      return resolved ? [socialTag(key, resolved)] : [];
+    }
+    return [socialTag(key, value)];
   }).join('\n');
+}
+
+// The social tags the document shell does not emit itself: the rest of the captured source set
+// plus the shared site card values. The captured values always win, so a page that recorded
+// its own og:type or twitter:label1 keeps it.
+function additionalSocialMeta(extra = {}, captured = {}) {
+  const merged = { ...extra, ...captured };
+  return Object.entries(merged).flatMap(([key, value]) => {
+    if (!value || (!key.startsWith('og:') && !key.startsWith('twitter:'))) return [];
+    if (SOCIAL_CORE_KEYS.has(key)) return [];
+    const resolved = key === 'twitter:image' ? resolveSocialImage(value) : value;
+    return resolved ? [socialTag(key, resolved)] : [];
+  });
+}
+
+// The shared card values every route publishes. Twitter does not fall back to og:image, so the
+// twitter:image and twitter:card pair has to be stated explicitly.
+function siteSocialMeta(image = SHARE_CARD) {
+  const meta = {
+    'og:type': 'website',
+    'og:site_name': SITE_NAME,
+    'twitter:card': 'summary_large_image',
+    'twitter:site': SITE_TWITTER,
+    'twitter:image': image,
+  };
+  if (image === SHARE_CARD) {
+    meta['og:image:width'] = SHARE_CARD_WIDTH;
+    meta['og:image:height'] = SHARE_CARD_HEIGHT;
+    meta['og:image:type'] = 'image/png';
+  }
+  return meta;
 }
 
 function enhanceRootDocument() {
@@ -96,7 +191,9 @@ function enhanceRootDocument() {
   if (!home) throw new Error('Captured home route is missing.');
   const markerStart = '<!-- angel-static-seo:start -->';
   const markerEnd = '<!-- angel-static-seo:end -->';
-  const injection = `${markerStart}\n${socialMeta(home.meta)}\n${sourceSchema(home)}\n${markerEnd}`;
+  // Twitter does not fall back to og:image, so the captured card needs an explicit twitter:image.
+  const homeSocial = socialMeta({ ...home.meta, 'twitter:image': home.meta?.['og:image'] });
+  const injection = `${markerStart}\n${homeSocial}\n${sourceSchema(home)}\n${markerEnd}`;
   const withoutPrevious = rootBuild.replace(new RegExp(`${markerStart}[\\s\\S]*?${markerEnd}\\n?`), '');
   return writeFile(new URL('index.html', dist), withoutPrevious.replace('</head>', `${injection}\n</head>`));
 }
@@ -159,7 +256,7 @@ const fontPreloadTags = [
   '/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff2',
 ].map((href) => `<link rel="preload" as="font" type="font/woff2" crossorigin href="${href}">`).join('');
 
-function documentShell({ title, description, canonical, robots, ogTitle, image, schema = '', extraHead = '', fallback }) {
+function documentShell({ title, description, canonical, robots, ogTitle, image, social = [], schema = '', extraHead = '', fallback }) {
   return `<!doctype html>
 <html lang="en-US" class="respect-color-scheme-preference"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -173,6 +270,7 @@ ${description ? `<meta name="description" content="${escapeHtml(description)}">`
 ${description ? `<meta property="og:description" content="${escapeHtml(description)}">` : ''}
 <meta property="og:url" content="${escapeHtml(canonical)}">
 ${image ? `<meta property="og:image" content="${escapeHtml(image)}">` : ''}
+${social.join('\n')}
 ${schema}
 ${extraHead}
 ${runtimeAssetTags}
@@ -248,6 +346,7 @@ function storyFallback(experience, story, previous, next, workMarkup) {
 
 function experienceDocument(experience) {
   const canonical = `https://angelcreations.in${experience.route}`;
+  const heroImage = innerHeroVisuals[experience.route] ? `https://angelcreations.in${innerHeroVisuals[experience.route]}` : undefined;
   const list = (items) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   const index = slideExperiences.findIndex((item) => item.route === experience.route);
   const previous = slideExperiences[(index - 1 + slideExperiences.length) % slideExperiences.length];
@@ -259,7 +358,7 @@ function experienceDocument(experience) {
   const artifact = experience.hasUnityArtifact ? `<h2>Original Metaverse environment</h2><p>The captured route includes a Unity WebGL artifact titled MetaScore. It is retained as a source artifact and is not presented as a new product or case study. JavaScript is required to load this optional preserved environment.</p>` : '';
   const defaultFallback = `${staticNavigation()}<main><p class="eyebrow">${escapeHtml(experience.number)} / ${escapeHtml(experience.label)}</p><h1>${escapeHtml(experience.label)}</h1><p class="lead">${escapeHtml(experience.heading)}</p><p>${escapeHtml(experience.summary)}</p><h2>What Angel creates here</h2><p>Current public Angel source material lists:</p>${list(experience.creates)}<h2>How Angel approaches it</h2><p>Angel Creations’ current public About source describes work rooted in usability, creativity, aesthetics and craft, built through collaboration, joint ambition and mutual respect.</p><h2>Where it applies</h2><p>These are application contexts named in the captured Angel source. They are not asserted as project outcomes.</p>${list(experience.applications)}<h2>Show the work</h2>${workMarkup}<h2>Related areas</h2><ul>${related.map((capability) => `<li><a href="${capability.route}">${escapeHtml(capability.title)}</a></li>`).join('')}</ul>${artifact}<h2>Start a conversation</h2><p><a href="/contact/">Start a project</a></p><nav aria-label="Continue through Angel experiences"><a href="/">Return to slide ${escapeHtml(experience.number)}</a> / <a href="${previous.route}">Prev: ${escapeHtml(previous.number)} / ${escapeHtml(previous.label)}</a> / <span aria-current="page">Current: ${escapeHtml(experience.number)} / 07 ${escapeHtml(experience.label)}</span> / <a href="${next.route}">Next: ${escapeHtml(next.number)} / ${escapeHtml(next.label)}</a></nav></main>${staticLegalLinks()}`;
   const fallback = experience.route === '/metaverse/' ? metaverseFallback(experience, previous, next) : story ? storyFallback(experience, story, previous, next, workMarkup) : defaultFallback;
-  return documentShell({ title: `${experience.label} | Angel Creations`, description: experience.summary, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: `${experience.label} | Angel Creations`, image: innerHeroVisuals[experience.route] ? `https://angelcreations.in${innerHeroVisuals[experience.route]}` : undefined, schema: experienceSchema(experience), fallback });
+  return documentShell({ title: `${experience.label} | Angel Creations`, description: experience.summary, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: `${experience.label} | Angel Creations`, image: heroImage, social: additionalSocialMeta(siteSocialMeta(heroImage || SHARE_CARD)), schema: experienceSchema(experience), fallback });
 }
 
 function documentFor(page) {
@@ -270,25 +369,28 @@ function documentFor(page) {
   const sourceParagraphs = collectNodes(page.children || [], 'p', 8).filter((item) => item.length > 30 && item.length < 600);
   const canonical = page.canonical || `https://angelcreations.in${page.route}`;
   const description = getDescription(page);
+  // The captured share image pointed at a /wp-content upload the static build does not serve, so
+  // it is replaced by the site card. Every route therefore publishes a resolvable og:image.
+  const socialImage = resolveSocialImage(page.meta?.['og:image']) || SHARE_CARD;
   const fallback = `${staticNavigation()}<main><p class="eyebrow">Angel Creations / source fallback</p><h1>${escapeHtml(h1)}</h1>${description ? `<p class="lead">${escapeHtml(description)}</p>` : ''}${headings.map((heading) => `<h2>${escapeHtml(heading)}</h2>`).join('')}${sourceParagraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('')}${page.route === '/about/' ? renderCapabilityIndex() : ''}${page.route === '/works/' ? renderVideoArchive() : ''}</main>${staticLegalLinks()}`;
-  return documentShell({ title: page.title || h1, description, canonical, robots: page.robots, ogTitle: page.meta?.['og:title'] || h1, image: page.meta?.['og:image'], schema: sourceSchema(page), fallback });
+  return documentShell({ title: page.title || h1, description, canonical, robots: page.robots, ogTitle: page.meta?.['og:title'] || h1, image: socialImage, social: additionalSocialMeta(siteSocialMeta(socialImage), page.meta), schema: sourceSchema(page), fallback });
 }
 
 function capabilityDocument(capability) {
   const canonical = `https://angelcreations.in${capability.route}`;
   const list = (items) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   const fallback = `${staticNavigation()}<main><p class="eyebrow">${escapeHtml(capability.eyebrow)}</p><h1>${escapeHtml(capability.title)}</h1><p>${escapeHtml(capability.overview)}</p><h2>What Angel creates</h2><p>Current public Angel source material lists:</p>${list(capability.creates)}<h2>What it can support</h2><p>These are application contexts named in the captured Angel source. They are not claimed as case-study outcomes.</p>${list(capability.applications)}<h2>Relevant public work</h2><p>Explore the verified public <a href="/works/">Works archive</a>.</p><h2>Relevant insights</h2><p>No separate authored insight record is asserted without a verified source. The public Works archive remains the related source-qualified material.</p><p>Need this capability? <a href="/contact/">Start a project</a>.</p></main>${staticLegalLinks()}`;
-  return documentShell({ title: `${capability.title} | Angel Creations`, description: capability.overview, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: `${capability.title} | Angel Creations`, schema: capabilitySchema(capability), fallback });
+  return documentShell({ title: `${capability.title} | Angel Creations`, description: capability.overview, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: `${capability.title} | Angel Creations`, image: SHARE_CARD, social: additionalSocialMeta(siteSocialMeta(SHARE_CARD)), schema: capabilitySchema(capability), fallback });
 }
 
 function notFoundDocument() {
   const fallback = `${staticNavigation()}<main><p class="eyebrow">404 / Angel archive</p><h1>This route is out of view.</h1><p>The page is not part of the available Angel archive.</p><p><a href="/">Return home</a> / <a href="/works/">Explore work</a> / <a href="/contact/">Start a project</a></p></main>${staticLegalLinks()}`;
-  return documentShell({ title: 'Page not found | Angel Creations', description: 'The requested Angel Creations page is not available.', canonical: 'https://angelcreations.in/404.html', robots: 'noindex, follow', ogTitle: 'Page not found | Angel Creations', fallback });
+  return documentShell({ title: 'Page not found | Angel Creations', description: 'The requested Angel Creations page is not available.', canonical: 'https://angelcreations.in/404.html', robots: 'noindex, follow', ogTitle: 'Page not found | Angel Creations', image: SHARE_CARD, social: additionalSocialMeta(siteSocialMeta(SHARE_CARD)), fallback });
 }
 
 function worksAliasDocument() {
   const fallback = `${staticNavigation()}<main><p class="eyebrow">Works / moved</p><h1>Continue to the Works archive.</h1><p><a href="/works/">Explore 47 verified public Angel Creations video records.</a></p></main>${staticLegalLinks()}`;
-  return documentShell({ title: 'Works archive | Angel Creations', description: 'Continue to the Angel Creations Works archive.', canonical: 'https://angelcreations.in/works/', robots: 'noindex, follow', ogTitle: 'Works archive | Angel Creations', extraHead: '<meta http-equiv="refresh" content="0; url=/works/">', fallback });
+  return documentShell({ title: 'Works archive | Angel Creations', description: 'Continue to the Angel Creations Works archive.', canonical: 'https://angelcreations.in/works/', robots: 'noindex, follow', ogTitle: 'Works archive | Angel Creations', image: SHARE_CARD, social: additionalSocialMeta(siteSocialMeta(SHARE_CARD)), extraHead: '<meta http-equiv="refresh" content="0; url=/works/">', fallback });
 }
 
 await enhanceRootDocument();
