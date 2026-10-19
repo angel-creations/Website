@@ -110,9 +110,14 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (route === '/360-video/' || page.route === '/360-video/') return <PanoramaPage />;
   if (route === '/contact/' || page.route === '/contact/') {
     return (
-      <main id="main" className="site-main">
-        <ContactWizard />
-      </main>
+      <div id="content" className="site-content">
+        <div id="primary" className="content-area">
+          <main id="main" className="site-main">
+            <ContactWizard />
+            <LegacyFooter />
+          </main>
+        </div>
+      </div>
     );
   }
   if (route === '/works/' || page.route === '/works/') {

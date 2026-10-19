@@ -2154,503 +2154,1698 @@
   text-decoration: none;
 }
 
-/* ==========================================================================
-   7. CONTACT CONCIERGE PAGE (/contact/) — DUAL-MODE PROJECT CONFIGURATOR
-   ========================================================================== */
-.apple-contact-mode-switcher {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.apple-contact-layout {
-  display: grid;
-  grid-template-columns: 1.28fr 0.72fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: start;
-}
-
-.apple-contact-stage-card {
-  padding: clamp(1.75rem, 3.2vw, 2.75rem);
-  border-radius: var(--apple-radius-outer);
-  background:
-    radial-gradient(
-      75% 75% at 100% 0%,
-      rgba(var(--route-accent-rgb, 100, 210, 255), 0.12),
-      transparent 70%
-    ),
-    rgba(255, 255, 255, 0.042);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  box-shadow:
-    0 28px 64px -20px rgba(0, 0, 0, 0.78),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-}
-
-/* Step Progress Rail */
-.apple-contact-step-rail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.35rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.apple-contact-step-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  min-height: 36px;
-  padding: 0 0.75rem;
-  border-radius: var(--apple-radius-pill);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: var(--apple-label-tertiary);
-  font-size: 0.76rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 150ms var(--apple-ease-spring),
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
-}
-
-.apple-contact-step-pill:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-}
-
-.apple-contact-step-pill.is-done {
-  border-color: rgba(48, 209, 88, 0.4);
-  color: var(--apple-label-secondary);
-}
-
-.apple-contact-step-pill.is-done .apple-contact-step-pill__num {
-  color: #30d158;
-}
-
-.apple-contact-step-pill.is-current {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.18);
-  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.55);
-  color: #ffffff;
-}
-
-.apple-contact-step-pill__num {
-  font-size: 0.7rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-question-label {
-  display: block;
-  margin-bottom: 0.45rem;
-}
-
-.apple-contact-question-label h2 {
-  margin: 0;
-  font-size: clamp(1.55rem, 2.6vw, 2.25rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.022em;
-  color: #ffffff;
-}
-
-.apple-contact-question-hint {
-  margin: 0 0 1.45rem;
-  font-size: 0.95rem;
-  color: var(--apple-label-tertiary);
-}
-
-/* Tactile Inputs & Textarea */
-.apple-contact-input {
-  width: 100%;
-  min-height: 56px;
-  padding: 0.9rem 1.2rem;
-  border-radius: var(--apple-radius-inner);
-  background: rgba(8, 10, 16, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  color: #ffffff !important;
-  font-family: inherit;
-  font-size: 1.06rem !important;
-  line-height: 1.5;
-  outline: none;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45);
-  transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background-color 180ms ease;
-}
-
-.apple-contact-input::placeholder {
-  color: rgba(235, 235, 245, 0.38);
-}
-
-.apple-contact-input:focus {
-  background: rgba(12, 16, 24, 0.92) !important;
-  border-color: var(--route-accent, #64d2ff) !important;
-  box-shadow: 0 0 0 3px rgba(var(--route-accent-rgb, 100, 210, 255), 0.24) !important;
-}
-
-/* Choice Chips & Preset Pills */
-.apple-contact-chip-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-.apple-contact-choice-chip {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  min-height: 50px;
-  padding: 0.65rem 0.95rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--apple-label-secondary);
-  font-size: 0.86rem;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 150ms var(--apple-ease-spring),
-    background-color 170ms ease,
-    border-color 170ms ease,
-    color 170ms ease;
-}
-
-.apple-contact-choice-chip:hover {
-  background: rgba(255, 255, 255, 0.085);
-  color: #ffffff;
-}
-
-.apple-contact-choice-chip:active {
-  transform: scale(0.97);
-}
-
-.apple-contact-choice-chip.is-selected {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.18);
-  border-color: var(--route-accent, #64d2ff);
-  color: #ffffff;
-  box-shadow: 0 0 0 1px rgba(var(--route-accent-rgb, 100, 210, 255), 0.4);
-}
-
-.apple-contact-choice-chip__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  flex-shrink: 0;
-}
-
-.apple-contact-choice-chip.is-selected .apple-contact-choice-chip__dot {
-  background: var(--route-accent, #64d2ff);
-  box-shadow: 0 0 8px var(--route-accent, #64d2ff);
-}
-
-.apple-contact-preset-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-bottom: 0.85rem;
-}
-
-.apple-contact-preset-pill {
-  min-height: 36px;
-  padding: 0 0.85rem;
-  border-radius: var(--apple-radius-pill);
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--apple-label-secondary);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 140ms var(--apple-ease-spring),
-    background-color 160ms ease,
-    border-color 160ms ease;
-}
-
-.apple-contact-preset-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-}
-
-.apple-contact-preset-pill.is-selected {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.2);
-  border-color: var(--route-accent, #64d2ff);
-  color: #ffffff;
-}
-
-.apple-contact-error {
-  display: inline-block;
-  margin-top: 0.65rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #ff453a;
-}
-
-.apple-contact-actions-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 1.75rem;
-}
-
-.apple-contact-actions-bar button[disabled] {
-  opacity: 0.38;
-  pointer-events: none;
-}
-
-/* Express Sheet Grid */
-.apple-contact-sheet-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.15rem;
-  margin-top: 1.25rem;
-}
-
-.apple-contact-sheet-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.apple-contact-sheet-field--full {
-  grid-column: 1 / -1;
-}
-
-.apple-contact-sheet-field__label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--apple-label-secondary);
-}
-
-.apple-contact-sheet-field__ok {
-  color: #30d158;
-  font-weight: 700;
-}
-
-/* Prepared Review Grid */
-.apple-contact-review-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
-  margin-top: 1.25rem;
-}
-
-.apple-contact-review-item {
-  padding: 1rem 1.15rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease;
-}
-
-.apple-contact-review-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.42);
-}
-
-.apple-contact-review-item__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.3rem;
-}
-
-.apple-contact-review-item__label {
-  font-size: 0.73rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--apple-label-tertiary);
-}
-
-.apple-contact-review-item__edit {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-review-item__val {
-  display: block;
-  font-size: 0.95rem;
-  color: #ffffff;
-  word-break: break-word;
-}
-
-/* Right Sidebar: Live Summary & Direct Desks */
-.apple-contact-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.apple-contact-summary-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-}
-
-.apple-contact-summary-head h3 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.apple-contact-summary-pct {
-  font-size: 1.45rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-progress-track {
-  width: 100%;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  margin-bottom: 1.15rem;
-}
-
-.apple-contact-progress-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--route-accent, #64d2ff), #30d158);
-  transition: width 260ms var(--apple-ease-spring);
-}
-
-.apple-contact-summary-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.apple-contact-summary-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.48rem 0.7rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid transparent;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
-}
-
-.apple-contact-summary-row:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.apple-contact-summary-row.is-active {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.14);
-  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.38);
-}
-
-.apple-contact-summary-row__key {
-  font-weight: 600;
-  color: var(--apple-label-secondary);
-}
-
-.apple-contact-summary-row__val {
-  color: var(--apple-label-tertiary);
-  text-align: right;
-}
-
-.apple-contact-summary-row.is-filled .apple-contact-summary-row__val {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.apple-contact-desk-box {
-  padding: 0.95rem 1.05rem;
-  border-radius: 14px;
-  background: rgba(8, 10, 16, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 0.75rem;
-}
-
-.apple-contact-desk-box:last-child {
-  margin-bottom: 0;
-}
-
-.apple-contact-desk-box__label {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--apple-label-tertiary);
-}
-
-.apple-contact-desk-box__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-}
-
-.apple-contact-desk-box__mail {
-  color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.apple-contact-desk-box__mail:hover {
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-copy-chip {
-  padding: 0.24rem 0.65rem;
-  border-radius: var(--apple-radius-pill);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-@media (max-width: 1080px) {
-  .apple-contact-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .apple-contact-chip-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 720px) {
-  .apple-contact-chip-grid,
-  .apple-contact-sheet-grid,
-  .apple-contact-review-grid {
-    grid-template-columns: 1fr;
-  }
-
   .apple-works-search__input {
     min-width: 100%;
   }
 }
 
+/* ==========================================================================
+   7. CONTACT CONCIERGE PAGE (/contact/) — N° ONE-QUESTION CONVERSATIONAL
+      WIZARD · AMBIENT SPATIAL BACKDROP · APPLE LIQUID GLASS STAGE
+      `body .angel-contact-redesign …` + !important overrides the legacy
+      custom.css hooks (section.section-contact, li.action_li button,
+      .step-title, .supcom.rightsupport, footer.color_creme).
+   ========================================================================== */
+body .angel-contact-redesign {
+  --ac-bg: #010204;
+  --ac-accent: var(--route-accent, #64d2ff);
+  --ac-accent-secondary: var(--route-accent-secondary, #5e5ce6);
+  --ac-accent-rgb: var(--route-accent-rgb, 100, 210, 255);
+  --ac-ink: #f5f5f7;
+  --ac-ink-2: rgba(235, 235, 245, 0.78);
+  --ac-ink-3: rgba(235, 235, 245, 0.6);
+  --ac-ink-4: rgba(235, 235, 245, 0.44);
+  --ac-glass-bg: rgba(15, 17, 25, 0.68);
+  --ac-glass-border: rgba(255, 255, 255, 0.13);
+  --ac-glass-specular: rgba(255, 255, 255, 0.22);
+  --ac-ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ac-ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
+  --ac-radius-shell: 34px;
+  --ac-radius-card: 22px;
+  --ac-radius-inner: 16px;
+  --ac-radius-pill: 999px;
+
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  background-color: var(--ac-bg);
+  color: var(--ac-ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+/* ---- Ambient spatial grid & orb backdrop -------------------------------- */
+body .angel-contact-redesign .ac-ambient-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(180deg, #02030a 0%, #010204 100%);
+}
+
+body .angel-contact-redesign .ac-ambient-backdrop__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  transform: translate3d(0, 0, 0);
+}
+
+body .angel-contact-redesign .ac-ambient-backdrop__orb--violet {
+  top: -18%;
+  right: -14%;
+  width: 58vmax;
+  height: 58vmax;
+  background: radial-gradient(circle at 35% 35%, rgba(94, 92, 230, 0.4), transparent 62%);
+  animation: ac-orb-drift-a 26s var(--ac-ease-snappy) infinite alternate;
+}
+
+body .angel-contact-redesign .ac-ambient-backdrop__orb--cyan {
+  bottom: -24%;
+  left: -16%;
+  width: 52vmax;
+  height: 52vmax;
+  background: radial-gradient(circle at 60% 40%, rgba(var(--ac-accent-rgb), 0.3), transparent 64%);
+  animation: ac-orb-drift-b 32s var(--ac-ease-snappy) infinite alternate;
+}
+
+body .angel-contact-redesign .ac-ambient-backdrop__orb--magenta {
+  top: 32%;
+  left: 46%;
+  width: 34vmax;
+  height: 34vmax;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 55, 146, 0.16), transparent 66%);
+  animation: ac-orb-drift-c 24s var(--ac-ease-snappy) infinite alternate;
+}
+
+body .angel-contact-redesign .ac-ambient-backdrop__grid {
+  position: absolute;
+  inset: -2%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 68px 68px;
+  mask-image: radial-gradient(78% 62% at 50% 22%, #000 18%, transparent 78%);
+  -webkit-mask-image: radial-gradient(78% 62% at 50% 22%, #000 18%, transparent 78%);
+}
+
+@keyframes ac-orb-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-9vw, 7vh, 0) scale(1.12); }
+}
+
+@keyframes ac-orb-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.06); }
+  to { transform: translate3d(10vw, -8vh, 0) scale(0.96); }
+}
+
+@keyframes ac-orb-drift-c {
+  from { transform: translate3d(-4vw, 2vh, 0) scale(0.94); }
+  to { transform: translate3d(6vw, -4vh, 0) scale(1.1); }
+}
+
+/* ---- Editorial studio hero ---------------------------------------------- */
+body .angel-contact-redesign .ac-studio-hero {
+  position: relative;
+  width: min(1180px, calc(100% - 3rem));
+  margin-inline: auto;
+  padding: clamp(7rem, 11vw, 10.5rem) 0 clamp(2.5rem, 4vw, 4rem);
+  text-align: left;
+}
+
+body .angel-contact-redesign .ac-studio-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ac-accent);
+}
+
+body .angel-contact-redesign .ac-studio-hero__eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 10px rgba(48, 209, 88, 0.9);
+  animation: ac-pulse-dot 2.6s ease-in-out infinite;
+}
+
+@keyframes ac-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.82); }
+}
+
+body .angel-contact-redesign .ac-studio-hero__title {
+  margin: 0 0 1.35rem;
+  max-width: 14ch;
+  font-size: clamp(2.9rem, 7.4vw, 5.6rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-studio-hero__title-accent {
+  background: linear-gradient(96deg, var(--ac-accent) 8%, var(--ac-accent-secondary) 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+body .angel-contact-redesign .ac-studio-hero__lead {
+  margin: 0 0 2.1rem;
+  max-width: 58ch;
+  font-size: clamp(1rem, 1.2vw, 1.13rem);
+  line-height: 1.62;
+  color: var(--ac-ink-2);
+  text-wrap: pretty;
+}
+
+body .angel-contact-redesign .ac-studio-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+body .angel-contact-redesign .ac-jump-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 48px;
+  padding: 0 1.45rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--ac-glass-border);
+  box-shadow: inset 0 1px 0 0 var(--ac-glass-specular);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  color: var(--ac-ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition:
+    transform 170ms var(--ac-ease-spring),
+    background-color 190ms ease,
+    border-color 190ms ease;
+}
+
+body .angel-contact-redesign .ac-jump-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(var(--ac-accent-rgb), 0.5);
+  transform: translateY(-1px);
+}
+
+body .angel-contact-redesign .ac-jump-pill:active {
+  transform: scale(0.97);
+}
+
+body .angel-contact-redesign .ac-jump-pill__arrow {
+  color: var(--ac-accent);
+  animation: ac-nudge-down 2.4s ease-in-out infinite;
+}
+
+@keyframes ac-nudge-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+body .angel-contact-redesign .ac-back-link {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ac-ink-3);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-back-link:hover {
+  color: var(--ac-ink);
+}
+
+/* ---- Sculptural Liquid Glass wizard shell -------------------------------- */
+body .angel-contact-redesign section.section-contact.ac-wizard-section {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: block !important;
+  align-items: initial !important;
+  justify-content: initial !important;
+  padding: 0 0 clamp(3.5rem, 6vw, 5.5rem) !important;
+}
+
+body .angel-contact-redesign .ac-wizard-shell {
+  position: relative;
+  width: min(1080px, calc(100% - 3rem));
+  margin-inline: auto;
+  padding: clamp(1.75rem, 4vw, 3.25rem) clamp(1.4rem, 4vw, 3.4rem) clamp(1.9rem, 3.5vw, 2.9rem);
+  border-radius: var(--ac-radius-shell);
+  background: var(--ac-glass-bg);
+  border: 1px solid var(--ac-glass-border);
+  box-shadow:
+    0 44px 96px -28px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  overflow: hidden;
+}
+
+body .angel-contact-redesign .ac-wizard-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 34%;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+body .angel-contact-redesign .ac-wizard-shell::after {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(var(--ac-accent-rgb), 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+body .angel-contact-redesign #booking-form {
+  position: relative;
+  z-index: 1;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ---- Signature N° progress header ---------------------------------------- */
+body .angel-contact-redesign .step-title.ac-progress-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.9rem;
+  margin-bottom: 1.1rem;
+}
+
+body .angel-contact-redesign .ac-slider-progress {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin-right: 0;
+  font-weight: 700;
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-slider-progress::before {
+  display: none;
+}
+
+body .angel-contact-redesign .ac-slider-prefix {
+  margin-right: 0;
+  pointer-events: none;
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ac-accent);
+}
+
+body .angel-contact-redesign .ac-slider-prefix small {
+  position: static;
+  font-size: 0.62em;
+  line-height: 1;
+  vertical-align: super;
+  color: inherit;
+}
+
+body .angel-contact-redesign .ac-progress-head__total {
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ac-ink-4);
+}
+
+body .angel-contact-redesign .ac-step-category-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 0.95rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(var(--ac-accent-rgb), 0.14);
+  border: 1px solid rgba(var(--ac-accent-rgb), 0.42);
+  color: var(--ac-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Animated progress fill bar */
+body .angel-contact-redesign .ac-progress-line {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+  margin-bottom: 1.35rem;
+}
+
+body .angel-contact-redesign .ac-progress-line__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--ac-accent-secondary), var(--ac-accent));
+  box-shadow: 0 0 14px rgba(var(--ac-accent-rgb), 0.55);
+  transition: width 560ms var(--ac-ease-spring);
+}
+
+/* Interactive numbered step pills (01 … 08) */
+body .angel-contact-redesign .ac-step-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 1.6rem;
+  margin-bottom: 2.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body .angel-contact-redesign .ac-step-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.55rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--ac-ink-4);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ac-ease-spring),
+    background-color 170ms ease,
+    border-color 170ms ease,
+    color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-step-dot:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-step-dot:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+body .angel-contact-redesign .ac-step-dot.is-answered {
+  border-color: rgba(var(--ac-accent-rgb), 0.5);
+  color: var(--ac-accent);
+}
+
+body .angel-contact-redesign .ac-step-dot.is-current {
+  background: var(--ac-accent);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #04070d;
+  box-shadow: 0 10px 26px -8px rgba(var(--ac-accent-rgb), 0.6);
+}
+
+body .angel-contact-redesign .ac-step-dot:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+/* ---- Conversational question pane (legacy .tab-pane hook neutralised) ---- */
+body .angel-contact-redesign .tab-pane.ac-step-pane,
+body .angel-contact-redesign #booking-form .tab-pane {
+  display: block !important;
+  animation: ac-pane-in 460ms var(--ac-ease-snappy);
+}
+
+@keyframes ac-pane-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body .angel-contact-redesign #booking-form .ac-question-label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+body .angel-contact-redesign .ac-question-index {
+  display: block;
+  margin-bottom: 0.7rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ac-accent);
+}
+
+body .angel-contact-redesign .ac-question-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-question-hint {
+  margin: 0.8rem 0 1.9rem;
+  max-width: 56ch;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ac-ink-3);
+}
+
+/* ---- Architectural underline input + animated focus line ------------------ */
+body .angel-contact-redesign .ac-field {
+  position: relative;
+  width: 100%;
+}
+
+body .angel-contact-redesign #booking-form .ac-input,
+body .angel-contact-redesign #booking-form input.ac-input,
+body .angel-contact-redesign #booking-form textarea.ac-input {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 78px;
+  margin-bottom: 0 !important;
+  padding: 0.4rem 7.6rem 0.55rem 0.05rem !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: none !important;
+  color: var(--ac-ink) !important;
+  caret-color: var(--ac-accent);
+  font-family: inherit;
+  font-size: clamp(1.3rem, 2.6vw, 1.95rem) !important;
+  font-weight: 550;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  outline: 0;
+  overflow: hidden;
+  resize: none;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+body .angel-contact-redesign #booking-form textarea.ac-input {
+  min-height: 150px;
+  padding-top: 0.9rem !important;
+  overflow: auto;
+}
+
+body .angel-contact-redesign #booking-form .ac-input::placeholder {
+  color: rgba(235, 235, 245, 0.3);
+  font-weight: 400;
+}
+
+body .angel-contact-redesign #booking-form .ac-input:focus {
+  outline: 0 !important;
+  border: 0 !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+body .angel-contact-redesign .ac-focus-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ac-accent), var(--ac-accent-secondary));
+  box-shadow: 0 0 12px rgba(var(--ac-accent-rgb), 0.6);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 480ms var(--ac-ease-spring);
+  pointer-events: none;
+}
+
+body .angel-contact-redesign .ac-field:focus-within .ac-focus-line {
+  transform: scaleX(1);
+}
+
+body .angel-contact-redesign .ac-field.is-filled .ac-focus-line {
+  background: linear-gradient(90deg, #30d158, var(--ac-accent));
+}
+
+/* ✓ Ready badge */
+body .angel-contact-redesign .ac-ready-badge {
+  position: absolute;
+  right: 0.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 30px;
+  padding: 0 0.75rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(48, 209, 88, 0.14);
+  border: 1px solid rgba(48, 209, 88, 0.45);
+  color: #30d158;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: ac-badge-in 340ms var(--ac-ease-spring);
+  pointer-events: none;
+}
+
+body .angel-contact-redesign .ac-field--textarea .ac-ready-badge {
+  top: 0.85rem;
+  transform: none;
+}
+
+body .angel-contact-redesign .ac-ready-badge--inline {
+  position: static;
+  transform: none;
+  margin-top: 0.9rem;
+  pointer-events: none;
+}
+
+@keyframes ac-badge-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+body .angel-contact-redesign .ac-field--textarea .ac-ready-badge,
+body .angel-contact-redesign .ac-ready-badge--inline {
+  animation-name: ac-badge-in-inline;
+}
+
+@keyframes ac-badge-in-inline {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Quick-select preset pills ------------------------------------------- */
+body .angel-contact-redesign #booking-form .ac-preset-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0 0 1.35rem;
+  padding-left: 0;
+}
+
+body .angel-contact-redesign .ac-preset-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1.05rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  color: var(--ac-ink-2);
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ac-ease-spring),
+    background-color 170ms ease,
+    border-color 170ms ease,
+    color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-preset-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ac-ink);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+body .angel-contact-redesign .ac-preset-pill:active {
+  transform: scale(0.96);
+}
+
+body .angel-contact-redesign .ac-preset-pill.is-selected {
+  background: rgba(var(--ac-accent-rgb), 0.17);
+  border-color: var(--ac-accent);
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-preset-pill__index {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ac-accent);
+}
+
+/* ---- Apple Liquid Glass spatial combobox + 2-column popover --------------- */
+body .angel-contact-redesign .ac-discipline-stack {
+  position: relative;
+}
+
+body .angel-contact-redesign .ac-custom-select {
+  position: relative;
+  width: 100%;
+}
+
+body .angel-contact-redesign .ac-custom-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 68px;
+  padding: 0.75rem 1.15rem 0.75rem 1.3rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  color: var(--ac-ink);
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 190ms ease,
+    background-color 190ms ease,
+    box-shadow 190ms ease,
+    transform 150ms var(--ac-ease-spring);
+}
+
+body .angel-contact-redesign .ac-custom-select__trigger:hover {
+  background: rgba(255, 255, 255, 0.085);
+  border-color: rgba(255, 255, 255, 0.26);
+}
+
+body .angel-contact-redesign .ac-custom-select__trigger:focus-visible {
+  outline: none;
+  border-color: var(--ac-accent);
+  box-shadow: 0 0 0 4px rgba(var(--ac-accent-rgb), 0.22);
+}
+
+body .angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__trigger {
+  border-color: rgba(var(--ac-accent-rgb), 0.6);
+  box-shadow: 0 0 0 4px rgba(var(--ac-accent-rgb), 0.16);
+}
+
+body .angel-contact-redesign .ac-custom-select__placeholder {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 500;
+  color: var(--ac-ink-4);
+}
+
+body .angel-contact-redesign .ac-custom-select__value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+body .angel-contact-redesign .ac-custom-select__value-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0 0.35rem;
+  border-radius: 10px;
+  background: rgba(var(--ac-accent-rgb), 0.16);
+  border: 1px solid rgba(var(--ac-accent-rgb), 0.4);
+  color: var(--ac-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body .angel-contact-redesign .ac-custom-select__value-name {
+  font-size: clamp(1.02rem, 1.9vw, 1.22rem);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-custom-select__value-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 0.6rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--ac-ink-3);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+body .angel-contact-redesign .ac-custom-select__chevron {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.35rem;
+  border-right: 2px solid var(--ac-ink-3);
+  border-bottom: 2px solid var(--ac-ink-3);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 260ms var(--ac-ease-spring), border-color 190ms ease;
+}
+
+body .angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__chevron {
+  transform: rotate(225deg) translate(-2px, -2px);
+  border-color: var(--ac-accent);
+}
+
+/* 2-column popover menu */
+body .angel-contact-redesign .ac-custom-select__popover {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  max-height: min(432px, 62vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.75rem;
+  border-radius: 24px;
+  background: rgba(13, 15, 23, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 40px 80px -20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(34px) saturate(200%);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  outline: none;
+  animation: ac-popover-in 300ms var(--ac-ease-spring);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+
+body .angel-contact-redesign .ac-custom-select__popover::-webkit-scrollbar {
+  width: 8px;
+}
+
+body .angel-contact-redesign .ac-custom-select__popover::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+@keyframes ac-popover-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.984); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+body .angel-contact-redesign .ac-custom-select__option {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.032);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms var(--ac-ease-spring);
+}
+
+body .angel-contact-redesign .ac-custom-select__option.is-highlighted {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(var(--ac-accent-rgb), 0.38);
+}
+
+body .angel-contact-redesign .ac-custom-select__option:active {
+  transform: scale(0.985);
+}
+
+body .angel-contact-redesign .ac-custom-select__option.is-selected {
+  background: rgba(var(--ac-accent-rgb), 0.12);
+  border-color: rgba(var(--ac-accent-rgb), 0.5);
+}
+
+body .angel-contact-redesign .ac-custom-select__option-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 30px;
+  margin-top: 0.1rem;
+  padding: 0 0.28rem;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ac-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body .angel-contact-redesign .ac-custom-select__option.is-selected .ac-custom-select__option-index {
+  background: var(--ac-accent);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #04070d;
+}
+
+body .angel-contact-redesign .ac-custom-select__option-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  min-width: 0;
+}
+
+body .angel-contact-redesign .ac-custom-select__option-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+body .angel-contact-redesign .ac-custom-select__option-title {
+  font-size: 0.94rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-custom-select__option-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 0 0.48rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ac-ink-3);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body .angel-contact-redesign .ac-custom-select__option-blurb {
+  font-size: 0.78rem;
+  font-weight: 450;
+  line-height: 1.42;
+  color: var(--ac-ink-3);
+}
+
+body .angel-contact-redesign .ac-custom-select__option-check {
+  align-self: center;
+  color: var(--ac-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+body .angel-contact-redesign #booking-form .ac-discipline-pills {
+  margin-top: 1.15rem;
+  margin-bottom: 0;
+}
+
+/* ---- Error row ------------------------------------------------------------ */
+body .angel-contact-redesign #booking-form .errorTxt.ac-error-row {
+  min-height: 26px;
+  margin: 0.9rem 0 0;
+}
+
+body .angel-contact-redesign .ac-error {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff453a;
+}
+
+/* ---- Tactile 48px Prev / Next navigation ---------------------------------- */
+body .angel-contact-redesign #booking-form ul.ac-wizard-nav {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 2rem 0 0 !important;
+  padding-left: 0 !important;
+}
+
+body .angel-contact-redesign li.action_li {
+  display: inline-flex !important;
+  list-style: none !important;
+}
+
+body .angel-contact-redesign li.action_li button,
+body .angel-contact-redesign #booking-form button.prev-btn,
+body .angel-contact-redesign #booking-form .next-btn,
+body .angel-contact-redesign button.prev-btn,
+body .angel-contact-redesign .next-btn {
+  width: auto !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  margin: 0 !important;
+  padding: 0 1.55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--ac-radius-pill);
+  box-shadow: none;
+  outline: none;
+  color: var(--ac-ink) !important;
+  font-family: inherit;
+  font-size: 0.95rem !important;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ac-ease-spring),
+    background-color 190ms ease,
+    border-color 190ms ease,
+    box-shadow 200ms ease;
+}
+
+body .angel-contact-redesign li.action_li button.ac-nav-btn--prev,
+body .angel-contact-redesign #booking-form button.prev-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+body .angel-contact-redesign li.action_li button.ac-nav-btn--next,
+body .angel-contact-redesign #booking-form .next-btn,
+body .angel-contact-redesign #booking-form .submit-btn {
+  background: var(--ac-accent) !important;
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #04070d !important;
+  box-shadow:
+    0 14px 34px -10px rgba(var(--ac-accent-rgb), 0.55),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+body .angel-contact-redesign .ac-nav-btn--prev:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.11) !important;
+}
+
+body .angel-contact-redesign .ac-nav-btn--next:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 40px -9px rgba(var(--ac-accent-rgb), 0.68),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+body .angel-contact-redesign .ac-nav-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+body .angel-contact-redesign .ac-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+body .angel-contact-redesign #booking-form button.prev-btn img,
+body .angel-contact-redesign #booking-form .next-btn img {
+  filter: none;
+  display: none;
+}
+
+/* ---- Live "Your brief so far" answered-chip trail -------------------------- */
+body .angel-contact-redesign .ac-answered-trail {
+  margin-top: 2.35rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body .angel-contact-redesign .ac-answered-trail__label {
+  display: block;
+  margin-bottom: 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ac-ink-4);
+}
+
+body .angel-contact-redesign #booking-form ul.ac-answered-trail__chips,
+body .angel-contact-redesign .ac-answered-trail__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  list-style: none;
+}
+
+body .angel-contact-redesign .ac-answered-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 38px;
+  max-width: 100%;
+  padding: 0 0.85rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(var(--ac-accent-rgb), 0.08);
+  border: 1px solid rgba(var(--ac-accent-rgb), 0.26);
+  color: var(--ac-ink-2);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ac-ease-spring),
+    background-color 170ms ease,
+    border-color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-answered-chip:hover {
+  background: rgba(var(--ac-accent-rgb), 0.15);
+  border-color: rgba(var(--ac-accent-rgb), 0.5);
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-answered-chip:active {
+  transform: scale(0.96);
+}
+
+body .angel-contact-redesign .ac-answered-chip.is-current {
+  border-color: var(--ac-accent);
+  box-shadow: 0 0 0 1px rgba(var(--ac-accent-rgb), 0.4);
+}
+
+body .angel-contact-redesign .ac-answered-chip__key {
+  color: var(--ac-accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+body .angel-contact-redesign .ac-answered-chip__value {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body .angel-contact-redesign .ac-answered-trail__empty {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ac-ink-4);
+}
+
+/* ---- Prepared Enquiry Summary screen -------------------------------------- */
+body .angel-contact-redesign .ac-summary {
+  animation: ac-pane-in 460ms var(--ac-ease-snappy);
+}
+
+body .angel-contact-redesign .ac-summary__badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.4rem;
+}
+
+body .angel-contact-redesign .ac-summary__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 0.95rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(48, 209, 88, 0.13);
+  border: 1px solid rgba(48, 209, 88, 0.45);
+  color: #30d158;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+body .angel-contact-redesign .ac-summary__title {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-summary__lead {
+  margin: 0 0 1.9rem;
+  max-width: 60ch;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ac-ink-2);
+}
+
+body .angel-contact-redesign .ac-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+body .angel-contact-redesign .ac-summary__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.15rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 170ms ease,
+    border-color 170ms ease,
+    transform 150ms var(--ac-ease-spring);
+}
+
+body .angel-contact-redesign .ac-summary__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(var(--ac-accent-rgb), 0.45);
+}
+
+body .angel-contact-redesign .ac-summary__item:active {
+  transform: scale(0.985);
+}
+
+body .angel-contact-redesign .ac-summary__item-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ac-ink-4);
+}
+
+body .angel-contact-redesign .ac-summary__item-edit {
+  color: var(--ac-accent);
+  letter-spacing: 0.04em;
+}
+
+body .angel-contact-redesign .ac-summary__item-value {
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ac-ink);
+  word-break: break-word;
+}
+
+body .angel-contact-redesign .ac-summary__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+body .angel-contact-redesign .ac-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  padding: 0 1.5rem;
+  border-radius: var(--ac-radius-pill);
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ac-ease-spring),
+    background-color 190ms ease,
+    border-color 190ms ease,
+    box-shadow 200ms ease,
+    color 190ms ease;
+}
+
+body .angel-contact-redesign .ac-cta--primary {
+  background: var(--ac-accent);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #04070d;
+  box-shadow:
+    0 14px 34px -10px rgba(var(--ac-accent-rgb), 0.55),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+body .angel-contact-redesign .ac-cta--primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 18px 40px -9px rgba(var(--ac-accent-rgb), 0.7),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.62);
+}
+
+body .angel-contact-redesign .ac-cta--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-cta--ghost:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+body .angel-contact-redesign .ac-cta--text {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ac-ink-3);
+}
+
+body .angel-contact-redesign .ac-cta--text:hover {
+  color: var(--ac-ink);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+body .angel-contact-redesign .ac-cta:active {
+  transform: scale(0.97);
+}
+
+/* ---- Direct Contact Deck (legacy .genralinformation / .supportmail) ------- */
+body .angel-contact-redesign .ac-support-section {
+  position: relative;
+  padding: clamp(4rem, 7vw, 6rem) 0 clamp(4.5rem, 7vw, 6.5rem);
+  scroll-margin-top: 84px;
+}
+
+body .angel-contact-redesign .ac-support-section__head {
+  width: min(1240px, calc(100% - 3rem));
+  margin: 0 auto clamp(2rem, 3.5vw, 3rem);
+}
+
+body .angel-contact-redesign .ac-support-section__kicker {
+  margin: 0 0 0.85rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ac-accent);
+}
+
+body .angel-contact-redesign .ac-support-section__title {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-support-section__lead {
+  margin: 0;
+  max-width: 56ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ac-ink-2);
+}
+
+body .angel-contact-redesign .genralinformation {
+  width: min(1240px, calc(100% - 3rem)) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* 3-column Apple Liquid Glass grid (float-based legacy layout neutralised) */
+body .angel-contact-redesign .supportmail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+}
+
+body .angel-contact-redesign .supcom,
+body .angel-contact-redesign .supcom.rightsupport,
+body .angel-contact-redesign .supcom.leftsupport {
+  display: block;
+  float: none !important;
+  padding-left: 0 !important;
+  width: auto;
+}
+
+body .angel-contact-redesign .ac-support-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 190px;
+  padding: 1.5rem 1.45rem 1.4rem;
+  border-radius: 26px;
+  background: rgba(15, 17, 25, 0.6);
+  border: 1px solid var(--ac-glass-border);
+  box-shadow:
+    0 26px 56px -22px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(24px) saturate(185%);
+  -webkit-backdrop-filter: blur(24px) saturate(185%);
+  overflow: hidden;
+  transition:
+    transform 220ms var(--ac-ease-spring),
+    border-color 200ms ease,
+    box-shadow 220ms ease;
+}
+
+body .angel-contact-redesign .ac-support-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 70%);
+  pointer-events: none;
+}
+
+body .angel-contact-redesign .ac-support-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--ac-accent-rgb), 0.42);
+  box-shadow:
+    0 34px 64px -22px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(var(--ac-accent-rgb), 0.18),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+body .angel-contact-redesign .ac-support-card__index {
+  position: relative;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--ac-accent);
+}
+
+body .angel-contact-redesign .ac-support-card__purpose,
+body .angel-contact-redesign .supportmail h3.ac-support-card__purpose,
+body .angel-contact-redesign .supportmail h4 {
+  position: relative;
+  margin: 0;
+  line-height: 1.3 !important;
+  font-size: 1.22rem !important;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--ac-ink) !important;
+}
+
+body .angel-contact-redesign .ac-support-card__row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 1.05rem;
+}
+
+body .angel-contact-redesign .ac-support-card__value {
+  font-size: 0.97rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--ac-ink);
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-support-card__value:hover {
+  color: var(--ac-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+body .angel-contact-redesign .ac-support-card__copy {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.05rem;
+  border-radius: var(--ac-radius-pill);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  color: var(--ac-ink);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition:
+    transform 150ms var(--ac-ease-spring),
+    background-color 170ms ease,
+    border-color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-support-card__copy:hover {
+  background: rgba(var(--ac-accent-rgb), 0.16);
+  border-color: rgba(var(--ac-accent-rgb), 0.5);
+}
+
+body .angel-contact-redesign .ac-support-card__copy:active {
+  transform: scale(0.95);
+}
+
+/* ---- Contact-page Liquid Glass footer (LegacyFooter sibling) --------------- */
+body .angel-contact-redesign + footer.color_creme {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  padding: 2.4rem 0 2.6rem !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(2, 3, 8, 0.6)) !important;
+  background-color: rgba(4, 5, 10, 0.72) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(235, 235, 245, 0.6) !important;
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+}
+
+body .angel-contact-redesign + footer.color_creme .footer_inner {
+  width: min(1240px, calc(100% - 3rem)) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+body .angel-contact-redesign + footer.color_creme .menu_footer ul {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.6rem;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+body .angel-contact-redesign + footer.color_creme .menu_footer ul li {
+  margin: 0 !important;
+}
+
+body .angel-contact-redesign + footer.color_creme .menu_footer ul li a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.85rem !important;
+  font-weight: 600;
+  letter-spacing: 0.01em !important;
+  color: rgba(235, 235, 245, 0.66) !important;
+  text-decoration: none;
+  transition: color 170ms ease;
+}
+
+body .angel-contact-redesign + footer.color_creme .menu_footer ul li a:hover {
+  color: #64d2ff !important;
+}
+
+body .angel-contact-redesign + footer.color_creme .footer_inner p {
+  margin: 0 !important;
+  font-size: 0.82rem !important;
+  line-height: 1.5;
+  letter-spacing: 0.01em !important;
+  color: rgba(235, 235, 245, 0.55) !important;
+}
+
+body .angel-contact-redesign + footer.color_creme .footer_inner .soical {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+body .angel-contact-redesign + footer.color_creme .footer_inner .soical a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0 !important;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 1.05rem !important;
+  color: rgba(235, 235, 245, 0.72) !important;
+  transition:
+    color 170ms ease,
+    border-color 170ms ease,
+    background-color 170ms ease,
+    transform 170ms var(--ac-ease-spring);
+}
+
+body .angel-contact-redesign + footer.color_creme .footer_inner .soical a:hover {
+  color: #64d2ff !important;
+  border-color: rgba(100, 210, 255, 0.5);
+  background: rgba(100, 210, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ---- Responsive refinements ------------------------------------------------ */
+@media (max-width: 900px) {
+  body .angel-contact-redesign .supportmail {
+    grid-template-columns: 1fr;
+  }
+
+  body .angel-contact-redesign .ac-support-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  body .angel-contact-redesign .ac-studio-hero {
+    width: min(100% - 2.4rem, 1180px);
+    padding-top: clamp(5.5rem, 12vw, 7rem);
+  }
+
+  body .angel-contact-redesign .ac-wizard-shell {
+    width: calc(100% - 1.6rem);
+    padding: 1.5rem 1.15rem 1.7rem;
+    border-radius: 26px;
+  }
+
+  body .angel-contact-redesign .ac-custom-select__popover {
+    grid-template-columns: 1fr;
+    max-height: min(60vh, 480px);
+  }
+
+  body .angel-contact-redesign .ac-summary__grid {
+    grid-template-columns: 1fr;
+  }
+
+  body .angel-contact-redesign #booking-form input.ac-input {
+    padding-right: 5.6rem !important;
+  }
+
+  body .angel-contact-redesign .ac-ready-badge {
+    min-height: 26px;
+    padding: 0 0.6rem;
+    font-size: 0.66rem;
+  }
+
+  body .angel-contact-redesign .ac-answered-chip__value {
+    max-width: 130px;
+  }
+
+  body .angel-contact-redesign + footer.color_creme .footer_inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ---- Accessibility: reduced motion / transparency / contrast --------------- */
+@media (prefers-reduced-motion: reduce) {
+  body .angel-contact-redesign .ac-ambient-backdrop__orb,
+  body .angel-contact-redesign .ac-studio-hero__eyebrow-dot,
+  body .angel-contact-redesign .ac-jump-pill__arrow {
+    animation: none;
+  }
+
+  body .angel-contact-redesign .tab-pane.ac-step-pane,
+  body .angel-contact-redesign .ac-summary,
+  body .angel-contact-redesign .ac-custom-select__popover,
+  body .angel-contact-redesign .ac-ready-badge {
+    animation-duration: 0.01ms;
+  }
+
+  body .angel-contact-redesign .ac-progress-line__fill,
+  body .angel-contact-redesign .ac-focus-line {
+    transition-duration: 0.01ms;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  body .angel-contact-redesign .ac-wizard-shell,
+  body .angel-contact-redesign .ac-custom-select__trigger,
+  body .angel-contact-redesign .ac-custom-select__popover,
+  body .angel-contact-redesign .ac-support-card,
+  body .angel-contact-redesign .ac-jump-pill,
+  body .angel-contact-redesign + footer.color_creme {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: #10121a;
+  }
+}
+
+@media (prefers-contrast: more) {
+  body .angel-contact-redesign #booking-form .ac-input {
+    border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  body .angel-contact-redesign .ac-step-dot,
+  body .angel-contact-redesign .ac-preset-pill,
+  body .angel-contact-redesign .ac-answered-chip {
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+}

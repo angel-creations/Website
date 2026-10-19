@@ -1,9 +1,16 @@
-import React, { useEffect, useRef, useState, useCallback, type ChangeEvent } from 'react';
+import React, { useEffect, useRef, useState, useCallback, type ChangeEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { navigate } from '../utils/routes';
 
 type FieldKind = 'input' | 'textarea' | 'select';
+type DisciplineOption = {
+  value: string;
+  index: string;
+  tag: string;
+  blurb: string;
+};
 type EnquiryField = {
   id: string;
+  category: string;
   shortLabel: string;
   name: string;
   label: string;
@@ -11,18 +18,82 @@ type EnquiryField = {
   kind: FieldKind;
   inputType?: 'text' | 'email' | 'tel';
   autoComplete?: string;
-  options?: string[];
+  options?: DisciplineOption[];
   presets?: string[];
   placeholder?: string;
 };
 
+const disciplineOptions: DisciplineOption[] = [
+  {
+    index: '01',
+    value: 'Metaverse',
+    tag: 'Spatial World',
+    blurb: 'Persistent 3D virtual worlds, spatial commerce & digital twins',
+  },
+  {
+    index: '02',
+    value: 'Virtual Reality (VR)',
+    tag: 'Immersive XR',
+    blurb: 'Headset-native interactive simulations, training & VR cinema',
+  },
+  {
+    index: '03',
+    value: 'Augmented Reality (AR)',
+    tag: 'Immersive XR',
+    blurb: 'WebAR, mobile AR lenses, virtual try-ons & spatial overlays',
+  },
+  {
+    index: '04',
+    value: 'Mixed Reality (MR)',
+    tag: 'Spatial Computing',
+    blurb: 'Passthrough spatial apps & physical-digital environment fusion',
+  },
+  {
+    index: '05',
+    value: '360° Immersive Video',
+    tag: 'Spherical Film',
+    blurb: '8K spherical live-action capture, VR domes & spatial tours',
+  },
+  {
+    index: '06',
+    value: '3D Animation & VFX',
+    tag: 'Motion & Craft',
+    blurb: 'Cinematic 3D character animation, CGI worlds & visual effects',
+  },
+  {
+    index: '07',
+    value: 'Brand Advertisement',
+    tag: 'Campaigns',
+    blurb: 'High-impact commercial films, product launches & brand storytelling',
+  },
+  {
+    index: '08',
+    value: 'Media Production',
+    tag: 'Film & Post',
+    blurb: 'End-to-end live-action direction, cinematography & post-production',
+  },
+  {
+    index: '09',
+    value: 'Experiential Installation',
+    tag: 'Live Activation',
+    blurb: 'Projection mapping, interactive exhibition booths & live stage tech',
+  },
+  {
+    index: '10',
+    value: 'Custom Multi-Discipline Commission',
+    tag: 'Bespoke Scope',
+    blurb: 'Tailored blend of XR, 3D animation, film, and creative technology',
+  },
+];
+
 const fields: EnquiryField[] = [
   {
     id: 'name',
+    category: 'Identity',
     shortLabel: 'Name',
-    name: 'Name',
-    label: "Ahoy. What's your name?",
-    hint: 'Who should our executive producer address?',
+    name: 'Full Name',
+    label: 'Hello. Who do we have the pleasure of speaking with?',
+    hint: 'Share your full name so our executive producer can address you personally.',
     kind: 'input',
     inputType: 'text',
     autoComplete: 'name',
@@ -30,21 +101,23 @@ const fields: EnquiryField[] = [
   },
   {
     id: 'company',
-    shortLabel: 'Company',
-    name: 'Company',
-    label: "What's the name of your company or organization?",
-    hint: 'Brand, studio, agency, or venture name.',
+    category: 'Organization',
+    shortLabel: 'Organization',
+    name: 'Company / Organization',
+    label: 'Which company, brand, or studio do you represent?',
+    hint: 'Tell us the organization, agency, or venture behind this commission.',
     kind: 'input',
     inputType: 'text',
     autoComplete: 'organization',
-    placeholder: 'e.g. Horizon Labs / Studio',
+    placeholder: 'e.g. Horizon Studios',
   },
   {
     id: 'email',
+    category: 'Direct Email',
     shortLabel: 'Email',
-    name: 'Email',
-    label: "What's your work email address?",
-    hint: 'We will send our discovery deck and production response here.',
+    name: 'Email Address',
+    label: 'Where should we send your tailored project proposal?',
+    hint: 'Your primary email address for our producer’s response and deck.',
     kind: 'input',
     inputType: 'email',
     autoComplete: 'email',
@@ -52,106 +125,102 @@ const fields: EnquiryField[] = [
   },
   {
     id: 'phone',
+    category: 'Direct Line',
     shortLabel: 'Phone',
-    name: 'Phone',
-    label: "What's the best phone or WhatsApp number to reach you?",
-    hint: 'Include country code for international scheduling.',
+    name: 'Phone Number',
+    label: 'What is the best phone number to reach you on?',
+    hint: 'Include your country code for a direct producer call or WhatsApp follow-up.',
     kind: 'input',
     inputType: 'tel',
     autoComplete: 'tel',
     placeholder: '+91 98765 43210',
   },
   {
-    id: 'country',
-    shortLabel: 'Location',
-    name: 'Country',
-    label: 'Which country or city are you contacting us from?',
-    hint: 'Helps us align with your local timezone.',
-    kind: 'input',
-    inputType: 'text',
-    autoComplete: 'country-name',
-    presets: ['India', 'United States', 'United Kingdom', 'UAE / Dubai', 'Singapore', 'Europe'],
-    placeholder: 'e.g. Bengaluru, India',
-  },
-  {
     id: 'projectType',
+    category: 'Discipline',
     shortLabel: 'Discipline',
-    name: 'Project type',
-    label: 'What would you like to build with Angel Creations?',
-    hint: 'Choose a primary capability or select the closest match.',
+    name: 'Project Discipline',
+    label: 'Which immersive or creative discipline are you looking to build?',
+    hint: 'Open the spatial selector below or tap a discipline pill to choose your focus.',
     kind: 'select',
-    options: [
-      'Metaverse & Virtual Worlds',
-      'Mixed & Augmented Reality (XR)',
-      'Virtual Reality Simulation',
-      'Animation + 3D + VFX',
-      'Brand & Campaign Systems',
-      'Film & Media Production',
-      'Event / Live Experience',
-      'Creative Technology & Web',
-      'Something Else',
-    ],
+    options: disciplineOptions,
   },
   {
     id: 'description',
+    category: 'Project Brief',
     shortLabel: 'Brief',
-    name: 'Project description',
-    label: 'Tell us about your vision, audience, or challenge.',
-    hint: 'Share the core idea, target platforms, deliverables, or goals.',
+    name: 'Project Brief',
+    label: 'Tell us about your vision and what you want to create.',
+    hint: 'Share your creative goals, target audience, platform, or key deliverables.',
     kind: 'textarea',
     placeholder:
-      'Describe what you are looking to create, key objectives, and any reference touchpoints…',
+      'Describe the experience you imagine, the audience it serves, and what success looks like…',
   },
   {
     id: 'timeline',
-    shortLabel: 'Timeline',
-    name: 'Timeline',
-    label: 'What timeline or launch window are you working toward?',
-    hint: 'Pick a target window or type a specific milestone date.',
+    category: 'Schedule',
+    shortLabel: 'Schedule',
+    name: 'Launch Schedule',
+    label: 'When are you looking to launch or go live?',
+    hint: 'Let us know your target launch window, exhibition date, or production schedule.',
     kind: 'input',
     inputType: 'text',
     presets: [
-      'Immediate / Urgent Sprint',
-      '1 – 2 Months',
-      '3 – 6 Months',
-      'Q4 / Upcoming Launch',
-      'Flexible / Exploring',
+      'Immediate / Urgent',
+      'Within 1 – 2 Months',
+      'Within 3 – 6 Months',
+      'Upcoming Exhibition / Event',
+      'Flexible / Exploring Scope',
     ],
     placeholder: 'e.g. Target launch in 8 weeks',
   },
   {
     id: 'investment',
+    category: 'Scope & Budget',
     shortLabel: 'Investment',
-    name: 'Investment range',
-    label: 'What investment range are you considering?',
-    hint: 'Helps us recommend the right production tier and team architecture.',
+    name: 'Investment Range',
+    label: 'What investment range have you allocated for this project?',
+    hint: 'An approximate range helps us architect the right technical and creative scope.',
     kind: 'input',
     inputType: 'text',
     presets: [
-      'Pilot / Prototype Scope',
-      '$10k – $25k Equivalent',
-      '$25k – $75k Equivalent',
-      '$75k+ Enterprise Flagship',
-      'Need Scope Estimate',
+      'Under $15k / ₹12L',
+      '$15k – $50k / ₹12L – ₹40L',
+      '$50k – $150k / ₹40L – ₹1.2Cr',
+      '$150k+ / Enterprise Commission',
+      'Need Scope & Budget Guidance',
     ],
-    placeholder: 'Select a range above or enter custom budget',
+    placeholder: 'Select a range above or enter a custom scope',
+  },
+];
+
+const supportChannels = [
+  {
+    index: '01',
+    desk: 'Support Desk',
+    purpose: 'For Customer Supports',
+    value: 'support@angelcreations.in',
+    href: 'mailto:support@angelcreations.in',
+    classes: 'supcom leftsupport',
+    copyKey: 'support-email',
   },
   {
-    id: 'referral',
-    shortLabel: 'Source',
-    name: 'How they found Angel',
-    label: 'How did you discover Angel Creations?',
-    hint: 'Referral, showcase, search, or social.',
-    kind: 'input',
-    inputType: 'text',
-    presets: [
-      'Client / Industry Referral',
-      'Google / Web Search',
-      'YouTube / Works Archive',
-      'Instagram / LinkedIn',
-      'Live Event / Showcase',
-    ],
-    placeholder: 'e.g. Recommended by a colleague',
+    index: '02',
+    desk: 'Business Desk',
+    purpose: 'For Customer Business',
+    value: 'business@angelcreations.in',
+    href: 'mailto:business@angelcreations.in',
+    classes: 'supcom',
+    copyKey: 'business-email',
+  },
+  {
+    index: '03',
+    desk: 'Direct Mobile',
+    purpose: 'For Direct Call & Mobile',
+    value: '+91-8058465733',
+    href: 'tel:+918058465733',
+    classes: 'supcom rightsupport',
+    copyKey: 'direct-mobile',
   },
 ];
 
@@ -179,7 +248,7 @@ function createMailto(values: Record<string, string>): string {
 
 export function ContactWizard(): JSX.Element {
   const [step, setStep] = useState(0);
-  const [mode, setMode] = useState<'guided' | 'sheet'>('guided');
+  const [maxStep, setMaxStep] = useState(0);
   const [values, setValues] = useState<Record<string, string>>(() =>
     Object.fromEntries(fields.map((field) => [field.id, '']))
   );
@@ -188,21 +257,50 @@ export function ContactWizard(): JSX.Element {
   const [honeypot, setHoneypot] = useState('');
   const [formStatus, setFormStatus] = useState('');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+  const [selectOpen, setSelectOpen] = useState(false);
+  const [selectHighlight, setSelectHighlight] = useState(0);
   const controlRef = useRef<HTMLElement | null>(null);
+  const selectWrapRef = useRef<HTMLDivElement | null>(null);
+  const selectMenuRef = useRef<HTMLDivElement | null>(null);
+  const optionRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const field = fields[step];
   const currentValue = values[field.id];
   const currentValid = isValid(field, currentValue);
   const currentErrorId = `contact-field-${field.id}-error`;
+  const selectOptions = field.options ?? [];
+  const selectedOption = selectOptions.find((option) => option.value === currentValue);
 
-  const completedCount = fields.filter((f) => isValid(f, values[f.id])).length;
-  const completionPct = Math.round((completedCount / fields.length) * 100);
+  const answeredCount = fields.filter((item) => isValid(item, values[item.id])).length;
+  const progressPct = Math.round(((step + 1) / fields.length) * 100);
 
   useEffect(() => {
-    if (mode === 'guided' && !prepared) {
+    if (!prepared) {
       controlRef.current?.focus();
     }
-  }, [step, mode, prepared]);
+  }, [step, prepared]);
+
+  useEffect(() => {
+    setSelectOpen(false);
+  }, [step, prepared]);
+
+  useEffect(() => {
+    if (!selectOpen) return undefined;
+    selectMenuRef.current?.focus();
+    const onPointerDown = (event: PointerEvent): void => {
+      if (!selectWrapRef.current?.contains(event.target as Node)) {
+        setSelectOpen(false);
+        controlRef.current?.focus();
+      }
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, [selectOpen]);
+
+  useEffect(() => {
+    if (!selectOpen) return;
+    optionRefs.current[selectHighlight]?.scrollIntoView({ block: 'nearest' });
+  }, [selectOpen, selectHighlight]);
 
   const updateFieldValue = useCallback((fieldId: string, value: string): void => {
     setFormStatus('');
@@ -224,53 +322,127 @@ export function ContactWizard(): JSX.Element {
       setPrepared(true);
       return;
     }
+    setMaxStep((current) => Math.max(current, step + 1));
     setStep((current) => current + 1);
-  };
-
-  const handleSheetSubmit = (e: React.FormEvent): void => {
-    e.preventDefault();
-    if (honeypot.trim()) return;
-    const firstInvalidIdx = fields.findIndex((f) => !isValid(f, values[f.id]));
-    if (firstInvalidIdx >= 0) {
-      const nextAttempted = new Set(attempted);
-      fields.forEach((f, idx) => {
-        if (!isValid(f, values[f.id])) nextAttempted.add(idx);
-      });
-      setAttempted(nextAttempted);
-      setStep(firstInvalidIdx);
-      setFormStatus(`Please complete "${fields[firstInvalidIdx].name}" before continuing.`);
-      return;
-    }
-    setPrepared(true);
   };
 
   const previous = (): void => {
     if (step > 0) setStep((current) => current - 1);
   };
 
+  const jumpToStep = (target: number): void => {
+    setPrepared(false);
+    setStep(target);
+  };
+
   const reset = (): void => {
     setPrepared(false);
     setStep(0);
+    setMaxStep(0);
     setAttempted(new Set());
     setHoneypot('');
     setFormStatus('');
     setValues(Object.fromEntries(fields.map((item) => [item.id, ''])));
   };
 
-  const handleCopyText = useCallback((text: string, key: string) => {
+  const handleCopyText = useCallback((text: string, key: string): void => {
     navigator.clipboard?.writeText(text).then(() => {
       setCopiedKey(key);
       window.setTimeout(() => {
-        setCopiedKey((prev) => (prev === key ? null : prev));
+        setCopiedKey((current) => (current === key ? null : current));
       }, 2200);
     });
   }, []);
 
-  const handleLinkClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
-    e.preventDefault();
+  const handleLinkClick = useCallback((event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    event.preventDefault();
     navigate(path);
   }, []);
+
+  const openSelect = (): void => {
+    const currentIndex = selectOptions.findIndex((option) => option.value === currentValue);
+    setSelectHighlight(currentIndex >= 0 ? currentIndex : 0);
+    setSelectOpen(true);
+  };
+
+  const closeSelect = (refocus: boolean): void => {
+    setSelectOpen(false);
+    if (refocus) controlRef.current?.focus();
+  };
+
+  const chooseDiscipline = (value: string): void => {
+    updateFieldValue(field.id, value);
+    closeSelect(true);
+  };
+
+  const handleTriggerKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>): void => {
+    if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      if (selectOpen) closeSelect(false);
+      else openSelect();
+      return;
+    }
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (!selectOpen) {
+        setSelectHighlight(
+          selectedOption ? selectOptions.indexOf(selectedOption) : selectOptions.length - 1
+        );
+        setSelectOpen(true);
+      }
+      return;
+    }
+    if (event.key === 'Escape' && selectOpen) {
+      event.preventDefault();
+      closeSelect(false);
+    }
+  };
+
+  const handleMenuKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>): void => {
+    const total = selectOptions.length;
+    if (!total) return;
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        setSelectHighlight((current) => (current + 2) % total);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        setSelectHighlight((current) => (current - 2 + total) % total);
+        break;
+      case 'ArrowRight':
+        event.preventDefault();
+        setSelectHighlight((current) => (current + 1) % total);
+        break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        setSelectHighlight((current) => (current - 1 + total) % total);
+        break;
+      case 'Home':
+        event.preventDefault();
+        setSelectHighlight(0);
+        break;
+      case 'End':
+        event.preventDefault();
+        setSelectHighlight(total - 1);
+        break;
+      case 'Enter':
+      case ' ':
+        event.preventDefault();
+        chooseDiscipline(selectOptions[selectHighlight].value);
+        break;
+      case 'Escape':
+        event.preventDefault();
+        closeSelect(true);
+        break;
+      case 'Tab':
+        setSelectOpen(false);
+        break;
+      default:
+        break;
+    }
+  };
 
   const setInputRef = (element: HTMLInputElement | null): void => {
     controlRef.current = element;
@@ -278,108 +450,202 @@ export function ContactWizard(): JSX.Element {
   const setTextareaRef = (element: HTMLTextAreaElement | null): void => {
     controlRef.current = element;
   };
-  const setSelectRef = (element: HTMLSelectElement | null): void => {
+  const setTriggerRef = (element: HTMLButtonElement | null): void => {
     controlRef.current = element;
   };
 
-  const renderGuidedControl = (): JSX.Element => {
-    const ariaInvalid: 'true' | 'false' = showCurrentError() ? 'true' : 'false';
-    const shared = {
-      id: `contact-field-${field.id}`,
-      name: field.id,
-      className: 'apple-contact-input ac-input wpcf7-form-control wpcf7-validates-as-required',
-      autoComplete: field.autoComplete,
-      'aria-required': true,
-      'aria-invalid': ariaInvalid,
-      'aria-describedby': showCurrentError() ? currentErrorId : undefined,
-      value: currentValue,
-      required: true,
-      onChange: (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-      ) => updateFieldValue(field.id, event.target.value),
-    };
-
-    if (field.kind === 'textarea') {
-      return (
-        <textarea
-          {...shared}
-          ref={setTextareaRef}
-          rows={4}
-          placeholder={field.placeholder}
-        />
-      );
-    }
-
-    if (field.kind === 'select') {
-      return (
-        <div className="apple-contact-select-group">
-          <div
-            className="apple-contact-chip-grid"
-            role="radiogroup"
-            aria-label={field.label}
-          >
-            {field.options?.map((option) => {
-              const isSelected = currentValue === option;
-              return (
-                <button
-                  key={option}
-                  type="button"
-                  role="radio"
-                  aria-checked={isSelected}
-                  className={`apple-contact-choice-chip${isSelected ? ' is-selected' : ''}`}
-                  onClick={() => updateFieldValue(field.id, option)}
-                >
-                  <span className="apple-contact-choice-chip__dot" aria-hidden="true" />
-                  <span>{option}</span>
-                </button>
-              );
-            })}
-          </div>
-          {/* Keep accessible native select synced for assistive technologies */}
-          <select {...shared} ref={setSelectRef} className="sr-only">
-            <option value="">Choose a project type</option>
-            {field.options?.map((option) => (
-              <option value={option} key={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+  const renderUnderlinedField = (isTextarea: boolean): JSX.Element => (
+    <div className={`ac-field${isTextarea ? ' ac-field--textarea' : ''}${currentValid ? ' is-filled' : ''}`}>
+      {field.presets && field.presets.length > 0 && (
+        <div className="ac-preset-bar" aria-label={`Quick-select for ${field.name}`}>
+          {field.presets.map((preset) => {
+            const isSelected = currentValue === preset;
+            return (
+              <button
+                key={preset}
+                type="button"
+                className={`ac-preset-pill${isSelected ? ' is-selected' : ''}`}
+                onClick={() => updateFieldValue(field.id, preset)}
+              >
+                {preset}
+              </button>
+            );
+          })}
         </div>
-      );
-    }
+      )}
+      {isTextarea ? (
+        <textarea
+          id={`contact-field-${field.id}`}
+          name={field.id}
+          className="ac-input ac-input--textarea wpcf7-form-control wpcf7-validates-as-required"
+          ref={setTextareaRef}
+          rows={5}
+          placeholder={field.placeholder}
+          autoComplete={field.autoComplete}
+          aria-required="true"
+          aria-invalid={showCurrentError() ? 'true' : 'false'}
+          aria-describedby={showCurrentError() ? currentErrorId : undefined}
+          value={currentValue}
+          required
+          onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+            updateFieldValue(field.id, event.target.value)
+          }
+        />
+      ) : (
+        <input
+          id={`contact-field-${field.id}`}
+          name={field.id}
+          className="ac-input wpcf7-form-control wpcf7-validates-as-required"
+          ref={setInputRef}
+          type={field.inputType ?? 'text'}
+          placeholder={field.placeholder}
+          autoComplete={field.autoComplete}
+          aria-required="true"
+          aria-invalid={showCurrentError() ? 'true' : 'false'}
+          aria-describedby={showCurrentError() ? currentErrorId : undefined}
+          value={currentValue}
+          required
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            updateFieldValue(field.id, event.target.value)
+          }
+        />
+      )}
+      <span className="ac-focus-line" aria-hidden="true" />
+      {currentValid && (
+        <span className="ac-ready-badge" aria-live="polite">
+          ✓ Ready
+        </span>
+      )}
+    </div>
+  );
 
-    return (
-      <div className="apple-contact-input-stack">
-        {field.presets && field.presets.length > 0 && (
-          <div className="apple-contact-preset-bar" aria-label={`Quick presets for ${field.name}`}>
-            {field.presets.map((preset) => {
-              const isSelected = currentValue === preset;
+  const renderDisciplineSelect = (): JSX.Element => (
+    <div className="ac-discipline-stack">
+      <div className={`ac-custom-select${selectOpen ? ' is-open' : ''}`} ref={selectWrapRef}>
+        <button
+          type="button"
+          id={`contact-field-${field.id}`}
+          className="ac-custom-select__trigger"
+          role="combobox"
+          aria-haspopup="listbox"
+          aria-expanded={selectOpen}
+          aria-controls="ac-discipline-menu"
+          aria-label={field.label}
+          ref={setTriggerRef}
+          onClick={() => (selectOpen ? closeSelect(true) : openSelect())}
+          onKeyDown={handleTriggerKeyDown}
+        >
+          {selectedOption ? (
+            <span className="ac-custom-select__value">
+              <span className="ac-custom-select__value-index">{selectedOption.index}</span>
+              <span className="ac-custom-select__value-name">{selectedOption.value}</span>
+              <span className="ac-custom-select__value-tag">{selectedOption.tag}</span>
+            </span>
+          ) : (
+            <span className="ac-custom-select__placeholder">
+              Choose your focus discipline…
+            </span>
+          )}
+          <span className="ac-custom-select__chevron" aria-hidden="true" />
+        </button>
+
+        {selectOpen && (
+          <div
+            className="ac-custom-select__popover"
+            id="ac-discipline-menu"
+            role="listbox"
+            aria-label="Immersive & creative disciplines"
+            aria-activedescendant={`ac-discipline-option-${selectHighlight}`}
+            ref={selectMenuRef}
+            tabIndex={-1}
+            onKeyDown={handleMenuKeyDown}
+          >
+            {selectOptions.map((option, optionIndex) => {
+              const isHighlighted = optionIndex === selectHighlight;
+              const isSelected = currentValue === option.value;
               return (
-                <button
-                  key={preset}
-                  type="button"
-                  className={`apple-contact-preset-pill${isSelected ? ' is-selected' : ''}`}
-                  onClick={() => updateFieldValue(field.id, preset)}
+                <div
+                  key={option.value}
+                  className={`ac-custom-select__option${isHighlighted ? ' is-highlighted' : ''}${
+                    isSelected ? ' is-selected' : ''
+                  }`}
+                  id={`ac-discipline-option-${optionIndex}`}
+                  role="option"
+                  aria-selected={isSelected}
+                  ref={(element) => {
+                    optionRefs.current[optionIndex] = element;
+                  }}
+                  onMouseEnter={() => setSelectHighlight(optionIndex)}
+                  onClick={() => chooseDiscipline(option.value)}
                 >
-                  {preset}
-                </button>
+                  <span className="ac-custom-select__option-index">{option.index}</span>
+                  <span className="ac-custom-select__option-body">
+                    <span className="ac-custom-select__option-row">
+                      <span className="ac-custom-select__option-title">{option.value}</span>
+                      <span className="ac-custom-select__option-tag">{option.tag}</span>
+                    </span>
+                    <span className="ac-custom-select__option-blurb">{option.blurb}</span>
+                  </span>
+                  {isSelected && (
+                    <span className="ac-custom-select__option-check" aria-hidden="true">
+                      ✓
+                    </span>
+                  )}
+                </div>
               );
             })}
           </div>
         )}
-        <input
-          {...shared}
-          ref={setInputRef}
-          type={field.inputType ?? 'text'}
-          placeholder={field.placeholder}
-        />
+
+        {/* Accessible native select kept in sync for assistive technologies */}
+        <select
+          className="sr-only"
+          name={field.id}
+          value={currentValue}
+          tabIndex={-1}
+          aria-hidden="true"
+          onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+            updateFieldValue(field.id, event.target.value)
+          }
+        >
+          <option value="">Choose a discipline</option>
+          {selectOptions.map((option) => (
+            <option value={option.value} key={option.value}>
+              {option.index} — {option.value} ({option.tag})
+            </option>
+          ))}
+        </select>
       </div>
-    );
-  };
+
+      <div className="ac-preset-bar ac-discipline-pills" aria-label="Quick-select discipline pills">
+        {selectOptions.map((option) => {
+          const isSelected = currentValue === option.value;
+          return (
+            <button
+              key={option.value}
+              type="button"
+              className={`ac-preset-pill${isSelected ? ' is-selected' : ''}`}
+              onClick={() => updateFieldValue(field.id, option.value)}
+            >
+              <span className="ac-preset-pill__index">{option.index}</span>
+              {option.value}
+            </button>
+          );
+        })}
+      </div>
+      {currentValid && (
+        <span className="ac-ready-badge ac-ready-badge--inline" aria-live="polite">
+          ✓ Ready
+        </span>
+      )}
+    </div>
+  );
+
+  const answeredFields = fields.filter((item) => isValid(item, values[item.id]));
 
   return (
     <div
-      className="apple-inner-page apple-contact-page"
+      className="angel-contact-redesign"
       style={
         {
           '--route-accent': '#64d2ff',
@@ -388,514 +654,317 @@ export function ContactWizard(): JSX.Element {
         } as React.CSSProperties
       }
     >
-      <section className="apple-hero-stage" id="contact-top" aria-labelledby="contact-page-title">
-        <div className="apple-hero-stage__ambient" aria-hidden="true" />
+      {/* Ambient spatial grid / orb backdrop */}
+      <div className="ac-ambient-backdrop" aria-hidden="true">
+        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--violet" />
+        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--cyan" />
+        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--magenta" />
+        <span className="ac-ambient-backdrop__grid" />
+      </div>
 
-        <div className="apple-hero-container">
-          {/* Top Bar */}
-          <div className="apple-hero-topbar">
-            <a
-              href="/"
-              className="apple-back-pill"
-              onClick={(e) => handleLinkClick(e, '/')}
-              aria-label="Back to Home"
-            >
-              <span className="apple-back-pill__arrow" aria-hidden="true">
-                ←
-              </span>
-              <span>Return to 3D Stage</span>
-            </a>
+      {/* Editorial studio header */}
+      <header className="ac-studio-hero" aria-labelledby="contact-page-title">
+        <p className="ac-studio-hero__eyebrow">
+          <span className="ac-studio-hero__eyebrow-dot" aria-hidden="true" />
+          Angel Creations · Global Production Concierge
+        </p>
+        <h1 id="contact-page-title" className="ac-studio-hero__title">
+          Let’s build what <span className="ac-studio-hero__title-accent">doesn’t exist yet.</span>
+        </h1>
+        <p className="ac-studio-hero__lead">
+          Answer eight executive questions and our production desk will return a tailored
+          proposal deck. Prefer to talk first? Jump straight to our direct channels.
+        </p>
+        <div className="ac-studio-hero__actions">
+          <a className="ac-jump-pill" href="#direct-contact-channels">
+            <span>Direct contact channels</span>
+            <span className="ac-jump-pill__arrow" aria-hidden="true">
+              ↓
+            </span>
+          </a>
+          <a
+            className="ac-back-link"
+            href="/"
+            onClick={(event) => handleLinkClick(event, '/')}
+          >
+            ← Back to homepage
+          </a>
+        </div>
+      </header>
 
-            <div className="apple-contact-mode-switcher" role="group" aria-label="Form view mode">
-              <button
-                type="button"
-                className={`apple-pill-control${mode === 'guided' && !prepared ? ' is-active' : ''}`}
-                onClick={() => {
-                  setPrepared(false);
-                  setMode('guided');
-                }}
-              >
-                <span>Guided Concierge (10 Steps)</span>
-              </button>
-              <button
-                type="button"
-                className={`apple-pill-control${mode === 'sheet' && !prepared ? ' is-active' : ''}`}
-                onClick={() => {
-                  setPrepared(false);
-                  setMode('sheet');
-                }}
-              >
-                <span>Express Brief (All Fields)</span>
-              </button>
+      {/* Sculptural Apple Liquid Glass wizard stage */}
+      <section className="section-contact ac-wizard-section" aria-label="Guided project enquiry">
+        <div className="contact-inner ac-wizard-shell">
+          <form
+            id="booking-form"
+            className="wpcf7-form init"
+            aria-label="Project enquiry"
+            noValidate
+            onSubmit={(event) => {
+              event.preventDefault();
+              next();
+            }}
+          >
+            <div className="angel-honeypot" aria-hidden="true">
+              <label htmlFor="contact-website">Leave this field empty</label>
+              <input
+                id="contact-website"
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={(event) => setHoneypot(event.target.value)}
+              />
             </div>
-          </div>
-
-          {/* Editorial Title Block */}
-          <header className="apple-works-hero-head">
-            <div className="apple-hero-badge">
-              <span className="apple-hero-badge__index">Studio Concierge</span>
-              <span className="apple-hero-badge__sep" aria-hidden="true">
-                ·
-              </span>
-              <span className="apple-hero-badge__cat">
-                New Projects, Spatial Worlds &amp; Production Partnerships
-              </span>
-            </div>
-
-            <h1 id="contact-page-title" className="apple-hero-title">
-              Let’s Build Something Extraordinary Together.
-            </h1>
-
-            <p className="apple-hero-lead">
-              Share your vision using our interactive project configurator below, or reach our
-              executive production and support desks directly. Your responses remain private in
-              your browser until you dispatch your brief.
+            <p className="sr-only" aria-live="polite">
+              {formStatus}
             </p>
-          </header>
 
-          {/* Main Two-Column Concierge Workbench */}
-          <div className="apple-contact-layout">
-            {/* LEFT COLUMN: Interactive Configurator / Sheet / Prepared Dossier */}
-            <div className="apple-contact-stage-card">
-              <form
-                id="booking-form"
-                className="wpcf7-form init apple-contact-form"
-                aria-label="Project enquiry"
-                noValidate
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  if (mode === 'sheet') {
-                    handleSheetSubmit(event);
-                  } else {
-                    next();
-                  }
-                }}
-              >
-                <div className="angel-honeypot" aria-hidden="true">
-                  <label htmlFor="contact-website">Leave this field empty</label>
-                  <input
-                    id="contact-website"
-                    name="website"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={honeypot}
-                    onChange={(event) => setHoneypot(event.target.value)}
-                  />
+            {prepared ? (
+              /* PREPARED ENQUIRY SUMMARY */
+              <section className="ac-summary" aria-labelledby="ac-summary-title">
+                <div className="ac-summary__badge-row">
+                  <span className="ac-summary__badge">✓ Enquiry prepared</span>
+                  <span className="ac-step-category-pill">N° 08 — 08 · All steps complete</span>
                 </div>
-                <p className="sr-only" aria-live="polite">
-                  {formStatus}
+                <h2 id="ac-summary-title" className="ac-summary__title">
+                  Your enquiry summary is ready for dispatch.
+                </h2>
+                <p className="ac-summary__lead">
+                  Review your brief below, then open a pre-addressed email draft to{' '}
+                  <strong>business@angelcreations.in</strong>, copy the enquiry text, or call our
+                  production desk directly.
                 </p>
 
-                {prepared ? (
-                  /* PREPARED DOSSIER REVIEW VIEW */
-                  <section className="apple-contact-prepared" aria-labelledby="enquiry-ready-title">
-                    <div className="apple-workbench-card__meta">
-                      <span className="apple-workbench-card__step-badge">
-                        ✓ Project Dossier Ready
-                      </span>
-                      <span className="apple-workbench-card__category-pill">
-                        10 / 10 Specifications Complete
-                      </span>
-                    </div>
-
-                    <h2 id="enquiry-ready-title" className="apple-workbench-card__title">
-                      Your Project Brief Is Prepared for Dispatch.
-                    </h2>
-                    <p className="apple-workbench-card__desc">
-                      Review your structured project dossier below. You can launch your default
-                      email client pre-addressed to{' '}
-                      <strong>business@angelcreations.in</strong>, or copy the formatted brief to
-                      paste into any webmail or messaging channel.
-                    </p>
-
-                    {/* Review Grid of All 10 Answers */}
-                    <div className="apple-contact-review-grid">
-                      {fields.map((item, idx) => (
-                        <div
-                          key={item.id}
-                          className="apple-contact-review-item"
-                          onClick={() => {
-                            setPrepared(false);
-                            setMode('guided');
-                            setStep(idx);
-                          }}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              setPrepared(false);
-                              setMode('guided');
-                              setStep(idx);
-                            }
-                          }}
-                          title={`Click to edit ${item.name}`}
-                        >
-                          <div className="apple-contact-review-item__head">
-                            <span className="apple-contact-review-item__label">
-                              {String(idx + 1).padStart(2, '0')} · {item.name}
-                            </span>
-                            <span className="apple-contact-review-item__edit">Edit ✎</span>
-                          </div>
-                          <strong className="apple-contact-review-item__val">
-                            {values[item.id] || '—'}
-                          </strong>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="apple-hero-actions" style={{ marginTop: '1.75rem' }}>
-                      <a className="apple-cta-primary" href={createMailto(values)}>
-                        <span>Open Email Draft to Angel Creations</span>
-                        <span aria-hidden="true">↗</span>
-                      </a>
-                      <button
-                        type="button"
-                        className="apple-cta-secondary"
-                        onClick={() => handleCopyText(formatBriefBody(values), 'brief')}
-                      >
-                        <span>
-                          {copiedKey === 'brief'
-                            ? '✓ Brief Copied to Clipboard'
-                            : 'Copy Formatted Brief'}
-                        </span>
-                      </button>
-                      <button
-                        type="button"
-                        className="apple-tactile-btn"
-                        onClick={() => setPrepared(false)}
-                      >
-                        Edit Answers
-                      </button>
-                      <button type="button" className="apple-tactile-btn" onClick={reset}>
-                        Start Fresh
-                      </button>
-                    </div>
-                  </section>
-                ) : mode === 'sheet' ? (
-                  /* EXPRESS SHEET VIEW (ALL 10 FIELDS AT ONCE) */
-                  <div className="apple-contact-sheet">
-                    <div className="apple-workbench-card__meta">
-                      <span className="apple-workbench-card__step-badge">
-                        Express Project Sheet
-                      </span>
-                      <span className="apple-workbench-card__category-pill">
-                        {completedCount} of {fields.length} Completed
-                      </span>
-                    </div>
-
-                    <h2 className="apple-workbench-card__title">
-                      Complete Project Specification Sheet
-                    </h2>
-
-                    <div className="apple-contact-sheet-grid">
-                      {fields.map((item, idx) => {
-                        const val = values[item.id];
-                        const hasErr = attempted.has(idx) && !isValid(item, val);
-                        return (
-                          <div
-                            key={item.id}
-                            className={`apple-contact-sheet-field${
-                              item.kind === 'textarea' || item.kind === 'select'
-                                ? ' apple-contact-sheet-field--full'
-                                : ''
-                            }`}
-                          >
-                            <label
-                              htmlFor={`sheet-field-${item.id}`}
-                              className="apple-contact-sheet-field__label"
-                            >
-                              <span>
-                                {String(idx + 1).padStart(2, '0')}. {item.name}
-                              </span>
-                              {isValid(item, val) && (
-                                <span className="apple-contact-sheet-field__ok">✓</span>
-                              )}
-                            </label>
-
-                            {item.kind === 'textarea' ? (
-                              <textarea
-                                id={`sheet-field-${item.id}`}
-                                rows={3}
-                                value={val}
-                                placeholder={item.placeholder}
-                                className="apple-contact-input"
-                                onChange={(e) => updateFieldValue(item.id, e.target.value)}
-                              />
-                            ) : item.kind === 'select' ? (
-                              <div className="apple-contact-chip-grid">
-                                {item.options?.map((opt) => (
-                                  <button
-                                    key={opt}
-                                    type="button"
-                                    className={`apple-contact-choice-chip${
-                                      val === opt ? ' is-selected' : ''
-                                    }`}
-                                    onClick={() => updateFieldValue(item.id, opt)}
-                                  >
-                                    <span
-                                      className="apple-contact-choice-chip__dot"
-                                      aria-hidden="true"
-                                    />
-                                    <span>{opt}</span>
-                                  </button>
-                                ))}
-                              </div>
-                            ) : (
-                              <input
-                                id={`sheet-field-${item.id}`}
-                                type={item.inputType ?? 'text'}
-                                value={val}
-                                placeholder={item.placeholder}
-                                className="apple-contact-input"
-                                onChange={(e) => updateFieldValue(item.id, e.target.value)}
-                              />
-                            )}
-
-                            {hasErr && (
-                              <span className="apple-contact-error">
-                                {item.inputType === 'email' && val.trim()
-                                  ? 'Please enter a valid email address.'
-                                  : 'Please complete this field.'}
-                              </span>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    {formStatus && <p className="apple-contact-error">{formStatus}</p>}
-
-                    <div className="apple-workbench-card__nav" style={{ marginTop: '1.75rem' }}>
-                      <button type="submit" className="apple-cta-primary">
-                        <span>Prepare Project Dossier</span>
-                        <span aria-hidden="true">→</span>
-                      </button>
-                      <button
-                        type="button"
-                        className="apple-tactile-btn"
-                        onClick={() => setMode('guided')}
-                      >
-                        Switch to Step-by-Step View
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  /* GUIDED STEP-BY-STEP CONCIERGE VIEW */
-                  <div className="apple-contact-guided">
-                    {/* Interactive Step Progress Rail */}
-                    <div
-                      className="apple-contact-step-rail"
-                      role="tablist"
-                      aria-label="Project enquiry steps"
+                <div className="ac-summary__grid">
+                  {fields.map((item, index) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      className="ac-summary__item"
+                      onClick={() => jumpToStep(index)}
+                      title={`Edit N° ${String(index + 1).padStart(2, '0')} — ${item.name}`}
                     >
-                      {fields.map((item, idx) => {
-                        const isCurrent = idx === step;
-                        const isDone = isValid(item, values[item.id]);
-                        return (
-                          <button
-                            key={item.id}
-                            type="button"
-                            role="tab"
-                            aria-selected={isCurrent}
-                            className={`apple-contact-step-pill${isCurrent ? ' is-current' : ''}${
-                              isDone ? ' is-done' : ''
-                            }`}
-                            onClick={() => setStep(idx)}
-                          >
-                            <span className="apple-contact-step-pill__num">
-                              {isDone && !isCurrent ? '✓' : String(idx + 1).padStart(2, '0')}
-                            </span>
-                            <span className="apple-contact-step-pill__name">{item.shortLabel}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    <div className="tab-pane" id={`step${step + 1}`}>
-                      <div className="apple-workbench-card__meta">
-                        <span className="apple-workbench-card__step-badge">
-                          Step {String(step + 1).padStart(2, '0')} of{' '}
-                          {String(fields.length).padStart(2, '0')}
+                      <span className="ac-summary__item-label">
+                        <span>
+                          N° {String(index + 1).padStart(2, '0')} · {item.name}
                         </span>
-                        <span className="apple-workbench-card__category-pill">{field.name}</span>
-                      </div>
-
-                      <p className="sr-only" aria-live="polite">
-                        Question {step + 1} of {fields.length}: {field.name}
-                      </p>
-
-                      <label
-                        className="apple-contact-question-label"
-                        htmlFor={`contact-field-${field.id}`}
-                      >
-                        <h2>{field.label}</h2>
-                      </label>
-                      <p className="apple-contact-question-hint">{field.hint}</p>
-
-                      {renderGuidedControl()}
-
-                      <div className="errorTxt" id={currentErrorId} aria-live="polite">
-                        {showCurrentError() ? (
-                          <span className="apple-contact-error">
-                            {field.inputType === 'email' && currentValue.trim()
-                              ? 'Please enter a valid work email address.'
-                              : 'Please complete this field before continuing.'}
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <div className="apple-contact-actions-bar">
-                        <button
-                          className={`apple-tactile-btn prev-btn prev-btn${step + 1}`}
-                          type="button"
-                          aria-label="Previous question"
-                          disabled={step === 0}
-                          onClick={previous}
-                        >
-                          ← Previous
-                        </button>
-
-                        <button
-                          className={`apple-cta-primary ${
-                            step === fields.length - 1
-                              ? 'submit-btn next-btn'
-                              : `next-btn next-btn${step + 1}`
-                          }`}
-                          type="submit"
-                          aria-label={
-                            step === fields.length - 1
-                              ? 'Prepare project enquiry'
-                              : 'Next question'
-                          }
-                        >
-                          <span>
-                            {step === fields.length - 1
-                              ? 'Review & Prepare Enquiry'
-                              : `Continue to ${fields[step + 1].shortLabel}`}
-                          </span>
-                          <span aria-hidden="true">→</span>
-                        </button>
-
-                        {completedCount >= 3 && (
-                          <button
-                            type="button"
-                            className="apple-tactile-btn"
-                            onClick={() => setMode('sheet')}
-                          >
-                            View All 10 Fields
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </form>
-            </div>
-
-            {/* RIGHT COLUMN: Live Project Brief Dossier & Direct Studio Desks */}
-            <aside className="apple-contact-sidebar" aria-label="Live project summary and direct contact">
-              {/* Live Dossier Progress Card */}
-              <div className="apple-glass-card apple-contact-summary-card">
-                <div className="apple-contact-summary-head">
-                  <div>
-                    <span className="apple-card-kicker">Live Project Dossier</span>
-                    <h3>Specification Progress</h3>
-                  </div>
-                  <strong className="apple-contact-summary-pct">{completionPct}%</strong>
+                        <span className="ac-summary__item-edit">Edit ✎</span>
+                      </span>
+                      <span className="ac-summary__item-value">{values[item.id] || '—'}</span>
+                    </button>
+                  ))}
                 </div>
 
-                <div className="apple-contact-progress-track" aria-hidden="true">
-                  <div
-                    className="apple-contact-progress-fill"
-                    style={{ width: `${Math.max(completionPct, 6)}%` }}
+                <div className="ac-summary__actions">
+                  <a className="ac-cta ac-cta--primary" href={createMailto(values)}>
+                    <span>Open email draft ↗</span>
+                  </a>
+                  <button
+                    type="button"
+                    className="ac-cta ac-cta--ghost"
+                    onClick={() => handleCopyText(formatBriefBody(values), 'brief')}
+                  >
+                    <span>{copiedKey === 'brief' ? '✓ Copied to clipboard' : 'Copy enquiry text'}</span>
+                  </button>
+                  <a className="ac-cta ac-cta--ghost" href="tel:+918058465733">
+                    <span>Call +91-8058465733</span>
+                  </a>
+                  <button
+                    type="button"
+                    className="ac-cta ac-cta--text"
+                    onClick={() => setPrepared(false)}
+                  >
+                    Edit answers
+                  </button>
+                  <button type="button" className="ac-cta ac-cta--text" onClick={reset}>
+                    Start again
+                  </button>
+                </div>
+              </section>
+            ) : (
+              /* GUIDED ONE-QUESTION-AT-A-TIME WIZARD */
+              <div className="ac-wizard">
+                {/* Signature N° progress header */}
+                <div className="step-title ac-progress-head">
+                  <span className="ac-slider-progress ac-progress-head__count" aria-live="polite">
+                    <span className="ac-slider-prefix">
+                      N<small>o</small>
+                    </span>
+                    <span className="ac-progress-head__current" data-index={step + 1}>
+                      {String(step + 1).padStart(2, '0')}
+                    </span>
+                    <span className="ac-progress-head__total">— 08</span>
+                  </span>
+                  <span className="ac-step-category-pill">{field.category}</span>
+                </div>
+
+                <div className="ac-progress-line" aria-hidden="true">
+                  <span
+                    className="ac-progress-line__fill"
+                    style={{ width: `${progressPct}%` }}
                   />
                 </div>
 
-                <ul className="apple-contact-summary-list">
-                  {fields.map((item, idx) => {
-                    const val = values[item.id]?.trim();
-                    const isActive = mode === 'guided' && !prepared && idx === step;
+                <div className="ac-step-dots" role="group" aria-label="Jump to a completed question">
+                  {fields.map((item, index) => {
+                    const isCurrent = index === step;
+                    const isAnswered = isValid(item, values[item.id]);
+                    const isUnlocked = index <= maxStep;
                     return (
-                      <li
+                      <button
                         key={item.id}
-                        className={`apple-contact-summary-row${isActive ? ' is-active' : ''}${
-                          val ? ' is-filled' : ''
+                        type="button"
+                        className={`ac-step-dot${isCurrent ? ' is-current' : ''}${
+                          isAnswered ? ' is-answered' : ''
                         }`}
-                        onClick={() => {
-                          setPrepared(false);
-                          setMode('guided');
-                          setStep(idx);
-                        }}
+                        disabled={!isUnlocked && !isAnswered}
+                        aria-label={`Question ${index + 1} of ${fields.length}: ${item.name}${
+                          isAnswered ? ' (answered)' : ''
+                        }`}
+                        aria-current={isCurrent ? 'step' : undefined}
+                        onClick={() => jumpToStep(index)}
                       >
-                        <span className="apple-contact-summary-row__key">
-                          {String(idx + 1).padStart(2, '0')} · {item.shortLabel}
-                        </span>
-                        <span className="apple-contact-summary-row__val">
-                          {val ? (val.length > 28 ? `${val.slice(0, 26)}…` : val) : 'Pending'}
-                        </span>
-                      </li>
+                        {String(index + 1).padStart(2, '0')}
+                      </button>
                     );
                   })}
-                </ul>
-              </div>
-
-              {/* Direct Studio Desks Bento */}
-              <div className="apple-glass-card apple-glass-card--accent apple-contact-desks-card">
-                <span className="apple-card-kicker">Direct Studio Desks</span>
-                <h3>Prefer Direct Email?</h3>
-                <p style={{ marginBottom: '1.15rem', fontSize: '0.92rem' }}>
-                  Reach our business development or client support teams directly at any time:
-                </p>
-
-                <div className="apple-contact-desk-box">
-                  <span className="apple-contact-desk-box__label">
-                    New Business &amp; Production Partnerships
-                  </span>
-                  <div className="apple-contact-desk-box__row">
-                    <a
-                      href="mailto:business@angelcreations.in"
-                      className="apple-contact-desk-box__mail"
-                    >
-                      business@angelcreations.in
-                    </a>
-                    <button
-                      type="button"
-                      className="apple-contact-copy-chip"
-                      onClick={() =>
-                        handleCopyText('business@angelcreations.in', 'business-email')
-                      }
-                    >
-                      {copiedKey === 'business-email' ? '✓ Copied' : 'Copy'}
-                    </button>
-                  </div>
                 </div>
 
-                <div className="apple-contact-desk-box">
-                  <span className="apple-contact-desk-box__label">
-                    Client &amp; Technical Support Desk
-                  </span>
-                  <div className="apple-contact-desk-box__row">
-                    <a
-                      href="mailto:support@angelcreations.in"
-                      className="apple-contact-desk-box__mail"
-                    >
-                      support@angelcreations.in
-                    </a>
-                    <button
-                      type="button"
-                      className="apple-contact-copy-chip"
-                      onClick={() =>
-                        handleCopyText('support@angelcreations.in', 'support-email')
-                      }
-                    >
-                      {copiedKey === 'support-email' ? '✓ Copied' : 'Copy'}
-                    </button>
+                <div className="tab-pane ac-step-pane" id={`step${step + 1}`}>
+                  <p className="sr-only" aria-live="polite">
+                    Question {step + 1} of {fields.length}: {field.name}
+                  </p>
+
+                  <label className="ac-question-label" htmlFor={`contact-field-${field.id}`}>
+                    <span className="ac-question-index">
+                      N° {String(step + 1).padStart(2, '0')} — {field.category}
+                    </span>
+                    <h2 className="ac-question-title">{field.label}</h2>
+                  </label>
+                  <p className="ac-question-hint">{field.hint}</p>
+
+                  {field.kind === 'select'
+                    ? renderDisciplineSelect()
+                    : renderUnderlinedField(field.kind === 'textarea')}
+
+                  <div className="errorTxt ac-error-row" id={currentErrorId} aria-live="polite">
+                    {showCurrentError() ? (
+                      <span className="ac-error">
+                        {field.inputType === 'email' && currentValue.trim()
+                          ? 'Please enter a valid email address.'
+                          : 'Please answer this question to continue.'}
+                      </span>
+                    ) : null}
                   </div>
+
+                  <ul className="ac-wizard-nav">
+                    <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
+                      <button
+                        className={`ac-nav-btn ac-nav-btn--prev prev-btn prev-btn${step + 1}`}
+                        type="button"
+                        aria-label="Previous question"
+                        disabled={step === 0}
+                        onClick={previous}
+                      >
+                        <span aria-hidden="true">←</span> Prev
+                      </button>
+                    </li>
+                    <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
+                      <button
+                        className={`ac-nav-btn ac-nav-btn--next ${
+                          step === fields.length - 1
+                            ? 'submit-btn next-btn'
+                            : `next-btn next-btn${step + 1}`
+                        }`}
+                        type="submit"
+                        aria-label={
+                          step === fields.length - 1 ? 'Prepare enquiry summary' : 'Next question'
+                        }
+                      >
+                        {step === fields.length - 1 ? 'Prepare summary' : 'Next'}{' '}
+                        <span aria-hidden="true">→</span>
+                      </button>
+                    </li>
+                  </ul>
                 </div>
+
+                {/* Live answered-brief trail */}
+                <aside className="ac-answered-trail" aria-label="Your brief so far">
+                  <span className="ac-answered-trail__label">
+                    Your brief so far · {answeredCount} of {String(fields.length).padStart(2, '0')}
+                  </span>
+                  {answeredFields.length > 0 ? (
+                    <ul className="ac-answered-trail__chips">
+                      {answeredFields.map((item) => {
+                        const index = fields.indexOf(item);
+                        const raw = values[item.id].trim();
+                        const clipped = raw.length > 26 ? `${raw.slice(0, 24)}…` : raw;
+                        return (
+                          <li key={item.id}>
+                            <button
+                              type="button"
+                              className={`ac-answered-chip${index === step ? ' is-current' : ''}`}
+                              onClick={() => jumpToStep(index)}
+                              title={`${item.shortLabel}: ${raw} — click to revisit`}
+                            >
+                              <span className="ac-answered-chip__key">{item.shortLabel}</span>
+                              <span className="ac-answered-chip__value">{clipped}</span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    <p className="ac-answered-trail__empty">
+                      Your answers appear here as you progress through the eight questions.
+                    </p>
+                  )}
+                </aside>
               </div>
-            </aside>
+            )}
+          </form>
+        </div>
+      </section>
+
+      {/* Direct Contact Deck */}
+      <section
+        id="direct-contact-channels"
+        className="ac-support-section"
+        aria-labelledby="direct-contact-title"
+      >
+        <header className="ac-support-section__head">
+          <p className="ac-support-section__kicker">Direct Contact Channels</p>
+          <h2 id="direct-contact-title" className="ac-support-section__title">
+            Prefer a direct line to the studio?
+          </h2>
+          <p className="ac-support-section__lead">
+            Reach the right Angel Creations desk in one tap — or copy any address straight to your
+            clipboard.
+          </p>
+        </header>
+
+        <div className="genralinformation">
+          <div className="supportmail">
+            {supportChannels.map((channel) => (
+              <article key={channel.copyKey} className={`${channel.classes} ac-support-card`}>
+                <span className="ac-support-card__index">{channel.index} · {channel.desk}</span>
+                <h3 className="ac-support-card__purpose">{channel.purpose}</h3>
+                <div className="ac-support-card__row">
+                  <a className="ac-support-card__value" href={channel.href}>
+                    {channel.value}
+                  </a>
+                  <button
+                    type="button"
+                    className="ac-support-card__copy"
+                    onClick={() => handleCopyText(channel.value, channel.copyKey)}
+                  >
+                    {copiedKey === channel.copyKey ? '✓ Copied' : 'Copy'}
+                  </button>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
