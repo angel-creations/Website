@@ -243,6 +243,7 @@ jobs:
           BACKUP_PATH="$BACKUP_DIR/public_html-$(date -u +%Y%m%dT%H%M%SZ).tar.gz"
           tar -czf "$BACKUP_PATH" -C "$DOCROOT" .
           test -s "$BACKUP_PATH"
+          tar -tzf "$BACKUP_PATH" >/dev/null
           printf '%s\n' "$BACKUP_PATH"
           REMOTE
           )"
