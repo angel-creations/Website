@@ -263,7 +263,7 @@ jobs:
           echo "Rollback completed from the saved backup."
           }
 
-          if ! rsync -az --delete --delay-updates \
+          if ! rsync -az --delay-updates \
             --exclude='.htaccess' \
             --exclude='.well-known/' \
             -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/"; then
