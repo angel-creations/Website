@@ -169,7 +169,7 @@ jobs:
     needs: build-and-verify
     # Production deployment remains disabled until the verified document root,
     # SSH credentials, host key, and rollback procedure are configured.
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.HOSTINGER_DEPLOY_ENABLED == 'true' }}
+    if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' && vars.HOSTINGER_DEPLOY_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: production
