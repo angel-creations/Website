@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import type { NavigationItem } from '../types/legacy';
+import { getNetworkInformation, shouldAutoplayAmbientMedia } from '../utils/mediaPreferences';
 import { navigate } from '../utils/routes';
 
 const archive = '/legacy-assets';
@@ -25,7 +26,7 @@ const productItems: ProductItem[] = [
     number: '01',
     title: 'The Virtual Life',
     subtitle: 'Immersive virtual worlds & interactive digital ecosystems',
-    href: 'http://thevirtuallife.in/',
+    href: 'https://thevirtuallife.in/',
   },
   {
     number: '02',
@@ -35,12 +36,40 @@ const productItems: ProductItem[] = [
   },
 ];
 
+function shouldUseClientNavigation(event: ReactMouseEvent<HTMLAnchorElement>): boolean {
+  return event.button === 0
+    && !event.metaKey
+    && !event.ctrlKey
+    && !event.shiftKey
+    && !event.altKey;
+}
+
+function notifyMenuState(open: boolean): void {
+  document.dispatchEvent(new CustomEvent('angel:menu-state', { detail: { open } }));
+}
+
+function setMenuBackgroundInert(inert: boolean): void {
+  const background = document.querySelectorAll<HTMLElement>(
+    '#page > header .header-wrap, #page > main, #page > #content, #page > .site-content, #page > footer',
+  );
+  background.forEach((element) => {
+    if (inert && !element.hasAttribute('inert')) {
+      element.dataset.angelMenuInert = 'true';
+      element.setAttribute('inert', '');
+    } else if (!inert && element.dataset.angelMenuInert === 'true') {
+      element.removeAttribute('inert');
+      delete element.dataset.angelMenuInert;
+    }
+  });
+}
+
 function Link({ item, close }: { item: NavigationItem; close?: () => void }): JSX.Element {
   return (
     <a
       href={item.href}
       className="inner_link"
       onClick={(event) => {
+        if (!shouldUseClientNavigation(event)) return;
         event.preventDefault();
         close?.();
         navigate(item.href);
@@ -77,6 +106,8 @@ export function Header(): JSX.Element {
     if (!open) {
       menu.setAttribute('inert', '');
       document.body.classList.remove('menu-open');
+      setMenuBackgroundInert(false);
+      notifyMenuState(false);
       menuVideoRef.current?.pause();
       if (hadOpenMenuRef.current) triggerRef.current?.focus();
       return undefined;
@@ -85,8 +116,25 @@ export function Header(): JSX.Element {
     hadOpenMenuRef.current = true;
     menu.removeAttribute('inert');
     document.body.classList.add('menu-open');
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reduceMotion) void menuVideoRef.current?.play().catch(() => undefined);
+    setMenuBackgroundInert(true);
+    notifyMenuState(true);
+
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const network = getNetworkInformation();
+    const updateMenuVideo = (): void => {
+      const video = menuVideoRef.current;
+      if (!video) return;
+      if (document.hidden || !shouldAutoplayAmbientMedia()) {
+        video.pause();
+      } else {
+        void video.play().catch(() => undefined);
+      }
+    };
+    updateMenuVideo();
+    const onVisibilityChange = (): void => updateMenuVideo();
+    motionPreference.addEventListener('change', onVisibilityChange);
+    network?.addEventListener('change', onVisibilityChange);
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     const focusInitialElement = window.requestAnimationFrame(() => {
       if (closeBtnRef.current) {
@@ -119,7 +167,11 @@ export function Header(): JSX.Element {
     return () => {
       window.cancelAnimationFrame(focusInitialElement);
       document.removeEventListener('keydown', onKeyDown);
+      motionPreference.removeEventListener('change', onVisibilityChange);
+      network?.removeEventListener('change', onVisibilityChange);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
       document.body.classList.remove('menu-open');
+      setMenuBackgroundInert(false);
     };
   }, [open]);
 
@@ -134,6 +186,7 @@ export function Header(): JSX.Element {
               id="main-logo"
               title="Angel — Digital Agency"
               onClick={(event) => {
+                if (!shouldUseClientNavigation(event)) return;
                 event.preventDefault();
                 closeMenu();
                 navigate('/');
@@ -163,7 +216,7 @@ export function Header(): JSX.Element {
       </header>
       <div className={`menu-cover${open ? ' active' : ''}`} id="menu-cover" aria-hidden="true" onClick={closeMenu} />
       <div className={`menu__bg${open ? ' active' : ''}`} aria-hidden="true">
-        <video ref={menuVideoRef} muted loop playsInline preload="metadata" poster={menuPoster} tabIndex={-1}>
+        <video ref={menuVideoRef} muted loop playsInline preload="none" poster={menuPoster} tabIndex={-1}>
           <source src={menuVideo} type="video/mp4" />
         </video>
       </div>
@@ -252,6 +305,7 @@ export function Header(): JSX.Element {
                   <a
                     href="/terms-of-service/"
                     onClick={(event) => {
+                      if (!shouldUseClientNavigation(event)) return;
                       event.preventDefault();
                       closeMenu();
                       navigate('/terms-of-service/');
@@ -264,6 +318,7 @@ export function Header(): JSX.Element {
                   <a
                     href="/privacy-policy/"
                     onClick={(event) => {
+                      if (!shouldUseClientNavigation(event)) return;
                       event.preventDefault();
                       closeMenu();
                       navigate('/privacy-policy/');

@@ -46,7 +46,7 @@ jobs:
 
           const requiredRoutes = [
             '/', '/about/', '/contact/', '/works/', '/metaverse/',
-            '/360-video/', '/animation/', '/augment-reality/',
+            '/animation/', '/augment-reality/',
             '/brand-advertisement/', '/media-production/',
             '/mixed-reality/', '/virtual-reality/',
             '/privacy-policy/', '/terms-of-service/',
@@ -60,6 +60,10 @@ jobs:
             const file = route === '/' ? 'dist/index.html' : join('dist', route.slice(1), 'index.html');
             return !existsSync(file);
           });
+          const missingStatusDocuments = ['/404.html', '/410.html']
+            .filter((path) => !existsSync(join('dist', path.slice(1))));
+          const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
+          const retiredRouteListed = sitemap.includes('https://angelcreations.in/360-video/');
 
           const html = readFileSync('index.html', 'utf8');
           const stylesheetPaths = [...html.matchAll(/<link[^>]+href="(\/legacy-assets\/[^"]+\.css)"/g)]
@@ -77,6 +81,8 @@ jobs:
 
           for (const [label, items] of [
             ['Generated route files', missingRoutes],
+            ['Error status documents', missingStatusDocuments],
+            ['Retired route absent from sitemap', retiredRouteListed ? ['/360-video/'] : []],
             ['Local stylesheets', missingStylesheets],
             ['Local slide media/posters', missingMedia],
           ]) {
@@ -88,7 +94,7 @@ jobs:
           }
 
           if (!process.exitCode) {
-            console.log('Verified ' + requiredRoutes.length + ' routes, ' +
+            console.log('Verified ' + requiredRoutes.length + ' routes, branded 404/410 documents, retired-route sitemap exclusion, ' +
               stylesheetPaths.length + ' stylesheet links and ' +
               mediaPaths.length + ' local slide media/poster references.');
           }

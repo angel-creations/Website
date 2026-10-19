@@ -17,7 +17,22 @@ function routeFor(file) {
   return `/${filePath.replace(/\/index\.html$/, '/')}`;
 }
 function firstMatch(expression, text) { return expression.exec(text)?.[1]?.trim() || ''; }
-function textOnly(markup) { return markup.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(); }
+function decodeHtml(value) {
+  return String(value).replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos|nbsp);/gi, (entity, code) => {
+    if (code[0] === '#') {
+      const point = code[1].toLowerCase() === 'x' ? Number.parseInt(code.slice(2), 16) : Number.parseInt(code.slice(1), 10);
+      return Number.isFinite(point) ? String.fromCodePoint(point) : entity;
+    }
+    return ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' })[code.toLowerCase()] || entity;
+  });
+}
+function textOnly(markup) { return decodeHtml(markup.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim(); }
+function extractDescription(html) {
+  return decodeHtml(
+    firstMatch(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i, html)
+      || firstMatch(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i, html),
+  );
+}
 function jsonLdTypes(html) {
   const types = new Set();
   for (const raw of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
@@ -35,12 +50,35 @@ function duplicates(rows, key) {
   return [...index.entries()].filter(([, routes]) => routes.length > 1);
 }
 
+const fallbackDirectory = join(root, 'legacy-page-fallbacks');
+const fallbackFiles = (await readdir(fallbackDirectory).catch(() => [])).filter((file) => file.endsWith('.json'));
+const legacyFallbackRows = await Promise.all(fallbackFiles.map(async (file) => {
+  try {
+    const payload = JSON.parse(await readFile(join(fallbackDirectory, file), 'utf8'));
+    const slug = String(payload.route || '').replace(/^\/+|\/+$/g, '').replace(/\//g, '--');
+    let httpStatus = null;
+    try { httpStatus = (await fetch(`${previewBase}/legacy-page-fallbacks/${file}`, { redirect: 'manual' })).status; } catch { /* preview may be intentionally unavailable */ }
+    return {
+      file, route: payload.route, status: payload.status,
+      childrenCount: Array.isArray(payload.children) ? payload.children.length : -1,
+      filenameMatchesRoute: `${slug}.json` === file,
+      httpStatus,
+    };
+  } catch {
+    return { file, route: '', status: null, childrenCount: -1, filenameMatchesRoute: false, httpStatus: null };
+  }
+}));
+
 const rows = [];
 for (const file of await htmlFiles(root)) {
   const html = await readFile(file, 'utf8');
   const route = routeFor(file);
-  const hrefs = [...html.matchAll(/\shref=["']([^"']+)["']/gi)].map((match) => match[1]);
-  const internalLinkTargets = [...new Set(hrefs.filter((href) => href.startsWith('/') && !href.startsWith('//') && !href.startsWith('/assets/')))];
+  const anchorTags = [...html.matchAll(/<a\b[^>]*>/gi)].map((match) => match[0]);
+  const hrefs = anchorTags.flatMap((tag) => {
+    const match = /\bhref=["']([^"']+)["']/i.exec(tag);
+    return match ? [match[1]] : [];
+  });
+  const internalLinkTargets = [...new Set(hrefs.filter((href) => href.startsWith('/') && !href.startsWith('//')))];
   const h1 = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((match) => textOnly(match[1]));
   const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
   const jsonld = jsonLdTypes(html);
@@ -50,8 +88,8 @@ for (const file of await htmlFiles(root)) {
     route, httpStatus,
     title: textOnly(firstMatch(/<title[^>]*>([\s\S]*?)<\/title>/i, html)),
     titleLength: textOnly(firstMatch(/<title[^>]*>([\s\S]*?)<\/title>/i, html)).length,
-    description: firstMatch(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i, html) || firstMatch(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i, html),
-    descriptionLength: (firstMatch(/<meta\s+name=["']description["']\s+content=["']([^"']*)["']/i, html) || firstMatch(/<meta\s+content=["']([^"']*)["']\s+name=["']description["']/i, html)).length,
+    description: extractDescription(html),
+    descriptionLength: extractDescription(html).length,
     canonical: firstMatch(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i, html) || firstMatch(/<link\s+href=["']([^"']+)["']\s+rel=["']canonical["']/i, html),
     h1Count: h1.length, h1,
     h2: (html.match(/<h2\b/gi) || []).length,
@@ -64,18 +102,102 @@ for (const file of await htmlFiles(root)) {
   });
 }
 rows.sort((a, b) => a.route.localeCompare(b.route));
-const sitemap = [...(await readFile(join(root, 'sitemap.xml'), 'utf8')).matchAll(/<loc>https:\/\/angelcreations\.in([^<]+)<\/loc>/g)].map((match) => match[1]);
-const publicRows = rows.filter((row) => row.route !== '/404.html');
+const sitemapXml = await readFile(join(root, 'sitemap.xml'), 'utf8');
+const sourceSitemapXml = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8').catch(() => '');
+const robotsTxt = await readFile(join(root, 'robots.txt'), 'utf8').catch(() => '');
+const sitemap = [...sitemapXml.matchAll(/<loc>https:\/\/angelcreations\.in([^<]+)<\/loc>/g)].map((match) => match[1]);
+async function fetchStaticFile(path) {
+  try {
+    const response = await fetch(`${previewBase}${path}`, { redirect: 'manual' });
+    return { status: response.status, body: await response.text() };
+  } catch {
+    return { status: null, body: '' };
+  }
+}
+const [servedSitemap, servedRobots] = await Promise.all([
+  fetchStaticFile('/sitemap.xml'),
+  fetchStaticFile('/robots.txt'),
+]);
+const sitemapDeliveryIssues = [
+  ...(sourceSitemapXml === sitemapXml ? [] : ['public/sitemap.xml does not match the generated sitemap']),
+  ...(robotsTxt.includes(`Sitemap: ${origin}/sitemap.xml`) ? [] : ['robots.txt does not reference the sitemap']),
+  ...(servedSitemap.status === 200 ? [] : [`/sitemap.xml returned HTTP ${servedSitemap.status}`]),
+  ...(servedSitemap.body === sitemapXml ? [] : ['/sitemap.xml response does not match the generated sitemap']),
+  ...(servedRobots.status === 200 ? [] : [`/robots.txt returned HTTP ${servedRobots.status}`]),
+  ...(servedRobots.body === robotsTxt ? [] : ['/robots.txt response does not match the generated robots file']),
+];
+if (sitemap.includes('/360-video/')) sitemapDeliveryIssues.push('removed /360-video/ route remains in the sitemap');
+const errorDocuments = ['/404.html', '/403.html', '/410.html', '/500.html', '/502.html', '/503.html', '/504.html'];
+const publicRows = rows.filter((row) => !errorDocuments.includes(row.route));
 const sitemapSet = new Set(sitemap);
+const notFoundHtml = await readFile(join(root, '404.html'), 'utf8').catch(() => '');
+const notFoundDesignIssues = [
+  ...['angel-not-found__visual', 'angel-not-found__actions', 'status-error-title', '/works/', '/contact/']
+    .filter((required) => !notFoundHtml.includes(required))
+    .map((required) => `404 document is missing ${required}`),
+];
+const statusDocumentSpecs = [
+  ['403.html', 403], ['410.html', 410], ['500.html', 500], ['502.html', 502], ['503.html', 503], ['504.html', 504],
+];
+const statusDocumentIssues = [];
+for (const [filename, status] of statusDocumentSpecs) {
+  const html = rows.find((row) => row.route === `/${filename}`);
+  const source = join(root, filename);
+  let content = '';
+  try { content = await readFile(source, 'utf8'); } catch { /* reported as a missing document */ }
+  if (!content) statusDocumentIssues.push(`${filename} is missing`);
+  if (content && (!content.includes(`SIGNAL / ${status}`) || !content.includes('status-error-title') || !/name="robots" content="noindex, follow"/.test(content))) {
+    statusDocumentIssues.push(`${filename} is missing its branded status label, accessible heading, or noindex directive`);
+  }
+  if (html && html.httpStatus !== 200) statusDocumentIssues.push(`${filename} static document returned HTTP ${html.httpStatus}`);
+}
+const errorStatusPaths = [
+  ['/made-up-route-for-audit/', 404],
+  ['/360-video/', 410],
+  ['/360-video', 410],
+  ['/about', 301],
+];
+const errorStatusChecks = await Promise.all(errorStatusPaths.map(async ([route, expected]) => {
+  try {
+    const response = await fetch(`${previewBase}${route}`, { redirect: 'manual' });
+    return { route, expected, actual: response.status, location: response.headers.get('location') };
+  } catch {
+    return { route, expected, actual: null, location: null };
+  }
+}));
+const errorStatusIssues = errorStatusChecks
+  .filter((check) => check.actual !== check.expected)
+  .map((check) => `${check.route} returned ${check.actual}, expected ${check.expected}`);
 const report = {
   documents: rows.length,
   sitemap: sitemap.length,
+  sitemapDelivery: {
+    sourceMatchesGenerated: sourceSitemapXml === sitemapXml,
+    sitemapHttpStatus: servedSitemap.status,
+    robotsHttpStatus: servedRobots.status,
+    robotsReferencesSitemap: robotsTxt.includes(`Sitemap: ${origin}/sitemap.xml`),
+    removed360RouteListed: sitemap.includes('/360-video/'),
+  },
+  sitemapDeliveryIssues,
+  notFoundDesignIssues,
+  statusDocumentIssues,
+  errorStatusChecks,
+  errorStatusIssues,
+  legacyFallbackDocuments: legacyFallbackRows.length,
+  legacyFallbackIssues: [
+    ...(legacyFallbackRows.length === 12 ? [] : [[`expected 12 fallback documents, found ${legacyFallbackRows.length}`]]),
+    ...legacyFallbackRows
+      .filter((row) => row.status !== 200 || row.childrenCount < 0 || !row.filenameMatchesRoute || (row.httpStatus !== null && row.httpStatus !== 200))
+      .map((row) => [row.file, row.route, row.status, row.childrenCount, row.filenameMatchesRoute, row.httpStatus]),
+  ],
   sitemapMissingDocs: sitemap.filter((route) => !rows.some((row) => row.route === route)),
   previewBase,
   httpStatusIssues: rows.filter((row) => row.httpStatus !== null && row.httpStatus !== 200).map((row) => [row.route, row.httpStatus]),
   duplicateTitles: duplicates(publicRows, 'title'),
   duplicateDescriptions: duplicates(publicRows, 'description'),
   missingDescriptions: publicRows.filter((row) => !row.description).map((row) => row.route),
+  titleLengthIssues: publicRows.filter((row) => row.route !== '/work/' && (row.titleLength < 20 || row.titleLength > 65)).map((row) => [row.route, row.titleLength]),
+  descriptionLengthIssues: publicRows.filter((row) => row.route !== '/work/' && (row.descriptionLength < 70 || row.descriptionLength > 160)).map((row) => [row.route, row.descriptionLength]),
   missingCanonical: publicRows.filter((row) => !row.canonical).map((row) => row.route),
   canonicalMismatch: publicRows.filter((row) => row.canonical && row.canonical !== `${origin}${row.route}` && row.route !== '/work/').map((row) => [row.route, row.canonical]),
   canonicalAliasExceptions: publicRows.filter((row) => row.route === '/work/' && row.canonical === `${origin}/works/`).map((row) => [row.route, row.canonical]),
@@ -84,7 +206,47 @@ const report = {
   rootSchema: rows.find((row) => row.route === '/')?.jsonld || [],
   orphanSitemapRoutes: publicRows.filter((row) => row.route !== '/work/' && !sitemapSet.has(row.route)).map((row) => row.route),
   internalLinkCount: rows.reduce((total, row) => total + row.internalLinks, 0),
+  missingAlt: publicRows.filter((row) => row.imagesWithoutAlt > 0).map((row) => [row.route, row.imagesWithoutAlt]),
+  missingRobots: publicRows.filter((row) => !row.robots).map((row) => row.route),
+  notFoundIndexable: rows.filter((row) => errorDocuments.includes(row.route) && !/noindex/i.test(row.robots)).map((row) => row.route),
   rows,
 };
+
+const auditFailures = {
+  documentCount: report.documents === 29 ? [] : [`expected 29 HTML documents, found ${report.documents}`],
+  sitemapCount: report.sitemap === 21 ? [] : [`expected 21 sitemap URLs, found ${report.sitemap}`],
+  sitemapDeliveryIssues: report.sitemapDeliveryIssues,
+  notFoundDesignIssues: report.notFoundDesignIssues,
+  statusDocumentIssues: report.statusDocumentIssues,
+  errorStatusIssues: report.errorStatusIssues,
+  legacyFallbackIssues: report.legacyFallbackIssues,
+  httpStatusIssues: report.httpStatusIssues,
+  duplicateTitles: report.duplicateTitles,
+  duplicateDescriptions: report.duplicateDescriptions,
+  missingDescriptions: report.missingDescriptions,
+  titleLengthIssues: report.titleLengthIssues,
+  descriptionLengthIssues: report.descriptionLengthIssues,
+  missingCanonical: report.missingCanonical,
+  canonicalMismatch: report.canonicalMismatch,
+  h1Issues: report.h1Issues,
+  schemaIssues: report.schemaIssues,
+  sitemapMissingDocs: report.sitemapMissingDocs,
+  orphanSitemapRoutes: report.orphanSitemapRoutes,
+  missingAlt: report.missingAlt,
+  missingRobots: report.missingRobots,
+  notFoundIndexable: report.notFoundIndexable,
+};
+report.auditFailures = auditFailures;
+const hasAuditFailures = Object.values(auditFailures).some((issues) => issues.length > 0);
+
 await writeFile(new URL('../docs/PHASE-3-SEO-REPORT.json', import.meta.url), `${JSON.stringify(report, null, 2)}\n`);
-console.log(JSON.stringify({ documents: report.documents, sitemap: report.sitemap, httpStatusIssues: report.httpStatusIssues, missingDescriptions: report.missingDescriptions, h1Issues: report.h1Issues, schemaIssues: report.schemaIssues, canonicalAliasExceptions: report.canonicalAliasExceptions }, null, 2));
+console.log(JSON.stringify({
+  documents: report.documents,
+  sitemap: report.sitemap,
+  sitemapDelivery: report.sitemapDelivery,
+  legacyFallbackDocuments: report.legacyFallbackDocuments,
+  auditPassed: !hasAuditFailures,
+  auditFailures,
+  canonicalAliasExceptions: report.canonicalAliasExceptions,
+}, null, 2));
+if (hasAuditFailures) process.exitCode = 1;

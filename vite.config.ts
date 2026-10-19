@@ -1,11 +1,10 @@
 import { defineConfig, type Plugin, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// The archived site does not contain the very large Unity .data/.wasm and 360° video
-// binaries. Preserve their source URL shapes and use a read-only local-preview bridge,
-// keeping browser requests same-origin without changing the production source paths.
+// The archived site does not contain the very large Unity .data/.wasm binaries.
+// Preserve their source URL shapes and use a read-only local-preview bridge, keeping
+// browser requests same-origin without changing the production source paths.
 const sourceRuntimeProxy: Record<string, string | ProxyOptions> = {
-  '/wp-content/uploads/2023/01': { target: 'https://angelcreations.in', changeOrigin: true, secure: true },
   '/metaverse/Build': {
     target: 'https://angelcreations.in', changeOrigin: true, secure: true,
     configure(proxy) {
@@ -35,6 +34,18 @@ const captured404Routes = new Set([
   '/mixed-reality/about.html', '/mixed-reality/awards.html',
   '/virtual-reality/about.html', '/virtual-reality/awards.html',
 ]);
+const retiredGoneRoutes = new Set(['/360-video', '/360-video/']);
+const knownPageRoutes = new Set([
+  '/', '/about/', '/about', '/animation/', '/augment-reality/', '/brand-advertisement/',
+  '/contact/', '/media-production/', '/metaverse/', '/mixed-reality/', '/privacy-policy/',
+  '/terms-of-service/', '/virtual-reality/', '/works/', '/work', '/work/',
+  '/capabilities/brand/', '/capabilities/design/', '/capabilities/content/', '/capabilities/film/',
+  '/capabilities/animation-3d/', '/capabilities/digital/', '/capabilities/experiences/',
+  '/capabilities/creative-technology/',
+]);
+const knownNonPagePaths = new Set(['/feed/', '/comments/feed/']);
+const assetPrefixes = ['/assets/', '/legacy-assets/', '/inner-library/', '/social/', '/legacy-page-fallbacks/', '/metaverse/Build/'];
+
 
 // WordPress canonically redirects the no-slash About address before loading the page.
 // Keep that observable route behaviour rather than rendering the generic fallback at /about.
@@ -55,25 +66,63 @@ function canonicalAboutRedirect(): Plugin {
 }
 
 function captured404Status(): Plugin {
-  const mark = (request: any, response: any, next: any): void => {
-    if (captured404Routes.has((request.url ?? '/').split('?')[0])) {
-      // Vite's HTML fallback resets statusCode to 200 immediately before ending the
-      // response. Preserve the captured WordPress status while still letting Vite
-      // supply index.html for the React 404 representation.
+  const mark = (request: any, response: any, next: any, server: any): void => {
+    const pathname = (request.url ?? '/').split('?')[0];
+    const normalisedPath = pathname !== '/' && !pathname.endsWith('/') && !/\.[^/]+$/.test(pathname)
+      ? `${pathname}/`
+      : pathname;
+    const isAssetRequest = assetPrefixes.some((prefix) => pathname.startsWith(prefix))
+      || pathname.startsWith('/@')
+      || /\.[^/]+$/.test(pathname);
+    const status = retiredGoneRoutes.has(pathname) || retiredGoneRoutes.has(normalisedPath)
+      ? 410
+      : captured404Routes.has(pathname) || captured404Routes.has(normalisedPath)
+        ? 404
+        : !isAssetRequest && !knownPageRoutes.has(pathname) && !knownPageRoutes.has(normalisedPath) && !knownNonPagePaths.has(pathname)
+          ? 404
+          : null;
+
+    if (status !== null) {
+      // Vite's HTML fallback resets statusCode to 200 immediately before the response ends.
+      // Preserve real 404/410 statuses and prefer the generated no-JS Angel error document.
       const writeHead = response.writeHead.bind(response);
-      response.writeHead = (_status: number, ...args: any[]) => writeHead(404, ...args);
+      response.writeHead = (_status: number, ...args: any[]) => writeHead(status, ...args);
       const end = response.end.bind(response);
       response.end = (...args: any[]) => {
-        if (!response.headersSent) response.statusCode = 404;
+        if (!response.headersSent) response.statusCode = status;
         return end(...args);
       };
+      const serveGeneratedErrorDocument = async (): Promise<void> => {
+        try {
+          // @ts-expect-error Vite executes this config in Node; the project intentionally has no @types/node dependency.
+          const { readFile } = await import('node:fs/promises');
+          const rootDirectory = server.config.root.endsWith('/')
+            ? server.config.root.slice(0, -1)
+            : server.config.root;
+          const outputDirectory = server.config.build.outDir.startsWith('/')
+            ? server.config.build.outDir
+            : `${rootDirectory}/${server.config.build.outDir}`;
+          const errorDirectory = outputDirectory.endsWith('/')
+            ? outputDirectory.slice(0, -1)
+            : outputDirectory;
+          const html = await readFile(`${errorDirectory}/${status}.html`, 'utf8');
+          response.statusCode = status;
+          response.setHeader('Content-Type', 'text/html; charset=utf-8');
+          response.setHeader('Cache-Control', 'no-store');
+          response.end(html);
+        } catch {
+          next();
+        }
+      };
+      void serveGeneratedErrorDocument();
+      return;
     }
     next();
   };
   return {
-    name: 'captured-wordpress-404-statuses',
-    configureServer(server) { server.middlewares.use(mark); },
-    configurePreviewServer(server) { server.middlewares.use(mark); },
+    name: 'captured-404-retired-410-and-unknown-route-statuses',
+    configureServer(server) { server.middlewares.use((request, response, next) => mark(request, response, next, server)); },
+    configurePreviewServer(server) { server.middlewares.use((request, response, next) => mark(request, response, next, server)); },
   };
 }
 

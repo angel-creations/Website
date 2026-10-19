@@ -367,7 +367,7 @@ export function LegalPage({ kind }: { kind: LegalDocKind }): JSX.Element {
     event: ReactMouseEvent<HTMLAnchorElement>,
     targetRoute: string
   ): void => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     navigate(targetRoute);
   };

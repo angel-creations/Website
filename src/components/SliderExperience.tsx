@@ -66,9 +66,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/metaverse/': {
     index: '01',
     category: 'Spatial Worlds & Persistent Ecosystems',
-    accentHex: '#64d2ff',
-    accentSecondaryHex: '#5e5ce6',
-    accentRgb: '100, 210, 255',
+    accentHex: '#7C5CFF',
+    accentSecondaryHex: '#38BDF8',
+    accentRgb: '124, 92, 255',
     metrics: [
       { label: 'Architecture', value: 'Persistent 3D', detail: 'Multi-user spatial worlds' },
       { label: 'Presence', value: 'Real-Time', detail: 'Avatars, voice & live events' },
@@ -79,9 +79,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/mixed-reality/': {
     index: '02',
     category: 'Spatial Computing & Physical-Digital Fusion',
-    accentHex: '#5e5ce6',
-    accentSecondaryHex: '#64d2ff',
-    accentRgb: '94, 92, 230',
+    accentHex: '#38BDF8',
+    accentSecondaryHex: '#C86BFF',
+    accentRgb: '56, 189, 248',
     metrics: [
       { label: 'Spatial Mapping', value: 'Room-Scale', detail: 'Surface, depth & occlusion' },
       { label: 'Input Model', value: 'Hand + Gaze', detail: 'Natural gesture & voice' },
@@ -92,9 +92,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/virtual-reality/': {
     index: '03',
     category: 'Full-Immersion Simulation & Presence',
-    accentHex: '#bf5af2',
-    accentSecondaryHex: '#64d2ff',
-    accentRgb: '191, 90, 242',
+    accentHex: '#C86BFF',
+    accentSecondaryHex: '#FB7185',
+    accentRgb: '200, 107, 255',
     metrics: [
       { label: 'Field of View', value: '360° Spatial', detail: 'Stereoscopic depth & audio' },
       { label: 'Simulation', value: 'Zero-Risk', detail: 'Hands-on training & rehearsal' },
@@ -105,9 +105,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/augment-reality/': {
     index: '04',
     category: 'Mobile & Wearable Camera Overlays',
-    accentHex: '#30d158',
-    accentSecondaryHex: '#64d2ff',
-    accentRgb: '48, 209, 88',
+    accentHex: '#2DD4BF',
+    accentSecondaryHex: '#38BDF8',
+    accentRgb: '45, 212, 191',
     metrics: [
       { label: 'Deployment', value: 'Instant Web/App', detail: 'Zero headset barrier' },
       { label: 'Vision', value: 'Surface & Object', detail: 'Camera SLAM & target lock' },
@@ -118,9 +118,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/animation/': {
     index: '05',
     category: '2D, 3D, Character & Motion Craft',
-    accentHex: '#ff9f0a',
-    accentSecondaryHex: '#ff375f',
-    accentRgb: '255, 159, 10',
+    accentHex: '#FB7185',
+    accentSecondaryHex: '#FF7847',
+    accentRgb: '251, 113, 133',
     metrics: [
       { label: 'Pipeline', value: 'Concept → Render', detail: 'Storyboards to final composite' },
       { label: 'Dimensions', value: '2D + 3D + VFX', detail: 'Cel, CG character & motion' },
@@ -131,9 +131,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/brand-advertisement/': {
     index: '06',
     category: 'Strategic Positioning & Campaign Systems',
-    accentHex: '#ff375f',
-    accentSecondaryHex: '#ff9f0a',
-    accentRgb: '255, 55, 95',
+    accentHex: '#FF7847',
+    accentSecondaryHex: '#FFC0D0',
+    accentRgb: '255, 120, 71',
     metrics: [
       { label: 'Strategy', value: 'Category-Defining', detail: 'Positioning & brand architecture' },
       { label: 'Storytelling', value: 'Hero Brand Films', detail: 'High-recall emotional craft' },
@@ -144,9 +144,9 @@ const ROUTE_META: Record<string, RouteMeta> = {
   '/media-production/': {
     index: '07',
     category: 'Cinema, Broadcast, Live & Post Studio',
-    accentHex: '#ffd60a',
-    accentSecondaryHex: '#ff9f0a',
-    accentRgb: '255, 214, 10',
+    accentHex: '#818CF8',
+    accentSecondaryHex: '#38BDF8',
+    accentRgb: '129, 140, 248',
     metrics: [
       { label: 'Pre-Production', value: 'Script & Board', detail: 'Casting, scouting & planning' },
       { label: 'Capture', value: 'Cinema Grade', detail: 'Multi-cam, lighting & sound' },
@@ -168,6 +168,13 @@ function sourceDate(value?: string): string | null {
 
 function webpSource(source: string): string {
   return source.replace(/\.jpe?g$/i, '.webp');
+}
+
+function optimizedHeroSource(source: string): string | undefined {
+  if (!source || /\.webp$/i.test(source)) return undefined;
+  return /\.(?:jpe?g|png)$/i.test(source)
+    ? source.replace(/\.(?:jpe?g|png)$/i, '.webp')
+    : undefined;
 }
 
 function relatedWork(experience: SlideExperience): VideoRecord[] {
@@ -212,6 +219,18 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
 
   const meta = ROUTE_META[routePath] || ROUTE_META['/metaverse/'];
   const routeBundle = explorerVisuals[routePath];
+  const enquiryDisciplineByRoute: Record<string, string> = {
+    '/metaverse/': 'Metaverse',
+    '/mixed-reality/': 'Mixed Reality (MR)',
+    '/virtual-reality/': 'Virtual Reality (VR)',
+    '/augment-reality/': 'Augmented Reality (AR)',
+    '/animation/': '3D Animation & VFX',
+    '/brand-advertisement/': 'Brand Advertisement',
+    '/media-production/': 'Media Production',
+  };
+  const enquiryHref = `/contact/?discipline=${encodeURIComponent(
+    enquiryDisciplineByRoute[routePath] || 'Custom Multi-Discipline Commission'
+  )}`;
 
   // Build a 4-frame multi-angle lens switcher for the Hero Stage, all unique to this route
   const heroLenses = useMemo(() => {
@@ -253,6 +272,9 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
   }, [experience.label, meta.category, routeBundle, routePath]);
 
   const activeLens = heroLenses[activeHeroLens] || heroLenses[0];
+  const activeHeroWebp = activeLens?.src === heroLenses[0]?.src
+    ? optimizedHeroSource(activeLens.src)
+    : undefined;
 
   const routeTo = useCallback(
     (event: MouseEvent<HTMLAnchorElement>, targetRoute: string, slideIndex?: number) => {
@@ -363,9 +385,9 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               {/* Tactile Actions */}
               <div className="apple-hero-actions">
                 <a
-                  href="/contact/"
+                  href={enquiryHref}
                   className="apple-cta-primary"
-                  onClick={(e) => routeTo(e, '/contact/')}
+                  onClick={(e) => routeTo(e, enquiryHref)}
                 >
                   <span>
                     {routePath === '/metaverse/'
@@ -392,15 +414,22 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               onPointerLeave={handleHeroPointerLeave}
             >
               <div className="apple-hero-visual-card">
-                <img
-                  key={activeLens.src}
-                  src={activeLens.src}
-                  alt={`${experience.label} — ${activeLens.caption}`}
-                  className="apple-hero-visual-card__img"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
+                <picture className="apple-hero-visual-card__picture">
+                  {activeHeroWebp ? (
+                    <source srcSet={activeHeroWebp} type="image/webp" />
+                  ) : null}
+                  <img
+                    key={activeLens.src}
+                    src={activeLens.src}
+                    alt={`${experience.label} — ${activeLens.caption}`}
+                    className="apple-hero-visual-card__img"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    width={1920}
+                    height={1080}
+                  />
+                </picture>
                 <div className="apple-hero-visual-card__vignette" aria-hidden="true" />
 
                 {/* Top Specular Glass Status Pill */}
@@ -643,9 +672,9 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
 
             <div className="apple-Finale-card__actions">
               <a
-                href="/contact/"
+                href={enquiryHref}
                 className="apple-cta-primary"
-                onClick={(e) => routeTo(e, '/contact/')}
+                onClick={(e) => routeTo(e, enquiryHref)}
               >
                 <span>
                   {routePath === '/metaverse/'
