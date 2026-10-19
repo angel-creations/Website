@@ -179,14 +179,14 @@ Measured on the two static builds, same routes, same viewports:
 | all eight `/capabilities/*/` | **22 elements, 0 characters** | full page |
 
 The fix in `scripts/generateStaticFallbacks.mjs` copies script tags as complete elements and fails
-the build if the result is unbalanced. All 25 generated documents now balance:
+the build if the result is unbalanced. All 24 generated documents now balance:
 
 ```
 $ for f in dist/**/*.html; do …; done
 OK  dist/404.html                     open=1 close=1
 OK  dist/about/index.html             open=2 close=2
 OK  dist/capabilities/film/index.html open=2 close=2
-… 25 files, 0 unbalanced
+… 24 files, 0 unbalanced
 ```
 
 ## 6. Work added on top of the restore
@@ -266,7 +266,7 @@ $ every /wp-content reference in dist/
 | `npm ci` | 72 packages, 0 vulnerabilities |
 | `npm run build` (`tsc -b` → `vite build` → `generateStaticFallbacks.mjs`) | passes — 13 enhanced core + 8 capability static fallbacks, `sitemap.xml`, `robots.txt` |
 | repository's production-build verification (the CI block) | *Verified 22 routes, 8 stylesheet links and 12 media references* |
-| script-tag balance across all 25 generated documents | 0 unbalanced |
+| script-tag balance across all 24 generated documents | 0 unbalanced |
 | every local asset reference in `dist/` | resolves |
 | SEO audit (`scripts/auditStaticOutput.mjs`) | 24 documents, 22 sitemap URLs, **no** status issues, **no** missing descriptions, **no** h1 issues, **no** schema issues, **no** orphan sitemap routes, **no** duplicate titles or descriptions |
 | entry bundle | 292 kB → 61 kB after chunk splitting |
