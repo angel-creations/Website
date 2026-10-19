@@ -2469,7 +2469,8 @@ body .angel-contact-redesign .step-title.ac-progress-head {
   margin-bottom: 1.1rem;
 }
 
-body .angel-contact-redesign .ac-slider-progress {
+body .angel-contact-redesign .ac-slider-progress,
+body .angel-contact-redesign .ac-progress-head__count {
   display: inline-flex;
   align-items: baseline;
   gap: 0.65rem;
@@ -2479,6 +2480,10 @@ body .angel-contact-redesign .ac-slider-progress {
   line-height: 1;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-progress-head__current {
   color: var(--ac-ink);
 }
 
@@ -2684,7 +2689,8 @@ body .angel-contact-redesign #booking-form textarea.ac-input {
   transition: border-color 200ms ease, background-color 200ms ease;
 }
 
-body .angel-contact-redesign #booking-form textarea.ac-input {
+body .angel-contact-redesign #booking-form textarea.ac-input,
+body .angel-contact-redesign #booking-form .ac-input--textarea {
   min-height: 150px;
   padding-top: 0.9rem !important;
   overflow: auto;
