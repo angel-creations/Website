@@ -51,8 +51,12 @@ function propsFor(attrs: Record<string, LegacyAttribute>, tag: string): Record<s
   return props;
 }
 
-/* The optional route identifies the captured page being rendered; node rendering is route-independent. */
-export function LegacyRenderer({ nodes }: { nodes: LegacyNode[]; route?: string }): ReactNode {
+export function LegacyRenderer({ nodes }: { nodes: LegacyNode[] }): ReactNode {
+  // Captured WordPress markup contains decorative and body imagery that is almost always below
+  // the fold. Decoding asynchronously and deferring every image after the first two keeps the
+  // original composition while removing those bytes from first paint.
+  let imagesSeen = 0;
+
   const renderNode = (node: LegacyNode, index: number): ReactNode => {
     if (node.type === 'text') {
       return node.value;
@@ -64,6 +68,12 @@ export function LegacyRenderer({ nodes }: { nodes: LegacyNode[]; route?: string 
 
     const props = propsFor(node.attrs, node.tag);
     props.key = `${node.tag}-${index}`;
+
+    if (node.tag === 'img') {
+      imagesSeen += 1;
+      props.decoding = 'async';
+      if (imagesSeen > 2 && props.loading === undefined) props.loading = 'lazy';
+    }
     if (voidTags.has(node.tag)) {
       return createElement(node.tag, props);
     }

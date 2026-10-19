@@ -132,18 +132,39 @@ function capabilitySchema(capability) {
 
 // Reuse all local legacy CSS and Vite entry assets from the actual generated root build. This
 // prevents static route files from becoming a no-JS-only experience for JavaScript users.
-const runtimeAssetTags = [...rootBuild.matchAll(/<(?:link|script)\b[^>]*>/g)]
-  .map((match) => match[0])
+// Script tags must be copied as complete elements: the Vite entry is `<script ...></script>`, and
+// emitting only the opening tag leaves the rest of <head> (and the whole <body>) parsed as script
+// text, which renders a blank document for JavaScript visitors on every static route file.
+const runtimeAssetTags = [...rootBuild.matchAll(/<(?:link|script)\b[^>]*>(?:<\/script>)?/g)]
+  .map((match) => {
+    const tag = match[0];
+    if (tag.startsWith('<script') && !tag.endsWith('</script>')) return `${tag}</script>`;
+    if (tag.startsWith('</script>')) return '';
+    return tag;
+  })
+  .filter(Boolean)
   .filter((tag) => (tag.includes('rel="stylesheet"') && /href="\/(?:legacy-assets|assets)\//.test(tag)) || (tag.includes('type="module"') && /src="\/assets\//.test(tag)))
   .join('\n');
 if (!runtimeAssetTags.includes('type="module"')) throw new Error('Generated root build entry script was not found.');
+if ((runtimeAssetTags.match(/<script\b/g) ?? []).length !== (runtimeAssetTags.match(/<\/script>/g) ?? []).length) {
+  throw new Error('Generated static runtime asset tags contain an unclosed script element.');
+}
 
 const fallbackCss = `<style>html{background:#000;color:#fff;font-family:Arial,sans-serif}body{max-width:960px;margin:0 auto;padding:clamp(2rem,8vw,7rem) clamp(1.25rem,5vw,4rem);background:#000}nav{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin-bottom:4rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}a{color:#fff}h1{max-width:17ch;font-size:clamp(2.25rem,6vw,4.8rem);font-weight:400;letter-spacing:-.05em;line-height:.96}h2{margin-top:4rem;font-size:clamp(1.5rem,4vw,3rem);font-weight:400;letter-spacing:-.03em}h3{font-size:1.2rem;font-weight:400}p{max-width:48rem;line-height:1.6;color:rgba(255,255,255,.76)}.eyebrow,.meta{color:#c5b5a5;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}.archive{margin:3rem 0;padding:0;list-style:none}.archive li{padding:2rem 0;border-top:1px solid rgba(255,255,255,.2)}details{margin-top:1rem}.source-text{white-space:pre-line}li{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.16);list-style:none}ul{padding:0;border-top:1px solid rgba(255,255,255,.2)}.lead{font-size:1.12rem}</style>`;
+
+// Same-origin preloads for the two Graphik faces every route renders. Kept identical to the
+// root document so a direct entry on any inner route paints text as early as the home stage.
+const fontPreloadTags = [
+  '/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff2',
+  '/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff2',
+].map((href) => `<link rel="preload" as="font" type="font/woff2" crossorigin href="${href}">`).join('');
 
 function documentShell({ title, description, canonical, robots, ogTitle, image, schema = '', extraHead = '', fallback }) {
   return `<!doctype html>
 <html lang="en-US" class="respect-color-scheme-preference"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+${fontPreloadTags}
 <title>${escapeHtml(title)}</title>
 ${description ? `<meta name="description" content="${escapeHtml(description)}">` : ''}
 <meta name="robots" content="${escapeHtml(robots || 'index, follow')}">

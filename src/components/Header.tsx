@@ -13,28 +13,6 @@ const primaryItems: NavigationItem[] = [
   { label: 'Contact', href: '/contact/', number: '03' },
 ];
 
-type ProductItem = {
-  number: string;
-  title: string;
-  subtitle: string;
-  href: string;
-};
-
-const productItems: ProductItem[] = [
-  {
-    number: '01',
-    title: 'The Virtual Life',
-    subtitle: 'Immersive virtual worlds & interactive digital ecosystems',
-    href: 'http://thevirtuallife.in/',
-  },
-  {
-    number: '02',
-    title: 'Immersive Wedding Invite',
-    subtitle: 'Bespoke 3D spatial & interactive wedding invitations',
-    href: 'https://thevirtuallife.in/weddinginvite/',
-  },
-];
-
 function Link({ item, close }: { item: NavigationItem; close?: () => void }): JSX.Element {
   return (
     <a
@@ -46,29 +24,39 @@ function Link({ item, close }: { item: NavigationItem; close?: () => void }): JS
         navigate(item.href);
       }}
     >
-      <span className="ac-menu-primary__title">{item.label}</span>
-      {item.number ? <span className="right_postion">{item.number}</span> : null}
+      {item.label} {item.number ? <span className="right_postion">{item.number}</span> : null}
     </a>
   );
 }
 
 function getFocusableElements(element: HTMLElement): HTMLElement[] {
-  return Array.from(
-    element.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-    ),
-  ).filter((item) => !item.hasAttribute('inert') && item.getClientRects().length > 0);
+  return Array.from(element.querySelectorAll<HTMLElement>(
+    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+  )).filter((item) => !item.hasAttribute('inert') && item.getClientRects().length > 0);
 }
 
 export function Header(): JSX.Element {
   const [open, setOpen] = useState(false);
+  const cursor = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const closeBtnRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const menuVideoRef = useRef<HTMLVideoElement>(null);
   const hadOpenMenuRef = useRef(false);
 
   const closeMenu = (): void => setOpen(false);
+
+  useEffect(() => {
+    // The original cursor treatment is decorative. Keep it on a fine-pointer desktop only.
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    if (!finePointer.matches) return undefined;
+    const moveCursor = (event: MouseEvent): void => {
+      if (!cursor.current) return;
+      cursor.current.style.left = `${event.pageX - 22}px`;
+      cursor.current.style.top = `${event.pageY - 22}px`;
+    };
+    document.addEventListener('mousemove', moveCursor, { passive: true });
+    return () => document.removeEventListener('mousemove', moveCursor);
+  }, []);
 
   useEffect(() => {
     const menu = menuRef.current;
@@ -88,13 +76,7 @@ export function Header(): JSX.Element {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduceMotion) void menuVideoRef.current?.play().catch(() => undefined);
 
-    const focusInitialElement = window.requestAnimationFrame(() => {
-      if (closeBtnRef.current) {
-        closeBtnRef.current.focus();
-      } else {
-        getFocusableElements(menu)[0]?.focus();
-      }
-    });
+    const focusFirstMenuLink = window.requestAnimationFrame(() => getFocusableElements(menu)[0]?.focus());
     const onKeyDown = (event: KeyboardEvent): void => {
       if (event.key === 'Escape') {
         event.preventDefault();
@@ -117,7 +99,7 @@ export function Header(): JSX.Element {
     document.addEventListener('keydown', onKeyDown);
 
     return () => {
-      window.cancelAnimationFrame(focusInitialElement);
+      window.cancelAnimationFrame(focusFirstMenuLink);
       document.removeEventListener('keydown', onKeyDown);
       document.body.classList.remove('menu-open');
     };
@@ -142,19 +124,23 @@ export function Header(): JSX.Element {
               <img src={logo} alt="Angel Creations" />
               <span>Digital</span>
             </a>
+            <div className="link_flex">
+              <ul>
+                <li><a href="/metaverse/" onClick={(event) => { event.preventDefault(); closeMenu(); navigate('/metaverse/'); }}>metaverse</a></li>
+                <li><a href="/360-video/" onClick={(event) => { event.preventDefault(); closeMenu(); navigate('/360-video/'); }}>360 video</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <button
           ref={triggerRef}
-          className={`nav-menu${open ? ' close is-menu-open' : ''}`}
+          className={`nav-menu${open ? ' close' : ''}`}
           id="nav"
-          aria-label="Open menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
           aria-controls="menuNav"
-          aria-hidden={open}
-          tabIndex={open ? -1 : 0}
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => setOpen((value) => !value)}
         >
           <span className="line" />
           <span className="line" />
@@ -170,111 +156,27 @@ export function Header(): JSX.Element {
       <nav
         id="menuNav"
         ref={menuRef}
-        className={`menu ac-menu-screen${open ? ' active' : ''}`}
+        className={`menu${open ? ' active' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label="Site navigation"
         aria-hidden={!open}
       >
-        <button
-          ref={closeBtnRef}
-          type="button"
-          className="ac-menu-close-btn"
-          aria-label="Close menu"
-          onClick={closeMenu}
-        >
-          <span className="ac-menu-close-btn__label">Close</span>
-          <span className="ac-menu-close-btn__icon" aria-hidden="true">
-            <span className="ac-menu-close-btn__line" />
-            <span className="ac-menu-close-btn__line" />
-          </span>
-        </button>
-
-        <div className="menu_content ac-menu-stage">
-          <div className="ac-menu-grid">
-            <div className="ac-menu-col ac-menu-col--nav">
-              <p className="ac-menu-eyebrow">Navigation</p>
-              <ol className="ac-menu-primary-list">
-                {primaryItems.map((item) => (
-                  <li className="mobile_link first ac-menu-primary-item" key={item.href}>
-                    <Link item={item} close={closeMenu} />
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <div className="ac-menu-col ac-menu-col--products" aria-label="Products">
-              <p className="ac-menu-eyebrow">Products</p>
-              <ul className="ac-menu-products-list">
-                {productItems.map((product) => (
-                  <li key={product.number} className="ac-menu-product-item">
-                    <a
-                      href={product.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ac-menu-product-link"
-                      onClick={closeMenu}
-                    >
-                      <div className="ac-menu-product-link__top">
-                        <span className="ac-menu-product-link__num">{product.number}</span>
-                        <span className="ac-menu-product-link__title">{product.title}</span>
-                        <span className="ac-menu-product-link__arrow" aria-hidden="true">
-                          ↗
-                        </span>
-                      </div>
-                      <p className="ac-menu-product-link__sub">{product.subtitle}</p>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="menu_content menu__hover">
+          <ol>
+            {primaryItems.map((item) => (
+              <li style={{ width: '40vw' }} className="mobile_link first" key={item.href}>
+                <Link item={item} close={closeMenu} />
+              </li>
+            ))}
+          </ol>
+          <div className="cursor-link" ref={cursor} aria-hidden="true" />
         </div>
-        <div className="nav_bottom ac-menu-footer">
-          <div className="col">
-            <div className="copyright hidescroll">
-              <p>© 2026 Angel Creations. All rights reserved.</p>
-            </div>
-          </div>
-          <div className="col">
-            <div className="terms-link">
-              <ul>
-                <li><a href="mailto:business@angelcreations.in">business@angelcreations.in</a></li>
-                <li><a href="mailto:support@angelcreations.in">support@angelcreations.in</a></li>
-                <li><a href="tel:+918058465733">+91-8058465733</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="col">
-            <div className="terms-link">
-              <ul>
-                <li>
-                  <a
-                    href="/terms-of-service/"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      closeMenu();
-                      navigate('/terms-of-service/');
-                    }}
-                  >
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/privacy-policy/"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      closeMenu();
-                      navigate('/privacy-policy/');
-                    }}
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div className="nav_bottom">
+          <div className="col"><div className="copyright hidescroll"><p>© 2023 Angelcreations. All rights reserved.</p></div></div>
+          <div className="col"><div className="terms-link"><ul><li><a href="mailto:business@angelcreations.in">business@angelcreations.in</a></li><li><a href="mailto:support@angelcreations.in">support@angelcreations.in</a></li></ul></div></div>
+          <div className="col"><div className="copyright hidescroll" /></div>
+          <div className="col"><div className="terms-link"><ul><li><a href="/terms-of-service" onClick={(event) => { event.preventDefault(); closeMenu(); navigate('/terms-of-service'); }}>Terms of Service</a></li><li><a href="/privacy-policy" onClick={(event) => { event.preventDefault(); closeMenu(); navigate('/privacy-policy'); }}>Privacy Policy</a></li></ul></div></div>
         </div>
       </nav>
     </>

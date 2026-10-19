@@ -1,14 +1,9 @@
-import { useState, useEffect } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import rawStories from '../data/experienceStories.json';
 import rawMaps from '../data/experienceMaps.json';
 import rawVisuals from '../data/explorerVisuals.json';
 import type { SlideExperience } from '../data/slideExperiences';
-import {
-  ApplicationExplorer,
-  ExperienceMap,
-  type ExperienceMapData,
-  type ExplorerVisual,
-} from './ExperienceExplorer';
+import { ApplicationExplorer, ExperienceMap, type ExperienceMapData, type ExplorerVisual } from './ExperienceExplorer';
 
 type StoryEntry = {
   title: string;
@@ -29,452 +24,77 @@ type StorySectionData = {
   closing?: string;
 };
 
-export type Story = {
+type Story = {
   sections: StorySectionData[];
   relatedCapabilityRoutes: string[];
   cta: { lead: string; action: string };
 };
 
-type RouteVisualBundle = {
-  hero: ExplorerVisual;
-  story?: ExplorerVisual[];
-  map: ExplorerVisual[];
-  applications: ExplorerVisual[];
-};
-
 const stories = rawStories as Record<string, Story>;
 const maps = rawMaps as unknown as Record<string, ExperienceMapData>;
-const explorerVisuals = rawVisuals as unknown as Record<string, RouteVisualBundle>;
+const explorerVisuals = rawVisuals as unknown as Record<string, { hero: ExplorerVisual; map: ExplorerVisual[]; applications: ExplorerVisual[] }>;
 
 export function experienceStoryForRoute(route: string): Story | undefined {
   return stories[route];
 }
 
-interface PillarMeta {
-  title: string;
-  tag: string;
-  text: string;
+function StorySection({ number, title, children }: { number: string; title: string; children: ReactNode }): JSX.Element {
+  return (
+    <section className={`angel-experience__section angel-story__section angel-story__section--${number}`} aria-labelledby={`story-section-${number}`}>
+      <p className="angel-experience__number" aria-hidden="true">{number}</p>
+      <div>
+        <h2 id={`story-section-${number}`}>{title}</h2>
+        {children}
+      </div>
+    </section>
+  );
 }
 
-const ROUTE_PILLARS: Record<string, PillarMeta[]> = {
-  '/mixed-reality/': [
-    {
-      title: 'Spatial Awareness',
-      tag: 'LiDAR & Scene Mesh',
-      text: 'Understands room geometry, physical surfaces, ambient lighting, and spatial boundaries in real time.',
-    },
-    {
-      title: 'Anchored Digital Objects',
-      tag: 'Volumetric Pinning',
-      text: 'Places 3D models, spatial interfaces, and interactive media directly into the real environment.',
-    },
-    {
-      title: 'Natural Interaction',
-      tag: 'Hand, Eye & Voice',
-      text: 'Supports direct hand tracking, eye-gaze focus, voice commands, and physical movement without learning curves.',
-    },
-    {
-      title: 'Real-Time Context',
-      tag: 'Live Telemetry Overlay',
-      text: 'Connects live operational data and 3D digital tools directly to real-world tasks, equipment, and spaces.',
-    },
-  ],
-  '/virtual-reality/': [
-    {
-      title: 'Full Immersion',
-      tag: '360° Optics & Audio',
-      text: '360° stereoscopic visuals and spatial audio environments that command undivided attention.',
-    },
-    {
-      title: 'Interactive Simulation',
-      tag: '6DoF Haptic Agency',
-      text: 'Hands-on scenarios where users learn, test, and explore by physically performing actions.',
-    },
-    {
-      title: 'Spatial Storytelling',
-      tag: 'First-Person Presence',
-      text: 'Narrative worlds where the audience stands inside the story rather than watching from afar.',
-    },
-    {
-      title: 'Safe Practice',
-      tag: 'Zero-Risk Rehearsal',
-      text: 'Risk-free environments for high-consequence training, surgical rehearsal, and architectural walkthroughs.',
-    },
-  ],
-  '/augment-reality/': [
-    {
-      title: 'Instant Access',
-      tag: 'WebAR & Mobile Native',
-      text: 'Launches effortlessly on mobile devices, tablets, and web browsers without heavy hardware barriers.',
-    },
-    {
-      title: 'Contextual Overlay',
-      tag: 'Computer Vision Lock',
-      text: 'Displays information, 3D products, and step-by-step guidance right where the user is looking.',
-    },
-    {
-      title: 'Interactive Discovery',
-      tag: 'Touch & Camera Triggers',
-      text: 'Turns physical packaging, retail spaces, and print media into interactive 3D touchpoints.',
-    },
-    {
-      title: 'Real-World Utility',
-      tag: 'Visual Confidence',
-      text: 'Helps users visualize, navigate, learn, and shop with immediate spatial confidence.',
-    },
-  ],
-  '/animation/': [
-    {
-      title: 'Visual Storytelling',
-      tag: 'Narrative Clarity',
-      text: 'Translates complex narratives, products, and ideas into clear, memorable visual sequences.',
-    },
-    {
-      title: 'Character & World Design',
-      tag: 'Original Art Direction',
-      text: 'Creates original characters, environments, and unmistakable visual identities from scratch.',
-    },
-    {
-      title: '2D, 3D & Motion Craft',
-      tag: 'Hybrid Studio Pipeline',
-      text: 'Blends stylized 2D cel illustration, cinematic 3D rendering, and dynamic motion graphics.',
-    },
-    {
-      title: 'Emotional Rhythm',
-      tag: 'Timing & Physics',
-      text: 'Uses frame-accurate timing, weight, sound, and camera movement to hold attention and inspire action.',
-    },
-  ],
-  '/brand-advertisement/': [
-    {
-      title: 'Strategic Positioning',
-      tag: 'Category Distinction',
-      text: 'Defines what makes the brand distinct, relevant, and meaningful in the minds of your audience.',
-    },
-    {
-      title: 'Creative Storytelling',
-      tag: 'Emotional Hook',
-      text: 'Crafts human-centered narratives that connect emotionally and stay memorable long after viewing.',
-    },
-    {
-      title: 'Visual & Verbal Identity',
-      tag: 'Cohesive Design System',
-      text: 'Builds an unmistakable look, tone of voice, and feeling across every physical and digital touchpoint.',
-    },
-    {
-      title: 'Multi-Channel Impact',
-      tag: 'Integrated Rollout',
-      text: 'Adapts campaigns seamlessly across cinema film, social, digital, out-of-home, and experiential.',
-    },
-  ],
-  '/media-production/': [
-    {
-      title: 'Creative Direction',
-      tag: 'Script & Visual Bible',
-      text: 'Shapes the core concept, shooting script, storyboard language, and comprehensive production plan.',
-    },
-    {
-      title: 'Cinematography & Capture',
-      tag: 'Optics, Light & Stage',
-      text: 'Shoots with cinema-grade lighting, camera movement, lens selection, and location or stage craft.',
-    },
-    {
-      title: 'Editorial & Post-Production',
-      tag: 'Cut, Grade & Atmos Sound',
-      text: 'Refines narrative pacing, HDR color grading, spatial sound mixing, visual effects, and finishing.',
-    },
-    {
-      title: 'Multi-Platform Delivery',
-      tag: 'Global Format Mastering',
-      text: 'Masters content for theatrical cinema, broadcast television, digital streaming, social, and live events.',
-    },
-  ],
-};
+function SourceList({ items }: { items: string[] }): JSX.Element {
+  return <ul className="angel-experience__source-list">{items.map((item) => <li key={item}>{item}</li>)}</ul>;
+}
+
+function Entries({ entries }: { entries: StoryEntry[] }): JSX.Element {
+  return (
+    <ol className="angel-story__entries">
+      {entries.map((entry, index) => (
+        <li key={entry.title}>
+          <p className="angel-story__entry-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+          <div>
+            <h3>{entry.title}</h3>
+            {entry.description && <p>{entry.description}</p>}
+            {entry.statement && <p className="angel-story__statement">{entry.statement}</p>}
+            {entry.items && entry.items.length > 0 && <SourceList items={entry.items} />}
+            {entry.closing && <p className="angel-story__closing">{entry.closing}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 export function ExperienceStory({ experience }: { experience: SlideExperience }): JSX.Element | null {
   const story = experienceStoryForRoute(experience.route);
-  const [activePillar, setActivePillar] = useState(0);
-
-  useEffect(() => {
-    setActivePillar(0);
-  }, [experience.route]);
-
   if (!story) return null;
 
   const map = maps[experience.route];
   const routeVisuals = explorerVisuals[experience.route];
-  const storyVisuals = routeVisuals?.story || [];
-  const mapVisuals = routeVisuals?.map || [];
-  const pillars = ROUTE_PILLARS[experience.route] || [];
-
-  const section01 = story.sections[0];
-  const section02 = story.sections[1];
-  const section03 = story.sections[2];
-  const section04 = story.sections[3];
-  const section05 = story.sections[4];
-  const section06 = story.sections[5];
-
   return (
     <>
-      {/* 1. EDITORIAL STORY & CORE PILLARS VISUAL BENTO */}
-      <section
-        className="apple-story-section"
-        aria-labelledby="experience-story-title"
-        data-story-route={experience.route}
-      >
-        <div className="apple-story-container">
-          {section01 && (
-            <header className="apple-story-header">
-              <div className="apple-section-eyebrow">
-                <span className="apple-section-eyebrow__dot" aria-hidden="true" />
-                <span>01 · {experience.label} Architecture</span>
-              </div>
-              <h2 id="experience-story-title" className="apple-story-title">
-                {section01.title}
-              </h2>
-              {section01.paragraphs?.[0] && (
-                <p className="apple-story-lead">{section01.paragraphs[0]}</p>
-              )}
-            </header>
-          )}
-
-          {/* Two-Column Editorial Dossier with Category Visual Plates */}
-          <div className="apple-story-compare-grid">
-            {section01 && (
-              <article className="apple-glass-card apple-glass-card--dossier">
-                {mapVisuals[0] && (
-                  <div className="apple-dossier-visual">
-                    <img
-                      src={mapVisuals[0].src}
-                      alt={mapVisuals[0].caption}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="apple-dossier-visual__overlay" aria-hidden="true" />
-                    <span className="apple-dossier-visual__badge">01 · Core Definition</span>
-                    <span className="apple-dossier-visual__caption">
-                      {mapVisuals[0].subtitle || mapVisuals[0].caption}
-                    </span>
-                  </div>
-                )}
-                <div className="apple-dossier-body">
-                  <span className="apple-card-kicker">{section01.title}</span>
-                  <h3>{experience.heading}</h3>
-                  {(section01.paragraphs?.slice(1) || [experience.summary]).map((p) => (
-                    <p key={p} style={{ marginBottom: '0.75rem' }}>
-                      {p}
-                    </p>
-                  ))}
-                  {section01.closing && <p>{section01.closing}</p>}
-                </div>
-              </article>
-            )}
-
-            {section02 && (
-              <article className="apple-glass-card apple-glass-card--dossier apple-glass-card--accent">
-                {mapVisuals[2] && (
-                  <div className="apple-dossier-visual">
-                    <img
-                      src={mapVisuals[2].src}
-                      alt={mapVisuals[2].caption}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <div className="apple-dossier-visual__overlay" aria-hidden="true" />
-                    <span className="apple-dossier-visual__badge">02 · Creative Mechanics</span>
-                    <span className="apple-dossier-visual__caption">
-                      {mapVisuals[2].subtitle || mapVisuals[2].caption}
-                    </span>
-                  </div>
-                )}
-                <div className="apple-dossier-body">
-                  <span className="apple-card-kicker">02 · {section02.title}</span>
-                  <h3>{section02.statement || section02.title}</h3>
-                  {section02.paragraphs?.map((p) => (
-                    <p key={p} style={{ marginBottom: '0.75rem' }}>
-                      {p}
-                    </p>
-                  ))}
-                  {section02.closing && <p>{section02.closing}</p>}
-                </div>
-              </article>
-            )}
-          </div>
-
-          {/* 4-Pillar Visual Bento Grid */}
-          {pillars.length > 0 && (
-            <div className="apple-bento-block">
-              <div className="apple-bento-block__head">
-                <div>
-                  <span className="apple-card-kicker">Core Architectural Pillars</span>
-                  <h3 className="apple-bento-block__title">
-                    What Powers {experience.label}
-                  </h3>
-                </div>
-                <span className="apple-bento-block__meta">
-                  4 Core Layers · Unique Category Visuals
-                </span>
-              </div>
-
-              <div className="apple-pillars-grid apple-pillars-grid--visual" role="list">
-                {pillars.map((pillar, idx) => {
-                  const visual = storyVisuals[idx];
-                  const isSelected = activePillar === idx;
-                  return (
-                    <article
-                      key={pillar.title}
-                      className={`apple-pillar-card apple-pillar-card--visual${
-                        isSelected ? ' is-selected' : ''
-                      }`}
-                      role="listitem"
-                      onClick={() => setActivePillar(idx)}
-                      onMouseEnter={() => setActivePillar(idx)}
-                    >
-                      {visual && (
-                        <div className="apple-pillar-card__media">
-                          <img
-                            src={visual.src}
-                            alt={`${pillar.title} — ${visual.subtitle || visual.caption}`}
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <div className="apple-pillar-card__media-scrim" aria-hidden="true" />
-                          <span className="apple-pillar-card__index">
-                            {String(idx + 1).padStart(2, '0')}
-                          </span>
-                          <span className="apple-pillar-card__tag">{pillar.tag}</span>
-                        </div>
-                      )}
-                      <div className="apple-pillar-card__content">
-                        <h4 className="apple-pillar-card__title">{pillar.title}</h4>
-                        <p className="apple-pillar-card__desc">{pillar.text}</p>
-                        {visual?.subtitle && (
-                          <div className="apple-pillar-card__CaptionFoot">
-                            <span className="apple-pillar-card__dot" aria-hidden="true" />
-                            <span>{visual.subtitle}</span>
-                          </div>
-                        )}
-                      </div>
-                    </article>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* Section 04: Experience Layer / Core Considerations Bento */}
-          {section04?.entries && section04.entries.length > 0 && (
-            <div className="apple-bento-block">
-              <div className="apple-bento-block__head">
-                <div>
-                  <span className="apple-card-kicker">04 · {section04.title}</span>
-                  <h3 className="apple-bento-block__title">
-                    {section04.intro || section04.title}
-                  </h3>
-                </div>
-                {section06?.sequence && (
-                  <span className="apple-bento-block__meta">
-                    {section06.sequence.join(' → ')}
-                  </span>
-                )}
-              </div>
-
-              <div className="apple-values-grid" role="list">
-                {section04.entries.slice(0, 4).map((entry, idx) => (
-                  <article key={entry.title} className="apple-value-card" role="listitem">
-                    <div className="apple-value-card__top">
-                      <span className="apple-value-card__index">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <span className="apple-value-card__pill">{experience.label}</span>
-                    </div>
-                    <h4 className="apple-value-card__title">{entry.title}</h4>
-                    <p className="apple-value-card__desc">
-                      {entry.description || entry.statement}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* 2. INTERACTIVE EXPERIENCE MAP WORKBENCH */}
-      {map && (
-        <div id="inner-flow">
-          <ExperienceMap
-            map={map}
-            number="03"
-            visual={routeVisuals?.hero.src}
-            visuals={routeVisuals?.map}
-          />
-        </div>
-      )}
-
-      {/* 3. INTERACTIVE APPLICATION EXPLORER WORKBENCH & VISUAL BENTO DIRECTORY */}
-      {section03?.entries && map && (
-        <div id="inner-domains">
-          <ApplicationExplorer
-            mode={map.mode}
-            entries={section03.entries}
-            visual={routeVisuals?.hero.src}
-            visuals={routeVisuals?.applications}
-            kicker={`04 · ${experience.label} Domains`}
-            heading={section03.title}
-            lead={
-              section03.intro ||
-              `Explore ${section03.entries.length} specialized ${experience.label} categories—each with its own dedicated visual plate and capabilities.`
-            }
-          />
-        </div>
-      )}
-
-      {/* 4. WHO CAN USE IT & EVOLUTION */}
-      {(section05 || section06) && (
-        <section className="apple-story-section" aria-label={`${experience.label} contexts`}>
-          <div className="apple-story-container">
-            <div className="apple-story-compare-grid">
-              {section05 && (
-                <article className="apple-glass-card">
-                  <span className="apple-card-kicker">05 · {section05.title}</span>
-                  <h3>{section05.intro || 'Organizations & Teams We Support'}</h3>
-                  {section05.items && (
-                    <ul className="apple-capabilities-list" style={{ marginTop: '1rem' }}>
-                      {section05.items.map((item) => (
-                        <li key={item} className="apple-capabilities-list__item">
-                          <span className="apple-capabilities-list__check" aria-hidden="true">
-                            ✓
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              )}
-
-              {section06 && (
-                <article className="apple-glass-card apple-glass-card--accent">
-                  <span className="apple-card-kicker">06 · {section06.title}</span>
-                  <h3>{section06.statement || section06.title}</h3>
-                  {section06.intro && <p style={{ marginBottom: '0.85rem' }}>{section06.intro}</p>}
-                  {section06.sequence && (
-                    <div className="apple-stage-flow-pills" style={{ marginTop: '1rem' }}>
-                      {section06.sequence.map((step, idx) => (
-                        <span key={step} className="apple-stage-flow-pill is-current">
-                          {idx + 1}. {step}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  {section06.closing && <p style={{ marginTop: '0.75rem' }}>{section06.closing}</p>}
-                </article>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
+      {story.sections.map((section, index) => (
+        <Fragment key={section.title}>
+          <StorySection number={String(index + 1).padStart(2, '0')} title={section.title}>
+            {section.intro && <p>{section.intro}</p>}
+            {section.paragraphs && <div className="angel-story__prose">{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>}
+            {section.statement && <p className="angel-story__statement">{section.statement}</p>}
+            {section.items && section.items.length > 0 && <SourceList items={section.items} />}
+            {section.entries && section.entries.length > 0 && (index === 2 && map ? <ApplicationExplorer mode={map.mode} entries={section.entries} visual={routeVisuals?.hero.src} visuals={routeVisuals?.applications} /> : <Entries entries={section.entries} />)}
+            {section.sequence && section.sequence.length > 0 && <p className="angel-story__sequence">{section.sequence.join(' → ')}</p>}
+            {section.closing && <p className="angel-story__closing">{section.closing}</p>}
+          </StorySection>
+          {index === 1 && map && <ExperienceMap map={map} visual={routeVisuals?.hero.src} visuals={routeVisuals?.map} />}
+        </Fragment>
+      ))}
     </>
   );
 }
