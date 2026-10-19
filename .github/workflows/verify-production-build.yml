@@ -1,0 +1,103 @@
+name: Verify production build
+
+on:
+  push:
+    branches:
+      - main
+      - "fix/**"
+      - "staging/**"
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Type-check and build production site
+        run: npm run build
+
+      - name: Verify generated routes and local assets
+        run: |
+          node --input-type=module <<'NODE'
+          import { existsSync, readFileSync } from 'node:fs';
+          import { join } from 'node:path';
+
+          const requiredRoutes = [
+            '/', '/about/', '/contact/', '/works/', '/metaverse/',
+            '/360-video/', '/animation/', '/augment-reality/',
+            '/brand-advertisement/', '/media-production/',
+            '/mixed-reality/', '/virtual-reality/',
+            '/privacy-policy/', '/terms-of-service/',
+            '/capabilities/brand/', '/capabilities/design/',
+            '/capabilities/content/', '/capabilities/animation-3d/',
+            '/capabilities/digital/', '/capabilities/experiences/',
+            '/capabilities/creative-technology/', '/capabilities/film/'
+          ];
+
+          const missingRoutes = requiredRoutes.filter((route) => {
+            const file = route === '/' ? 'dist/index.html' : join('dist', route.slice(1), 'index.html');
+            return !existsSync(file);
+          });
+
+          const html = readFileSync('index.html', 'utf8');
+          const stylesheetPaths = [...html.matchAll(/<link[^>]+href="(\/legacy-assets\/[^"]+\.css)"/g)]
+            .map((match) => match[1]);
+          const missingStylesheets = stylesheetPaths.filter((url) =>
+            !existsSync(join('public', url.slice(1)))
+          );
+
+          const slides = JSON.parse(readFileSync('src/data/slideExperiences.json', 'utf8'));
+          const mediaPaths = slides.flatMap((slide) => [slide.video, slide.poster])
+            .filter((url) => typeof url === 'string' && url.startsWith('/'));
+          const missingMedia = [...new Set(mediaPaths)].filter((url) =>
+            !existsSync(join('public', url.slice(1)))
+          );
+
+          for (const [label, items] of [
+            ['Generated route files', missingRoutes],
+            ['Local stylesheets', missingStylesheets],
+            ['Local slide media/posters', missingMedia],
+          ]) {
+            if (items.length) {
+              console.error(label + ' missing:');
+              for (const item of items) console.error(' - ' + item);
+              process.exitCode = 1;
+            }
+          }
+
+          if (!process.exitCode) {
+            console.log('Verified ' + requiredRoutes.length + ' routes, ' +
+              stylesheetPaths.length + ' stylesheet links and ' +
+              mediaPaths.length + ' local slide media/poster references.');
+          }
+          NODE
+
+      - name: Upload deployable static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: angel-creations-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
