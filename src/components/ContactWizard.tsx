@@ -683,287 +683,314 @@ export function ContactWizard(): JSX.Element {
         } as React.CSSProperties
       }
     >
-      {/* Ambient spatial grid / orb backdrop */}
+      {/* Ambient warm studio backdrop: hairline drawing grid + slow ember field */}
       <div className="ac-ambient-backdrop" aria-hidden="true">
-        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--violet" />
-        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--cyan" />
-        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--magenta" />
+        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--ivory" />
+        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--ember" />
         <span className="ac-ambient-backdrop__grid" />
       </div>
 
-      {/* Editorial studio header */}
-      <header className="ac-studio-hero" aria-labelledby="contact-page-title">
-        <p className="ac-studio-hero__eyebrow">
-          <span className="ac-studio-hero__eyebrow-dot" aria-hidden="true" />
-          Angel Creations · Global Production Concierge
-        </p>
-        <h1 id="contact-page-title" className="ac-studio-hero__title">
-          Let’s build what <span className="ac-studio-hero__title-accent">doesn’t exist yet.</span>
-        </h1>
-        <p className="ac-studio-hero__lead">
-          Answer eight executive questions and our production desk will return a tailored
-          proposal deck. Prefer to talk first? Jump straight to our direct channels.
-        </p>
-        <div className="ac-studio-hero__actions">
-          <a className="ac-jump-pill" href="#direct-contact-channels">
-            <span>Direct contact channels</span>
-            <span className="ac-jump-pill__arrow" aria-hidden="true">
-              ↓
-            </span>
-          </a>
-          <a
-            className="ac-back-link"
-            href="/"
-            onClick={(event) => handleLinkClick(event, '/')}
-          >
-            ← Back to homepage
-          </a>
-        </div>
-      </header>
-
-      {/* Sculptural Apple Liquid Glass wizard stage */}
-      <section className="section-contact ac-wizard-section" aria-label="Guided project enquiry">
-        <div className="contact-inner ac-wizard-shell">
-          <form
-            id="booking-form"
-            className="wpcf7-form init"
-            aria-label="Project enquiry"
-            noValidate
-            onSubmit={(event) => {
-              event.preventDefault();
-              next();
-            }}
-          >
-            <div className="angel-honeypot" aria-hidden="true">
-              <label htmlFor="contact-website">Leave this field empty</label>
-              <input
-                id="contact-website"
-                name="website"
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-                value={honeypot}
-                onChange={(event) => setHoneypot(event.target.value)}
-              />
+      {/* The Concierge Desk: wayfinding rail + conversational stage */}
+      <div className="ac-desk">
+        <aside className="ac-rail" aria-label="Enquiry progress and question index">
+          <div className="ac-rail__sticky">
+            <div className="ac-rail__brand">
+              <span className="ac-rail__brand-name">Angel Creations</span>
+              <span className="ac-rail__brand-role">Global Production Concierge</span>
+              <a
+                className="ac-rail__home"
+                href="/"
+                onClick={(event) => handleLinkClick(event, '/')}
+              >
+                ← Return to studio
+              </a>
             </div>
-            <p className="sr-only" aria-live="polite">
-              {formStatus}
-            </p>
 
-            {prepared ? (
-              /* PREPARED ENQUIRY SUMMARY */
-              <section className="ac-summary" aria-labelledby="ac-summary-title">
-                <div className="ac-summary__badge-row">
-                  <span className="ac-summary__badge">✓ Enquiry prepared</span>
-                  <span className="ac-step-category-pill">N° 08 — 08 · All steps complete</span>
-                </div>
-                <h2 id="ac-summary-title" className="ac-summary__title">
-                  Your enquiry summary is ready for dispatch.
-                </h2>
-                <p className="ac-summary__lead">
-                  Review your brief below, then open a pre-addressed email draft to{' '}
-                  <strong>business@angelcreations.in</strong>, copy the enquiry text, or call our
-                  production desk directly.
-                </p>
-
-                <div className="ac-summary__grid">
-                  {fields.map((item, index) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      className="ac-summary__item"
-                      onClick={() => jumpToStep(index)}
-                      title={`Edit N° ${String(index + 1).padStart(2, '0')} — ${item.name}`}
-                    >
-                      <span className="ac-summary__item-label">
-                        <span>
-                          N° {String(index + 1).padStart(2, '0')} · {item.name}
-                        </span>
-                        <span className="ac-summary__item-edit">Edit ✎</span>
-                      </span>
-                      <span className="ac-summary__item-value">{values[item.id] || '—'}</span>
-                    </button>
-                  ))}
-                </div>
-
-                <div className="ac-summary__actions">
-                  <a className="ac-cta ac-cta--primary" href={createMailto(values)}>
-                    <span>Open email draft ↗</span>
-                  </a>
-                  <button
-                    type="button"
-                    className="ac-cta ac-cta--ghost"
-                    onClick={() => handleCopyText(formatBriefBody(values), 'brief')}
-                  >
-                    <span>{copiedKey === 'brief' ? '✓ Copied to clipboard' : 'Copy enquiry text'}</span>
-                  </button>
-                  <a className="ac-cta ac-cta--ghost" href="tel:+918058465733">
-                    <span>Call +91-8058465733</span>
-                  </a>
-                  <button
-                    type="button"
-                    className="ac-cta ac-cta--text"
-                    onClick={() => setPrepared(false)}
-                  >
-                    Edit answers
-                  </button>
-                  <button type="button" className="ac-cta ac-cta--text" onClick={reset}>
-                    Start again
-                  </button>
-                </div>
-              </section>
-            ) : (
-              /* GUIDED ONE-QUESTION-AT-A-TIME WIZARD */
-              <div className="ac-wizard">
-                {/* Signature N° progress header */}
-                <div className="step-title ac-progress-head">
-                  <span className="ac-slider-progress ac-progress-head__count" aria-live="polite">
-                    <span className="ac-slider-prefix">
+            <div className="step-title ac-rail__counter" aria-live="polite">
+              {prepared ? (
+                <>
+                  <span className="ac-slider-progress ac-rail__counter-figure">
+                    <span className="ac-rail__counter-check">✓</span>
+                  </span>
+                  <span className="ac-rail__counter-meta">
+                    All <strong>08</strong> answered · Ready to send
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="ac-slider-progress ac-rail__counter-figure">
+                    <span className="ac-slider-prefix ac-rail__counter-prefix">
                       N<small>o</small>
                     </span>
-                    <span className="ac-progress-head__current" data-index={step + 1}>
+                    <span className="ac-rail__counter-value" data-index={step + 1}>
                       {String(step + 1).padStart(2, '0')}
                     </span>
-                    <span className="ac-progress-head__total">— 08</span>
                   </span>
-                  <span className="ac-step-category-pill">{field.category}</span>
-                </div>
+                  <span className="ac-rail__counter-meta">
+                    of <strong>08</strong> · {field.category}
+                  </span>
+                </>
+              )}
+              <span className="ac-rail__counter-beam" aria-hidden="true" />
+            </div>
 
-                <div
-                  className="ac-progress-line"
-                  role="progressbar"
-                  aria-valuenow={answeredCount}
-                  aria-valuemin={0}
-                  aria-valuemax={fields.length}
-                  aria-valuetext={`${answeredCount} of ${fields.length} questions answered`}
-                  aria-label="Questions answered"
-                >
-                  <span
-                    className="ac-progress-line__fill"
-                    style={{ width: `${progressPct}%` }}
-                  />
-                </div>
+            <div
+              className="ac-rail__progress"
+              role="progressbar"
+              aria-valuenow={answeredCount}
+              aria-valuemin={0}
+              aria-valuemax={fields.length}
+              aria-valuetext={`${answeredCount} of ${fields.length} questions answered`}
+              aria-label="Questions answered"
+            >
+              <span
+                className="ac-rail__progress-fill"
+                style={{ width: `${progressPct}%` }}
+              />
+              <span className="ac-rail__progress-label">
+                {answeredCount} / {String(fields.length).padStart(2, '0')} answered
+              </span>
+            </div>
 
-                <div className="ac-step-dots" role="group" aria-label="Jump to a completed question">
-                  {fields.map((item, index) => {
-                    const isCurrent = index === step;
-                    const isAnswered = isValid(item, values[item.id]);
-                    const isUnlocked = index <= maxStep;
-                    return (
+            <ol className="ac-rail__index" aria-label="Question index">
+              {fields.map((item, index) => {
+                const isCurrent = !prepared && index === step;
+                const isAnswered = isValid(item, values[item.id]);
+                const isUnlocked = index <= maxStep || isAnswered;
+                return (
+                  <li key={item.id} className="ac-rail__index-item">
+                    <button
+                      type="button"
+                      className={`ac-rail__index-btn${isCurrent ? ' is-current' : ''}${
+                        isAnswered ? ' is-answered' : ''
+                      }`}
+                      disabled={!isUnlocked}
+                      aria-current={isCurrent ? 'step' : undefined}
+                      aria-label={`Question ${index + 1} of ${fields.length}: ${item.name}${
+                        isAnswered ? ' (answered)' : ''
+                      }`}
+                      onClick={() => jumpToStep(index)}
+                    >
+                      <span className="ac-rail__index-num">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="ac-rail__index-label">{item.category}</span>
+                      <span className="ac-rail__index-state" aria-hidden="true">
+                        {isAnswered ? '✓' : ''}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        </aside>
+
+        <section className="ac-stage" aria-label="Guided project enquiry">
+          {/* Compact editorial header */}
+          <header className="ac-studio-hero" aria-labelledby="contact-page-title">
+            <h1 id="contact-page-title" className="ac-studio-hero__title">
+              Let’s build what <span className="ac-studio-hero__title-accent">doesn’t exist yet.</span>
+            </h1>
+            <p className="ac-studio-hero__lead">
+              Eight executive questions, one tailored proposal deck. Prefer to talk first?
+            </p>
+            <div className="ac-studio-hero__actions">
+              <a className="ac-jump-pill" href="#direct-contact-channels">
+                <span>Direct contact channels</span>
+                <span className="ac-jump-pill__arrow" aria-hidden="true">
+                  ↓
+                </span>
+              </a>
+            </div>
+          </header>
+
+          <div className="section-contact ac-question-stage">
+            <form
+              id="booking-form"
+              className="wpcf7-form init"
+              aria-label="Project enquiry"
+              noValidate
+              onSubmit={(event) => {
+                event.preventDefault();
+                next();
+              }}
+            >
+              <div className="angel-honeypot" aria-hidden="true">
+                <label htmlFor="contact-website">Leave this field empty</label>
+                <input
+                  id="contact-website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(event) => setHoneypot(event.target.value)}
+                />
+              </div>
+              <p className="sr-only" aria-live="polite">
+                {formStatus}
+              </p>
+
+              {prepared ? (
+                /* PREPARED ENQUIRY SUMMARY */
+                <section className="ac-summary" aria-labelledby="ac-summary-title">
+                  <span className="ac-summary__badge">✓ Enquiry prepared</span>
+                  <h2 id="ac-summary-title" className="ac-summary__title">
+                    Your brief is ready for the studio.
+                  </h2>
+                  <p className="ac-summary__lead">
+                    Check the ledger below, then open a pre-addressed draft to{' '}
+                    <strong>business@angelcreations.in</strong>, copy the text for any channel,
+                    or call the desk directly.
+                  </p>
+
+                  <div className="ac-summary__grid">
+                    {fields.map((item, index) => (
                       <button
                         key={item.id}
                         type="button"
-                        className={`ac-step-dot${isCurrent ? ' is-current' : ''}${
-                          isAnswered ? ' is-answered' : ''
-                        }`}
-                        disabled={!isUnlocked && !isAnswered}
-                        aria-label={`Question ${index + 1} of ${fields.length}: ${item.name}${
-                          isAnswered ? ' (answered)' : ''
-                        }`}
-                        aria-current={isCurrent ? 'step' : undefined}
+                        className="ac-summary__item"
                         onClick={() => jumpToStep(index)}
+                        title={`Edit N° ${String(index + 1).padStart(2, '0')} — ${item.name}`}
                       >
-                        {String(index + 1).padStart(2, '0')}
+                        <span className="ac-summary__item-label">
+                          <span>
+                            N° {String(index + 1).padStart(2, '0')} · {item.name}
+                          </span>
+                          <span className="ac-summary__item-edit">Edit ✎</span>
+                        </span>
+                        <span className="ac-summary__item-value">{values[item.id] || '—'}</span>
                       </button>
-                    );
-                  })}
-                </div>
-
-                <div className="tab-pane ac-step-pane" id={`step${step + 1}`}>
-                  <p className="sr-only" aria-live="polite">
-                    Question {step + 1} of {fields.length}: {field.name}
-                  </p>
-
-                  <label className="ac-question-label" htmlFor={`contact-field-${field.id}`}>
-                    <span className="ac-question-index">
-                      N° {String(step + 1).padStart(2, '0')} — {field.category}
-                    </span>
-                    <h2 className="ac-question-title">{field.label}</h2>
-                  </label>
-                  <p className="ac-question-hint">{field.hint}</p>
-
-                  {field.kind === 'select'
-                    ? renderDisciplineSelect()
-                    : renderUnderlinedField(field.kind === 'textarea')}
-
-                  <div className="errorTxt ac-error-row" id={currentErrorId} aria-live="polite">
-                    {showCurrentError() ? (
-                      <span className="ac-error">
-                        {field.inputType === 'email' && currentValue.trim()
-                          ? 'Please enter a valid email address.'
-                          : 'Please answer this question to continue.'}
-                      </span>
-                    ) : null}
+                    ))}
                   </div>
 
-                  <ul className="ac-wizard-nav">
-                    <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
-                      <button
-                        className={`ac-nav-btn ac-nav-btn--prev prev-btn prev-btn${step + 1}`}
-                        type="button"
-                        aria-label="Previous question"
-                        disabled={step === 0}
-                        onClick={previous}
-                      >
-                        <span aria-hidden="true">←</span> Prev
-                      </button>
-                    </li>
-                    <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
-                      <button
-                        className={`ac-nav-btn ac-nav-btn--next ${
-                          step === fields.length - 1
-                            ? 'submit-btn next-btn'
-                            : `next-btn next-btn${step + 1}`
-                        }`}
-                        type="submit"
-                        aria-label={
-                          step === fields.length - 1 ? 'Prepare enquiry summary' : 'Next question'
-                        }
-                      >
-                        {step === fields.length - 1 ? 'Prepare summary' : 'Next'}{' '}
-                        <span aria-hidden="true">→</span>
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Live answered-brief trail */}
-                <aside className="ac-answered-trail" aria-label="Your brief so far">
-                  <span className="ac-answered-trail__label">
-                    Your brief so far · {answeredCount} of {String(fields.length).padStart(2, '0')}
-                  </span>
-                  {answeredFields.length > 0 ? (
-                    <ul className="ac-answered-trail__chips">
-                      {answeredFields.map((item) => {
-                        const index = fields.indexOf(item);
-                        const raw = values[item.id].trim();
-                        const clipped = raw.length > 26 ? `${raw.slice(0, 24)}…` : raw;
-                        return (
-                          <li key={item.id}>
-                            <button
-                              type="button"
-                              className={`ac-answered-chip${index === step ? ' is-current' : ''}`}
-                              onClick={() => jumpToStep(index)}
-                              title={`${item.shortLabel}: ${raw} — click to revisit`}
-                            >
-                              <span className="ac-answered-chip__key">{item.shortLabel}</span>
-                              <span className="ac-answered-chip__value">{clipped}</span>
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  ) : (
-                    <p className="ac-answered-trail__empty">
-                      Your answers appear here as you progress through the eight questions.
+                  <div className="ac-summary__actions">
+                    <a className="ac-cta ac-cta--primary" href={createMailto(values)}>
+                      <span>Open email draft ↗</span>
+                    </a>
+                    <button
+                      type="button"
+                      className="ac-cta ac-cta--ghost"
+                      onClick={() => handleCopyText(formatBriefBody(values), 'brief')}
+                    >
+                      <span>{copiedKey === 'brief' ? '✓ Copied to clipboard' : 'Copy enquiry text'}</span>
+                    </button>
+                    <a className="ac-cta ac-cta--ghost" href="tel:+918058465733">
+                      <span>Call +91-8058465733</span>
+                    </a>
+                    <button
+                      type="button"
+                      className="ac-cta ac-cta--text"
+                      onClick={() => setPrepared(false)}
+                    >
+                      Edit answers
+                    </button>
+                    <button type="button" className="ac-cta ac-cta--text" onClick={reset}>
+                      Start again
+                    </button>
+                  </div>
+                </section>
+              ) : (
+                <div className="ac-conversation">
+                  <div className="tab-pane ac-step-pane" id={`step${step + 1}`}>
+                    <p className="sr-only" aria-live="polite">
+                      Question {step + 1} of {fields.length}: {field.name}
                     </p>
-                  )}
-                </aside>
-              </div>
-            )}
-          </form>
-        </div>
-      </section>
+
+                    <label className="ac-question-label" htmlFor={`contact-field-${field.id}`}>
+                      <span className="ac-question-kicker">
+                        Question {String(step + 1).padStart(2, '0')}
+                      </span>
+                      <h2 className="ac-question-title">{field.label}</h2>
+                    </label>
+                    <p className="ac-question-hint">{field.hint}</p>
+
+                    {field.kind === 'select'
+                      ? renderDisciplineSelect()
+                      : renderUnderlinedField(field.kind === 'textarea')}
+
+                    <div className="errorTxt ac-error-row" id={currentErrorId} aria-live="polite">
+                      {showCurrentError() ? (
+                        <span className="ac-error">
+                          {field.inputType === 'email' && currentValue.trim()
+                            ? 'Please enter a valid email address.'
+                            : 'Please answer this question to continue.'}
+                        </span>
+                      ) : null}
+                    </div>
+
+                    <ul className="ac-keynav">
+                      <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
+                        <button
+                          className={`ac-keynav__btn ac-keynav__btn--prev prev-btn prev-btn${step + 1}`}
+                          type="button"
+                          aria-label="Previous question"
+                          disabled={step === 0}
+                          onClick={previous}
+                        >
+                          <span aria-hidden="true">←</span> Prev
+                        </button>
+                      </li>
+                      <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
+                        <button
+                          className={`ac-keynav__btn ac-keynav__btn--next ${
+                            step === fields.length - 1
+                              ? 'submit-btn next-btn'
+                              : `next-btn next-btn${step + 1}`
+                          }`}
+                          type="submit"
+                          aria-label={
+                            step === fields.length - 1 ? 'Prepare enquiry summary' : 'Next question'
+                          }
+                        >
+                          {step === fields.length - 1 ? 'Prepare summary' : 'Next'}{' '}
+                          <span aria-hidden="true">→</span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Live brief ledger */}
+                  <aside className="ac-answered-trail" aria-label="Your brief so far">
+                    <span className="ac-answered-trail__label">
+                      Your brief so far · {answeredCount} of {String(fields.length).padStart(2, '0')}
+                    </span>
+                    {answeredFields.length > 0 ? (
+                      <ul className="ac-answered-trail__ledger">
+                        {answeredFields.map((item) => {
+                          const index = fields.indexOf(item);
+                          const raw = values[item.id].trim();
+                          return (
+                            <li key={item.id}>
+                              <button
+                                type="button"
+                                className={`ac-answered-chip${index === step ? ' is-current' : ''}`}
+                                onClick={() => jumpToStep(index)}
+                                title={`${item.shortLabel}: ${raw} — select to revisit`}
+                              >
+                                <span className="ac-answered-chip__num">
+                                  {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <span className="ac-answered-chip__key">{item.shortLabel}</span>
+                                <span className="ac-answered-chip__value">{raw}</span>
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    ) : (
+                      <p className="ac-answered-trail__empty">
+                        Your answers appear here as you progress through the eight questions.
+                      </p>
+                    )}
+                  </aside>
+                </div>
+              )}
+            </form>
+          </div>
+        </section>
+      </div>
 
       {/* Direct Contact Deck */}
       <section
@@ -977,8 +1004,8 @@ export function ContactWizard(): JSX.Element {
             Prefer a direct line to the studio?
           </h2>
           <p className="ac-support-section__lead">
-            Reach the right Angel Creations desk in one tap — or copy any address straight to your
-            clipboard.
+            Reach the right Angel Creations desk in one tap — or copy any address straight to
+            your clipboard.
           </p>
         </header>
 

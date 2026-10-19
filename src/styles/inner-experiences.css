@@ -2161,174 +2161,410 @@
 }
 
 /* ==========================================================================
-   7. CONTACT CONCIERGE PAGE (/contact/) — N° ONE-QUESTION CONVERSATIONAL
-      WIZARD · AMBIENT SPATIAL BACKDROP · APPLE LIQUID GLASS STAGE
+   7. CONTACT CONCIERGE PAGE (/contact/) — "THE CONCIERGE DESK"
+      Scratch layout: persistent wayfinding rail (Graphik N° counter,
+      completion rule, 8-step index) + quiet conversational stage.
+      System: warm charcoal + legacy creme neutrals; cyan is spent only on
+      interactive moments (one color, one meaning); green = success; red =
+      error. Liquid Glass lives only on the functional layer (popover,
+      floating jump pill); content surfaces stay opaque (liquid-glass.md).
       `body .angel-contact-redesign …` + !important overrides the legacy
       custom.css hooks (section.section-contact, li.action_li button,
       .step-title, .supcom.rightsupport, footer.color_creme).
    ========================================================================== */
 body .angel-contact-redesign {
-  --ac-bg: #010204;
+  --ac-bg: #0a0906;
+  --ac-panel: #14120c;
+  --ac-ink: #f4eee3;
+  --ac-ink-2: rgba(244, 238, 227, 0.74);
+  --ac-ink-3: rgba(244, 238, 227, 0.56);
+  --ac-ink-4: rgba(244, 238, 227, 0.38);
+  --ac-creme: #e0ccbb;
   --ac-accent: var(--route-accent, #64d2ff);
-  --ac-accent-secondary: var(--route-accent-secondary, #5e5ce6);
   --ac-accent-rgb: var(--route-accent-rgb, 100, 210, 255);
-  --ac-ink: #f5f5f7;
-  --ac-ink-2: rgba(235, 235, 245, 0.78);
-  --ac-ink-3: rgba(235, 235, 245, 0.6);
-  --ac-ink-4: rgba(235, 235, 245, 0.44);
-  --ac-glass-bg: rgba(15, 17, 25, 0.68);
-  --ac-glass-border: rgba(255, 255, 255, 0.13);
-  --ac-glass-specular: rgba(255, 255, 255, 0.22);
+  --ac-success: #30d158;
+  --ac-error: #ff453a;
+  --ac-hairline: rgba(244, 238, 227, 0.12);
   --ac-ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
   --ac-ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
-  --ac-radius-shell: 34px;
-  --ac-radius-card: 22px;
-  --ac-radius-inner: 16px;
   --ac-radius-pill: 999px;
+  --ac-graphik: 'Graphik', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --ac-ui: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 
   position: relative;
   isolation: isolate;
   min-height: 100vh;
   background-color: var(--ac-bg);
   color: var(--ac-ink);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
-    'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  font-family: var(--ac-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
 }
 
-/* ---- Ambient spatial grid & orb backdrop -------------------------------- */
+/* Visible keyboard focus — one consistent treatment everywhere (HIG › Keyboards) */
+body .angel-contact-redesign button:focus-visible,
+body .angel-contact-redesign a:focus-visible {
+  outline: 2px solid rgba(var(--ac-accent-rgb), 0.75);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ---- Ambient warm studio backdrop ------------------------------------------ */
 body .angel-contact-redesign .ac-ambient-backdrop {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: linear-gradient(180deg, #02030a 0%, #010204 100%);
+  background:
+    radial-gradient(120% 90% at 72% -10%, rgba(38, 30, 18, 0.85), transparent 62%),
+    linear-gradient(180deg, #0d0b07 0%, #0a0906 42%, #080705 100%);
 }
 
 body .angel-contact-redesign .ac-ambient-backdrop__orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.55;
+  filter: blur(100px);
   transform: translate3d(0, 0, 0);
+  pointer-events: none;
 }
 
-body .angel-contact-redesign .ac-ambient-backdrop__orb--violet {
-  top: -18%;
-  right: -14%;
-  width: 58vmax;
-  height: 58vmax;
-  background: radial-gradient(circle at 35% 35%, rgba(94, 92, 230, 0.4), transparent 62%);
-  animation: ac-orb-drift-a 46s var(--ac-ease-snappy) infinite alternate;
+body .angel-contact-redesign .ac-ambient-backdrop__orb--ivory {
+  top: -22%;
+  left: -12%;
+  width: 46vmax;
+  height: 46vmax;
+  background: radial-gradient(circle at 42% 38%, rgba(224, 204, 187, 0.1), transparent 62%);
+  animation: ac-orb-drift-a 52s var(--ac-ease-snappy) infinite alternate;
 }
 
-body .angel-contact-redesign .ac-ambient-backdrop__orb--cyan {
-  bottom: -24%;
-  left: -16%;
-  width: 52vmax;
-  height: 52vmax;
-  background: radial-gradient(circle at 60% 40%, rgba(var(--ac-accent-rgb), 0.3), transparent 64%);
-  animation: ac-orb-drift-b 54s var(--ac-ease-snappy) infinite alternate;
-}
-
-body .angel-contact-redesign .ac-ambient-backdrop__orb--magenta {
-  top: 32%;
-  left: 46%;
-  width: 34vmax;
-  height: 34vmax;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 55, 146, 0.12), transparent 66%);
-  animation: ac-orb-drift-c 40s var(--ac-ease-snappy) infinite alternate;
+body .angel-contact-redesign .ac-ambient-backdrop__orb--ember {
+  bottom: -28%;
+  right: -10%;
+  width: 42vmax;
+  height: 42vmax;
+  background: radial-gradient(circle at 58% 60%, rgba(140, 92, 40, 0.12), transparent 64%);
+  animation: ac-orb-drift-b 58s var(--ac-ease-snappy) infinite alternate;
 }
 
 body .angel-contact-redesign .ac-ambient-backdrop__grid {
   position: absolute;
   inset: -2%;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 68px 68px;
-  mask-image: radial-gradient(78% 62% at 50% 22%, #000 18%, transparent 78%);
-  -webkit-mask-image: radial-gradient(78% 62% at 50% 22%, #000 18%, transparent 78%);
+    linear-gradient(rgba(244, 238, 227, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 238, 227, 0.035) 1px, transparent 1px);
+  background-size: 76px 76px;
+  mask-image: radial-gradient(80% 64% at 30% 12%, #000 16%, transparent 76%);
+  -webkit-mask-image: radial-gradient(80% 64% at 30% 12%, #000 16%, transparent 76%);
 }
 
 @keyframes ac-orb-drift-a {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(-5vw, 4vh, 0) scale(1.07); }
+  to { transform: translate3d(4vw, 3vh, 0) scale(1.05); }
 }
 
 @keyframes ac-orb-drift-b {
   from { transform: translate3d(0, 0, 0) scale(1.04); }
-  to { transform: translate3d(6vw, -4vh, 0) scale(0.98); }
+  to { transform: translate3d(-4vw, -3vh, 0) scale(0.98); }
 }
 
-@keyframes ac-orb-drift-c {
-  from { transform: translate3d(-3vw, 1vh, 0) scale(0.96); }
-  to { transform: translate3d(4vw, -3vh, 0) scale(1.05); }
-}
-
-/* ---- Editorial studio hero ---------------------------------------------- */
-body .angel-contact-redesign .ac-studio-hero {
+/* ---- The Desk: rail + stage layout ------------------------------------------ */
+body .angel-contact-redesign .ac-desk {
   position: relative;
-  width: min(1180px, calc(100% - 3rem));
+  display: grid;
+  grid-template-columns: minmax(290px, 332px) minmax(0, 1fr);
+  align-items: start;
+  width: min(1460px, 100%);
   margin-inline: auto;
-  padding: clamp(7rem, 11vw, 10.5rem) 0 clamp(2.5rem, 4vw, 4rem);
-  text-align: left;
+  padding-top: clamp(6.25rem, 9vw, 7.5rem);
 }
 
-body .angel-contact-redesign .ac-studio-hero__eyebrow {
+/* ---- Wayfinding rail --------------------------------------------------------- */
+body .angel-contact-redesign .ac-rail {
+  border-right: 1px solid var(--ac-hairline);
+}
+
+body .angel-contact-redesign .ac-rail__sticky {
+  position: sticky;
+  top: clamp(5.5rem, 8vw, 6.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.4rem, 2.4vw, 2.1rem) 2.5rem;
+}
+
+body .angel-contact-redesign .ac-rail__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+body .angel-contact-redesign .ac-rail__brand-name {
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: 0.98rem;
+  letter-spacing: 0.015em;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-rail__brand-role {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ac-creme);
+}
+
+body .angel-contact-redesign .ac-rail__home {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 1.35rem;
-  font-size: 0.78rem;
+  min-height: 44px;
+  margin-top: 0.35rem;
+  color: var(--ac-ink-3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 170ms ease;
+}
+
+body .angel-contact-redesign .ac-rail__home:hover {
+  color: var(--ac-creme);
+}
+
+/* Signature N° counter */
+body .angel-contact-redesign .step-title.ac-rail__counter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding-bottom: 1.1rem;
+}
+
+body .angel-contact-redesign .ac-slider-progress.ac-rail__counter-figure {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-right: 0;
+  line-height: 0.95;
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-slider-progress::before {
+  display: none;
+}
+
+body .angel-contact-redesign .ac-rail__counter-prefix {
+  margin-right: 0;
+  pointer-events: none;
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  letter-spacing: 0.03em;
+  color: var(--ac-creme);
+}
+
+body .angel-contact-redesign .ac-rail__counter-prefix small {
+  position: static;
+  font-size: 0.6em;
+  line-height: 1;
+  vertical-align: super;
+  color: inherit;
+}
+
+body .angel-contact-redesign .ac-rail__counter-value {
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: clamp(3.9rem, 5.6vw, 5.4rem);
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+
+body .angel-contact-redesign .ac-rail__counter-check {
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: clamp(3.4rem, 5vw, 4.8rem);
+  line-height: 0.95;
+  color: var(--ac-success);
+}
+
+body .angel-contact-redesign .ac-rail__counter-meta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ac-ink-3);
+}
+
+body .angel-contact-redesign .ac-rail__counter-meta strong {
+  color: var(--ac-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+body .angel-contact-redesign .ac-rail__counter-beam {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ac-accent), transparent 130%);
+  box-shadow: 0 0 10px rgba(var(--ac-accent-rgb), 0.5);
+}
+
+/* Completion rule (determinate, answers/8) */
+body .angel-contact-redesign .ac-rail__progress {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  border-top: 2px solid rgba(244, 238, 227, 0.1);
+  padding-top: 0.55rem;
+}
+
+body .angel-contact-redesign .ac-rail__progress-fill {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ac-accent);
+  box-shadow: 0 0 12px rgba(var(--ac-accent-rgb), 0.45);
+  transition: width 560ms var(--ac-ease-spring);
+}
+
+body .angel-contact-redesign .ac-rail__progress-label {
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--ac-ink-4);
+}
+
+/* Question index */
+body .angel-contact-redesign ol.ac-rail__index,
+body .angel-contact-redesign .ac-rail__index {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  list-style: none;
+}
+
+body .angel-contact-redesign .ac-rail__index-item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body .angel-contact-redesign .ac-rail__index-btn {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.35rem 0.6rem;
+  border-radius: 10px;
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 100ms ease-out;
+}
+
+body .angel-contact-redesign .ac-rail__index-btn:hover:not(:disabled) {
+  background: rgba(244, 238, 227, 0.06);
+}
+
+body .angel-contact-redesign .ac-rail__index-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+body .angel-contact-redesign .ac-rail__index-btn.is-current {
+  border-left-color: var(--ac-accent);
+  background: rgba(var(--ac-accent-rgb), 0.07);
+}
+
+body .angel-contact-redesign .ac-rail__index-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+body .angel-contact-redesign .ac-rail__index-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ac-ink-4);
+}
+
+body .angel-contact-redesign .ac-rail__index-btn.is-current .ac-rail__index-num {
   color: var(--ac-accent);
 }
 
-body .angel-contact-redesign .ac-studio-hero__eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #30d158;
-  box-shadow: 0 0 10px rgba(48, 209, 88, 0.9);
-  animation: ac-pulse-dot 2.6s ease-in-out infinite;
+body .angel-contact-redesign .ac-rail__index-label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ac-ink-3);
 }
 
-@keyframes ac-pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(0.82); }
+body .angel-contact-redesign .ac-rail__index-btn.is-current .ac-rail__index-label {
+  color: var(--ac-ink);
+}
+
+body .angel-contact-redesign .ac-rail__index-btn.is-answered .ac-rail__index-label {
+  color: var(--ac-ink-2);
+}
+
+body .angel-contact-redesign .ac-rail__index-state {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ac-creme);
+}
+
+/* ---- Conversational stage ----------------------------------------------------- */
+body .angel-contact-redesign .ac-stage {
+  min-width: 0;
+  padding: 0 clamp(1.4rem, 4.5vw, 4.5rem) clamp(3.5rem, 6vw, 5rem);
+}
+
+body .angel-contact-redesign .ac-studio-hero {
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(2.25rem, 4vw, 3.25rem);
 }
 
 body .angel-contact-redesign .ac-studio-hero__title {
-  margin: 0 0 1.35rem;
-  max-width: 14ch;
-  font-size: clamp(2.9rem, 7.4vw, 5.6rem);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  margin: 0 0 1.1rem;
+  max-width: 17ch;
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: clamp(2.1rem, 4.2vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.026em;
   font-optical-sizing: auto;
   text-wrap: balance;
   color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-studio-hero__title-accent {
-  background: linear-gradient(96deg, var(--ac-accent) 8%, var(--ac-accent-secondary) 92%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+  color: var(--ac-creme);
 }
 
 body .angel-contact-redesign .ac-studio-hero__lead {
-  margin: 0 0 2.1rem;
-  max-width: 58ch;
-  font-size: clamp(1rem, 1.2vw, 1.13rem);
-  line-height: 1.62;
+  margin: 0 0 1.6rem;
+  max-width: 52ch;
+  font-size: 0.98rem;
+  line-height: 1.6;
   color: var(--ac-ink-2);
   text-wrap: pretty;
 }
@@ -2337,44 +2573,36 @@ body .angel-contact-redesign .ac-studio-hero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1.1rem;
+  gap: 1rem;
 }
 
 body .angel-contact-redesign .ac-jump-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  min-height: 48px;
-  padding: 0 1.45rem;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0 1.25rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid var(--ac-glass-border);
-  box-shadow: inset 0 1px 0 0 var(--ac-glass-specular);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  color: var(--ac-ink);
-  font-size: 0.92rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  background: rgba(var(--ac-accent-rgb), 0.06);
+  border: 1px solid rgba(var(--ac-accent-rgb), 0.42);
+  box-shadow: 0 0 0 1px rgba(var(--ac-accent-rgb), 0.05);
+  color: var(--ac-accent);
+  font-size: 0.86rem;
+  font-weight: 650;
+  letter-spacing: -0.005em;
   text-decoration: none;
   transition:
-    transform 170ms var(--ac-ease-spring),
-    background-color 190ms ease,
-    border-color 190ms ease;
+    transform 100ms ease-out,
+    background-color 180ms ease,
+    border-color 180ms ease;
 }
 
 body .angel-contact-redesign .ac-jump-pill:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(var(--ac-accent-rgb), 0.5);
-  transform: translateY(-1px);
-}
-
-body .angel-contact-redesign .ac-jump-pill:active {
-  transform: scale(0.97);
+  background: rgba(var(--ac-accent-rgb), 0.12);
+  border-color: rgba(var(--ac-accent-rgb), 0.65);
 }
 
 body .angel-contact-redesign .ac-jump-pill__arrow {
-  color: var(--ac-accent);
   animation: ac-nudge-down 2.4s ease-in-out infinite;
 }
 
@@ -2383,239 +2611,26 @@ body .angel-contact-redesign .ac-jump-pill__arrow {
   50% { transform: translateY(3px); }
 }
 
-body .angel-contact-redesign .ac-back-link {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-  color: var(--ac-ink-3);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 170ms ease;
-}
-
-body .angel-contact-redesign .ac-back-link:hover {
-  color: var(--ac-ink);
-}
-
-/* ---- Sculptural Liquid Glass wizard shell -------------------------------- */
-body .angel-contact-redesign section.section-contact.ac-wizard-section {
+/* Question stage (legacy section-contact hook neutralised) */
+body .angel-contact-redesign section.section-contact.ac-question-stage,
+body .angel-contact-redesign .section-contact.ac-question-stage {
   width: 100% !important;
   height: auto !important;
   min-height: 0 !important;
   display: block !important;
   align-items: initial !important;
   justify-content: initial !important;
-  padding: 0 0 clamp(3.5rem, 6vw, 5.5rem) !important;
-}
-
-/* HIG › Liquid Glass is reserved for the floating functional layer. The wizard
-   stage is content, so it uses a near-opaque elevated material with vibrant
-   text instead of a glass blur (liquid-glass.md › checklist 1–2). */
-body .angel-contact-redesign .ac-wizard-shell {
-  position: relative;
-  width: min(1080px, calc(100% - 3rem));
-  margin-inline: auto;
-  padding: clamp(1.75rem, 4vw, 3.25rem) clamp(1.4rem, 4vw, 3.4rem) clamp(1.9rem, 3.5vw, 2.9rem);
-  border-radius: var(--ac-radius-shell);
-  background: linear-gradient(180deg, rgba(23, 25, 35, 0.96) 0%, rgba(13, 14, 20, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 44px 96px -28px rgba(0, 0, 0, 0.85),
-    0 0 0 1px rgba(255, 255, 255, 0.03),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
-  overflow: hidden;
-}
-
-body .angel-contact-redesign .ac-wizard-shell::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 34%;
-  border-radius: inherit;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.06),
-    transparent 72%
-  );
-  pointer-events: none;
-}
-
-body .angel-contact-redesign .ac-wizard-shell::after {
-  content: '';
-  position: absolute;
-  top: -120px;
-  right: -60px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--ac-accent-rgb), 0.16), transparent 70%);
-  pointer-events: none;
+  padding: 0 !important;
 }
 
 body .angel-contact-redesign #booking-form {
   position: relative;
-  z-index: 1;
   width: 100% !important;
-  max-width: none !important;
+  max-width: 760px;
   margin: 0 !important;
   padding: 0 !important;
 }
 
-/* ---- Signature N° progress header ---------------------------------------- */
-body .angel-contact-redesign .step-title.ac-progress-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.9rem;
-  margin-bottom: 1.1rem;
-}
-
-body .angel-contact-redesign .ac-slider-progress,
-body .angel-contact-redesign .ac-progress-head__count {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.65rem;
-  margin-right: 0;
-  font-weight: 700;
-  font-size: clamp(2rem, 4.6vw, 3.1rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  color: var(--ac-ink);
-}
-
-body .angel-contact-redesign .ac-progress-head__current {
-  color: var(--ac-ink);
-}
-
-body .angel-contact-redesign .ac-slider-progress::before {
-  display: none;
-}
-
-body .angel-contact-redesign .ac-slider-prefix {
-  margin-right: 0;
-  pointer-events: none;
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--ac-accent);
-}
-
-body .angel-contact-redesign .ac-slider-prefix small {
-  position: static;
-  font-size: 0.62em;
-  line-height: 1;
-  vertical-align: super;
-  color: inherit;
-}
-
-body .angel-contact-redesign .ac-progress-head__total {
-  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  color: var(--ac-ink-4);
-}
-
-body .angel-contact-redesign .ac-step-category-pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 0 0.95rem;
-  border-radius: var(--ac-radius-pill);
-  background: rgba(var(--ac-accent-rgb), 0.14);
-  border: 1px solid rgba(var(--ac-accent-rgb), 0.42);
-  color: var(--ac-accent);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-/* Animated progress fill bar */
-body .angel-contact-redesign .ac-progress-line {
-  position: relative;
-  width: 100%;
-  height: 3px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.09);
-  overflow: hidden;
-  margin-bottom: 1.35rem;
-}
-
-body .angel-contact-redesign .ac-progress-line__fill {
-  position: absolute;
-  inset: 0 auto 0 0;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--ac-accent-secondary), var(--ac-accent));
-  box-shadow: 0 0 14px rgba(var(--ac-accent-rgb), 0.55);
-  transition: width 560ms var(--ac-ease-spring);
-}
-
-/* Interactive numbered step pills (01 … 08) */
-body .angel-contact-redesign .ac-step-dots {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding-bottom: 1.6rem;
-  margin-bottom: 2.1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-body .angel-contact-redesign .ac-step-dot {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0 0.55rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--ac-ink-4);
-  font-family: inherit;
-  font-size: 0.8rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  cursor: pointer;
-  transition:
-    transform 150ms var(--ac-ease-spring),
-    background-color 170ms ease,
-    border-color 170ms ease,
-    color 170ms ease;
-}
-
-body .angel-contact-redesign .ac-step-dot:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.09);
-  color: var(--ac-ink);
-}
-
-body .angel-contact-redesign .ac-step-dot:active:not(:disabled) {
-  transform: scale(0.94);
-}
-
-body .angel-contact-redesign .ac-step-dot.is-answered {
-  border-color: rgba(var(--ac-accent-rgb), 0.5);
-  color: var(--ac-accent);
-}
-
-/* HIG › color budget: one solid-accent moment per view (the Next/primary CTA).
-   "You are here" reads through a monochrome solid instead of a second accent fill. */
-body .angel-contact-redesign .ac-step-dot.is-current {
-  background: #f5f5f7;
-  border-color: rgba(255, 255, 255, 0.55);
-  color: #05060a;
-  box-shadow: 0 10px 26px -10px rgba(255, 255, 255, 0.4);
-}
-
-body .angel-contact-redesign .ac-step-dot:disabled {
-  opacity: 0.32;
-  cursor: default;
-}
-
-/* ---- Conversational question pane (legacy .tab-pane hook neutralised) ---- */
 body .angel-contact-redesign .tab-pane.ac-step-pane,
 body .angel-contact-redesign #booking-form .tab-pane {
   display: block !important;
@@ -2629,41 +2644,42 @@ body .angel-contact-redesign #booking-form .tab-pane {
 
 body .angel-contact-redesign #booking-form .ac-question-label {
   display: block;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.6rem;
   font-size: inherit;
   font-weight: inherit;
 }
 
-body .angel-contact-redesign .ac-question-index {
+body .angel-contact-redesign .ac-question-kicker {
   display: block;
-  margin-bottom: 0.7rem;
-  font-size: 0.74rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: var(--ac-accent);
+  color: var(--ac-creme);
 }
 
 body .angel-contact-redesign .ac-question-title {
   margin: 0;
-  font-size: clamp(1.7rem, 4vw, 2.7rem);
+  max-width: 26ch;
+  font-size: clamp(1.65rem, 3.3vw, 2.45rem);
   font-weight: 650;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  line-height: 1.14;
+  letter-spacing: -0.022em;
   font-optical-sizing: auto;
   text-wrap: balance;
   color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-question-hint {
-  margin: 0.8rem 0 1.9rem;
-  max-width: 56ch;
-  font-size: 0.98rem;
+  margin: 0.75rem 0 2rem;
+  max-width: 54ch;
+  font-size: 0.93rem;
   line-height: 1.55;
   color: var(--ac-ink-3);
 }
 
-/* ---- Architectural underline input + animated focus line ------------------ */
+/* ---- Architectural underline input + cyan focus beam ------------------------- */
 body .angel-contact-redesign .ac-field {
   position: relative;
   width: 100%;
@@ -2674,37 +2690,37 @@ body .angel-contact-redesign #booking-form input.ac-input,
 body .angel-contact-redesign #booking-form textarea.ac-input {
   width: 100% !important;
   height: auto !important;
-  min-height: 78px;
+  min-height: 76px;
   margin-bottom: 0 !important;
   padding: 0.4rem 7.6rem 0.55rem 0.05rem !important;
   background-color: transparent !important;
   background-image: none !important;
   border: 0 !important;
   border-radius: 0 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.32) !important;
+  border-bottom: 1px solid rgba(244, 238, 227, 0.3) !important;
   box-shadow: none !important;
   color: var(--ac-ink) !important;
   caret-color: var(--ac-accent);
   font-family: inherit;
-  font-size: clamp(1.3rem, 2.6vw, 1.95rem) !important;
-  font-weight: 550;
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem) !important;
+  font-weight: 600;
   line-height: 1.35;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.014em;
   outline: 0;
   overflow: hidden;
   resize: none;
-  transition: border-color 200ms ease, background-color 200ms ease;
+  transition: border-color 200ms ease;
 }
 
 body .angel-contact-redesign #booking-form textarea.ac-input,
 body .angel-contact-redesign #booking-form .ac-input--textarea {
-  min-height: 150px;
-  padding-top: 0.9rem !important;
+  min-height: 148px;
+  padding-top: 0.85rem !important;
   overflow: auto;
 }
 
 body .angel-contact-redesign #booking-form .ac-input::placeholder {
-  color: rgba(235, 235, 245, 0.3);
+  color: rgba(244, 238, 227, 0.28);
   font-weight: 400;
 }
 
@@ -2722,8 +2738,8 @@ body .angel-contact-redesign .ac-focus-line {
   width: 100%;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--ac-accent), var(--ac-accent-secondary));
-  box-shadow: 0 0 12px rgba(var(--ac-accent-rgb), 0.6);
+  background: linear-gradient(90deg, var(--ac-accent), rgba(var(--ac-accent-rgb), 0.25));
+  box-shadow: 0 0 12px rgba(var(--ac-accent-rgb), 0.55);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 480ms var(--ac-ease-spring);
@@ -2735,10 +2751,10 @@ body .angel-contact-redesign .ac-field:focus-within .ac-focus-line {
 }
 
 body .angel-contact-redesign .ac-field.is-filled .ac-focus-line {
-  background: linear-gradient(90deg, #30d158, var(--ac-accent));
+  background: linear-gradient(90deg, var(--ac-success), var(--ac-accent));
 }
 
-/* ✓ Ready badge */
+/* ✓ Ready badge — success color, one meaning */
 body .angel-contact-redesign .ac-ready-badge {
   position: absolute;
   right: 0.15rem;
@@ -2750,38 +2766,28 @@ body .angel-contact-redesign .ac-ready-badge {
   min-height: 30px;
   padding: 0 0.75rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(48, 209, 88, 0.14);
-  border: 1px solid rgba(48, 209, 88, 0.45);
-  color: #30d158;
-  font-size: 0.72rem;
+  background: rgba(48, 209, 88, 0.12);
+  border: 1px solid rgba(48, 209, 88, 0.42);
+  color: var(--ac-success);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   white-space: nowrap;
-  animation: ac-badge-in 340ms var(--ac-ease-spring);
+  animation: ac-badge-in-inline 320ms var(--ac-ease-spring);
   pointer-events: none;
 }
 
 body .angel-contact-redesign .ac-field--textarea .ac-ready-badge {
-  top: 0.85rem;
+  top: 0.9rem;
   transform: none;
 }
 
 body .angel-contact-redesign .ac-ready-badge--inline {
   position: static;
   transform: none;
-  margin-top: 0.9rem;
+  margin-top: 0.95rem;
   pointer-events: none;
-}
-
-@keyframes ac-badge-in {
-  from { opacity: 0; transform: translateY(4px) scale(0.92); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-body .angel-contact-redesign .ac-field--textarea .ac-ready-badge,
-body .angel-contact-redesign .ac-ready-badge--inline {
-  animation-name: ac-badge-in-inline;
 }
 
 @keyframes ac-badge-in-inline {
@@ -2789,7 +2795,7 @@ body .angel-contact-redesign .ac-ready-badge--inline {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Trailing Clear control (HIG › Text fields: erase input without repeated Delete) */
+/* Trailing Clear control (HIG › Text fields) */
 body .angel-contact-redesign .ac-clear-btn {
   position: absolute;
   right: 0.15rem;
@@ -2801,8 +2807,8 @@ body .angel-contact-redesign .ac-clear-btn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(244, 238, 227, 0.06);
+  border: 1px solid var(--ac-hairline);
   color: var(--ac-ink-3);
   font-family: inherit;
   font-size: 0.82rem;
@@ -2816,8 +2822,8 @@ body .angel-contact-redesign .ac-clear-btn {
 }
 
 body .angel-contact-redesign .ac-clear-btn:hover {
-  background: rgba(255, 255, 255, 0.13);
-  border-color: rgba(255, 255, 255, 0.26);
+  background: rgba(244, 238, 227, 0.12);
+  border-color: rgba(244, 238, 227, 0.28);
   color: var(--ac-ink);
 }
 
@@ -2834,13 +2840,18 @@ body .angel-contact-redesign .ac-field--textarea .ac-clear-btn:active {
   transform: scale(0.92);
 }
 
-/* ---- Quick-select preset pills ------------------------------------------- */
+/* ---- Quick-select pills -------------------------------------------------------- */
 body .angel-contact-redesign #booking-form .ac-preset-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
-  margin: 0 0 1.35rem;
+  margin: 0 0 1.4rem;
   padding-left: 0;
+}
+
+body .angel-contact-redesign #booking-form .ac-discipline-pills {
+  margin-top: 1.15rem;
+  margin-bottom: 0;
 }
 
 body .angel-contact-redesign .ac-preset-pill {
@@ -2850,34 +2861,30 @@ body .angel-contact-redesign .ac-preset-pill {
   min-height: 44px;
   padding: 0 1.05rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  background: rgba(244, 238, 227, 0.05);
+  border: 1px solid var(--ac-hairline);
   color: var(--ac-ink-2);
   font-family: inherit;
   font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
   transition:
-    transform 150ms var(--ac-ease-spring),
+    transform 100ms ease-out,
     background-color 170ms ease,
     border-color 170ms ease,
     color 170ms ease;
 }
 
 body .angel-contact-redesign .ac-preset-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(244, 238, 227, 0.1);
+  border-color: rgba(244, 238, 227, 0.28);
   color: var(--ac-ink);
-  border-color: rgba(255, 255, 255, 0.26);
 }
 
-body .angel-contact-redesign .ac-preset-pill:active {
-  transform: scale(0.96);
-}
-
+/* Selection status reads in the interactive accent */
 body .angel-contact-redesign .ac-preset-pill.is-selected {
-  background: rgba(var(--ac-accent-rgb), 0.17);
-  border-color: var(--ac-accent);
+  background: rgba(var(--ac-accent-rgb), 0.09);
+  border-color: rgba(var(--ac-accent-rgb), 0.55);
   color: var(--ac-ink);
 }
 
@@ -2888,7 +2895,7 @@ body .angel-contact-redesign .ac-preset-pill__index {
   color: var(--ac-accent);
 }
 
-/* ---- Apple Liquid Glass spatial combobox + 2-column popover --------------- */
+/* ---- Spatial combobox: opaque trigger + the one Liquid Glass popover ----------- */
 body .angel-contact-redesign .ac-discipline-stack {
   position: relative;
 }
@@ -2904,15 +2911,15 @@ body .angel-contact-redesign .ac-custom-select__trigger {
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-  min-height: 68px;
-  padding: 0.75rem 1.15rem 0.75rem 1.3rem;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  min-height: 66px;
+  padding: 0.7rem 1.1rem 0.7rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(244, 238, 227, 0.045);
+  border: 1px solid var(--ac-hairline);
+  box-shadow: inset 0 1px 0 0 rgba(244, 238, 227, 0.08);
   color: var(--ac-ink);
   font-family: inherit;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 600;
   text-align: left;
   cursor: pointer;
@@ -2920,27 +2927,21 @@ body .angel-contact-redesign .ac-custom-select__trigger {
     border-color 190ms ease,
     background-color 190ms ease,
     box-shadow 190ms ease,
-    transform 150ms var(--ac-ease-spring);
+    transform 100ms ease-out;
 }
 
 body .angel-contact-redesign .ac-custom-select__trigger:hover {
-  background: rgba(255, 255, 255, 0.085);
-  border-color: rgba(255, 255, 255, 0.26);
-}
-
-body .angel-contact-redesign .ac-custom-select__trigger:focus-visible {
-  outline: none;
-  border-color: var(--ac-accent);
-  box-shadow: 0 0 0 4px rgba(var(--ac-accent-rgb), 0.22);
+  background: rgba(244, 238, 227, 0.08);
+  border-color: rgba(244, 238, 227, 0.26);
 }
 
 body .angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__trigger {
-  border-color: rgba(var(--ac-accent-rgb), 0.6);
-  box-shadow: 0 0 0 4px rgba(var(--ac-accent-rgb), 0.16);
+  border-color: rgba(var(--ac-accent-rgb), 0.55);
+  box-shadow: 0 0 0 3px rgba(var(--ac-accent-rgb), 0.14);
 }
 
 body .angel-contact-redesign .ac-custom-select__placeholder {
-  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-weight: 500;
   color: var(--ac-ink-4);
 }
@@ -2961,18 +2962,18 @@ body .angel-contact-redesign .ac-custom-select__value-index {
   min-height: 34px;
   padding: 0 0.35rem;
   border-radius: 10px;
-  background: rgba(var(--ac-accent-rgb), 0.16);
-  border: 1px solid rgba(var(--ac-accent-rgb), 0.4);
-  color: var(--ac-accent);
-  font-size: 0.78rem;
+  background: rgba(244, 238, 227, 0.08);
+  border: 1px solid var(--ac-hairline);
+  color: var(--ac-creme);
+  font-size: 0.76rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
 body .angel-contact-redesign .ac-custom-select__value-name {
-  font-size: clamp(1.02rem, 1.9vw, 1.22rem);
+  font-size: clamp(1rem, 1.8vw, 1.16rem);
   font-weight: 650;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.014em;
   color: var(--ac-ink);
 }
 
@@ -2982,8 +2983,8 @@ body .angel-contact-redesign .ac-custom-select__value-tag {
   min-height: 26px;
   padding: 0 0.6rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(244, 238, 227, 0.06);
+  border: 1px solid var(--ac-hairline);
   color: var(--ac-ink-3);
   font-size: 0.66rem;
   font-weight: 700;
@@ -2999,7 +3000,7 @@ body .angel-contact-redesign .ac-custom-select__chevron {
   border-right: 2px solid var(--ac-ink-3);
   border-bottom: 2px solid var(--ac-ink-3);
   transform: rotate(45deg) translateY(-2px);
-  transition: transform 260ms var(--ac-ease-spring), border-color 190ms ease;
+  transition: transform 240ms var(--ac-ease-spring), border-color 180ms ease;
 }
 
 body .angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__chevron {
@@ -3007,9 +3008,8 @@ body .angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__chevro
   border-color: var(--ac-accent);
 }
 
-/* 2-column popover menu */
-/* Functional-layer glass: the popover is the one true Liquid Glass surface —
-   regular variant over text-heavy content, anchored to its trigger's origin. */
+/* Functional-layer glass: regular variant over text-heavy content, anchored
+   to the trigger's origin with scroll-edge fades (liquid-glass.md). */
 body .angel-contact-redesign .ac-custom-select__popover {
   position: absolute;
   top: calc(100% + 10px);
@@ -3019,25 +3019,25 @@ body .angel-contact-redesign .ac-custom-select__popover {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.55rem;
-  max-height: min(432px, 62vh);
+  max-height: min(430px, 62vh);
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 0.75rem;
-  border-radius: 24px;
-  background: rgba(13, 15, 23, 0.84);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
+  background: rgba(17, 15, 10, 0.85);
+  border: 1px solid rgba(244, 238, 227, 0.15);
   box-shadow:
-    0 40px 80px -20px rgba(0, 0, 0, 0.9),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
+    0 38px 76px -20px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 0 rgba(244, 238, 227, 0.14);
+  backdrop-filter: blur(30px) saturate(170%);
+  -webkit-backdrop-filter: blur(30px) saturate(170%);
   outline: none;
   transform-origin: 50% 0;
   animation: ac-popover-in 240ms var(--ac-ease-spring);
   mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+  scrollbar-color: rgba(244, 238, 227, 0.22) transparent;
 }
 
 body .angel-contact-redesign .ac-custom-select__popover::-webkit-scrollbar {
@@ -3046,11 +3046,11 @@ body .angel-contact-redesign .ac-custom-select__popover::-webkit-scrollbar {
 
 body .angel-contact-redesign .ac-custom-select__popover::-webkit-scrollbar-thumb {
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(244, 238, 227, 0.18);
 }
 
 @keyframes ac-popover-in {
-  from { opacity: 0; transform: translateY(10px) scale(0.984); }
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -3061,28 +3061,24 @@ body .angel-contact-redesign .ac-custom-select__option {
   align-items: start;
   gap: 0.75rem;
   padding: 0.85rem 0.9rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.032);
+  border-radius: 14px;
+  background: rgba(244, 238, 227, 0.03);
   border: 1px solid transparent;
   cursor: pointer;
   transition:
     background-color 150ms ease,
     border-color 150ms ease,
-    transform 150ms var(--ac-ease-spring);
+    transform 100ms ease-out;
 }
 
 body .angel-contact-redesign .ac-custom-select__option.is-highlighted {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--ac-accent-rgb), 0.38);
-}
-
-body .angel-contact-redesign .ac-custom-select__option:active {
-  transform: scale(0.985);
+  background: rgba(244, 238, 227, 0.08);
+  border-color: rgba(var(--ac-accent-rgb), 0.32);
 }
 
 body .angel-contact-redesign .ac-custom-select__option.is-selected {
-  background: rgba(var(--ac-accent-rgb), 0.12);
-  border-color: rgba(var(--ac-accent-rgb), 0.5);
+  background: rgba(var(--ac-accent-rgb), 0.09);
+  border-color: rgba(var(--ac-accent-rgb), 0.45);
 }
 
 body .angel-contact-redesign .ac-custom-select__option-index {
@@ -3094,18 +3090,12 @@ body .angel-contact-redesign .ac-custom-select__option-index {
   margin-top: 0.1rem;
   padding: 0 0.28rem;
   border-radius: 9px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--ac-accent);
-  font-size: 0.72rem;
+  background: rgba(244, 238, 227, 0.06);
+  border: 1px solid var(--ac-hairline);
+  color: var(--ac-creme);
+  font-size: 0.7rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-}
-
-body .angel-contact-redesign .ac-custom-select__option.is-selected .ac-custom-select__option-index {
-  background: var(--ac-accent);
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #04070d;
 }
 
 body .angel-contact-redesign .ac-custom-select__option-body {
@@ -3123,9 +3113,9 @@ body .angel-contact-redesign .ac-custom-select__option-row {
 }
 
 body .angel-contact-redesign .ac-custom-select__option-title {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   font-weight: 650;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.008em;
   line-height: 1.25;
   color: var(--ac-ink);
 }
@@ -3136,8 +3126,8 @@ body .angel-contact-redesign .ac-custom-select__option-tag {
   min-height: 20px;
   padding: 0 0.48rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(244, 238, 227, 0.06);
+  border: 1px solid var(--ac-hairline);
   color: var(--ac-ink-3);
   font-size: 0.58rem;
   font-weight: 700;
@@ -3160,12 +3150,7 @@ body .angel-contact-redesign .ac-custom-select__option-check {
   font-weight: 700;
 }
 
-body .angel-contact-redesign #booking-form .ac-discipline-pills {
-  margin-top: 1.15rem;
-  margin-bottom: 0;
-}
-
-/* ---- Error row ------------------------------------------------------------ */
+/* ---- Error row ------------------------------------------------------------------- */
 body .angel-contact-redesign #booking-form .errorTxt.ac-error-row {
   min-height: 26px;
   margin: 0.9rem 0 0;
@@ -3174,21 +3159,22 @@ body .angel-contact-redesign #booking-form .errorTxt.ac-error-row {
 body .angel-contact-redesign .ac-error {
   display: inline-flex;
   align-items: center;
-  font-size: 0.76rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #ff453a;
+  color: var(--ac-error);
 }
 
-/* ---- Tactile 48px Prev / Next navigation ---------------------------------- */
-body .angel-contact-redesign #booking-form ul.ac-wizard-nav {
+/* ---- Keyline navigation: Prev ghost (leading) / Next primary (trailing) ------------ */
+body .angel-contact-redesign #booking-form ul.ac-keynav {
   display: flex !important;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.9rem;
-  margin: 2rem 0 0 !important;
-  padding-left: 0 !important;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.4rem 0 0 !important;
+  padding: 1.5rem 0 0 !important;
+  border-top: 1px solid rgba(244, 238, 227, 0.1);
 }
 
 body .angel-contact-redesign li.action_li {
@@ -3205,61 +3191,62 @@ body .angel-contact-redesign .next-btn {
   height: 48px !important;
   min-height: 48px !important;
   margin: 0 !important;
-  padding: 0 1.55rem;
+  padding: 0 1.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--ac-hairline);
   border-radius: var(--ac-radius-pill);
   box-shadow: none;
   outline: none;
   color: var(--ac-ink) !important;
+  background: transparent;
   font-family: inherit;
-  font-size: 0.95rem !important;
+  font-size: 0.94rem !important;
   font-weight: 650;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.008em;
   cursor: pointer;
   transition:
-    transform 150ms var(--ac-ease-spring),
+    transform 100ms ease-out,
     background-color 190ms ease,
     border-color 190ms ease,
     box-shadow 200ms ease;
 }
 
-body .angel-contact-redesign li.action_li button.ac-nav-btn--prev,
+body .angel-contact-redesign li.action_li button.ac-keynav__btn--prev,
 body .angel-contact-redesign #booking-form button.prev-btn {
-  background: rgba(255, 255, 255, 0.06) !important;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  background: rgba(244, 238, 227, 0.05) !important;
+  color: var(--ac-ink-2) !important;
 }
 
-body .angel-contact-redesign li.action_li button.ac-nav-btn--next,
+body .angel-contact-redesign li.action_li button.ac-keynav__btn--prev:hover:not(:disabled) {
+  background: rgba(244, 238, 227, 0.1) !important;
+  color: var(--ac-ink) !important;
+  border-color: rgba(244, 238, 227, 0.3);
+}
+
+/* The single solid-accent moment of the wizard view: forward */
+body .angel-contact-redesign li.action_li button.ac-keynav__btn--next,
 body .angel-contact-redesign #booking-form .next-btn,
 body .angel-contact-redesign #booking-form .submit-btn {
+  min-width: 138px;
   background: var(--ac-accent) !important;
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #04070d !important;
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #032531 !important;
+  font-weight: 750 !important;
   box-shadow:
-    0 14px 34px -10px rgba(var(--ac-accent-rgb), 0.55),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+    0 14px 32px -12px rgba(var(--ac-accent-rgb), 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.45);
 }
 
-body .angel-contact-redesign .ac-nav-btn--prev:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.11) !important;
-}
-
-body .angel-contact-redesign .ac-nav-btn--next:hover:not(:disabled) {
-  transform: translateY(-1px);
+body .angel-contact-redesign li.action_li button.ac-keynav__btn--next:hover:not(:disabled) {
   box-shadow:
-    0 18px 40px -9px rgba(var(--ac-accent-rgb), 0.68),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+    0 18px 40px -11px rgba(var(--ac-accent-rgb), 0.65),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
 }
 
-body .angel-contact-redesign .ac-nav-btn:active:not(:disabled) {
-  transform: scale(0.97);
-}
-
-body .angel-contact-redesign .ac-nav-btn:disabled {
+body .angel-contact-redesign .ac-keynav__btn:disabled {
   opacity: 0.35;
   cursor: default;
 }
@@ -3270,150 +3257,165 @@ body .angel-contact-redesign #booking-form .next-btn img {
   display: none;
 }
 
-/* ---- Live "Your brief so far" answered-chip trail -------------------------- */
+/* ---- Live brief ledger -------------------------------------------------------------- */
 body .angel-contact-redesign .ac-answered-trail {
-  margin-top: 2.35rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: clamp(2.5rem, 4vw, 3.25rem);
 }
 
 body .angel-contact-redesign .ac-answered-trail__label {
   display: block;
-  margin-bottom: 0.85rem;
-  font-size: 0.7rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
   color: var(--ac-ink-4);
 }
 
-body .angel-contact-redesign #booking-form ul.ac-answered-trail__chips,
-body .angel-contact-redesign .ac-answered-trail__chips {
+body .angel-contact-redesign #booking-form ul.ac-answered-trail__ledger,
+body .angel-contact-redesign .ac-answered-trail__ledger {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
   margin: 0 !important;
   padding-left: 0 !important;
   list-style: none;
+  border-top: 1px solid rgba(244, 238, 227, 0.09);
+}
+
+body .angel-contact-redesign .ac-answered-trail__ledger li {
+  border-bottom: 1px solid rgba(244, 238, 227, 0.09);
 }
 
 body .angel-contact-redesign .ac-answered-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 38px;
-  max-width: 100%;
-  padding: 0 0.85rem;
-  border-radius: var(--ac-radius-pill);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--ac-ink-2);
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 46px;
+  padding: 0.55rem 0.1rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
   font-family: inherit;
-  font-size: 0.78rem;
-  font-weight: 600;
+  text-align: left;
   cursor: pointer;
   transition:
-    transform 150ms var(--ac-ease-spring),
-    background-color 170ms ease,
-    border-color 170ms ease;
+    background-color 160ms ease,
+    transform 100ms ease-out;
 }
 
 body .angel-contact-redesign .ac-answered-chip:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(var(--ac-accent-rgb), 0.45);
-  color: var(--ac-ink);
+  background: rgba(244, 238, 227, 0.04);
 }
 
 body .angel-contact-redesign .ac-answered-chip:active {
-  transform: scale(0.96);
+  transform: scale(0.99);
 }
 
-body .angel-contact-redesign .ac-answered-chip.is-current {
-  border-color: var(--ac-accent);
-  box-shadow: 0 0 0 1px rgba(var(--ac-accent-rgb), 0.4);
+body .angel-contact-redesign .ac-answered-chip__num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ac-ink-4);
+}
+
+body .angel-contact-redesign .ac-answered-chip.is-current .ac-answered-chip__num {
+  color: var(--ac-accent);
 }
 
 body .angel-contact-redesign .ac-answered-chip__key {
-  color: var(--ac-accent);
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ac-creme);
 }
 
 body .angel-contact-redesign .ac-answered-chip__value {
-  max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 0.88rem;
+  font-weight: 550;
+  color: var(--ac-ink-2);
+}
+
+body .angel-contact-redesign .ac-answered-chip.is-current .ac-answered-chip__value,
+body .angel-contact-redesign .ac-answered-chip:hover .ac-answered-chip__value {
+  color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-answered-trail__empty {
   margin: 0;
+  padding-top: 0.9rem;
   font-size: 0.86rem;
   line-height: 1.5;
   color: var(--ac-ink-4);
 }
 
-/* ---- Prepared Enquiry Summary screen -------------------------------------- */
+/* ---- Prepared Enquiry Summary -------------------------------------------------------- */
 body .angel-contact-redesign .ac-summary {
   animation: ac-pane-in 300ms var(--ac-ease-snappy);
-}
-
-body .angel-contact-redesign .ac-summary__badge-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1.4rem;
 }
 
 body .angel-contact-redesign .ac-summary__badge {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 0 0.95rem;
+  min-height: 32px;
+  padding: 0 0.9rem;
+  margin-bottom: 1.35rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(48, 209, 88, 0.13);
-  border: 1px solid rgba(48, 209, 88, 0.45);
-  color: #30d158;
-  font-size: 0.72rem;
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.4);
+  color: var(--ac-success);
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 body .angel-contact-redesign .ac-summary__title {
-  margin: 0 0 0.85rem;
-  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
+  margin: 0 0 0.8rem;
+  max-width: 22ch;
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.024em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
   color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-summary__lead {
   margin: 0 0 1.9rem;
-  max-width: 60ch;
-  font-size: 0.98rem;
+  max-width: 56ch;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--ac-ink-2);
+}
+
+body .angel-contact-redesign .ac-summary__lead strong {
+  color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-summary__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 body .angel-contact-redesign .ac-summary__item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem 1.15rem;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.95rem 1.05rem;
+  border-radius: 14px;
+  background: rgba(244, 238, 227, 0.04);
+  border: 1px solid rgba(244, 238, 227, 0.09);
   color: inherit;
   font-family: inherit;
   text-align: left;
@@ -3421,16 +3423,12 @@ body .angel-contact-redesign .ac-summary__item {
   transition:
     background-color 170ms ease,
     border-color 170ms ease,
-    transform 150ms var(--ac-ease-spring);
+    transform 100ms ease-out;
 }
 
 body .angel-contact-redesign .ac-summary__item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--ac-accent-rgb), 0.45);
-}
-
-body .angel-contact-redesign .ac-summary__item:active {
-  transform: scale(0.985);
+  background: rgba(244, 238, 227, 0.08);
+  border-color: rgba(var(--ac-accent-rgb), 0.4);
 }
 
 body .angel-contact-redesign .ac-summary__item-label {
@@ -3438,9 +3436,9 @@ body .angel-contact-redesign .ac-summary__item-label {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--ac-ink-4);
 }
@@ -3451,9 +3449,9 @@ body .angel-contact-redesign .ac-summary__item-edit {
 }
 
 body .angel-contact-redesign .ac-summary__item-value {
-  font-size: 0.97rem;
+  font-size: 0.92rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.42;
   color: var(--ac-ink);
   word-break: break-word;
 }
@@ -3462,8 +3460,8 @@ body .angel-contact-redesign .ac-summary__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.8rem;
-  margin-top: 2rem;
+  gap: 0.75rem;
+  margin-top: 2.1rem;
 }
 
 body .angel-contact-redesign .ac-cta {
@@ -3472,16 +3470,16 @@ body .angel-contact-redesign .ac-cta {
   justify-content: center;
   gap: 0.55rem;
   min-height: 48px;
-  padding: 0 1.5rem;
+  padding: 0 1.4rem;
   border-radius: var(--ac-radius-pill);
   font-family: inherit;
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   font-weight: 650;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.008em;
   text-decoration: none;
   cursor: pointer;
   transition:
-    transform 150ms var(--ac-ease-spring),
+    transform 100ms ease-out,
     background-color 190ms ease,
     border-color 190ms ease,
     box-shadow 200ms ease,
@@ -3490,30 +3488,29 @@ body .angel-contact-redesign .ac-cta {
 
 body .angel-contact-redesign .ac-cta--primary {
   background: var(--ac-accent);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #04070d;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #032531;
+  font-weight: 750;
   box-shadow:
-    0 14px 34px -10px rgba(var(--ac-accent-rgb), 0.55),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+    0 14px 32px -12px rgba(var(--ac-accent-rgb), 0.5),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.45);
 }
 
 body .angel-contact-redesign .ac-cta--primary:hover {
-  transform: translateY(-1px);
   box-shadow:
-    0 18px 40px -9px rgba(var(--ac-accent-rgb), 0.7),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.62);
+    0 18px 40px -11px rgba(var(--ac-accent-rgb), 0.65),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
 }
 
 body .angel-contact-redesign .ac-cta--ghost {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  background: rgba(244, 238, 227, 0.05);
+  border: 1px solid var(--ac-hairline);
   color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-cta--ghost:hover {
-  background: rgba(255, 255, 255, 0.11);
-  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(244, 238, 227, 0.1);
+  border-color: rgba(244, 238, 227, 0.28);
 }
 
 body .angel-contact-redesign .ac-cta--text {
@@ -3524,47 +3521,47 @@ body .angel-contact-redesign .ac-cta--text {
 
 body .angel-contact-redesign .ac-cta--text:hover {
   color: var(--ac-ink);
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(244, 238, 227, 0.22);
 }
 
-body .angel-contact-redesign .ac-cta:active {
-  transform: scale(0.97);
-}
-
-/* ---- Direct Contact Deck (legacy .genralinformation / .supportmail) ------- */
+/* ---- Direct Contact Deck: editorial hairline columns (legacy hooks neutralised) ------- */
 body .angel-contact-redesign .ac-support-section {
   position: relative;
-  padding: clamp(4rem, 7vw, 6rem) 0 clamp(4.5rem, 7vw, 6.5rem);
+  padding: clamp(3.75rem, 6.5vw, 5.5rem) 0 clamp(4.25rem, 7vw, 6rem);
+  border-top: 1px solid rgba(244, 238, 227, 0.09);
   scroll-margin-top: 84px;
 }
 
 body .angel-contact-redesign .ac-support-section__head {
   width: min(1240px, calc(100% - 3rem));
-  margin: 0 auto clamp(2rem, 3.5vw, 3rem);
+  margin: 0 auto clamp(2.25rem, 4vw, 3.25rem);
 }
 
 body .angel-contact-redesign .ac-support-section__kicker {
   margin: 0 0 0.85rem;
-  font-size: 0.74rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: var(--ac-accent);
+  color: var(--ac-creme);
 }
 
 body .angel-contact-redesign .ac-support-section__title {
-  margin: 0 0 0.9rem;
-  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  margin: 0 0 0.85rem;
+  font-family: var(--ac-graphik);
+  font-weight: 900;
+  font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  line-height: 1.06;
+  letter-spacing: -0.026em;
+  font-optical-sizing: auto;
+  text-wrap: balance;
   color: var(--ac-ink);
 }
 
 body .angel-contact-redesign .ac-support-section__lead {
   margin: 0;
-  max-width: 56ch;
-  font-size: 1rem;
+  max-width: 54ch;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--ac-ink-2);
 }
@@ -3575,11 +3572,10 @@ body .angel-contact-redesign .genralinformation {
   padding: 0 !important;
 }
 
-/* 3-column Apple Liquid Glass grid (float-based legacy layout neutralised) */
 body .angel-contact-redesign .supportmail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.9rem, 2vw, 1.5rem);
+  gap: 0;
 }
 
 body .angel-contact-redesign .supcom,
@@ -3595,78 +3591,51 @@ body .angel-contact-redesign .ac-support-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  min-height: 190px;
-  padding: 1.5rem 1.45rem 1.4rem;
-  border-radius: 26px;
-  background: linear-gradient(180deg, rgba(22, 24, 34, 0.94) 0%, rgba(13, 14, 21, 0.96) 100%);
-  border: 1px solid var(--ac-glass-border);
-  box-shadow:
-    0 26px 56px -22px rgba(0, 0, 0, 0.8),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
-  overflow: hidden;
-  transition:
-    transform 220ms var(--ac-ease-spring),
-    border-color 200ms ease,
-    box-shadow 220ms ease;
+  gap: 0.6rem;
+  min-height: 172px;
+  padding: 0.25rem 1.75rem 0.25rem 1.75rem;
+  border-left: 1px solid rgba(244, 238, 227, 0.1);
 }
 
-body .angel-contact-redesign .ac-support-card::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: 40%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 70%);
-  pointer-events: none;
-}
-
-body .angel-contact-redesign .ac-support-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(var(--ac-accent-rgb), 0.42);
-  box-shadow:
-    0 34px 64px -22px rgba(0, 0, 0, 0.85),
-    0 0 0 1px rgba(var(--ac-accent-rgb), 0.18),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+body .angel-contact-redesign .supportmail .ac-support-card:first-child {
+  border-left: 0;
+  padding-left: 0;
 }
 
 body .angel-contact-redesign .ac-support-card__index {
-  position: relative;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
-  color: var(--ac-accent);
+  color: var(--ac-creme);
 }
 
 body .angel-contact-redesign .ac-support-card__purpose,
 body .angel-contact-redesign .supportmail h3.ac-support-card__purpose,
 body .angel-contact-redesign .supportmail h4 {
-  position: relative;
   margin: 0;
   line-height: 1.3 !important;
-  font-size: 1.22rem !important;
+  font-size: 1.18rem !important;
   font-weight: 650;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.014em;
   color: var(--ac-ink) !important;
 }
 
 body .angel-contact-redesign .ac-support-card__row {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
+  gap: 0.5rem 0.9rem;
   margin-top: auto;
-  padding-top: 1.05rem;
+  padding-top: 1.1rem;
 }
 
 body .angel-contact-redesign .ac-support-card__value {
-  font-size: 0.97rem;
+  font-size: 0.95rem;
   font-weight: 650;
   letter-spacing: -0.01em;
-  color: var(--ac-ink);
+  color: var(--ac-ink-2);
   text-decoration: none;
   word-break: break-all;
   transition: color 170ms ease;
@@ -3674,8 +3643,6 @@ body .angel-contact-redesign .ac-support-card__value {
 
 body .angel-contact-redesign .ac-support-card__value:hover {
   color: var(--ac-accent);
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 body .angel-contact-redesign .ac-support-card__copy {
@@ -3684,43 +3651,40 @@ body .angel-contact-redesign .ac-support-card__copy {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0 1.05rem;
+  padding: 0 1rem;
   border-radius: var(--ac-radius-pill);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  background: rgba(244, 238, 227, 0.05);
+  border: 1px solid var(--ac-hairline);
   color: var(--ac-ink);
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 650;
   cursor: pointer;
   transition:
-    transform 150ms var(--ac-ease-spring),
+    transform 100ms ease-out,
     background-color 170ms ease,
-    border-color 170ms ease;
+    border-color 170ms ease,
+    color 170ms ease;
 }
 
 body .angel-contact-redesign .ac-support-card__copy:hover {
-  background: rgba(var(--ac-accent-rgb), 0.16);
-  border-color: rgba(var(--ac-accent-rgb), 0.5);
+  background: rgba(var(--ac-accent-rgb), 0.1);
+  border-color: rgba(var(--ac-accent-rgb), 0.45);
+  color: var(--ac-accent);
 }
 
-body .angel-contact-redesign .ac-support-card__copy:active {
-  transform: scale(0.95);
-}
-
-/* ---- Contact-page Liquid Glass footer (LegacyFooter sibling) --------------- */
+/* ---- Contact-page footer (LegacyFooter sibling, opaque) -------------------------------- */
 body .angel-contact-redesign + footer.color_creme {
   position: relative !important;
   width: 100% !important;
   height: auto !important;
   min-height: 0 !important;
   overflow: visible !important;
-  padding: 2.4rem 0 2.6rem !important;
-  background: linear-gradient(180deg, rgba(14, 15, 22, 0.98), rgba(6, 7, 12, 0.98)) !important;
-  background-color: #07080d !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-  color: rgba(235, 235, 245, 0.6) !important;
+  padding: 2.2rem 0 2.4rem !important;
+  background: linear-gradient(180deg, rgba(16, 14, 10, 0.97), rgba(8, 7, 5, 0.98)) !important;
+  background-color: #090705 !important;
+  border-top: 1px solid rgba(244, 238, 227, 0.09);
+  color: rgba(244, 238, 227, 0.58) !important;
 }
 
 body .angel-contact-redesign + footer.color_creme .footer_inner {
@@ -3752,24 +3716,24 @@ body .angel-contact-redesign + footer.color_creme .menu_footer ul li a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font-size: 0.85rem !important;
+  font-size: 0.83rem !important;
   font-weight: 600;
   letter-spacing: 0.01em !important;
-  color: rgba(235, 235, 245, 0.66) !important;
+  color: rgba(244, 238, 227, 0.62) !important;
   text-decoration: none;
   transition: color 170ms ease;
 }
 
 body .angel-contact-redesign + footer.color_creme .menu_footer ul li a:hover {
-  color: #64d2ff !important;
+  color: #e0ccbb !important;
 }
 
 body .angel-contact-redesign + footer.color_creme .footer_inner p {
   margin: 0 !important;
-  font-size: 0.82rem !important;
+  font-size: 0.8rem !important;
   line-height: 1.5;
   letter-spacing: 0.01em !important;
-  color: rgba(235, 235, 245, 0.55) !important;
+  color: rgba(244, 238, 227, 0.5) !important;
 }
 
 body .angel-contact-redesign + footer.color_creme .footer_inner .soical {
@@ -3786,10 +3750,10 @@ body .angel-contact-redesign + footer.color_creme .footer_inner .soical a {
   height: 44px;
   margin: 0 !important;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  font-size: 1.05rem !important;
-  color: rgba(235, 235, 245, 0.72) !important;
+  background: rgba(244, 238, 227, 0.05);
+  border: 1px solid rgba(244, 238, 227, 0.14);
+  font-size: 1.02rem !important;
+  color: rgba(244, 238, 227, 0.68) !important;
   transition:
     color 170ms ease,
     border-color 170ms ease,
@@ -3798,71 +3762,17 @@ body .angel-contact-redesign + footer.color_creme .footer_inner .soical a {
 }
 
 body .angel-contact-redesign + footer.color_creme .footer_inner .soical a:hover {
-  color: #64d2ff !important;
-  border-color: rgba(100, 210, 255, 0.5);
-  background: rgba(100, 210, 255, 0.12);
+  color: #e0ccbb !important;
+  border-color: rgba(224, 204, 187, 0.45);
+  background: rgba(224, 204, 187, 0.08);
   transform: translateY(-2px);
 }
 
-/* ---- Responsive refinements ------------------------------------------------ */
-@media (max-width: 900px) {
-  body .angel-contact-redesign .supportmail {
-    grid-template-columns: 1fr;
-  }
-
-  body .angel-contact-redesign .ac-support-card {
-    min-height: 0;
-  }
-}
-
-@media (max-width: 720px) {
-  body .angel-contact-redesign .ac-studio-hero {
-    width: min(100% - 2.4rem, 1180px);
-    padding-top: clamp(5.5rem, 12vw, 7rem);
-  }
-
-  body .angel-contact-redesign .ac-wizard-shell {
-    width: calc(100% - 1.6rem);
-    padding: 1.5rem 1.15rem 1.7rem;
-    border-radius: 26px;
-  }
-
-  body .angel-contact-redesign .ac-custom-select__popover {
-    grid-template-columns: 1fr;
-    max-height: min(60vh, 480px);
-  }
-
-  body .angel-contact-redesign .ac-summary__grid {
-    grid-template-columns: 1fr;
-  }
-
-  body .angel-contact-redesign #booking-form input.ac-input {
-    padding-right: 5.6rem !important;
-  }
-
-  body .angel-contact-redesign .ac-ready-badge {
-    min-height: 26px;
-    padding: 0 0.6rem;
-    font-size: 0.66rem;
-  }
-
-  body .angel-contact-redesign .ac-answered-chip__value {
-    max-width: 130px;
-  }
-
-  body .angel-contact-redesign + footer.color_creme .footer_inner {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-}
-
-/* ---- Instant press feedback — response lives on pointer-down, never at the end ---- */
+/* ---- Instant press feedback — response lives on pointer-down ---------------------------- */
 body .angel-contact-redesign .ac-jump-pill:active,
 body .angel-contact-redesign .ac-preset-pill:not(:disabled):active,
-body .angel-contact-redesign .ac-step-dot:not(:disabled):active,
-body .angel-contact-redesign .ac-answered-chip:active,
-body .angel-contact-redesign .ac-nav-btn:not(:disabled):active,
+body .angel-contact-redesign .ac-rail__index-btn:not(:disabled):active,
+body .angel-contact-redesign .ac-keynav__btn:not(:disabled):active,
 body .angel-contact-redesign .ac-cta:active,
 body .angel-contact-redesign .ac-support-card__copy:active,
 body .angel-contact-redesign .ac-summary__item:active,
@@ -3872,10 +3782,148 @@ body .angel-contact-redesign .ac-custom-select__option:active {
   transition-timing-function: ease-out;
 }
 
-/* ---- Accessibility: reduced motion / transparency / contrast --------------- */
+/* ---- Responsive: the rail collapses into an instrument strip ------------------------------ */
+@media (max-width: 1060px) {
+  body .angel-contact-redesign .ac-desk {
+    grid-template-columns: 1fr;
+    padding-top: clamp(5.5rem, 11vw, 6.5rem);
+  }
+
+  body .angel-contact-redesign .ac-rail {
+    border-right: 0;
+    border-bottom: 1px solid var(--ac-hairline);
+  }
+
+  body .angel-contact-redesign .ac-rail__sticky {
+    position: static;
+    gap: 1.15rem;
+    padding: 0.5rem 1.25rem 1.4rem;
+  }
+
+  body .angel-contact-redesign .ac-rail__brand {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.8rem;
+  }
+
+  body .angel-contact-redesign .ac-rail__home {
+    margin-top: 0;
+    margin-left: auto;
+    min-height: 36px;
+  }
+
+  body .angel-contact-redesign .step-title.ac-rail__counter {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.9rem;
+    padding-bottom: 0.85rem;
+  }
+
+  body .angel-contact-redesign .ac-rail__counter-value {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+
+  body .angel-contact-redesign .ac-rail__counter-check {
+    font-size: clamp(2rem, 6.4vw, 2.7rem);
+  }
+
+  body .angel-contact-redesign .ac-rail__counter-beam {
+    width: 100%;
+  }
+
+  body .angel-contact-redesign ol.ac-rail__index,
+  body .angel-contact-redesign .ac-rail__index {
+    flex-direction: row;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scrollbar-width: none;
+  }
+
+  body .angel-contact-redesign .ac-rail__index::-webkit-scrollbar {
+    display: none;
+  }
+
+  body .angel-contact-redesign .ac-rail__index-btn {
+    width: auto;
+    min-height: 40px;
+    padding: 0 0.75rem;
+    border: 1px solid var(--ac-hairline);
+    border-radius: var(--ac-radius-pill);
+    grid-template-columns: auto auto;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  body .angel-contact-redesign .ac-rail__index-btn.is-current {
+    border-color: rgba(var(--ac-accent-rgb), 0.55);
+  }
+
+  body .angel-contact-redesign .ac-rail__index-state {
+    display: none;
+  }
+
+  body .angel-contact-redesign .ac-stage {
+    padding: clamp(1.5rem, 4vw, 2rem) 1.25rem 3.5rem;
+  }
+}
+
+@media (max-width: 720px) {
+  body .angel-contact-redesign .ac-custom-select__popover {
+    grid-template-columns: 1fr;
+    max-height: min(60vh, 470px);
+  }
+
+  body .angel-contact-redesign .ac-summary__grid {
+    grid-template-columns: 1fr;
+  }
+
+  body .angel-contact-redesign #booking-form input.ac-input {
+    padding-right: 5.4rem !important;
+  }
+
+  body .angel-contact-redesign .ac-ready-badge {
+    min-height: 26px;
+    padding: 0 0.6rem;
+    font-size: 0.64rem;
+  }
+
+  body .angel-contact-redesign #booking-form ul.ac-keynav {
+    gap: 0.7rem;
+  }
+
+  body .angel-contact-redesign li.action_li button.ac-keynav__btn--prev,
+  body .angel-contact-redesign li.action_li button.ac-keynav__btn--next {
+    padding: 0 1.1rem;
+  }
+
+  body .angel-contact-redesign .supportmail {
+    grid-template-columns: 1fr;
+  }
+
+  body .angel-contact-redesign .ac-support-card {
+    min-height: 0;
+    padding: 1.35rem 0;
+    border-left: 0;
+    border-top: 1px solid rgba(244, 238, 227, 0.1);
+  }
+
+  body .angel-contact-redesign .supportmail .ac-support-card:first-child {
+    border-top: 0;
+    padding-top: 0.25rem;
+  }
+
+  body .angel-contact-redesign + footer.color_creme .footer_inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* ---- Accessibility: reduced motion / transparency / contrast ------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   body .angel-contact-redesign .ac-ambient-backdrop__orb,
-  body .angel-contact-redesign .ac-studio-hero__eyebrow-dot,
   body .angel-contact-redesign .ac-jump-pill__arrow {
     animation: none;
   }
@@ -3887,33 +3935,36 @@ body .angel-contact-redesign .ac-custom-select__option:active {
     animation-duration: 0.01ms;
   }
 
-  body .angel-contact-redesign .ac-progress-line__fill,
+  body .angel-contact-redesign .ac-rail__progress-fill,
   body .angel-contact-redesign .ac-focus-line {
     transition-duration: 0.01ms;
   }
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  body .angel-contact-redesign .ac-wizard-shell,
-  body .angel-contact-redesign .ac-custom-select__trigger,
-  body .angel-contact-redesign .ac-custom-select__popover,
-  body .angel-contact-redesign .ac-support-card,
-  body .angel-contact-redesign .ac-jump-pill,
-  body .angel-contact-redesign + footer.color_creme {
+  body .angel-contact-redesign .ac-custom-select__popover {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    background: #10121a;
+    background: #14120c;
+  }
+
+  body .angel-contact-redesign .ac-jump-pill {
+    background: rgba(100, 210, 255, 0.08);
   }
 }
 
 @media (prefers-contrast: more) {
-  body .angel-contact-redesign #booking-form .ac-input {
-    border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+  body .angel-contact-redesign {
+    --ac-hairline: rgba(244, 238, 227, 0.3);
   }
 
-  body .angel-contact-redesign .ac-step-dot,
+  body .angel-contact-redesign #booking-form .ac-input {
+    border-bottom-color: rgba(244, 238, 227, 0.7) !important;
+  }
+
   body .angel-contact-redesign .ac-preset-pill,
-  body .angel-contact-redesign .ac-answered-chip {
-    border-color: rgba(255, 255, 255, 0.55);
+  body .angel-contact-redesign .ac-support-card__copy,
+  body .angel-contact-redesign .ac-clear-btn {
+    border-color: rgba(244, 238, 227, 0.5);
   }
 }
