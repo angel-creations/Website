@@ -51,7 +51,8 @@ function propsFor(attrs: Record<string, LegacyAttribute>, tag: string): Record<s
   return props;
 }
 
-export function LegacyRenderer({ nodes }: { nodes: LegacyNode[] }): ReactNode {
+/* The optional route identifies the captured page being rendered; node rendering is route-independent. */
+export function LegacyRenderer({ nodes }: { nodes: LegacyNode[]; route?: string }): ReactNode {
   const renderNode = (node: LegacyNode, index: number): ReactNode => {
     if (node.type === 'text') {
       return node.value;

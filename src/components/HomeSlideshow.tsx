@@ -1,18 +1,35 @@
-import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+  type WheelEvent as ReactWheelEvent,
+} from 'react';
 import { slideExperiences } from '../data/slideExperiences';
+import { PointerVelocityTracker, projectMomentum } from '../utils/appleSpring';
 import { navigate } from '../utils/routes';
-const TRANSITION_MS = 1500;
-const VIDEO_START_MS = 500;
-const VIDEO_PAUSE_MS = 700;
-const RELEASE_WAIT_MS = 180;
-const PARALLAX = 0.1;
-const TRANSITION_OPACITY = 0.1;
-const SWIPE_THRESHOLD = 48;
+
+const TRANSITION_MS = 1120;
+const DRAG_SETTLE_MIN_MS = 300;
+const DRAG_SETTLE_MAX_MS = 740;
+const VIDEO_START_MS = 220;
+const VIDEO_PAUSE_MS = 560;
+const PARALLAX = 0.14;
+const TRANSITION_OPACITY = 0.16;
+const DRAG_LOCK_PX = 10;
+const WHEEL_COOLDOWN_MS = 680;
+const FALLBACK_LOCAL_VIDEO = '/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4';
 
 type Slide = {
   number: string;
   label: string;
+  cleanLabel: string;
   heading: string;
+  words: string[];
   href?: string;
   video: string;
   poster?: string;
@@ -23,16 +40,24 @@ type Slide = {
 
 const slides: Slide[] = slideExperiences.map((slide, index) => ({
   ...slide,
+  cleanLabel: slide.label,
   label: `/ ${slide.label}`,
+  words: slide.heading.trim().split(/\s+/),
   href: slide.route,
   h1: index === 0,
 }));
 
-function expoInOut(progress: number): number {
-  if (progress === 0 || progress === 1) return progress;
+function appleExpoInOut(progress: number): number {
+  if (progress <= 0) return 0;
+  if (progress >= 1) return 1;
   return progress < 0.5
-    ? Math.pow(2, 20 * progress - 10) / 2
-    : (2 - Math.pow(2, -20 * progress + 10)) / 2;
+    ? Math.pow(2, 18 * progress - 9) / 2
+    : (2 - Math.pow(2, -18 * progress + 9)) / 2;
+}
+
+function appleEaseOutQuint(progress: number): number {
+  const clamped = Math.min(1, Math.max(0, progress));
+  return 1 - Math.pow(1 - clamped, 5);
 }
 
 function isEditableTarget(target: EventTarget | null): boolean {
@@ -42,7 +67,7 @@ function isEditableTarget(target: EventTarget | null): boolean {
 function playVideo(video: HTMLVideoElement | null): void {
   if (!video || document.hidden) return;
   void video.play().catch(() => {
-    // Muted video playback is best effort. The authentic poster remains meaningful if it is blocked.
+    // Muted video playback is best effort. The authentic poster remains meaningful if blocked.
   });
 }
 
@@ -55,32 +80,152 @@ function retainHomeSlide(index: number): void {
   window.history.replaceState({ ...(window.history.state ?? {}), angelSlide: index }, '', window.location.href);
 }
 
+type DragSession = {
+  pointerId: number;
+  startX: number;
+  startY: number;
+  isDragging: boolean;
+  movingForward: boolean | null;
+  outgoingIndex: number;
+  incomingIndex: number | null;
+  progress: number;
+};
+
 export function HomeSlideshow(): JSX.Element {
   const [active, setActive] = useState(restoredSlideIndex);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDraggingStage, setIsDraggingStage] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [status, setStatus] = useState(() => `Slide ${restoredSlideIndex() + 1} of ${slides.length}: ${slides[restoredSlideIndex()].label.replace('/', '').trim()}`);
+  const [status, setStatus] = useState(
+    () => `Slide ${restoredSlideIndex() + 1} of ${slides.length}: ${slides[restoredSlideIndex()].cleanLabel}`,
+  );
+
   const slideshowRef = useRef<HTMLElement | null>(null);
   const prefersReducedMotionRef = useRef(false);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const activeRef = useRef(active);
-  const isWaitingRef = useRef(false);
-  const queuedOffsetRef = useRef<number | null>(null);
+  const inFlightSettleRef = useRef<(() => void) | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const timersRef = useRef<number[]>([]);
-  const pointerStartXRef = useRef<number | null>(null);
+  const wheelCooldownUntilRef = useRef(0);
+  const velocityTrackerRef = useRef(new PointerVelocityTracker());
+  const dragSessionRef = useRef<DragSession | null>(null);
+  const suppressClickUntilRef = useRef(0);
 
   const rememberTimer = (callback: () => void, delay: number): void => {
     const timer = window.setTimeout(callback, delay);
     timersRef.current.push(timer);
   };
 
-  const describeSlide = (index: number): string => `Slide ${index + 1} of ${slides.length}: ${slides[index].label.replace('/', '').trim()}`;
+  const describeSlide = (index: number): string =>
+    `Slide ${index + 1} of ${slides.length}: ${slides[index].cleanLabel}`;
 
   const pauseAllExcept = (index: number): void => {
     slideRefs.current.forEach((slide, slideIndex) => {
       if (slideIndex !== index) slide?.querySelector<HTMLVideoElement>('video')?.pause();
     });
+  };
+
+  const clearSlideInlineStyles = (slide: HTMLDivElement | null): void => {
+    if (!slide) return;
+    slide.classList.remove('is-new');
+    slide.removeAttribute('style');
+    slide.querySelector<HTMLElement>('.image-container')?.removeAttribute('style');
+    slide.querySelector<HTMLElement>('.slide-content')?.removeAttribute('style');
+    slide.querySelectorAll<HTMLElement>('.q_split_wrap').forEach((word) => {
+      word.style.opacity = '';
+      word.style.transform = '';
+    });
+  };
+
+  const applyTransitionFrame = (
+    outgoing: HTMLDivElement,
+    incoming: HTMLDivElement,
+    movingForward: boolean,
+    rawProgress: number,
+    useEaseCurve: boolean,
+  ): void => {
+    const slideshow = slideshowRef.current;
+    if (!slideshow) return;
+    const width = slideshow.clientWidth || window.innerWidth;
+    const clamped = Math.min(1, Math.max(0, rawProgress));
+    const eased = useEaseCurve ? appleExpoInOut(clamped) : clamped;
+
+    const incomingImage = incoming.querySelector<HTMLElement>('.image-container');
+    const outgoingImage = outgoing.querySelector<HTMLElement>('.image-container');
+    const incomingContent = incoming.querySelector<HTMLElement>('.slide-content');
+    if (!incomingImage || !outgoingImage) return;
+
+    const incomingStartX = movingForward ? -width * (1 - PARALLAX) : -width * PARALLAX;
+    const outgoingEndX = movingForward ? -width * PARALLAX : width * PARALLAX;
+
+    incoming.style.width = `${width * eased}px`;
+    incomingImage.style.width = `${width}px`;
+    incomingImage.style.transform = `translate3d(${incomingStartX * (1 - eased)}px, 0, 0)`;
+    incomingImage.style.opacity = String(TRANSITION_OPACITY + (1 - TRANSITION_OPACITY) * eased);
+    outgoingImage.style.transform = `translate3d(${outgoingEndX * eased}px, 0, 0)`;
+    outgoingImage.style.opacity = String(1 - (1 - TRANSITION_OPACITY) * eased);
+
+    if (incomingContent) {
+      incomingContent.style.width = `${width}px`;
+      incomingContent.style.right = movingForward ? '0px' : 'auto';
+      incomingContent.style.left = movingForward ? 'auto' : '0px';
+    }
+
+    const outgoingWords = Array.from(outgoing.querySelectorAll<HTMLElement>('.q_split_wrap'));
+    const incomingWords = Array.from(incoming.querySelectorAll<HTMLElement>('.q_split_wrap'));
+    const outgoingWordX = movingForward ? -36 : 36;
+    const incomingWordX = movingForward ? 36 : -36;
+
+    const outTotal = Math.max(1, outgoingWords.length);
+    outgoingWords.forEach((word, index) => {
+      const staggerStart = (index / outTotal) * 0.25;
+      const wordProgress = Math.min(1, Math.max(0, (clamped - staggerStart) / 0.46));
+      const wordEase = appleEaseOutQuint(wordProgress);
+      word.style.opacity = String(1 - wordEase);
+      word.style.transform = `translate3d(${outgoingWordX * wordEase}px, 0, 0)`;
+    });
+
+    const inTotal = Math.max(1, incomingWords.length);
+    incomingWords.forEach((word, index) => {
+      const staggerStart = 0.28 + (index / inTotal) * 0.34;
+      const wordProgress = Math.min(1, Math.max(0, (clamped - staggerStart) / (1 - staggerStart)));
+      const wordEase = appleEaseOutQuint(wordProgress);
+      word.style.opacity = String(wordEase);
+      word.style.transform = `translate3d(${incomingWordX * (1 - wordEase)}px, 0, 0)`;
+    });
+  };
+
+  const prepareIncomingLayer = (incoming: HTMLDivElement, outgoing: HTMLDivElement, movingForward: boolean): void => {
+    const slideshow = slideshowRef.current;
+    if (!slideshow) return;
+    const width = slideshow.clientWidth || window.innerWidth;
+    const incomingImage = incoming.querySelector<HTMLElement>('.image-container');
+    const outgoingImage = outgoing.querySelector<HTMLElement>('.image-container');
+    const incomingContent = incoming.querySelector<HTMLElement>('.slide-content');
+
+    incoming.classList.add('is-new');
+    incoming.style.display = 'block';
+    incoming.style.width = '0px';
+    incoming.style.right = movingForward ? '0px' : 'auto';
+    incoming.style.left = movingForward ? 'auto' : '0px';
+    incoming.style.zIndex = '2';
+
+    if (incomingImage) {
+      const incomingStartX = movingForward ? -width * (1 - PARALLAX) : -width * PARALLAX;
+      incomingImage.style.width = `${width}px`;
+      incomingImage.style.transform = `translate3d(${incomingStartX}px, 0, 0)`;
+      incomingImage.style.opacity = String(TRANSITION_OPACITY);
+    }
+    if (outgoingImage) {
+      outgoingImage.style.transform = 'translate3d(0, 0, 0)';
+      outgoingImage.style.opacity = '1';
+    }
+    if (incomingContent) {
+      incomingContent.style.width = `${width}px`;
+      incomingContent.style.right = movingForward ? '0px' : 'auto';
+      incomingContent.style.left = movingForward ? 'auto' : '0px';
+    }
   };
 
   useEffect(() => {
@@ -92,11 +237,11 @@ export function HomeSlideshow(): JSX.Element {
     updateMotionPreference();
     mediaQuery.addEventListener('change', updateMotionPreference);
 
-    // The authentic poster is immediately visible, then the active muted film is invited to
-    // play once the stage is composed. A Back navigation can restore a later slide.
     slideRefs.current.forEach((slide) => slide?.classList.add('is-loaded'));
     rememberTimer(() => {
-      if (!prefersReducedMotionRef.current) playVideo(slideRefs.current[activeRef.current]?.querySelector('video') ?? null);
+      if (!prefersReducedMotionRef.current) {
+        playVideo(slideRefs.current[activeRef.current]?.querySelector('video') ?? null);
+      }
     }, VIDEO_START_MS);
 
     const onVisibilityChange = (): void => {
@@ -115,19 +260,25 @@ export function HomeSlideshow(): JSX.Element {
     };
   }, []);
 
-  const changeSlide = (offset: number): void => {
+  const transitionToIndex = (
+    targetIndex: number,
+    explicitDirection?: boolean,
+    startFromProgress = 0,
+    customDurationMs?: number,
+  ): void => {
+    if (inFlightSettleRef.current) {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      inFlightSettleRef.current();
+    }
+
     const outgoingIndex = activeRef.current;
-    const incomingIndex = (outgoingIndex + offset + slides.length) % slides.length;
+    const incomingIndex = ((targetIndex % slides.length) + slides.length) % slides.length;
     const slideshow = slideshowRef.current;
     const outgoing = slideRefs.current[outgoingIndex];
     const incoming = slideRefs.current[incomingIndex];
-
-    // A second intent is retained rather than ignored. It is played after the current
-    // cinematic movement settles, so controls never leave the stage in an in-between state.
-    if (isWaitingRef.current) {
-      queuedOffsetRef.current = offset;
-      return;
-    }
     if (!slideshow || !outgoing || !incoming || outgoing === incoming) return;
 
     const incomingVideo = incoming.querySelector<HTMLVideoElement>('video');
@@ -135,31 +286,23 @@ export function HomeSlideshow(): JSX.Element {
     incomingVideo?.setAttribute('preload', 'auto');
 
     const settle = (): void => {
+      inFlightSettleRef.current = null;
       incoming.classList.add('q_current');
-      incoming.classList.remove('is-new');
       outgoing.classList.remove('q_current');
-      incoming.removeAttribute('style');
-      incoming.querySelector<HTMLElement>('.image-container')?.removeAttribute('style');
-      incoming.querySelector<HTMLElement>('.slide-content')?.removeAttribute('style');
-      outgoing.querySelector<HTMLElement>('.image-container')?.removeAttribute('style');
+      clearSlideInlineStyles(incoming);
+      clearSlideInlineStyles(outgoing);
 
       activeRef.current = incomingIndex;
       retainHomeSlide(incomingIndex);
       setActive(incomingIndex);
       setStatus(describeSlide(incomingIndex));
       setIsTransitioning(false);
-      isWaitingRef.current = false;
       slideshow.setAttribute('wait', 'false');
       pauseAllExcept(incomingIndex);
-
-      const queuedOffset = queuedOffsetRef.current;
-      queuedOffsetRef.current = null;
-      if (queuedOffset !== null) window.requestAnimationFrame(() => changeSlide(queuedOffset));
+      if (!prefersReducedMotionRef.current) playVideo(incomingVideo ?? null);
     };
 
-    // The motion-reduced experience preserves the exact slide sequence and media hierarchy
-    // without parallax, word staggering, or a long wait state.
-    if (prefersReducedMotion) {
+    if (prefersReducedMotionRef.current) {
       incoming.style.display = 'block';
       incoming.classList.add('is-new');
       settle();
@@ -167,72 +310,38 @@ export function HomeSlideshow(): JSX.Element {
       return;
     }
 
-    incomingVideo?.load();
-    const incomingImage = incoming.querySelector<HTMLElement>('.image-container');
-    const outgoingImage = outgoing.querySelector<HTMLElement>('.image-container');
-    const incomingContent = incoming.querySelector<HTMLElement>('.slide-content');
-    if (!incomingImage || !outgoingImage) return;
+    if (incomingVideo && incomingVideo.readyState === 0) {
+      incomingVideo.load();
+    }
 
-    isWaitingRef.current = true;
+    const movingForward = explicitDirection ?? incomingIndex > outgoingIndex;
+    inFlightSettleRef.current = settle;
     setIsTransitioning(true);
     slideshow.setAttribute('wait', 'true');
 
-    const width = slideshow.clientWidth;
-    const movingForward = offset > 0;
-    const incomingStartX = movingForward ? -width * (1 - PARALLAX) : -width * PARALLAX;
-    const outgoingEndX = movingForward ? -width * PARALLAX : width * PARALLAX;
-
-    // Source-faithful directional width reveal: a zero-width incoming layer opens while
-    // the outgoing/incoming media travel in opposite directions. Only the existing stage
-    // vocabulary is used; no replacement hero or new visual effect is introduced.
-    incoming.classList.add('is-new');
-    incoming.style.display = 'block';
-    incoming.style.width = '0px';
-    incoming.style.right = movingForward ? '0px' : 'auto';
-    incoming.style.left = movingForward ? 'auto' : '0px';
-    incoming.style.zIndex = '2';
-    incomingImage.style.width = `${width}px`;
-    incomingImage.style.transform = `translate3d(${incomingStartX}px, 0, 0)`;
-    incomingImage.style.opacity = String(TRANSITION_OPACITY);
-    outgoingImage.style.transform = 'translate3d(0, 0, 0)';
-    outgoingImage.style.opacity = '1';
-    if (incomingContent) {
-      incomingContent.style.width = `${width}px`;
-      incomingContent.style.right = movingForward ? 'auto' : '0px';
-      incomingContent.style.left = movingForward ? '0px' : 'auto';
+    if (startFromProgress <= 0) {
+      prepareIncomingLayer(incoming, outgoing, movingForward);
     }
 
-    const outgoingWords = Array.from(outgoing.querySelectorAll<HTMLElement>('.q_split_wrap'));
-    const incomingWords = Array.from(incoming.querySelectorAll<HTMLElement>('.q_split_wrap'));
-    const outgoingWordX = movingForward ? -50 : 50;
-    const incomingWordX = movingForward ? 50 : -50;
+    const duration = customDurationMs ?? TRANSITION_MS;
     const startedAt = performance.now();
 
     const animate = (now: number): void => {
       const elapsed = now - startedAt;
-      const progress = Math.min(1, elapsed / TRANSITION_MS);
-      const eased = expoInOut(progress);
+      const t = Math.min(1, elapsed / duration);
+      const interpolatedProgress = startFromProgress > 0
+        ? startFromProgress + (1 - startFromProgress) * appleEaseOutQuint(t)
+        : t;
 
-      incoming.style.width = `${width * eased}px`;
-      incomingImage.style.transform = `translate3d(${incomingStartX * (1 - eased)}px, 0, 0)`;
-      incomingImage.style.opacity = String(TRANSITION_OPACITY + (1 - TRANSITION_OPACITY) * eased);
-      outgoingImage.style.transform = `translate3d(${outgoingEndX * eased}px, 0, 0)`;
-      outgoingImage.style.opacity = String(1 - (1 - TRANSITION_OPACITY) * eased);
+      applyTransitionFrame(
+        outgoing,
+        incoming,
+        movingForward,
+        interpolatedProgress,
+        startFromProgress <= 0,
+      );
 
-      outgoingWords.forEach((word, index) => {
-        const wordProgress = Math.min(1, Math.max(0, (elapsed - index * 50) / 600));
-        const wordEase = 1 - Math.pow(1 - wordProgress, 5);
-        word.style.opacity = String(1 - wordEase);
-        word.style.transform = `translate3d(${outgoingWordX * wordEase}px, 0, 0)`;
-      });
-      incomingWords.forEach((word, index) => {
-        const wordProgress = Math.min(1, Math.max(0, (elapsed - 800 - index * 100) / TRANSITION_MS));
-        const wordEase = 1 - Math.pow(1 - wordProgress, 5);
-        word.style.opacity = String(wordEase);
-        word.style.transform = `translate3d(${incomingWordX * (1 - wordEase)}px, 0, 0)`;
-      });
-
-      if (progress < 1) {
+      if (t < 1) {
         animationFrameRef.current = window.requestAnimationFrame(animate);
         return;
       }
@@ -241,8 +350,54 @@ export function HomeSlideshow(): JSX.Element {
     };
 
     animationFrameRef.current = window.requestAnimationFrame(animate);
-    rememberTimer(() => playVideo(incomingVideo), VIDEO_START_MS);
+    rememberTimer(() => playVideo(incomingVideo ?? null), VIDEO_START_MS);
     rememberTimer(() => outgoingVideo?.pause(), VIDEO_PAUSE_MS);
+  };
+
+  const changeSlide = (offset: number, startFromProgress = 0, customDurationMs?: number): void => {
+    const outgoingIndex = activeRef.current;
+    const incomingIndex = (outgoingIndex + offset + slides.length) % slides.length;
+    transitionToIndex(incomingIndex, offset > 0, startFromProgress, customDurationMs);
+  };
+
+  const cancelDragAndRevert = (
+    outgoing: HTMLDivElement,
+    incoming: HTMLDivElement,
+    movingForward: boolean,
+    fromProgress: number,
+  ): void => {
+    const slideshow = slideshowRef.current;
+    if (!slideshow) return;
+    const duration = Math.max(240, Math.round(fromProgress * 520));
+    const startedAt = performance.now();
+
+    const revertComplete = (): void => {
+      inFlightSettleRef.current = null;
+      clearSlideInlineStyles(incoming);
+      clearSlideInlineStyles(outgoing);
+      setIsTransitioning(false);
+      slideshow.setAttribute('wait', 'false');
+      pauseAllExcept(activeRef.current);
+    };
+
+    inFlightSettleRef.current = revertComplete;
+    setIsTransitioning(true);
+
+    const animateRevert = (now: number): void => {
+      const elapsed = now - startedAt;
+      const t = Math.min(1, elapsed / duration);
+      const currentProgress = fromProgress * (1 - appleEaseOutQuint(t));
+      applyTransitionFrame(outgoing, incoming, movingForward, currentProgress, false);
+
+      if (t < 1) {
+        animationFrameRef.current = window.requestAnimationFrame(animateRevert);
+        return;
+      }
+      animationFrameRef.current = null;
+      revertComplete();
+    };
+
+    animationFrameRef.current = window.requestAnimationFrame(animateRevert);
   };
 
   const onStageKeyDown = (event: ReactKeyboardEvent<HTMLElement>): void => {
@@ -250,25 +405,173 @@ export function HomeSlideshow(): JSX.Element {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       changeSlide(-1);
-    }
-    if (event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight') {
       event.preventDefault();
       changeSlide(1);
     }
   };
 
-  const onPointerDown = (event: ReactPointerEvent<HTMLElement>): void => {
-    pointerStartXRef.current = event.pointerType === 'mouse' ? null : event.clientX;
+  const onStageWheel = (event: ReactWheelEvent<HTMLElement>): void => {
+    const now = performance.now();
+    if (now < wheelCooldownUntilRef.current) return;
+    const dominantDelta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+    if (Math.abs(dominantDelta) < 28) return;
+    wheelCooldownUntilRef.current = now + WHEEL_COOLDOWN_MS;
+    changeSlide(dominantDelta > 0 ? 1 : -1);
   };
 
-  const onPointerUp = (event: ReactPointerEvent<HTMLElement>): void => {
-    const startX = pointerStartXRef.current;
-    pointerStartXRef.current = null;
-    if (startX === null || event.pointerType === 'mouse') return;
-    const deltaX = event.clientX - startX;
-    if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
-    changeSlide(deltaX < 0 ? 1 : -1);
+  const onPointerDown = (event: ReactPointerEvent<HTMLElement>): void => {
+    if (event.button !== 0 && event.pointerType === 'mouse') return;
+    const target = event.target as HTMLElement | null;
+    if (target?.closest('.arrows')) return;
+
+    if (inFlightSettleRef.current) {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      inFlightSettleRef.current();
+    }
+
+    velocityTrackerRef.current.reset();
+    velocityTrackerRef.current.record(event.clientX);
+    dragSessionRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      isDragging: false,
+      movingForward: null,
+      outgoingIndex: activeRef.current,
+      incomingIndex: null,
+      progress: 0,
+    };
   };
+
+  const onPointerMove = (event: ReactPointerEvent<HTMLElement>): void => {
+    const session = dragSessionRef.current;
+    const slideshow = slideshowRef.current;
+    if (!session || session.pointerId !== event.pointerId || !slideshow) return;
+
+    const deltaX = event.clientX - session.startX;
+    const deltaY = event.clientY - session.startY;
+
+    if (!session.isDragging) {
+      if (Math.abs(deltaX) < DRAG_LOCK_PX) return;
+      if (Math.abs(deltaY) > Math.abs(deltaX) * 1.2) {
+        dragSessionRef.current = null;
+        return;
+      }
+      session.isDragging = true;
+      setIsDraggingStage(true);
+      suppressClickUntilRef.current = performance.now() + 450;
+      try {
+        slideshow.setPointerCapture(event.pointerId);
+      } catch {
+        // Ignore if pointer capture is unavailable
+      }
+    }
+
+    if (prefersReducedMotionRef.current) return;
+
+    velocityTrackerRef.current.record(event.clientX);
+    const wantForward = deltaX < 0;
+    const outgoing = slideRefs.current[session.outgoingIndex];
+    if (!outgoing) return;
+
+    if (session.movingForward !== wantForward || session.incomingIndex === null) {
+      if (session.incomingIndex !== null) {
+        clearSlideInlineStyles(slideRefs.current[session.incomingIndex]);
+      }
+      session.movingForward = wantForward;
+      session.incomingIndex = (session.outgoingIndex + (wantForward ? 1 : -1) + slides.length) % slides.length;
+      const incoming = slideRefs.current[session.incomingIndex];
+      if (incoming) {
+        const incomingVideo = incoming.querySelector<HTMLVideoElement>('video');
+        incomingVideo?.setAttribute('preload', 'auto');
+        if (incomingVideo && incomingVideo.readyState === 0) incomingVideo.load();
+        playVideo(incomingVideo ?? null);
+        prepareIncomingLayer(incoming, outgoing, wantForward);
+      }
+    }
+
+    const incoming = session.incomingIndex !== null ? slideRefs.current[session.incomingIndex] : null;
+    if (!incoming || session.movingForward === null) return;
+
+    const width = Math.max(320, slideshow.clientWidth || window.innerWidth);
+    const dragProgress = Math.min(0.94, Math.abs(deltaX) / (width * 0.72));
+    session.progress = dragProgress;
+    applyTransitionFrame(outgoing, incoming, session.movingForward, dragProgress, false);
+  };
+
+  const finishPointerSession = (event: ReactPointerEvent<HTMLElement>, cancelled: boolean): void => {
+    const session = dragSessionRef.current;
+    dragSessionRef.current = null;
+    setIsDraggingStage(false);
+    const slideshow = slideshowRef.current;
+    if (!session || session.pointerId !== event.pointerId) return;
+
+    if (slideshow) {
+      try {
+        if (slideshow.hasPointerCapture(event.pointerId)) {
+          slideshow.releasePointerCapture(event.pointerId);
+        }
+      } catch {
+        // Ignore
+      }
+    }
+
+    if (!session.isDragging) return;
+    suppressClickUntilRef.current = performance.now() + 360;
+
+    const deltaX = event.clientX - session.startX;
+    if (prefersReducedMotionRef.current) {
+      if (!cancelled && Math.abs(deltaX) >= 42) {
+        changeSlide(deltaX < 0 ? 1 : -1);
+      }
+      return;
+    }
+
+    const outgoing = slideRefs.current[session.outgoingIndex];
+    const incoming = session.incomingIndex !== null ? slideRefs.current[session.incomingIndex] : null;
+    if (!outgoing || !incoming || session.movingForward === null) return;
+
+    const velocityX = velocityTrackerRef.current.getVelocity();
+    const projectedX = deltaX + projectMomentum(velocityX, 0.995);
+    const width = Math.max(320, slideshow?.clientWidth || window.innerWidth);
+    const alignedProjection = session.movingForward ? -projectedX : projectedX;
+    const shouldCommit =
+      !cancelled &&
+      (session.progress > 0.16 || alignedProjection > width * 0.16 || Math.abs(velocityX) > 280);
+
+    if (shouldCommit) {
+      const remainingFraction = Math.max(0.15, 1 - session.progress);
+      const settleMs = Math.min(
+        DRAG_SETTLE_MAX_MS,
+        Math.max(DRAG_SETTLE_MIN_MS, Math.round(remainingFraction * 680)),
+      );
+      changeSlide(session.movingForward ? 1 : -1, session.progress, settleMs);
+    } else {
+      cancelDragAndRevert(outgoing, incoming, session.movingForward, session.progress);
+    }
+  };
+
+  const onArrowMagnetMove = (event: ReactMouseEvent<HTMLButtonElement>): void => {
+    if (prefersReducedMotionRef.current) return;
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const relX = (event.clientX - (rect.left + rect.width / 2)) * 0.22;
+    const relY = (event.clientY - (rect.top + rect.height / 2)) * 0.22;
+    button.style.transform = `translate3d(${relX.toFixed(1)}px, ${relY.toFixed(1)}px, 0)`;
+  };
+
+  const onArrowMagnetLeave = (event: ReactMouseEvent<HTMLButtonElement>): void => {
+    event.currentTarget.style.transform = '';
+  };
+
+  const activeSlide = slides[active];
+  const stageStyle = {
+    '--ac-horizon-progress': `${(((active + 1) / slides.length) * 100).toFixed(1)}%`,
+  } as CSSProperties;
 
   return (
     <main id="main" className="site-main">
@@ -281,29 +584,51 @@ export function HomeSlideshow(): JSX.Element {
             <section
               ref={slideshowRef}
               id="slideshow"
-              className="slideshow"
+              className={`slideshow ac-home-cinema${isDraggingStage ? ' is-dragging' : ''}`}
+              style={stageStyle}
               data-scroll-sticky
               aria-roledescription="carousel"
               aria-label="Angel capabilities presentation"
               aria-describedby="slideshow-instructions slideshow-status"
               tabIndex={0}
               onKeyDown={onStageKeyDown}
+              onWheel={onStageWheel}
               onPointerDown={onPointerDown}
-              onPointerUp={onPointerUp}
-              onPointerCancel={() => { pointerStartXRef.current = null; }}
+              onPointerMove={onPointerMove}
+              onPointerUp={(event) => finishPointerSession(event, false)}
+              onPointerCancel={(event) => finishPointerSession(event, true)}
             >
-              <p id="slideshow-instructions" className="sr-only">Use the previous and next buttons, left and right arrow keys, or a horizontal swipe to explore Angel capabilities.</p>
+              <p id="slideshow-instructions" className="sr-only">
+                Use the previous and next buttons, left and right arrow keys, or drag horizontally to explore Angel capabilities.
+              </p>
               <p id="slideshow-status" className="sr-only" aria-live="polite" aria-atomic="true">{status}</p>
               <div className="slideshow-inner header_animate">
                 <div className="slides">
                   {slides.map((slide, index) => {
                     const Heading = slide.h1 ? 'h1' : 'h2';
                     const className = `slide${index === active ? ' q_current' : ''} is-loaded${index === 0 ? ' scrollanim_fade_container' : ''}`;
-                    const captionContents = <>
-                      <div className="num q_split_wrap q_splitText">{slide.number}</div>
-                      <p className="q_split_wrap q_splitText"><span className="q_split font_caps"><span className="q_split_wrap"> {slide.label} </span></span></p>
-                      <Heading className="q_split_wrap q_splitText"><span className="q_split_wrap q_splitText"> {slide.heading}</span><span className="q_split_wrap q_splitText"> </span></Heading>
-                    </>;
+                    const captionContents = (
+                      <>
+                        <div className="ac-home-caption__eyebrow">
+                          <div className="num q_split_wrap q_splitText">{slide.number}</div>
+                          <p className="q_split_wrap q_splitText">
+                            <span className="q_split font_caps">
+                              <span className="q_split_wrap"> {slide.label} </span>
+                            </span>
+                          </p>
+                        </div>
+                        <Heading className="q_splitText ac-home-caption__headline">
+                          {slide.words.map((word, wordIndex) => (
+                            <Fragment key={`${slide.number}-word-${wordIndex}`}>
+                              <span className="q_split">
+                                <span className="q_split_wrap q_splitText">{word}</span>
+                              </span>
+                              {wordIndex < slide.words.length - 1 ? ' ' : ''}
+                            </Fragment>
+                          ))}
+                        </Heading>
+                      </>
+                    );
                     return (
                       <div
                         className={className}
@@ -314,15 +639,16 @@ export function HomeSlideshow(): JSX.Element {
                         aria-label={describeSlide(index)}
                       >
                         <div className="slide-content mix">
-                          <div className="caption menu_fade" style={{ color: index === 0 ? '#ccc' : '#FFD5C2' }}>
+                          <div className="caption menu_fade">
                             {slide.href ? (
                               <a
                                 href={slide.href}
-                                data-hover={slide.label.replace('/', '').trim()}
-                                style={{ color: '#ddc89d' }}
+                                className="ac-home-caption__link"
+                                data-hover={slide.cleanLabel}
                                 data-col="#ddc89d"
                                 onClick={(event) => {
                                   event.preventDefault();
+                                  if (performance.now() < suppressClickUntilRef.current) return;
                                   retainHomeSlide(index);
                                   navigate(slide.href!, { angelSlide: index, angelJourney: 'slider' });
                                 }}
@@ -335,23 +661,52 @@ export function HomeSlideshow(): JSX.Element {
                         <div className="image-container">
                           <div className="image-wrapper scrollanim_fade">
                             <div data-scroll data-scroll-speed="-7">
-                              {slide.poster && <img className="slide-poster" src={slide.poster} alt="" aria-hidden="true" decoding="async" />}
+                              {slide.poster && (
+                                <img
+                                  className="slide-poster"
+                                  src={slide.poster}
+                                  alt=""
+                                  aria-hidden="true"
+                                  decoding="async"
+                                />
+                              )}
                               <video
                                 autoPlay={index === active && !prefersReducedMotion}
                                 loop
                                 muted
                                 playsInline
-                                preload={prefersReducedMotion || (slide.remote && index !== active) ? 'none' : (index === active ? 'auto' : (Math.abs(index - active) === 1 || Math.abs(index - active) === slides.length - 1 ? 'metadata' : 'none'))}
+                                preload={
+                                  prefersReducedMotion
+                                    ? 'none'
+                                    : index === active
+                                      ? 'auto'
+                                      : Math.abs(index - active) === 1 || Math.abs(index - active) === slides.length - 1
+                                        ? 'metadata'
+                                        : 'none'
+                                }
                                 poster={slide.poster}
                                 width="100%"
                                 height="974"
                                 aria-hidden="true"
                                 tabIndex={-1}
-                                onCanPlay={(event) => { if (index === active && !prefersReducedMotion) playVideo(event.currentTarget); }}
-                                onError={(event) => event.currentTarget.closest('.slide')?.classList.add('media-unavailable')}
+                                onCanPlay={(event) => {
+                                  if (index === active && !prefersReducedMotion) playVideo(event.currentTarget);
+                                }}
+                                onError={(event) => {
+                                  const videoEl = event.currentTarget;
+                                  if (slide.remote && videoEl.dataset.fallbackApplied !== 'true') {
+                                    videoEl.dataset.fallbackApplied = 'true';
+                                    videoEl.src = FALLBACK_LOCAL_VIDEO;
+                                    videoEl.load();
+                                    if (index === active && !prefersReducedMotion) playVideo(videoEl);
+                                    return;
+                                  }
+                                  videoEl.closest('.slide')?.classList.add('media-unavailable');
+                                }}
                               >
                                 <source src={slide.video} type={slide.mediaType ?? 'video/mp4'} />
                               </video>
+                              <div className="video-overlay" aria-hidden="true" />
                             </div>
                           </div>
                         </div>
@@ -359,15 +714,48 @@ export function HomeSlideshow(): JSX.Element {
                     );
                   })}
                 </div>
-                <div className="arrows menu_fade" data-scroll data-scroll-speed="-9" aria-label="Presentation controls" aria-busy={isTransitioning}>
-                  <button className="arrow prev font_caps magnet" type="button" onClick={() => changeSlide(-1)} aria-label="Previous capability" aria-keyshortcuts="ArrowLeft">
-                    <span className="magnet_circle_fast" /><span aria-hidden="true">Prev</span>
-                  </button>
-                  <div className="arrow_line reveal_fade" aria-hidden="true">/</div>
-                  <button className="arrow next font_caps magnet" type="button" onClick={() => changeSlide(1)} aria-label="Next capability" aria-keyshortcuts="ArrowRight">
-                    <span className="magnet_circle_fast" /><span aria-hidden="true">Next</span>
-                  </button>
-                  <div className="scroll" aria-hidden="true">Scroll Down</div>
+                <div className="ac-home-horizon" aria-hidden="true">
+                  <span className="ac-home-horizon__beam" />
+                </div>
+                <div
+                  className="arrows menu_fade ac-home-controls"
+                  data-scroll
+                  data-scroll-speed="-9"
+                  aria-label="Presentation controls"
+                  aria-busy={isTransitioning}
+                >
+                  <div className="ac-home-counter" aria-hidden="true">
+                    <strong>{activeSlide.number}</strong>
+                    <span className="ac-home-counter__line" />
+                    <span>0{slides.length}</span>
+                  </div>
+                  <div className="ac-home-nav-minimal">
+                    <button
+                      className="arrow prev font_caps magnet"
+                      type="button"
+                      onClick={() => changeSlide(-1)}
+                      onMouseMove={onArrowMagnetMove}
+                      onMouseLeave={onArrowMagnetLeave}
+                      aria-label="Previous capability"
+                      aria-keyshortcuts="ArrowLeft"
+                    >
+                      <span className="magnet_circle_fast" />
+                      <span aria-hidden="true">Prev</span>
+                    </button>
+                    <div className="arrow_line reveal_fade" aria-hidden="true">/</div>
+                    <button
+                      className="arrow next font_caps magnet"
+                      type="button"
+                      onClick={() => changeSlide(1)}
+                      onMouseMove={onArrowMagnetMove}
+                      onMouseLeave={onArrowMagnetLeave}
+                      aria-label="Next capability"
+                      aria-keyshortcuts="ArrowRight"
+                    >
+                      <span className="magnet_circle_fast" />
+                      <span aria-hidden="true">Next</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </section>

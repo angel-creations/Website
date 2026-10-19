@@ -1,39 +1,42 @@
 {
   "/360-video/": {
-    "description": "Explore Angel Creations’ 360 video experience."
+    "description": "Explore Angel Creations\u2019 360 video experience."
+  },
+  "/404/": {
+    "description": "This route is out of view. Return home, explore the verified Angel Creations works archive, or start a project with the studio."
   },
   "/about/": {
     "description": "Angel Creations is an India based Creative Studio, with the mission of building value through design and development."
   },
   "/animation/": {
-    "description": "Explore Angel Creations’ Animation capability, including its publicly listed 2D and 3D animation, motion graphics and visual-effects material."
+    "description": "Explore Angel Creations\u2019 Animation capability, including its publicly listed 2D and 3D animation, motion graphics and visual-effects material."
   },
   "/augment-reality/": {
-    "description": "Explore Angel Creations’ Augment Reality capability and its publicly listed AR applications, marketing, navigation and retail material."
+    "description": "Explore Angel Creations\u2019 Augment Reality capability and its publicly listed AR applications, marketing, navigation and retail material."
   },
   "/brand-advertisement/": {
-    "description": "Explore Angel Creations’ Brand Advertisement capability and its public Marketing & Branding material."
+    "description": "Explore Angel Creations\u2019 Brand Advertisement capability and its public Marketing & Branding material."
   },
   "/contact/": {
     "description": "Start a qualified project enquiry with Angel Creations."
   },
   "/media-production/": {
-    "description": "Explore Angel Creations’ Media Production capability, including publicly listed video, film, television, photography and post-production material."
+    "description": "Explore Angel Creations\u2019 Media Production capability, including publicly listed video, film, television, photography and post-production material."
   },
   "/metaverse/": {
-    "description": "Explore Angel Creations’ Metaverse capability, including virtual worlds, events platforms, product showcase and virtual workspaces."
+    "description": "Explore Angel Creations\u2019 Metaverse capability, including virtual worlds, events platforms, product showcase and virtual workspaces."
   },
   "/mixed-reality/": {
-    "description": "Explore Angel Creations’ Mixed Reality capability and its publicly listed content, training, entertainment, gaming and collaboration material."
+    "description": "Explore Angel Creations\u2019 Mixed Reality capability and its publicly listed content, training, entertainment, gaming and collaboration material."
   },
   "/privacy-policy/": {
-    "description": "Read the captured Angel Creations privacy policy."
+    "description": "Learn how Angel Creations collects, uses, and safeguards your personal information across our website, spatial experiences, and studio services."
   },
   "/terms-of-service/": {
-    "description": "Read the captured Angel Creations terms of service."
+    "description": "Review the terms governing your use of the Angel Creations website, interactive 3D showcases, and digital platforms, including ownership, conduct, and liability."
   },
   "/virtual-reality/": {
-    "description": "Explore Angel Creations’ Virtual Reality capability, including publicly listed content, training, education, marketing and visualization material."
+    "description": "Explore Angel Creations\u2019 Virtual Reality capability, including publicly listed content, training, education, marketing and visualization material."
   },
   "/works/": {
     "description": "Explore 47 verified public Angel Creations video records with their original titles, descriptions, source URLs and available metadata."
