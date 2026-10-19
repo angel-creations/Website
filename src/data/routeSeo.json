@@ -1,44 +1,153 @@
 {
-  "/360-video/": {
-    "description": "Explore Angel Creations\u2019 360 video experience."
+  "/": {
+    "title": "Angel Creations | Immersive Experiences, VR, AR & Film",
+    "description": "Angel Creations is an India-based creative studio creating virtual reality, augmented reality, animation, brand films, and immersive digital experiences.",
+    "image": "/social/og/home.jpg",
+    "shareTitle": "Immersive worlds. Human stories.",
+    "imageAlt": "Dark digital-city artwork with the Angel Creations wordmark and the headline “Immersive worlds. Human stories.”"
   },
   "/404/": {
-    "description": "This route is out of view. Return home, explore the verified Angel Creations works archive, or start a project with the studio."
+    "title": "Page not found | Angel Creations",
+    "description": "This route is out of view. Return home, explore the verified Angel Creations works archive, or start a project."
   },
   "/about/": {
-    "description": "Angel Creations is an India based Creative Studio, with the mission of building value through design and development."
+    "title": "About Angel Creations | Creative & Immersive Studio",
+    "description": "Meet Angel Creations, an India-based creative studio working across design, development, storytelling, film, animation, and immersive digital experiences.",
+    "image": "/social/og/about.jpg",
+    "shareTitle": "Meet the creative studio.",
+    "imageAlt": "Angel Creations wordmark over the existing studio About image with the headline “Meet the creative studio.”"
   },
   "/animation/": {
-    "description": "Explore Angel Creations\u2019 Animation capability, including its publicly listed 2D and 3D animation, motion graphics and visual-effects material."
+    "title": "2D & 3D Animation, Motion Graphics & VFX | Angel Creations",
+    "description": "Discover 2D and 3D animation, motion graphics, character animation, interactive animation, and visual effects in Angel Creations’ public capability material.",
+    "shareTitle": "Stories in motion.",
+    "image": "/social/og/animation.jpg",
+    "imageAlt": "Angel Creations-branded animation hero artwork with the headline “Stories in motion.”"
   },
   "/augment-reality/": {
-    "description": "Explore Angel Creations\u2019 Augment Reality capability and its publicly listed AR applications, marketing, navigation and retail material."
+    "title": "Augmented Reality Experiences & Apps | Angel Creations",
+    "description": "Explore Angel Creations’ augmented reality material for industrial applications, navigation, retail, marketing, tourism, education, and entertainment.",
+    "shareTitle": "A digital layer on the real world.",
+    "image": "/social/og/augmented-reality.jpg",
+    "imageAlt": "Angel Creations-branded augmented-reality hero artwork with the page headline."
   },
   "/brand-advertisement/": {
-    "description": "Explore Angel Creations\u2019 Brand Advertisement capability and its public Marketing & Branding material."
+    "title": "Brand Films & Creative Campaigns | Angel Creations",
+    "description": "Explore Angel Creations’ brand advertising and marketing material across film, animation, digital, and immersive experiences.",
+    "shareTitle": "Campaigns with a point of view.",
+    "image": "/social/og/brand-advertisement.jpg",
+    "imageAlt": "Angel Creations-branded campaign artwork with the headline “Campaigns with a point of view.”"
   },
   "/contact/": {
-    "description": "Start a qualified project enquiry with Angel Creations."
+    "title": "Start a Project Enquiry | Angel Creations",
+    "description": "Start a project enquiry with Angel Creations. Share your goals, creative discipline, timeline, and contact details.",
+    "image": "/social/og/contact.jpg",
+    "shareTitle": "Let’s start a conversation.",
+    "imageAlt": "Cinematic studio-light artwork with the Angel Creations wordmark and the headline “Let’s start a conversation.”"
   },
   "/media-production/": {
-    "description": "Explore Angel Creations\u2019 Media Production capability, including publicly listed video, film, television, photography and post-production material."
+    "title": "Film, Video & Media Production | Angel Creations",
+    "description": "Explore Angel Creations’ media production capabilities across film, video, television, photography, live events, and post-production.",
+    "shareTitle": "From first frame to final cut.",
+    "image": "/social/og/media-production.jpg",
+    "imageAlt": "Angel Creations-branded media-production hero artwork with the headline “From first frame to final cut.”"
   },
   "/metaverse/": {
-    "description": "Explore Angel Creations\u2019 Metaverse capability, including virtual worlds, events platforms, product showcase and virtual workspaces."
+    "title": "Metaverse & Virtual World Experiences | Angel Creations",
+    "description": "Explore Angel Creations’ metaverse capabilities, including virtual worlds, events, product showcases, marketplaces, and workspaces.",
+    "shareTitle": "Virtual worlds, made tangible.",
+    "image": "/social/og/metaverse.jpg",
+    "imageAlt": "Angel Creations-branded metaverse hero artwork with the headline “Virtual worlds, made tangible.”"
   },
   "/mixed-reality/": {
-    "description": "Explore Angel Creations\u2019 Mixed Reality capability and its publicly listed content, training, entertainment, gaming and collaboration material."
+    "title": "Mixed Reality Experiences & Development | Angel Creations",
+    "description": "Explore Angel Creations’ mixed reality material for training, education, entertainment, architecture, marketing, retail, and collaboration.",
+    "shareTitle": "Where the real meets digital.",
+    "image": "/social/og/mixed-reality.jpg",
+    "imageAlt": "Angel Creations-branded mixed-reality hero artwork with the headline “Where the real meets digital.”"
   },
   "/privacy-policy/": {
-    "description": "Learn how Angel Creations collects, uses, and safeguards your personal information across our website, spatial experiences, and studio services."
+    "title": "Privacy Policy | Angel Creations",
+    "description": "Learn how Angel Creations collects, uses, and safeguards personal information across its website and digital services.",
+    "shareTitle": "How this site uses your data.",
+    "image": "/social/og/privacy-policy.jpg",
+    "imageAlt": "Angel Creations privacy-policy graphic with abstract orbital lines and the headline “How this site uses your data.”"
   },
   "/terms-of-service/": {
-    "description": "Review the terms governing your use of the Angel Creations website, interactive 3D showcases, and digital platforms, including ownership, conduct, and liability."
+    "title": "Terms of Service | Angel Creations",
+    "description": "Review the terms for using the Angel Creations website and digital services, including intellectual property, acceptable use, and liability.",
+    "shareTitle": "The terms for using this site.",
+    "image": "/social/og/terms-of-service.jpg",
+    "imageAlt": "Angel Creations terms graphic with abstract orbital lines and the headline “The terms for using this site.”"
   },
   "/virtual-reality/": {
-    "description": "Explore Angel Creations\u2019 Virtual Reality capability, including publicly listed content, training, education, marketing and visualization material."
+    "title": "Virtual Reality Experiences & Development | Angel Creations",
+    "description": "Explore Angel Creations’ virtual reality material for content, training, education, gaming, marketing, architecture, healthcare, and broadcasting.",
+    "shareTitle": "Step inside the story.",
+    "image": "/social/og/virtual-reality.jpg",
+    "imageAlt": "Angel Creations-branded virtual-reality hero artwork with the headline “Step inside the story.”"
   },
   "/works/": {
-    "description": "Explore 47 verified public Angel Creations video records with their original titles, descriptions, source URLs and available metadata."
+    "title": "Selected Work | Angel Creations",
+    "description": "Explore selected Angel Creations work through 47 verified public video records with their original titles, descriptions, links, and available metadata.",
+    "image": "/social/og/works.jpg",
+    "shareTitle": "Selected work from Angel Creations.",
+    "imageAlt": "Lustica architecture image with the Angel Creations wordmark and a selected-work headline."
+  },
+  "/capabilities/brand/": {
+    "title": "Brand & Creative Campaigns | Angel Creations",
+    "description": "Explore Angel Creations’ brand advertising, marketing, and immersive campaign capabilities across virtual, augmented, and mixed-reality experiences.",
+    "shareTitle": "Build a vivid brand story.",
+    "image": "/social/og/capability-brand.jpg",
+    "imageAlt": "Angel Creations-branded brand-positioning artwork with the headline “Build a vivid brand story.”"
+  },
+  "/capabilities/design/": {
+    "title": "Design & Creative Studio | Angel Creations",
+    "description": "Explore Angel Creations’ design and development capabilities across spatial experiences, visual storytelling, and digital environments.",
+    "shareTitle": "Design with purpose and feeling.",
+    "image": "/social/og/capability-design.jpg",
+    "imageAlt": "Angel Creations-branded architecture image with the headline “Design with purpose and feeling.”"
+  },
+  "/capabilities/content/": {
+    "title": "Immersive Content Production | Angel Creations",
+    "description": "Explore immersive content production across VR, mixed reality, animation, media, and interactive brand experiences.",
+    "shareTitle": "Content for immersive spaces.",
+    "image": "/social/og/capability-content.jpg",
+    "imageAlt": "Angel Creations-branded visual-storytelling artwork with the headline “Content for immersive spaces.”"
+  },
+  "/capabilities/film/": {
+    "title": "Film & Video Production | Angel Creations",
+    "description": "Explore film and video production across scriptwriting, storyboarding, photography, post-production, live events, and audio.",
+    "shareTitle": "Shape a story, frame by frame.",
+    "image": "/social/og/capability-film.jpg",
+    "imageAlt": "Angel Creations-branded cinematography artwork with the headline “Shape a story, frame by frame.”"
+  },
+  "/capabilities/animation-3d/": {
+    "title": "2D & 3D Animation and VFX | Angel Creations",
+    "description": "Explore Angel Creations’ 2D and 3D animation, motion graphics, visual effects, character animation, and interactive animation.",
+    "shareTitle": "Ideas in motion and dimension.",
+    "image": "/social/og/capability-animation-3d.jpg",
+    "imageAlt": "Angel Creations-branded animation artwork with the headline “Ideas in motion and dimension.”"
+  },
+  "/capabilities/digital/": {
+    "title": "Digital Experiences & Development | Angel Creations",
+    "description": "Explore digital experiences across virtual worlds, workspaces, marketplaces, education, streaming, navigation, and collaboration.",
+    "shareTitle": "Digital experiences, made useful.",
+    "image": "/social/og/capability-digital.jpg",
+    "imageAlt": "Angel Creations-branded augmented-reality navigation artwork with the headline “Digital experiences, made useful.”"
+  },
+  "/capabilities/experiences/": {
+    "title": "Immersive Experiences & Events | Angel Creations",
+    "description": "Explore virtual worlds, events platforms, product showcases, live event production, entertainment, and interactive spatial experiences.",
+    "shareTitle": "Spaces for shared moments.",
+    "image": "/social/og/capability-experiences.jpg",
+    "imageAlt": "Angel Creations-branded event imagery with the headline “Spaces for shared moments.”"
+  },
+  "/capabilities/creative-technology/": {
+    "title": "Creative Technology & XR | Angel Creations",
+    "description": "Explore Angel Creations’ VR, AR, mixed reality, and metaverse capabilities, including training, navigation, virtual worlds, and collaboration.",
+    "shareTitle": "Creative thinking meets technology.",
+    "image": "/social/og/capability-creative-technology.jpg",
+    "imageAlt": "Angel Creations-branded mixed-reality artwork with the headline “Creative thinking meets technology.”"
   }
 }

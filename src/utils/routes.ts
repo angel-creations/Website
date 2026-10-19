@@ -15,11 +15,19 @@ export function normaliseRoute(route: string): string {
 }
 
 export function currentRoute(): string {
-  return normaliseRoute(`${window.location.pathname}${window.location.search}`);
+  // Query strings (including campaign parameters) must never become part of route lookup.
+  // Keep them in the browser URL, but match pages using the normalized pathname only.
+  return normaliseRoute(window.location.pathname);
 }
 
 export function isInternalHref(href: string): boolean {
-  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+  if (
+    !href ||
+    href.startsWith('#') ||
+    href.startsWith('//') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:')
+  ) {
     return false;
   }
 
@@ -35,19 +43,17 @@ export function isInternalHref(href: string): boolean {
 }
 
 export function toLocalRoute(href: string): string {
-  if (href.startsWith('/')) {
-    return normaliseRoute(href);
-  }
-
-  const url = new URL(href);
-  return normaliseRoute(`${url.pathname}${url.search}`);
+  const url = href.startsWith('/')
+    ? new URL(href, window.location.origin)
+    : new URL(href);
+  return normaliseRoute(`${url.pathname}${url.search}${url.hash}`);
 }
 
 export function navigate(route: string, state: Record<string, unknown> = {}): void {
   const nextRoute = toLocalRoute(route);
-  if (nextRoute === currentRoute()) {
-    return;
-  }
+  const currentHref = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  if (nextRoute === currentHref) return;
+
   window.history.pushState(state, '', nextRoute);
   window.dispatchEvent(new PopStateEvent('popstate'));
 }

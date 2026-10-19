@@ -1,0 +1,1751 @@
+{
+  "auditDate": "2026-10-19",
+  "observedAtUtc": "2026-10-19T18:07:23Z",
+  "statusLabels": {
+    "Passed": "The stated check completed and met its local or network-level criterion.",
+    "Failed": "A response was received and the tested behavior violated the criterion.",
+    "Inconclusive": "Evidence was collected but does not establish the requested conclusion.",
+    "Blocked": "A required request or test could not be completed due to a known environment/tool/access constraint."
+  },
+  "overallProductionStatus": "Blocked",
+  "scope": "Production-only checks are separated from local build/preview checks. No production files, DNS, Hostinger settings, or deployed site were modified.",
+  "networkPolicy": {
+    "status": "Blocked",
+    "targetHost": "angelcreations.in",
+    "conclusion": "Production HTTP(S) is blocked by sandbox outbound network restrictions. The observed EOF is reproducible here, but does not prove an origin/CDN/TLS defect.",
+    "accessConstraint": "The sandbox outbound network policy prevented an HTTP(S) response from the production host."
+  },
+  "diagnostics": [
+    {
+      "check": "DNS resolution for angelcreations.in and www.angelcreations.in",
+      "status": "Passed",
+      "method": "getent ahostsv4/ahostsv6 and Python socket.getaddrinfo",
+      "observations": [
+        {
+          "hostname": "angelcreations.in",
+          "a": [
+            "212.1.212.145",
+            "191.96.144.13"
+          ],
+          "aaaa": [
+            "2a02:4780:21:a6e9:2f29:c182:d0fc:6e05"
+          ]
+        },
+        {
+          "hostname": "www.angelcreations.in",
+          "a": [
+            "191.96.144.24",
+            "191.101.104.133"
+          ],
+          "aaaa": [
+            "2a02:4780:1e:24f4:bb5:19d5:6e2d:97ec"
+          ]
+        },
+        {
+          "hostname": "angelcreations.in",
+          "a": [
+            "195.35.60.37",
+            "212.1.212.233"
+          ],
+          "aaaa": [
+            "2a02:4780:21:e30e:c4ae:b3ed:7325:e1c2",
+            "2a02:4780:22:f35e:461a:e0ad:e2b1:daca"
+          ]
+        },
+        {
+          "hostname": "www.angelcreations.in",
+          "a": [
+            "191.101.104.133",
+            "191.96.144.24"
+          ],
+          "aaaa": [
+            "2a02:4780:21:c02b:f58e:afcd:e07f:252a",
+            "2a02:4780:22:b4ee:6640:6592:f234:e25a"
+          ]
+        }
+      ],
+      "note": "Resolver returned address records; answers differed between observations. This is not an authoritative DNS audit and does not establish whether the variation is expected."
+    },
+    {
+      "check": "HTTPS GET https://angelcreations.in/ with normal certificate verification and redirect following",
+      "status": "Blocked",
+      "attempted": true,
+      "curlReportedStatus": "000",
+      "httpStatus": null,
+      "requestedUrl": "https://angelcreations.in/",
+      "effectiveUrlBeforeFailure": "https://angelcreations.in/",
+      "finalUrl": null,
+      "contentType": null,
+      "remoteIp": "195.35.60.37",
+      "curlExitCode": 35,
+      "error": "OpenSSL SSL_connect: SSL_ERROR_SYSCALL; no TLS certificate or HTTP headers were received.",
+      "method": "GET"
+    },
+    {
+      "check": "Direct TLS handshake to resolver-returned IPv4 addresses",
+      "status": "Blocked",
+      "attempted": true,
+      "probes": [
+        {
+          "ip": "212.1.212.145",
+          "sni": "angelcreations.in",
+          "httpStatus": null,
+          "contentType": null,
+          "curlExitCode": 35,
+          "error": "OpenSSL SSL_ERROR_SYSCALL",
+          "requestedUrl": "https://angelcreations.in/",
+          "finalUrl": null,
+          "method": "TLS-handshake"
+        },
+        {
+          "ip": "191.96.144.13",
+          "sni": "angelcreations.in",
+          "httpStatus": null,
+          "contentType": null,
+          "curlExitCode": 35,
+          "error": "OpenSSL SSL_ERROR_SYSCALL",
+          "requestedUrl": "https://angelcreations.in/",
+          "finalUrl": null,
+          "method": "TLS-handshake"
+        },
+        {
+          "ip": "195.35.60.37",
+          "sni": "angelcreations.in",
+          "httpStatus": null,
+          "contentType": null,
+          "curlExitCode": 35,
+          "error": "OpenSSL SSL_ERROR_SYSCALL after ClientHello",
+          "requestedUrl": "https://angelcreations.in/",
+          "finalUrl": null,
+          "method": "TLS-handshake"
+        }
+      ],
+      "note": "Certificate verification was not disabled; no certificate was received to inspect."
+    },
+    {
+      "check": "OpenSSL s_client with SNI, hostname verification, and verify_return_error",
+      "status": "Blocked",
+      "attempted": true,
+      "httpStatus": null,
+      "contentType": null,
+      "error": "Unexpected EOF while reading after the TLS ClientHello; no peer certificate was presented.",
+      "requestedUrl": "https://angelcreations.in/",
+      "finalUrl": null,
+      "method": "TLS-handshake"
+    },
+    {
+      "check": "TLS control request to github.com",
+      "status": "Passed",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=utf-8",
+      "sslVerifyResult": 0,
+      "remoteIp": "20.29.134.23",
+      "note": "Confirms curl/OpenSSL and the configured trust store can complete TLS to github.com from this sandbox; it does not validate angelcreations.in.",
+      "finalUrl": "https://github.com/",
+      "method": "HEAD"
+    },
+    {
+      "check": "Certificate chain, SAN, and validity dates for angelcreations.in",
+      "status": "Inconclusive",
+      "leafCertificateReceived": false,
+      "httpStatus": null,
+      "contentType": null,
+      "error": "The handshake ended before the server sent a certificate. Certificate validity cannot be assessed."
+    },
+    {
+      "check": "HTTP-to-HTTPS redirect behavior",
+      "status": "Inconclusive",
+      "attempted": true,
+      "requestedUrl": "http://angelcreations.in/",
+      "curlReportedStatus": "000",
+      "httpStatus": null,
+      "finalUrl": null,
+      "contentType": null,
+      "curlExitCode": 52,
+      "error": "curl reported Empty reply from server; no Location header or HTTP response was received. This probe is not used as evidence that production redirects.",
+      "method": "GET"
+    }
+  ],
+  "productionRequestMatrix": {
+    "status": "Blocked",
+    "routeCount": 21,
+    "uniqueInternalDestinationCount": 21,
+    "socialImageCount": 21,
+    "actualHttpResponses": 0,
+    "note": "Only the HTTPS root transport was attempted. All other targets below are explicitly marked not individually requested after confirming the target host is not reachable under sandbox network restrictions; status, final URL, and content type remain null.",
+    "requests": [
+      {
+        "requestUrl": "https://angelcreations.in/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/",
+        "attempted": true,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": "000",
+        "finalUrl": null,
+        "contentType": null,
+        "error": "curl exit 35: OpenSSL SSL_connect: SSL_ERROR_SYSCALL; the TLS ClientHello was sent, then the connection ended before a certificate or HTTP response.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/360-video/",
+        "roles": [
+          "retired-route-410-probe"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/about",
+        "roles": [
+          "trailing-slash-redirect-probe"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not requested: the hostname is not reachable under sandbox network restrictions and the production HTTPS handshake failed before HTTP. No response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/about/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/about/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/animation/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/animation/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/augment-reality/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/augment-reality/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/brand-advertisement/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/brand-advertisement/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/animation-3d/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/animation-3d/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/brand/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/brand/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/content/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/content/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/creative-technology/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/creative-technology/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/design/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/design/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/digital/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/digital/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/experiences/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/experiences/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/capabilities/film/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/capabilities/film/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/contact/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/contact/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/made-up-route-for-audit/",
+        "roles": [
+          "unknown-route-404-probe"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/media-production/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/media-production/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/metaverse/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/metaverse/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/mixed-reality/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/mixed-reality/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/privacy-policy/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/privacy-policy/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/robots.txt",
+        "roles": [
+          "robots"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/sitemap.xml",
+        "roles": [
+          "sitemap"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/about.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/about/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/animation.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/animation/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/augmented-reality.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/augment-reality/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/brand-advertisement.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/brand-advertisement/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-animation-3d.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/animation-3d/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-brand.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/brand/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-content.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/content/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-creative-technology.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/creative-technology/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-design.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/design/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-digital.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/digital/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-experiences.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/experiences/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/capability-film.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/capabilities/film/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/contact.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/contact/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/home.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/media-production.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/media-production/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/metaverse.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/metaverse/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/mixed-reality.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/mixed-reality/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/privacy-policy.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/privacy-policy/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/terms-of-service.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/terms-of-service/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/virtual-reality.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/virtual-reality/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/social/og/works.jpg",
+        "roles": [
+          "route-specific-social-preview-image"
+        ],
+        "route": "/works/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/terms-of-service/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/terms-of-service/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/virtual-reality/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/virtual-reality/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/work/",
+        "roles": [
+          "legacy-work-alias-probe"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not requested: the hostname is not reachable under sandbox network restrictions and the production HTTPS handshake failed before HTTP. No response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/works/",
+        "roles": [
+          "sitemap-route",
+          "unique-internal-destination"
+        ],
+        "route": "/works/",
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+        "roles": [
+          "remote-video-media-asset"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not individually requested: the target host is not reachable under sandbox network restrictions, and the root HTTPS request failed before HTTP. No production response was inferred.",
+        "method": "GET"
+      },
+      {
+        "requestUrl": "https://www.angelcreations.in/",
+        "roles": [
+          "www-host-canonical-redirect-probe"
+        ],
+        "attempted": false,
+        "status": "Blocked",
+        "httpStatus": null,
+        "curlReportedStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Not requested: the hostname is not reachable under sandbox network restrictions and the production HTTPS handshake failed before HTTP. No response was inferred.",
+        "method": "GET"
+      }
+    ],
+    "targetCount": 50
+  },
+  "externalLinkVerification": {
+    "status": "Blocked",
+    "count": 53,
+    "hosts": [
+      "thevirtuallife.in",
+      "www.facebook.com",
+      "www.instagram.com",
+      "www.linkedin.com",
+      "www.youtube.com"
+    ],
+    "attemptedCount": 0,
+    "destinations": [
+      {
+        "url": "https://thevirtuallife.in/",
+        "hostname": "thevirtuallife.in",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://thevirtuallife.in/weddinginvite/",
+        "hostname": "thevirtuallife.in",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.facebook.com/angelcreations.digital/",
+        "hostname": "www.facebook.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.instagram.com/angelcreations.digital/",
+        "hostname": "www.instagram.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.linkedin.com/in/angelcreations/",
+        "hostname": "www.linkedin.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/AngelCreationsACreativeStudio",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=-h9jRYAjwZw",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=1tO39Xqzh9c",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=1xsCfOKk_3s",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=2AdaMd83ULw",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=3PrHierkGoE",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=50O6nC07BvQ",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=7hfMEF-6JDc",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=9hQw1pnzyaY",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=Bcvrpn7pzA0",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=CIZqPGn31nM",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=fS992chJV4U",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=GkxPabDVf6o",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=gmnLd5YKZ6Y",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=gRFpyWS1LIU",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=h6REriwKUM4",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=hHzjY9phuLM",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=HVrinNB0RwY",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=Icz_vMwFBFA",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=IE5YNQwfQeo",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=itMJHjIi5aE",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=JuDxL6Vx-V4",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=lkwYiwynaUU",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=LwU4A0ED6aM",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=M8eKzjTE8sw",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=MRwA-EoLP3I",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=Mwy4zslFCHc",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=n8OVCgNDb0c",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=o9vkQOLT7T8",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=ODHBHIhCQck",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=omeS_i3ivlk",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=OWepxMT5dlU",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=QR0wJM3En3M",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=RXeOJh57bbs",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=Sa5mP4ajXyU",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=tSxmKGesh8k",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=UrH3HFH7PQs",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=Vpon7zWFTRE",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=VSw9Zf1Ugjk",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=VttjwJFS81s",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=VvLtnh_z6KI",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=wCTEgu1Hwnc",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=WpykIhD0A-s",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=wz1Iea_HUlA",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=X8qqEUgUArI",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=xFaRvdL_0Bg",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=Xm0STB55Udk",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=yzc-7e1zmbc",
+        "hostname": "www.youtube.com",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "Host is not reachable under sandbox network restrictions; remote availability/authentication/rate-limit status cannot be determined.",
+        "method": "GET"
+      }
+    ],
+    "conclusion": "No external destination is labelled broken. Authentication requirements, rate limits, bot protection, and availability remain unclassified."
+  },
+  "contactProtocolVerification": {
+    "status": "Blocked",
+    "count": 4,
+    "attemptedCount": 0,
+    "targets": [
+      {
+        "url": "mailto:business@angelcreations.in",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "No browser, mail client, or telephone handler is available to launch the protocol target.",
+        "method": "protocol-launch"
+      },
+      {
+        "url": "mailto:business@angelcreations.in?subject=dynamic-form-fields",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "No browser, mail client, or telephone handler is available to launch the protocol target.",
+        "method": "protocol-launch"
+      },
+      {
+        "url": "mailto:support@angelcreations.in",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "No browser, mail client, or telephone handler is available to launch the protocol target.",
+        "method": "protocol-launch"
+      },
+      {
+        "url": "tel:+918058465733",
+        "status": "Blocked",
+        "attempted": false,
+        "httpStatus": null,
+        "finalUrl": null,
+        "contentType": null,
+        "error": "No browser, mail client, or telephone handler is available to launch the protocol target.",
+        "method": "protocol-launch"
+      }
+    ],
+    "localSourceVerification": "The four mailto:/tel: targets are present in the active source and local inventory; their destinations and client launch behavior were not verified."
+  },
+  "remoteMediaVerification": {
+    "status": "Blocked",
+    "asset": {
+      "url": "https://angelcreations.in/wp-content/uploads/2023/05/an-experienced-video-production-engineer-works-on-2022-08-10-17-32-35-utc.mov",
+      "hostname": "angelcreations.in",
+      "declaredMediaType": "video/quicktime",
+      "lastRecordedHttpStatus": 200,
+      "lastRecordedContentType": "video/quicktime",
+      "lastRecordedAt": "2026-10-05T07:34:29Z",
+      "archiveStatus": "not-downloaded",
+      "referencedBy": [
+        "Home slideshow / Media Production"
+      ],
+      "verification": "No current remote request was performed. Any recorded status/content type is historical repository evidence only."
+    },
+    "currentRequestAttempted": false,
+    "httpStatus": null,
+    "finalUrl": null,
+    "contentType": null,
+    "error": "angelcreations.in is not reachable under sandbox network restrictions. The inventory status/content-type values are historical repository evidence, not a current response."
+  },
+  "productionSeoAndSocial": {
+    "status": "Blocked",
+    "htmlReceived": false,
+    "routeCount": 21,
+    "uniquePageSpecificImages": 21,
+    "titleDescriptionCanonicalOpenGraphTwitterValidatedOnProduction": false,
+    "imageContentTypesValidatedOnProduction": false,
+    "localBuildResult": "The existing local end-to-end audit validates route-specific title, description, canonical, Open Graph/Twitter fields, and unique local JPEG preview assets; this is not production verification."
+  },
+  "hostingerErrorHandling": {
+    "status": "Blocked",
+    "productionUnknownPath": {
+      "url": "https://angelcreations.in/made-up-route-for-audit/",
+      "attempted": false,
+      "httpStatus": null,
+      "finalUrl": null,
+      "contentType": null,
+      "title": null,
+      "visibleBodyVerified": false
+    },
+    "productionRetiredPath": {
+      "url": "https://angelcreations.in/360-video/",
+      "attempted": false,
+      "httpStatus": null,
+      "finalUrl": null,
+      "contentType": null,
+      "title": null,
+      "visibleBodyVerified": false
+    },
+    "repositoryFindings": {
+      "hostSpecificRewriteFilesFound": [],
+      "localViteMiddlewareIsNotProductionConfiguration": true,
+      "generatedErrorDocuments": [
+        "dist/404.html",
+        "dist/410.html"
+      ],
+      "historicalHostEvidence": "docs/SITE-STRUCTURE.md records Hostinger/hPanel/LiteSpeed response headers from an earlier capture; it is not proof of current host settings."
+    },
+    "note": "The live Hostinger product, document root, rewrite rules, and server controls could not be inspected. Hostinger product-specific documentation could not be queried because it is blocked by sandbox outbound network restrictions. No host-specific rewrite recommendation or production configuration change was made."
+  },
+  "browserQa": {
+    "status": "Blocked",
+    "browserExecutablesFound": [],
+    "automationPackagesFound": [],
+    "libnspr4Installed": false,
+    "checksBlocked": [
+      "desktop/mobile rendering",
+      "direct URL and refresh",
+      "Back/Forward",
+      "navigation menu",
+      "external-link activation",
+      "contact client launch",
+      "form interaction",
+      "keyboard operation",
+      "reduced motion",
+      "console/network inspection",
+      "screenshots"
+    ],
+    "blocker": "No Chromium/Chrome/Firefox binary or Playwright/Puppeteer package is installed; libnspr4.so is missing. Browser download/system package installation is outside the available egress hosts; no browser result or screenshot is claimed."
+  },
+  "deploymentComparison": {
+    "status": "Inconclusive",
+    "currentLocalBranch": "arena/b78ddfb8-website",
+    "localHead": "4a441179dbaddeb688cbd002e4936c75b479a960",
+    "localChangesUncommitted": true,
+    "remoteMainShaAtAudit": "4a441179dbaddeb688cbd002e4936c75b479a960",
+    "latestSuccessfulMainBuildRun": {
+      "id": 39232180134,
+      "createdAt": "2026-10-19T09:43:17Z",
+      "sha": "4a441179dbaddeb688cbd002e4936c75b479a960",
+      "conclusion": "success",
+      "url": "https://github.com/angel-creations/Website/actions/runs/39232180134"
+    },
+    "workflowInventory": [
+      "Verify production build"
+    ],
+    "deploymentWorkflowFound": false,
+    "explanation": "GitHub confirms the same base SHA and a successful build/artifact workflow, but there is no deployment workflow and the live site could not be fetched. The current local changes are uncommitted and were not deployed; no live build comparison is possible."
+  },
+  "verifiedDeploymentDiscrepancy": {
+    "status": "Passed",
+    "issue": "The existing Verify production build workflow listed /360-video/ as a required generated route even though the route is intentionally retired; a local replay confirmed that this made the workflow fail on the current build.",
+    "correction": "Removed the retired route from requiredRoutes and added checks that generated 404/410 documents exist and /360-video/ is absent from dist/sitemap.xml.",
+    "validation": "The updated equivalent route/document/sitemap checks passed against the local build. The GitHub Actions workflow itself has not been rerun on this uncommitted branch.",
+    "preCorrectionStatus": "Failed"
+  },
+  "localValidation": {
+    "build": {
+      "status": "Passed",
+      "command": "npm run build",
+      "result": "70 modules; generated static fallbacks, sitemap.xml, and robots.txt."
+    },
+    "staticAudit": {
+      "status": "Passed",
+      "command": "PREVIEW_BASE=http://127.0.0.1:4175 node scripts/auditStaticOutput.mjs",
+      "documents": 29,
+      "sitemapRoutes": 21,
+      "legacyFallbacks": 12,
+      "failures": 0
+    },
+    "endToEndAudit": {
+      "status": "Passed",
+      "command": "PREVIEW_BASE=http://127.0.0.1:4175 node scripts/auditEndToEnd.mjs",
+      "routes200": 21,
+      "staticAnchorInstances": 293,
+      "uniqueInternalTargets": 21,
+      "brokenInternalTargets": 0,
+      "localAssetReferences": 305,
+      "missingAssets": 0,
+      "uniqueSocialImages": 21,
+      "socialMetadataIssues": 0,
+      "externalWebTargetsInventoried": 53,
+      "contactTargetsInventoried": 4
+    },
+    "dependencyAudit": {
+      "status": "Passed",
+      "fullAuditVulnerabilities": 0,
+      "productionAuditVulnerabilities": 0
+    },
+    "gitWhitespaceCheck": {
+      "status": "Passed",
+      "command": "git diff --check",
+      "result": "No whitespace errors."
+    },
+    "workflowRouteCheck": {
+      "status": "Passed",
+      "requiredRoutes": 21,
+      "missingRoutes": 0,
+      "missingErrorDocuments": 0,
+      "retiredRouteInSitemap": false,
+      "missingStylesheets": 0,
+      "missingMediaReferences": 0,
+      "githubActionsRerun": "Blocked until the corrected workflow is committed and triggered."
+    }
+  },
+  "nextActions": [
+    "Have an operator with authorized Hostinger access test the deployed root, all 21 sitemap routes/internal destinations, sitemap.xml, robots.txt, 21 OG images, retired/unknown routes, and actual response headers.",
+    "Capture a complete certificate chain and redirect results from an approved network path where angelcreations.in is allowed; compare the live body and asset hashes against the built artifact.",
+    "Inspect the actual Hostinger plan/document root and official rewrite/error-document controls before applying a staging-tested, backed-up 404/410 mapping.",
+    "Provide an environment with a browser binary plus libnspr4.so (or supported Playwright/Puppeteer browser artifacts) to complete visual and interaction QA."
+  ]
+}

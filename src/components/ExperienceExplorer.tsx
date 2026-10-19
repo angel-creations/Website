@@ -198,7 +198,7 @@ const InteractiveVisualStage: React.FC<InteractiveVisualStageProps> = ({
           src={currentItem.src}
           alt={`${activeTitle} — ${currentItem.subtitle || currentItem.caption}`}
           className="apple-visual-stage__img"
-          loading="eager"
+          loading="lazy"
           decoding="async"
           draggable={false}
         />

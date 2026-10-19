@@ -1,12 +1,53 @@
 {
-  "documents": 24,
-  "sitemap": 22,
+  "documents": 29,
+  "sitemap": 21,
+  "sitemapDelivery": {
+    "sourceMatchesGenerated": true,
+    "sitemapHttpStatus": 200,
+    "robotsHttpStatus": 200,
+    "robotsReferencesSitemap": true,
+    "removed360RouteListed": false
+  },
+  "sitemapDeliveryIssues": [],
+  "notFoundDesignIssues": [],
+  "statusDocumentIssues": [],
+  "errorStatusChecks": [
+    {
+      "route": "/made-up-route-for-audit/",
+      "expected": 404,
+      "actual": 404,
+      "location": null
+    },
+    {
+      "route": "/360-video/",
+      "expected": 410,
+      "actual": 410,
+      "location": null
+    },
+    {
+      "route": "/360-video",
+      "expected": 410,
+      "actual": 410,
+      "location": null
+    },
+    {
+      "route": "/about",
+      "expected": 301,
+      "actual": 301,
+      "location": "/about/"
+    }
+  ],
+  "errorStatusIssues": [],
+  "legacyFallbackDocuments": 12,
+  "legacyFallbackIssues": [],
   "sitemapMissingDocs": [],
-  "previewBase": "http://127.0.0.1:4173",
+  "previewBase": "http://127.0.0.1:4175",
   "httpStatusIssues": [],
   "duplicateTitles": [],
   "duplicateDescriptions": [],
   "missingDescriptions": [],
+  "titleLengthIssues": [],
+  "descriptionLengthIssues": [],
   "missingCanonical": [],
   "canonicalMismatch": [],
   "canonicalAliasExceptions": [
@@ -28,15 +69,18 @@
     "ImageObject"
   ],
   "orphanSitemapRoutes": [],
-  "internalLinkCount": 415,
+  "internalLinkCount": 231,
+  "missingAlt": [],
+  "missingRobots": [],
+  "notFoundIndexable": [],
   "rows": [
     {
       "route": "/",
       "httpStatus": 200,
-      "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
-      "titleLength": 85,
-      "description": "Experience the future with Angel Creations, an immersive technology company pushing boundaries with virtual reality, augmented reality, and more.",
-      "descriptionLength": 145,
+      "title": "Angel Creations | Immersive Experiences, VR, AR & Film",
+      "titleLength": 54,
+      "description": "Angel Creations is an India-based creative studio creating virtual reality, augmented reality, animation, brand films, and immersive digital experiences.",
+      "descriptionLength": 153,
       "canonical": "https://angelcreations.in/",
       "h1Count": 1,
       "h1": [
@@ -54,16 +98,8 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 21,
+      "internalLinks": 12,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/about/",
         "/works/",
         "/contact/",
@@ -74,7 +110,6 @@
         "/animation/",
         "/brand-advertisement/",
         "/media-production/",
-        "/360-video/",
         "/privacy-policy/",
         "/terms-of-service/"
       ],
@@ -82,45 +117,25 @@
       "imagesWithoutAlt": 0
     },
     {
-      "route": "/360-video/",
+      "route": "/403.html",
       "httpStatus": 200,
-      "title": "360 video - Angel Creations - A Creative Powerhouse",
-      "titleLength": 51,
-      "description": "Explore Angel Creations’ 360 video experience.",
-      "descriptionLength": 46,
-      "canonical": "https://angelcreations.in/360-video/",
+      "title": "Access unavailable | Angel Creations",
+      "titleLength": 36,
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
       "h1Count": 1,
       "h1": [
-        "360 video"
+        "This page can’t be opened from here."
       ],
       "h2": 0,
-      "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
-      "jsonld": [
-        "WebPage",
-        "BreadcrumbList",
-        "WebSite",
-        [
-          "Organization",
-          "Place"
-        ],
-        "ImageObject"
-      ],
-      "internalLinks": 14,
+      "robots": "noindex, follow",
+      "jsonld": [],
+      "internalLinks": 3,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
-        "/about/",
         "/works/",
-        "/contact/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/contact/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
@@ -130,32 +145,141 @@
       "httpStatus": 200,
       "title": "Page not found | Angel Creations",
       "titleLength": 32,
-      "description": "The requested Angel Creations page is not available.",
-      "descriptionLength": 52,
-      "canonical": "https://angelcreations.in/404.html",
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
       "h1Count": 1,
       "h1": [
-        "This route is out of view."
+        "This page is out of orbit."
       ],
       "h2": 0,
       "robots": "noindex, follow",
       "jsonld": [],
-      "internalLinks": 14,
+      "internalLinks": 3,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
-        "/about/",
         "/works/",
-        "/contact/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/contact/"
+      ],
+      "images": 0,
+      "imagesWithoutAlt": 0
+    },
+    {
+      "route": "/410.html",
+      "httpStatus": 200,
+      "title": "Experience retired | Angel Creations",
+      "titleLength": 36,
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
+      "h1Count": 1,
+      "h1": [
+        "This experience has retired."
+      ],
+      "h2": 0,
+      "robots": "noindex, follow",
+      "jsonld": [],
+      "internalLinks": 3,
+      "internalLinkTargets": [
+        "/",
+        "/works/",
+        "/contact/"
+      ],
+      "images": 0,
+      "imagesWithoutAlt": 0
+    },
+    {
+      "route": "/500.html",
+      "httpStatus": 200,
+      "title": "Something went wrong | Angel Creations",
+      "titleLength": 38,
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
+      "h1Count": 1,
+      "h1": [
+        "Something went wrong on our side."
+      ],
+      "h2": 0,
+      "robots": "noindex, follow",
+      "jsonld": [],
+      "internalLinks": 3,
+      "internalLinkTargets": [
+        "/",
+        "/works/",
+        "/contact/"
+      ],
+      "images": 0,
+      "imagesWithoutAlt": 0
+    },
+    {
+      "route": "/502.html",
+      "httpStatus": 200,
+      "title": "Temporary connection issue | Angel Creations",
+      "titleLength": 44,
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
+      "h1Count": 1,
+      "h1": [
+        "We couldn’t complete that connection."
+      ],
+      "h2": 0,
+      "robots": "noindex, follow",
+      "jsonld": [],
+      "internalLinks": 3,
+      "internalLinkTargets": [
+        "/",
+        "/works/",
+        "/contact/"
+      ],
+      "images": 0,
+      "imagesWithoutAlt": 0
+    },
+    {
+      "route": "/503.html",
+      "httpStatus": 200,
+      "title": "Temporarily unavailable | Angel Creations",
+      "titleLength": 41,
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
+      "h1Count": 1,
+      "h1": [
+        "The site is temporarily unavailable."
+      ],
+      "h2": 0,
+      "robots": "noindex, follow",
+      "jsonld": [],
+      "internalLinks": 3,
+      "internalLinkTargets": [
+        "/",
+        "/works/",
+        "/contact/"
+      ],
+      "images": 0,
+      "imagesWithoutAlt": 0
+    },
+    {
+      "route": "/504.html",
+      "httpStatus": 200,
+      "title": "Request timed out | Angel Creations",
+      "titleLength": 35,
+      "description": "",
+      "descriptionLength": 0,
+      "canonical": "",
+      "h1Count": 1,
+      "h1": [
+        "That request took too long."
+      ],
+      "h2": 0,
+      "robots": "noindex, follow",
+      "jsonld": [],
+      "internalLinks": 3,
+      "internalLinkTargets": [
+        "/",
+        "/works/",
+        "/contact/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
@@ -163,10 +287,10 @@
     {
       "route": "/about/",
       "httpStatus": 200,
-      "title": "About - Angel Creations - A Creative Powerhouse",
-      "titleLength": 47,
-      "description": "Angel Creations is an India based Creative Studio, with the mission of building value through design and development.",
-      "descriptionLength": 117,
+      "title": "About Angel Creations | Creative & Immersive Studio",
+      "titleLength": 51,
+      "description": "Meet Angel Creations, an India-based creative studio working across design, development, storytelling, film, animation, and immersive digital experiences.",
+      "descriptionLength": 154,
       "canonical": "https://angelcreations.in/about/",
       "h1Count": 1,
       "h1": [
@@ -184,16 +308,8 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 22,
+      "internalLinks": 14,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -215,10 +331,10 @@
     {
       "route": "/animation/",
       "httpStatus": 200,
-      "title": "Animation | Angel Creations",
-      "titleLength": 27,
-      "description": "Angel Creations works across 2D and 3D animation, motion graphics, visual effects, character animation, interactive animation, explainer content, pre-visualization and AR animation.",
-      "descriptionLength": 181,
+      "title": "2D & 3D Animation, Motion Graphics & VFX | Angel Creations",
+      "titleLength": 58,
+      "description": "Discover 2D and 3D animation, motion graphics, character animation, interactive animation, and visual effects in Angel Creations’ public capability material.",
+      "descriptionLength": 157,
       "canonical": "https://angelcreations.in/animation/",
       "h1Count": 1,
       "h1": [
@@ -230,16 +346,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 23,
+      "internalLinks": 15,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -262,10 +370,10 @@
     {
       "route": "/augment-reality/",
       "httpStatus": 200,
-      "title": "Augment Reality | Angel Creations",
-      "titleLength": 33,
-      "description": "Angel Creations explores AR across industrial applications, tourism, navigation, retail, marketing, gaming, education, healthcare, entertainment and creative experiences.",
-      "descriptionLength": 170,
+      "title": "Augmented Reality Experiences & Apps | Angel Creations",
+      "titleLength": 54,
+      "description": "Explore Angel Creations’ augmented reality material for industrial applications, navigation, retail, marketing, tourism, education, and entertainment.",
+      "descriptionLength": 150,
       "canonical": "https://angelcreations.in/augment-reality/",
       "h1Count": 1,
       "h1": [
@@ -277,16 +385,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 23,
+      "internalLinks": 15,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -309,10 +409,10 @@
     {
       "route": "/brand-advertisement/",
       "httpStatus": 200,
-      "title": "Brand Advertisement | Angel Creations",
-      "titleLength": 37,
-      "description": "Angel Creations brings creative thinking, design, content, animation, film and digital experience together to help brands communicate in ways people notice and remember.",
-      "descriptionLength": 169,
+      "title": "Brand Films & Creative Campaigns | Angel Creations",
+      "titleLength": 50,
+      "description": "Explore Angel Creations’ brand advertising and marketing material across film, animation, digital, and immersive experiences.",
+      "descriptionLength": 125,
       "canonical": "https://angelcreations.in/brand-advertisement/",
       "h1Count": 1,
       "h1": [
@@ -324,16 +424,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 24,
+      "internalLinks": 16,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -357,10 +449,10 @@
     {
       "route": "/capabilities/animation-3d/",
       "httpStatus": 200,
-      "title": "Animation + 3D | Angel Creations",
-      "titleLength": 32,
-      "description": "Animation is an existing Angel homepage capability. The public About source lists 2D Animation and 3D Animation among its animation disciplines.",
-      "descriptionLength": 144,
+      "title": "2D & 3D Animation and VFX | Angel Creations",
+      "titleLength": 43,
+      "description": "Explore Angel Creations’ 2D and 3D animation, motion graphics, visual effects, character animation, and interactive animation.",
+      "descriptionLength": 126,
       "canonical": "https://angelcreations.in/capabilities/animation-3d/",
       "h1Count": 1,
       "h1": [
@@ -373,16 +465,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -396,10 +480,10 @@
     {
       "route": "/capabilities/brand/",
       "httpStatus": 200,
-      "title": "Brand | Angel Creations",
-      "titleLength": 23,
-      "description": "The current Angel source references Marketing &amp; Branding across its immersive capability material and presents Brand Advertisement as a homepage capability.",
-      "descriptionLength": 160,
+      "title": "Brand & Creative Campaigns | Angel Creations",
+      "titleLength": 44,
+      "description": "Explore Angel Creations’ brand advertising, marketing, and immersive campaign capabilities across virtual, augmented, and mixed-reality experiences.",
+      "descriptionLength": 148,
       "canonical": "https://angelcreations.in/capabilities/brand/",
       "h1Count": 1,
       "h1": [
@@ -412,16 +496,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -435,10 +511,10 @@
     {
       "route": "/capabilities/content/",
       "httpStatus": 200,
-      "title": "Content | Angel Creations",
-      "titleLength": 25,
-      "description": "The current Angel source explicitly lists VR Content Development and MR Content Creation, alongside media-production, animation, and immersive formats.",
-      "descriptionLength": 151,
+      "title": "Immersive Content Production | Angel Creations",
+      "titleLength": 46,
+      "description": "Explore immersive content production across VR, mixed reality, animation, media, and interactive brand experiences.",
+      "descriptionLength": 115,
       "canonical": "https://angelcreations.in/capabilities/content/",
       "h1Count": 1,
       "h1": [
@@ -451,16 +527,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -474,10 +542,10 @@
     {
       "route": "/capabilities/creative-technology/",
       "httpStatus": 200,
-      "title": "Creative Technology | Angel Creations",
-      "titleLength": 37,
-      "description": "Creative Technology is represented by Angel’s existing Metaverse, Virtual Reality, Augment Reality, and Mixed Reality homepage and public capability material.",
-      "descriptionLength": 158,
+      "title": "Creative Technology & XR | Angel Creations",
+      "titleLength": 42,
+      "description": "Explore Angel Creations’ VR, AR, mixed reality, and metaverse capabilities, including training, navigation, virtual worlds, and collaboration.",
+      "descriptionLength": 142,
       "canonical": "https://angelcreations.in/capabilities/creative-technology/",
       "h1Count": 1,
       "h1": [
@@ -490,16 +558,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -513,10 +573,10 @@
     {
       "route": "/capabilities/design/",
       "httpStatus": 200,
-      "title": "Design | Angel Creations",
-      "titleLength": 24,
-      "description": "Angel’s current About source identifies design and development as part of its studio mission and names graphic designers within its project-based talent range.",
-      "descriptionLength": 159,
+      "title": "Design & Creative Studio | Angel Creations",
+      "titleLength": 42,
+      "description": "Explore Angel Creations’ design and development capabilities across spatial experiences, visual storytelling, and digital environments.",
+      "descriptionLength": 135,
       "canonical": "https://angelcreations.in/capabilities/design/",
       "h1Count": 1,
       "h1": [
@@ -529,16 +589,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -552,10 +604,10 @@
     {
       "route": "/capabilities/digital/",
       "httpStatus": 200,
-      "title": "Digital | Angel Creations",
-      "titleLength": 25,
-      "description": "The current Angel source describes a creative studio building value through design and development, with immersive digital formats included in its public capability material.",
-      "descriptionLength": 174,
+      "title": "Digital Experiences & Development | Angel Creations",
+      "titleLength": 51,
+      "description": "Explore digital experiences across virtual worlds, workspaces, marketplaces, education, streaming, navigation, and collaboration.",
+      "descriptionLength": 129,
       "canonical": "https://angelcreations.in/capabilities/digital/",
       "h1Count": 1,
       "h1": [
@@ -568,16 +620,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -591,10 +635,10 @@
     {
       "route": "/capabilities/experiences/",
       "httpStatus": 200,
-      "title": "Experiences | Angel Creations",
-      "titleLength": 29,
-      "description": "Experiences are supported by the public source’s virtual events, immersive worlds, product showcase, entertainment, and live event production references.",
-      "descriptionLength": 153,
+      "title": "Immersive Experiences & Events | Angel Creations",
+      "titleLength": 48,
+      "description": "Explore virtual worlds, events platforms, product showcases, live event production, entertainment, and interactive spatial experiences.",
+      "descriptionLength": 135,
       "canonical": "https://angelcreations.in/capabilities/experiences/",
       "h1Count": 1,
       "h1": [
@@ -607,16 +651,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -630,10 +666,10 @@
     {
       "route": "/capabilities/film/",
       "httpStatus": 200,
-      "title": "Film | Angel Creations",
-      "titleLength": 22,
-      "description": "Film is supported by the current Media Production capability list in Angel’s public source.",
-      "descriptionLength": 91,
+      "title": "Film & Video Production | Angel Creations",
+      "titleLength": 41,
+      "description": "Explore film and video production across scriptwriting, storyboarding, photography, post-production, live events, and audio.",
+      "descriptionLength": 124,
       "canonical": "https://angelcreations.in/capabilities/film/",
       "h1Count": 1,
       "h1": [
@@ -646,16 +682,8 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -669,10 +697,10 @@
     {
       "route": "/contact/",
       "httpStatus": 200,
-      "title": "Contact - Angel Creations - A Creative Powerhouse",
-      "titleLength": 49,
-      "description": "Start a qualified project enquiry with Angel Creations.",
-      "descriptionLength": 55,
+      "title": "Start a Project Enquiry | Angel Creations",
+      "titleLength": 41,
+      "description": "Start a project enquiry with Angel Creations. Share your goals, creative discipline, timeline, and contact details.",
+      "descriptionLength": 115,
       "canonical": "https://angelcreations.in/contact/",
       "h1Count": 1,
       "h1": [
@@ -690,16 +718,8 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -713,10 +733,10 @@
     {
       "route": "/media-production/",
       "httpStatus": 200,
-      "title": "Media Production | Angel Creations",
-      "titleLength": 34,
-      "description": "Angel Creations brings media production disciplines together to create visual stories across film, video, animation, photography, events and digital experiences.",
-      "descriptionLength": 161,
+      "title": "Film, Video & Media Production | Angel Creations",
+      "titleLength": 48,
+      "description": "Explore Angel Creations’ media production capabilities across film, video, television, photography, live events, and post-production.",
+      "descriptionLength": 133,
       "canonical": "https://angelcreations.in/media-production/",
       "h1Count": 1,
       "h1": [
@@ -728,16 +748,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 24,
+      "internalLinks": 16,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -761,10 +773,10 @@
     {
       "route": "/metaverse/",
       "httpStatus": 200,
-      "title": "Metaverse | Angel Creations",
-      "titleLength": 27,
-      "description": "Angel Creations creates virtual worlds and connected digital environments designed around how people explore, interact, communicate, learn, play and experience brands.",
-      "descriptionLength": 167,
+      "title": "Metaverse & Virtual World Experiences | Angel Creations",
+      "titleLength": 55,
+      "description": "Explore Angel Creations’ metaverse capabilities, including virtual worlds, events, product showcases, marketplaces, and workspaces.",
+      "descriptionLength": 131,
       "canonical": "https://angelcreations.in/metaverse/",
       "h1Count": 1,
       "h1": [
@@ -776,16 +788,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 23,
+      "internalLinks": 15,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -808,10 +812,10 @@
     {
       "route": "/mixed-reality/",
       "httpStatus": 200,
-      "title": "Mixed Reality | Angel Creations",
-      "titleLength": 31,
-      "description": "Angel Creations explores Mixed Reality as a medium for training, education, entertainment, gaming, architecture, marketing, collaboration, retail and spatial experiences.",
-      "descriptionLength": 170,
+      "title": "Mixed Reality Experiences & Development | Angel Creations",
+      "titleLength": 57,
+      "description": "Explore Angel Creations’ mixed reality material for training, education, entertainment, architecture, marketing, retail, and collaboration.",
+      "descriptionLength": 139,
       "canonical": "https://angelcreations.in/mixed-reality/",
       "h1Count": 1,
       "h1": [
@@ -823,16 +827,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 22,
+      "internalLinks": 14,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -854,10 +850,10 @@
     {
       "route": "/privacy-policy/",
       "httpStatus": 200,
-      "title": "Privacy Policy - Angel Creations - A Creative Powerhouse",
-      "titleLength": 56,
-      "description": "Read the captured Angel Creations privacy policy.",
-      "descriptionLength": 49,
+      "title": "Privacy Policy | Angel Creations",
+      "titleLength": 32,
+      "description": "Learn how Angel Creations collects, uses, and safeguards personal information across its website and digital services.",
+      "descriptionLength": 118,
       "canonical": "https://angelcreations.in/privacy-policy/",
       "h1Count": 1,
       "h1": [
@@ -875,16 +871,8 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -898,10 +886,10 @@
     {
       "route": "/terms-of-service/",
       "httpStatus": 200,
-      "title": "Terms of Service - Angel Creations - A Creative Powerhouse",
-      "titleLength": 58,
-      "description": "Read the captured Angel Creations terms of service.",
-      "descriptionLength": 51,
+      "title": "Terms of Service | Angel Creations",
+      "titleLength": 34,
+      "description": "Review the terms for using the Angel Creations website and digital services, including intellectual property, acceptable use, and liability.",
+      "descriptionLength": 140,
       "canonical": "https://angelcreations.in/terms-of-service/",
       "h1Count": 1,
       "h1": [
@@ -919,16 +907,8 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -942,10 +922,10 @@
     {
       "route": "/virtual-reality/",
       "httpStatus": 200,
-      "title": "Virtual Reality | Angel Creations",
-      "titleLength": 33,
-      "description": "Angel Creations develops VR experiences across content, gaming, training, education, marketing, architecture, healthcare, conferencing and immersive communication.",
-      "descriptionLength": 163,
+      "title": "Virtual Reality Experiences & Development | Angel Creations",
+      "titleLength": 59,
+      "description": "Explore Angel Creations’ virtual reality material for content, training, education, gaming, marketing, architecture, healthcare, and broadcasting.",
+      "descriptionLength": 146,
       "canonical": "https://angelcreations.in/virtual-reality/",
       "h1Count": 1,
       "h1": [
@@ -957,16 +937,8 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 23,
+      "internalLinks": 15,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -1001,16 +973,8 @@
       "h2": 0,
       "robots": "noindex, follow",
       "jsonld": [],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -1024,10 +988,10 @@
     {
       "route": "/works/",
       "httpStatus": 200,
-      "title": "Works Archive - Angel Creations - A Creative Powerhouse",
-      "titleLength": 55,
-      "description": "Explore 47 verified public Angel Creations video records with their original titles, descriptions, source URLs and available metadata.",
-      "descriptionLength": 134,
+      "title": "Selected Work | Angel Creations",
+      "titleLength": 31,
+      "description": "Explore selected Angel Creations work through 47 verified public video records with their original titles, descriptions, links, and available metadata.",
+      "descriptionLength": 151,
       "canonical": "https://angelcreations.in/works/",
       "h1Count": 1,
       "h1": [
@@ -1045,16 +1009,8 @@
           "Place"
         ]
       ],
-      "internalLinks": 14,
+      "internalLinks": 6,
       "internalLinkTargets": [
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
-        "/legacy-assets/other/wp-content/themes/fleava/style.css",
-        "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
-        "/legacy-assets/other/wp-content/plugins/contact-form-7/includes/css/styles.css",
-        "/legacy-assets/other/wp-content/plugins/elementor/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/plugins/elementor-pro/assets/css/frontend.min.css",
-        "/legacy-assets/other/wp-content/uploads/elementor/css/post-594.css",
         "/",
         "/about/",
         "/works/",
@@ -1065,5 +1021,29 @@
       "images": 0,
       "imagesWithoutAlt": 0
     }
-  ]
+  ],
+  "auditFailures": {
+    "documentCount": [],
+    "sitemapCount": [],
+    "sitemapDeliveryIssues": [],
+    "notFoundDesignIssues": [],
+    "statusDocumentIssues": [],
+    "errorStatusIssues": [],
+    "legacyFallbackIssues": [],
+    "httpStatusIssues": [],
+    "duplicateTitles": [],
+    "duplicateDescriptions": [],
+    "missingDescriptions": [],
+    "titleLengthIssues": [],
+    "descriptionLengthIssues": [],
+    "missingCanonical": [],
+    "canonicalMismatch": [],
+    "h1Issues": [],
+    "schemaIssues": [],
+    "sitemapMissingDocs": [],
+    "orphanSitemapRoutes": [],
+    "missingAlt": [],
+    "missingRobots": [],
+    "notFoundIndexable": []
+  }
 }

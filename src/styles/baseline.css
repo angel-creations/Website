@@ -96,14 +96,6 @@ button.prev-btn img, .next-btn img { filter: brightness(0) invert(1); }
 #unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none; }
 #unity-warning:not(:empty) { display: block; }
 
-/* Captured from the panorama plugin's inline view stylesheet. */
-.wp-block-panorama-video { box-sizing: border-box; }
-.wp-block-panorama-video * { box-sizing: border-box; }
-.wp-block-panorama-video .bBlocksVideoViewer { display: flex; flex-direction: column; }
-.wp-block-panorama-video .bBlocksVideoViewer .panoramaVideoViewer { overflow: hidden; }
-.wp-block-panorama-video .bBlocksVideoViewer .panoramaVideoViewer .panolens-canvas { width: 100% !important; height: 100% !important; }
-.panorama-notice { position: absolute; left: 20px; bottom: 20px; padding: 10px; color: #fff; background: rgba(0,0,0,.7); max-width: 520px; }
-
 @media (max-width: 600px) {
   #unity-container.unity-desktop, #unity-canvas { width: 100vw; height: 100vh; }
   #unity-container.unity-desktop { margin: 0; }

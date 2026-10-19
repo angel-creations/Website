@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
-import { navigate } from '../utils/routes';
+import { getNetworkInformation, prefersReducedData, prefersReducedMotion } from '../utils/mediaPreferences';
 import { LegacyFooter } from './LegacyFooter';
 
 const showreelVideo = '/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4';
@@ -201,7 +201,7 @@ const studioProducts: StudioProduct[] = [
     description:
       'Our dedicated spatial platform designed to bring brands, communities, and cultural experiences into persistent, accessible 3D environments across web, mobile, and VR headsets.',
     highlights: ['Persistent 3D Spaces', 'Cross-Device Spatial Access', 'Interactive Brand Pavilions'],
-    href: 'http://thevirtuallife.in/',
+    href: 'https://thevirtuallife.in/',
     image: '/inner-library/metaverse/story-01-spatial-presence.jpg',
   },
   {
@@ -955,12 +955,13 @@ function formatHubTime(timeZone: string): string {
 export function AboutPage(): JSX.Element {
   const [activeDisciplineIndex, setActiveDisciplineIndex] = useState(0);
   const [activeSectorFilter, setActiveSectorFilter] = useState<SectorCategory>('all');
-  const [isReelPlaying, setIsReelPlaying] = useState(true);
+  const [isReelPlaying, setIsReelPlaying] = useState(false);
   const [isReelMuted, setIsReelMuted] = useState(true);
   const [jaipurTime, setJaipurTime] = useState(() => formatHubTime('Asia/Kolkata'));
   const [ukTime, setUkTime] = useState(() => formatHubTime('Europe/London'));
 
   const heroRef = useRef<HTMLElement | null>(null);
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const reelVideoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
@@ -969,6 +970,65 @@ export function AboutPage(): JSX.Element {
       setUkTime(formatHubTime('Europe/London'));
     }, 30000);
     return () => window.clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    const section = heroRef.current;
+    if (!video || !section) return undefined;
+
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const network = getNetworkInformation();
+    let isVisible = false;
+    const updatePlayback = (): void => {
+      if (
+        document.hidden ||
+        document.body.classList.contains('menu-open') ||
+        !isVisible ||
+        prefersReducedMotion() ||
+        prefersReducedData()
+      ) {
+        video.pause();
+        return;
+      }
+      void video.play().catch(() => undefined);
+    };
+    const observer = 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => {
+          isVisible = entry.isIntersecting;
+          updatePlayback();
+        }, { threshold: 0.12 })
+      : null;
+
+    if (observer) observer.observe(section);
+    else {
+      isVisible = true;
+      updatePlayback();
+    }
+
+    const onMenuStateChange = (event: Event): void => {
+      const isOpen = (event as CustomEvent<{ open?: boolean }>).detail?.open;
+      if (isOpen) {
+        video.pause();
+        reelVideoRef.current?.pause();
+        setIsReelPlaying(false);
+      } else {
+        updatePlayback();
+      }
+    };
+
+    motionPreference.addEventListener('change', updatePlayback);
+    network?.addEventListener('change', updatePlayback);
+    document.addEventListener('visibilitychange', updatePlayback);
+    document.addEventListener('angel:menu-state', onMenuStateChange);
+    return () => {
+      observer?.disconnect();
+      motionPreference.removeEventListener('change', updatePlayback);
+      network?.removeEventListener('change', updatePlayback);
+      document.removeEventListener('visibilitychange', updatePlayback);
+      document.removeEventListener('angel:menu-state', onMenuStateChange);
+      video.pause();
+    };
   }, []);
 
   const handleHeroPointerMove = (event: ReactMouseEvent<HTMLElement>): void => {
@@ -985,8 +1045,9 @@ export function AboutPage(): JSX.Element {
     const video = reelVideoRef.current;
     if (!video) return;
     if (video.paused) {
-      void video.play().catch(() => undefined);
-      setIsReelPlaying(true);
+      void video.play()
+        .then(() => setIsReelPlaying(true))
+        .catch(() => setIsReelPlaying(false));
     } else {
       video.pause();
       setIsReelPlaying(false);
@@ -1019,11 +1080,11 @@ export function AboutPage(): JSX.Element {
           >
             <div className="ac-about-v2-hero__media" aria-hidden="true">
               <video
+                ref={heroVideoRef}
                 muted
                 loop
-                autoPlay
                 playsInline
-                preload="metadata"
+                preload="none"
                 poster={showreelPoster}
               >
                 <source src={showreelVideo} type="video/mp4" />
@@ -1062,10 +1123,6 @@ export function AboutPage(): JSX.Element {
                   <a
                     href="/works/"
                     className="ac-about-v2-btn ac-about-v2-btn--primary"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      navigate('/works/');
-                    }}
                   >
                     <span>Explore 47+ Works</span>
                     <span aria-hidden="true">↗</span>
@@ -1073,10 +1130,6 @@ export function AboutPage(): JSX.Element {
                   <a
                     href="/contact/"
                     className="ac-about-v2-btn ac-about-v2-btn--glass"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      navigate('/contact/');
-                    }}
                   >
                     <span>Start a Project Brief</span>
                     <span aria-hidden="true">→</span>
@@ -1234,6 +1287,7 @@ export function AboutPage(): JSX.Element {
                       key={activeDiscipline.image}
                       src={activeDiscipline.image}
                       alt={activeDiscipline.title}
+                      loading="lazy"
                       decoding="async"
                     />
                     <div className="ac-about-v2-explorer__visual-shade" aria-hidden="true" />
@@ -1252,10 +1306,6 @@ export function AboutPage(): JSX.Element {
                       <a
                         href={activeDiscipline.route}
                         className="ac-about-v2-btn ac-about-v2-btn--primary"
-                        onClick={(event) => {
-                          event.preventDefault();
-                          navigate(activeDiscipline.route);
-                        }}
                       >
                         <span>Explore {activeDiscipline.title}</span>
                         <span aria-hidden="true">↗</span>
@@ -1358,10 +1408,11 @@ export function AboutPage(): JSX.Element {
                   ref={reelVideoRef}
                   muted={isReelMuted}
                   loop
-                  autoPlay
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   poster={showreelPoster}
+                  onPlay={() => setIsReelPlaying(true)}
+                  onPause={() => setIsReelPlaying(false)}
                 >
                   <source src={showreelVideo} type="video/mp4" />
                 </video>

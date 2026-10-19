@@ -24,7 +24,7 @@ const productLinks = [
   {
     label: 'The Virtual Life',
     meta: 'Virtual Worlds Platform',
-    href: 'http://thevirtuallife.in/',
+    href: 'https://thevirtuallife.in/',
   },
   {
     label: 'Immersive Wedding Invite',
@@ -42,7 +42,7 @@ const socialLinks = [
 
 export function LegacyFooter(): JSX.Element {
   const handleInternalNav = (event: ReactMouseEvent<HTMLAnchorElement>, href: string): void => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     navigate(href);
   };

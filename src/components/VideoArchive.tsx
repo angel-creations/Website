@@ -281,9 +281,9 @@ export function VideoArchive(): JSX.Element {
       className="apple-inner-page apple-works-page"
       style={
         {
-          '--route-accent': '#64d2ff',
-          '--route-accent-secondary': '#bf5af2',
-          '--route-accent-rgb': '100, 210, 255',
+          '--route-accent': '#00D2FF',
+          '--route-accent-secondary': '#7B3FF2',
+          '--route-accent-rgb': '0, 210, 255',
         } as React.CSSProperties
       }
     >
@@ -721,7 +721,7 @@ export function VideoArchive(): JSX.Element {
                           <img
                             src={video.thumbnail}
                             alt={video.title}
-                            loading={idx < 6 ? 'eager' : 'lazy'}
+                            loading={idx < 2 ? 'eager' : 'lazy'}
                             decoding="async"
                           />
                         </picture>

@@ -5,7 +5,6 @@
         url('../fonts/Graphik-Black.woff2') format('woff2'),
         url('../fonts/Graphik-Black.woff') format('woff'),
         url('../fonts/Graphik-Black.ttf') format('truetype'),
-        url('../fonts/Graphik-Black.svg#Graphik-Black') format('svg');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -18,7 +17,6 @@
         url('../fonts/GeographEdit.woff2') format('woff2'),
         url('../fonts/GeographEdit.woff') format('woff'),
         url('../fonts/GeographEdit.ttf') format('truetype'),
-        url('../fonts/GeographEdit.svg#GeographEdit') format('svg');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -30,7 +28,6 @@
         url('../fonts/Geograph-Regular.woff2') format('woff2'),
         url('../fonts/Geograph-Regular.woff') format('woff'),
         url('../fonts/Geograph-Regular.ttf') format('truetype'),
-        url('../fonts/Geograph-Regular.svg#Geograph-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -40,7 +37,6 @@
   src: url(../fonts/geographweblight.eot);
   src: url(../fonts/geographweblight.eot?#iefix) format('embedded-opentype'),
        url(../fonts/geographweblight.otf) format('otf'),
-       url(../fonts/geographweblight.svg#geographweblight) format('svg'),
        url(../fonts/geographweblight.ttf) format('truetype'),
        url(../fonts/geographweblight.woff) format('woff'),
        url(../fonts/geographweblight.woff2) format('woff2');

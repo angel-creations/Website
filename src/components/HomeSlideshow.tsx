@@ -11,6 +11,7 @@ import {
 } from 'react';
 import { slideExperiences } from '../data/slideExperiences';
 import { PointerVelocityTracker, projectMomentum } from '../utils/appleSpring';
+import { getNetworkInformation, prefersReducedData as getReducedDataPreference, prefersReducedMotion as getReducedMotionPreference } from '../utils/mediaPreferences';
 import { navigate } from '../utils/routes';
 
 const TRANSITION_MS = 1120;
@@ -65,7 +66,7 @@ function isEditableTarget(target: EventTarget | null): boolean {
 }
 
 function playVideo(video: HTMLVideoElement | null): void {
-  if (!video || document.hidden) return;
+  if (!video || document.hidden || document.body.classList.contains('menu-open')) return;
   void video.play().catch(() => {
     // Muted video playback is best effort. The authentic poster remains meaningful if blocked.
   });
@@ -95,13 +96,15 @@ export function HomeSlideshow(): JSX.Element {
   const [active, setActive] = useState(restoredSlideIndex);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDraggingStage, setIsDraggingStage] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(getReducedMotionPreference);
+  const [prefersReducedData, setPrefersReducedData] = useState(getReducedDataPreference);
   const [status, setStatus] = useState(
     () => `Slide ${restoredSlideIndex() + 1} of ${slides.length}: ${slides[restoredSlideIndex()].cleanLabel}`,
   );
 
   const slideshowRef = useRef<HTMLElement | null>(null);
-  const prefersReducedMotionRef = useRef(false);
+  const prefersReducedMotionRef = useRef(prefersReducedMotion);
+  const prefersReducedDataRef = useRef(prefersReducedData);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const activeRef = useRef(active);
   const inFlightSettleRef = useRef<(() => void) | null>(null);
@@ -112,8 +115,31 @@ export function HomeSlideshow(): JSX.Element {
   const dragSessionRef = useRef<DragSession | null>(null);
   const suppressClickUntilRef = useRef(0);
 
+  const canAutoplayVideos = (): boolean =>
+    !prefersReducedMotionRef.current && !prefersReducedDataRef.current;
+
+  const activatePendingFallback = (video: HTMLVideoElement | null): boolean => {
+    if (!video || video.dataset.fallbackPending !== 'true' || !canAutoplayVideos() || document.hidden) return false;
+    delete video.dataset.fallbackPending;
+    video.dataset.fallbackApplied = 'true';
+    video.preload = 'metadata';
+    video.src = FALLBACK_LOCAL_VIDEO;
+    video.load();
+    playVideo(video);
+    return true;
+  };
+
+  const clearTimers = (): void => {
+    timersRef.current.forEach((timer) => window.clearTimeout(timer));
+    timersRef.current = [];
+  };
+
   const rememberTimer = (callback: () => void, delay: number): void => {
-    const timer = window.setTimeout(callback, delay);
+    let timer = 0;
+    timer = window.setTimeout(() => {
+      timersRef.current = timersRef.current.filter((pending) => pending !== timer);
+      callback();
+    }, delay);
     timersRef.current.push(timer);
   };
 
@@ -230,33 +256,75 @@ export function HomeSlideshow(): JSX.Element {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const network = getNetworkInformation();
     const updateMotionPreference = (): void => {
+      const wasReduced = prefersReducedMotionRef.current;
       prefersReducedMotionRef.current = mediaQuery.matches;
       setPrefersReducedMotion(mediaQuery.matches);
+      if (mediaQuery.matches) {
+        pauseAllExcept(-1);
+      } else if (wasReduced && canAutoplayVideos() && !document.hidden) {
+        const activeVideo = slideRefs.current[activeRef.current]?.querySelector('video') ?? null;
+        if (!activatePendingFallback(activeVideo)) playVideo(activeVideo);
+      }
+    };
+    const updateDataPreference = (): void => {
+      const wasReduced = prefersReducedDataRef.current;
+      const reducedData = getReducedDataPreference();
+      prefersReducedDataRef.current = reducedData;
+      setPrefersReducedData(reducedData);
+      if (reducedData) {
+        pauseAllExcept(-1);
+      } else if (wasReduced && canAutoplayVideos() && !document.hidden) {
+        const activeVideo = slideRefs.current[activeRef.current]?.querySelector('video') ?? null;
+        if (!activatePendingFallback(activeVideo)) playVideo(activeVideo);
+      }
     };
     updateMotionPreference();
+    updateDataPreference();
     mediaQuery.addEventListener('change', updateMotionPreference);
+    network?.addEventListener('change', updateDataPreference);
 
     slideRefs.current.forEach((slide) => slide?.classList.add('is-loaded'));
     rememberTimer(() => {
-      if (!prefersReducedMotionRef.current) {
-        playVideo(slideRefs.current[activeRef.current]?.querySelector('video') ?? null);
+      if (canAutoplayVideos()) {
+        const activeVideo = slideRefs.current[activeRef.current]?.querySelector('video') ?? null;
+        if (!activatePendingFallback(activeVideo)) playVideo(activeVideo);
       }
     }, VIDEO_START_MS);
 
     const onVisibilityChange = (): void => {
       const currentVideo = slideRefs.current[activeRef.current]?.querySelector<HTMLVideoElement>('video') ?? null;
-      if (document.hidden) currentVideo?.pause();
-      else if (!prefersReducedMotionRef.current) playVideo(currentVideo);
+      if (document.hidden || !canAutoplayVideos()) currentVideo?.pause();
+      else if (!activatePendingFallback(currentVideo)) playVideo(currentVideo);
+    };
+    const onMenuStateChange = (event: Event): void => {
+      const isOpen = (event as CustomEvent<{ open?: boolean }>).detail?.open;
+      if (isOpen) {
+        clearTimers();
+        if (inFlightSettleRef.current) {
+          if (animationFrameRef.current !== null) {
+            window.cancelAnimationFrame(animationFrameRef.current);
+            animationFrameRef.current = null;
+          }
+          inFlightSettleRef.current();
+        }
+        pauseAllExcept(-1);
+      } else if (canAutoplayVideos() && !document.hidden) {
+        const currentVideo = slideRefs.current[activeRef.current]?.querySelector<HTMLVideoElement>('video') ?? null;
+        if (!activatePendingFallback(currentVideo)) playVideo(currentVideo);
+      }
     };
     document.addEventListener('visibilitychange', onVisibilityChange);
+    document.addEventListener('angel:menu-state', onMenuStateChange);
 
     return () => {
       mediaQuery.removeEventListener('change', updateMotionPreference);
+      network?.removeEventListener('change', updateDataPreference);
       document.removeEventListener('visibilitychange', onVisibilityChange);
+      document.removeEventListener('angel:menu-state', onMenuStateChange);
       if (animationFrameRef.current !== null) window.cancelAnimationFrame(animationFrameRef.current);
-      timersRef.current.forEach((timer) => window.clearTimeout(timer));
-      timersRef.current = [];
+      clearTimers();
     };
   }, []);
 
@@ -266,6 +334,7 @@ export function HomeSlideshow(): JSX.Element {
     startFromProgress = 0,
     customDurationMs?: number,
   ): void => {
+    clearTimers();
     if (inFlightSettleRef.current) {
       if (animationFrameRef.current !== null) {
         window.cancelAnimationFrame(animationFrameRef.current);
@@ -283,7 +352,7 @@ export function HomeSlideshow(): JSX.Element {
 
     const incomingVideo = incoming.querySelector<HTMLVideoElement>('video');
     const outgoingVideo = outgoing.querySelector<HTMLVideoElement>('video');
-    incomingVideo?.setAttribute('preload', 'auto');
+    if (incomingVideo && canAutoplayVideos()) incomingVideo.preload = 'metadata';
 
     const settle = (): void => {
       inFlightSettleRef.current = null;
@@ -299,7 +368,9 @@ export function HomeSlideshow(): JSX.Element {
       setIsTransitioning(false);
       slideshow.setAttribute('wait', 'false');
       pauseAllExcept(incomingIndex);
-      if (!prefersReducedMotionRef.current) playVideo(incomingVideo ?? null);
+      if (canAutoplayVideos() && !document.hidden && !activatePendingFallback(incomingVideo ?? null)) {
+        playVideo(incomingVideo ?? null);
+      }
     };
 
     if (prefersReducedMotionRef.current) {
@@ -310,7 +381,7 @@ export function HomeSlideshow(): JSX.Element {
       return;
     }
 
-    if (incomingVideo && incomingVideo.readyState === 0) {
+    if (incomingVideo && canAutoplayVideos() && !activatePendingFallback(incomingVideo) && incomingVideo.readyState === 0) {
       incomingVideo.load();
     }
 
@@ -350,7 +421,11 @@ export function HomeSlideshow(): JSX.Element {
     };
 
     animationFrameRef.current = window.requestAnimationFrame(animate);
-    rememberTimer(() => playVideo(incomingVideo ?? null), VIDEO_START_MS);
+    rememberTimer(() => {
+      if (canAutoplayVideos() && !document.hidden && !activatePendingFallback(incomingVideo ?? null)) {
+        playVideo(incomingVideo ?? null);
+      }
+    }, VIDEO_START_MS);
     rememberTimer(() => outgoingVideo?.pause(), VIDEO_PAUSE_MS);
   };
 
@@ -426,6 +501,7 @@ export function HomeSlideshow(): JSX.Element {
     if (target?.closest('.arrows')) return;
 
     if (inFlightSettleRef.current) {
+      clearTimers();
       if (animationFrameRef.current !== null) {
         window.cancelAnimationFrame(animationFrameRef.current);
         animationFrameRef.current = null;
@@ -487,9 +563,11 @@ export function HomeSlideshow(): JSX.Element {
       const incoming = slideRefs.current[session.incomingIndex];
       if (incoming) {
         const incomingVideo = incoming.querySelector<HTMLVideoElement>('video');
-        incomingVideo?.setAttribute('preload', 'auto');
-        if (incomingVideo && incomingVideo.readyState === 0) incomingVideo.load();
-        playVideo(incomingVideo ?? null);
+        if (incomingVideo && canAutoplayVideos() && !activatePendingFallback(incomingVideo)) {
+          incomingVideo.preload = 'metadata';
+          if (incomingVideo.readyState === 0) incomingVideo.load();
+          playVideo(incomingVideo);
+        }
         prepareIncomingLayer(incoming, outgoing, wantForward);
       }
     }
@@ -579,7 +657,7 @@ export function HomeSlideshow(): JSX.Element {
       <div id="load_overlay" className="load_overlay" />
       <div id="dynamicLoad" className="dynamic_load"><div className="progress"><div className="bar" id="dynamicBar" /></div></div>
       <div id="barba-wrapper"><div className="barba-container"><div data-scroll-container>
-        <main id="main">
+        <div className="ac-home-content">
           <div data-scroll-section>
             <section
               ref={slideshowRef}
@@ -647,8 +725,18 @@ export function HomeSlideshow(): JSX.Element {
                                 data-hover={slide.cleanLabel}
                                 data-col="#ddc89d"
                                 onClick={(event) => {
+                                  if (
+                                    event.button !== 0 ||
+                                    event.metaKey ||
+                                    event.ctrlKey ||
+                                    event.shiftKey ||
+                                    event.altKey
+                                  ) return;
+                                  if (performance.now() < suppressClickUntilRef.current) {
+                                    event.preventDefault();
+                                    return;
+                                  }
                                   event.preventDefault();
-                                  if (performance.now() < suppressClickUntilRef.current) return;
                                   retainHomeSlide(index);
                                   navigate(slide.href!, { angelSlide: index, angelJourney: 'slider' });
                                 }}
@@ -667,38 +755,37 @@ export function HomeSlideshow(): JSX.Element {
                                   src={slide.poster}
                                   alt=""
                                   aria-hidden="true"
+                                  loading={index === active ? 'eager' : 'lazy'}
+                                  fetchPriority={index === active ? 'high' : 'auto'}
                                   decoding="async"
                                 />
                               )}
                               <video
-                                autoPlay={index === active && !prefersReducedMotion}
                                 loop
                                 muted
                                 playsInline
                                 preload={
-                                  prefersReducedMotion
+                                  prefersReducedMotion || prefersReducedData
                                     ? 'none'
                                     : index === active
-                                      ? 'auto'
+                                      ? 'metadata'
                                       : Math.abs(index - active) === 1 || Math.abs(index - active) === slides.length - 1
                                         ? 'metadata'
                                         : 'none'
                                 }
                                 poster={slide.poster}
-                                width="100%"
-                                height="974"
+                                width={1920}
+                                height={1080}
                                 aria-hidden="true"
                                 tabIndex={-1}
                                 onCanPlay={(event) => {
-                                  if (index === active && !prefersReducedMotion) playVideo(event.currentTarget);
+                                  if (index === active && canAutoplayVideos() && !document.hidden) playVideo(event.currentTarget);
                                 }}
                                 onError={(event) => {
                                   const videoEl = event.currentTarget;
                                   if (slide.remote && videoEl.dataset.fallbackApplied !== 'true') {
-                                    videoEl.dataset.fallbackApplied = 'true';
-                                    videoEl.src = FALLBACK_LOCAL_VIDEO;
-                                    videoEl.load();
-                                    if (index === active && !prefersReducedMotion) playVideo(videoEl);
+                                    videoEl.dataset.fallbackPending = 'true';
+                                    if (index === active) activatePendingFallback(videoEl);
                                     return;
                                   }
                                   videoEl.closest('.slide')?.classList.add('media-unavailable');
@@ -760,7 +847,7 @@ export function HomeSlideshow(): JSX.Element {
               </div>
             </section>
           </div>
-        </main>
+        </div>
       </div></div></div>
     </main>
   );

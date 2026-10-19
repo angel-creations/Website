@@ -31,6 +31,8 @@ type EnquiryField = {
   options?: SelectOptionItem[];
   quickSuggestions?: string[];
   placeholder?: string;
+  optional?: boolean;
+  maxLength?: number;
 };
 
 const IMMERSIVE_DISCIPLINE_OPTIONS: SelectOptionItem[] = [
@@ -107,6 +109,7 @@ const fields: EnquiryField[] = [
     kind: 'input',
     inputType: 'text',
     autoComplete: 'name',
+    maxLength: 120,
     placeholder: 'Enter your full name…',
   },
   {
@@ -114,21 +117,24 @@ const fields: EnquiryField[] = [
     name: 'Company',
     category: 'Organization',
     label: 'Which company, brand, or studio do you represent?',
-    hint: 'Tell us the organization, agency, or venture behind this commission.',
+    hint: 'Optional — tell us the organization, agency, or venture behind this commission.',
     kind: 'input',
     inputType: 'text',
     autoComplete: 'organization',
+    optional: true,
+    maxLength: 160,
     placeholder: 'Your company, brand, or independent studio…',
   },
   {
     id: 'email',
     name: 'Email',
     category: 'Direct Email',
-    label: 'Where should we send your tailored project proposal?',
-    hint: 'Your primary email address for our producer’s response and deck.',
+    label: 'What email address should our studio use to follow up?',
+    hint: 'It is included in the email draft you review at the end; the form does not send it automatically.',
     kind: 'input',
     inputType: 'email',
     autoComplete: 'email',
+    maxLength: 254,
     placeholder: 'name@company.com',
   },
   {
@@ -136,10 +142,12 @@ const fields: EnquiryField[] = [
     name: 'Phone',
     category: 'Direct Line',
     label: 'What is the best phone number to reach you on?',
-    hint: 'Include your country code for a direct producer call or WhatsApp follow-up.',
+    hint: 'Optional — include your country code if you would prefer a direct phone follow-up.',
     kind: 'input',
     inputType: 'tel',
     autoComplete: 'tel',
+    optional: true,
+    maxLength: 40,
     placeholder: '+91 98765 43210',
   },
   {
@@ -158,6 +166,7 @@ const fields: EnquiryField[] = [
     label: 'Tell us about your vision and what you want to create.',
     hint: 'Share your creative goals, target audience, platform, or key deliverables.',
     kind: 'textarea',
+    maxLength: 1200,
     placeholder: 'Describe the experience, story, audience, or creative challenge…',
   },
   {
@@ -165,9 +174,11 @@ const fields: EnquiryField[] = [
     name: 'Target Timeline',
     category: 'Schedule',
     label: 'When are you looking to launch or go live?',
-    hint: 'Let us know your target launch window, exhibition date, or production schedule.',
+    hint: 'Optional — share a target launch window, exhibition date, or production schedule.',
     kind: 'input',
     inputType: 'text',
+    optional: true,
+    maxLength: 120,
     placeholder: 'Select a timeframe below or type your target launch date…',
     quickSuggestions: [
       'Immediate / Urgent',
@@ -182,9 +193,11 @@ const fields: EnquiryField[] = [
     name: 'Estimated Investment',
     category: 'Scope & Budget',
     label: 'What investment range have you allocated for this project?',
-    hint: 'An approximate range helps us architect the right technical and creative scope.',
+    hint: 'Optional — an approximate range can help us discuss a suitable project scope.',
     kind: 'input',
     inputType: 'text',
+    optional: true,
+    maxLength: 100,
     placeholder: 'Select a bracket below or type your estimated budget…',
     quickSuggestions: [
       'Under $15k / ₹12L',
@@ -198,12 +211,19 @@ const fields: EnquiryField[] = [
 
 function isValid(field: EnquiryField, value: string): boolean {
   const cleaned = value.trim();
-  if (!cleaned) return false;
+  if (!cleaned) return Boolean(field.optional);
   return field.inputType !== 'email' || /^\S+@\S+\.\S+$/.test(cleaned);
 }
 
+function isComplete(field: EnquiryField, value: string): boolean {
+  return Boolean(value.trim()) && isValid(field, value);
+}
+
 function createMailto(values: Record<string, string>): string {
-  const body = fields.map((field) => `${field.name}: ${values[field.id].trim()}`).join('\n\n');
+  const body = fields
+    .filter((field) => !field.optional || values[field.id].trim())
+    .map((field) => `${field.name}: ${values[field.id].trim()}`)
+    .join('\n\n');
   return `mailto:business@angelcreations.in?subject=${encodeURIComponent(
     'New Angel Creations Project Enquiry'
   )}&body=${encodeURIComponent(body)}`;
@@ -211,9 +231,14 @@ function createMailto(values: Record<string, string>): string {
 
 export function ContactWizard(): JSX.Element {
   const [step, setStep] = useState(0);
-  const [values, setValues] = useState<Record<string, string>>(() =>
-    Object.fromEntries(fields.map((field) => [field.id, '']))
-  );
+  const [values, setValues] = useState<Record<string, string>>(() => {
+    const initialValues = Object.fromEntries(fields.map((field) => [field.id, ''])) as Record<string, string>;
+    const requestedDiscipline = new URLSearchParams(window.location.search).get('discipline');
+    if (requestedDiscipline && IMMERSIVE_DISCIPLINE_OPTIONS.some((option) => option.value === requestedDiscipline)) {
+      initialValues.projectType = requestedDiscipline;
+    }
+    return initialValues;
+  });
   const [attempted, setAttempted] = useState<Set<number>>(() => new Set());
   const [prepared, setPrepared] = useState(false);
   const [honeypot, setHoneypot] = useState('');
@@ -224,15 +249,18 @@ export function ContactWizard(): JSX.Element {
 
   const controlRef = useRef<HTMLElement | null>(null);
   const dropdownWrapRef = useRef<HTMLDivElement | null>(null);
+  const copyFeedbackTimerRef = useRef<number | null>(null);
 
   const field = fields[step];
   const currentValue = values[field.id];
   const currentValid = isValid(field, currentValue);
+  const currentLabelId = `contact-field-${field.id}-label`;
+  const currentHintId = `contact-field-${field.id}-hint`;
   const currentErrorId = `contact-field-${field.id}-error`;
   const progressRatio = ((step + 1) / fields.length) * 100;
   const completedFields = fields
     .map((item, index) => ({ item, index, value: values[item.id].trim() }))
-    .filter((entry) => isValid(entry.item, entry.value));
+    .filter((entry) => isComplete(entry.item, entry.value));
 
   useEffect(() => {
     setDropdownOpen(false);
@@ -255,6 +283,10 @@ export function ContactWizard(): JSX.Element {
     window.addEventListener('mousedown', handlePointerDown);
     return () => window.removeEventListener('mousedown', handlePointerDown);
   }, [dropdownOpen]);
+
+  useEffect(() => () => {
+    if (copyFeedbackTimerRef.current !== null) window.clearTimeout(copyFeedbackTimerRef.current);
+  }, []);
 
   const updateValue = (value: string): void => {
     setFormStatus('');
@@ -346,16 +378,59 @@ export function ContactWizard(): JSX.Element {
     }
   };
 
-  const copyToClipboard = (text: string, label: string): void => {
-    navigator.clipboard?.writeText(text).then(() => {
-      setCopiedChannel(label);
-      window.setTimeout(() => setCopiedChannel(null), 2200);
-    });
+  const copyToClipboard = async (text: string, label: string): Promise<void> => {
+    let copied = false;
+    if (window.isSecureContext && navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      } catch {
+        // Try the lightweight selection fallback below when browser clipboard permission is denied.
+      }
+    }
+
+    if (!copied) {
+      const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      const helper = document.createElement('textarea');
+      helper.value = text;
+      helper.setAttribute('readonly', '');
+      helper.style.position = 'fixed';
+      helper.style.left = '0';
+      helper.style.top = '0';
+      helper.style.width = '1px';
+      helper.style.height = '1px';
+      helper.style.opacity = '0';
+      document.body.appendChild(helper);
+      helper.select();
+      try {
+        copied = document.execCommand('copy');
+      } catch {
+        copied = false;
+      }
+      helper.remove();
+      if (previousFocus?.isConnected) previousFocus.focus();
+    }
+
+    if (!copied) {
+      setFormStatus('Copy is unavailable in this browser. You can still select the details shown on this page.');
+      return;
+    }
+
+    setFormStatus('');
+    setCopiedChannel(label);
+    if (copyFeedbackTimerRef.current !== null) window.clearTimeout(copyFeedbackTimerRef.current);
+    copyFeedbackTimerRef.current = window.setTimeout(() => {
+      setCopiedChannel(null);
+      copyFeedbackTimerRef.current = null;
+    }, 2200);
   };
 
   const copyEnquiryText = (): void => {
-    const body = fields.map((f) => `${f.name}: ${values[f.id].trim()}`).join('\n');
-    copyToClipboard(body, 'summary');
+    const body = fields
+      .filter((item) => !item.optional || values[item.id].trim())
+      .map((item) => `${item.name}: ${values[item.id].trim()}`)
+      .join('\n');
+    void copyToClipboard(body, 'summary');
   };
 
   const setInputRef = (element: HTMLInputElement | null): void => {
@@ -375,11 +450,15 @@ export function ContactWizard(): JSX.Element {
       name: field.id,
       className: 'ac-input wpcf7-form-control wpcf7-validates-as-required',
       autoComplete: field.autoComplete,
-      'aria-required': true,
+      maxLength: field.maxLength,
+      'aria-required': !field.optional,
       'aria-invalid': ariaInvalid,
-      'aria-describedby': showCurrentError() ? currentErrorId : undefined,
+      'aria-labelledby': currentLabelId,
+      'aria-describedby': showCurrentError()
+        ? `${currentHintId} ${currentErrorId}`
+        : currentHintId,
       value: currentValue,
-      required: true,
+      required: !field.optional,
       onChange: (
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
       ) => updateValue(event.target.value),
@@ -423,8 +502,13 @@ export function ContactWizard(): JSX.Element {
               aria-expanded={dropdownOpen}
               aria-haspopup="listbox"
               aria-controls="ac-discipline-listbox"
+              aria-activedescendant={dropdownOpen ? `ac-discipline-option-${highlightedIndex}` : undefined}
+              aria-required={!field.optional}
               aria-invalid={ariaInvalid}
-              aria-describedby={showCurrentError() ? currentErrorId : undefined}
+              aria-labelledby={currentLabelId}
+              aria-describedby={showCurrentError()
+                ? `${currentHintId} ${currentErrorId}`
+                : currentHintId}
               className="ac-custom-select__trigger"
               onClick={() => {
                 const idx = options.findIndex((o) => o.value === currentValue);
@@ -494,6 +578,7 @@ export function ContactWizard(): JSX.Element {
                     return (
                       <button
                         key={opt.value}
+                        id={`ac-discipline-option-${idx}`}
                         type="button"
                         role="option"
                         aria-selected={isSelected}
@@ -619,8 +704,8 @@ export function ContactWizard(): JSX.Element {
                   Let’s build what doesn’t exist yet.
                 </h1>
                 <p className="ac-studio-subtitle">
-                  Complete our 8-step interactive project brief below — or reach our support,
-                  business, and direct mobile desks at the bottom of the page.
+                  Complete our 8-step brief below, or contact the studio directly. At the end,
+                  review the pre-filled email and send it yourself.
                 </p>
               </div>
 
@@ -700,7 +785,7 @@ export function ContactWizard(): JSX.Element {
                             <span>N° {String(idx + 1).padStart(2, '0')}</span> {item.name}
                             <em className="contact-prepared__edit-tag">Edit ✎</em>
                           </dt>
-                          <dd>{values[item.id]}</dd>
+                          <dd>{values[item.id].trim() || (item.optional ? 'Not provided' : '')}</dd>
                         </div>
                       ))}
                     </dl>
@@ -768,17 +853,16 @@ export function ContactWizard(): JSX.Element {
                         </div>
 
                         {/* Interactive Step Number Rail */}
-                        <div className="ac-step-dots" role="tablist" aria-label="Enquiry steps">
+                        <div className="ac-step-dots" role="group" aria-label="Enquiry steps">
                           {fields.map((item, idx) => {
                             const isCurrent = idx === step;
-                            const isDone = isValid(item, values[item.id]);
+                            const isDone = isComplete(item, values[item.id]);
                             const canJump = idx <= step || isDone;
                             return (
                               <button
                                 key={item.id}
                                 type="button"
-                                role="tab"
-                                aria-selected={isCurrent}
+                                aria-current={isCurrent ? 'step' : undefined}
                                 aria-label={`Step ${idx + 1}: ${item.name}`}
                                 title={`Step ${idx + 1}: ${item.name}`}
                                 disabled={!canJump}
@@ -800,13 +884,12 @@ export function ContactWizard(): JSX.Element {
 
                       <ul className="ac-question-list">
                         <li className="ac-question-li">
-                          <label
-                            className="ac-active ac-label"
-                            htmlFor={`contact-field-${field.id}`}
-                          >
-                            <h3>{field.label}</h3>
-                            <span className="ac-question-hint">{field.hint}</span>
-                          </label>
+                          <div className="ac-active ac-label">
+                            <h3 id={currentLabelId}>{field.label}</h3>
+                            <span id={currentHintId} className="ac-question-hint">
+                              {field.hint}
+                            </span>
+                          </div>
 
                           {renderControl()}
 
