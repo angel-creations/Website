@@ -32,7 +32,7 @@
   "rows": [
     {
       "route": "/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.",
       "titleLength": 85,
       "description": "Experience the future with Angel Creations, an immersive technology company pushing boundaries with virtual reality, augmented reality, and more.",
@@ -83,7 +83,7 @@
     },
     {
       "route": "/360-video/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "360 video - Angel Creations - A Creative Powerhouse",
       "titleLength": 51,
       "description": "Explore Angel Creations’ 360 video experience.",
@@ -127,7 +127,7 @@
     },
     {
       "route": "/404.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Page not found | Angel Creations",
       "titleLength": 32,
       "description": "The requested Angel Creations page is not available.",
@@ -162,7 +162,7 @@
     },
     {
       "route": "/about/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "About - Angel Creations - A Creative Powerhouse",
       "titleLength": 47,
       "description": "Angel Creations is an India based Creative Studio, with the mission of building value through design and development.",
@@ -214,7 +214,7 @@
     },
     {
       "route": "/animation/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Animation | Angel Creations",
       "titleLength": 27,
       "description": "Angel Creations works across 2D and 3D animation, motion graphics, visual effects, character animation, interactive animation, explainer content, pre-visualization and AR animation.",
@@ -261,7 +261,7 @@
     },
     {
       "route": "/augment-reality/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Augment Reality | Angel Creations",
       "titleLength": 33,
       "description": "Angel Creations explores AR across industrial applications, tourism, navigation, retail, marketing, gaming, education, healthcare, entertainment and creative experiences.",
@@ -308,7 +308,7 @@
     },
     {
       "route": "/brand-advertisement/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Brand Advertisement | Angel Creations",
       "titleLength": 37,
       "description": "Angel Creations brings creative thinking, design, content, animation, film and digital experience together to help brands communicate in ways people notice and remember.",
@@ -356,7 +356,7 @@
     },
     {
       "route": "/capabilities/animation-3d/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Animation + 3D | Angel Creations",
       "titleLength": 32,
       "description": "Animation is an existing Angel homepage capability. The public About source lists 2D Animation and 3D Animation among its animation disciplines.",
@@ -395,7 +395,7 @@
     },
     {
       "route": "/capabilities/brand/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Brand | Angel Creations",
       "titleLength": 23,
       "description": "The current Angel source references Marketing &amp; Branding across its immersive capability material and presents Brand Advertisement as a homepage capability.",
@@ -434,7 +434,7 @@
     },
     {
       "route": "/capabilities/content/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Content | Angel Creations",
       "titleLength": 25,
       "description": "The current Angel source explicitly lists VR Content Development and MR Content Creation, alongside media-production, animation, and immersive formats.",
@@ -473,7 +473,7 @@
     },
     {
       "route": "/capabilities/creative-technology/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Creative Technology | Angel Creations",
       "titleLength": 37,
       "description": "Creative Technology is represented by Angel’s existing Metaverse, Virtual Reality, Augment Reality, and Mixed Reality homepage and public capability material.",
@@ -512,7 +512,7 @@
     },
     {
       "route": "/capabilities/design/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Design | Angel Creations",
       "titleLength": 24,
       "description": "Angel’s current About source identifies design and development as part of its studio mission and names graphic designers within its project-based talent range.",
@@ -551,7 +551,7 @@
     },
     {
       "route": "/capabilities/digital/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Digital | Angel Creations",
       "titleLength": 25,
       "description": "The current Angel source describes a creative studio building value through design and development, with immersive digital formats included in its public capability material.",
@@ -590,7 +590,7 @@
     },
     {
       "route": "/capabilities/experiences/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Experiences | Angel Creations",
       "titleLength": 29,
       "description": "Experiences are supported by the public source’s virtual events, immersive worlds, product showcase, entertainment, and live event production references.",
@@ -629,7 +629,7 @@
     },
     {
       "route": "/capabilities/film/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Film | Angel Creations",
       "titleLength": 22,
       "description": "Film is supported by the current Media Production capability list in Angel’s public source.",
@@ -668,7 +668,7 @@
     },
     {
       "route": "/contact/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Contact - Angel Creations - A Creative Powerhouse",
       "titleLength": 49,
       "description": "Start a qualified project enquiry with Angel Creations.",
@@ -712,7 +712,7 @@
     },
     {
       "route": "/media-production/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Media Production | Angel Creations",
       "titleLength": 34,
       "description": "Angel Creations brings media production disciplines together to create visual stories across film, video, animation, photography, events and digital experiences.",
@@ -760,7 +760,7 @@
     },
     {
       "route": "/metaverse/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Metaverse | Angel Creations",
       "titleLength": 27,
       "description": "Angel Creations creates virtual worlds and connected digital environments designed around how people explore, interact, communicate, learn, play and experience brands.",
@@ -807,7 +807,7 @@
     },
     {
       "route": "/mixed-reality/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Mixed Reality | Angel Creations",
       "titleLength": 31,
       "description": "Angel Creations explores Mixed Reality as a medium for training, education, entertainment, gaming, architecture, marketing, collaboration, retail and spatial experiences.",
@@ -853,7 +853,7 @@
     },
     {
       "route": "/privacy-policy/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Privacy Policy - Angel Creations - A Creative Powerhouse",
       "titleLength": 56,
       "description": "Read the captured Angel Creations privacy policy.",
@@ -897,7 +897,7 @@
     },
     {
       "route": "/terms-of-service/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Terms of Service - Angel Creations - A Creative Powerhouse",
       "titleLength": 58,
       "description": "Read the captured Angel Creations terms of service.",
@@ -941,7 +941,7 @@
     },
     {
       "route": "/virtual-reality/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Virtual Reality | Angel Creations",
       "titleLength": 33,
       "description": "Angel Creations develops VR experiences across content, gaming, training, education, marketing, architecture, healthcare, conferencing and immersive communication.",
@@ -988,7 +988,7 @@
     },
     {
       "route": "/work/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Works archive | Angel Creations",
       "titleLength": 31,
       "description": "Continue to the Angel Creations Works archive.",
@@ -1023,7 +1023,7 @@
     },
     {
       "route": "/works/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Works Archive - Angel Creations - A Creative Powerhouse",
       "titleLength": 55,
       "description": "Explore 47 verified public Angel Creations video records with their original titles, descriptions, source URLs and available metadata.",
