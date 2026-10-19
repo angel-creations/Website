@@ -1,199 +1,44 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type ChangeEvent,
-  type KeyboardEvent,
-} from 'react';
+import { useEffect, useRef, useState, type ChangeEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 
 const backIcon = '/legacy-assets/icons/contact-back.png';
 const nextIcon = '/legacy-assets/icons/contact-forward.png';
 const downIcon = '/legacy-assets/icons/contact-down.png';
 
+// A visitor who leaves the enquiry and returns should not lose what they typed. The draft lives
+// in sessionStorage only; it is never transmitted and it is cleared once an enquiry is sent.
+const DRAFT_KEY = 'angel:enquiry-draft';
+
 type FieldKind = 'input' | 'textarea' | 'select';
-
-type SelectOptionItem = {
-  value: string;
-  code: string;
-  tag: string;
-  description: string;
-};
-
 type EnquiryField = {
   id: string;
   name: string;
-  category: string;
   label: string;
-  hint: string;
   kind: FieldKind;
   inputType?: 'text' | 'email' | 'tel';
   autoComplete?: string;
-  options?: SelectOptionItem[];
-  quickSuggestions?: string[];
+  options?: string[];
   placeholder?: string;
 };
 
-const IMMERSIVE_DISCIPLINE_OPTIONS: SelectOptionItem[] = [
-  {
-    value: 'Metaverse',
-    code: '01',
-    tag: 'Spatial World',
-    description: 'Persistent 3D virtual worlds, spatial commerce & digital twins',
-  },
-  {
-    value: 'Virtual Reality (VR)',
-    code: '02',
-    tag: 'Immersive XR',
-    description: 'Headset-native interactive simulations, training & VR cinema',
-  },
-  {
-    value: 'Augmented Reality (AR)',
-    code: '03',
-    tag: 'Immersive XR',
-    description: 'WebAR, mobile AR lenses, virtual try-ons & spatial overlays',
-  },
-  {
-    value: 'Mixed Reality (MR)',
-    code: '04',
-    tag: 'Spatial Computing',
-    description: 'Passthrough spatial apps & physical-digital environment fusion',
-  },
-  {
-    value: '360° Immersive Video',
-    code: '05',
-    tag: 'Spherical Film',
-    description: '8K spherical live-action capture, VR domes & spatial tours',
-  },
-  {
-    value: '3D Animation & VFX',
-    code: '06',
-    tag: 'Motion & Craft',
-    description: 'Cinematic 3D character animation, CGI worlds & visual effects',
-  },
-  {
-    value: 'Brand Advertisement',
-    code: '07',
-    tag: 'Campaigns',
-    description: 'High-impact commercial films, product launches & brand storytelling',
-  },
-  {
-    value: 'Media Production',
-    code: '08',
-    tag: 'Film & Post',
-    description: 'End-to-end live-action direction, cinematography & post-production',
-  },
-  {
-    value: 'Experiential Installation',
-    code: '09',
-    tag: 'Live Activation',
-    description: 'Projection mapping, interactive exhibition booths & live stage tech',
-  },
-  {
-    value: 'Custom Multi-Discipline Commission',
-    code: '10',
-    tag: 'Bespoke Scope',
-    description: 'Tailored blend of XR, 3D animation, film, and creative technology',
-  },
-];
-
-// 8 rewritten, executive-grade conversational questions (with former #5 Country and #10 Referral removed)
+// The questions retain the source's one-at-a-time Angel contact rhythm while collecting the
+// qualified enquiry information requested for a future, real delivery endpoint.
 const fields: EnquiryField[] = [
-  {
-    id: 'name',
-    name: 'Name',
-    category: 'Identity',
-    label: 'Hello. Who do we have the pleasure of speaking with?',
-    hint: 'Share your full name so our executive producer can address you personally.',
-    kind: 'input',
-    inputType: 'text',
-    autoComplete: 'name',
-    placeholder: 'Enter your full name…',
-  },
-  {
-    id: 'company',
-    name: 'Company',
-    category: 'Organization',
-    label: 'Which company, brand, or studio do you represent?',
-    hint: 'Tell us the organization, agency, or venture behind this commission.',
-    kind: 'input',
-    inputType: 'text',
-    autoComplete: 'organization',
-    placeholder: 'Your company, brand, or independent studio…',
-  },
-  {
-    id: 'email',
-    name: 'Email',
-    category: 'Direct Email',
-    label: 'Where should we send your tailored project proposal?',
-    hint: 'Your primary email address for our producer’s response and deck.',
-    kind: 'input',
-    inputType: 'email',
-    autoComplete: 'email',
-    placeholder: 'name@company.com',
-  },
-  {
-    id: 'phone',
-    name: 'Phone',
-    category: 'Direct Line',
-    label: 'What is the best phone number to reach you on?',
-    hint: 'Include your country code for a direct producer call or WhatsApp follow-up.',
-    kind: 'input',
-    inputType: 'tel',
-    autoComplete: 'tel',
-    placeholder: '+91 98765 43210',
-  },
+  { id: 'name', name: 'Name', label: "Ahoy. What's your name?", kind: 'input', inputType: 'text', autoComplete: 'name' },
+  { id: 'company', name: 'Company', label: "What's the name of your company?", kind: 'input', inputType: 'text', autoComplete: 'organization' },
+  { id: 'email', name: 'Email', label: "What's your email?", kind: 'input', inputType: 'email', autoComplete: 'email' },
+  { id: 'phone', name: 'Phone', label: "What's your phone number?", kind: 'input', inputType: 'tel', autoComplete: 'tel' },
+  { id: 'country', name: 'Country', label: 'Which country are you contacting us from?', kind: 'input', inputType: 'text', autoComplete: 'country-name' },
   {
     id: 'projectType',
-    name: 'Immersive Discipline',
-    category: 'Discipline',
-    label: 'Which immersive or creative discipline are you looking to build?',
-    hint: 'Open the spatial selector below or tap a discipline pill to choose your focus.',
+    name: 'Project type',
+    label: 'What would you like to make with Angel?',
     kind: 'select',
-    options: IMMERSIVE_DISCIPLINE_OPTIONS,
+    options: ['Brand', 'Design', 'Content', 'Film', 'Animation + 3D', 'Digital', 'Event / Experience', 'Creative Technology', 'Something Else'],
   },
-  {
-    id: 'description',
-    name: 'Project Vision',
-    category: 'Project Brief',
-    label: 'Tell us about your vision and what you want to create.',
-    hint: 'Share your creative goals, target audience, platform, or key deliverables.',
-    kind: 'textarea',
-    placeholder: 'Describe the experience, story, audience, or creative challenge…',
-  },
-  {
-    id: 'timeline',
-    name: 'Target Timeline',
-    category: 'Schedule',
-    label: 'When are you looking to launch or go live?',
-    hint: 'Let us know your target launch window, exhibition date, or production schedule.',
-    kind: 'input',
-    inputType: 'text',
-    placeholder: 'Select a timeframe below or type your target launch date…',
-    quickSuggestions: [
-      'Immediate / Urgent',
-      'Within 1 – 2 Months',
-      'Within 3 – 6 Months',
-      'Upcoming Exhibition / Event',
-      'Flexible / Exploring Scope',
-    ],
-  },
-  {
-    id: 'investment',
-    name: 'Estimated Investment',
-    category: 'Scope & Budget',
-    label: 'What investment range have you allocated for this project?',
-    hint: 'An approximate range helps us architect the right technical and creative scope.',
-    kind: 'input',
-    inputType: 'text',
-    placeholder: 'Select a bracket below or type your estimated budget…',
-    quickSuggestions: [
-      'Under $15k / ₹12L',
-      '$15k – $50k / ₹12L – ₹40L',
-      '$50k – $150k / ₹40L – ₹1.2Cr',
-      '$150k+ / Enterprise Commission',
-      'Need Scope & Budget Guidance',
-    ],
-  },
+  { id: 'description', name: 'Project description', label: 'Tell us a bit about your project.', kind: 'textarea', placeholder: 'The context, idea, audience, or challenge.' },
+  { id: 'timeline', name: 'Timeline', label: 'What timeline are you working with?', kind: 'input', inputType: 'text', placeholder: 'A start date, launch date, or timing to discuss.' },
+  { id: 'investment', name: 'Investment range', label: 'What investment range are you considering?', kind: 'input', inputType: 'text', placeholder: 'A range helps us understand the scope.' },
+  { id: 'referral', name: 'How they found Angel', label: 'How did you find Angel?', kind: 'input', inputType: 'text', placeholder: 'A recommendation, search, social platform, or something else.' },
 ];
 
 function isValid(field: EnquiryField, value: string): boolean {
@@ -204,66 +49,57 @@ function isValid(field: EnquiryField, value: string): boolean {
 
 function createMailto(values: Record<string, string>): string {
   const body = fields.map((field) => `${field.name}: ${values[field.id].trim()}`).join('\n\n');
-  return `mailto:business@angelcreations.in?subject=${encodeURIComponent(
-    'New Angel Creations Project Enquiry'
-  )}&body=${encodeURIComponent(body)}`;
+  return `mailto:business@angelcreations.in?subject=${encodeURIComponent('New Angel project enquiry')}&body=${encodeURIComponent(body)}`;
 }
 
 export function ContactWizard(): JSX.Element {
   const [step, setStep] = useState(0);
-  const [values, setValues] = useState<Record<string, string>>(() =>
-    Object.fromEntries(fields.map((field) => [field.id, '']))
-  );
+  const [values, setValues] = useState<Record<string, string>>(() => {
+    const blank = Object.fromEntries(fields.map((field) => [field.id, '']));
+    try {
+      const stored = window.sessionStorage.getItem(DRAFT_KEY);
+      if (!stored) return blank;
+      const parsed = JSON.parse(stored) as Record<string, unknown>;
+      return Object.fromEntries(fields.map((field) => [field.id, typeof parsed[field.id] === 'string' ? parsed[field.id] as string : '']));
+    } catch {
+      return blank;
+    }
+  });
   const [attempted, setAttempted] = useState<Set<number>>(() => new Set());
   const [prepared, setPrepared] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [formStatus, setFormStatus] = useState('');
-  const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
-
+  const [copied, setCopied] = useState(false);
   const controlRef = useRef<HTMLElement | null>(null);
-  const dropdownWrapRef = useRef<HTMLDivElement | null>(null);
-
   const field = fields[step];
   const currentValue = values[field.id];
   const currentValid = isValid(field, currentValue);
   const currentErrorId = `contact-field-${field.id}-error`;
-  const progressRatio = ((step + 1) / fields.length) * 100;
-  const completedFields = fields
-    .map((item, index) => ({ item, index, value: values[item.id].trim() }))
-    .filter((entry) => isValid(entry.item, entry.value));
 
   useEffect(() => {
-    setDropdownOpen(false);
-    if (!prepared) {
-      controlRef.current?.focus();
+    controlRef.current?.focus();
+  }, [step]);
+
+  useEffect(() => {
+    if (prepared) return;
+    try {
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify(values));
+    } catch {
+      // Private browsing without storage keeps the enquiry usable; only recovery is lost.
     }
-  }, [step, prepared]);
-
-  // Close custom dropdown when clicking outside
-  useEffect(() => {
-    if (!dropdownOpen) return;
-    const handlePointerDown = (event: MouseEvent): void => {
-      if (
-        dropdownWrapRef.current &&
-        !dropdownWrapRef.current.contains(event.target as Node)
-      ) {
-        setDropdownOpen(false);
-      }
-    };
-    window.addEventListener('mousedown', handlePointerDown);
-    return () => window.removeEventListener('mousedown', handlePointerDown);
-  }, [dropdownOpen]);
+  }, [values, prepared]);
 
   const updateValue = (value: string): void => {
     setFormStatus('');
+    setCopied(false);
     setValues((current) => ({ ...current, [field.id]: value }));
   };
 
   const showCurrentError = (): boolean => attempted.has(step) && !currentValid;
 
   const next = (): void => {
+    // A local honeypot adds friction for basic automated fills. There is intentionally no claim
+    // of server-side spam/rate protection while this local build has no form endpoint.
     if (honeypot.trim()) {
       setFormStatus('Please review your enquiry and try again.');
       return;
@@ -272,7 +108,6 @@ export function ContactWizard(): JSX.Element {
       setAttempted((current) => new Set(current).add(step));
       return;
     }
-    setDropdownOpen(false);
     if (step === fields.length - 1) {
       setPrepared(true);
       return;
@@ -281,92 +116,49 @@ export function ContactWizard(): JSX.Element {
   };
 
   const previous = (): void => {
-    setDropdownOpen(false);
     if (step > 0) setStep((current) => current - 1);
   };
 
   const reset = (): void => {
     setPrepared(false);
-    setDropdownOpen(false);
     setStep(0);
     setAttempted(new Set());
     setHoneypot('');
     setFormStatus('');
+    setCopied(false);
     setValues(Object.fromEntries(fields.map((item) => [item.id, ''])));
-  };
-
-  const handleTextareaKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>): void => {
-    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-      event.preventDefault();
-      next();
+    try {
+      window.sessionStorage.removeItem(DRAFT_KEY);
+    } catch {
+      // Storage is optional; a cleared session draft is best effort only.
     }
   };
 
-  const handleDropdownKeyDown = (event: KeyboardEvent<HTMLButtonElement>): void => {
-    const opts = field.options ?? [];
-    if (!opts.length) return;
+  // Enter continues the questionnaire from a single-line control, exactly as the arrow button
+  // does. The multi-line project description keeps its normal newline behaviour.
+  const onFormKeyDown = (event: ReactKeyboardEvent<HTMLFormElement>): void => {
+    if (event.key !== 'Enter' || event.defaultPrevented || event.shiftKey) return;
+    const target = event.target as HTMLElement;
+    if (target instanceof HTMLTextAreaElement) return;
+    if (target instanceof HTMLButtonElement || target instanceof HTMLAnchorElement) return;
+    event.preventDefault();
+    next();
+  };
 
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      if (!dropdownOpen) {
-        setDropdownOpen(true);
-      } else {
-        setHighlightedIndex((prev) => (prev + 1) % opts.length);
-      }
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      if (!dropdownOpen) {
-        setDropdownOpen(true);
-      } else {
-        setHighlightedIndex((prev) => (prev - 1 + opts.length) % opts.length);
-      }
-    } else if (event.key === 'Enter') {
-      if (dropdownOpen) {
-        event.preventDefault();
-        const chosen = opts[highlightedIndex];
-        if (chosen) {
-          updateValue(chosen.value);
-          setDropdownOpen(false);
-        }
-      } else if (currentValid) {
-        event.preventDefault();
-        next();
-      } else {
-        event.preventDefault();
-        setDropdownOpen(true);
-      }
-    } else if (event.key === 'Escape') {
-      if (dropdownOpen) {
-        event.preventDefault();
-        setDropdownOpen(false);
-      }
-    } else if (event.key === ' ') {
-      event.preventDefault();
-      setDropdownOpen((open) => !open);
+  const copyEnquiry = async (): Promise<void> => {
+    const body = fields.map((item) => `${item.name}: ${values[item.id].trim()}`).join('\n\n');
+    try {
+      await navigator.clipboard.writeText(`Subject: New Angel project enquiry\n\n${body}`);
+      setCopied(true);
+      setFormStatus('Enquiry copied. Paste it into an email to business@angelcreations.in.');
+    } catch {
+      setFormStatus('Copying is unavailable in this browser. Use “Open email draft” instead.');
     }
   };
 
-  const copyToClipboard = (text: string, label: string): void => {
-    navigator.clipboard?.writeText(text).then(() => {
-      setCopiedChannel(label);
-      window.setTimeout(() => setCopiedChannel(null), 2200);
-    });
-  };
-
-  const copyEnquiryText = (): void => {
-    const body = fields.map((f) => `${f.name}: ${values[f.id].trim()}`).join('\n');
-    copyToClipboard(body, 'summary');
-  };
-
-  const setInputRef = (element: HTMLInputElement | null): void => {
-    controlRef.current = element;
-  };
-  const setTextareaRef = (element: HTMLTextAreaElement | null): void => {
-    controlRef.current = element;
-  };
-  const setDropdownTriggerRef = (element: HTMLButtonElement | null): void => {
-    controlRef.current = element;
-  };
+  const setInputRef = (element: HTMLInputElement | null): void => { controlRef.current = element; };
+  const setTextareaRef = (element: HTMLTextAreaElement | null): void => { controlRef.current = element; };
+  const setSelectRef = (element: HTMLSelectElement | null): void => { controlRef.current = element; };
 
   const renderControl = (): JSX.Element => {
     const ariaInvalid: 'true' | 'false' = showCurrentError() ? 'true' : 'false';
@@ -380,620 +172,83 @@ export function ContactWizard(): JSX.Element {
       'aria-describedby': showCurrentError() ? currentErrorId : undefined,
       value: currentValue,
       required: true,
-      onChange: (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-      ) => updateValue(event.target.value),
+      onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => updateValue(event.target.value),
     };
 
-    if (field.kind === 'select') {
-      const options = field.options ?? [];
-      const selectedOption = options.find((item) => item.value === currentValue);
-
-      return (
-        <div className="ac-field-block" ref={dropdownWrapRef}>
-          {/* Redesigned Apple Liquid Glass Spatial Dropdown */}
-          <div
-            className={`ac-custom-select${dropdownOpen ? ' is-open' : ''}${
-              selectedOption ? ' has-value' : ''
-            }`}
-          >
-            {/* Hidden native select for form semantics */}
-            <select
-              id={`contact-field-${field.id}-native`}
-              name={field.id}
-              className="sr-only"
-              tabIndex={-1}
-              aria-hidden="true"
-              value={currentValue}
-              onChange={(e) => updateValue(e.target.value)}
-            >
-              <option value="">Select a discipline…</option>
-              {options.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.value}
-                </option>
-              ))}
-            </select>
-
-            <button
-              id={`contact-field-${field.id}`}
-              ref={setDropdownTriggerRef}
-              type="button"
-              role="combobox"
-              aria-expanded={dropdownOpen}
-              aria-haspopup="listbox"
-              aria-controls="ac-discipline-listbox"
-              aria-invalid={ariaInvalid}
-              aria-describedby={showCurrentError() ? currentErrorId : undefined}
-              className="ac-custom-select__trigger"
-              onClick={() => {
-                const idx = options.findIndex((o) => o.value === currentValue);
-                setHighlightedIndex(idx >= 0 ? idx : 0);
-                setDropdownOpen((open) => !open);
-              }}
-              onKeyDown={handleDropdownKeyDown}
-            >
-              {selectedOption ? (
-                <span className="ac-custom-select__selected">
-                  <span className="ac-custom-select__code">{selectedOption.code}</span>
-                  <span className="ac-custom-select__text-group">
-                    <span className="ac-custom-select__value">{selectedOption.value}</span>
-                    <span className="ac-custom-select__desc">
-                      {selectedOption.description}
-                    </span>
-                  </span>
-                  <span className="ac-custom-select__tag">{selectedOption.tag}</span>
-                </span>
-              ) : (
-                <span className="ac-custom-select__placeholder">
-                  Select an immersive or creative discipline…
-                </span>
-              )}
-
-              <span className="ac-custom-select__right">
-                {currentValid && (
-                  <span className="ac-valid-badge ac-valid-badge--inline" aria-hidden="true">
-                    ✓ Ready
-                  </span>
-                )}
-                <span
-                  className={`ac-custom-select__chevron${dropdownOpen ? ' is-open' : ''}`}
-                  aria-hidden="true"
-                >
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path
-                      d="M3 5.25L7 9.25L11 5.25"
-                      stroke="currentColor"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </span>
-            </button>
-
-            <span className="ac-focus-line" aria-hidden="true" />
-
-            {/* Sculptural Liquid Glass Popover Menu */}
-            {dropdownOpen && (
-              <div
-                id="ac-discipline-listbox"
-                role="listbox"
-                aria-label="Immersive and creative disciplines"
-                className="ac-custom-select__popover"
-              >
-                <div className="ac-custom-select__popover-head">
-                  <span>Select Your Project Discipline</span>
-                  <span>{options.length} Capabilities</span>
-                </div>
-                <div className="ac-custom-select__grid">
-                  {options.map((opt, idx) => {
-                    const isSelected = currentValue === opt.value;
-                    const isHighlighted = highlightedIndex === idx;
-                    return (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        role="option"
-                        aria-selected={isSelected}
-                        className={`ac-custom-select__option${
-                          isSelected ? ' is-selected' : ''
-                        }${isHighlighted ? ' is-highlighted' : ''}`}
-                        onMouseEnter={() => setHighlightedIndex(idx)}
-                        onClick={() => {
-                          updateValue(opt.value);
-                          setDropdownOpen(false);
-                        }}
-                      >
-                        <div className="ac-custom-select__option-top">
-                          <span className="ac-custom-select__option-code">{opt.code}</span>
-                          <span className="ac-custom-select__option-tag">{opt.tag}</span>
-                          {isSelected && (
-                            <span className="ac-custom-select__option-check" aria-hidden="true">
-                              ✓
-                            </span>
-                          )}
-                        </div>
-                        <strong className="ac-custom-select__option-title">
-                          {opt.value}
-                        </strong>
-                        <span className="ac-custom-select__option-sub">
-                          {opt.description}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Quick-Select Immersive Pills directly below the dropdown */}
-          <div className="ac-quick-options" aria-label="Quick discipline selection">
-            <span className="ac-quick-options__label">Immersive &amp; Core:</span>
-            {options.map((opt) => (
-              <button
-                key={opt.value}
-                type="button"
-                className={`ac-quick-pill${currentValue === opt.value ? ' is-selected' : ''}`}
-                onClick={() => {
-                  updateValue(opt.value);
-                  setDropdownOpen(false);
-                }}
-              >
-                {opt.value}
-              </button>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="ac-field-block">
-        <div className="ac-field-wrap">
-          {field.kind === 'textarea' ? (
-            <textarea
-              {...shared}
-              ref={setTextareaRef}
-              rows={3}
-              placeholder={field.placeholder}
-              onKeyDown={handleTextareaKeyDown}
-            />
-          ) : (
-            <input
-              {...shared}
-              ref={setInputRef}
-              type={field.inputType ?? 'text'}
-              placeholder={field.placeholder}
-            />
-          )}
-          <span className="ac-focus-line" aria-hidden="true" />
-          {currentValid && (
-            <span className="ac-valid-badge" aria-hidden="true">
-              ✓ Ready
-            </span>
-          )}
-        </div>
-
-        {field.quickSuggestions && field.quickSuggestions.length > 0 && (
-          <div className="ac-quick-options" aria-label={`Quick suggestions for ${field.name}`}>
-            <span className="ac-quick-options__label">Quick select:</span>
-            {field.quickSuggestions.map((option) => (
-              <button
-                key={option}
-                type="button"
-                className={`ac-quick-pill${currentValue === option ? ' is-selected' : ''}`}
-                onClick={() => updateValue(option)}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+    if (field.kind === 'textarea') return <textarea {...shared} ref={setTextareaRef} rows={4} placeholder={field.placeholder} />;
+    if (field.kind === 'select') return (
+      <select {...shared} ref={setSelectRef}>
+        <option value="">Choose a project type</option>
+        {field.options?.map((option) => <option value={option} key={option}>{option}</option>)}
+      </select>
     );
+    return <input {...shared} ref={setInputRef} type={field.inputType ?? 'text'} placeholder={field.placeholder} />;
   };
 
   return (
-    <div className="angel-contact-redesign">
-      {/* Ambient Spatial Background Grid & Light Orbs */}
-      <div className="ac-ambient-backdrop" aria-hidden="true">
-        <div className="ac-ambient-orb ac-ambient-orb--cyan" />
-        <div className="ac-ambient-orb ac-ambient-orb--indigo" />
-        <div className="ac-ambient-grid" />
-      </div>
-
+    <>
       <div className="contact-section-min">
         <section className="section-contact">
           <div className="contact-inner">
-            {/* Editorial Studio Header */}
-            <header className="ac-studio-hero">
-              <div className="ac-studio-hero__left">
-                <div className="ac-studio-eyebrow">
-                  <span className="ac-studio-eyebrow__dot" aria-hidden="true" />
-                  <span>Angel Creations · Global Production Concierge</span>
-                </div>
-                <h1 className="ac-studio-title">
-                  Let’s build what doesn’t exist yet.
-                </h1>
-                <p className="ac-studio-subtitle">
-                  Complete our 8-step interactive project brief below — or reach our support,
-                  business, and direct mobile desks at the bottom of the page.
-                </p>
+            <form
+              id="booking-form"
+              className="wpcf7-form init"
+              aria-label="Project enquiry"
+              noValidate
+              onSubmit={(event) => { event.preventDefault(); next(); }}
+              onKeyDown={onFormKeyDown}
+            >
+              <div className="angel-honeypot" aria-hidden="true">
+                <label htmlFor="contact-website">Leave this field empty</label>
+                <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(event) => setHoneypot(event.target.value)} />
               </div>
-
-              <div className="ac-studio-hero__right">
-                <a href="#direct-contact-channels" className="ac-direct-jump-pill">
-                  <span>Direct Email &amp; +91-8058465733</span>
-                  <span aria-hidden="true">↓</span>
-                </a>
-              </div>
-            </header>
-
-            {/* Sculptural Liquid Glass Stage wrapping the Original N° One-at-a-Time Form */}
-            <div className="ac-wizard-shell">
-              <form
-                id="booking-form"
-                className="wpcf7-form init"
-                aria-label="Project enquiry"
-                noValidate
-                onSubmit={(event) => {
-                  event.preventDefault();
-                  next();
-                }}
-              >
-                <div className="angel-honeypot" aria-hidden="true">
-                  <label htmlFor="contact-website">Leave this field empty</label>
-                  <input
-                    id="contact-website"
-                    name="website"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    value={honeypot}
-                    onChange={(event) => setHoneypot(event.target.value)}
-                  />
-                </div>
-                <p className="sr-only" aria-live="polite">
-                  {formStatus}
-                </p>
-
-                {prepared ? (
-                  <section className="contact-prepared" aria-labelledby="enquiry-ready-title">
-                    <div className="contact-prepared__header">
-                      <div>
-                        <p className="contact-prepared__eyebrow">
-                          N° 08 / 08 · Project Enquiry Prepared
-                        </p>
-                        <h2 id="enquiry-ready-title">Your project brief is ready.</h2>
-                        <p className="contact-prepared__lead">
-                          Click any answer below to refine it, then launch your pre-addressed email
-                          draft or call our executive line on <strong>+91-8058465733</strong>.
-                        </p>
+              <p className="sr-only" aria-live="polite">{formStatus}</p>
+              {prepared ? (
+                <section className="contact-prepared" aria-labelledby="enquiry-ready-title">
+                  <p className="contact-prepared__eyebrow">Project enquiry / ready</p>
+                  <h2 id="enquiry-ready-title">Your enquiry is prepared.</h2>
+                  <p>This preview has no delivery endpoint. Your answers stay in this browser until you choose to open an email draft.</p>
+                  <dl className="contact-prepared__review">
+                    {fields.map((item) => (
+                      <div className="contact-prepared__row" key={item.id}>
+                        <dt>{item.name}</dt>
+                        <dd>{values[item.id].trim() || <span className="contact-prepared__empty">Not provided</span>}</dd>
                       </div>
-                      <span className="contact-prepared__badge">08 / 08 Complete</span>
-                    </div>
-
-                    <dl className="contact-prepared__summary">
-                      {fields.map((item, idx) => (
-                        <div
-                          key={item.id}
-                          className="contact-prepared__row"
-                          onClick={() => {
-                            setPrepared(false);
-                            setStep(idx);
-                          }}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                              e.preventDefault();
-                              setPrepared(false);
-                              setStep(idx);
-                            }
-                          }}
-                          title={`Edit ${item.name}`}
-                        >
-                          <dt>
-                            <span>N° {String(idx + 1).padStart(2, '0')}</span> {item.name}
-                            <em className="contact-prepared__edit-tag">Edit ✎</em>
-                          </dt>
-                          <dd>{values[item.id]}</dd>
-                        </div>
-                      ))}
-                    </dl>
-
-                    <div className="contact-prepared__actions">
-                      <a className="contact-prepared__send" href={createMailto(values)}>
-                        Open email draft <span aria-hidden="true">↗</span>
-                      </a>
-                      <button
-                        className="contact-prepared__edit"
-                        type="button"
-                        onClick={copyEnquiryText}
-                      >
-                        {copiedChannel === 'summary'
-                          ? '✓ Copied to clipboard'
-                          : 'Copy enquiry text'}
-                      </button>
-                      <a className="contact-prepared__edit" href="tel:+918058465733">
-                        Call +91-8058465733
-                      </a>
-                      <button
-                        className="contact-prepared__edit"
-                        type="button"
-                        onClick={() => setPrepared(false)}
-                      >
-                        Edit answers
-                      </button>
-                      <button className="contact-prepared__edit" type="button" onClick={reset}>
-                        Start again
-                      </button>
-                    </div>
-                  </section>
-                ) : (
-                  <div className="tab-content">
-                    <div
-                      key={field.id}
-                      className="tab-pane ac-step-stage"
-                      id={`step${step + 1}`}
-                      style={{ display: 'block' }}
-                    >
-                      {/* Signature N° Progress Header + Category Badge + Interactive Step Rail */}
-                      <div className="step-title">
-                        <div className="ac-progress-header" aria-hidden="true">
-                          <span className="ac-slider-progress">
-                            <span className="ac-slider-prefix">
-                              N<small>o</small>
-                            </span>
-                            <span className="ac-step-current">
-                              {String(step + 1).padStart(2, '0')}
-                            </span>
-                          </span>
-
-                          <span className="ac-progress-line">
-                            <span
-                              className="ac-progress-line__fill"
-                              style={{ width: `${progressRatio}%` }}
-                            />
-                          </span>
-
-                          <span className="ac-step-total">
-                            {String(fields.length).padStart(2, '0')}
-                          </span>
-
-                          <span className="ac-step-category-pill">{field.category}</span>
-                        </div>
-
-                        {/* Interactive Step Number Rail */}
-                        <div className="ac-step-dots" role="tablist" aria-label="Enquiry steps">
-                          {fields.map((item, idx) => {
-                            const isCurrent = idx === step;
-                            const isDone = isValid(item, values[item.id]);
-                            const canJump = idx <= step || isDone;
-                            return (
-                              <button
-                                key={item.id}
-                                type="button"
-                                role="tab"
-                                aria-selected={isCurrent}
-                                aria-label={`Step ${idx + 1}: ${item.name}`}
-                                title={`Step ${idx + 1}: ${item.name}`}
-                                disabled={!canJump}
-                                className={`ac-step-dot${isCurrent ? ' is-current' : ''}${
-                                  isDone ? ' is-done' : ''
-                                }`}
-                                onClick={() => canJump && setStep(idx)}
-                              >
-                                {String(idx + 1).padStart(2, '0')}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <p className="sr-only" aria-live="polite">
-                        Question {step + 1} of {fields.length}: {field.name}
-                      </p>
-
-                      <ul className="ac-question-list">
-                        <li className="ac-question-li">
-                          <label
-                            className="ac-active ac-label"
-                            htmlFor={`contact-field-${field.id}`}
-                          >
-                            <h3>{field.label}</h3>
-                            <span className="ac-question-hint">{field.hint}</span>
-                          </label>
-
-                          {renderControl()}
-
-                          <div className="errorTxt" id={currentErrorId} aria-live="polite">
-                            {showCurrentError() ? (
-                              <span className="error">
-                                {field.inputType === 'email' && currentValue.trim()
-                                  ? 'Please enter a valid email address before continuing.'
-                                  : 'Please complete this question before continuing.'}
-                              </span>
-                            ) : null}
-                          </div>
-                        </li>
-
-                        <li
-                          className="action_li"
-                          style={{ listStyle: 'none', display: 'flex' }}
-                        >
-                          <div className="ac-nav-group">
-                            <button
-                              className={`prev-btn prev-btn${step + 1}`}
-                              type="button"
-                              aria-label="Previous question"
-                              disabled={step === 0}
-                              onClick={previous}
-                            >
-                              <img src={backIcon} alt="" />
-                              <span className="ac-btn-label">Prev</span>
-                            </button>
-
-                            <button
-                              className={
-                                step === fields.length - 1
-                                  ? 'submit-btn next-btn'
-                                  : `next-btn next-btn${step + 1}`
-                              }
-                              type="submit"
-                              aria-label={
-                                step === fields.length - 1
-                                  ? 'Prepare project enquiry'
-                                  : 'Next question'
-                              }
-                            >
-                              <span className="ac-btn-label">
-                                {step === fields.length - 1 ? 'Prepare Enquiry' : 'Next'}
-                              </span>
-                              <img src={nextIcon} alt="" />
-                            </button>
-                          </div>
-
-                          <div className="ac-stage-meta">
-                            <span className="ac-enter-hint" aria-hidden="true">
-                              {field.kind === 'textarea'
-                                ? 'Press ⌘ + Enter ↵ to continue'
-                                : 'Press Enter ↵ to continue'}
-                            </span>
-                          </div>
-                        </li>
-                      </ul>
-
-                      {/* Live Answered Trail Strip for Instant Jump-Back Editing */}
-                      {completedFields.length > 0 && (
-                        <div className="ac-answered-trail" aria-label="Answered questions">
-                          <span className="ac-answered-trail__title">Your brief so far:</span>
-                          <div className="ac-answered-trail__chips">
-                            {completedFields.map(({ item, index, value }) => (
-                              <button
-                                key={item.id}
-                                type="button"
-                                className={`ac-answered-chip${index === step ? ' is-active' : ''}`}
-                                onClick={() => setStep(index)}
-                                title={`Jump to Step ${index + 1}: ${item.name}`}
-                              >
-                                <span className="ac-answered-chip__num">
-                                  {String(index + 1).padStart(2, '0')}
-                                </span>
-                                <span className="ac-answered-chip__key">{item.name}:</span>
-                                <span className="ac-answered-chip__val">
-                                  {value.length > 26 ? `${value.slice(0, 26)}…` : value}
-                                </span>
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    ))}
+                  </dl>
+                  <div className="contact-prepared__actions">
+                    <a className="contact-prepared__send" href={createMailto(values)}>Open email draft</a>
+                    <button className="contact-prepared__edit" type="button" onClick={() => void copyEnquiry()}>Copy enquiry</button>
+                    <button className="contact-prepared__edit" type="button" onClick={() => setPrepared(false)}>Edit answers</button>
+                    <button className="contact-prepared__edit" type="button" onClick={reset}>Start again</button>
                   </div>
-                )}
-              </form>
-            </div>
+                </section>
+              ) : (
+                <div className="tab-content">
+                  <div className="tab-pane" id={`step${step + 1}`} style={{ display: 'block' }}>
+                    <div className="step-title" aria-hidden="true"><span className="ac-slider-progress"><span className="ac-slider-prefix">N<small>o</small></span><span>{step + 1}</span></span></div>
+                    <p className="sr-only" aria-live="polite">Question {step + 1} of {fields.length}: {field.name}</p>
+                    <ul><li>
+                      <label className="ac-active ac-label" htmlFor={`contact-field-${field.id}`}><h3>{field.label}</h3></label>
+                      {renderControl()}
+                      <div className="errorTxt" id={currentErrorId} aria-live="polite">
+                        {showCurrentError() ? <span className="error">{field.inputType === 'email' && currentValue.trim() ? 'Please enter a valid email address.' : 'Please complete this field before continuing.'}</span> : null}
+                      </div>
+                    </li><li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
+                      <button className={`prev-btn prev-btn${step + 1}`} type="button" aria-label="Previous question" disabled={step === 0} onClick={previous}><img src={backIcon} alt="" /></button>
+                      <button className={step === fields.length - 1 ? 'submit-btn next-btn' : `next-btn next-btn${step + 1}`} type="submit" aria-label={step === fields.length - 1 ? 'Prepare project enquiry' : 'Next question'}><img src={nextIcon} alt="" /></button>
+                    </li></ul>
+                  </div>
+                </div>
+              )}
+            </form>
           </div>
         </section>
       </div>
-
-      {/* Redesigned Bottom Direct Contact Section: Customer Supports, Customer Business & Mobile +91-8058465733 */}
-      <section
-        id="direct-contact-channels"
-        className="ac-support-section"
-        aria-label="Direct email and mobile contacts"
-      >
-        <div className="genralinformation">
-          <div className="ac-support-header">
-            <span className="ac-support-header__eyebrow">Direct Studio Desks</span>
-            <h2 className="ac-support-header__title">
-              Prefer direct email or a phone conversation?
-            </h2>
-          </div>
-
-          <div className="supportmail">
-            {/* 1. For Customer Supports */}
-            <div className="supcom leftsupport">
-              <div className="supcom__top">
-                <span className="supcom__badge">01 · Support Desk</span>
-                <button
-                  type="button"
-                  className="supcom__copy-btn"
-                  onClick={() =>
-                    copyToClipboard('support@angelcreations.in', 'support')
-                  }
-                >
-                  {copiedChannel === 'support' ? '✓ Copied' : 'Copy'}
-                </button>
-              </div>
-              <h4>For Customer Supports</h4>
-              <div className="downicon">
-                <img src={downIcon} alt="" />
-                <p>
-                  <a href="mailto:support@angelcreations.in">support@angelcreations.in</a>
-                </p>
-              </div>
-              <span className="supcom__sub">
-                Client care, technical support &amp; active project assistance
-              </span>
-            </div>
-
-            {/* 2. For Customer Business */}
-            <div className="supcom rightsupport">
-              <div className="supcom__top">
-                <span className="supcom__badge">02 · Business Desk</span>
-                <button
-                  type="button"
-                  className="supcom__copy-btn"
-                  onClick={() =>
-                    copyToClipboard('business@angelcreations.in', 'business')
-                  }
-                >
-                  {copiedChannel === 'business' ? '✓ Copied' : 'Copy'}
-                </button>
-              </div>
-              <h4>For Customer Business</h4>
-              <div className="downicon">
-                <img src={downIcon} alt="" />
-                <p>
-                  <a href="mailto:business@angelcreations.in">business@angelcreations.in</a>
-                </p>
-              </div>
-              <span className="supcom__sub">
-                New commissions, brand partnerships &amp; enterprise RFPs
-              </span>
-            </div>
-
-            {/* 3. Direct Mobile Number: +91-8058465733 */}
-            <div className="supcom mobilesupport">
-              <div className="supcom__top">
-                <span className="supcom__badge">03 · Direct Mobile</span>
-                <button
-                  type="button"
-                  className="supcom__copy-btn"
-                  onClick={() => copyToClipboard('+91-8058465733', 'mobile')}
-                >
-                  {copiedChannel === 'mobile' ? '✓ Copied' : 'Copy'}
-                </button>
-              </div>
-              <h4>For Direct Call &amp; Mobile</h4>
-              <div className="downicon">
-                <img src={downIcon} alt="" />
-                <p>
-                  <a href="tel:+918058465733">+91-8058465733</a>
-                </p>
-              </div>
-              <span className="supcom__sub">
-                Direct producer line · Instant voice &amp; studio consultation
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      <section><div className="genralinformation"><div className="supportmail">
+        <div className="supcom leftsupport"><h4>For Customer Supports</h4><div className="downicon"><img src={downIcon} alt="" /><p><a href="mailto:support@angelcreations.in">support@angelcreations.in</a></p></div></div>
+        <div className="supcom rightsupport"><h4>For Customer Business</h4><div className="downicon"><img src={downIcon} alt="" /><p><a href="mailto:business@angelcreations.in">business@angelcreations.in</a></p></div></div>
+      </div></div></section>
+    </>
   );
 }

@@ -96,4 +96,18 @@ export default defineConfig({
   plugins: [react(), canonicalAboutRedirect(), captured404Status(), preservedFeeds()],
   server: { host: '0.0.0.0', allowedHosts: true, proxy: sourceRuntimeProxy },
   preview: { host: '0.0.0.0', allowedHosts: true, proxy: sourceRuntimeProxy },
+  build: {
+    // The immersive home stage must not wait on the captured WordPress page archive or the JSON
+    // data that only inner routes use, so each payload stays its own cacheable chunk.
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules/react') || id.includes('node_modules/scheduler')) return 'react-runtime';
+          if (id.includes('src/data/legacyPages.json')) return 'legacy-pages';
+          if (id.includes('src/data/videoArchive.json')) return 'video-archive';
+          return undefined;
+        },
+      },
+    },
+  },
 });

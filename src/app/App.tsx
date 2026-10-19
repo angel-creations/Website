@@ -1,21 +1,55 @@
 import { lazy, Suspense, useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from 'react';
-import { AboutPage } from '../components/AboutPage';
+import { AboutReveal } from '../components/AboutReveal';
 import { ContactWizard } from '../components/ContactWizard';
-import { FloatingScrollTop } from '../components/FloatingScrollTop';
 import { Header } from '../components/Header';
 import { HomeSlideshow } from '../components/HomeSlideshow';
 import { LegacyRenderer } from '../components/LegacyRenderer';
 import { LegacyFooter } from '../components/LegacyFooter';
-import { LegalPage } from '../components/LegalPage';
 import { PanoramaPage } from '../components/PanoramaPage';
 import { NotFoundPage } from '../components/NotFoundPage';
+import { CapabilityIndex } from '../components/CapabilityIndex';
 import { capabilityForRoute } from '../data/capabilities';
 import { slideExperienceForRoute } from '../data/slideExperiences';
 import routeSeo from '../data/routeSeo.json';
 import type { LegacyPage } from '../types/legacy';
 import { currentRoute, isInternalHref, navigate, normaliseRoute, toLocalRoute } from '../utils/routes';
 import { applySeo } from '../utils/seo';
+import { observeReveals } from '../utils/reveal';
 
+// Capability and slide-experience routes are rendered by dedicated React components rather than
+// the captured WordPress archive, so they have no source JSON-LD of their own. This single
+// organisation/website record keeps their structured data truthful: it only restates what the
+// preserved About, menu and footer content already publishes publicly.
+const organisationJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://angelcreations.in/#organization',
+      name: 'Angel Creations',
+      alternateName: 'Angel Creations - A Creative Powerhouse',
+      url: 'https://angelcreations.in/',
+      description: 'The Art of Storytelling. The Power of Design.',
+      email: 'business@angelcreations.in',
+      areaServed: 'Worldwide',
+      knowsAbout: [
+        'Metaverse', 'Mixed Reality', 'Virtual Reality', 'Augmented Reality', 'Animation',
+        'Brand Advertisement', 'Media Production',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://angelcreations.in/#website',
+      url: 'https://angelcreations.in/',
+      name: 'Angel Creations - A Creative Powerhouse',
+      description: 'The Art of Storytelling. The Power of Design.',
+      publisher: { '@id': 'https://angelcreations.in/#organization' },
+    },
+  ],
+});
+
+// Keep the immersive home stage out of the legacy-content bundle. Captured inner-page data
+// loads after first paint and is never a prerequisite for the original homepage experience.
 const homeFallback: LegacyPage = {
   url: 'https://angelcreations.in/', route: '/', status: 200, kind: 'home', bodyClasses: ['home'],
   title: 'Angel Creations - A Creative Powerhouse The Art of Storytelling. The Power of Design.',
@@ -24,7 +58,8 @@ const homeFallback: LegacyPage = {
   meta: { 'og:title': 'Home', 'og:description': 'Experience the future with Angel Creations, an immersive technology company pushing boundaries with virtual reality, augmented reality, and more.', 'og:url': 'https://angelcreations.in/' },
   jsonLd: [], children: [],
 };
-
+// Routes retained for visitors are the captured Angel core—not the source CMS's test, author,
+// search, duplicate-copy and forensic paths. Unknown/non-core paths receive the Angel 404 state.
 const publicLegacyRoutes = new Set([
   '/', '/360-video/', '/about/', '/animation/', '/augment-reality/', '/brand-advertisement/',
   '/contact/', '/media-production/', '/metaverse/', '/mixed-reality/', '/privacy-policy/',
@@ -35,176 +70,135 @@ const VideoArchive = lazy(async () => {
   const module = await import('../components/VideoArchive');
   return { default: module.VideoArchive };
 });
-
 const CapabilityDetail = lazy(async () => {
   const module = await import('../components/CapabilityDetail');
   return { default: module.CapabilityDetail };
 });
-
 const SliderExperience = lazy(async () => {
   const module = await import('../components/SliderExperience');
   return { default: module.SliderExperience };
 });
 
-let cachedLegacyPages: LegacyPage[] | null = null;
-let legacyPagesRequest: Promise<LegacyPage[]> | null = null;
+function useRoute(): string {
+  const [route, setRoute] = useState(currentRoute);
+  useEffect(() => {
+    const onPopState = (): void => setRoute(currentRoute());
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+  return route;
+}
 
-function loadLegacyPages(): Promise<LegacyPage[]> {
-  if (cachedLegacyPages) return Promise.resolve(cachedLegacyPages);
-  if (!legacyPagesRequest) {
-    legacyPagesRequest = import('../data/legacyPages.json').then((module) => {
-      cachedLegacyPages = module.default as unknown as LegacyPage[];
-      return cachedLegacyPages;
+function useLegacyPages(route: string, hasDedicatedRoute: boolean): LegacyPage[] | null {
+  const [pages, setPages] = useState<LegacyPage[] | null>(null);
+  useEffect(() => {
+    if (pages) return undefined;
+    let active = true;
+    let timer: number | null = null;
+    let idleHandle: number | null = null;
+    const load = (): void => {
+      void import('../data/legacyPages.json').then((module) => {
+        if (active) setPages(module.default as unknown as LegacyPage[]);
+      });
+    };
+
+    // Capability and slide-experience routes have source-qualified dedicated payloads; the
+    // captured WordPress page archive is not requested for them. Home can stand alone until idle.
+    if (hasDedicatedRoute) return () => { active = false; };
+    if (route !== '/') {
+      load();
+    } else {
+      const idleWindow = window as Window & {
+        requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number;
+        cancelIdleCallback?: (handle: number) => void;
+      };
+      if (typeof idleWindow.requestIdleCallback === 'function') idleHandle = idleWindow.requestIdleCallback(load, { timeout: 5000 });
+      else timer = window.setTimeout(load, 3500);
+    }
+
+    return () => {
+      active = false;
+      if (timer !== null) window.clearTimeout(timer);
+      const idleWindow = window as Window & { cancelIdleCallback?: (handle: number) => void };
+      if (idleHandle !== null) idleWindow.cancelIdleCallback?.(idleHandle);
+    };
+  }, [hasDedicatedRoute, pages, route]);
+  return pages;
+}
+
+/**
+ * Scroll-triggered entrances for the sections Angel already renders.
+ *
+ * Enhance-only: it adds a data attribute to existing section elements, never to their class
+ * list, order or geometry. Lazy routes mount after first paint, so the shell is re-scanned when
+ * its subtree changes. The homepage, About and 360° routes keep their own source choreography.
+ */
+function useSectionReveals(route: string): void {
+  useEffect(() => {
+    if (route === '/' || route === '/about/' || route === '/360-video/') return undefined;
+    const container = document.getElementById('page');
+    if (!container) return undefined;
+
+    let teardown: (() => void) | null = null;
+    let frame = 0;
+    const scan = (): void => {
+      teardown?.();
+      teardown = observeReveals(container);
+    };
+
+    scan();
+    const mutations = new MutationObserver(() => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(scan);
     });
-  }
-  return legacyPagesRequest;
+    mutations.observe(container, { childList: true, subtree: true });
+
+    return () => {
+      mutations.disconnect();
+      window.cancelAnimationFrame(frame);
+      teardown?.();
+    };
+  }, [route]);
 }
 
 function routePage(route: string, pages: LegacyPage[]): LegacyPage {
   const exact = pages.find((page) => page.route === route);
-  if (exact && publicLegacyRoutes.has(exact.route)) return exact;
-  return pages.find((page) => page.route === '/404/') ?? {
-    ...homeFallback,
-    route: '/404/',
-    status: 404,
-    kind: '404',
-    title: 'Page not found - Angel Creations - A Creative Powerhouse',
-    description: routeSeo['/404/'].description,
-    robots: 'noindex, follow',
-    canonical: '',
-    bodyClasses: ['error404'],
-  };
-}
+  if (exact && exact.status === 200 && publicLegacyRoutes.has(exact.route)) return exact;
 
-function useLegacyPages(route: string, skipLoad: boolean): LegacyPage[] | null {
-  const [pages, setPages] = useState<LegacyPage[] | null>(cachedLegacyPages);
-  useEffect(() => {
-    if (route === '/' || skipLoad || cachedLegacyPages) return;
-    let active = true;
-    loadLegacyPages().then((loaded) => {
-      if (active) setPages(loaded);
-    });
-    return () => {
-      active = false;
-    };
-  }, [route, skipLoad]);
-  return pages;
+  return pages.find((page) => page.status === 404) ?? pages[0];
 }
 
 function pageContent(page: LegacyPage, route: string): JSX.Element {
+  const experience = slideExperienceForRoute(route);
+  if (experience) return <Suspense fallback={<main id="main" className="site-main"><p className="angel-route-loading" aria-live="polite">Loading Angel.</p></main>}><SliderExperience experience={experience} /></Suspense>;
   const capability = capabilityForRoute(route);
   if (capability) {
+    return <main id="main" className="site-main"><Suspense fallback={<p className="angel-capability-loading" aria-live="polite">Loading capability.</p>}><CapabilityDetail capability={capability} /></Suspense></main>;
+  }
+  if (page.status === 404) return <NotFoundPage />;
+  if (page.route === '/') return <HomeSlideshow />;
+  if (page.route === '/360-video/') return <PanoramaPage />;
+  if (page.route === '/contact/') {
     return (
-      <main id="main" className="site-main">
-        <Suspense fallback={<p className="angel-route-loading" aria-live="polite">Loading capability.</p>}>
-          <CapabilityDetail capability={capability} />
-        </Suspense>
-        <LegacyFooter />
-      </main>
+      <div id="content" className="site-content"><div id="primary" className="content-area"><main id="main" className="site-main"><ContactWizard /><LegacyFooter /></main></div></div>
     );
   }
-  const experience = slideExperienceForRoute(route);
-  if (experience) {
-    return (
-      <main id="main" className="site-main">
-        <Suspense fallback={<p className="angel-route-loading" aria-live="polite">Loading experience.</p>}>
-          <SliderExperience experience={experience} />
-        </Suspense>
-        <LegacyFooter />
-      </main>
-    );
-  }
-  if (route === '/') {
-    return (
-      <main id="main" className="site-main">
-        <HomeSlideshow />
-      </main>
-    );
-  }
-  if (route === '/about/') {
-    return <AboutPage />;
-  }
-  if (route === '/works/') {
-    return (
-      <div id="content" className="site-content">
-        <div id="primary" className="content-area">
-          <main id="main" className="site-main">
-            <Suspense fallback={<p className="angel-route-loading" aria-live="polite">Loading works archive.</p>}>
-              <VideoArchive />
-            </Suspense>
-            <LegacyFooter />
-          </main>
-        </div>
-      </div>
-    );
-  }
-  if (route === '/contact/') {
-    return (
-      <div id="content" className="site-content">
-        <div id="primary" className="content-area">
-          <main id="main" className="site-main">
-            <ContactWizard />
-            <LegacyFooter />
-          </main>
-        </div>
-      </div>
-    );
-  }
-  if (route === '/360-video/') {
-    return (
-      <>
-        <PanoramaPage />
-        <LegacyFooter />
-      </>
-    );
-  }
-  if (route === '/privacy-policy/' || page.route === '/privacy-policy/') {
-    return <LegalPage kind="privacy" />;
-  }
-  if (route === '/terms-of-service/' || page.route === '/terms-of-service/') {
-    return <LegalPage kind="terms" />;
-  }
-  if (page.route === '/404/' || page.status === 404) {
-    return (
-      <>
-        <NotFoundPage attemptedPath={route} />
-        <LegacyFooter />
-      </>
-    );
-  }
-  // Some captured legacy pages still embed the original color_creme footer node; the global
-  // architectural footer replaces it, so the duplicate source footer is filtered out.
-  const contentNodes = page.children.filter((node) => !(node.type === 'element' && node.tag === 'footer'));
+  const isAbout = page.route === '/about/';
+  const isWorks = page.route === '/works/';
   return (
-    <>
-      <LegacyRenderer nodes={contentNodes} route={page.route} />
-      <LegacyFooter />
-    </>
+    <div id="content" className="site-content" data-about-page-reveal={isAbout || undefined}>
+      <div id="primary" className="content-area"><main id="main" className="site-main"><LegacyRenderer nodes={page.children} />{isWorks && <Suspense fallback={<p className="angel-archive-loading" aria-live="polite">Loading archive.</p>}><VideoArchive /></Suspense>}{isAbout && <CapabilityIndex />}{isAbout && <AboutReveal />}{isAbout && <LegacyFooter />}</main></div>
+    </div>
   );
 }
 
 export function App(): JSX.Element {
-  const [route, setRoute] = useState<string>(() => currentRoute());
-  useEffect(() => {
-    const syncRoute = (): void => setRoute(currentRoute());
-    window.addEventListener('popstate', syncRoute);
-    return () => window.removeEventListener('popstate', syncRoute);
-  }, []);
-
+  const route = useRoute();
   const capability = useMemo(() => capabilityForRoute(route), [route]);
   const experience = useMemo(() => slideExperienceForRoute(route), [route]);
-  const isDedicatedSpatialRoute = Boolean(
-    capability ||
-      experience ||
-      route === '/about/' ||
-      route === '/works/' ||
-      route === '/contact/' ||
-      route === '/privacy-policy/' ||
-      route === '/terms-of-service/' ||
-      route === '/360-video/'
-  );
-  const legacyPages = useLegacyPages(route, isDedicatedSpatialRoute);
+  const legacyPages = useLegacyPages(route, Boolean(capability || experience));
   const page = useMemo(() => legacyPages ? routePage(route, legacyPages) : homeFallback, [route, legacyPages]);
+  useSectionReveals(route);
 
   useEffect(() => {
     const actualRoute = `${window.location.pathname}${window.location.search}`;
@@ -212,7 +206,7 @@ export function App(): JSX.Element {
   }, [route]);
 
   useEffect(() => {
-    const routeDescription = routeSeo[route as keyof typeof routeSeo]?.description ?? routeSeo[page.route as keyof typeof routeSeo]?.description ?? '';
+    const routeDescription = routeSeo[page.route as keyof typeof routeSeo]?.description ?? '';
     const sourceDescription = page.description || page.meta.description || routeDescription;
     const seoPage = capability ? {
       ...page,
@@ -221,7 +215,7 @@ export function App(): JSX.Element {
       robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       canonical: `https://angelcreations.in${capability.route}`,
       meta: { ...page.meta, 'og:title': `${capability.title} | Angel Creations`, 'og:description': capability.overview, 'og:url': `https://angelcreations.in${capability.route}` },
-      jsonLd: [],
+      jsonLd: [organisationJsonLd],
     } : experience ? {
       ...page,
       title: `${experience.label} | Angel Creations`,
@@ -229,63 +223,18 @@ export function App(): JSX.Element {
       robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       canonical: `https://angelcreations.in${experience.route}`,
       meta: { ...page.meta, 'og:title': `${experience.label} | Angel Creations`, 'og:description': experience.summary, 'og:url': `https://angelcreations.in${experience.route}` },
-      jsonLd: [],
-    } : route === '/about/' ? {
-      ...page,
-      route: '/about/',
-      title: 'About - Angel Creations - A Creative Powerhouse',
-      description: routeDescription,
-      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-      canonical: 'https://angelcreations.in/about/',
-      meta: { ...page.meta, 'og:title': 'About', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/about/' },
-      jsonLd: [],
-    } : route === '/works/' ? {
-      ...page,
-      route: '/works/',
-      title: 'Works Archive - Angel Creations - A Creative Powerhouse',
-      description: routeDescription,
-      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-      canonical: 'https://angelcreations.in/works/',
-      meta: { ...page.meta, 'og:title': 'Works Archive', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/works/' },
-      jsonLd: [],
-    } : route === '/contact/' ? {
-      ...page,
-      route: '/contact/',
-      title: 'Contact - Angel Creations - A Creative Powerhouse',
-      description: routeDescription,
-      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-      canonical: 'https://angelcreations.in/contact/',
-      meta: { ...page.meta, 'og:title': 'Contact', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/contact/' },
-      jsonLd: [],
-    } : route === '/privacy-policy/' ? {
-      ...page,
-      route: '/privacy-policy/',
-      title: 'Privacy Policy - Angel Creations - A Creative Powerhouse',
-      description: routeDescription,
-      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-      canonical: 'https://angelcreations.in/privacy-policy/',
-      meta: { ...page.meta, 'og:title': 'Privacy Policy', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/privacy-policy/' },
-      jsonLd: [],
-    } : route === '/terms-of-service/' ? {
-      ...page,
-      route: '/terms-of-service/',
-      title: 'Terms of Service - Angel Creations - A Creative Powerhouse',
-      description: routeDescription,
-      robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-      canonical: 'https://angelcreations.in/terms-of-service/',
-      meta: { ...page.meta, 'og:title': 'Terms of Service', 'og:description': routeDescription, 'og:url': 'https://angelcreations.in/terms-of-service/' },
-      jsonLd: [],
+      jsonLd: [organisationJsonLd],
     } : {
       ...page,
       description: sourceDescription,
       meta: sourceDescription ? { ...page.meta, 'og:description': page.meta['og:description'] || sourceDescription } : page.meta,
     };
     applySeo(seoPage);
-    document.body.className = isDedicatedSpatialRoute
+    document.body.className = experience
       ? 'angel-experience-route js'
       : [...page.bodyClasses.filter((className) => className !== 'no-js'), 'js'].join(' ') || 'js';
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }, [page, capability, experience, route, isDedicatedSpatialRoute]);
+  }, [page, capability, experience]);
 
   const handleInternalLink = (event: ReactMouseEvent<HTMLDivElement>): void => {
     const target = event.target as HTMLElement;
@@ -297,13 +246,13 @@ export function App(): JSX.Element {
     navigate(toLocalRoute(href));
   };
 
-  const waitingForLegacyPage = !legacyPages && route !== '/' && !isDedicatedSpatialRoute;
+  const waitingForLegacyPage = !legacyPages && route !== '/' && !capability && !experience;
   return (
     <div className="legacy-shell" onClick={handleInternalLink}>
+      <a className="angel-skip-link" href="#main">Skip to content</a>
       <div id="page" className="site">
         <Header />
         {waitingForLegacyPage ? <main id="main" className="site-main"><p className="angel-route-loading" aria-live="polite">Loading Angel.</p></main> : pageContent(page, route)}
-        <FloatingScrollTop pathname={route} />
       </div>
     </div>
   );

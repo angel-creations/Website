@@ -1,732 +1,471 @@
 {
   "/metaverse/": {
     "hero": {
-      "src": "/inner-library/metaverse/hero-metaverse.webp",
-      "caption": "Metaverse",
-      "subtitle": "Persistent 3D Virtual Worlds & Spatial Architecture"
+      "src": "/inner-library/world.webp",
+      "caption": "Online library visual / Metaverse"
     },
-    "story": [
-      {
-        "src": "/inner-library/metaverse/story-01-spatial-presence.jpg",
-        "caption": "Spatial Presence",
-        "subtitle": "Volumetric Horizons & Acoustic Scale"
-      },
-      {
-        "src": "/inner-library/metaverse/story-02-identity-avatars.jpg",
-        "caption": "Identity & Avatars",
-        "subtitle": "Expressive Digital Persona Systems"
-      },
-      {
-        "src": "/inner-library/metaverse/story-03-real-time-interaction.jpg",
-        "caption": "Real-Time Interaction",
-        "subtitle": "Synchronous Multi-User Co-Presence"
-      },
-      {
-        "src": "/inner-library/metaverse/story-04-persistent-ecosystem.jpg",
-        "caption": "Persistent Ecosystem",
-        "subtitle": "Continuously Evolving World Economy"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/metaverse/map-01-world.jpg",
-        "caption": "World",
-        "subtitle": "Spatial Horizon & Volumetric Architecture"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / World"
       },
       {
-        "src": "/inner-library/metaverse/map-02-story.jpg",
-        "caption": "Story",
-        "subtitle": "Environmental Lore & Narrative Progression"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Story"
       },
       {
-        "src": "/inner-library/metaverse/map-03-interaction.jpg",
-        "caption": "Interaction",
-        "subtitle": "Real-Time Physics & Spatial Mechanics"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Interaction"
       },
       {
-        "src": "/inner-library/metaverse/map-04-people.jpg",
-        "caption": "People",
-        "subtitle": "Multi-User Co-Presence & Expressive Avatars"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / People"
       },
       {
-        "src": "/inner-library/metaverse/map-05-content.jpg",
-        "caption": "Content",
-        "subtitle": "Modular 3D Assets & Live World Events"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Content"
       },
       {
-        "src": "/inner-library/metaverse/map-06-return.jpg",
-        "caption": "Return",
-        "subtitle": "Persistent Identity & Evolving Ecosystems"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Return"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/metaverse/app-01-virtual-worlds.jpg",
-        "caption": "Virtual Worlds",
-        "subtitle": "Persistent Multi-User 3D Environments"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Virtual Worlds"
       },
       {
-        "src": "/inner-library/metaverse/app-02-virtual-events.jpg",
-        "caption": "Virtual Events",
-        "subtitle": "Live Concerts, Keynotes & Festivals"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Virtual Events"
       },
       {
-        "src": "/inner-library/metaverse/app-03-virtual-brand-experiences.webp",
-        "caption": "Virtual Brand Experiences",
-        "subtitle": "Interactive Flagship Worlds"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Virtual Brand Experiences"
       },
       {
-        "src": "/inner-library/metaverse/app-04-gaming.webp",
-        "caption": "Gaming",
-        "subtitle": "Social Sandboxes & Competitive Sci-Fi Arenas"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Gaming"
       },
       {
-        "src": "/inner-library/metaverse/app-05-virtual-marketplaces.jpg",
-        "caption": "Virtual Marketplaces",
-        "subtitle": "3D Wearables & Digital Collectibles"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Virtual Marketplaces"
       },
       {
-        "src": "/inner-library/metaverse/app-06-virtual-economies.jpg",
-        "caption": "Virtual Economies",
-        "subtitle": "Tokenized Ownership & Creator Commerce"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Virtual Economies"
       },
       {
-        "src": "/inner-library/metaverse/app-07-virtual-education.png",
-        "caption": "Virtual Education",
-        "subtitle": "Immersive 3D Campuses & Labs"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Virtual Education"
       },
       {
-        "src": "/inner-library/metaverse/app-08-virtual-workspaces.jpg",
-        "caption": "Virtual Workspaces",
-        "subtitle": "Spatial Team Collaboration Rooms"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Virtual Workspaces"
       },
       {
-        "src": "/inner-library/metaverse/app-09-virtual-product-showcases.png",
-        "caption": "Virtual Product Showcases",
-        "subtitle": "Interactive 3D Digital Twins"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Virtual Product Showcases"
       }
     ]
   },
   "/mixed-reality/": {
     "hero": {
-      "src": "/inner-library/mixed-reality/hero-mixed-reality.png",
-      "caption": "Mixed Reality",
-      "subtitle": "Spatial Computing & Physical-Digital Passthrough"
+      "src": "/inner-library/training.webp",
+      "caption": "Online library visual / Mixed Reality"
     },
-    "story": [
-      {
-        "src": "/inner-library/mixed-reality/story-01-spatial-awareness.jpg",
-        "caption": "Spatial Awareness",
-        "subtitle": "Real-Time Room Mesh & Surface Sensing"
-      },
-      {
-        "src": "/inner-library/mixed-reality/story-02-anchored-digital-objects.jpg",
-        "caption": "Anchored Digital Objects",
-        "subtitle": "Spatial Pinning & Occlusion"
-      },
-      {
-        "src": "/inner-library/mixed-reality/story-03-natural-interaction.jpg",
-        "caption": "Natural Interaction",
-        "subtitle": "Gaze, Pinch & Biometric Intent"
-      },
-      {
-        "src": "/inner-library/mixed-reality/story-04-real-time-context.jpg",
-        "caption": "Real-Time Context",
-        "subtitle": "Live Telemetry on Physical Equipment"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/mixed-reality/map-01-real-world.jpg",
-        "caption": "Real world",
-        "subtitle": "LiDAR Scene Understanding & Room Mesh"
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Real world"
       },
       {
-        "src": "/inner-library/mixed-reality/map-02-digital-layer.jpg",
-        "caption": "Digital layer",
-        "subtitle": "Anchored Volumetric Holograms in Space"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Digital layer"
       },
       {
-        "src": "/inner-library/mixed-reality/map-03-interaction.png",
-        "caption": "Interaction",
-        "subtitle": "Eye-Tracked Focus, Pinch & Direct Manipulation"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Interaction"
       },
       {
-        "src": "/inner-library/mixed-reality/map-04-purpose.jpg",
-        "caption": "Purpose",
-        "subtitle": "Context-Aware Spatial Workflows & Utility"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Purpose"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/mixed-reality/app-01-training.jpg",
-        "caption": "Training",
-        "subtitle": "Hands-Free Industrial Assembly & Telemetry"
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Training"
       },
       {
-        "src": "/inner-library/mixed-reality/app-02-education.jpg",
-        "caption": "Education",
-        "subtitle": "Interactive 3D Anatomical & Scientific Models"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Education"
       },
       {
-        "src": "/inner-library/mixed-reality/app-03-entertainment.jpg",
-        "caption": "Entertainment",
-        "subtitle": "Room-Scale Spatial Cinema & Experiences"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Entertainment"
       },
       {
-        "src": "/inner-library/mixed-reality/app-04-gaming.jpg",
-        "caption": "Gaming",
-        "subtitle": "Physical Living-Room Mixed Reality Gameplay"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Gaming"
       },
       {
-        "src": "/inner-library/mixed-reality/app-05-marketing-branding.jpg",
-        "caption": "Marketing & Branding",
-        "subtitle": "Spatial Product Configurators"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Marketing & Branding"
       },
       {
-        "src": "/inner-library/mixed-reality/app-06-architecture-design.jpg",
-        "caption": "Architecture & Design",
-        "subtitle": "Tabletop 3D BIM & Structural Review"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Architecture & Design"
       },
       {
-        "src": "/inner-library/mixed-reality/app-07-remote-collaboration.jpg",
-        "caption": "Remote Collaboration",
-        "subtitle": "Holographic Telepresence & Co-Design"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Remote Collaboration"
       },
       {
-        "src": "/inner-library/mixed-reality/app-08-retail.webp",
-        "caption": "Retail",
-        "subtitle": "True-to-Scale Spatial Room & Furniture Placement"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Retail"
       },
       {
-        "src": "/inner-library/mixed-reality/app-09-media.jpg",
-        "caption": "Media",
-        "subtitle": "Volumetric Storytelling & Spatial Broadcasts"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Media"
       }
     ]
   },
   "/virtual-reality/": {
     "hero": {
-      "src": "/inner-library/virtual-reality/hero-virtual-reality.webp",
-      "caption": "Virtual Reality",
-      "subtitle": "Full-Immersion Head-Mounted Environments"
+      "src": "/inner-library/vr.webp",
+      "caption": "Online library visual / Virtual Reality"
     },
-    "story": [
-      {
-        "src": "/inner-library/virtual-reality/story-01-full-immersion.jpg",
-        "caption": "Full Immersion",
-        "subtitle": "360° Stereoscopic Presence & Spatial Audio"
-      },
-      {
-        "src": "/inner-library/virtual-reality/story-02-interactive-simulation.jpg",
-        "caption": "Interactive Simulation",
-        "subtitle": "Embodied Learning by Doing"
-      },
-      {
-        "src": "/inner-library/virtual-reality/story-03-spatial-storytelling.jpg",
-        "caption": "Spatial Storytelling",
-        "subtitle": "First-Person Narrative Worlds"
-      },
-      {
-        "src": "/inner-library/virtual-reality/story-04-safe-practice.jpg",
-        "caption": "Safe Practice",
-        "subtitle": "Zero-Risk High-Consequence Rehearsal"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/virtual-reality/map-01-enter.jpg",
-        "caption": "Enter",
-        "subtitle": "Sensory Threshold & Stereoscopic Calibration"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Enter"
       },
       {
-        "src": "/inner-library/virtual-reality/map-02-discover.jpg",
-        "caption": "Discover",
-        "subtitle": "360° Spatial Sightlines & Environmental Scale"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Discover"
       },
       {
-        "src": "/inner-library/virtual-reality/map-03-interact.jpg",
-        "caption": "Interact",
-        "subtitle": "6DoF Controllers, Haptics & Embodied Reach"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Interact"
       },
       {
-        "src": "/inner-library/virtual-reality/map-04-understand.jpg",
-        "caption": "Understand",
-        "subtitle": "Experiential Clarity Through First-Person Presence"
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Understand"
       },
       {
-        "src": "/inner-library/virtual-reality/map-05-remember.jpg",
-        "caption": "Remember",
-        "subtitle": "Deep Spatial Memory & Behavioral Retention"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Remember"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/virtual-reality/app-01-vr-content.jpg",
-        "caption": "VR Content",
-        "subtitle": "Cinematic 360° Narratives & Interactive Worlds"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / VR Content"
       },
       {
-        "src": "/inner-library/virtual-reality/app-02-vr-video-conferencing.jpg",
-        "caption": "VR Video Conferencing",
-        "subtitle": "Spatial Audio Boardrooms & Avatars"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / VR Video Conferencing"
       },
       {
-        "src": "/inner-library/virtual-reality/app-03-vr-gaming.jpg",
-        "caption": "VR Gaming",
-        "subtitle": "Full-Body Locomotion & High-Framerate Combat"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / VR Gaming"
       },
       {
-        "src": "/inner-library/virtual-reality/app-04-training-simulation.png",
-        "caption": "Training & Simulation",
-        "subtitle": "High-Risk Flight & Cockpit Simulators"
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Training & Simulation"
       },
       {
-        "src": "/inner-library/virtual-reality/app-05-education.jpg",
-        "caption": "Education",
-        "subtitle": "Virtual Field Trips & Historical Reconstructions"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Education"
       },
       {
-        "src": "/inner-library/virtual-reality/app-06-marketing-branding.jpg",
-        "caption": "Marketing & Branding",
-        "subtitle": "Immersive Test Drives & Brand Journeys"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Marketing & Branding"
       },
       {
-        "src": "/inner-library/virtual-reality/app-07-architectural-visualization.webp",
-        "caption": "Architectural Visualization",
-        "subtitle": "1:1 Pre-Construction Walkthroughs"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Architectural Visualization"
       },
       {
-        "src": "/inner-library/virtual-reality/app-08-healthcare.webp",
-        "caption": "Healthcare",
-        "subtitle": "Surgical Rehearsal & Therapeutic VR Rehabilitation"
+        "src": "/inner-library/healthcare.webp",
+        "caption": "Online library visual / Healthcare"
       },
       {
-        "src": "/inner-library/virtual-reality/app-09-streaming-broadcasting.jpg",
-        "caption": "Streaming & Broadcasting",
-        "subtitle": "Courtside & Front-Row 180° Live VR"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Streaming & Broadcasting"
       }
     ]
   },
   "/augment-reality/": {
     "hero": {
-      "src": "/inner-library/augment-reality/hero-augment-reality.webp",
-      "caption": "Augment Reality",
-      "subtitle": "Mobile & Wearable Camera Overlays"
+      "src": "/inner-library/tourism.webp",
+      "caption": "Online library visual / Augment Reality"
     },
-    "story": [
-      {
-        "src": "/inner-library/augment-reality/story-01-instant-access.jpg",
-        "caption": "Instant Access",
-        "subtitle": "Zero-Friction Mobile & WebAR Camera Launch"
-      },
-      {
-        "src": "/inner-library/augment-reality/story-02-contextual-overlay.jpg",
-        "caption": "Contextual Overlay",
-        "subtitle": "Precision-Anchored Live Telemetry"
-      },
-      {
-        "src": "/inner-library/augment-reality/story-03-interactive-discovery.jpg",
-        "caption": "Interactive Discovery",
-        "subtitle": "Physical Packaging & Retail Triggers"
-      },
-      {
-        "src": "/inner-library/augment-reality/story-04-real-world-utility.jpg",
-        "caption": "Real-World Utility",
-        "subtitle": "Guided Field Diagnostics & Inspection"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/augment-reality/map-01-see.jpg",
-        "caption": "See",
-        "subtitle": "Real-World Surface Detection & Optical Tracking"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / See"
       },
       {
-        "src": "/inner-library/augment-reality/map-02-point.jpg",
-        "caption": "Point",
-        "subtitle": "Instant Camera Alignment & Visual Triggering"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Point"
       },
       {
-        "src": "/inner-library/augment-reality/map-03-discover.jpg",
-        "caption": "Discover",
-        "subtitle": "Contextual 3D Overlays & Live Telemetry"
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / Discover"
       },
       {
-        "src": "/inner-library/augment-reality/map-04-interact.jpg",
-        "caption": "Interact",
-        "subtitle": "Touch, Rotate, Explode & Customize in Real Time"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Interact"
       },
       {
-        "src": "/inner-library/augment-reality/map-05-continue.jpg",
-        "caption": "Continue",
-        "subtitle": "Seamless Transition to Commerce or Action"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Continue"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/augment-reality/app-01-industrial-ar.jpg",
-        "caption": "Industrial AR",
-        "subtitle": "Field Maintenance & Equipment Diagnostics"
+        "src": "/inner-library/training.webp",
+        "caption": "Online library visual / Industrial AR"
       },
       {
-        "src": "/inner-library/augment-reality/app-02-tourism-travel.jpg",
-        "caption": "Tourism & Travel",
-        "subtitle": "Cultural Heritage & Landmark Overlays"
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / Tourism & Travel"
       },
       {
-        "src": "/inner-library/augment-reality/app-03-ar-navigation.jpg",
-        "caption": "AR Navigation",
-        "subtitle": "Live Street Wayfinding & Turn Arrows"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / AR Navigation"
       },
       {
-        "src": "/inner-library/augment-reality/app-04-retail.webp",
-        "caption": "Retail",
-        "subtitle": "Virtual Try-On & In-Room Product Visualization"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Retail"
       },
       {
-        "src": "/inner-library/augment-reality/app-05-ar-marketing.jpg",
-        "caption": "AR Marketing",
-        "subtitle": "Interactive Packaging & WebAR Campaigns"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / AR Marketing"
       },
       {
-        "src": "/inner-library/augment-reality/app-06-ar-gaming.webp",
-        "caption": "AR Gaming",
-        "subtitle": "Location-Based Outdoor & Tabletop AR Play"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / AR Gaming"
       },
       {
-        "src": "/inner-library/augment-reality/app-07-ar-education.jpg",
-        "caption": "AR Education",
-        "subtitle": "Interactive 3D Worksheets & Classroom Tablets"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / AR Education"
       },
       {
-        "src": "/inner-library/augment-reality/app-08-ar-healthcare.jpg",
-        "caption": "AR Healthcare",
-        "subtitle": "Vein Visualization & Diagnostic Overlays"
+        "src": "/inner-library/healthcare.webp",
+        "caption": "Online library visual / AR Healthcare"
       },
       {
-        "src": "/inner-library/augment-reality/app-09-ar-entertainment.jpg",
-        "caption": "AR Entertainment",
-        "subtitle": "Live Broadcast & Concert AR Effects"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / AR Entertainment"
       },
       {
-        "src": "/inner-library/augment-reality/app-10-ar-art-creativity.jpg",
-        "caption": "AR Art & Creativity",
-        "subtitle": "Spatial Murals & Interactive Exhibitions"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / AR Art & Creativity"
       }
     ]
   },
   "/animation/": {
     "hero": {
-      "src": "/inner-library/animation/hero-animation.jpg",
-      "caption": "Animation",
-      "subtitle": "Feature-Grade 2D/3D Character, Motion & VFX Pipeline"
+      "src": "/inner-library/campaign.webp",
+      "caption": "Online library visual / Animation"
     },
-    "story": [
-      {
-        "src": "/inner-library/animation/story-01-visual-storytelling.jpg",
-        "caption": "Visual Storytelling",
-        "subtitle": "Concept Art & Narrative Worldbuilding"
-      },
-      {
-        "src": "/inner-library/animation/story-02-character-world-design.jpg",
-        "caption": "Character & World Design",
-        "subtitle": "Iconic Silhouettes & Environments"
-      },
-      {
-        "src": "/inner-library/animation/story-03-2d-3d-motion-craft.jpg",
-        "caption": "2D, 3D & Motion Craft",
-        "subtitle": "Hybrid Cel, CG & Procedural Pipelines"
-      },
-      {
-        "src": "/inner-library/animation/story-04-emotional-rhythm.jpg",
-        "caption": "Emotional Rhythm",
-        "subtitle": "Frame-Accurate Timing & Choreographed Light"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/animation/map-01-idea.jpg",
-        "caption": "Idea",
-        "subtitle": "Visual Development, Moodboards & Narrative Concept"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Idea"
       },
       {
-        "src": "/inner-library/animation/map-02-design.jpg",
-        "caption": "Design",
-        "subtitle": "Character Sheets, Silhouettes & World Styling"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Design"
       },
       {
-        "src": "/inner-library/animation/map-03-motion.jpg",
-        "caption": "Motion",
-        "subtitle": "Keyframe Arcs, Timing Curves & Weight Physics"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Motion"
       },
       {
-        "src": "/inner-library/animation/map-04-frame.jpg",
-        "caption": "Frame",
-        "subtitle": "Physically Based Lighting, Shaders & Compositing"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Frame"
       },
       {
-        "src": "/inner-library/animation/map-05-story.jpg",
-        "caption": "Story",
-        "subtitle": "Emotional Resonance & Final Mastering"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Story"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/animation/app-01-concept-development.jpg",
-        "caption": "Concept Development",
-        "subtitle": "Digital Matte Painting & Worldbuilding"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Concept Development"
       },
       {
-        "src": "/inner-library/animation/app-02-pre-visualization.jpg",
-        "caption": "Pre-visualization",
-        "subtitle": "3D Camera Blocking & Animatics"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Pre-visualization"
       },
       {
-        "src": "/inner-library/animation/app-03-2d-animation.jpg",
-        "caption": "2D Animation",
-        "subtitle": "Hand-Crafted Cel & Vector Frame Artistry"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / 2D Animation"
       },
       {
-        "src": "/inner-library/animation/app-04-3d-animation.jpg",
-        "caption": "3D Animation",
-        "subtitle": "Subsurface Shading, Groom & Ray-Traced Worlds"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / 3D Animation"
       },
       {
-        "src": "/inner-library/animation/app-05-motion-graphics.jpg",
-        "caption": "Motion Graphics",
-        "subtitle": "Kinetic Typography & Broadcast Design Systems"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Motion Graphics"
       },
       {
-        "src": "/inner-library/animation/app-06-visual-effects.jpg",
-        "caption": "Visual Effects",
-        "subtitle": "Particle Simulations, Pyro & CGI Integration"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Visual Effects"
       },
       {
-        "src": "/inner-library/animation/app-07-character-animation.jpg",
-        "caption": "Character Animation",
-        "subtitle": "Rigging, Facial Blendshapes & Acting"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Character Animation"
       },
       {
-        "src": "/inner-library/animation/app-08-interactive-animation.jpg",
-        "caption": "Interactive Animation",
-        "subtitle": "Real-Time Engine & State-Machine Motion"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Interactive Animation"
       },
       {
-        "src": "/inner-library/animation/app-09-explainer-videos.jpg",
-        "caption": "Explainer Videos",
-        "subtitle": "Architectural & Product Story Clarity"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Explainer Videos"
       },
       {
-        "src": "/inner-library/animation/app-10-ar-animation.jpg",
-        "caption": "AR Animation",
-        "subtitle": "Spatial Loops & Triggered 3D Characters"
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / AR Animation"
       }
     ]
   },
   "/brand-advertisement/": {
     "hero": {
-      "src": "/inner-library/brand-advertisement/hero-brand-advertisement.jpg",
-      "caption": "Brand Advertisement",
-      "subtitle": "High-Impact Brand Systems & Launch Films"
+      "src": "/inner-library/retail.webp",
+      "caption": "Online library visual / Brand Advertisement"
     },
-    "story": [
-      {
-        "src": "/inner-library/brand-advertisement/story-01-strategic-positioning.jpg",
-        "caption": "Strategic Positioning",
-        "subtitle": "Market Differentiation & Cultural Thesis"
-      },
-      {
-        "src": "/inner-library/brand-advertisement/story-02-creative-storytelling.jpg",
-        "caption": "Creative Storytelling",
-        "subtitle": "High-Emotion Editorial Campaigns"
-      },
-      {
-        "src": "/inner-library/brand-advertisement/story-03-visual-verbal-identity.jpg",
-        "caption": "Visual & Verbal Identity",
-        "subtitle": "Cohesive Luxury Design Systems"
-      },
-      {
-        "src": "/inner-library/brand-advertisement/story-04-multi-channel-impact.jpg",
-        "caption": "Multi-Channel Impact",
-        "subtitle": "Synchronized OOH, Film & Social Rollout"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/brand-advertisement/map-01-idea.jpg",
-        "caption": "Idea",
-        "subtitle": "Cultural Insight & Strategic Positioning"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Idea"
       },
       {
-        "src": "/inner-library/brand-advertisement/map-02-message.jpg",
-        "caption": "Message",
-        "subtitle": "Narrative Hook & Editorial Voice"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Message"
       },
       {
-        "src": "/inner-library/brand-advertisement/map-03-identity.jpg",
-        "caption": "Identity",
-        "subtitle": "Iconic Typography, Color & Packaging Craft"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Identity"
       },
       {
-        "src": "/inner-library/brand-advertisement/map-04-content.jpg",
-        "caption": "Content",
-        "subtitle": "Hero Commercials, Key Visuals & Motion Systems"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Content"
       },
       {
-        "src": "/inner-library/brand-advertisement/map-05-experience.jpg",
-        "caption": "Experience",
-        "subtitle": "Immersive Pop-Ups & Interactive Flagships"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Experience"
       },
       {
-        "src": "/inner-library/brand-advertisement/map-06-audience.jpg",
-        "caption": "Audience",
-        "subtitle": "Multi-Channel Reach, Recall & Conversion"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Audience"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/brand-advertisement/app-01-brand-campaigns.jpg",
-        "caption": "Brand Campaigns",
-        "subtitle": "Global Out-of-Home & Integrated Storytelling"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Brand Campaigns"
       },
       {
-        "src": "/inner-library/brand-advertisement/app-02-digital-campaigns.jpg",
-        "caption": "Digital Campaigns",
-        "subtitle": "High-Velocity Performance & Interactive Ads"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Digital Campaigns"
       },
       {
-        "src": "/inner-library/brand-advertisement/app-03-product-launches.webp",
-        "caption": "Product Launches",
-        "subtitle": "Keynote Theater & Reveal Choreography"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Product Launches"
       },
       {
-        "src": "/inner-library/brand-advertisement/app-04-brand-films.jpg",
-        "caption": "Brand Films",
-        "subtitle": "Cinema-Grade Commercials & Anthem Documentaries"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Brand Films"
       },
       {
-        "src": "/inner-library/brand-advertisement/app-05-explainer-communication.jpg",
-        "caption": "Explainer Communication",
-        "subtitle": "Clear Product Value Storytelling"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Explainer Communication"
       },
       {
-        "src": "/inner-library/brand-advertisement/app-06-social-digital-content.jpg",
-        "caption": "Social & Digital Content",
-        "subtitle": "Vertical Cinema & Creator Sprints"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Social & Digital Content"
       }
     ]
   },
   "/media-production/": {
     "hero": {
-      "src": "/inner-library/media-production/hero-media-production.jpg",
-      "caption": "Media Production",
-      "subtitle": "End-to-End Cinema, Broadcast & Post Studio"
+      "src": "/inner-library/media.webp",
+      "caption": "Online library visual / Media Production"
     },
-    "story": [
-      {
-        "src": "/inner-library/media-production/story-01-creative-direction.jpg",
-        "caption": "Creative Direction",
-        "subtitle": "Showrunner Treatment & Visual Bible"
-      },
-      {
-        "src": "/inner-library/media-production/story-02-cinematography-capture.jpg",
-        "caption": "Cinematography & Capture",
-        "subtitle": "Anamorphic Optics & Stage Lighting"
-      },
-      {
-        "src": "/inner-library/media-production/story-03-editorial-post-production.jpg",
-        "caption": "Editorial & Post-Production",
-        "subtitle": "Timeline Cut, Color & Finishing"
-      },
-      {
-        "src": "/inner-library/media-production/story-04-multi-platform-delivery.jpg",
-        "caption": "Multi-Platform Delivery",
-        "subtitle": "Broadcast, Theatrical & Streaming Masters"
-      }
-    ],
     "map": [
       {
-        "src": "/inner-library/media-production/map-01-idea.jpg",
-        "caption": "Idea",
-        "subtitle": "Creative Treatment & Showrunner Vision"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Idea"
       },
       {
-        "src": "/inner-library/media-production/map-02-script.jpg",
-        "caption": "Script",
-        "subtitle": "Screenplay Architecture, Dialogue & Beat Sheets"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Script"
       },
       {
-        "src": "/inner-library/media-production/map-03-pre-production.jpg",
-        "caption": "Pre-production",
-        "subtitle": "Casting, Location Scouting & Shot Lists"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Pre-production"
       },
       {
-        "src": "/inner-library/media-production/map-04-production.webp",
-        "caption": "Production",
-        "subtitle": "Principal Photography, Lighting & Sound Stage"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Production"
       },
       {
-        "src": "/inner-library/media-production/map-05-post.jpg",
-        "caption": "Post",
-        "subtitle": "Editorial Assembly, HDR Color Grading & VFX"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Post"
       },
       {
-        "src": "/inner-library/media-production/map-06-delivery.jpg",
-        "caption": "Delivery",
-        "subtitle": "Multi-Format Mastering for Cinema, Broadcast & Web"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Delivery"
       }
     ],
     "applications": [
       {
-        "src": "/inner-library/media-production/app-01-video-production.jpg",
-        "caption": "Video Production",
-        "subtitle": "Agile Commercial & Corporate Cinematography"
+        "src": "/inner-library/media.webp",
+        "caption": "Online library visual / Video Production"
       },
       {
-        "src": "/inner-library/media-production/app-02-film-production.jpg",
-        "caption": "Film Production",
-        "subtitle": "Narrative Cinema & Anamorphic Camera Systems"
+        "src": "/inner-library/world.webp",
+        "caption": "Online library visual / Film Production"
       },
       {
-        "src": "/inner-library/media-production/app-03-television-production.webp",
-        "caption": "Television Production",
-        "subtitle": "Multi-Camera Studio & Control Room"
+        "src": "/inner-library/campaign.webp",
+        "caption": "Online library visual / Television Production"
       },
       {
-        "src": "/inner-library/media-production/app-04-animation-production.jpg",
-        "caption": "Animation Production",
-        "subtitle": "Integrated CG & Hybrid Live-Action Pipelines"
+        "src": "/inner-library/retail.webp",
+        "caption": "Online library visual / Animation Production"
       },
       {
-        "src": "/inner-library/media-production/app-05-photography.jpg",
-        "caption": "Photography",
-        "subtitle": "Editorial, Product & Architectural Stills Studio"
+        "src": "/inner-library/event.webp",
+        "caption": "Online library visual / Photography"
       },
       {
-        "src": "/inner-library/media-production/app-06-live-event-production.jpg",
-        "caption": "Live Event Production",
-        "subtitle": "Arena LED Staging, Switching & Lighting"
+        "src": "/inner-library/tourism.webp",
+        "caption": "Online library visual / Live Event Production"
       },
       {
-        "src": "/inner-library/media-production/app-07-audio-production.jpg",
-        "caption": "Audio Production",
-        "subtitle": "Dolby Atmos Mixing, Foley & Score Recording"
+        "src": "/inner-library/collaboration.webp",
+        "caption": "Online library visual / Audio Production"
       },
       {
-        "src": "/inner-library/media-production/app-08-post-production.webp",
-        "caption": "Post-Production",
-        "subtitle": "DaVinci Resolve HDR Color & Finishing"
+        "src": "/inner-library/vr.webp",
+        "caption": "Online library visual / Post-Production"
       },
       {
-        "src": "/inner-library/media-production/app-09-scriptwriting-storyboarding.jpg",
-        "caption": "Scriptwriting & Storyboarding",
-        "subtitle": "Visual Beats & Shooting Scripts"
+        "src": "/inner-library/architecture.webp",
+        "caption": "Online library visual / Scriptwriting & Storyboarding"
       },
       {
-        "src": "/inner-library/media-production/app-10-media-consulting.jpg",
-        "caption": "Media Consulting",
-        "subtitle": "Studio Workflow, Pipeline & Distribution Strategy"
+        "src": "/inner-library/learning.webp",
+        "caption": "Online library visual / Media Consulting"
       }
     ]
   }
