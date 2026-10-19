@@ -1,121 +1,129 @@
-import React, { useEffect, useRef, useState, useCallback, type ChangeEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react';
-import { navigate } from '../utils/routes';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from 'react';
+
+const backIcon = '/legacy-assets/icons/contact-back.png';
+const nextIcon = '/legacy-assets/icons/contact-forward.png';
+const downIcon = '/legacy-assets/icons/contact-down.png';
 
 type FieldKind = 'input' | 'textarea' | 'select';
-type DisciplineOption = {
+
+type SelectOptionItem = {
   value: string;
-  index: string;
+  code: string;
   tag: string;
-  blurb: string;
+  description: string;
 };
+
 type EnquiryField = {
   id: string;
-  category: string;
-  shortLabel: string;
   name: string;
+  category: string;
   label: string;
   hint: string;
   kind: FieldKind;
   inputType?: 'text' | 'email' | 'tel';
   autoComplete?: string;
-  options?: DisciplineOption[];
-  presets?: string[];
+  options?: SelectOptionItem[];
+  quickSuggestions?: string[];
   placeholder?: string;
 };
 
-const disciplineOptions: DisciplineOption[] = [
+const IMMERSIVE_DISCIPLINE_OPTIONS: SelectOptionItem[] = [
   {
-    index: '01',
     value: 'Metaverse',
+    code: '01',
     tag: 'Spatial World',
-    blurb: 'Persistent 3D virtual worlds, spatial commerce & digital twins',
+    description: 'Persistent 3D virtual worlds, spatial commerce & digital twins',
   },
   {
-    index: '02',
     value: 'Virtual Reality (VR)',
+    code: '02',
     tag: 'Immersive XR',
-    blurb: 'Headset-native interactive simulations, training & VR cinema',
+    description: 'Headset-native interactive simulations, training & VR cinema',
   },
   {
-    index: '03',
     value: 'Augmented Reality (AR)',
+    code: '03',
     tag: 'Immersive XR',
-    blurb: 'WebAR, mobile AR lenses, virtual try-ons & spatial overlays',
+    description: 'WebAR, mobile AR lenses, virtual try-ons & spatial overlays',
   },
   {
-    index: '04',
     value: 'Mixed Reality (MR)',
+    code: '04',
     tag: 'Spatial Computing',
-    blurb: 'Passthrough spatial apps & physical-digital environment fusion',
+    description: 'Passthrough spatial apps & physical-digital environment fusion',
   },
   {
-    index: '05',
     value: '360° Immersive Video',
+    code: '05',
     tag: 'Spherical Film',
-    blurb: '8K spherical live-action capture, VR domes & spatial tours',
+    description: '8K spherical live-action capture, VR domes & spatial tours',
   },
   {
-    index: '06',
     value: '3D Animation & VFX',
+    code: '06',
     tag: 'Motion & Craft',
-    blurb: 'Cinematic 3D character animation, CGI worlds & visual effects',
+    description: 'Cinematic 3D character animation, CGI worlds & visual effects',
   },
   {
-    index: '07',
     value: 'Brand Advertisement',
+    code: '07',
     tag: 'Campaigns',
-    blurb: 'High-impact commercial films, product launches & brand storytelling',
+    description: 'High-impact commercial films, product launches & brand storytelling',
   },
   {
-    index: '08',
     value: 'Media Production',
+    code: '08',
     tag: 'Film & Post',
-    blurb: 'End-to-end live-action direction, cinematography & post-production',
+    description: 'End-to-end live-action direction, cinematography & post-production',
   },
   {
-    index: '09',
     value: 'Experiential Installation',
+    code: '09',
     tag: 'Live Activation',
-    blurb: 'Projection mapping, interactive exhibition booths & live stage tech',
+    description: 'Projection mapping, interactive exhibition booths & live stage tech',
   },
   {
-    index: '10',
     value: 'Custom Multi-Discipline Commission',
+    code: '10',
     tag: 'Bespoke Scope',
-    blurb: 'Tailored blend of XR, 3D animation, film, and creative technology',
+    description: 'Tailored blend of XR, 3D animation, film, and creative technology',
   },
 ];
 
+// 8 rewritten, executive-grade conversational questions (with former #5 Country and #10 Referral removed)
 const fields: EnquiryField[] = [
   {
     id: 'name',
+    name: 'Name',
     category: 'Identity',
-    shortLabel: 'Name',
-    name: 'Full Name',
     label: 'Hello. Who do we have the pleasure of speaking with?',
     hint: 'Share your full name so our executive producer can address you personally.',
     kind: 'input',
     inputType: 'text',
     autoComplete: 'name',
-    placeholder: 'e.g. Aarav Mehta',
+    placeholder: 'Enter your full name…',
   },
   {
     id: 'company',
+    name: 'Company',
     category: 'Organization',
-    shortLabel: 'Organization',
-    name: 'Company / Organization',
     label: 'Which company, brand, or studio do you represent?',
     hint: 'Tell us the organization, agency, or venture behind this commission.',
     kind: 'input',
     inputType: 'text',
     autoComplete: 'organization',
-    placeholder: 'e.g. Horizon Studios',
+    placeholder: 'Your company, brand, or independent studio…',
   },
   {
     id: 'email',
+    name: 'Email',
     category: 'Direct Email',
-    shortLabel: 'Email',
-    name: 'Email Address',
     label: 'Where should we send your tailored project proposal?',
     hint: 'Your primary email address for our producer’s response and deck.',
     kind: 'input',
@@ -125,9 +133,8 @@ const fields: EnquiryField[] = [
   },
   {
     id: 'phone',
+    name: 'Phone',
     category: 'Direct Line',
-    shortLabel: 'Phone',
-    name: 'Phone Number',
     label: 'What is the best phone number to reach you on?',
     hint: 'Include your country code for a direct producer call or WhatsApp follow-up.',
     kind: 'input',
@@ -137,90 +144,55 @@ const fields: EnquiryField[] = [
   },
   {
     id: 'projectType',
+    name: 'Immersive Discipline',
     category: 'Discipline',
-    shortLabel: 'Discipline',
-    name: 'Project Discipline',
     label: 'Which immersive or creative discipline are you looking to build?',
     hint: 'Open the spatial selector below or tap a discipline pill to choose your focus.',
     kind: 'select',
-    options: disciplineOptions,
+    options: IMMERSIVE_DISCIPLINE_OPTIONS,
   },
   {
     id: 'description',
+    name: 'Project Vision',
     category: 'Project Brief',
-    shortLabel: 'Brief',
-    name: 'Project Brief',
     label: 'Tell us about your vision and what you want to create.',
     hint: 'Share your creative goals, target audience, platform, or key deliverables.',
     kind: 'textarea',
-    placeholder:
-      'Describe the experience you imagine, the audience it serves, and what success looks like…',
+    placeholder: 'Describe the experience, story, audience, or creative challenge…',
   },
   {
     id: 'timeline',
+    name: 'Target Timeline',
     category: 'Schedule',
-    shortLabel: 'Schedule',
-    name: 'Launch Schedule',
     label: 'When are you looking to launch or go live?',
     hint: 'Let us know your target launch window, exhibition date, or production schedule.',
     kind: 'input',
     inputType: 'text',
-    presets: [
+    placeholder: 'Select a timeframe below or type your target launch date…',
+    quickSuggestions: [
       'Immediate / Urgent',
       'Within 1 – 2 Months',
       'Within 3 – 6 Months',
       'Upcoming Exhibition / Event',
       'Flexible / Exploring Scope',
     ],
-    placeholder: 'e.g. Target launch in 8 weeks',
   },
   {
     id: 'investment',
+    name: 'Estimated Investment',
     category: 'Scope & Budget',
-    shortLabel: 'Investment',
-    name: 'Investment Range',
     label: 'What investment range have you allocated for this project?',
     hint: 'An approximate range helps us architect the right technical and creative scope.',
     kind: 'input',
     inputType: 'text',
-    presets: [
+    placeholder: 'Select a bracket below or type your estimated budget…',
+    quickSuggestions: [
       'Under $15k / ₹12L',
       '$15k – $50k / ₹12L – ₹40L',
       '$50k – $150k / ₹40L – ₹1.2Cr',
       '$150k+ / Enterprise Commission',
       'Need Scope & Budget Guidance',
     ],
-    placeholder: 'Select a range above or enter a custom scope',
-  },
-];
-
-const supportChannels = [
-  {
-    index: '01',
-    desk: 'Support Desk',
-    purpose: 'For Customer Supports',
-    value: 'support@angelcreations.in',
-    href: 'mailto:support@angelcreations.in',
-    classes: 'supcom leftsupport',
-    copyKey: 'support-email',
-  },
-  {
-    index: '02',
-    desk: 'Business Desk',
-    purpose: 'For Customer Business',
-    value: 'business@angelcreations.in',
-    href: 'mailto:business@angelcreations.in',
-    classes: 'supcom',
-    copyKey: 'business-email',
-  },
-  {
-    index: '03',
-    desk: 'Direct Mobile',
-    purpose: 'For Direct Call & Mobile',
-    value: '+91-8058465733',
-    href: 'tel:+918058465733',
-    classes: 'supcom rightsupport',
-    copyKey: 'direct-mobile',
   },
 ];
 
@@ -230,25 +202,15 @@ function isValid(field: EnquiryField, value: string): boolean {
   return field.inputType !== 'email' || /^\S+@\S+\.\S+$/.test(cleaned);
 }
 
-function formatBriefBody(values: Record<string, string>): string {
-  return fields
-    .map((field) => `${field.name}: ${values[field.id]?.trim() || '—'}`)
-    .join('\n\n');
-}
-
 function createMailto(values: Record<string, string>): string {
-  const body = formatBriefBody(values);
-  const subject = values.projectType
-    ? `New Project Enquiry: ${values.projectType} — ${values.company || values.name || 'Angel Creations'}`
-    : 'New Angel Creations Project Enquiry';
+  const body = fields.map((field) => `${field.name}: ${values[field.id].trim()}`).join('\n\n');
   return `mailto:business@angelcreations.in?subject=${encodeURIComponent(
-    subject
+    'New Angel Creations Project Enquiry'
   )}&body=${encodeURIComponent(body)}`;
 }
 
 export function ContactWizard(): JSX.Element {
   const [step, setStep] = useState(0);
-  const [maxStep, setMaxStep] = useState(0);
   const [values, setValues] = useState<Record<string, string>>(() =>
     Object.fromEntries(fields.map((field) => [field.id, '']))
   );
@@ -256,74 +218,50 @@ export function ContactWizard(): JSX.Element {
   const [prepared, setPrepared] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [formStatus, setFormStatus] = useState('');
-  const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [selectOpen, setSelectOpen] = useState(false);
-  const [selectHighlight, setSelectHighlight] = useState(0);
+  const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(0);
+
   const controlRef = useRef<HTMLElement | null>(null);
-  const selectWrapRef = useRef<HTMLDivElement | null>(null);
-  const selectMenuRef = useRef<HTMLDivElement | null>(null);
-  const optionRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const dropdownWrapRef = useRef<HTMLDivElement | null>(null);
 
   const field = fields[step];
   const currentValue = values[field.id];
   const currentValid = isValid(field, currentValue);
   const currentErrorId = `contact-field-${field.id}-error`;
-  const selectOptions = field.options ?? [];
-  const selectedOption = selectOptions.find((option) => option.value === currentValue);
-
-  const answeredCount = fields.filter((item) => isValid(item, values[item.id])).length;
-  const progressPct = Math.round((answeredCount / fields.length) * 100);
+  const progressRatio = ((step + 1) / fields.length) * 100;
+  const completedFields = fields
+    .map((item, index) => ({ item, index, value: values[item.id].trim() }))
+    .filter((entry) => isValid(entry.item, entry.value));
 
   useEffect(() => {
+    setDropdownOpen(false);
     if (!prepared) {
       controlRef.current?.focus();
     }
   }, [step, prepared]);
 
+  // Close custom dropdown when clicking outside
   useEffect(() => {
-    setSelectOpen(false);
-  }, [step, prepared]);
-
-  useEffect(() => {
-    if (!selectOpen) return undefined;
-    selectMenuRef.current?.focus();
-    const onPointerDown = (event: PointerEvent): void => {
-      if (!selectWrapRef.current?.contains(event.target as Node)) {
-        setSelectOpen(false);
-        controlRef.current?.focus();
+    if (!dropdownOpen) return;
+    const handlePointerDown = (event: MouseEvent): void => {
+      if (
+        dropdownWrapRef.current &&
+        !dropdownWrapRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
       }
     };
-    document.addEventListener('pointerdown', onPointerDown);
-    return () => document.removeEventListener('pointerdown', onPointerDown);
-  }, [selectOpen]);
+    window.addEventListener('mousedown', handlePointerDown);
+    return () => window.removeEventListener('mousedown', handlePointerDown);
+  }, [dropdownOpen]);
 
-  useEffect(() => {
-    if (!selectOpen) return;
-    optionRefs.current[selectHighlight]?.scrollIntoView({ block: 'nearest' });
-  }, [selectOpen, selectHighlight]);
-
-  const updateFieldValue = useCallback((fieldId: string, value: string): void => {
+  const updateValue = (value: string): void => {
     setFormStatus('');
-    setValues((current) => ({ ...current, [fieldId]: value }));
-  }, []);
+    setValues((current) => ({ ...current, [field.id]: value }));
+  };
 
   const showCurrentError = (): boolean => attempted.has(step) && !currentValid;
-
-  // HIG › Entering data: validate dynamically as people switch fields — an invalid
-  // value flags on blur so it can be fixed immediately, not only after pressing Next.
-  const handleFieldBlur = useCallback(
-    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-      if (event.target.value.trim() && !isValid(field, event.target.value)) {
-        setAttempted((current) => new Set(current).add(step));
-      }
-    },
-    [field, step]
-  );
-
-  const clearCurrentField = useCallback((): void => {
-    updateFieldValue(field.id, '');
-    controlRef.current?.focus();
-  }, [field.id, updateFieldValue]);
 
   const next = (): void => {
     if (honeypot.trim()) {
@@ -334,130 +272,90 @@ export function ContactWizard(): JSX.Element {
       setAttempted((current) => new Set(current).add(step));
       return;
     }
+    setDropdownOpen(false);
     if (step === fields.length - 1) {
       setPrepared(true);
       return;
     }
-    setMaxStep((current) => Math.max(current, step + 1));
     setStep((current) => current + 1);
   };
 
   const previous = (): void => {
+    setDropdownOpen(false);
     if (step > 0) setStep((current) => current - 1);
-  };
-
-  const jumpToStep = (target: number): void => {
-    setPrepared(false);
-    setStep(target);
   };
 
   const reset = (): void => {
     setPrepared(false);
+    setDropdownOpen(false);
     setStep(0);
-    setMaxStep(0);
     setAttempted(new Set());
     setHoneypot('');
     setFormStatus('');
     setValues(Object.fromEntries(fields.map((item) => [item.id, ''])));
   };
 
-  const handleCopyText = useCallback((text: string, key: string): void => {
-    navigator.clipboard?.writeText(text).then(() => {
-      setCopiedKey(key);
-      window.setTimeout(() => {
-        setCopiedKey((current) => (current === key ? null : current));
-      }, 2200);
-    });
-  }, []);
-
-  const handleLinkClick = useCallback((event: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
-    event.preventDefault();
-    navigate(path);
-  }, []);
-
-  const openSelect = (): void => {
-    const currentIndex = selectOptions.findIndex((option) => option.value === currentValue);
-    setSelectHighlight(currentIndex >= 0 ? currentIndex : 0);
-    setSelectOpen(true);
-  };
-
-  const closeSelect = (refocus: boolean): void => {
-    setSelectOpen(false);
-    if (refocus) controlRef.current?.focus();
-  };
-
-  const chooseDiscipline = (value: string): void => {
-    updateFieldValue(field.id, value);
-    closeSelect(true);
-  };
-
-  const handleTriggerKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>): void => {
-    if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+  const handleTextareaKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>): void => {
+    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
       event.preventDefault();
-      if (selectOpen) closeSelect(false);
-      else openSelect();
-      return;
+      next();
     }
-    if (event.key === 'ArrowUp') {
+  };
+
+  const handleDropdownKeyDown = (event: KeyboardEvent<HTMLButtonElement>): void => {
+    const opts = field.options ?? [];
+    if (!opts.length) return;
+
+    if (event.key === 'ArrowDown') {
       event.preventDefault();
-      if (!selectOpen) {
-        setSelectHighlight(
-          selectedOption ? selectOptions.indexOf(selectedOption) : selectOptions.length - 1
-        );
-        setSelectOpen(true);
+      if (!dropdownOpen) {
+        setDropdownOpen(true);
+      } else {
+        setHighlightedIndex((prev) => (prev + 1) % opts.length);
       }
-      return;
-    }
-    if (event.key === 'Escape' && selectOpen) {
+    } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      closeSelect(false);
+      if (!dropdownOpen) {
+        setDropdownOpen(true);
+      } else {
+        setHighlightedIndex((prev) => (prev - 1 + opts.length) % opts.length);
+      }
+    } else if (event.key === 'Enter') {
+      if (dropdownOpen) {
+        event.preventDefault();
+        const chosen = opts[highlightedIndex];
+        if (chosen) {
+          updateValue(chosen.value);
+          setDropdownOpen(false);
+        }
+      } else if (currentValid) {
+        event.preventDefault();
+        next();
+      } else {
+        event.preventDefault();
+        setDropdownOpen(true);
+      }
+    } else if (event.key === 'Escape') {
+      if (dropdownOpen) {
+        event.preventDefault();
+        setDropdownOpen(false);
+      }
+    } else if (event.key === ' ') {
+      event.preventDefault();
+      setDropdownOpen((open) => !open);
     }
   };
 
-  const handleMenuKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>): void => {
-    const total = selectOptions.length;
-    if (!total) return;
-    switch (event.key) {
-      case 'ArrowDown':
-        event.preventDefault();
-        setSelectHighlight((current) => (current + 2) % total);
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        setSelectHighlight((current) => (current - 2 + total) % total);
-        break;
-      case 'ArrowRight':
-        event.preventDefault();
-        setSelectHighlight((current) => (current + 1) % total);
-        break;
-      case 'ArrowLeft':
-        event.preventDefault();
-        setSelectHighlight((current) => (current - 1 + total) % total);
-        break;
-      case 'Home':
-        event.preventDefault();
-        setSelectHighlight(0);
-        break;
-      case 'End':
-        event.preventDefault();
-        setSelectHighlight(total - 1);
-        break;
-      case 'Enter':
-      case ' ':
-        event.preventDefault();
-        chooseDiscipline(selectOptions[selectHighlight].value);
-        break;
-      case 'Escape':
-        event.preventDefault();
-        closeSelect(true);
-        break;
-      case 'Tab':
-        setSelectOpen(false);
-        break;
-      default:
-        break;
-    }
+  const copyToClipboard = (text: string, label: string): void => {
+    navigator.clipboard?.writeText(text).then(() => {
+      setCopiedChannel(label);
+      window.setTimeout(() => setCopiedChannel(null), 2200);
+    });
+  };
+
+  const copyEnquiryText = (): void => {
+    const body = fields.map((f) => `${f.name}: ${values[f.id].trim()}`).join('\n');
+    copyToClipboard(body, 'summary');
   };
 
   const setInputRef = (element: HTMLInputElement | null): void => {
@@ -466,569 +364,633 @@ export function ContactWizard(): JSX.Element {
   const setTextareaRef = (element: HTMLTextAreaElement | null): void => {
     controlRef.current = element;
   };
-  const setTriggerRef = (element: HTMLButtonElement | null): void => {
+  const setDropdownTriggerRef = (element: HTMLButtonElement | null): void => {
     controlRef.current = element;
   };
 
-  const renderUnderlinedField = (isTextarea: boolean): JSX.Element => (
-    <div className={`ac-field${isTextarea ? ' ac-field--textarea' : ''}${currentValid ? ' is-filled' : ''}`}>
-      {field.presets && field.presets.length > 0 && (
-        <div className="ac-preset-bar" aria-label={`Quick-select for ${field.name}`}>
-          {field.presets.map((preset) => {
-            const isSelected = currentValue === preset;
-            return (
-              <button
-                key={preset}
-                type="button"
-                className={`ac-preset-pill${isSelected ? ' is-selected' : ''}`}
-                onClick={() => updateFieldValue(field.id, preset)}
-              >
-                {preset}
-              </button>
-            );
-          })}
-        </div>
-      )}
-      {isTextarea ? (
-        <textarea
-          id={`contact-field-${field.id}`}
-          name={field.id}
-          className="ac-input ac-input--textarea wpcf7-form-control wpcf7-validates-as-required"
-          ref={setTextareaRef}
-          rows={5}
-          placeholder={field.placeholder}
-          autoComplete={field.autoComplete}
-          aria-required="true"
-          aria-invalid={showCurrentError() ? 'true' : 'false'}
-          aria-describedby={showCurrentError() ? currentErrorId : undefined}
-          value={currentValue}
-          required
-          onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
-            updateFieldValue(field.id, event.target.value)
-          }
-          onBlur={handleFieldBlur}
-        />
-      ) : (
-        <input
-          id={`contact-field-${field.id}`}
-          name={field.id}
-          className="ac-input wpcf7-form-control wpcf7-validates-as-required"
-          ref={setInputRef}
-          type={field.inputType ?? 'text'}
-          placeholder={field.placeholder}
-          autoComplete={field.autoComplete}
-          aria-required="true"
-          aria-invalid={showCurrentError() ? 'true' : 'false'}
-          aria-describedby={showCurrentError() ? currentErrorId : undefined}
-          value={currentValue}
-          required
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            updateFieldValue(field.id, event.target.value)
-          }
-          onBlur={handleFieldBlur}
-        />
-      )}
-      <span className="ac-focus-line" aria-hidden="true" />
-      {currentValue.trim() !== '' && !currentValid && (
-        <button
-          type="button"
-          className="ac-clear-btn"
-          aria-label={`Clear ${field.name}`}
-          title="Clear this field"
-          onClick={clearCurrentField}
-        >
-          ✕
-        </button>
-      )}
-      {currentValid && (
-        <span className="ac-ready-badge" aria-live="polite">
-          ✓ Ready
-        </span>
-      )}
-    </div>
-  );
+  const renderControl = (): JSX.Element => {
+    const ariaInvalid: 'true' | 'false' = showCurrentError() ? 'true' : 'false';
+    const shared = {
+      id: `contact-field-${field.id}`,
+      name: field.id,
+      className: 'ac-input wpcf7-form-control wpcf7-validates-as-required',
+      autoComplete: field.autoComplete,
+      'aria-required': true,
+      'aria-invalid': ariaInvalid,
+      'aria-describedby': showCurrentError() ? currentErrorId : undefined,
+      value: currentValue,
+      required: true,
+      onChange: (
+        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+      ) => updateValue(event.target.value),
+    };
 
-  const renderDisciplineSelect = (): JSX.Element => (
-    <div className="ac-discipline-stack">
-      <div className={`ac-custom-select${selectOpen ? ' is-open' : ''}`} ref={selectWrapRef}>
-        <button
-          type="button"
-          id={`contact-field-${field.id}`}
-          className="ac-custom-select__trigger"
-          role="combobox"
-          aria-haspopup="listbox"
-          aria-expanded={selectOpen}
-          aria-controls="ac-discipline-menu"
-          aria-label={field.label}
-          ref={setTriggerRef}
-          onClick={() => (selectOpen ? closeSelect(true) : openSelect())}
-          onKeyDown={handleTriggerKeyDown}
-        >
-          {selectedOption ? (
-            <span className="ac-custom-select__value">
-              <span className="ac-custom-select__value-index">{selectedOption.index}</span>
-              <span className="ac-custom-select__value-name">{selectedOption.value}</span>
-              <span className="ac-custom-select__value-tag">{selectedOption.tag}</span>
-            </span>
+    if (field.kind === 'select') {
+      const options = field.options ?? [];
+      const selectedOption = options.find((item) => item.value === currentValue);
+
+      return (
+        <div className="ac-field-block" ref={dropdownWrapRef}>
+          {/* Redesigned Apple Liquid Glass Spatial Dropdown */}
+          <div
+            className={`ac-custom-select${dropdownOpen ? ' is-open' : ''}${
+              selectedOption ? ' has-value' : ''
+            }`}
+          >
+            {/* Hidden native select for form semantics */}
+            <select
+              id={`contact-field-${field.id}-native`}
+              name={field.id}
+              className="sr-only"
+              tabIndex={-1}
+              aria-hidden="true"
+              value={currentValue}
+              onChange={(e) => updateValue(e.target.value)}
+            >
+              <option value="">Select a discipline…</option>
+              {options.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.value}
+                </option>
+              ))}
+            </select>
+
+            <button
+              id={`contact-field-${field.id}`}
+              ref={setDropdownTriggerRef}
+              type="button"
+              role="combobox"
+              aria-expanded={dropdownOpen}
+              aria-haspopup="listbox"
+              aria-controls="ac-discipline-listbox"
+              aria-invalid={ariaInvalid}
+              aria-describedby={showCurrentError() ? currentErrorId : undefined}
+              className="ac-custom-select__trigger"
+              onClick={() => {
+                const idx = options.findIndex((o) => o.value === currentValue);
+                setHighlightedIndex(idx >= 0 ? idx : 0);
+                setDropdownOpen((open) => !open);
+              }}
+              onKeyDown={handleDropdownKeyDown}
+            >
+              {selectedOption ? (
+                <span className="ac-custom-select__selected">
+                  <span className="ac-custom-select__code">{selectedOption.code}</span>
+                  <span className="ac-custom-select__text-group">
+                    <span className="ac-custom-select__value">{selectedOption.value}</span>
+                    <span className="ac-custom-select__desc">
+                      {selectedOption.description}
+                    </span>
+                  </span>
+                  <span className="ac-custom-select__tag">{selectedOption.tag}</span>
+                </span>
+              ) : (
+                <span className="ac-custom-select__placeholder">
+                  Select an immersive or creative discipline…
+                </span>
+              )}
+
+              <span className="ac-custom-select__right">
+                {currentValid && (
+                  <span className="ac-valid-badge ac-valid-badge--inline" aria-hidden="true">
+                    ✓ Ready
+                  </span>
+                )}
+                <span
+                  className={`ac-custom-select__chevron${dropdownOpen ? ' is-open' : ''}`}
+                  aria-hidden="true"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path
+                      d="M3 5.25L7 9.25L11 5.25"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </span>
+            </button>
+
+            <span className="ac-focus-line" aria-hidden="true" />
+
+            {/* Sculptural Liquid Glass Popover Menu */}
+            {dropdownOpen && (
+              <div
+                id="ac-discipline-listbox"
+                role="listbox"
+                aria-label="Immersive and creative disciplines"
+                className="ac-custom-select__popover"
+              >
+                <div className="ac-custom-select__popover-head">
+                  <span>Select Your Project Discipline</span>
+                  <span>{options.length} Capabilities</span>
+                </div>
+                <div className="ac-custom-select__grid">
+                  {options.map((opt, idx) => {
+                    const isSelected = currentValue === opt.value;
+                    const isHighlighted = highlightedIndex === idx;
+                    return (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        className={`ac-custom-select__option${
+                          isSelected ? ' is-selected' : ''
+                        }${isHighlighted ? ' is-highlighted' : ''}`}
+                        onMouseEnter={() => setHighlightedIndex(idx)}
+                        onClick={() => {
+                          updateValue(opt.value);
+                          setDropdownOpen(false);
+                        }}
+                      >
+                        <div className="ac-custom-select__option-top">
+                          <span className="ac-custom-select__option-code">{opt.code}</span>
+                          <span className="ac-custom-select__option-tag">{opt.tag}</span>
+                          {isSelected && (
+                            <span className="ac-custom-select__option-check" aria-hidden="true">
+                              ✓
+                            </span>
+                          )}
+                        </div>
+                        <strong className="ac-custom-select__option-title">
+                          {opt.value}
+                        </strong>
+                        <span className="ac-custom-select__option-sub">
+                          {opt.description}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Quick-Select Immersive Pills directly below the dropdown */}
+          <div className="ac-quick-options" aria-label="Quick discipline selection">
+            <span className="ac-quick-options__label">Immersive &amp; Core:</span>
+            {options.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                className={`ac-quick-pill${currentValue === opt.value ? ' is-selected' : ''}`}
+                onClick={() => {
+                  updateValue(opt.value);
+                  setDropdownOpen(false);
+                }}
+              >
+                {opt.value}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className="ac-field-block">
+        <div className="ac-field-wrap">
+          {field.kind === 'textarea' ? (
+            <textarea
+              {...shared}
+              ref={setTextareaRef}
+              rows={3}
+              placeholder={field.placeholder}
+              onKeyDown={handleTextareaKeyDown}
+            />
           ) : (
-            <span className="ac-custom-select__placeholder">
-              Choose your focus discipline…
+            <input
+              {...shared}
+              ref={setInputRef}
+              type={field.inputType ?? 'text'}
+              placeholder={field.placeholder}
+            />
+          )}
+          <span className="ac-focus-line" aria-hidden="true" />
+          {currentValid && (
+            <span className="ac-valid-badge" aria-hidden="true">
+              ✓ Ready
             </span>
           )}
-          <span className="ac-custom-select__chevron" aria-hidden="true" />
-        </button>
+        </div>
 
-        {selectOpen && (
-          <div
-            className="ac-custom-select__popover"
-            id="ac-discipline-menu"
-            role="listbox"
-            aria-label="Immersive & creative disciplines"
-            aria-activedescendant={`ac-discipline-option-${selectHighlight}`}
-            ref={selectMenuRef}
-            tabIndex={-1}
-            onKeyDown={handleMenuKeyDown}
-          >
-            {selectOptions.map((option, optionIndex) => {
-              const isHighlighted = optionIndex === selectHighlight;
-              const isSelected = currentValue === option.value;
-              return (
-                <div
-                  key={option.value}
-                  className={`ac-custom-select__option${isHighlighted ? ' is-highlighted' : ''}${
-                    isSelected ? ' is-selected' : ''
-                  }`}
-                  id={`ac-discipline-option-${optionIndex}`}
-                  role="option"
-                  aria-selected={isSelected}
-                  ref={(element) => {
-                    optionRefs.current[optionIndex] = element;
-                  }}
-                  onMouseEnter={() => setSelectHighlight(optionIndex)}
-                  onClick={() => chooseDiscipline(option.value)}
-                >
-                  <span className="ac-custom-select__option-index">{option.index}</span>
-                  <span className="ac-custom-select__option-body">
-                    <span className="ac-custom-select__option-row">
-                      <span className="ac-custom-select__option-title">{option.value}</span>
-                      <span className="ac-custom-select__option-tag">{option.tag}</span>
-                    </span>
-                    <span className="ac-custom-select__option-blurb">{option.blurb}</span>
-                  </span>
-                  {isSelected && (
-                    <span className="ac-custom-select__option-check" aria-hidden="true">
-                      ✓
-                    </span>
-                  )}
-                </div>
-              );
-            })}
+        {field.quickSuggestions && field.quickSuggestions.length > 0 && (
+          <div className="ac-quick-options" aria-label={`Quick suggestions for ${field.name}`}>
+            <span className="ac-quick-options__label">Quick select:</span>
+            {field.quickSuggestions.map((option) => (
+              <button
+                key={option}
+                type="button"
+                className={`ac-quick-pill${currentValue === option ? ' is-selected' : ''}`}
+                onClick={() => updateValue(option)}
+              >
+                {option}
+              </button>
+            ))}
           </div>
         )}
-
-        {/* Accessible native select kept in sync for assistive technologies */}
-        <select
-          className="sr-only"
-          name={field.id}
-          value={currentValue}
-          tabIndex={-1}
-          aria-hidden="true"
-          onChange={(event: ChangeEvent<HTMLSelectElement>) =>
-            updateFieldValue(field.id, event.target.value)
-          }
-        >
-          <option value="">Choose a discipline</option>
-          {selectOptions.map((option) => (
-            <option value={option.value} key={option.value}>
-              {option.index} — {option.value} ({option.tag})
-            </option>
-          ))}
-        </select>
       </div>
-
-      <div className="ac-preset-bar ac-discipline-pills" aria-label="Quick-select discipline pills">
-        {selectOptions.map((option) => {
-          const isSelected = currentValue === option.value;
-          return (
-            <button
-              key={option.value}
-              type="button"
-              className={`ac-preset-pill${isSelected ? ' is-selected' : ''}`}
-              onClick={() => updateFieldValue(field.id, option.value)}
-            >
-              <span className="ac-preset-pill__index">{option.index}</span>
-              {option.value}
-            </button>
-          );
-        })}
-      </div>
-      {currentValid && (
-        <span className="ac-ready-badge ac-ready-badge--inline" aria-live="polite">
-          ✓ Ready
-        </span>
-      )}
-    </div>
-  );
-
-  const answeredFields = fields.filter((item) => isValid(item, values[item.id]));
+    );
+  };
 
   return (
-    <div
-      className="angel-contact-redesign"
-      style={
-        {
-          '--route-accent': '#64d2ff',
-          '--route-accent-secondary': '#5e5ce6',
-          '--route-accent-rgb': '100, 210, 255',
-        } as React.CSSProperties
-      }
-    >
-      {/* Ambient warm studio backdrop: hairline drawing grid + slow ember field */}
+    <div className="angel-contact-redesign">
+      {/* Ambient Spatial Background Grid & Light Orbs */}
       <div className="ac-ambient-backdrop" aria-hidden="true">
-        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--ivory" />
-        <span className="ac-ambient-backdrop__orb ac-ambient-backdrop__orb--ember" />
-        <span className="ac-ambient-backdrop__grid" />
+        <div className="ac-ambient-orb ac-ambient-orb--cyan" />
+        <div className="ac-ambient-orb ac-ambient-orb--indigo" />
+        <div className="ac-ambient-grid" />
       </div>
 
-      {/* The Concierge Desk: wayfinding rail + conversational stage */}
-      <div className="ac-desk">
-        <aside className="ac-rail" aria-label="Enquiry progress and question index">
-          <div className="ac-rail__sticky">
-            <div className="ac-rail__brand">
-              <span className="ac-rail__brand-name">Angel Creations</span>
-              <span className="ac-rail__brand-role">Global Production Concierge</span>
-              <a
-                className="ac-rail__home"
-                href="/"
-                onClick={(event) => handleLinkClick(event, '/')}
-              >
-                ← Return to studio
-              </a>
-            </div>
-
-            <div className="step-title ac-rail__counter" aria-live="polite">
-              {prepared ? (
-                <>
-                  <span className="ac-slider-progress ac-rail__counter-figure">
-                    <span className="ac-rail__counter-check">✓</span>
-                  </span>
-                  <span className="ac-rail__counter-meta">
-                    All <strong>08</strong> answered · Ready to send
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="ac-slider-progress ac-rail__counter-figure">
-                    <span className="ac-slider-prefix ac-rail__counter-prefix">
-                      N<small>o</small>
-                    </span>
-                    <span className="ac-rail__counter-value" data-index={step + 1}>
-                      {String(step + 1).padStart(2, '0')}
-                    </span>
-                  </span>
-                  <span className="ac-rail__counter-meta">
-                    of <strong>08</strong> · {field.category}
-                  </span>
-                </>
-              )}
-              <span className="ac-rail__counter-beam" aria-hidden="true" />
-            </div>
-
-            <div
-              className="ac-rail__progress"
-              role="progressbar"
-              aria-valuenow={answeredCount}
-              aria-valuemin={0}
-              aria-valuemax={fields.length}
-              aria-valuetext={`${answeredCount} of ${fields.length} questions answered`}
-              aria-label="Questions answered"
-            >
-              <span
-                className="ac-rail__progress-fill"
-                style={{ width: `${progressPct}%` }}
-              />
-              <span className="ac-rail__progress-label">
-                {answeredCount} / {String(fields.length).padStart(2, '0')} answered
-              </span>
-            </div>
-
-            <ol className="ac-rail__index" aria-label="Question index">
-              {fields.map((item, index) => {
-                const isCurrent = !prepared && index === step;
-                const isAnswered = isValid(item, values[item.id]);
-                const isUnlocked = index <= maxStep || isAnswered;
-                return (
-                  <li key={item.id} className="ac-rail__index-item">
-                    <button
-                      type="button"
-                      className={`ac-rail__index-btn${isCurrent ? ' is-current' : ''}${
-                        isAnswered ? ' is-answered' : ''
-                      }`}
-                      disabled={!isUnlocked}
-                      aria-current={isCurrent ? 'step' : undefined}
-                      aria-label={`Question ${index + 1} of ${fields.length}: ${item.name}${
-                        isAnswered ? ' (answered)' : ''
-                      }`}
-                      onClick={() => jumpToStep(index)}
-                    >
-                      <span className="ac-rail__index-num">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span className="ac-rail__index-label">{item.category}</span>
-                      <span className="ac-rail__index-state" aria-hidden="true">
-                        {isAnswered ? '✓' : ''}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
-        </aside>
-
-        <section className="ac-stage" aria-label="Guided project enquiry">
-          {/* Compact editorial header */}
-          <header className="ac-studio-hero" aria-labelledby="contact-page-title">
-            <h1 id="contact-page-title" className="ac-studio-hero__title">
-              Let’s build what <span className="ac-studio-hero__title-accent">doesn’t exist yet.</span>
-            </h1>
-            <p className="ac-studio-hero__lead">
-              Eight executive questions, one tailored proposal deck. Prefer to talk first?
-            </p>
-            <div className="ac-studio-hero__actions">
-              <a className="ac-jump-pill" href="#direct-contact-channels">
-                <span>Direct contact channels</span>
-                <span className="ac-jump-pill__arrow" aria-hidden="true">
-                  ↓
-                </span>
-              </a>
-            </div>
-          </header>
-
-          <div className="section-contact ac-question-stage">
-            <form
-              id="booking-form"
-              className="wpcf7-form init"
-              aria-label="Project enquiry"
-              noValidate
-              onSubmit={(event) => {
-                event.preventDefault();
-                next();
-              }}
-            >
-              <div className="angel-honeypot" aria-hidden="true">
-                <label htmlFor="contact-website">Leave this field empty</label>
-                <input
-                  id="contact-website"
-                  name="website"
-                  type="text"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={honeypot}
-                  onChange={(event) => setHoneypot(event.target.value)}
-                />
+      <div className="contact-section-min">
+        <section className="section-contact">
+          <div className="contact-inner">
+            {/* Editorial Studio Header */}
+            <header className="ac-studio-hero">
+              <div className="ac-studio-hero__left">
+                <div className="ac-studio-eyebrow">
+                  <span className="ac-studio-eyebrow__dot" aria-hidden="true" />
+                  <span>Angel Creations · Global Production Concierge</span>
+                </div>
+                <h1 className="ac-studio-title">
+                  Let’s build what doesn’t exist yet.
+                </h1>
+                <p className="ac-studio-subtitle">
+                  Complete our 8-step interactive project brief below — or reach our support,
+                  business, and direct mobile desks at the bottom of the page.
+                </p>
               </div>
-              <p className="sr-only" aria-live="polite">
-                {formStatus}
-              </p>
 
-              {prepared ? (
-                /* PREPARED ENQUIRY SUMMARY */
-                <section className="ac-summary" aria-labelledby="ac-summary-title">
-                  <span className="ac-summary__badge">✓ Enquiry prepared</span>
-                  <h2 id="ac-summary-title" className="ac-summary__title">
-                    Your brief is ready for the studio.
-                  </h2>
-                  <p className="ac-summary__lead">
-                    Check the ledger below, then open a pre-addressed draft to{' '}
-                    <strong>business@angelcreations.in</strong>, copy the text for any channel,
-                    or call the desk directly.
-                  </p>
+              <div className="ac-studio-hero__right">
+                <a href="#direct-contact-channels" className="ac-direct-jump-pill">
+                  <span>Direct Email &amp; +91-8058465733</span>
+                  <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+            </header>
 
-                  <div className="ac-summary__grid">
-                    {fields.map((item, index) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        className="ac-summary__item"
-                        onClick={() => jumpToStep(index)}
-                        title={`Edit N° ${String(index + 1).padStart(2, '0')} — ${item.name}`}
-                      >
-                        <span className="ac-summary__item-label">
-                          <span>
-                            N° {String(index + 1).padStart(2, '0')} · {item.name}
-                          </span>
-                          <span className="ac-summary__item-edit">Edit ✎</span>
-                        </span>
-                        <span className="ac-summary__item-value">{values[item.id] || '—'}</span>
-                      </button>
-                    ))}
-                  </div>
+            {/* Sculptural Liquid Glass Stage wrapping the Original N° One-at-a-Time Form */}
+            <div className="ac-wizard-shell">
+              <form
+                id="booking-form"
+                className="wpcf7-form init"
+                aria-label="Project enquiry"
+                noValidate
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  next();
+                }}
+              >
+                <div className="angel-honeypot" aria-hidden="true">
+                  <label htmlFor="contact-website">Leave this field empty</label>
+                  <input
+                    id="contact-website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(event) => setHoneypot(event.target.value)}
+                  />
+                </div>
+                <p className="sr-only" aria-live="polite">
+                  {formStatus}
+                </p>
 
-                  <div className="ac-summary__actions">
-                    <a className="ac-cta ac-cta--primary" href={createMailto(values)}>
-                      <span>Open email draft ↗</span>
-                    </a>
-                    <button
-                      type="button"
-                      className="ac-cta ac-cta--ghost"
-                      onClick={() => handleCopyText(formatBriefBody(values), 'brief')}
-                    >
-                      <span>{copiedKey === 'brief' ? '✓ Copied to clipboard' : 'Copy enquiry text'}</span>
-                    </button>
-                    <a className="ac-cta ac-cta--ghost" href="tel:+918058465733">
-                      <span>Call +91-8058465733</span>
-                    </a>
-                    <button
-                      type="button"
-                      className="ac-cta ac-cta--text"
-                      onClick={() => setPrepared(false)}
-                    >
-                      Edit answers
-                    </button>
-                    <button type="button" className="ac-cta ac-cta--text" onClick={reset}>
-                      Start again
-                    </button>
-                  </div>
-                </section>
-              ) : (
-                <div className="ac-conversation">
-                  <div className="tab-pane ac-step-pane" id={`step${step + 1}`}>
-                    <p className="sr-only" aria-live="polite">
-                      Question {step + 1} of {fields.length}: {field.name}
-                    </p>
-
-                    <label className="ac-question-label" htmlFor={`contact-field-${field.id}`}>
-                      <span className="ac-question-kicker">
-                        Question {String(step + 1).padStart(2, '0')}
-                      </span>
-                      <h2 className="ac-question-title">{field.label}</h2>
-                    </label>
-                    <p className="ac-question-hint">{field.hint}</p>
-
-                    {field.kind === 'select'
-                      ? renderDisciplineSelect()
-                      : renderUnderlinedField(field.kind === 'textarea')}
-
-                    <div className="errorTxt ac-error-row" id={currentErrorId} aria-live="polite">
-                      {showCurrentError() ? (
-                        <span className="ac-error">
-                          {field.inputType === 'email' && currentValue.trim()
-                            ? 'Please enter a valid email address.'
-                            : 'Please answer this question to continue.'}
-                        </span>
-                      ) : null}
+                {prepared ? (
+                  <section className="contact-prepared" aria-labelledby="enquiry-ready-title">
+                    <div className="contact-prepared__header">
+                      <div>
+                        <p className="contact-prepared__eyebrow">
+                          N° 08 / 08 · Project Enquiry Prepared
+                        </p>
+                        <h2 id="enquiry-ready-title">Your project brief is ready.</h2>
+                        <p className="contact-prepared__lead">
+                          Click any answer below to refine it, then launch your pre-addressed email
+                          draft or call our executive line on <strong>+91-8058465733</strong>.
+                        </p>
+                      </div>
+                      <span className="contact-prepared__badge">08 / 08 Complete</span>
                     </div>
 
-                    <ul className="ac-keynav">
-                      <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
-                        <button
-                          className={`ac-keynav__btn ac-keynav__btn--prev prev-btn prev-btn${step + 1}`}
-                          type="button"
-                          aria-label="Previous question"
-                          disabled={step === 0}
-                          onClick={previous}
+                    <dl className="contact-prepared__summary">
+                      {fields.map((item, idx) => (
+                        <div
+                          key={item.id}
+                          className="contact-prepared__row"
+                          onClick={() => {
+                            setPrepared(false);
+                            setStep(idx);
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              setPrepared(false);
+                              setStep(idx);
+                            }
+                          }}
+                          title={`Edit ${item.name}`}
                         >
-                          <span aria-hidden="true">←</span> Prev
-                        </button>
-                      </li>
-                      <li className="action_li" style={{ listStyle: 'none', display: 'inline' }}>
-                        <button
-                          className={`ac-keynav__btn ac-keynav__btn--next ${
-                            step === fields.length - 1
-                              ? 'submit-btn next-btn'
-                              : `next-btn next-btn${step + 1}`
-                          }`}
-                          type="submit"
-                          aria-label={
-                            step === fields.length - 1 ? 'Prepare enquiry summary' : 'Next question'
-                          }
-                        >
-                          {step === fields.length - 1 ? 'Prepare summary' : 'Next'}{' '}
-                          <span aria-hidden="true">→</span>
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
+                          <dt>
+                            <span>N° {String(idx + 1).padStart(2, '0')}</span> {item.name}
+                            <em className="contact-prepared__edit-tag">Edit ✎</em>
+                          </dt>
+                          <dd>{values[item.id]}</dd>
+                        </div>
+                      ))}
+                    </dl>
 
-                  {/* Live brief ledger */}
-                  <aside className="ac-answered-trail" aria-label="Your brief so far">
-                    <span className="ac-answered-trail__label">
-                      Your brief so far · {answeredCount} of {String(fields.length).padStart(2, '0')}
-                    </span>
-                    {answeredFields.length > 0 ? (
-                      <ul className="ac-answered-trail__ledger">
-                        {answeredFields.map((item) => {
-                          const index = fields.indexOf(item);
-                          const raw = values[item.id].trim();
-                          return (
-                            <li key={item.id}>
+                    <div className="contact-prepared__actions">
+                      <a className="contact-prepared__send" href={createMailto(values)}>
+                        Open email draft <span aria-hidden="true">↗</span>
+                      </a>
+                      <button
+                        className="contact-prepared__edit"
+                        type="button"
+                        onClick={copyEnquiryText}
+                      >
+                        {copiedChannel === 'summary'
+                          ? '✓ Copied to clipboard'
+                          : 'Copy enquiry text'}
+                      </button>
+                      <a className="contact-prepared__edit" href="tel:+918058465733">
+                        Call +91-8058465733
+                      </a>
+                      <button
+                        className="contact-prepared__edit"
+                        type="button"
+                        onClick={() => setPrepared(false)}
+                      >
+                        Edit answers
+                      </button>
+                      <button className="contact-prepared__edit" type="button" onClick={reset}>
+                        Start again
+                      </button>
+                    </div>
+                  </section>
+                ) : (
+                  <div className="tab-content">
+                    <div
+                      key={field.id}
+                      className="tab-pane ac-step-stage"
+                      id={`step${step + 1}`}
+                      style={{ display: 'block' }}
+                    >
+                      {/* Signature N° Progress Header + Category Badge + Interactive Step Rail */}
+                      <div className="step-title">
+                        <div className="ac-progress-header" aria-hidden="true">
+                          <span className="ac-slider-progress">
+                            <span className="ac-slider-prefix">
+                              N<small>o</small>
+                            </span>
+                            <span className="ac-step-current">
+                              {String(step + 1).padStart(2, '0')}
+                            </span>
+                          </span>
+
+                          <span className="ac-progress-line">
+                            <span
+                              className="ac-progress-line__fill"
+                              style={{ width: `${progressRatio}%` }}
+                            />
+                          </span>
+
+                          <span className="ac-step-total">
+                            {String(fields.length).padStart(2, '0')}
+                          </span>
+
+                          <span className="ac-step-category-pill">{field.category}</span>
+                        </div>
+
+                        {/* Interactive Step Number Rail */}
+                        <div className="ac-step-dots" role="tablist" aria-label="Enquiry steps">
+                          {fields.map((item, idx) => {
+                            const isCurrent = idx === step;
+                            const isDone = isValid(item, values[item.id]);
+                            const canJump = idx <= step || isDone;
+                            return (
                               <button
+                                key={item.id}
                                 type="button"
-                                className={`ac-answered-chip${index === step ? ' is-current' : ''}`}
-                                onClick={() => jumpToStep(index)}
-                                title={`${item.shortLabel}: ${raw} — select to revisit`}
+                                role="tab"
+                                aria-selected={isCurrent}
+                                aria-label={`Step ${idx + 1}: ${item.name}`}
+                                title={`Step ${idx + 1}: ${item.name}`}
+                                disabled={!canJump}
+                                className={`ac-step-dot${isCurrent ? ' is-current' : ''}${
+                                  isDone ? ' is-done' : ''
+                                }`}
+                                onClick={() => canJump && setStep(idx)}
+                              >
+                                {String(idx + 1).padStart(2, '0')}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <p className="sr-only" aria-live="polite">
+                        Question {step + 1} of {fields.length}: {field.name}
+                      </p>
+
+                      <ul className="ac-question-list">
+                        <li className="ac-question-li">
+                          <label
+                            className="ac-active ac-label"
+                            htmlFor={`contact-field-${field.id}`}
+                          >
+                            <h3>{field.label}</h3>
+                            <span className="ac-question-hint">{field.hint}</span>
+                          </label>
+
+                          {renderControl()}
+
+                          <div className="errorTxt" id={currentErrorId} aria-live="polite">
+                            {showCurrentError() ? (
+                              <span className="error">
+                                {field.inputType === 'email' && currentValue.trim()
+                                  ? 'Please enter a valid email address before continuing.'
+                                  : 'Please complete this question before continuing.'}
+                              </span>
+                            ) : null}
+                          </div>
+                        </li>
+
+                        <li
+                          className="action_li"
+                          style={{ listStyle: 'none', display: 'flex' }}
+                        >
+                          <div className="ac-nav-group">
+                            <button
+                              className={`prev-btn prev-btn${step + 1}`}
+                              type="button"
+                              aria-label="Previous question"
+                              disabled={step === 0}
+                              onClick={previous}
+                            >
+                              <img src={backIcon} alt="" />
+                              <span className="ac-btn-label">Prev</span>
+                            </button>
+
+                            <button
+                              className={
+                                step === fields.length - 1
+                                  ? 'submit-btn next-btn'
+                                  : `next-btn next-btn${step + 1}`
+                              }
+                              type="submit"
+                              aria-label={
+                                step === fields.length - 1
+                                  ? 'Prepare project enquiry'
+                                  : 'Next question'
+                              }
+                            >
+                              <span className="ac-btn-label">
+                                {step === fields.length - 1 ? 'Prepare Enquiry' : 'Next'}
+                              </span>
+                              <img src={nextIcon} alt="" />
+                            </button>
+                          </div>
+
+                          <div className="ac-stage-meta">
+                            <span className="ac-enter-hint" aria-hidden="true">
+                              {field.kind === 'textarea'
+                                ? 'Press ⌘ + Enter ↵ to continue'
+                                : 'Press Enter ↵ to continue'}
+                            </span>
+                          </div>
+                        </li>
+                      </ul>
+
+                      {/* Live Answered Trail Strip for Instant Jump-Back Editing */}
+                      {completedFields.length > 0 && (
+                        <div className="ac-answered-trail" aria-label="Answered questions">
+                          <span className="ac-answered-trail__title">Your brief so far:</span>
+                          <div className="ac-answered-trail__chips">
+                            {completedFields.map(({ item, index, value }) => (
+                              <button
+                                key={item.id}
+                                type="button"
+                                className={`ac-answered-chip${index === step ? ' is-active' : ''}`}
+                                onClick={() => setStep(index)}
+                                title={`Jump to Step ${index + 1}: ${item.name}`}
                               >
                                 <span className="ac-answered-chip__num">
                                   {String(index + 1).padStart(2, '0')}
                                 </span>
-                                <span className="ac-answered-chip__key">{item.shortLabel}</span>
-                                <span className="ac-answered-chip__value">{raw}</span>
+                                <span className="ac-answered-chip__key">{item.name}:</span>
+                                <span className="ac-answered-chip__val">
+                                  {value.length > 26 ? `${value.slice(0, 26)}…` : value}
+                                </span>
                               </button>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : (
-                      <p className="ac-answered-trail__empty">
-                        Your answers appear here as you progress through the eight questions.
-                      </p>
-                    )}
-                  </aside>
-                </div>
-              )}
-            </form>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </form>
+            </div>
           </div>
         </section>
       </div>
 
-      {/* Direct Contact Deck */}
+      {/* Redesigned Bottom Direct Contact Section: Customer Supports, Customer Business & Mobile +91-8058465733 */}
       <section
         id="direct-contact-channels"
         className="ac-support-section"
-        aria-labelledby="direct-contact-title"
+        aria-label="Direct email and mobile contacts"
       >
-        <header className="ac-support-section__head">
-          <p className="ac-support-section__kicker">Direct Contact Channels</p>
-          <h2 id="direct-contact-title" className="ac-support-section__title">
-            Prefer a direct line to the studio?
-          </h2>
-          <p className="ac-support-section__lead">
-            Reach the right Angel Creations desk in one tap — or copy any address straight to
-            your clipboard.
-          </p>
-        </header>
-
         <div className="genralinformation">
+          <div className="ac-support-header">
+            <span className="ac-support-header__eyebrow">Direct Studio Desks</span>
+            <h2 className="ac-support-header__title">
+              Prefer direct email or a phone conversation?
+            </h2>
+          </div>
+
           <div className="supportmail">
-            {supportChannels.map((channel) => (
-              <article key={channel.copyKey} className={`${channel.classes} ac-support-card`}>
-                <span className="ac-support-card__index">{channel.index} · {channel.desk}</span>
-                <h3 className="ac-support-card__purpose">{channel.purpose}</h3>
-                <div className="ac-support-card__row">
-                  <a className="ac-support-card__value" href={channel.href}>
-                    {channel.value}
-                  </a>
-                  <button
-                    type="button"
-                    className="ac-support-card__copy"
-                    onClick={() => handleCopyText(channel.value, channel.copyKey)}
-                  >
-                    {copiedKey === channel.copyKey ? '✓ Copied' : 'Copy'}
-                  </button>
-                </div>
-              </article>
-            ))}
+            {/* 1. For Customer Supports */}
+            <div className="supcom leftsupport">
+              <div className="supcom__top">
+                <span className="supcom__badge">01 · Support Desk</span>
+                <button
+                  type="button"
+                  className="supcom__copy-btn"
+                  onClick={() =>
+                    copyToClipboard('support@angelcreations.in', 'support')
+                  }
+                >
+                  {copiedChannel === 'support' ? '✓ Copied' : 'Copy'}
+                </button>
+              </div>
+              <h4>For Customer Supports</h4>
+              <div className="downicon">
+                <img src={downIcon} alt="" />
+                <p>
+                  <a href="mailto:support@angelcreations.in">support@angelcreations.in</a>
+                </p>
+              </div>
+              <span className="supcom__sub">
+                Client care, technical support &amp; active project assistance
+              </span>
+            </div>
+
+            {/* 2. For Customer Business */}
+            <div className="supcom rightsupport">
+              <div className="supcom__top">
+                <span className="supcom__badge">02 · Business Desk</span>
+                <button
+                  type="button"
+                  className="supcom__copy-btn"
+                  onClick={() =>
+                    copyToClipboard('business@angelcreations.in', 'business')
+                  }
+                >
+                  {copiedChannel === 'business' ? '✓ Copied' : 'Copy'}
+                </button>
+              </div>
+              <h4>For Customer Business</h4>
+              <div className="downicon">
+                <img src={downIcon} alt="" />
+                <p>
+                  <a href="mailto:business@angelcreations.in">business@angelcreations.in</a>
+                </p>
+              </div>
+              <span className="supcom__sub">
+                New commissions, brand partnerships &amp; enterprise RFPs
+              </span>
+            </div>
+
+            {/* 3. Direct Mobile Number: +91-8058465733 */}
+            <div className="supcom mobilesupport">
+              <div className="supcom__top">
+                <span className="supcom__badge">03 · Direct Mobile</span>
+                <button
+                  type="button"
+                  className="supcom__copy-btn"
+                  onClick={() => copyToClipboard('+91-8058465733', 'mobile')}
+                >
+                  {copiedChannel === 'mobile' ? '✓ Copied' : 'Copy'}
+                </button>
+              </div>
+              <h4>For Direct Call &amp; Mobile</h4>
+              <div className="downicon">
+                <img src={downIcon} alt="" />
+                <p>
+                  <a href="tel:+918058465733">+91-8058465733</a>
+                </p>
+              </div>
+              <span className="supcom__sub">
+                Direct producer line · Instant voice &amp; studio consultation
+              </span>
+            </div>
           </div>
         </div>
       </section>
