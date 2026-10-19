@@ -237,7 +237,10 @@ export function App(): JSX.Element {
     } : {
       ...page,
       description: sourceDescription,
-      meta: sourceDescription ? { ...page.meta, 'og:description': page.meta['og:description'] || sourceDescription } : page.meta,
+      // The resolved description is the one the static document already publishes, so the
+      // hydrated head matches the served HTML. The captured og:description is kept only as a
+      // fallback; on the legal pages it is a long truncated page excerpt rather than a summary.
+      meta: sourceDescription ? { ...page.meta, 'og:description': sourceDescription } : page.meta,
     };
     applySeo(seoPage);
     document.body.className = experience
