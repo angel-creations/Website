@@ -2155,497 +2155,1401 @@
 }
 
 /* ==========================================================================
-   7. CONTACT CONCIERGE PAGE (/contact/) — DUAL-MODE PROJECT CONFIGURATOR
+   7. CONTACT PAGE REDESIGN (/contact/) — ORIGINAL N° CONVERSATIONAL CONCEPT
    ========================================================================== */
-.apple-contact-mode-switcher {
+.angel-contact-redesign {
+  --contact-accent: #64d2ff;
+  --contact-accent-rgb: 100, 210, 255;
+  position: relative;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #03050a;
+  color: #f5f5f7;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text',
+    'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Ambient Spatial Backdrop */
+.angel-contact-redesign .ac-ambient-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.angel-contact-redesign .ac-ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.55;
+}
+
+.angel-contact-redesign .ac-ambient-orb--cyan {
+  width: 640px;
+  height: 640px;
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle, rgba(100, 210, 255, 0.28) 0%, transparent 70%);
+}
+
+.angel-contact-redesign .ac-ambient-orb--indigo {
+  width: 580px;
+  height: 580px;
+  bottom: 40px;
+  left: -120px;
+  background: radial-gradient(circle, rgba(94, 92, 230, 0.24) 0%, transparent 70%);
+}
+
+.angel-contact-redesign .ac-ambient-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 38%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 38%, #000 35%, transparent 100%);
+}
+
+body .angel-contact-redesign .contact-section-min {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-top: clamp(6.75rem, 11vh, 8.75rem) !important;
+  padding-bottom: clamp(2.5rem, 5vh, 4rem) !important;
+}
+
+/* Override custom.css `section.section-contact{padding: 10% 16% !important;}` */
+body .angel-contact-redesign section.section-contact {
+  width: 100% !important;
+  height: auto !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+body .angel-contact-redesign .contact-inner {
+  width: min(1080px, calc(100% - 3rem)) !important;
+  margin-inline: auto !important;
+}
+
+/* Editorial Studio Header */
+.angel-contact-redesign .ac-studio-hero {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
-.apple-contact-layout {
-  display: grid;
-  grid-template-columns: 1.28fr 0.72fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  align-items: start;
+.angel-contact-redesign .ac-studio-hero__left {
+  max-width: 680px;
 }
 
-.apple-contact-stage-card {
-  padding: clamp(1.75rem, 3.2vw, 2.75rem);
-  border-radius: var(--apple-radius-outer);
+.angel-contact-redesign .ac-studio-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.36rem 0.85rem;
+  margin-bottom: 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(235, 235, 245, 0.82);
+}
+
+.angel-contact-redesign .ac-studio-eyebrow__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 10px #30d158;
+}
+
+.angel-contact-redesign .ac-studio-title {
+  margin: 0 0 0.65rem;
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.028em;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.angel-contact-redesign .ac-studio-subtitle {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+  line-height: 1.55;
+  color: rgba(235, 235, 245, 0.64);
+}
+
+.angel-contact-redesign .ac-direct-jump-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 42px;
+  padding: 0 1.05rem;
+  border-radius: 999px;
+  background: rgba(100, 210, 255, 0.11);
+  border: 1px solid rgba(100, 210, 255, 0.34);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.angel-contact-redesign .ac-direct-jump-pill:hover {
+  transform: translateY(-1px);
+  background: rgba(100, 210, 255, 0.2);
+  border-color: rgba(100, 210, 255, 0.6);
+}
+
+/* Sculptural Liquid Glass Stage Card */
+.angel-contact-redesign .ac-wizard-shell {
+  position: relative;
+  padding: clamp(1.75rem, 3.6vw, 3.1rem);
+  border-radius: 28px;
   background:
     radial-gradient(
-      75% 75% at 100% 0%,
-      rgba(var(--route-accent-rgb, 100, 210, 255), 0.12),
-      transparent 70%
+      85% 90% at 95% 0%,
+      rgba(100, 210, 255, 0.11),
+      transparent 68%
     ),
-    rgba(255, 255, 255, 0.042);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+    rgba(14, 18, 28, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
-    0 28px 64px -20px rgba(0, 0, 0, 0.78),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
+    0 32px 72px -20px rgba(0, 0, 0, 0.82),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
 }
 
-/* Step Progress Rail */
-.apple-contact-step-rail {
-  display: flex;
+body .angel-contact-redesign #booking-form {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+}
+
+.angel-contact-redesign .ac-step-stage {
+  animation: acStepReveal 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes acStepReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Signature N° Progress Header — override custom.css mobile `display:none` */
+body .angel-contact-redesign .contact-inner .step-title {
+  display: flex !important;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1.35rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin-bottom: clamp(1.75rem, 3.2vw, 2.65rem) !important;
+  padding-bottom: 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-.apple-contact-step-pill {
+.angel-contact-redesign .ac-progress-header {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.4rem;
-  min-height: 36px;
-  padding: 0 0.75rem;
-  border-radius: var(--apple-radius-pill);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: var(--apple-label-tertiary);
-  font-size: 0.76rem;
+  gap: 0.95rem;
+}
+
+.angel-contact-redesign .ac-slider-progress {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-right: 0;
+}
+
+.angel-contact-redesign .ac-slider-progress::before {
+  display: none !important;
+}
+
+.angel-contact-redesign .ac-slider-prefix {
+  position: relative;
+  margin-right: 1.35rem;
+  font-weight: 600;
+  color: rgba(235, 235, 245, 0.72);
+}
+
+.angel-contact-redesign .ac-slider-prefix small {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.92rem;
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.angel-contact-redesign .ac-step-current {
+  font-variant-numeric: tabular-nums;
+  color: var(--contact-accent);
+  font-weight: 700;
+}
+
+.angel-contact-redesign .ac-progress-line {
+  position: relative;
+  width: clamp(78px, 12vw, 136px);
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.angel-contact-redesign .ac-progress-line__fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffffff 0%, var(--contact-accent) 100%);
+  transition: width 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.angel-contact-redesign .ac-step-total {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgba(235, 235, 245, 0.48);
+}
+
+.angel-contact-redesign .ac-step-category-pill {
+  padding: 0.24rem 0.68rem;
+  border-radius: 999px;
+  background: rgba(100, 210, 255, 0.12);
+  border: 1px solid rgba(100, 210, 255, 0.32);
+  color: var(--contact-accent);
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Interactive Numbered Step Pills (01 .. 08) */
+.angel-contact-redesign .ac-step-dots {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.angel-contact-redesign .ac-step-dot {
+  min-width: 30px;
+  height: 28px;
+  padding: 0 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(235, 235, 245, 0.48);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
   cursor: pointer;
   transition:
-    transform 150ms var(--apple-ease-spring),
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
 }
 
-.apple-contact-step-pill:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+.angel-contact-redesign .ac-step-dot:disabled {
+  cursor: default;
+  opacity: 0.38;
 }
 
-.apple-contact-step-pill.is-done {
-  border-color: rgba(48, 209, 88, 0.4);
-  color: var(--apple-label-secondary);
-}
-
-.apple-contact-step-pill.is-done .apple-contact-step-pill__num {
+.angel-contact-redesign .ac-step-dot.is-done {
+  background: rgba(48, 209, 88, 0.12);
+  border-color: rgba(48, 209, 88, 0.38);
   color: #30d158;
 }
 
-.apple-contact-step-pill.is-current {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.18);
-  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.55);
+.angel-contact-redesign .ac-step-dot.is-current {
+  background: rgba(var(--contact-accent-rgb), 0.22);
+  border-color: var(--contact-accent);
   color: #ffffff;
+  box-shadow: 0 0 14px rgba(var(--contact-accent-rgb), 0.35);
 }
 
-.apple-contact-step-pill__num {
-  font-size: 0.7rem;
-  font-variant-numeric: tabular-nums;
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-question-label {
-  display: block;
-  margin-bottom: 0.45rem;
-}
-
-.apple-contact-question-label h2 {
+/* Question Prompt Typography */
+.angel-contact-redesign #booking-form ul.ac-question-list {
+  padding: 0;
   margin: 0;
-  font-size: clamp(1.55rem, 2.6vw, 2.25rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.022em;
+  list-style: none;
+}
+
+body .angel-contact-redesign #booking-form label.ac-label {
+  display: block;
+  margin-bottom: clamp(1.15rem, 2.2vw, 1.65rem) !important;
+}
+
+body .angel-contact-redesign form#booking-form h3 {
+  margin: 0 0 0.45rem !important;
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem) !important;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.026em;
   color: #ffffff;
+  text-wrap: balance;
 }
 
-.apple-contact-question-hint {
-  margin: 0 0 1.45rem;
+.angel-contact-redesign .ac-question-hint {
+  display: block;
   font-size: 0.95rem;
-  color: var(--apple-label-tertiary);
+  font-weight: 400;
+  line-height: 1.45;
+  color: rgba(235, 235, 245, 0.56);
 }
 
-/* Tactile Inputs & Textarea */
-.apple-contact-input {
+/* Architectural Underline Input Field + Animated Specular Focus Line */
+.angel-contact-redesign .ac-field-block {
+  margin-bottom: 0.5rem;
+}
+
+.angel-contact-redesign .ac-field-wrap {
+  position: relative;
   width: 100%;
-  min-height: 56px;
-  padding: 0.9rem 1.2rem;
-  border-radius: var(--apple-radius-inner);
-  background: rgba(8, 10, 16, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+body .angel-contact-redesign #booking-form input.ac-input,
+body .angel-contact-redesign #booking-form textarea.ac-input,
+body .angel-contact-redesign #booking-form select.ac-input {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 68px;
+  padding: 0.75rem 5.5rem 0.9rem 0 !important;
+  margin-bottom: 0 !important;
+  background: transparent !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24) !important;
+  border-radius: 0 !important;
   color: #ffffff !important;
   font-family: inherit;
-  font-size: 1.06rem !important;
-  line-height: 1.5;
-  outline: none;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45);
-  transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    background-color 180ms ease;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem) !important;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-bottom-color 220ms ease;
 }
 
-.apple-contact-input::placeholder {
-  color: rgba(235, 235, 245, 0.38);
+body .angel-contact-redesign #booking-form textarea.ac-input {
+  min-height: 112px;
+  resize: vertical;
 }
 
-.apple-contact-input:focus {
-  background: rgba(12, 16, 24, 0.92) !important;
-  border-color: var(--route-accent, #64d2ff) !important;
-  box-shadow: 0 0 0 3px rgba(var(--route-accent-rgb, 100, 210, 255), 0.24) !important;
+body .angel-contact-redesign #booking-form input.ac-input::placeholder,
+body .angel-contact-redesign #booking-form textarea.ac-input::placeholder {
+  color: rgba(235, 235, 245, 0.32) !important;
 }
 
-/* Choice Chips & Preset Pills */
-.apple-contact-chip-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
-}
-
-.apple-contact-choice-chip {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  min-height: 50px;
-  padding: 0.65rem 0.95rem;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--apple-label-secondary);
-  font-size: 0.86rem;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition:
-    transform 150ms var(--apple-ease-spring),
-    background-color 170ms ease,
-    border-color 170ms ease,
-    color 170ms ease;
-}
-
-.apple-contact-choice-chip:hover {
-  background: rgba(255, 255, 255, 0.085);
-  color: #ffffff;
-}
-
-.apple-contact-choice-chip:active {
-  transform: scale(0.97);
-}
-
-.apple-contact-choice-chip.is-selected {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.18);
-  border-color: var(--route-accent, #64d2ff);
-  color: #ffffff;
-  box-shadow: 0 0 0 1px rgba(var(--route-accent-rgb, 100, 210, 255), 0.4);
-}
-
-.apple-contact-choice-chip__dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  flex-shrink: 0;
-}
-
-.apple-contact-choice-chip.is-selected .apple-contact-choice-chip__dot {
-  background: var(--route-accent, #64d2ff);
-  box-shadow: 0 0 8px var(--route-accent, #64d2ff);
-}
-
-.apple-contact-preset-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-bottom: 0.85rem;
-}
-
-.apple-contact-preset-pill {
-  min-height: 36px;
-  padding: 0 0.85rem;
-  border-radius: var(--apple-radius-pill);
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--apple-label-secondary);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 140ms var(--apple-ease-spring),
-    background-color 160ms ease,
-    border-color 160ms ease;
-}
-
-.apple-contact-preset-pill:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-}
-
-.apple-contact-preset-pill.is-selected {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.2);
-  border-color: var(--route-accent, #64d2ff);
-  color: #ffffff;
-}
-
-.apple-contact-error {
-  display: inline-block;
-  margin-top: 0.65rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #ff453a;
-}
-
-.apple-contact-actions-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 1.75rem;
-}
-
-.apple-contact-actions-bar button[disabled] {
-  opacity: 0.38;
+.angel-contact-redesign .ac-focus-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--contact-accent), #ffffff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
 
-/* Express Sheet Grid */
-.apple-contact-sheet-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.15rem;
-  margin-top: 1.25rem;
+.angel-contact-redesign .ac-field-wrap:focus-within .ac-focus-line {
+  transform: scaleX(1);
 }
 
-.apple-contact-sheet-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
+.angel-contact-redesign .ac-valid-badge {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(48, 209, 88, 0.14);
+  border: 1px solid rgba(48, 209, 88, 0.38);
+  color: #30d158;
+  font-size: 0.72rem;
+  font-weight: 600;
+  pointer-events: none;
 }
 
-.apple-contact-sheet-field--full {
-  grid-column: 1 / -1;
+.angel-contact-redesign .ac-valid-badge--inline {
+  position: static;
+  transform: none;
 }
 
-.apple-contact-sheet-field__label {
+body .angel-contact-redesign #booking-form [aria-invalid='true'] {
+  border-bottom-color: #ff453a !important;
+}
+
+/* ==========================================================================
+   Redesigned Apple Liquid Glass Spatial Dropdown (.ac-custom-select)
+   ========================================================================== */
+.angel-contact-redesign .ac-custom-select {
+  position: relative;
+  width: 100%;
+  z-index: 30;
+}
+
+.angel-contact-redesign .ac-custom-select__trigger {
+  width: 100%;
+  min-height: 76px;
+  padding: 0.9rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--apple-label-secondary);
+  gap: 1rem;
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      80% 100% at 0% 50%,
+      rgba(var(--contact-accent-rgb), 0.1),
+      transparent 70%
+    ),
+    rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 14px 34px -14px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
-.apple-contact-sheet-field__ok {
+.angel-contact-redesign .ac-custom-select__trigger:hover,
+.angel-contact-redesign .ac-custom-select.is-open .ac-custom-select__trigger {
+  background:
+    radial-gradient(
+      80% 100% at 0% 50%,
+      rgba(var(--contact-accent-rgb), 0.16),
+      transparent 70%
+    ),
+    rgba(255, 255, 255, 0.07);
+  border-color: rgba(var(--contact-accent-rgb), 0.55);
+  box-shadow:
+    0 18px 40px -14px rgba(0, 0, 0, 0.78),
+    0 0 0 3px rgba(var(--contact-accent-rgb), 0.18),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+
+.angel-contact-redesign .ac-custom-select__placeholder {
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: rgba(235, 235, 245, 0.42);
+}
+
+.angel-contact-redesign .ac-custom-select__selected {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.angel-contact-redesign .ac-custom-select__code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: rgba(var(--contact-accent-rgb), 0.18);
+  border: 1px solid rgba(var(--contact-accent-rgb), 0.42);
+  color: var(--contact-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.angel-contact-redesign .ac-custom-select__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.angel-contact-redesign .ac-custom-select__value {
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.angel-contact-redesign .ac-custom-select__desc {
+  font-size: 0.82rem;
+  color: rgba(235, 235, 245, 0.58);
+}
+
+.angel-contact-redesign .ac-custom-select__tag {
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(235, 235, 245, 0.78);
+}
+
+.angel-contact-redesign .ac-custom-select__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.angel-contact-redesign .ac-custom-select__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.angel-contact-redesign .ac-custom-select__chevron.is-open {
+  transform: rotate(180deg);
+  background: var(--contact-accent);
+  border-color: var(--contact-accent);
+  color: #05070c;
+}
+
+/* Sculptural Liquid Glass Popover Drawer */
+.angel-contact-redesign .ac-custom-select__popover {
+  margin-top: 0.75rem;
+  padding: 1.15rem;
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      90% 90% at 100% 0%,
+      rgba(var(--contact-accent-rgb), 0.14),
+      transparent 70%
+    ),
+    rgba(8, 12, 20, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 28px 64px -16px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  animation: acStepReveal 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.angel-contact-redesign .ac-custom-select__popover-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.35rem 0.8rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(235, 235, 245, 0.54);
+}
+
+.angel-contact-redesign .ac-custom-select__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.angel-contact-redesign .ac-custom-select__option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.28rem;
+  padding: 0.85rem 1rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 150ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.angel-contact-redesign .ac-custom-select__option:hover,
+.angel-contact-redesign .ac-custom-select__option.is-highlighted {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(var(--contact-accent-rgb), 0.42);
+}
+
+.angel-contact-redesign .ac-custom-select__option:active {
+  transform: scale(0.98);
+}
+
+.angel-contact-redesign .ac-custom-select__option.is-selected {
+  background: rgba(var(--contact-accent-rgb), 0.18);
+  border-color: var(--contact-accent);
+  box-shadow: 0 0 0 1px rgba(var(--contact-accent-rgb), 0.35);
+}
+
+.angel-contact-redesign .ac-custom-select__option-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.angel-contact-redesign .ac-custom-select__option-code {
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--contact-accent);
+}
+
+.angel-contact-redesign .ac-custom-select__option-tag {
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(235, 235, 245, 0.48);
+}
+
+.angel-contact-redesign .ac-custom-select__option-check {
+  margin-left: auto;
   color: #30d158;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
-/* Prepared Review Grid */
-.apple-contact-review-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem;
-  margin-top: 1.25rem;
+.angel-contact-redesign .ac-custom-select__option-title {
+  font-size: 0.94rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #ffffff;
 }
 
-.apple-contact-review-item {
-  padding: 1rem 1.15rem;
-  border-radius: 14px;
+.angel-contact-redesign .ac-custom-select__option-sub {
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: rgba(235, 235, 245, 0.56);
+}
+
+/* Quick-Select Suggestion Pills beneath the Underline */
+.angel-contact-redesign .ac-quick-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.1rem;
+}
+
+.angel-contact-redesign .ac-quick-options__label {
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(235, 235, 245, 0.44);
+  margin-right: 0.25rem;
+}
+
+.angel-contact-redesign .ac-quick-pill {
+  min-height: 36px;
+  padding: 0 0.88rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  color: rgba(235, 235, 245, 0.8);
+  font-size: 0.81rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 150ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.angel-contact-redesign .ac-quick-pill:hover {
+  background: rgba(255, 255, 255, 0.11);
+  color: #ffffff;
+}
+
+.angel-contact-redesign .ac-quick-pill:active {
+  transform: scale(0.96);
+}
+
+.angel-contact-redesign .ac-quick-pill.is-selected {
+  background: rgba(var(--contact-accent-rgb), 0.2);
+  border-color: var(--contact-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Validation Error Line */
+.angel-contact-redesign .errorTxt {
+  min-height: 26px;
+  margin-top: 0.55rem;
+  margin-bottom: 1.15rem;
+}
+
+.angel-contact-redesign span.error {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: #ff453a;
+}
+
+/* Tactile Prev / Next Action Bar — explicitly beats `li.action_li button{background: transparent !important}` */
+body .angel-contact-redesign li.action_li {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.angel-contact-redesign .ac-nav-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+body .angel-contact-redesign li.action_li button.prev-btn,
+body .angel-contact-redesign li.action_li button.next-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: auto !important;
+  height: 48px !important;
+  min-width: 118px;
+  padding: 0 1.4rem !important;
+  border-radius: 999px !important;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+body .angel-contact-redesign li.action_li button.prev-btn {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+}
+
+body .angel-contact-redesign li.action_li button.prev-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+body .angel-contact-redesign li.action_li button.prev-btn:disabled {
+  opacity: 0.28 !important;
+  cursor: not-allowed;
+}
+
+body .angel-contact-redesign li.action_li button.next-btn {
+  background: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  color: #05070c !important;
+  box-shadow: 0 12px 30px -8px rgba(255, 255, 255, 0.35) !important;
+}
+
+body .angel-contact-redesign li.action_li button.next-btn:hover {
+  background: var(--contact-accent) !important;
+  border-color: var(--contact-accent) !important;
+  box-shadow: 0 14px 34px -8px rgba(var(--contact-accent-rgb), 0.55) !important;
+  transform: translateY(-1px);
+}
+
+body .angel-contact-redesign li.action_li button.prev-btn:active:not(:disabled),
+body .angel-contact-redesign li.action_li button.next-btn:active {
+  transform: scale(0.96);
+}
+
+body .angel-contact-redesign li.action_li button.prev-btn img {
+  width: 18px;
+  height: auto;
+  filter: brightness(0) invert(1) !important;
+}
+
+body .angel-contact-redesign li.action_li button.next-btn img {
+  width: 18px;
+  height: auto;
+  filter: brightness(0) !important;
+}
+
+.angel-contact-redesign .ac-enter-hint {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(235, 235, 245, 0.44);
+}
+
+/* Live Answered Trail Strip below Active Step */
+.angel-contact-redesign .ac-answered-trail {
+  margin-top: 1.85rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.angel-contact-redesign .ac-answered-trail__title {
+  font-size: 0.73rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(235, 235, 245, 0.45);
+}
+
+.angel-contact-redesign .ac-answered-trail__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.angel-contact-redesign .ac-answered-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 32px;
+  padding: 0 0.72rem;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  color: rgba(235, 235, 245, 0.78);
+  font-size: 0.76rem;
   cursor: pointer;
   transition:
     background-color 160ms ease,
     border-color 160ms ease;
 }
 
-.apple-contact-review-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.42);
+.angel-contact-redesign .ac-answered-chip:hover,
+.angel-contact-redesign .ac-answered-chip.is-active {
+  background: rgba(var(--contact-accent-rgb), 0.14);
+  border-color: rgba(var(--contact-accent-rgb), 0.45);
+  color: #ffffff;
 }
 
-.apple-contact-review-item__head {
+.angel-contact-redesign .ac-answered-chip__num {
+  color: var(--contact-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.angel-contact-redesign .ac-answered-chip__key {
+  color: rgba(235, 235, 245, 0.52);
+}
+
+.angel-contact-redesign .ac-answered-chip__val {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Prepared Enquiry Summary Screen */
+.angel-contact-redesign .contact-prepared {
+  max-width: 100%;
+  animation: acStepReveal 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.angel-contact-redesign .contact-prepared__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.angel-contact-redesign .contact-prepared__eyebrow {
+  margin: 0 0 0.55rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--contact-accent);
+}
+
+.angel-contact-redesign .contact-prepared h2 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.026em;
+  color: #ffffff;
+}
+
+.angel-contact-redesign .contact-prepared__lead {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(235, 235, 245, 0.68);
+}
+
+.angel-contact-redesign .contact-prepared__badge {
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(48, 209, 88, 0.15);
+  border: 1px solid rgba(48, 209, 88, 0.42);
+  color: #30d158;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.angel-contact-redesign .contact-prepared__summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin: 0 0 2rem;
+  padding: 1.35rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.angel-contact-redesign .contact-prepared__row {
+  padding: 0.75rem 0.95rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.angel-contact-redesign .contact-prepared__row:hover {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(var(--contact-accent-rgb), 0.42);
+}
+
+.angel-contact-redesign .contact-prepared__row dt {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.3rem;
-}
-
-.apple-contact-review-item__label {
-  font-size: 0.73rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--apple-label-tertiary);
-}
-
-.apple-contact-review-item__edit {
+  gap: 0.4rem;
   font-size: 0.72rem;
   font-weight: 600;
-  color: var(--route-accent, #64d2ff);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(235, 235, 245, 0.52);
+  margin-bottom: 0.28rem;
 }
 
-.apple-contact-review-item__val {
-  display: block;
+.angel-contact-redesign .contact-prepared__row dt span {
+  color: var(--contact-accent);
+}
+
+.angel-contact-redesign .contact-prepared__edit-tag {
+  margin-left: auto;
+  font-style: normal;
+  color: var(--contact-accent);
+  opacity: 0.8;
+}
+
+.angel-contact-redesign .contact-prepared__row dd {
+  margin: 0;
   font-size: 0.95rem;
+  font-weight: 500;
   color: #ffffff;
   word-break: break-word;
 }
 
-/* Right Sidebar: Live Summary & Direct Desks */
-.apple-contact-sidebar {
+.angel-contact-redesign .contact-prepared__actions {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.apple-contact-summary-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 0.75rem;
-}
-
-.apple-contact-summary-head h3 {
-  margin: 0;
-  font-size: 1.2rem;
-}
-
-.apple-contact-summary-pct {
-  font-size: 1.45rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-progress-track {
-  width: 100%;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  margin-bottom: 1.15rem;
-}
-
-.apple-contact-progress-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--route-accent, #64d2ff), #30d158);
-  transition: width 260ms var(--apple-ease-spring);
-}
-
-.apple-contact-summary-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.apple-contact-summary-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 0.75rem;
-  padding: 0.48rem 0.7rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid transparent;
-  font-size: 0.8rem;
+  align-items: center;
+}
+
+.angel-contact-redesign .contact-prepared__send {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: #05070c;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    transform 150ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease;
+}
+
+.angel-contact-redesign .contact-prepared__send:hover {
+  background: var(--contact-accent);
+  border-color: var(--contact-accent);
+}
+
+.angel-contact-redesign .contact-prepared__edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
+    background-color 160ms ease,
+    border-color 160ms ease;
 }
 
-.apple-contact-summary-row:hover {
-  background: rgba(255, 255, 255, 0.06);
+.angel-contact-redesign .contact-prepared__edit:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
-.apple-contact-summary-row.is-active {
-  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.14);
-  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.38);
+/* ==========================================================================
+   Redesigned Bottom Direct Contact Section:
+   For Customer Supports · For Customer Business · For Direct Mobile (+91-8058465733)
+   ========================================================================== */
+.angel-contact-redesign .ac-support-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(10, 14, 22, 0.45) 0%, rgba(3, 5, 10, 0.95) 100%);
 }
 
-.apple-contact-summary-row__key {
-  font-weight: 600;
-  color: var(--apple-label-secondary);
+body .angel-contact-redesign .genralinformation {
+  width: min(1080px, calc(100% - 3rem)) !important;
+  padding: 0 !important;
+  margin-inline: auto !important;
 }
 
-.apple-contact-summary-row__val {
-  color: var(--apple-label-tertiary);
-  text-align: right;
+.angel-contact-redesign .ac-support-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.apple-contact-summary-row.is-filled .apple-contact-summary-row__val {
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.apple-contact-desk-box {
-  padding: 0.95rem 1.05rem;
-  border-radius: 14px;
-  background: rgba(8, 10, 16, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  margin-bottom: 0.75rem;
-}
-
-.apple-contact-desk-box:last-child {
-  margin-bottom: 0;
-}
-
-.apple-contact-desk-box__label {
-  display: block;
-  margin-bottom: 0.35rem;
-  font-size: 0.72rem;
-  font-weight: 600;
+.angel-contact-redesign .ac-support-header__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--apple-label-tertiary);
+  color: var(--contact-accent);
 }
 
-.apple-contact-desk-box__row {
+.angel-contact-redesign .ac-support-header__title {
+  margin: 0;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.angel-contact-redesign .supportmail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+body .angel-contact-redesign .supcom,
+body .angel-contact-redesign .supcom.rightsupport,
+body .angel-contact-redesign .supcom.mobilesupport {
+  float: none !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 1.5rem 1.6rem !important;
+  border-radius: 22px;
+  background:
+    radial-gradient(
+      90% 90% at 100% 0%,
+      rgba(100, 210, 255, 0.08),
+      transparent 70%
+    ),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 18px 40px -18px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 200ms ease,
+    background-color 200ms ease;
+}
+
+body .angel-contact-redesign .supcom:hover {
+  transform: translateY(-3px);
+  background:
+    radial-gradient(
+      90% 90% at 100% 0%,
+      rgba(100, 210, 255, 0.15),
+      transparent 70%
+    ),
+    rgba(255, 255, 255, 0.065);
+  border-color: rgba(var(--contact-accent-rgb), 0.45);
+}
+
+.angel-contact-redesign .supcom__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
 }
 
-.apple-contact-desk-box__mail {
-  color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
+.angel-contact-redesign .supcom__badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--contact-accent);
 }
 
-.apple-contact-desk-box__mail:hover {
-  color: var(--route-accent, #64d2ff);
-}
-
-.apple-contact-copy-chip {
-  padding: 0.24rem 0.65rem;
-  border-radius: var(--apple-radius-pill);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #ffffff;
+.angel-contact-redesign .supcom__copy-btn {
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(235, 235, 245, 0.85);
   font-size: 0.72rem;
   font-weight: 600;
   cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
-@media (max-width: 1080px) {
-  .apple-contact-layout {
-    grid-template-columns: 1fr;
-  }
+.angel-contact-redesign .supcom__copy-btn:hover {
+  background: rgba(var(--contact-accent-rgb), 0.2);
+  border-color: var(--contact-accent);
+  color: #ffffff;
+}
 
-  .apple-contact-chip-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+body .angel-contact-redesign .supportmail h4 {
+  margin: 0.15rem 0 0 !important;
+  line-height: 1.3 !important;
+  font-size: 0.92rem !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: rgba(235, 235, 245, 0.86) !important;
+}
+
+.angel-contact-redesign .downicon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.2rem 0;
+}
+
+.angel-contact-redesign .downicon img {
+  width: 20px !important;
+  height: auto;
+  margin-top: 0 !important;
+  opacity: 0.85 !important;
+  flex-shrink: 0;
+}
+
+.angel-contact-redesign .downicon p {
+  margin: 0 !important;
+  padding-left: 0 !important;
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #ffffff !important;
+  word-break: break-word;
+}
+
+.angel-contact-redesign .downicon p a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  padding-bottom: 2px;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.angel-contact-redesign .downicon p a:hover {
+  color: var(--contact-accent);
+  border-bottom-color: var(--contact-accent);
+}
+
+.angel-contact-redesign .supcom__sub {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(235, 235, 245, 0.5);
+}
+
+/* Redesigned Footer Bar (.color_creme / .footer_inner) */
+body footer.color_creme {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 1.65rem 0 2.15rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  background: #03050a !important;
+  color: rgba(235, 235, 245, 0.6);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans',
+    'Inter', system-ui, sans-serif;
+}
+
+body footer.color_creme .footer_inner {
+  width: min(1080px, calc(100% - 3rem)) !important;
+  padding: 0 !important;
+  margin-inline: auto !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+}
+
+body footer.color_creme .menu_footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body footer.color_creme .menu_footer ul li a {
+  color: rgba(235, 235, 245, 0.72) !important;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+body footer.color_creme .menu_footer ul li a:hover {
+  color: #64d2ff !important;
+}
+
+body footer.color_creme .col p {
+  margin: 0;
+  font-size: 0.85rem !important;
+  color: rgba(235, 235, 245, 0.54) !important;
+}
+
+body footer.color_creme .soical {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+body footer.color_creme .soical a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin: 0 !important;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #ffffff !important;
+  font-size: 0.95rem !important;
+  text-decoration: none;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+body footer.color_creme .soical a:hover {
+  transform: translateY(-1px);
+  background: rgba(100, 210, 255, 0.18);
+  border-color: rgba(100, 210, 255, 0.5);
+}
+
+@media (max-width: 960px) {
+  .angel-contact-redesign .supportmail {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 720px) {
-  .apple-contact-chip-grid,
-  .apple-contact-sheet-grid,
-  .apple-contact-review-grid {
+  body .angel-contact-redesign .contact-inner,
+  body .angel-contact-redesign .genralinformation,
+  body footer.color_creme .footer_inner {
+    width: calc(100% - 2rem) !important;
+  }
+
+  .angel-contact-redesign .contact-prepared__summary,
+  .angel-contact-redesign .ac-custom-select__grid {
     grid-template-columns: 1fr;
   }
 
@@ -2653,4 +3557,3 @@
     min-width: 100%;
   }
 }
-

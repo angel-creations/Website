@@ -11,11 +11,14 @@ export function LegacyFooter(): JSX.Element {
               <li>
                 <a href="/terms-of-service/">Terms of Service</a>
               </li>
+              <li>
+                <a href="tel:+918058465733">+91-8058465733</a>
+              </li>
             </ul>
           </div>
         </div>
         <div className="col">
-          <p>© {new Date().getFullYear()} Angel Creations</p>
+          <p>© {new Date().getFullYear()} Angel Creations · Mobile: +91-8058465733</p>
         </div>
         <div className="col">
           <div className="soical">
