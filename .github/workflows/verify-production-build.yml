@@ -1,11 +1,10 @@
 name: Verify production build
 
 on:
+  # Build and verify every branch so versions are tested before merging to main.
   push:
     branches:
-      - main
-      - "fix/**"
-      - "staging/**"
+      - "**"
   pull_request:
     branches:
       - main
