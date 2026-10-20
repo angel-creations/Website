@@ -402,6 +402,7 @@ jobs:
             exit 1
           fi
           echo "Created a pre-deployment backup on the Hostinger account."
+          echo "::notice title=Deploy stage::Pre-deployment backup created"
 
           rollback() {
             echo "Deployment failed; attempting to restore the pre-deployment backup."
@@ -437,6 +438,7 @@ jobs:
             exit 1
           fi
           echo "Uploaded dist/ to the document root."
+          echo "::notice title=Deploy stage::dist/ uploaded"
 
           # A leftover WordPress index.php wins the directory index on this host and
           # serves a fatal error (HTTP 500 -> blank page) instead of index.html.
@@ -490,15 +492,23 @@ jobs:
           echo "Live homepage status: $HOME_CODE"
 
           if [ "$HOME_CODE" != "200" ]; then
-            echo "CRITICAL: $SITE_URL/ returned $HOME_CODE although the deployable files are in place." >&2
-            echo "The website files are correct; the server is not serving them. Check the document root mapping," >&2
-            echo "a stale .htaccess, or a leftover index.php that takes the directory index. Backup: $BACKUP_PATH" >&2
+            echo "::error title=Live homepage not 200::$SITE_URL/ returned $HOME_CODE after the files were uploaded"
+            head -c 300 "$HOME_FILE" | tr '\n' ' ' | while IFS= read -r line; do echo "::error title=Live body::${line//::/:}"; done
             exit 1
           fi
 
           if ! grep -q 'id="root"' "$HOME_FILE"; then
-            echo "CRITICAL: $SITE_URL/ is not serving the built document (no #root container)." >&2
-            echo "Confirm that HOSTINGER_DOCUMENT_ROOT points at the directory the domain actually serves. Backup: $BACKUP_PATH" >&2
+            echo "::error title=Wrong document root::$SITE_URL/ is not serving the built document (no #root container); check HOSTINGER_DOCUMENT_ROOT"
+            exit 1
+          fi
+
+          if ! grep -Eq 'src="[^"]*/assets/[^"]*\.js"' "$HOME_FILE"; then
+            if grep -q '/src/main.tsx' "$HOME_FILE"; then
+              echo "::error title=Source tree is being served::$SITE_URL/ serves the repository index.html (it loads /src/main.tsx), not dist/. Another deployment (Hostinger Advanced -> Git) is resetting the document root after this upload."
+            else
+              echo "::error title=Build not served::$SITE_URL/ does not reference a compiled /assets/*.js bundle"
+            fi
+            head -c 300 "$HOME_FILE" | tr '\n' ' ' | while IFS= read -r line; do echo "::error title=Live body::${line//::/:}"; done
             exit 1
           fi
 
