@@ -5,7 +5,7 @@
     "heading": "Dive into new world, live the world you want.",
     "route": "/metaverse/",
     "video": "/media/videos/Metaverse.mp4",
-    "poster": "/media/images/generated-home-posters/metaverse.jpg",
+    "poster": "/media/images/generated-home-posters/metaverse.webp",
     "summary": "Angel Creations creates virtual worlds and connected digital environments designed around how people explore, interact, communicate, learn, play and experience brands.",
     "creates": [
       "Metaverse",
@@ -37,7 +37,7 @@
     "heading": "Tech immersion: Real & digital objects interact.",
     "route": "/mixed-reality/",
     "video": "/media/videos/Mixed-Reality.mp4",
-    "poster": "/media/images/generated-home-posters/mixed-reality.jpg",
+    "poster": "/media/images/generated-home-posters/mixed-reality.webp",
     "summary": "Angel Creations explores Mixed Reality as a medium for training, education, entertainment, gaming, architecture, marketing, collaboration, retail and spatial experiences.",
     "creates": [
       "MR Content Creation",
@@ -68,10 +68,10 @@
   {
     "number": "03",
     "label": "Virtual Reality",
-    "heading": "You’re not imagining it, you’re experiencing it!",
+    "heading": "You\u2019re not imagining it, you\u2019re experiencing it!",
     "route": "/virtual-reality/",
     "video": "/media/videos/Virtual-Reality.mp4",
-    "poster": "/media/images/generated-home-posters/virtual-reality.jpg",
+    "poster": "/media/images/generated-home-posters/virtual-reality.webp",
     "summary": "Angel Creations develops VR experiences across content, gaming, training, education, marketing, architecture, healthcare, conferencing and immersive communication.",
     "creates": [
       "VR Content Development",
@@ -100,7 +100,7 @@
     "hasExpandedStory": true,
     "storySectionCount": 7,
     "ctaLead": "Step inside the idea.",
-    "ctaAction": "Let's create an experience people don't just watch — they enter."
+    "ctaAction": "Let's create an experience people don't just watch \u2014 they enter."
   },
   {
     "number": "04",
@@ -108,7 +108,7 @@
     "heading": "Blending real & virtual worlds, Immersive experience!",
     "route": "/augment-reality/",
     "video": "/media/videos/Augmented-Reality-Showroom.mp4",
-    "poster": "/media/images/generated-home-posters/augmented-reality.jpg",
+    "poster": "/media/images/generated-home-posters/augmented-reality.webp",
     "summary": "Angel Creations explores AR across industrial applications, tourism, navigation, retail, marketing, gaming, education, healthcare, entertainment and creative experiences.",
     "creates": [
       "AR Applications",
@@ -145,7 +145,7 @@
     "heading": "We give you amazing animation in both 2D & 3D.",
     "route": "/animation/",
     "video": "/media/videos/Singing-girl.mp4",
-    "poster": "/media/images/generated-home-posters/animation.jpg",
+    "poster": "/media/images/generated-home-posters/animation.webp",
     "summary": "Angel Creations works across 2D and 3D animation, motion graphics, visual effects, character animation, interactive animation, explainer content, pre-visualization and AR animation.",
     "creates": [
       "Concept Development",
@@ -186,7 +186,7 @@
     "heading": "Elevating Brands through Digital Innovation.",
     "route": "/brand-advertisement/",
     "video": "/media/videos/Brand-Advertisement.mp4",
-    "poster": "/media/images/generated-home-posters/brand-advertisement.jpg",
+    "poster": "/media/images/generated-home-posters/brand-advertisement.webp",
     "summary": "Angel Creations brings creative thinking, design, content, animation, film and digital experience together to help brands communicate in ways people notice and remember.",
     "creates": [
       "Marketing & Branding",
@@ -226,8 +226,8 @@
     "route": "/media-production/",
     "video": "/media/videos/Main-Background-with-sound.mp4",
     "poster": "/media/library/media-production/hero-media-production.jpg",
-    "mediaType": "video/quicktime",
-    "remote": true,
+    "mediaType": "video/mp4",
+    "remote": false,
     "summary": "Angel Creations brings media production disciplines together to create visual stories across film, video, animation, photography, events and digital experiences.",
     "creates": [
       "Film Production",

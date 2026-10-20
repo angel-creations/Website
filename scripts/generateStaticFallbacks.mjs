@@ -232,6 +232,12 @@ function documentShell({ title, description, canonical, robots, ogTitle, image, 
 ${description ? `<meta name="description" content="${escapeHtml(description)}">` : ''}
 <meta name="robots" content="${escapeHtml(robots || 'index, follow')}">
 <link rel="canonical" href="${escapeHtml(canonical)}">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0b0b0f">
 <meta property="og:title" content="${escapeHtml(ogTitle || title)}">
 ${description ? `<meta property="og:description" content="${escapeHtml(description)}">` : ''}
 <meta property="og:url" content="${escapeHtml(canonical)}">

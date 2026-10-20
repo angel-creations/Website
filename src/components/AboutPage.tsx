@@ -3,7 +3,7 @@ import { getNetworkInformation, prefersReducedData, prefersReducedMotion } from 
 import { SiteFooter } from './SiteFooter';
 
 const showreelVideo = '/media/videos/Main-Background-with-sound.mp4';
-const showreelPoster = '/media/images/generated-home-posters/menu-background.jpg';
+const showreelPoster = '/media/images/generated-home-posters/menu-background.webp';
 
 type DisciplineRecord = {
   number: string;
@@ -1084,7 +1084,7 @@ export function AboutPage(): JSX.Element {
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="auto"
                 poster={showreelPoster}
               >
                 <source src={showreelVideo} type="video/mp4" />

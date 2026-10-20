@@ -5,7 +5,7 @@ import { navigate } from '../utils/routes';
 
 const logo = '/media/logos/logo-rectangle-1.png';
 const menuVideo = '/media/videos/Main-Background-with-sound.mp4';
-const menuPoster = '/media/images/generated-home-posters/menu-background.jpg';
+const menuPoster = '/media/images/generated-home-posters/menu-background.webp';
 
 const primaryItems: NavigationItem[] = [
   { label: 'About Us', href: '/about/', number: '01' },

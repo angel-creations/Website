@@ -22,6 +22,13 @@ RedirectMatch 404 ^/tsconfig[^/]*\.json$
 RedirectMatch 404 ^/vite\.config\.[cm]?[jt]s$
 RedirectMatch 404 ^/(README|CLAUDE|AGENTS)\.md$
 
+# The icon set and the web app manifest are first-class site assets, not build output.
+<IfModule mod_mime.c>
+  AddType image/x-icon .ico
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
 <IfModule mod_headers.c>
   # HTML must revalidate on every visit. If a document is served from cache while its
   # hashed bundle has been replaced, the browser requests a 404 asset and nothing runs.
@@ -39,6 +46,11 @@ RedirectMatch 404 ^/(README|CLAUDE|AGENTS)\.md$
   # Robots, sitemap and the RSS compatibility documents should stay fresh.
   <FilesMatch "^(robots|sitemap)\.(txt|xml)$">
     Header always set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+
+  # The manifest can change without a hashed filename, so do not pin it for a year.
+  <FilesMatch "\.webmanifest$">
+    Header always set Cache-Control "public, max-age=86400"
   </FilesMatch>
 </IfModule>
 
