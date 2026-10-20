@@ -1,11 +1,10 @@
 name: Verify production build
 
 on:
+  # Build and verify every branch so versions are tested before merging to main.
   push:
     branches:
-      - main
-      - "fix/**"
-      - "staging/**"
+      - "**"
   pull_request:
     branches:
       - main
@@ -180,9 +179,10 @@ jobs:
 
   live-site-diagnostics:
     name: Live site diagnostics (read-only)
-    # Manual diagnostic for "the site is blank" reports. Fetches the public site
-    # exactly as a browser does and reports what the server returns. Never deploys.
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    # Reports what the public site is actually serving. Fetches over the internet
+    # exactly as a browser does and never changes any file or deployment.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+    continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

@@ -1,0 +1,92 @@
+name: Integrate all branches into main
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: integrate-branches-into-main
+  cancel-in-progress: false
+
+jobs:
+  integrate:
+    name: Safely merge branch updates into main
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out complete repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Integrate updates and verify the production build
+        shell: bash
+        env:
+          SOURCE_REF: ${{ github.ref }}
+          SOURCE_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -Eeuo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin --prune '+refs/heads/*:refs/remotes/origin/*'
+
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            mapfile -t SOURCE_REFS < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | sed 's#^origin/##' | grep -v '^main$' | sort)
+          else
+            SOURCE_BRANCH="${SOURCE_REF#refs/heads/}"
+            if [[ "$SOURCE_BRANCH" == "main" || -z "$SOURCE_BRANCH" ]]; then
+              echo "Nothing to integrate from main."
+              exit 0
+            fi
+            SOURCE_REFS=("$SOURCE_BRANCH")
+          fi
+
+          if [[ "${#SOURCE_REFS[@]}" -eq 0 ]]; then
+            echo "No non-main branches found."
+            exit 0
+          fi
+
+          for SOURCE_BRANCH in "${SOURCE_REFS[@]}"; do
+            echo "::group::Integrating $SOURCE_BRANCH"
+            git fetch origin "refs/heads/$SOURCE_BRANCH:refs/remotes/origin/$SOURCE_BRANCH"
+
+            # Rebuild against the newest main on each attempt. Never force-push.
+            integrated=false
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git checkout -B integration origin/main
+              if ! git merge --no-ff --no-edit "refs/remotes/origin/$SOURCE_BRANCH"; then
+                git merge --abort || true
+                echo "::warning::Skipping $SOURCE_BRANCH: merge conflict. Resolve it manually before retrying."
+                break
+              fi
+
+              npm ci
+              if ! npm run build; then
+                echo "::warning::Skipping $SOURCE_BRANCH: production build failed after merge."
+                break
+              fi
+
+              if git push origin HEAD:main; then
+                echo "Integrated $SOURCE_BRANCH into main successfully."
+                integrated=true
+                break
+              fi
+
+              echo "::warning::main advanced during integration attempt $attempt; retrying against latest main."
+            done
+
+            if [[ "$integrated" != "true" ]]; then
+              echo "::warning::No changes from $SOURCE_BRANCH were published by this run."
+            fi
+            echo "::endgroup::"
+          done
