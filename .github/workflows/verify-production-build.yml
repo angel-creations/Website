@@ -373,7 +373,7 @@ jobs:
           RSYNC_RSH="ssh -p $HOSTINGER_PORT -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts"
 
           # Back up the complete current document root outside public_html before touching it.
-          BACKUP_PATH="$("${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          if ! BACKUP_PATH="$("${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" 2>/tmp/backup.err <<'REMOTE'
           set -Eeuo pipefail
           DOCROOT="$1"
           test -d "$DOCROOT" || { echo "Document root does not exist" >&2; exit 1; }
@@ -392,6 +392,15 @@ jobs:
           printf '%s\n' "$BACKUP_PATH"
           REMOTE
           )"
+          then
+            while IFS= read -r line; do
+              [ -n "$line" ] || continue
+              line="${line//::/:}"
+              echo "::error title=Pre-deployment backup failed::${line:0:180}"
+            done < /tmp/backup.err
+            echo "SSH target: $TARGET  document root: $DOCROOT" >&2
+            exit 1
+          fi
           echo "Created a pre-deployment backup on the Hostinger account."
 
           rollback() {
@@ -408,32 +417,30 @@ jobs:
           echo "Rollback completed from the saved backup."
           }
 
-          # Upload immutable hashed assets first and the HTML documents last. If the
-          # connection drops mid-upload the previous documents keep pointing at the
-          # previous assets, so the site never serves HTML whose bundle is missing
-          # (that ordering failure is what produces a blank white page).
-          if ! rsync -az --delay-updates --exclude='*.html' \
+          # Surface a failure reason as an annotation: job logs are not always readable
+          # from automation, and "the deploy failed" alone does not explain a blank site.
+          annotate() {
+            local title="$1"; shift
+            while IFS= read -r line; do
+              [ -n "$line" ] || continue
+              line="${line//::/:}"
+              echo "::error title=${title}::${line:0:180}"
+            done
+          }
+
+          if ! rsync -az --delay-updates \
             --exclude='.htaccess' \
             --exclude='.well-known/' \
-            -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/"; then
+            -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/" 2>/tmp/rsync.err; then
+            annotate 'Deploy rsync failed' < /tmp/rsync.err
             rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
             exit 1
           fi
-
-          if ! rsync -az --delay-updates -e "$RSYNC_RSH" dist/index.html "$TARGET:$DOCROOT/index.html"; then
-            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
-            exit 1
-          fi
-
-          if ! rsync -az --delay-updates --include='*/' --include='*.html' --exclude='*' \
-            -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/"; then
-            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
-            exit 1
-          fi
+          echo "Uploaded dist/ to the document root."
 
           # A leftover WordPress index.php wins the directory index on this host and
           # serves a fatal error (HTTP 500 -> blank page) instead of index.html.
-          "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          if ! "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE' 2>/tmp/quarantine.err
           set -Eeuo pipefail
           DOCROOT="$1"
           if [ -f "$DOCROOT/index.php" ]; then
@@ -445,6 +452,11 @@ jobs:
             echo "Moved the conflicting document-root index.php to $QUARANTINE so index.html is served."
           fi
           REMOTE
+          then
+            annotate 'index.php quarantine failed' < /tmp/quarantine.err
+            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
+            exit 1
+          fi
 
           if ! "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
           set -Eeuo pipefail
@@ -466,7 +478,7 @@ jobs:
           test -s "$DOCROOT$ENTRY"
           REMOTE
           then
-            echo "Remote output verification failed."
+            annotate 'Remote output verification failed'
             rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
             exit 1
           fi
