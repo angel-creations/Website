@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useLayoutEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { FloatingScrollTop } from '../components/FloatingScrollTop';
 import { Header } from '../components/Header';
 import { HomeSlideshow } from '../components/HomeSlideshow';
@@ -95,25 +95,12 @@ const publicLegacyRoutes = new Set([
   '/terms-of-service/', '/virtual-reality/', '/works/',
 ]);
 
-function RouteLoading({ message, insideMain = false }: { message: string; insideMain?: boolean }): JSX.Element {
-  const content = (
-    <section className="angel-route-loading" role="status" aria-live="polite" aria-busy="true">
-      <p className="angel-route-loading__eyebrow">Angel Creations / Please wait</p>
-      <h1>{message.replace(/[.]$/, '')}</h1>
-      <p className="angel-route-loading__copy">The page is getting ready. You can continue as soon as it appears.</p>
-      <span className="angel-route-loading__indicator" aria-hidden="true" />
-    </section>
+function RouteLoading({ message }: { message: string }): JSX.Element {
+  return (
+    <main id="main" className="site-main">
+      <p className="angel-route-loading" aria-live="polite">{message}</p>
+    </main>
   );
-  return insideMain
-    ? <>{content}</>
-    : <main id="main" className="site-main" aria-busy="true">{content}</main>;
-}
-
-function DismissStaticFallback(): null {
-  useLayoutEffect(() => {
-    document.getElementById('static-route-fallback')?.remove();
-  }, []);
-  return null;
 }
 
 function pageContent(page: LegacyPage, route: string): JSX.Element {
@@ -122,11 +109,8 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
     return (
       <>
         <main id="main" className="site-main">
-          <Suspense fallback={<RouteLoading message="Loading capability." insideMain />}>
-            <>
-              <CapabilityDetail capability={capability} />
-              <DismissStaticFallback />
-            </>
+          <Suspense fallback={<p className="angel-route-loading" aria-live="polite">Loading capability.</p>}>
+            <CapabilityDetail capability={capability} />
           </Suspense>
         </main>
         <LegacyFooter />
@@ -139,10 +123,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
     return (
       <>
         <Suspense fallback={<RouteLoading message="Loading experience." />}>
-          <>
-            <SliderExperience experience={experience} />
-            <DismissStaticFallback />
-          </>
+          <SliderExperience experience={experience} />
         </Suspense>
         <LegacyFooter />
       </>
@@ -150,13 +131,13 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   }
 
   if (route === '/') {
-    return <><HomeSlideshow /><DismissStaticFallback /></>;
+    return <HomeSlideshow />;
   }
 
   if (route === '/about/') {
     return (
       <Suspense fallback={<RouteLoading message="Loading studio." />}>
-        <><AboutPage /><DismissStaticFallback /></>
+        <AboutPage />
       </Suspense>
     );
   }
@@ -166,8 +147,8 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
       <div id="content" className="site-content">
         <div id="primary" className="content-area">
           <main id="main" className="site-main">
-            <Suspense fallback={<RouteLoading message="Loading works archive." insideMain />}>
-              <><VideoArchive /><DismissStaticFallback /></>
+            <Suspense fallback={<p className="angel-route-loading" aria-live="polite">Loading works archive.</p>}>
+              <VideoArchive />
             </Suspense>
           </main>
           <LegacyFooter />
@@ -181,8 +162,8 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
       <div id="content" className="site-content">
         <div id="primary" className="content-area">
           <main id="main" className="site-main">
-            <Suspense fallback={<RouteLoading message="Loading project enquiry." insideMain />}>
-              <><ContactWizard /><DismissStaticFallback /></>
+            <Suspense fallback={<p className="angel-route-loading" aria-live="polite">Loading project enquiry.</p>}>
+              <ContactWizard />
             </Suspense>
           </main>
           <LegacyFooter />
@@ -194,7 +175,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (route === '/privacy-policy/') {
     return (
       <Suspense fallback={<RouteLoading message="Loading privacy policy." />}>
-        <><LegalPage kind="privacy" /><DismissStaticFallback /></>
+        <LegalPage kind="privacy" />
       </Suspense>
     );
   }
@@ -202,7 +183,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (route === '/terms-of-service/') {
     return (
       <Suspense fallback={<RouteLoading message="Loading terms of service." />}>
-        <><LegalPage kind="terms" /><DismissStaticFallback /></>
+        <LegalPage kind="terms" />
       </Suspense>
     );
   }
@@ -211,7 +192,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
     return (
       <>
         <Suspense fallback={<RouteLoading message="Loading retired experience." />}>
-          <><NotFoundPage attemptedPath={route} statusCode={410} /><DismissStaticFallback /></>
+          <NotFoundPage attemptedPath={route} statusCode={410} />
         </Suspense>
         <LegacyFooter />
       </>
@@ -222,7 +203,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
     return (
       <>
         <Suspense fallback={<RouteLoading message="Loading page." />}>
-          <><NotFoundPage attemptedPath={route} /><DismissStaticFallback /></>
+          <NotFoundPage attemptedPath={route} />
         </Suspense>
         <LegacyFooter />
       </>
@@ -232,7 +213,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (publicLegacyRoutes.has(route)) {
     return (
       <Suspense fallback={<RouteLoading message="Loading archived page." />}>
-        <><PublicLegacyFallback route={route} /><DismissStaticFallback /></>
+        <PublicLegacyFallback route={route} />
       </Suspense>
     );
   }

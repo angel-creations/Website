@@ -6,9 +6,9 @@ import {
   type KeyboardEvent,
 } from 'react';
 
-const backIcon = '/assets/icons/contact-back.png';
-const nextIcon = '/assets/icons/contact-forward.png';
-const downIcon = '/assets/icons/contact-down.png';
+const backIcon = '/legacy-assets/icons/contact-back.png';
+const nextIcon = '/legacy-assets/icons/contact-forward.png';
+const downIcon = '/legacy-assets/icons/contact-down.png';
 
 type FieldKind = 'input' | 'textarea' | 'select';
 
@@ -448,7 +448,7 @@ export function ContactWizard(): JSX.Element {
     const shared = {
       id: `contact-field-${field.id}`,
       name: field.id,
-      className: 'ac-input',
+      className: 'ac-input wpcf7-form-control wpcf7-validates-as-required',
       autoComplete: field.autoComplete,
       maxLength: field.maxLength,
       'aria-required': !field.optional,
@@ -721,7 +721,7 @@ export function ContactWizard(): JSX.Element {
             <div className="ac-wizard-shell">
               <form
                 id="booking-form"
-                className="angel-enquiry-form"
+                className="wpcf7-form init"
                 aria-label="Project enquiry"
                 noValidate
                 onSubmit={(event) => {

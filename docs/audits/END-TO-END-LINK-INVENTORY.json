@@ -1,10 +1,10 @@
 {
   "auditDate": "2026-10-19",
   "environment": {
-    "previewBase": "http://127.0.0.1:4176",
+    "previewBase": "http://127.0.0.1:4175",
     "scope": "Built repository output and local Vite preview only; no production crawl or external-service requests were performed.",
     "production": "Production QA is Blocked: DNS resolved, but TLS to angelcreations.in ended before a certificate or HTTP response. The host is blocked by this sandbox's outbound network policy; origin/CDN/TLS configuration remains undiagnosed. See docs/audits/PRODUCTION-QA-2026-10-19.json.",
-    "browser": "Browser QA ran on Playwright Chromium 153.0.8010.0 against the local preview. 336 route×viewport cases plus 21 no-JavaScript fallback checks. External and optional video requests were blocked; see browserMatrix in the JSON report."
+    "browser": "Browser QA is blocked: no browser or automation package is installed and libnspr4.so is absent; see the production QA report."
   },
   "productionVerification": {
     "status": "Blocked",
@@ -21,15 +21,12 @@
     "sitemapRoutes": 21,
     "routeResponsesOk": 21,
     "staticAnchorInstances": 293,
-    "preHydrationRoutes": 21,
-    "preHydrationFallbackIssues": 0,
     "uniqueInternalAnchorTargets": 21,
     "internalTargetTests": 21,
     "brokenInternalTargets": 0,
     "emptyAnchorHrefs": 0,
     "localAssetReferences": 305,
     "missingOrUnservedLocalAssets": 0,
-    "localAssetMimeMismatches": 0,
     "uniqueSocialImages": 21,
     "socialMetadataIssues": 0,
     "externalWebTargets": 53,
@@ -37,13 +34,7 @@
     "contactProtocolTargets": 4,
     "remoteMediaAssets": 1,
     "remoteMediaTypeIssues": 0,
-    "statusProbeIssues": 0,
-    "browserViewportCount": 16,
-    "browserRouteCases": 336,
-    "browserMatrixIssues": 0,
-    "browserConsoleErrors": 0,
-    "browserPageErrors": 0,
-    "browserFailedLocalRequests": 0
+    "statusProbeIssues": 0
   },
   "verifiedFixes": [
     "Removed the stale no-JavaScript /360-video/ navigation link; the intentionally retired route now returns a branded 410 in local preview.",
@@ -52,9 +43,7 @@
     "Removed missing legacy SVG font fallback URLs from the active legacy stylesheet while retaining existing WOFF/WOFF2/TTF sources.",
     "Added unique 1200×630 local social-preview images and per-route Open Graph/Twitter headline, description, URL, dimensions, MIME type, and alt metadata for all 21 sitemap routes.",
     "Added a React render-error boundary and generated branded 403/404/410/500/502/503/504 documents; only local 404/410 path status behavior was verified.",
-    "Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion.",
-    "Added visible route-specific HTML fallbacks outside <noscript> so content appears before React; the app removes each shell only when its route content commits, while runtime errors retain an actionable error state.",
-    "Replaced the one-line Suspense text with an accessible, motion-aware main-content loading state."
+    "Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion."
   ],
   "routeInventory": [
     {
@@ -3055,7 +3044,6 @@
       ]
     }
   ],
-  "preHydrationFallbackIssues": [],
   "internalAnchorTargets": [
     "/",
     "/about/",
@@ -3084,7 +3072,7 @@
       "href": "/about/",
       "requestedPath": "/about/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/about/",
+      "finalUrl": "http://127.0.0.1:4175/about/",
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
@@ -3117,7 +3105,7 @@
       "href": "/works/",
       "requestedPath": "/works/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/works/",
+      "finalUrl": "http://127.0.0.1:4175/works/",
       "redirected": false,
       "sources": [
         "src/components/AboutPage.tsx",
@@ -3153,7 +3141,7 @@
       "href": "/contact/",
       "requestedPath": "/contact/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/contact/",
+      "finalUrl": "http://127.0.0.1:4175/contact/",
       "redirected": false,
       "sources": [
         "src/components/AboutPage.tsx",
@@ -3191,7 +3179,7 @@
       "href": "/metaverse/",
       "requestedPath": "/metaverse/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/metaverse/",
+      "finalUrl": "http://127.0.0.1:4175/metaverse/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3205,7 +3193,7 @@
       "href": "/mixed-reality/",
       "requestedPath": "/mixed-reality/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/mixed-reality/",
+      "finalUrl": "http://127.0.0.1:4175/mixed-reality/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3219,7 +3207,7 @@
       "href": "/virtual-reality/",
       "requestedPath": "/virtual-reality/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/virtual-reality/",
+      "finalUrl": "http://127.0.0.1:4175/virtual-reality/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3233,7 +3221,7 @@
       "href": "/augment-reality/",
       "requestedPath": "/augment-reality/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/augment-reality/",
+      "finalUrl": "http://127.0.0.1:4175/augment-reality/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3247,7 +3235,7 @@
       "href": "/animation/",
       "requestedPath": "/animation/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/animation/",
+      "finalUrl": "http://127.0.0.1:4175/animation/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3261,7 +3249,7 @@
       "href": "/brand-advertisement/",
       "requestedPath": "/brand-advertisement/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/brand-advertisement/",
+      "finalUrl": "http://127.0.0.1:4175/brand-advertisement/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3275,7 +3263,7 @@
       "href": "/media-production/",
       "requestedPath": "/media-production/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/media-production/",
+      "finalUrl": "http://127.0.0.1:4175/media-production/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3289,7 +3277,7 @@
       "href": "/privacy-policy/",
       "requestedPath": "/privacy-policy/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/privacy-policy/",
+      "finalUrl": "http://127.0.0.1:4175/privacy-policy/",
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
@@ -3322,7 +3310,7 @@
       "href": "/terms-of-service/",
       "requestedPath": "/terms-of-service/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/terms-of-service/",
+      "finalUrl": "http://127.0.0.1:4175/terms-of-service/",
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
@@ -3355,7 +3343,7 @@
       "href": "/",
       "requestedPath": "/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/",
+      "finalUrl": "http://127.0.0.1:4175/",
       "redirected": false,
       "sources": [
         "src/components/ApplicationErrorBoundary.tsx",
@@ -3390,7 +3378,7 @@
       "href": "/capabilities/brand/",
       "requestedPath": "/capabilities/brand/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/brand/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/brand/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3407,7 +3395,7 @@
       "href": "/capabilities/design/",
       "requestedPath": "/capabilities/design/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/design/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/design/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3426,7 +3414,7 @@
       "href": "/capabilities/content/",
       "requestedPath": "/capabilities/content/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/content/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/content/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3445,7 +3433,7 @@
       "href": "/capabilities/film/",
       "requestedPath": "/capabilities/film/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/film/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/film/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3461,7 +3449,7 @@
       "href": "/capabilities/animation-3d/",
       "requestedPath": "/capabilities/animation-3d/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/animation-3d/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/animation-3d/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3479,7 +3467,7 @@
       "href": "/capabilities/digital/",
       "requestedPath": "/capabilities/digital/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/digital/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/digital/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3498,7 +3486,7 @@
       "href": "/capabilities/experiences/",
       "requestedPath": "/capabilities/experiences/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/experiences/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/experiences/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3517,7 +3505,7 @@
       "href": "/capabilities/creative-technology/",
       "requestedPath": "/capabilities/creative-technology/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4176/capabilities/creative-technology/",
+      "finalUrl": "http://127.0.0.1:4175/capabilities/creative-technology/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -4466,40 +4454,9 @@
   "insecureHttpTargets": [],
   "localAssetInventory": [
     {
-      "url": "/assets/index-BCi8ns9e.js",
+      "url": "/assets/index-C3fEPEsR.css",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "text/javascript",
-      "referencedBy": [
-        "dist/about/index.html (src)",
-        "dist/animation/index.html (src)",
-        "dist/augment-reality/index.html (src)",
-        "dist/brand-advertisement/index.html (src)",
-        "dist/capabilities/animation-3d/index.html (src)",
-        "dist/capabilities/brand/index.html (src)",
-        "dist/capabilities/content/index.html (src)",
-        "dist/capabilities/creative-technology/index.html (src)",
-        "dist/capabilities/design/index.html (src)",
-        "dist/capabilities/digital/index.html (src)",
-        "dist/capabilities/experiences/index.html (src)",
-        "dist/capabilities/film/index.html (src)",
-        "dist/contact/index.html (src)",
-        "dist/index.html (src)",
-        "dist/media-production/index.html (src)",
-        "dist/metaverse/index.html (src)",
-        "dist/mixed-reality/index.html (src)",
-        "dist/privacy-policy/index.html (src)",
-        "dist/terms-of-service/index.html (src)",
-        "dist/virtual-reality/index.html (src)",
-        "dist/work/index.html (src)",
-        "dist/works/index.html (src)"
-      ]
-    },
-    {
-      "url": "/assets/index-rFdy3lcl.css",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "contentType": "text/css",
       "referencedBy": [
         "dist/about/index.html (link href)",
         "dist/animation/index.html (link href)",
@@ -4526,156 +4483,168 @@
       ]
     },
     {
+      "url": "/assets/index-tX95GFM7.js",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/about/index.html (src)",
+        "dist/animation/index.html (src)",
+        "dist/augment-reality/index.html (src)",
+        "dist/brand-advertisement/index.html (src)",
+        "dist/capabilities/animation-3d/index.html (src)",
+        "dist/capabilities/brand/index.html (src)",
+        "dist/capabilities/content/index.html (src)",
+        "dist/capabilities/creative-technology/index.html (src)",
+        "dist/capabilities/design/index.html (src)",
+        "dist/capabilities/digital/index.html (src)",
+        "dist/capabilities/experiences/index.html (src)",
+        "dist/capabilities/film/index.html (src)",
+        "dist/contact/index.html (src)",
+        "dist/index.html (src)",
+        "dist/media-production/index.html (src)",
+        "dist/metaverse/index.html (src)",
+        "dist/mixed-reality/index.html (src)",
+        "dist/privacy-policy/index.html (src)",
+        "dist/terms-of-service/index.html (src)",
+        "dist/virtual-reality/index.html (src)",
+        "dist/work/index.html (src)",
+        "dist/works/index.html (src)"
+      ]
+    },
+    {
       "url": "/assets/montserrat-latin-400-normal-BLhwKU8k.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-400-normal-xItZbAXg.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-500-normal-Dok2oTci.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-500-normal-DRFEGfly.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-600-normal-CdhFl4lI.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-600-normal-UVxSCcoG.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/montserrat-latin-700-normal-BWkrl476.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-400-italic-hIeePEuE.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-400-italic-LeeEXsx5.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-400-normal-CFtfchNt.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-400-normal-DHYHbkg3.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-500-normal-BScSeVwi.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-500-normal-DIxvyhka.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-600-normal-CxxueQ0Z.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/assets/playfair-display-latin-600-normal-CZLGqjJe.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/inner-library/animation/app-01-concept-development.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4683,9 +4652,8 @@
       "url": "/inner-library/animation/app-02-pre-visualization.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4693,9 +4661,8 @@
       "url": "/inner-library/animation/app-03-2d-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4703,9 +4670,8 @@
       "url": "/inner-library/animation/app-04-3d-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4713,9 +4679,8 @@
       "url": "/inner-library/animation/app-05-motion-graphics.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4723,9 +4688,8 @@
       "url": "/inner-library/animation/app-06-visual-effects.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4733,9 +4697,8 @@
       "url": "/inner-library/animation/app-07-character-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4743,9 +4706,8 @@
       "url": "/inner-library/animation/app-08-interactive-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4753,9 +4715,8 @@
       "url": "/inner-library/animation/app-09-explainer-videos.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4763,9 +4724,8 @@
       "url": "/inner-library/animation/app-10-ar-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4773,11 +4733,10 @@
       "url": "/inner-library/animation/hero-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -4787,9 +4746,8 @@
       "url": "/inner-library/animation/map-01-idea.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4797,9 +4755,8 @@
       "url": "/inner-library/animation/map-02-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4807,9 +4764,8 @@
       "url": "/inner-library/animation/map-03-motion.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4817,9 +4773,8 @@
       "url": "/inner-library/animation/map-04-frame.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4827,9 +4782,8 @@
       "url": "/inner-library/animation/map-05-story.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4837,9 +4791,8 @@
       "url": "/inner-library/animation/story-01-visual-storytelling.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4847,9 +4800,8 @@
       "url": "/inner-library/animation/story-02-character-world-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4857,9 +4809,8 @@
       "url": "/inner-library/animation/story-03-2d-3d-motion-craft.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4867,9 +4818,8 @@
       "url": "/inner-library/animation/story-04-emotional-rhythm.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4877,9 +4827,8 @@
       "url": "/inner-library/augment-reality/app-01-industrial-ar.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4887,9 +4836,8 @@
       "url": "/inner-library/augment-reality/app-02-tourism-travel.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4897,9 +4845,8 @@
       "url": "/inner-library/augment-reality/app-03-ar-navigation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4907,9 +4854,8 @@
       "url": "/inner-library/augment-reality/app-04-retail.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4917,9 +4863,8 @@
       "url": "/inner-library/augment-reality/app-05-ar-marketing.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4927,9 +4872,8 @@
       "url": "/inner-library/augment-reality/app-06-ar-gaming.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4937,9 +4881,8 @@
       "url": "/inner-library/augment-reality/app-07-ar-education.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4947,9 +4890,8 @@
       "url": "/inner-library/augment-reality/app-08-ar-healthcare.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4957,9 +4899,8 @@
       "url": "/inner-library/augment-reality/app-09-ar-entertainment.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4967,9 +4908,8 @@
       "url": "/inner-library/augment-reality/app-10-ar-art-creativity.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4977,11 +4917,10 @@
       "url": "/inner-library/augment-reality/hero-augment-reality.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -4991,9 +4930,8 @@
       "url": "/inner-library/augment-reality/map-01-see.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5001,9 +4939,8 @@
       "url": "/inner-library/augment-reality/map-02-point.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5011,9 +4948,8 @@
       "url": "/inner-library/augment-reality/map-03-discover.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5021,9 +4957,8 @@
       "url": "/inner-library/augment-reality/map-04-interact.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5031,9 +4966,8 @@
       "url": "/inner-library/augment-reality/map-05-continue.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5041,9 +4975,8 @@
       "url": "/inner-library/augment-reality/story-01-instant-access.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5051,9 +4984,8 @@
       "url": "/inner-library/augment-reality/story-02-contextual-overlay.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5061,9 +4993,8 @@
       "url": "/inner-library/augment-reality/story-03-interactive-discovery.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5071,9 +5002,8 @@
       "url": "/inner-library/augment-reality/story-04-real-world-utility.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5081,9 +5011,8 @@
       "url": "/inner-library/brand-advertisement/app-01-brand-campaigns.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5091,9 +5020,8 @@
       "url": "/inner-library/brand-advertisement/app-02-digital-campaigns.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5101,9 +5029,8 @@
       "url": "/inner-library/brand-advertisement/app-03-product-launches.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5111,9 +5038,8 @@
       "url": "/inner-library/brand-advertisement/app-04-brand-films.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5121,9 +5047,8 @@
       "url": "/inner-library/brand-advertisement/app-05-explainer-communication.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5131,9 +5056,8 @@
       "url": "/inner-library/brand-advertisement/app-06-social-digital-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5141,11 +5065,10 @@
       "url": "/inner-library/brand-advertisement/hero-brand-advertisement.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -5155,9 +5078,8 @@
       "url": "/inner-library/brand-advertisement/map-01-idea.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5165,9 +5087,8 @@
       "url": "/inner-library/brand-advertisement/map-02-message.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5175,9 +5096,8 @@
       "url": "/inner-library/brand-advertisement/map-03-identity.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5185,9 +5105,8 @@
       "url": "/inner-library/brand-advertisement/map-04-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5195,9 +5114,8 @@
       "url": "/inner-library/brand-advertisement/map-05-experience.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5205,9 +5123,8 @@
       "url": "/inner-library/brand-advertisement/map-06-audience.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5215,9 +5132,8 @@
       "url": "/inner-library/brand-advertisement/story-01-strategic-positioning.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5225,9 +5141,8 @@
       "url": "/inner-library/brand-advertisement/story-02-creative-storytelling.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5235,9 +5150,8 @@
       "url": "/inner-library/brand-advertisement/story-03-visual-verbal-identity.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5245,9 +5159,8 @@
       "url": "/inner-library/brand-advertisement/story-04-multi-channel-impact.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5255,9 +5168,8 @@
       "url": "/inner-library/media-production/app-01-video-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5265,9 +5177,8 @@
       "url": "/inner-library/media-production/app-02-film-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5275,9 +5186,8 @@
       "url": "/inner-library/media-production/app-03-television-production.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5285,9 +5195,8 @@
       "url": "/inner-library/media-production/app-04-animation-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5295,9 +5204,8 @@
       "url": "/inner-library/media-production/app-05-photography.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5305,9 +5213,8 @@
       "url": "/inner-library/media-production/app-06-live-event-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5315,9 +5222,8 @@
       "url": "/inner-library/media-production/app-07-audio-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5325,9 +5231,8 @@
       "url": "/inner-library/media-production/app-08-post-production.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5335,9 +5240,8 @@
       "url": "/inner-library/media-production/app-09-scriptwriting-storyboarding.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5345,9 +5249,8 @@
       "url": "/inner-library/media-production/app-10-media-consulting.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5355,11 +5258,10 @@
       "url": "/inner-library/media-production/hero-media-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)",
@@ -5370,9 +5272,8 @@
       "url": "/inner-library/media-production/map-01-idea.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5380,9 +5281,8 @@
       "url": "/inner-library/media-production/map-02-script.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5390,9 +5290,8 @@
       "url": "/inner-library/media-production/map-03-pre-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5400,9 +5299,8 @@
       "url": "/inner-library/media-production/map-04-production.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5410,9 +5308,8 @@
       "url": "/inner-library/media-production/map-05-post.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5420,9 +5317,8 @@
       "url": "/inner-library/media-production/map-06-delivery.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5430,9 +5326,8 @@
       "url": "/inner-library/media-production/story-01-creative-direction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5440,9 +5335,8 @@
       "url": "/inner-library/media-production/story-02-cinematography-capture.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5450,9 +5344,8 @@
       "url": "/inner-library/media-production/story-03-editorial-post-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5460,9 +5353,8 @@
       "url": "/inner-library/media-production/story-04-multi-platform-delivery.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5470,9 +5362,8 @@
       "url": "/inner-library/metaverse/app-01-virtual-worlds.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5480,9 +5371,8 @@
       "url": "/inner-library/metaverse/app-02-virtual-events.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5490,9 +5380,8 @@
       "url": "/inner-library/metaverse/app-03-virtual-brand-experiences.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5500,9 +5389,8 @@
       "url": "/inner-library/metaverse/app-04-gaming.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5510,9 +5398,8 @@
       "url": "/inner-library/metaverse/app-05-virtual-marketplaces.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5520,9 +5407,8 @@
       "url": "/inner-library/metaverse/app-06-virtual-economies.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5530,9 +5416,8 @@
       "url": "/inner-library/metaverse/app-07-virtual-education.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5540,9 +5425,8 @@
       "url": "/inner-library/metaverse/app-08-virtual-workspaces.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5550,9 +5434,8 @@
       "url": "/inner-library/metaverse/app-09-virtual-product-showcases.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5560,11 +5443,10 @@
       "url": "/inner-library/metaverse/hero-metaverse.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/components/SliderExperience.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
@@ -5575,9 +5457,8 @@
       "url": "/inner-library/metaverse/map-01-world.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5585,9 +5466,8 @@
       "url": "/inner-library/metaverse/map-02-story.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5595,9 +5475,8 @@
       "url": "/inner-library/metaverse/map-03-interaction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5605,9 +5484,8 @@
       "url": "/inner-library/metaverse/map-04-people.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5615,9 +5493,8 @@
       "url": "/inner-library/metaverse/map-05-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5625,9 +5502,8 @@
       "url": "/inner-library/metaverse/map-06-return.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5635,10 +5511,9 @@
       "url": "/inner-library/metaverse/story-01-spatial-presence.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
@@ -5647,9 +5522,8 @@
       "url": "/inner-library/metaverse/story-02-identity-avatars.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5657,9 +5531,8 @@
       "url": "/inner-library/metaverse/story-03-real-time-interaction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5667,9 +5540,8 @@
       "url": "/inner-library/metaverse/story-04-persistent-ecosystem.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5677,9 +5549,8 @@
       "url": "/inner-library/mixed-reality/app-01-training.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5687,9 +5558,8 @@
       "url": "/inner-library/mixed-reality/app-02-education.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5697,9 +5567,8 @@
       "url": "/inner-library/mixed-reality/app-03-entertainment.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5707,9 +5576,8 @@
       "url": "/inner-library/mixed-reality/app-04-gaming.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5717,9 +5585,8 @@
       "url": "/inner-library/mixed-reality/app-05-marketing-branding.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5727,9 +5594,8 @@
       "url": "/inner-library/mixed-reality/app-06-architecture-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5737,9 +5603,8 @@
       "url": "/inner-library/mixed-reality/app-07-remote-collaboration.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5747,9 +5612,8 @@
       "url": "/inner-library/mixed-reality/app-08-retail.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5757,9 +5621,8 @@
       "url": "/inner-library/mixed-reality/app-09-media.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5767,11 +5630,10 @@
       "url": "/inner-library/mixed-reality/hero-mixed-reality.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -5781,9 +5643,8 @@
       "url": "/inner-library/mixed-reality/map-01-real-world.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5791,9 +5652,8 @@
       "url": "/inner-library/mixed-reality/map-02-digital-layer.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5801,9 +5661,8 @@
       "url": "/inner-library/mixed-reality/map-03-interaction.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5811,9 +5670,8 @@
       "url": "/inner-library/mixed-reality/map-04-purpose.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5821,9 +5679,8 @@
       "url": "/inner-library/mixed-reality/story-01-spatial-awareness.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5831,9 +5688,8 @@
       "url": "/inner-library/mixed-reality/story-02-anchored-digital-objects.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5841,9 +5697,8 @@
       "url": "/inner-library/mixed-reality/story-03-natural-interaction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5851,9 +5706,8 @@
       "url": "/inner-library/mixed-reality/story-04-real-time-context.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5861,9 +5715,8 @@
       "url": "/inner-library/virtual-reality/app-01-vr-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5871,9 +5724,8 @@
       "url": "/inner-library/virtual-reality/app-02-vr-video-conferencing.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5881,9 +5733,8 @@
       "url": "/inner-library/virtual-reality/app-03-vr-gaming.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5891,9 +5742,8 @@
       "url": "/inner-library/virtual-reality/app-04-training-simulation.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5901,9 +5751,8 @@
       "url": "/inner-library/virtual-reality/app-05-education.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5911,9 +5760,8 @@
       "url": "/inner-library/virtual-reality/app-06-marketing-branding.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5921,9 +5769,8 @@
       "url": "/inner-library/virtual-reality/app-07-architectural-visualization.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5931,9 +5778,8 @@
       "url": "/inner-library/virtual-reality/app-08-healthcare.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5941,9 +5787,8 @@
       "url": "/inner-library/virtual-reality/app-09-streaming-broadcasting.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5951,11 +5796,10 @@
       "url": "/inner-library/virtual-reality/hero-virtual-reality.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -5965,9 +5809,8 @@
       "url": "/inner-library/virtual-reality/map-01-enter.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5975,9 +5818,8 @@
       "url": "/inner-library/virtual-reality/map-02-discover.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5985,9 +5827,8 @@
       "url": "/inner-library/virtual-reality/map-03-interact.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5995,9 +5836,8 @@
       "url": "/inner-library/virtual-reality/map-04-understand.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6005,9 +5845,8 @@
       "url": "/inner-library/virtual-reality/map-05-remember.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6015,9 +5854,8 @@
       "url": "/inner-library/virtual-reality/story-01-full-immersion.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6025,9 +5863,8 @@
       "url": "/inner-library/virtual-reality/story-02-interactive-simulation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6035,10 +5872,9 @@
       "url": "/inner-library/virtual-reality/story-03-spatial-storytelling.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
@@ -6047,9 +5883,8 @@
       "url": "/inner-library/virtual-reality/story-04-safe-practice.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6057,45 +5892,40 @@
       "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/icons/contact-back.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/ContactWizard-BL9kp91F.js (runtime asset path)",
+        "dist/assets/ContactWizard-BS-hcmaa.js (runtime asset path)",
         "src/components/ContactWizard.tsx (active source reference)"
       ]
     },
@@ -6103,9 +5933,8 @@
       "url": "/legacy-assets/icons/contact-down.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/ContactWizard-BL9kp91F.js (runtime asset path)",
+        "dist/assets/ContactWizard-BS-hcmaa.js (runtime asset path)",
         "src/components/ContactWizard.tsx (active source reference)"
       ]
     },
@@ -6113,9 +5942,8 @@
       "url": "/legacy-assets/icons/contact-forward.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/ContactWizard-BL9kp91F.js (runtime asset path)",
+        "dist/assets/ContactWizard-BS-hcmaa.js (runtime asset path)",
         "src/components/ContactWizard.tsx (active source reference)"
       ]
     },
@@ -6123,9 +5951,8 @@
       "url": "/legacy-assets/images/generated-home-posters/animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6133,9 +5960,8 @@
       "url": "/legacy-assets/images/generated-home-posters/augmented-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6143,9 +5969,8 @@
       "url": "/legacy-assets/images/generated-home-posters/brand-advertisement.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6153,9 +5978,8 @@
       "url": "/legacy-assets/images/generated-home-posters/menu-background.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)"
       ]
     },
@@ -6163,9 +5987,8 @@
       "url": "/legacy-assets/images/generated-home-posters/metaverse.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "dist/index.html (link href)",
         "src/data/slideExperiences.json (active source reference)"
       ]
@@ -6174,9 +5997,8 @@
       "url": "/legacy-assets/images/generated-home-posters/mixed-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6184,9 +6006,8 @@
       "url": "/legacy-assets/images/generated-home-posters/virtual-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6194,54 +6015,48 @@
       "url": "/legacy-assets/images/metaverse/TemplateData/fullscreen-button.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/images/metaverse/TemplateData/progress-bar-empty-dark.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/images/metaverse/TemplateData/progress-bar-full-dark.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/logos/metaverse/TemplateData/unity-logo-dark.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/logos/metaverse/TemplateData/webgl-logo.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-rFdy3lcl.css (active CSS url())"
+        "dist/assets/index-C3fEPEsR.css (active CSS url())"
       ]
     },
     {
       "url": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/LegacyFooter.tsx (active source reference)"
       ]
     },
@@ -6249,7 +6064,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "text/css",
       "referencedBy": [
         "dist/about/index.html (link href)",
         "dist/animation/index.html (link href)",
@@ -6279,7 +6093,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "text/css",
       "referencedBy": [
         "dist/about/index.html (link href)",
         "dist/animation/index.html (link href)",
@@ -6309,7 +6122,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/css/style-dark-mode.css",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "text/css",
       "referencedBy": [
         "dist/about/index.html (link href)",
         "dist/animation/index.html (link href)",
@@ -6339,7 +6151,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Geograph-Regular.eot",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "application/vnd.ms-fontobject",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6348,7 +6159,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Geograph-Regular.ttf",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/ttf",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6357,7 +6167,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6366,7 +6175,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6375,7 +6183,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/GeographEdit.eot",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "application/vnd.ms-fontobject",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6384,7 +6191,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/GeographEdit.ttf",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/ttf",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6393,7 +6199,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/GeographEdit.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6402,7 +6207,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6411,7 +6215,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/geographweblight.eot",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "application/vnd.ms-fontobject",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6420,7 +6223,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/geographweblight.otf",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/otf",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6429,7 +6231,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/geographweblight.ttf",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/ttf",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6438,7 +6239,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/geographweblight.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6447,7 +6247,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6456,7 +6255,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Black-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6465,7 +6263,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Black-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6474,7 +6271,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Black.eot",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "application/vnd.ms-fontobject",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6483,7 +6279,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Black.ttf",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/ttf",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6492,7 +6287,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6501,7 +6295,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css (active CSS url())"
       ]
@@ -6510,7 +6303,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-BlackItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6519,7 +6311,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-BlackItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6528,7 +6319,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Bold-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6537,7 +6327,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Bold-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6546,7 +6335,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-BoldItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6555,7 +6343,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-BoldItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6564,7 +6351,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Extralight-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6573,7 +6359,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Extralight-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6582,7 +6367,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-ExtralightItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6591,7 +6375,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-ExtralightItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6600,7 +6383,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6609,7 +6391,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6618,7 +6399,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-LightItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6627,7 +6407,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-LightItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6636,7 +6415,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Medium-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6645,7 +6423,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Medium-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6654,7 +6431,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-MediumItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6663,7 +6439,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-MediumItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6672,7 +6447,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6681,7 +6455,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6690,7 +6463,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-RegularItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6699,7 +6471,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-RegularItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6708,7 +6479,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Semibold-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6717,7 +6487,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Semibold-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6726,7 +6495,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-SemiboldItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6735,7 +6503,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-SemiboldItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6744,7 +6511,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Super-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6753,7 +6519,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Super-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6762,7 +6527,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-SuperItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6771,7 +6535,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-SuperItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6780,7 +6543,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Thin-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6789,7 +6551,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-Thin-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6798,7 +6559,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-ThinItalic-Web.woff",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6807,7 +6567,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/assets/fonts/Graphik-ThinItalic-Web.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "font/woff2",
       "referencedBy": [
         "dist/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css (active CSS url())"
       ]
@@ -6816,7 +6575,6 @@
       "url": "/legacy-assets/other/wp-content/themes/fleava/style.css",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "text/css",
       "referencedBy": [
         "dist/about/index.html (link href)",
         "dist/animation/index.html (link href)",
@@ -6846,9 +6604,8 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6856,9 +6613,8 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6866,9 +6622,8 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6876,10 +6631,9 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/components/HomeSlideshow.tsx (active source reference)"
       ]
@@ -6888,9 +6642,8 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6898,9 +6651,8 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6908,9 +6660,8 @@
       "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6918,9 +6669,8 @@
       "url": "/social/og/about.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6928,9 +6678,8 @@
       "url": "/social/og/animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6938,9 +6687,8 @@
       "url": "/social/og/augmented-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6948,9 +6696,8 @@
       "url": "/social/og/brand-advertisement.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6958,9 +6705,8 @@
       "url": "/social/og/capability-animation-3d.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6968,9 +6714,8 @@
       "url": "/social/og/capability-brand.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6978,9 +6723,8 @@
       "url": "/social/og/capability-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6988,9 +6732,8 @@
       "url": "/social/og/capability-creative-technology.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6998,9 +6741,8 @@
       "url": "/social/og/capability-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7008,9 +6750,8 @@
       "url": "/social/og/capability-digital.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7018,9 +6759,8 @@
       "url": "/social/og/capability-experiences.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7028,9 +6768,8 @@
       "url": "/social/og/capability-film.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7038,9 +6777,8 @@
       "url": "/social/og/contact.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7048,9 +6786,8 @@
       "url": "/social/og/home.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7058,9 +6795,8 @@
       "url": "/social/og/media-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7068,9 +6804,8 @@
       "url": "/social/og/metaverse.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7078,9 +6813,8 @@
       "url": "/social/og/mixed-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7088,9 +6822,8 @@
       "url": "/social/og/privacy-policy.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7098,9 +6831,8 @@
       "url": "/social/og/terms-of-service.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7108,9 +6840,8 @@
       "url": "/social/og/virtual-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7118,9 +6849,8 @@
       "url": "/social/og/works.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7128,7 +6858,6 @@
       "url": "/work-thumbnails/-h9jRYAjwZw.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7137,7 +6866,6 @@
       "url": "/work-thumbnails/1tO39Xqzh9c.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7146,7 +6874,6 @@
       "url": "/work-thumbnails/1xsCfOKk_3s.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7155,7 +6882,6 @@
       "url": "/work-thumbnails/2AdaMd83ULw.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7164,7 +6890,6 @@
       "url": "/work-thumbnails/3PrHierkGoE.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7173,7 +6898,6 @@
       "url": "/work-thumbnails/50O6nC07BvQ.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7182,7 +6906,6 @@
       "url": "/work-thumbnails/7hfMEF-6JDc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7191,7 +6914,6 @@
       "url": "/work-thumbnails/9hQw1pnzyaY.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7200,7 +6922,6 @@
       "url": "/work-thumbnails/Bcvrpn7pzA0.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7209,7 +6930,6 @@
       "url": "/work-thumbnails/CIZqPGn31nM.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7218,7 +6938,6 @@
       "url": "/work-thumbnails/fS992chJV4U.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7227,7 +6946,6 @@
       "url": "/work-thumbnails/GkxPabDVf6o.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7236,7 +6954,6 @@
       "url": "/work-thumbnails/gmnLd5YKZ6Y.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7245,7 +6962,6 @@
       "url": "/work-thumbnails/gRFpyWS1LIU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7254,7 +6970,6 @@
       "url": "/work-thumbnails/h6REriwKUM4.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7263,7 +6978,6 @@
       "url": "/work-thumbnails/hHzjY9phuLM.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7272,7 +6986,6 @@
       "url": "/work-thumbnails/HVrinNB0RwY.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7281,7 +6994,6 @@
       "url": "/work-thumbnails/Icz_vMwFBFA.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7290,7 +7002,6 @@
       "url": "/work-thumbnails/IE5YNQwfQeo.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7299,7 +7010,6 @@
       "url": "/work-thumbnails/itMJHjIi5aE.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7308,7 +7018,6 @@
       "url": "/work-thumbnails/JuDxL6Vx-V4.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7317,7 +7026,6 @@
       "url": "/work-thumbnails/lkwYiwynaUU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7326,7 +7034,6 @@
       "url": "/work-thumbnails/LwU4A0ED6aM.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7335,7 +7042,6 @@
       "url": "/work-thumbnails/M8eKzjTE8sw.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7344,7 +7050,6 @@
       "url": "/work-thumbnails/MRwA-EoLP3I.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7353,7 +7058,6 @@
       "url": "/work-thumbnails/Mwy4zslFCHc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7362,7 +7066,6 @@
       "url": "/work-thumbnails/n8OVCgNDb0c.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7371,7 +7074,6 @@
       "url": "/work-thumbnails/o9vkQOLT7T8.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7380,7 +7082,6 @@
       "url": "/work-thumbnails/ODHBHIhCQck.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7389,7 +7090,6 @@
       "url": "/work-thumbnails/omeS_i3ivlk.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7398,7 +7098,6 @@
       "url": "/work-thumbnails/OWepxMT5dlU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7407,7 +7106,6 @@
       "url": "/work-thumbnails/QR0wJM3En3M.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7416,7 +7114,6 @@
       "url": "/work-thumbnails/RXeOJh57bbs.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7425,7 +7122,6 @@
       "url": "/work-thumbnails/Sa5mP4ajXyU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7434,7 +7130,6 @@
       "url": "/work-thumbnails/tSxmKGesh8k.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7443,7 +7138,6 @@
       "url": "/work-thumbnails/UrH3HFH7PQs.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7452,7 +7146,6 @@
       "url": "/work-thumbnails/Vpon7zWFTRE.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7461,7 +7154,6 @@
       "url": "/work-thumbnails/VSw9Zf1Ugjk.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7470,7 +7162,6 @@
       "url": "/work-thumbnails/VttjwJFS81s.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7479,7 +7170,6 @@
       "url": "/work-thumbnails/VvLtnh_z6KI.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7488,7 +7178,6 @@
       "url": "/work-thumbnails/wCTEgu1Hwnc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7497,7 +7186,6 @@
       "url": "/work-thumbnails/WpykIhD0A-s.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7506,7 +7194,6 @@
       "url": "/work-thumbnails/wz1Iea_HUlA.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7515,7 +7202,6 @@
       "url": "/work-thumbnails/X8qqEUgUArI.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7524,7 +7210,6 @@
       "url": "/work-thumbnails/xFaRvdL_0Bg.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7533,7 +7218,6 @@
       "url": "/work-thumbnails/Xm0STB55Udk.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7542,7 +7226,6 @@
       "url": "/work-thumbnails/yzc-7e1zmbc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
-      "contentType": "image/jpeg",
       "referencedBy": [
         "src/data/videoArchive.json (active source reference)"
       ]
@@ -7901,174 +7584,12 @@
     }
   ],
   "targetBlankSecurityIssues": [],
-  "browserMatrix": {
-    "browser": "Playwright Chromium 153.0.8010.0",
-    "routes": 21,
-    "viewportCount": 16,
-    "viewportSizes": [
-      "320x568",
-      "360x640",
-      "375x812",
-      "390x844",
-      "430x932",
-      "600x960",
-      "768x1024",
-      "820x1180",
-      "1024x1366",
-      "1280x720",
-      "1366x768",
-      "1440x900",
-      "1600x900",
-      "1920x1080",
-      "2560x1080",
-      "3440x1440"
-    ],
-    "browserRouteCases": 336,
-    "noJavaScriptFallbackRoutes": 21,
-    "noJavaScriptChecks": 21,
-    "reducedMotionEmulatedForLayoutChecks": true,
-    "externalRequestsBlocked": true,
-    "optionalVideoRequestsBlocked": true,
-    "issues": [],
-    "consoleErrors": [],
-    "pageErrors": [],
-    "failedLocalRequests": []
-  },
-  "noScriptRouteResults": [
-    {
-      "route": "/",
-      "status": 200,
-      "heading": "Dive into new world, live the world you want.",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/about/",
-      "status": 200,
-      "heading": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/animation/",
-      "status": 200,
-      "heading": "Animation",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/augment-reality/",
-      "status": 200,
-      "heading": "Augment Reality",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/brand-advertisement/",
-      "status": 200,
-      "heading": "Brand Advertisement",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/contact/",
-      "status": 200,
-      "heading": "Contact",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/media-production/",
-      "status": 200,
-      "heading": "Media Production",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/metaverse/",
-      "status": 200,
-      "heading": "Metaverse",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/mixed-reality/",
-      "status": 200,
-      "heading": "Mixed Reality",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/privacy-policy/",
-      "status": 200,
-      "heading": "Privacy Policy",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/terms-of-service/",
-      "status": 200,
-      "heading": "Terms of Service",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/virtual-reality/",
-      "status": 200,
-      "heading": "Virtual Reality",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/works/",
-      "status": 200,
-      "heading": "We do amazing things with amazing People.",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/brand/",
-      "status": 200,
-      "heading": "Brand",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/design/",
-      "status": 200,
-      "heading": "Design",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/content/",
-      "status": 200,
-      "heading": "Content",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/film/",
-      "status": 200,
-      "heading": "Film",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/animation-3d/",
-      "status": 200,
-      "heading": "Animation + 3D",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/digital/",
-      "status": 200,
-      "heading": "Digital",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/experiences/",
-      "status": 200,
-      "heading": "Experiences",
-      "fallbackVisible": true
-    },
-    {
-      "route": "/capabilities/creative-technology/",
-      "status": 200,
-      "heading": "Creative Technology",
-      "fallbackVisible": true
-    }
-  ],
   "applicationChecks": {
-    "history": "Source contains pushState navigation, popstate synchronization, and query-preserving route normalization; browser Back/Forward behavior not exercised in automation beyond route navigation.",
+    "history": "Source contains pushState navigation, popstate synchronization, and query-preserving route normalization; browser Back/Forward behavior not exercised.",
     "contact": "Source retains user-controlled mailto flow and telephone links; no form submission backend is configured or claimed.",
     "reactErrorBoundary": "Application root is wrapped in a React render-error boundary; runtime failure injection was not exercised in a browser.",
     "unknownPaths": "Local preview returns 404 for unknown extensionless routes and 410 for intentionally retired /360-video/; both responses were checked for their matching title and branded error-body marker.",
-    "hostErrors": "Custom static documents are generated for 403, 404, 410, 500, 502, 503, and 504. Production server mappings/status codes are unverified and are not inferred from the files.",
-    "browserMatrix": "Playwright Chromium exercised 336 responsive cases (16 viewports × 21 routes) with reduced-motion, and 21 no-JavaScript fallback checks. External and optional video requests were blocked. Console/page errors and local request failures are recorded in browserMatrix; see the JSON report for per-viewport results."
+    "hostErrors": "Custom static documents are generated for 403, 404, 410, 500, 502, 503, and 504. Production server mappings/status codes are unverified and are not inferred from the files."
   },
   "excludedInactiveCapture": {
     "source": "src/data/legacyPages.json",
@@ -8078,7 +7599,7 @@
     "Production HTTPS is blocked in this sandbox: the target is outside the permitted outbound hosts and TLS ended with curl exit 35 before any certificate or HTTP response. This does not establish a DNS/CDN/origin TLS defect.",
     "Production sitemap routes, internal destinations, error URLs, robots/sitemap, social images, metadata, and the remote video were not individually requested; no live status, final URL, content type, or current media response is claimed.",
     "The 53 external web destinations and four mail/telephone protocol targets are inventoried, but destination availability and client launch were not verified; none is classified as broken.",
-    "Browser matrix checks verify layout, hydration fallback dismissal, visible H1, and horizontal overflow against the local preview; they do not cover manual Back/Forward, touch gestures, screen-reader announcements, or field performance.",
+    "Browser interactions, Back/Forward, touch/keyboard, responsive screenshots, screen-reader testing, console/network inspection, and form-client launch are blocked by the missing browser binary, automation package, and libnspr4.so.",
     "A generated HTML error document is not proof that Hostinger maps it while preserving the corresponding production HTTP status; live Hostinger product/settings remain inaccessible."
   ]
 }

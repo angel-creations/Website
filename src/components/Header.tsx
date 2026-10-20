@@ -3,10 +3,10 @@ import type { NavigationItem } from '../types/legacy';
 import { getNetworkInformation, shouldAutoplayAmbientMedia } from '../utils/mediaPreferences';
 import { navigate } from '../utils/routes';
 
-const archive = '/assets';
-const logo = `${archive}/logos/angel-creations-logo.png`;
-const menuVideo = `${archive}/videos/menu-background.mp4`;
-const menuPoster = `${archive}/images/menu-background.jpg`;
+const archive = '/legacy-assets';
+const logo = `${archive}/logos/wp-content/uploads/2023/01/logo-rectangle-1.png`;
+const menuVideo = `${archive}/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4`;
+const menuPoster = `${archive}/images/generated-home-posters/menu-background.jpg`;
 
 const primaryItems: NavigationItem[] = [
   { label: 'About Us', href: '/about/', number: '01' },
