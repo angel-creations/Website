@@ -6,11 +6,13 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 
 - Sitemap pages: 21/21 returned HTTP 200 in local preview.
 - Static anchor instances: 293; unique internal anchor targets: 21; broken local targets: 0.
-- Local build asset URLs checked: 305; missing/unserved: 0.
+- Local build asset URLs checked: 305; missing/unserved or MIME-mismatched: 0; recognized-extension MIME mismatches: 0.
+- Public routes with visible pre-hydration route content: 21/21; failures: 0.
 - Social previews: 21/21 unique page-specific images; metadata issues: 0.
 - External web URLs inventoried: 53 across 5 hosts; 4 mail/telephone protocol targets are listed separately. Remote checks were not performed.
 - Same-origin remote media assets inventoried: 1; the 310 MB QuickTime source has historical repository evidence but was not re-fetched.
 - Insecure HTTP web destinations remaining in active source/anchors: 0.
+- Responsive browser matrix: 336 cases (16 viewports × 21 routes, 21 no-JS fallbacks) on Playwright Chromium 153.0.8010.0; issues: 0; console errors: 0; page errors: 0; failed local requests: 0.
 - Error/status probes with unexpected local results: 0; branded 404/410 body markers: 3/3 matched.
 
 ## Verified repairs
@@ -22,6 +24,8 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 - Added unique 1200×630 local social-preview images and per-route Open Graph/Twitter headline, description, URL, dimensions, MIME type, and alt metadata for all 21 sitemap routes.
 - Added a React render-error boundary and generated branded 403/404/410/500/502/503/504 documents; only local 404/410 path status behavior was verified.
 - Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion.
+- Added visible route-specific HTML fallbacks outside <noscript> so content appears before React; the app removes each shell only when its route content commits, while runtime errors retain an actionable error state.
+- Replaced the one-line Suspense text with an accessible, motion-aware main-content loading state.
 
 ## Route and social-preview inventory
 
@@ -177,7 +181,7 @@ Every active target with its source and label is recorded in `END-TO-END-LINK-IN
 - Production HTTPS is blocked in this sandbox: the target is outside the permitted outbound hosts and TLS ended with curl exit 35 before any certificate or HTTP response. This does not establish a DNS/CDN/origin TLS defect.
 - Production sitemap routes, internal destinations, error URLs, robots/sitemap, social images, metadata, and the remote video were not individually requested; no live status, final URL, content type, or current media response is claimed.
 - The 53 external web destinations and four mail/telephone protocol targets are inventoried, but destination availability and client launch were not verified; none is classified as broken.
-- Browser interactions, Back/Forward, touch/keyboard, responsive screenshots, screen-reader testing, console/network inspection, and form-client launch are blocked by the missing browser binary, automation package, and libnspr4.so.
+- Browser matrix checks verify layout, hydration fallback dismissal, visible H1, and horizontal overflow against the local preview; they do not cover manual Back/Forward, touch gestures, screen-reader announcements, or field performance.
 - A generated HTML error document is not proof that Hostinger maps it while preserving the corresponding production HTTP status; live Hostinger product/settings remain inaccessible.
 
 The JSON file is the full URL, link, asset, route, status, and social-preview inventory.

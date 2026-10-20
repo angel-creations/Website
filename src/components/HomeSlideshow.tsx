@@ -23,7 +23,7 @@ const PARALLAX = 0.14;
 const TRANSITION_OPACITY = 0.16;
 const DRAG_LOCK_PX = 10;
 const WHEEL_COOLDOWN_MS = 680;
-const FALLBACK_LOCAL_VIDEO = '/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4';
+const FALLBACK_LOCAL_VIDEO = '/assets/videos/menu-background.mp4';
 
 type Slide = {
   number: string;

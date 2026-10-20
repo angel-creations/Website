@@ -21,6 +21,7 @@ export class ApplicationErrorBoundary extends Component<
   componentDidCatch(error: Error, info: ErrorInfo): void {
     // Keep diagnostics local; the site has no error-reporting service configured.
     console.error('Angel Creations application rendering failed.', error, info.componentStack);
+    document.getElementById('static-route-fallback')?.remove();
   }
 
   private reloadPage = (): void => {

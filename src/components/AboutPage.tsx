@@ -2,8 +2,8 @@ import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 
 import { getNetworkInformation, prefersReducedData, prefersReducedMotion } from '../utils/mediaPreferences';
 import { LegacyFooter } from './LegacyFooter';
 
-const showreelVideo = '/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4';
-const showreelPoster = '/legacy-assets/images/generated-home-posters/menu-background.jpg';
+const showreelVideo = '/assets/videos/menu-background.mp4';
+const showreelPoster = '/assets/images/menu-background.jpg';
 
 type DisciplineRecord = {
   number: string;

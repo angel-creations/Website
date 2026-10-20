@@ -1,7 +1,7 @@
 /*
   Generates source-qualified route documents after Vite build.
-  JavaScript-capable visitors boot the same React application from every route.  The semantic
-  source fallback lives in <noscript>, so no-JS users and crawlers retain meaningful content.
+  Each route includes visible, semantic HTML immediately. React removes this temporary shell
+  after the application commits; if JavaScript fails, the route content remains usable.
 */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 
@@ -167,13 +167,34 @@ function capabilitySchema(capability) {
 
 // Reuse all local legacy CSS and Vite entry assets from the actual generated root build. This
 // prevents static route files from becoming a no-JS-only experience for JavaScript users.
-const runtimeAssetTags = [...rootBuild.matchAll(/<(?:link|script)\b[^>]*>/g)]
+const runtimeAssetTags = [...rootBuild.matchAll(/<link\b[^>]*>|<script\b[^>]*>[\s\S]*?<\/script\s*>/gi)]
   .map((match) => match[0])
   .filter((tag) => (tag.includes('rel="stylesheet"') && /href="\/(?:legacy-assets|assets)\//.test(tag)) || (tag.includes('type="module"') && /src="\/assets\//.test(tag)))
   .join('\n');
 if (!runtimeAssetTags.includes('type="module"')) throw new Error('Generated root build entry script was not found.');
 
-const fallbackCss = `<style>html{background:#000;color:#fff;font-family:Arial,sans-serif}body{max-width:960px;margin:0 auto;padding:clamp(2rem,8vw,7rem) clamp(1.25rem,5vw,4rem);background:#000}nav{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin-bottom:4rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}a{color:#fff}h1{max-width:17ch;font-size:clamp(2.25rem,6vw,4.8rem);font-weight:400;letter-spacing:-.05em;line-height:.96}h2{margin-top:4rem;font-size:clamp(1.5rem,4vw,3rem);font-weight:400;letter-spacing:-.03em}h3{font-size:1.2rem;font-weight:400}p{max-width:48rem;line-height:1.6;color:rgba(255,255,255,.76)}.eyebrow,.meta{color:#c5b5a5;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}.archive{margin:3rem 0;padding:0;list-style:none}.archive li{padding:2rem 0;border-top:1px solid rgba(255,255,255,.2)}details{margin-top:1rem}.source-text{white-space:pre-line}li{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.16);list-style:none}ul{padding:0;border-top:1px solid rgba(255,255,255,.2)}.lead{font-size:1.12rem}</style>`;
+const fallbackCss = `<style>
+html,body{min-height:100%;margin:0;background:#050609;color:#fff;font-family:Arial,sans-serif}
+#static-route-fallback{box-sizing:border-box;position:fixed;z-index:100;inset:0;overflow-y:auto;min-height:100svh;max-width:none;margin:0;padding:clamp(2rem,7vw,6rem) max(clamp(1.25rem,5vw,4rem),calc((100vw - 1100px)/2));background:#050609;color:#fff}
+#static-route-fallback *,#static-route-fallback *:before,#static-route-fallback *:after{box-sizing:border-box}
+#static-route-fallback nav{display:flex;flex-wrap:wrap;gap:.7rem 1.1rem;margin:0 0 clamp(2rem,6vw,4rem);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}
+#static-route-fallback a{color:#fff;text-underline-offset:.22em}
+#static-route-fallback a:focus-visible{outline:2px solid #dfcda7;outline-offset:4px}
+#static-route-fallback h1{max-width:17ch;margin:.5rem 0 1.2rem;font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.4rem,7vw,5.5rem);font-weight:400;letter-spacing:-.05em;line-height:.96}
+#static-route-fallback h2{margin:clamp(2.5rem,7vw,4rem) 0 1rem;font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.5rem,4vw,3rem);font-weight:400;letter-spacing:-.03em}
+#static-route-fallback h3{font-size:1.2rem;font-weight:400}
+#static-route-fallback p{max-width:48rem;line-height:1.65;color:rgba(255,255,255,.76)}
+#static-route-fallback .eyebrow,#static-route-fallback .meta{color:#c5b5a5;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+#static-route-fallback .archive{margin:3rem 0;padding:0;list-style:none}
+#static-route-fallback .archive li{padding:1.5rem 0;border-top:1px solid rgba(255,255,255,.2)}
+#static-route-fallback details{margin-top:1rem}
+#static-route-fallback .source-text{white-space:pre-line}
+#static-route-fallback li{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.16);list-style:none}
+#static-route-fallback ul{padding:0;border-top:1px solid rgba(255,255,255,.2)}
+#static-route-fallback .lead{font-size:1.12rem}
+#static-route-fallback footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.2)}
+@media(max-width:600px){#static-route-fallback{padding-top:2.25rem}#static-route-fallback nav{gap:.75rem 1rem;margin-bottom:2.5rem}}
+</style>`;
 
 const notFoundFallbackCss = `<style>
 .angel-not-found{position:relative;isolation:isolate;display:grid;min-height:68vh;align-items:center;margin-top:1.5rem;padding:clamp(1.5rem,5vw,3.5rem);overflow:hidden;border:1px solid rgba(228,232,242,.12);border-radius:24px;background:radial-gradient(36rem 28rem at 22% 50%,rgba(123,63,242,.22),transparent 68%),radial-gradient(26rem 22rem at 22% 52%,rgba(0,210,255,.12),transparent 70%),#060913;color:#f7f9ff}
@@ -223,8 +244,9 @@ ${description ? `<meta name="twitter:description" content="${escapeHtml(descript
 ${image ? `<meta name="twitter:image" content="${escapeHtml(image)}"><meta name="twitter:image:alt" content="${escapeHtml(imageAlt || ogTitle || title)}">` : ''}
 ${schema}
 ${extraHead}
+${fallbackCss}
 ${runtimeAssetTags}
-</head><body class="is-light-theme no-js"><div id="root"></div><noscript>${fallbackCss}${fallback}</noscript></body></html>`;
+</head><body class="is-light-theme no-js"><div id="static-route-fallback">${fallback}</div><div id="root"></div></body></html>`;
 }
 
 function staticNavigation() {

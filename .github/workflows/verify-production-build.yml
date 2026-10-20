@@ -6,6 +6,7 @@ on:
       - main
       - "fix/**"
       - "staging/**"
+      - "arena/**"
   pull_request:
     branches:
       - main
@@ -34,6 +35,11 @@ jobs:
 
       - name: Install locked dependencies
         run: npm ci
+
+      - name: Audit full and production dependency trees
+        run: |
+          npm audit --audit-level=moderate
+          npm audit --omit=dev --audit-level=moderate
 
       - name: Type-check and build production site
         run: npm run build
@@ -99,6 +105,38 @@ jobs:
               mediaPaths.length + ' local slide media/poster references.');
           }
           NODE
+
+      - name: Install Playwright browser for responsive matrix audit
+        run: npx playwright install --with-deps chromium
+
+      - name: Audit route HTML, SEO, statuses, links and built asset delivery
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          ./node_modules/.bin/vite preview --host 127.0.0.1 --port 4173 --strictPort > "$RUNNER_TEMP/angel-vite-preview.log" 2>&1 &
+          PREVIEW_PID=$!
+          cleanup() {
+            kill "$PREVIEW_PID" 2>/dev/null || true
+            wait "$PREVIEW_PID" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          ready=0
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/sitemap.xml >/dev/null; then
+              ready=1
+              break
+            fi
+            sleep 1
+          done
+          if [[ "$ready" != 1 ]]; then
+            cat "$RUNNER_TEMP/angel-vite-preview.log"
+            echo "Vite preview did not become ready; refusing to skip route/asset audits." >&2
+            exit 1
+          fi
+
+          PREVIEW_BASE=http://127.0.0.1:4173 node scripts/auditStaticOutput.mjs
+          PREVIEW_BASE=http://127.0.0.1:4173 node scripts/auditEndToEnd.mjs
 
       - name: Upload deployable static site
         uses: actions/upload-artifact@v4

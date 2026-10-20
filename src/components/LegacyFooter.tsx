@@ -1,7 +1,7 @@
 import type { MouseEvent as ReactMouseEvent } from 'react';
 import { navigate } from '../utils/routes';
 
-const logo = '/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png';
+const logo = '/assets/logos/angel-creations-logo.png';
 
 const primaryLinks = [
   { label: 'Home', href: '/' },
