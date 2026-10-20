@@ -17,8 +17,23 @@ npm run test:smoke                # terminal 2
 script throws. `BASE_URL` overrides the target (default
 `http://127.0.0.1:5173`), `SHOT_DIR` moves the screenshots.
 
-Routes checked: `/`, `/about/`, `/works/`, `/animation/`, `/mixed-reality/`,
-`/contact/`, `/metaverse/`.
+Routes checked: `/`, `/about/`, `/works/`, `/work/`, `/animation/`, `/augment-reality/`,
+`/brand-advertisement/`, `/media-production/`, `/metaverse/`, `/mixed-reality/`,
+`/virtual-reality/`, `/contact/`, `/privacy-policy/`, `/terms-of-service/` and four
+capability pages, at both viewports.
+
+## Production rehearsal
+
+`npm run test:static` serves `dist/` through `scripts/static-site-server.mjs` the way a
+static host does — directory index, no SPA fallback — and fails when a route returns a
+document the application cannot mount. This is the check that catches the white screen
+described in [PRODUCTION-WHITE-SCREEN.md](./PRODUCTION-WHITE-SCREEN.md); the dev server
+cannot, because Vite answers every route with `index.html`.
+
+`npm run test:fallback` serves the repository root and asserts that the source `index.html`
+renders readable content when `/src/main.tsx` cannot execute.
+
+`npm run test:prod` runs the build plus both rehearsals.
 
 ## Sandboxes without Playwright CDN access
 

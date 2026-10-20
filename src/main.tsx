@@ -14,10 +14,21 @@ import './styles/baseline.css';
 import './styles/enhancements.css';
 import './styles/inner-experiences.css';
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById('root')!;
+
+createRoot(container).render(
   <StrictMode>
     <ApplicationErrorBoundary>
       <App />
     </ApplicationErrorBoundary>
   </StrictMode>,
 );
+
+// The pre-render fallback in index.html keeps the page readable if this bundle never
+// runs (for example when a host publishes the repository root instead of the built
+// site, so /src/main.tsx cannot execute). Remove it as soon as the app is on screen.
+requestAnimationFrame(() => {
+  if (!container.childElementCount) return;
+  document.documentElement.classList.add('app-booted');
+  document.getElementById('boot-fallback')?.remove();
+});

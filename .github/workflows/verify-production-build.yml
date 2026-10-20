@@ -103,6 +103,7 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           node scripts/playwright-smoke.mjs --static
+          node scripts/checkBootFallback.mjs
 
       - name: Upload static-host screenshots
         if: always()
