@@ -4,7 +4,7 @@ import { getNetworkInformation, shouldAutoplayAmbientMedia } from '../utils/medi
 import { navigate } from '../utils/routes';
 
 const archive = '/assets';
-const logo = `${archive}/logos/angel-creations-logo-rectangle.png`;
+const logo = `${archive}/logos/angel-creations-logo.png`;
 const menuVideo = `${archive}/videos/menu-background.mp4`;
 const menuPoster = `${archive}/images/menu-background.jpg`;
 

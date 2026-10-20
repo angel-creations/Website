@@ -448,7 +448,7 @@ export function ContactWizard(): JSX.Element {
     const shared = {
       id: `contact-field-${field.id}`,
       name: field.id,
-      className: 'ac-input wpcf7-form-control wpcf7-validates-as-required',
+      className: 'ac-input',
       autoComplete: field.autoComplete,
       maxLength: field.maxLength,
       'aria-required': !field.optional,
@@ -721,7 +721,7 @@ export function ContactWizard(): JSX.Element {
             <div className="ac-wizard-shell">
               <form
                 id="booking-form"
-                className="wpcf7-form init"
+                className="angel-enquiry-form"
                 aria-label="Project enquiry"
                 noValidate
                 onSubmit={(event) => {
