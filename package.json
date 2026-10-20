@@ -9,8 +9,9 @@
     "preview": "vite preview --host 0.0.0.0",
     "test:smoke": "node scripts/playwright-smoke.mjs",
     "test:static": "node scripts/playwright-smoke.mjs --static",
-    "test:prod": "npm run build && npm run test:static && npm run test:fallback",
-    "test:fallback": "node scripts/checkBootFallback.mjs"
+    "test:prod": "npm run build && npm run test:static && npm run test:fallback && npm run test:degraded",
+    "test:fallback": "node scripts/checkBootFallback.mjs",
+    "test:degraded": "node scripts/checkDegradedBoot.mjs"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",

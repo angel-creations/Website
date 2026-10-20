@@ -4,6 +4,7 @@
   source fallback lives in <noscript>, so no-JS users and crawlers retain meaningful content.
 */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { bootFallbackBlock } from './boot-fallback.mjs';
 
 const pages = JSON.parse(await readFile(new URL('../src/data/legacyPages.json', import.meta.url), 'utf8'));
 const videos = JSON.parse(await readFile(new URL('../src/data/videoArchive.json', import.meta.url), 'utf8'));
@@ -184,6 +185,16 @@ if (!runtimeAssetTags.includes('type="module"')) throw new Error('Generated root
   if (opened !== closed) throw new Error(`Generated entry asset markup has ${opened} <script> tags but ${closed} </script> tags.`);
 }
 
+// Every generated route document gets the same boot fallback as the root document, so a
+// cached document or a failed bundle can never leave a route blank. The block is shared
+// with the Vite plugin through scripts/boot-fallback.mjs.
+if (!bootFallbackBlock.includes('id="boot-fallback"')) {
+  throw new Error('Boot fallback markup is missing or malformed.');
+}
+if (!bootFallbackBlock.includes('data-boot-watchdog')) {
+  throw new Error('Boot watchdog script is missing from the boot fallback.');
+}
+
 const fallbackCss = `<style>html{background:#000;color:#fff;font-family:Arial,sans-serif}body{max-width:960px;margin:0 auto;padding:clamp(2rem,8vw,7rem) clamp(1.25rem,5vw,4rem);background:#000}nav{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin-bottom:4rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}a{color:#fff}h1{max-width:17ch;font-size:clamp(2.25rem,6vw,4.8rem);font-weight:400;letter-spacing:-.05em;line-height:.96}h2{margin-top:4rem;font-size:clamp(1.5rem,4vw,3rem);font-weight:400;letter-spacing:-.03em}h3{font-size:1.2rem;font-weight:400}p{max-width:48rem;line-height:1.6;color:rgba(255,255,255,.76)}.eyebrow,.meta{color:#c5b5a5;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}.archive{margin:3rem 0;padding:0;list-style:none}.archive li{padding:2rem 0;border-top:1px solid rgba(255,255,255,.2)}details{margin-top:1rem}.source-text{white-space:pre-line}li{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.16);list-style:none}ul{padding:0;border-top:1px solid rgba(255,255,255,.2)}.lead{font-size:1.12rem}</style>`;
 
 const notFoundFallbackCss = `<style>
@@ -235,7 +246,7 @@ ${image ? `<meta name="twitter:image" content="${escapeHtml(image)}"><meta name=
 ${schema}
 ${extraHead}
 ${runtimeAssetTags}
-</head><body class="is-light-theme no-js"><div id="root"></div><noscript>${fallbackCss}${fallback}</noscript></body></html>`;
+</head><body class="is-light-theme no-js"><div id="root"></div>${bootFallbackBlock}<noscript>${fallbackCss}${fallback}</noscript></body></html>`;
 }
 
 function staticNavigation() {

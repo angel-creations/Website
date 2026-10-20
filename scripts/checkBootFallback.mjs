@@ -18,7 +18,8 @@ let failure = null;
 try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
   await page.goto(`${server.url}/`, { waitUntil: 'load', timeout: 30000 });
-  await page.waitForTimeout(2000);
+  // The watchdog reveals the fallback 2.5s after load when the app has not mounted.
+  await page.waitForTimeout(4000);
 
   const state = await page.evaluate(() => {
     const fallback = document.getElementById('boot-fallback');

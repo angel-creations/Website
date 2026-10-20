@@ -104,6 +104,7 @@ jobs:
           npx playwright install --with-deps chromium
           node scripts/playwright-smoke.mjs --static
           node scripts/checkBootFallback.mjs
+          node scripts/checkDegradedBoot.mjs
 
       - name: Upload static-host screenshots
         if: always()
@@ -441,6 +442,37 @@ jobs:
           echo "Uploaded dist/ to the document root."
           echo "::notice title=Deploy stage::dist/ uploaded"
 
+          # .htaccess is uploaded only when the server has none, or when it is the file this
+          # workflow manages. A hand-written Apache configuration is never replaced.
+          # It matters: without no-cache HTML, a cached document can point at a bundle a
+          # later deploy replaced, and the browser renders a blank page.
+          HTACCESS_STATE="$("${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          set -uo pipefail
+          DOCROOT="$1"
+          if [ ! -f "$DOCROOT/.htaccess" ]; then
+            echo missing
+          elif grep -q 'angel-creations-htaccess:' "$DOCROOT/.htaccess"; then
+            echo managed
+          else
+            echo unmanaged
+          fi
+          REMOTE
+          )"
+          echo "Server .htaccess state: ${HTACCESS_STATE:-unknown}"
+
+          case "$HTACCESS_STATE" in
+            missing|managed)
+              if ! rsync -az --delay-updates -e "$RSYNC_RSH" dist/.htaccess "$TARGET:$DOCROOT/.htaccess"; then
+                annotate 'Apache policy upload failed' <<< 'dist/.htaccess could not be copied'
+              else
+                echo "::notice title=Deploy stage::.htaccess policy applied"
+              fi
+              ;;
+            *)
+              echo "::warning title=Apache policy not applied::The server has a hand-written .htaccess; add no-cache HTML headers manually if HTML is cacheable"
+              ;;
+          esac
+
           # A leftover WordPress index.php wins the directory index on this host and
           # serves a fatal error (HTTP 500 -> blank page) instead of index.html.
           if ! "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE' 2>/tmp/quarantine.err
@@ -523,7 +555,13 @@ jobs:
               done
 
               if [ -z "$failures" ]; then
-                echo "::notice title=Live site verified::/ , /about/ , /works/ and /contact/ serve mountable documents with a loadable bundle (attempt $attempt)"
+                local cache_header
+                cache_header="$(curl -sSI --max-time 30 "$SITE_URL/" | tr -d '\r' | grep -i '^cache-control:' | head -n1 || true)"
+                if echo "$cache_header" | grep -qi 'no-cache\|no-store\|max-age=0'; then
+                  echo "::notice title=Live site verified::/ , /about/ , /works/ and /contact/ serve mountable documents with a loadable bundle; HTML is not cacheable"
+                else
+                  echo "::warning title=HTML cache policy::homepage Cache-Control is '${cache_header:-absent}'; a cached document can outlive its bundle. Add the managed .htaccess or purge the host cache."
+                fi
                 return 0
               fi
               echo "::warning title=Live check attempt $attempt::${failures}"

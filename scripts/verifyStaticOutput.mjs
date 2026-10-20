@@ -66,6 +66,13 @@ for (const route of requiredRoutes) {
     }
   }
 
+  // Every published document must be able to survive its own JavaScript failing: the
+  // boot fallback and its watchdog are what stop a stale cached document (pointing at a
+  // replaced bundle) or a mispublished source tree from rendering blank.
+  if (!/id="boot-fallback"/.test(html)) record(file, 'no boot fallback, so a failed bundle leaves a blank page');
+  if (!/data-boot-watchdog/.test(html)) record(file, 'no boot watchdog script');
+  if (!/id="root"/.test(html)) record(file, 'no application mount point');
+
   const stylesheets = [...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="\/([^"]+)"/gi)].map((match) => match[1]);
   for (const stylesheet of stylesheets) {
     const asset = path.join(distDirectory, stylesheet);
@@ -87,10 +94,21 @@ for (const file of walk(distDirectory)) {
   }
 }
 
+// 3. The Apache policy that keeps HTML revalidating and hides repository source.
+const htaccess = await stat(path.join(distDirectory, '.htaccess')).then((stats) => stats.isFile()).catch(() => false);
+if (!htaccess) {
+  problems.push('.htaccess is missing from the build: HTML would be cacheable, so a cached document can point at a replaced bundle');
+} else {
+  const rules = await readFile(path.join(distDirectory, '.htaccess'), 'utf8');
+  if (!/angel-creations-htaccess:/.test(rules)) problems.push('.htaccess is not the managed file');
+  if (!/no-cache[^\n]*/.test(rules)) problems.push('.htaccess does not mark HTML as no-cache');
+  if (!/RedirectMatch 404[^\n]*\(src\|scripts\|docs/.test(rules)) problems.push('.htaccess does not block repository source paths');
+}
+
 if (problems.length > 0) {
   console.error(`Static output verification failed with ${problems.length} problem(s):`);
   for (const problem of problems) console.error(` - ${problem}`);
   process.exit(1);
 }
 
-console.log(`Verified ${requiredRoutes.length} route documents and ${walk(distDirectory).length} HTML files in ${path.relative(process.cwd(), distDirectory) || '.'}: every route mounts the app, every script is closed, and every referenced asset exists.`);
+console.log(`Verified ${requiredRoutes.length} route documents and ${walk(distDirectory).length} HTML files in ${path.relative(process.cwd(), distDirectory) || '.'}: every route mounts the app, every script is closed, every referenced asset exists, every document carries a boot fallback, and .htaccess enforces no-cache HTML.`);

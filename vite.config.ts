@@ -1,5 +1,24 @@
 import { defineConfig, type Plugin, type ProxyOptions } from 'vite';
 import react from '@vitejs/plugin-react';
+// Plain ESM module shared by this config and scripts/generateStaticFallbacks.mjs.
+// @ts-expect-error the boot fallback has no TypeScript declaration file
+import { bootFallbackBlock } from './scripts/boot-fallback.mjs';
+
+// Injects the boot fallback into index.html for the dev server and the production build.
+// It is the only defence against a document whose entry script never runs (a host serving
+// the repository root, or a cached document pointing at a replaced bundle).
+function bootFallback(): Plugin {
+  return {
+    name: 'angel-boot-fallback',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html: string) {
+        if (html.includes('id="boot-fallback"')) return html;
+        return html.replace('<div id="root"></div>', `<div id="root"></div>\n${bootFallbackBlock}`);
+      },
+    },
+  };
+}
 
 // The archived site does not contain the very large Unity .data/.wasm binaries.
 // Preserve their source URL shapes and use a read-only local-preview bridge, keeping
@@ -142,7 +161,7 @@ function preservedFeeds(): Plugin {
   };
 }
 export default defineConfig({
-  plugins: [react(), canonicalAboutRedirect(), captured404Status(), preservedFeeds()],
+  plugins: [react(), bootFallback(), canonicalAboutRedirect(), captured404Status(), preservedFeeds()],
   server: { host: '0.0.0.0', allowedHosts: true, proxy: sourceRuntimeProxy },
   preview: { host: '0.0.0.0', allowedHosts: true, proxy: sourceRuntimeProxy },
 });
