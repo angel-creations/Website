@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { getNetworkInformation, prefersReducedData, prefersReducedMotion } from '../utils/mediaPreferences';
-import { LegacyFooter } from './LegacyFooter';
+import { SiteFooter } from './SiteFooter';
 
-const showreelVideo = '/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4';
-const showreelPoster = '/legacy-assets/images/generated-home-posters/menu-background.jpg';
+const showreelVideo = '/media/videos/Main-Background-with-sound.mp4';
+const showreelPoster = '/media/images/generated-home-posters/menu-background.webp';
 
 type DisciplineRecord = {
   number: string;
@@ -26,7 +26,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Persistent virtual worlds, digital twins & spatial ecosystems.',
     summary:
       'We architect interactive virtual worlds where communities gather, brands launch flagship destinations, and commerce unfolds in real-time 3D space.',
-    image: '/inner-library/metaverse/hero-metaverse.webp',
+    image: '/media/library/metaverse/hero-metaverse.webp',
     deliverables: 'Multi-user 3D worlds · Avatar systems · Spatial commerce',
     capabilities: [
       'Virtual Worlds',
@@ -49,7 +49,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Physical and digital worlds fused with spatial precision.',
     summary:
       'We design spatial computing applications where digital objects anchor naturally to physical rooms, enabling hands-on training, architectural walk-throughs, and collaborative design.',
-    image: '/inner-library/mixed-reality/hero-mixed-reality.png',
+    image: '/media/library/mixed-reality/hero-mixed-reality.png',
     deliverables: 'Spatial computing apps · Digital twins · Remote collaboration',
     capabilities: [
       'MR Content Creation',
@@ -72,7 +72,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Total sensory immersion for simulation, learning & storytelling.',
     summary:
       'From high-stakes industrial training and medical simulations to architectural visualization and interactive entertainment, our VR systems put users inside the experience.',
-    image: '/inner-library/virtual-reality/hero-virtual-reality.webp',
+    image: '/media/library/virtual-reality/hero-virtual-reality.webp',
     deliverables: '6DoF headset experiences · Training sims · 360° VR cinema',
     capabilities: [
       'VR Video Conferencing',
@@ -95,7 +95,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Interactive camera-first layers that bring products and spaces alive.',
     summary:
       'We build WebAR, mobile AR, and on-site spatial activations that let audiences try products at scale, navigate complex venues, and interact with stories in their own environment.',
-    image: '/inner-library/augment-reality/hero-augment-reality.webp',
+    image: '/media/library/augment-reality/hero-augment-reality.webp',
     deliverables: 'WebAR & mobile AR · Retail try-ons · Spatial wayfinding',
     capabilities: [
       'AR Industrial Applications',
@@ -118,7 +118,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Frame-by-frame craft across 2D, 3D, motion design & visual effects.',
     summary:
       'Our directors, character animators, and VFX artists turn complex ideas into kinetic visual narratives—from stylized explainers and broadcast packages to photorealistic 3D worlds.',
-    image: '/inner-library/animation/hero-animation.jpg',
+    image: '/media/library/animation/hero-animation.jpg',
     deliverables: '3D & 2D animation · Character rigging · Motion graphics & VFX',
     capabilities: [
       'Concept Development',
@@ -141,7 +141,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Campaigns engineered to capture attention and build lasting cultural equity.',
     summary:
       'We combine strategic brand positioning with high-impact visual storytelling, interactive launches, and multi-channel campaign assets that turn audiences into advocates.',
-    image: '/inner-library/brand-advertisement/hero-brand-advertisement.jpg',
+    image: '/media/library/brand-advertisement/hero-brand-advertisement.jpg',
     deliverables: 'Campaign films · Interactive launches · Brand identity systems',
     capabilities: [
       'Campaign Strategy & Direction',
@@ -164,7 +164,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'End-to-end cinema, broadcast, live event & post-production craft.',
     summary:
       'From scriptwriting and principal photography to spatial audio, color grading, and final master delivery, our production unit handles commissions of any scale.',
-    image: '/inner-library/media-production/hero-media-production.jpg',
+    image: '/media/library/media-production/hero-media-production.jpg',
     deliverables: 'Commercial cinema · Documentary & broadcast · Full post-production',
     capabilities: [
       'Video Production',
@@ -202,7 +202,7 @@ const studioProducts: StudioProduct[] = [
       'Our dedicated spatial platform designed to bring brands, communities, and cultural experiences into persistent, accessible 3D environments across web, mobile, and VR headsets.',
     highlights: ['Persistent 3D Spaces', 'Cross-Device Spatial Access', 'Interactive Brand Pavilions'],
     href: 'https://thevirtuallife.in/',
-    image: '/inner-library/metaverse/story-01-spatial-presence.jpg',
+    image: '/media/library/metaverse/story-01-spatial-presence.jpg',
   },
   {
     number: '02',
@@ -213,7 +213,7 @@ const studioProducts: StudioProduct[] = [
       'A new standard in personal celebration—transforming traditional invitations into cinematic, interactive 3D worlds that guests can explore from anywhere in the world.',
     highlights: ['Custom 3D Venue Worlds', 'Interactive Story & RSVP Flow', 'Instant Mobile & Web Playback'],
     href: 'https://thevirtuallife.in/weddinginvite/',
-    image: '/inner-library/virtual-reality/story-03-spatial-storytelling.jpg',
+    image: '/media/library/virtual-reality/story-03-spatial-storytelling.jpg',
   },
 ];
 
@@ -1084,7 +1084,7 @@ export function AboutPage(): JSX.Element {
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="auto"
                 poster={showreelPoster}
               >
                 <source src={showreelVideo} type="video/mp4" />
@@ -1191,7 +1191,7 @@ export function AboutPage(): JSX.Element {
 
                 <figure className="ac-about-v2-bento-card ac-about-v2-bento-card--visual">
                   <img
-                    src="/inner-library/metaverse/hero-metaverse.webp"
+                    src="/media/library/metaverse/hero-metaverse.webp"
                     alt="Spatial worldbuilding at Angel Creations"
                     loading="lazy"
                     decoding="async"
@@ -1609,7 +1609,7 @@ export function AboutPage(): JSX.Element {
             </div>
           </section>
 
-          <LegacyFooter />
+          <SiteFooter />
         </main>
       </div>
     </div>

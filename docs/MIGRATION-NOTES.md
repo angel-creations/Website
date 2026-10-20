@@ -6,7 +6,7 @@
 - No production site, Hostinger, DNS, WordPress, analytics settings, forms, databases, repositories, or Search Console settings were changed.
 - React is intentionally dependency-light: React, ReactDOM, Vite, and TypeScript only. No UI, animation, router, CMS, or backend package was added.
 - The React implementation renders captured source content through a typed, allowlisted DOM data renderer rather than injecting arbitrary HTML. This preserves content/structure without `dangerouslySetInnerHTML`.
-- A hard-linked compatibility mirror at `public/legacy-assets/other/wp-content/themes/fleava/assets/fonts/` satisfies the original relative `custom.css` font URLs while the canonical categorised copies remain in `public/legacy-assets/fonts/`. This avoids browser 404s without changing the preserved CSS source.
+- A hard-linked compatibility mirror at `public/legacy-assets/other/wp-content/themes/fleava/assets/fonts/` satisfies the original relative `custom.css` font URLs while the canonical categorised copies remain in `public/fonts/`. This avoids browser 404s without changing the preserved CSS source.
 
 ## Responsive forensic baseline
 
@@ -47,7 +47,7 @@ The active `/about/` investigation first disproved a blank-root diagnosis: five-
 The repair is deliberately page-scoped:
 
 - `src/components/AboutReveal.tsx` reproduces the captured line splitting, viewport reveal, and rotating-location behavior only when the `/about/` content root carries `data-about-page-reveal`.
-- `src/app/App.tsx` uses that initializer and the existing source-shaped `LegacyFooter` only for `/about/`; it does not alter another legacy page’s markup or lifecycle.
+- `src/app/App.tsx` uses that initializer and the existing source-shaped `SiteFooter` only for `/about/`; it does not alter another legacy page’s markup or lifecycle.
 - `vite.config.ts` adds the observed WordPress canonical `/about` HTTP 301 to `/about/`. Before this About-specific correction the no-slash address reached the generic React 404 record; live returns that 301.
 - No animation library, arbitrary HTML/script execution, tracker, form handling, server-side feature, redesign, or production change was added.
 

@@ -331,5 +331,5 @@ for p in PAGES:
     })
 
 src_data=ROOT/'src'/'data';src_data.mkdir(parents=True,exist_ok=True)
-(ROOT/'src'/'data'/'legacyPages.json').write_text(json.dumps(page_data,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+(ROOT/'src'/'data'/'pages.json').write_text(json.dumps(page_data,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
 print(f'Wrote inventories and {len(page_data)} React-safe legacy page records.')

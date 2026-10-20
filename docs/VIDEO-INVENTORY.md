@@ -6,13 +6,13 @@
 
 | Source | Local path | Usage | Autoplay | Muted | Loop | Controls | Poster / preload |
 |---|---|---|---:|---:|---:|---:|---|
-| `https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4` | Global overlay menu background; reused on content pages | yes | yes | yes | no | none / default |
-| `https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4` | Home slide 01 | yes | yes | yes | no | none / default |
-| `https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4` | Home slide 02 | yes | yes | yes | no | none / default |
-| `https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4` | Home slide 03 | yes | yes | yes | no | none / default |
-| `https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4` | Home slide 04 | yes | yes | yes | no | none / default |
-| `https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4` | Home slide 05 | yes | yes | yes | no | none / default |
-| `https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4` | `/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4` | Home slide 06 | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/08/Main-Background-with-sound.mp4` | `/media/videos/uploads/2023/08/Main-Background-with-sound.mp4` | Global overlay menu background; reused on content pages | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/08/Metaverse.mp4` | `/media/videos/uploads/2023/08/Metaverse.mp4` | Home slide 01 | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/08/Mixed-Reality.mp4` | `/media/videos/uploads/2023/08/Mixed-Reality.mp4` | Home slide 02 | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/08/Virtual-Reality.mp4` | `/media/videos/uploads/2023/08/Virtual-Reality.mp4` | Home slide 03 | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4` | `/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4` | Home slide 04 | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/05/Singing-girl.mp4` | `/media/videos/uploads/2023/05/Singing-girl.mp4` | Home slide 05 | yes | yes | yes | no | none / default |
+| `https://angelcreations.in/wp-content/uploads/2023/05/Brand-Advertisement.mp4` | `/media/videos/uploads/2023/05/Brand-Advertisement.mp4` | Home slide 06 | yes | yes | yes | no | none / default |
 
 ## First-party source recorded but not copied
 

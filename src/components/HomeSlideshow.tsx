@@ -18,12 +18,11 @@ const TRANSITION_MS = 1120;
 const DRAG_SETTLE_MIN_MS = 300;
 const DRAG_SETTLE_MAX_MS = 740;
 const VIDEO_START_MS = 220;
-const VIDEO_PAUSE_MS = 560;
 const PARALLAX = 0.14;
 const TRANSITION_OPACITY = 0.16;
 const DRAG_LOCK_PX = 10;
 const WHEEL_COOLDOWN_MS = 680;
-const FALLBACK_LOCAL_VIDEO = '/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4';
+const FALLBACK_LOCAL_VIDEO = '/media/videos/Main-Background-with-sound.mp4';
 
 type Slide = {
   number: string;
@@ -146,10 +145,24 @@ export function HomeSlideshow(): JSX.Element {
   const describeSlide = (index: number): string =>
     `Slide ${index + 1} of ${slides.length}: ${slides[index].cleanLabel}`;
 
-  const pauseAllExcept = (index: number): void => {
-    slideRefs.current.forEach((slide, slideIndex) => {
-      if (slideIndex !== index) slide?.querySelector<HTMLVideoElement>('video')?.pause();
+  const videosInSlides = (): HTMLVideoElement[] =>
+    slideRefs.current
+      .map((slide) => slide?.querySelector<HTMLVideoElement>('video') ?? null)
+      .filter((video): video is HTMLVideoElement => video !== null);
+
+  const playAllVideos = (): void => {
+    if (!canAutoplayVideos() || document.hidden) return;
+    videosInSlides().forEach((video) => {
+      if (video.dataset.fallbackPending === 'true') {
+        if (activatePendingFallback(video)) return;
+        return;
+      }
+      playVideo(video);
     });
+  };
+
+  const pauseAllVideos = (): void => {
+    videosInSlides().forEach((video) => video.pause());
   };
 
   const clearSlideInlineStyles = (slide: HTMLDivElement | null): void => {
@@ -262,7 +275,7 @@ export function HomeSlideshow(): JSX.Element {
       prefersReducedMotionRef.current = mediaQuery.matches;
       setPrefersReducedMotion(mediaQuery.matches);
       if (mediaQuery.matches) {
-        pauseAllExcept(-1);
+        pauseAllVideos();
       } else if (wasReduced && canAutoplayVideos() && !document.hidden) {
         const activeVideo = slideRefs.current[activeRef.current]?.querySelector('video') ?? null;
         if (!activatePendingFallback(activeVideo)) playVideo(activeVideo);
@@ -274,7 +287,7 @@ export function HomeSlideshow(): JSX.Element {
       prefersReducedDataRef.current = reducedData;
       setPrefersReducedData(reducedData);
       if (reducedData) {
-        pauseAllExcept(-1);
+        pauseAllVideos();
       } else if (wasReduced && canAutoplayVideos() && !document.hidden) {
         const activeVideo = slideRefs.current[activeRef.current]?.querySelector('video') ?? null;
         if (!activatePendingFallback(activeVideo)) playVideo(activeVideo);
@@ -286,17 +299,15 @@ export function HomeSlideshow(): JSX.Element {
     network?.addEventListener('change', updateDataPreference);
 
     slideRefs.current.forEach((slide) => slide?.classList.add('is-loaded'));
-    rememberTimer(() => {
-      if (canAutoplayVideos()) {
-        const activeVideo = slideRefs.current[activeRef.current]?.querySelector('video') ?? null;
-        if (!activatePendingFallback(activeVideo)) playVideo(activeVideo);
-      }
-    }, VIDEO_START_MS);
+    // All seven capability films run from the first paint. They are muted background
+    // footage, so this is allowed to start without a gesture, and it removes the
+    // buffering pause that used to appear on the first swipe.
+    playAllVideos();
 
     const onVisibilityChange = (): void => {
       const currentVideo = slideRefs.current[activeRef.current]?.querySelector<HTMLVideoElement>('video') ?? null;
-      if (document.hidden || !canAutoplayVideos()) currentVideo?.pause();
-      else if (!activatePendingFallback(currentVideo)) playVideo(currentVideo);
+      if (document.hidden || !canAutoplayVideos()) pauseAllVideos();
+      else playAllVideos();
     };
     const onMenuStateChange = (event: Event): void => {
       const isOpen = (event as CustomEvent<{ open?: boolean }>).detail?.open;
@@ -309,10 +320,9 @@ export function HomeSlideshow(): JSX.Element {
           }
           inFlightSettleRef.current();
         }
-        pauseAllExcept(-1);
-      } else if (canAutoplayVideos() && !document.hidden) {
-        const currentVideo = slideRefs.current[activeRef.current]?.querySelector<HTMLVideoElement>('video') ?? null;
-        if (!activatePendingFallback(currentVideo)) playVideo(currentVideo);
+        pauseAllVideos();
+      } else {
+        playAllVideos();
       }
     };
     document.addEventListener('visibilitychange', onVisibilityChange);
@@ -352,7 +362,6 @@ export function HomeSlideshow(): JSX.Element {
 
     const incomingVideo = incoming.querySelector<HTMLVideoElement>('video');
     const outgoingVideo = outgoing.querySelector<HTMLVideoElement>('video');
-    if (incomingVideo && canAutoplayVideos()) incomingVideo.preload = 'metadata';
 
     const settle = (): void => {
       inFlightSettleRef.current = null;
@@ -367,8 +376,7 @@ export function HomeSlideshow(): JSX.Element {
       setStatus(describeSlide(incomingIndex));
       setIsTransitioning(false);
       slideshow.setAttribute('wait', 'false');
-      pauseAllExcept(incomingIndex);
-      if (canAutoplayVideos() && !document.hidden && !activatePendingFallback(incomingVideo ?? null)) {
+            if (canAutoplayVideos() && !document.hidden && !activatePendingFallback(incomingVideo ?? null)) {
         playVideo(incomingVideo ?? null);
       }
     };
@@ -426,7 +434,6 @@ export function HomeSlideshow(): JSX.Element {
         playVideo(incomingVideo ?? null);
       }
     }, VIDEO_START_MS);
-    rememberTimer(() => outgoingVideo?.pause(), VIDEO_PAUSE_MS);
   };
 
   const changeSlide = (offset: number, startFromProgress = 0, customDurationMs?: number): void => {
@@ -452,7 +459,7 @@ export function HomeSlideshow(): JSX.Element {
       clearSlideInlineStyles(outgoing);
       setIsTransitioning(false);
       slideshow.setAttribute('wait', 'false');
-      pauseAllExcept(activeRef.current);
+      playAllVideos();
     };
 
     inFlightSettleRef.current = revertComplete;
@@ -764,22 +771,14 @@ export function HomeSlideshow(): JSX.Element {
                                 loop
                                 muted
                                 playsInline
-                                preload={
-                                  prefersReducedMotion || prefersReducedData
-                                    ? 'none'
-                                    : index === active
-                                      ? 'metadata'
-                                      : Math.abs(index - active) === 1 || Math.abs(index - active) === slides.length - 1
-                                        ? 'metadata'
-                                        : 'none'
-                                }
+                                preload={prefersReducedMotion || prefersReducedData ? 'none' : 'auto'}
                                 poster={slide.poster}
                                 width={1920}
                                 height={1080}
                                 aria-hidden="true"
                                 tabIndex={-1}
                                 onCanPlay={(event) => {
-                                  if (index === active && canAutoplayVideos() && !document.hidden) playVideo(event.currentTarget);
+                                  if (canAutoplayVideos() && !document.hidden) playVideo(event.currentTarget);
                                 }}
                                 onError={(event) => {
                                   const videoEl = event.currentTarget;

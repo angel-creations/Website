@@ -1,7 +1,7 @@
 # Angel Creations — Homepage Slider Map
 
 **Forensic source record — 2026-10-05**  
-This map records the current implementation before the inner-experience work. Slide names, captions, routes and media are taken from `src/components/HomeSlideshow.tsx`; route content was checked against the captured `legacyPages.json` and the source-qualified capability dataset. No slide names have been invented or renamed.
+This map records the current implementation before the inner-experience work. Slide names, captions, routes and media are taken from `src/components/HomeSlideshow.tsx`; route content was checked against the captured `pages.json` and the source-qualified capability dataset. No slide names have been invented or renamed.
 
 ## Shared current slider behaviour
 
@@ -19,7 +19,7 @@ This map records the current implementation before the inner-experience work. Sl
 **Number:** `01`  
 **Existing title/caption:** `/ Metaverse` — “Dive into new world, live the world you want.”  
 **Source:** `HomeSlideshow.tsx`, current captured homepage slide.  
-**Visual/media:** local `/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4`; poster `/legacy-assets/images/generated-home-posters/metaverse.jpg`.  
+**Visual/media:** local `/media/videos/uploads/2023/08/Metaverse.mp4`; poster `/media/images/generated-home-posters/metaverse.jpg`.  
 **Existing route:** `/metaverse/`  
 **Existing CTA/link behavior:** entire caption navigates to `/metaverse/`.  
 **Existing animation/transition:** shared directional slider transition; numbered word/caption reveal; muted looping active video.  
@@ -37,7 +37,7 @@ This map records the current implementation before the inner-experience work. Sl
 **Number:** `02`  
 **Existing title/caption:** `/ Mixed Reality` — “Tech immersion: Real & digital objects interact.”  
 **Source:** `HomeSlideshow.tsx`, current captured homepage slide.  
-**Visual/media:** local `/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4`; poster `/legacy-assets/images/generated-home-posters/mixed-reality.jpg`.  
+**Visual/media:** local `/media/videos/uploads/2023/08/Mixed-Reality.mp4`; poster `/media/images/generated-home-posters/mixed-reality.jpg`.  
 **Existing route:** `/mixed-reality/`  
 **Existing CTA/link behavior:** entire caption navigates to `/mixed-reality/`.  
 **Existing animation/transition:** shared directional slider transition; muted looping active video.  
@@ -55,7 +55,7 @@ This map records the current implementation before the inner-experience work. Sl
 **Number:** `03`  
 **Existing title/caption:** `/ Virtual Reality` — “You’re not imagining it, you’re experiencing it!”  
 **Source:** `HomeSlideshow.tsx`, current captured homepage slide.  
-**Visual/media:** local `/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4`; poster `/legacy-assets/images/generated-home-posters/virtual-reality.jpg`.  
+**Visual/media:** local `/media/videos/uploads/2023/08/Virtual-Reality.mp4`; poster `/media/images/generated-home-posters/virtual-reality.jpg`.  
 **Existing route:** `/virtual-reality/`  
 **Existing CTA/link behavior:** entire caption navigates to `/virtual-reality/`.  
 **Existing animation/transition:** shared directional slider transition; muted looping active video.  
@@ -73,7 +73,7 @@ This map records the current implementation before the inner-experience work. Sl
 **Number:** `04`  
 **Existing title/caption:** `/ Augment Reality` — “Blending real & virtual worlds, Immersive experience!”  
 **Source:** `HomeSlideshow.tsx`, current captured homepage slide.  
-**Visual/media:** local `/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4`; poster `/legacy-assets/images/generated-home-posters/augmented-reality.jpg`.  
+**Visual/media:** local `/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4`; poster `/media/images/generated-home-posters/augmented-reality.jpg`.  
 **Existing route:** `/augment-reality/`  
 **Existing CTA/link behavior:** entire caption navigates to `/augment-reality/`.  
 **Existing animation/transition:** shared directional slider transition; muted looping active video.  
@@ -91,7 +91,7 @@ This map records the current implementation before the inner-experience work. Sl
 **Number:** `05`  
 **Existing title/caption:** `/ Animation` — “We give you amazing animation in both 2D & 3D.”  
 **Source:** `HomeSlideshow.tsx`, current captured homepage slide.  
-**Visual/media:** local `/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4`; poster `/legacy-assets/images/generated-home-posters/animation.jpg`.  
+**Visual/media:** local `/media/videos/uploads/2023/05/Singing-girl.mp4`; poster `/media/images/generated-home-posters/animation.jpg`.  
 **Existing route:** `/animation/`  
 **Existing CTA/link behavior:** entire caption navigates to `/animation/`.  
 **Existing animation/transition:** shared directional slider transition; muted looping active video.  
@@ -109,7 +109,7 @@ This map records the current implementation before the inner-experience work. Sl
 **Number:** `06`  
 **Existing title/caption:** `/ Brand Advertisement` — “Elevating Brands through Digital Innovation.”  
 **Source:** `HomeSlideshow.tsx`, current captured homepage slide.  
-**Visual/media:** local `/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4`; poster `/legacy-assets/images/generated-home-posters/brand-advertisement.jpg`.  
+**Visual/media:** local `/media/videos/uploads/2023/05/Brand-Advertisement.mp4`; poster `/media/images/generated-home-posters/brand-advertisement.jpg`.  
 **Existing route:** `/brand-advertisement/`  
 **Existing CTA/link behavior:** entire caption navigates to `/brand-advertisement/`.  
 **Existing animation/transition:** shared directional slider transition; muted looping active video.  

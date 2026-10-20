@@ -65,17 +65,17 @@ jobs:
           const retiredRouteListed = sitemap.includes('https://angelcreations.in/360-video/');
 
           const html = readFileSync('index.html', 'utf8');
-          const stylesheetPaths = [...html.matchAll(/<link[^>]+href="(\/legacy-assets\/[^"]+\.css)"/g)]
+          const stylesheetPaths = [...html.matchAll(/<link[^>]+href="(\/assets\/[^"]+\.css)"/g)]
             .map((match) => match[1]);
           const missingStylesheets = stylesheetPaths.filter((url) =>
-            !existsSync(join('public', url.slice(1)))
+            !existsSync(join('dist', url.slice(1)))
           );
 
           const slides = JSON.parse(readFileSync('src/data/slideExperiences.json', 'utf8'));
           const mediaPaths = slides.flatMap((slide) => [slide.video, slide.poster])
             .filter((url) => typeof url === 'string' && url.startsWith('/'));
           const missingMedia = [...new Set(mediaPaths)].filter((url) =>
-            !existsSync(join('public', url.slice(1)))
+            !existsSync(join('dist', url.slice(1)))
           );
 
           for (const [label, items] of [
@@ -228,7 +228,7 @@ jobs:
             fi
 
             # A representative archive asset, to separate "documents missing" from "whole tree missing".
-            probe "/legacy-assets/images/generated-home-posters/metaverse.jpg"
+            probe "/media/images/generated-home-posters/metaverse.jpg"
           } | tee /tmp/live-diagnostics.txt
 
           # Surface the same findings as annotations, which remain readable without

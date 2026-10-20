@@ -23,8 +23,8 @@ The public homepage inspection confirms the local migration correctly preserves 
 | Area | Current implementation | Audit result |
 |---|---|---|
 | Runtime | React 18 + Vite + TypeScript; no added UI framework | Appropriate. No dependency-led redesign pressure. |
-| Source page archive | `src/data/legacyPages.json`, 55 captured routes: 32 status-200, 23 status-404 | Authoritative legacy content source; 833 KB is intentionally code-split. |
-| Renderer | `LegacyRenderer.tsx` allowlists captured markup and blocks script execution | Good migration safety boundary. Captured style tags still warrant narrow review. |
+| Source page archive | `src/data/pages.json`, 55 captured routes: 32 status-200, 23 status-404 | Authoritative legacy content source; 833 KB is intentionally code-split. |
+| Renderer | `ContentBlocks.tsx` allowlists captured markup and blocks script execution | Good migration safety boundary. Captured style tags still warrant narrow review. |
 | Home | `HomeSlideshow.tsx`, 7 numbered original slides | Original composition, slide order, and directional reveal retained. |
 | Navigation | `Header.tsx`, logo bar/vertical menu/video-backed overlay | Original navigation philosophy retained; current enhancement adds accessible dialog behavior. |
 | About | Legacy markup plus `AboutReveal.tsx` | Original reveal/rotating-word treatment preserved, but needs motion-preference hardening. |

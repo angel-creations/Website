@@ -1,4 +1,4 @@
-import type { SeoData } from '../types/legacy';
+import type { SeoData } from '../types/content';
 
 function upsertMeta(selector: string, attributes: Record<string, string>): void {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -87,7 +87,7 @@ function addJsonLd(data: string): void {
     script.text = data;
     document.head.appendChild(script);
   } catch {
-    // Invalid legacy schema is not injected into the live document.
+    // Invalid structured data is not injected into the live document.
   }
 }
 
@@ -104,7 +104,7 @@ export function applySeo(page: SeoData): void {
     document.head.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"]').forEach((item) => item.remove());
     document.head.querySelectorAll('script[type="application/ld+json"]').forEach((item) => item.remove());
   } else {
-    document.head.querySelectorAll('script[data-legacy-jsonld="true"], script[data-angel-runtime-jsonld="true"]').forEach((item) => item.remove());
+    document.head.querySelectorAll('script[data-source-jsonld="true"], script[data-angel-runtime-jsonld="true"]').forEach((item) => item.remove());
   }
 
   const image = page.meta['og:image'];

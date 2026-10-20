@@ -235,7 +235,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
   // Build a 4-frame multi-angle lens switcher for the Hero Stage, all unique to this route
   const heroLenses = useMemo(() => {
     const fallbackSrc =
-      innerHeroVisuals[routePath] || '/inner-library/metaverse/hero-metaverse.webp';
+      innerHeroVisuals[routePath] || '/media/library/metaverse/hero-metaverse.webp';
     const lenses: Array<{ label: string; src: string; caption: string; subtitle: string }> = [
       {
         label: '01 · Hero Stage',

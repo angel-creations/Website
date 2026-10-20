@@ -6,9 +6,9 @@ import {
   type KeyboardEvent,
 } from 'react';
 
-const backIcon = '/legacy-assets/icons/contact-back.png';
-const nextIcon = '/legacy-assets/icons/contact-forward.png';
-const downIcon = '/legacy-assets/icons/contact-down.png';
+const backIcon = '/media/icons/contact-back.png';
+const nextIcon = '/media/icons/contact-forward.png';
+const downIcon = '/media/icons/contact-down.png';
 
 type FieldKind = 'input' | 'textarea' | 'select';
 

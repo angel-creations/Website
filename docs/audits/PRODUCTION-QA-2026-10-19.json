@@ -533,7 +533,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/about.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/about.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -548,7 +548,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/animation.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/animation.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -563,7 +563,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/augmented-reality.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/augmented-reality.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -578,7 +578,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/brand-advertisement.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/brand-advertisement.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -593,7 +593,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-animation-3d.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-animation-3d.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -608,7 +608,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-brand.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-brand.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -623,7 +623,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-content.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-content.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -638,7 +638,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-creative-technology.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-creative-technology.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -653,7 +653,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-design.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-design.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -668,7 +668,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-digital.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-digital.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -683,7 +683,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-experiences.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-experiences.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -698,7 +698,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/capability-film.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/capability-film.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -713,7 +713,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/contact.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/contact.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -728,7 +728,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/home.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/home.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -743,7 +743,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/media-production.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/media-production.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -758,7 +758,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/metaverse.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/metaverse.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -773,7 +773,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/mixed-reality.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/mixed-reality.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -788,7 +788,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/privacy-policy.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/privacy-policy.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -803,7 +803,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/terms-of-service.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/terms-of-service.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -818,7 +818,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/virtual-reality.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/virtual-reality.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
@@ -833,7 +833,7 @@
         "method": "GET"
       },
       {
-        "requestUrl": "https://angelcreations.in/social/og/works.jpg",
+        "requestUrl": "https://angelcreations.in/media/social/og/works.jpg",
         "roles": [
           "route-specific-social-preview-image"
         ],
