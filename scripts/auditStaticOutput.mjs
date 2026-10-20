@@ -50,14 +50,14 @@ function duplicates(rows, key) {
   return [...index.entries()].filter(([, routes]) => routes.length > 1);
 }
 
-const fallbackDirectory = join(root, 'legacy-page-fallbacks');
+const fallbackDirectory = join(root, 'page-data');
 const fallbackFiles = (await readdir(fallbackDirectory).catch(() => [])).filter((file) => file.endsWith('.json'));
-const legacyFallbackRows = await Promise.all(fallbackFiles.map(async (file) => {
+const pageFallbackRows = await Promise.all(fallbackFiles.map(async (file) => {
   try {
     const payload = JSON.parse(await readFile(join(fallbackDirectory, file), 'utf8'));
     const slug = String(payload.route || '').replace(/^\/+|\/+$/g, '').replace(/\//g, '--');
     let httpStatus = null;
-    try { httpStatus = (await fetch(`${previewBase}/legacy-page-fallbacks/${file}`, { redirect: 'manual' })).status; } catch { /* preview may be intentionally unavailable */ }
+    try { httpStatus = (await fetch(`${previewBase}/page-data/${file}`, { redirect: 'manual' })).status; } catch { /* preview may be intentionally unavailable */ }
     return {
       file, route: payload.route, status: payload.status,
       childrenCount: Array.isArray(payload.children) ? payload.children.length : -1,
@@ -183,10 +183,10 @@ const report = {
   statusDocumentIssues,
   errorStatusChecks,
   errorStatusIssues,
-  legacyFallbackDocuments: legacyFallbackRows.length,
-  legacyFallbackIssues: [
-    ...(legacyFallbackRows.length === 12 ? [] : [[`expected 12 fallback documents, found ${legacyFallbackRows.length}`]]),
-    ...legacyFallbackRows
+  pageFallbackDocuments: pageFallbackRows.length,
+  pageFallbackIssues: [
+    ...(pageFallbackRows.length === 12 ? [] : [[`expected 12 fallback documents, found ${pageFallbackRows.length}`]]),
+    ...pageFallbackRows
       .filter((row) => row.status !== 200 || row.childrenCount < 0 || !row.filenameMatchesRoute || (row.httpStatus !== null && row.httpStatus !== 200))
       .map((row) => [row.file, row.route, row.status, row.childrenCount, row.filenameMatchesRoute, row.httpStatus]),
   ],
@@ -219,7 +219,7 @@ const auditFailures = {
   notFoundDesignIssues: report.notFoundDesignIssues,
   statusDocumentIssues: report.statusDocumentIssues,
   errorStatusIssues: report.errorStatusIssues,
-  legacyFallbackIssues: report.legacyFallbackIssues,
+  pageFallbackIssues: report.pageFallbackIssues,
   httpStatusIssues: report.httpStatusIssues,
   duplicateTitles: report.duplicateTitles,
   duplicateDescriptions: report.duplicateDescriptions,
@@ -244,7 +244,7 @@ console.log(JSON.stringify({
   documents: report.documents,
   sitemap: report.sitemap,
   sitemapDelivery: report.sitemapDelivery,
-  legacyFallbackDocuments: report.legacyFallbackDocuments,
+  pageFallbackDocuments: report.pageFallbackDocuments,
   auditPassed: !hasAuditFailures,
   auditFailures,
   canonicalAliasExceptions: report.canonicalAliasExceptions,

@@ -6,35 +6,35 @@
       "media": [
         {
           "tag": "IMG",
-          "src": "http://127.0.0.1:4173/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png",
+          "src": "http://127.0.0.1:4173/media/logos/uploads/2023/01/logo-rectangle-1.png",
           "poster": null,
           "alt": "",
           "type": null
         },
         {
           "tag": "VIDEO",
-          "src": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "src": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "poster": null,
           "alt": null,
           "type": null
         },
         {
           "tag": "SOURCE",
-          "src": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "src": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "poster": null,
           "alt": null,
           "type": "video/mp4"
         },
         {
           "tag": "VIDEO",
-          "src": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "src": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "poster": null,
           "alt": null,
           "type": null
         },
         {
           "tag": "SOURCE",
-          "src": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "src": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "poster": null,
           "alt": null,
           "type": "video/mp4"
@@ -73,7 +73,7 @@
         {
           "text": "Digital",
           "href": "/",
-          "img": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "img": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         {
           "text": "metaverse",
@@ -147,13 +147,13 @@
         "initiator": "script"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png",
+        "url": "http://127.0.0.1:4173/media/logos/uploads/2023/01/logo-rectangle-1.png",
         "status": 200,
         "contentType": "image/png",
         "initiator": "image"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
+        "url": "http://127.0.0.1:4173/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
         "status": 200,
         "contentType": "font/woff2",
         "initiator": "font"
@@ -165,19 +165,19 @@
         "initiator": "font"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
+        "url": "http://127.0.0.1:4173/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
         "status": 200,
         "contentType": "font/woff2",
         "initiator": "font"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+        "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
         "status": 206,
         "contentType": "video/mp4",
         "initiator": "media"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+        "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
         "status": 206,
         "contentType": "video/mp4",
         "initiator": "media"

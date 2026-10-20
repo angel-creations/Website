@@ -144,7 +144,7 @@ function addAsset(raw, sourceFile, context) {
   }
   path = `/${path.replace(/^\/+/, '')}`;
   const extension = extname(path).toLowerCase();
-  const assetLike = Boolean(extension) || ['/assets/', '/legacy-assets/', '/inner-library/', '/social/', '/legacy-page-fallbacks/'].some((prefix) => path.startsWith(prefix));
+  const assetLike = Boolean(extension) || ['/assets/', '/media/', '/media/library/', '/media/social/'].some((prefix) => path.startsWith(prefix));
   if (!assetLike) return;
   const record = assetByUrl.get(path) || { url: path, sources: new Set(), exists: null, localStatus: null };
   record.sources.add(`${sourceFile} (${context})`);
@@ -425,12 +425,12 @@ for (const file of activeCssFiles) {
 for (const file of distFiles.filter((path) => path.endsWith('.js'))) {
   const relativeFile = relative(root, file).replaceAll('\\', '/');
   const js = await readFile(file, 'utf8');
-  for (const match of js.matchAll(/["'`]((?:\/(?:assets|legacy-assets|inner-library|social|legacy-page-fallbacks)\/)[^"'`\s]*)["'`]/g)) {
+  for (const match of js.matchAll(/["'`]((?:\/(?:assets|media)\/)[^"'`\s]*)["'`]/g)) {
     addAsset(match[1], relativeFile, 'runtime asset path');
   }
 }
 const activeDataFiles = (await filesUnder(join(root, 'src/data')))
-  .filter((file) => /\.(json|ts)$/.test(file) && !file.endsWith('legacyPages.json'));
+  .filter((file) => /\.(json|ts)$/.test(file) && !file.endsWith('pages.json'));
 for (const file of [...activeDataFiles, ...sourceFiles]) {
   const relativeFile = relative(root, file).replaceAll('\\', '/');
   const source = await readFile(file, 'utf8');
@@ -571,7 +571,7 @@ const report = {
     'Removed the stale no-JavaScript /360-video/ navigation link; the intentionally retired route now returns a branded 410 in local preview.',
     'Changed the About and footer Virtual Life destination from HTTP to the same HTTPS URL already used by the header.',
     'Aligned the remote Media Production slide source type with the repository asset manifest’s historical video/quicktime response; the 310 MB source was not re-fetched.',
-    'Removed missing legacy SVG font fallback URLs from the active legacy stylesheet while retaining existing WOFF/WOFF2/TTF sources.',
+    'Removed missing SVG font fallback URLs from the site stylesheet while retaining existing WOFF/WOFF2/TTF sources.',
     'Added unique 1200×630 local social-preview images and per-route Open Graph/Twitter headline, description, URL, dimensions, MIME type, and alt metadata for all 21 sitemap routes.',
     'Added a React render-error boundary and generated branded 403/404/410/500/502/503/504 documents; only local 404/410 path status behavior was verified.',
     'Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion.',
@@ -610,8 +610,8 @@ const report = {
     hostErrors: 'Custom static documents are generated for 403, 404, 410, 500, 502, 503, and 504. Production server mappings/status codes are unverified and are not inferred from the files.',
   },
   excludedInactiveCapture: {
-    source: 'src/data/legacyPages.json',
-    note: 'This file retains captured legacy HTML/link data for migration reference. Its obsolete WordPress links are not emitted as active anchors in the current generated pages; active link inventory is based on built anchors plus current component/data definitions.',
+    source: 'src/data/pages.json',
+    note: 'This file retains the captured page content used by the archived route renderer. Its obsolete links are not emitted as active anchors in the current generated pages; active link inventory is based on built anchors plus current component/data definitions.',
   },
   limitations: [
     'Production HTTPS is blocked in this sandbox: the target is outside the permitted outbound hosts and TLS ended with curl exit 35 before any certificate or HTTP response. This does not establish a DNS/CDN/origin TLS defect.',

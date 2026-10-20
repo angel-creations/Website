@@ -6,7 +6,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { bootFallbackBlock } from './boot-fallback.mjs';
 
-const pages = JSON.parse(await readFile(new URL('../src/data/legacyPages.json', import.meta.url), 'utf8'));
+const pages = JSON.parse(await readFile(new URL('../src/data/pages.json', import.meta.url), 'utf8'));
 const videos = JSON.parse(await readFile(new URL('../src/data/videoArchive.json', import.meta.url), 'utf8'));
 const routeSeo = JSON.parse(await readFile(new URL('../src/data/routeSeo.json', import.meta.url), 'utf8'));
 const slideExperiences = JSON.parse(await readFile(new URL('../src/data/slideExperiences.json', import.meta.url), 'utf8'));
@@ -166,7 +166,7 @@ function capabilitySchema(capability) {
   return `<script type="application/ld+json">${JSON.stringify(payload).replace(/</g, '\\u003c')}</script>`;
 }
 
-// Reuse all local legacy CSS and Vite entry assets from the actual generated root build. This
+// Reuse the built stylesheet and Vite entry assets from the actual generated root build. This
 // prevents static route files from becoming a no-JS-only experience for JavaScript users.
 //
 // Script elements must be copied with their closing tag. Emitting `<script src="...">` alone
@@ -176,7 +176,7 @@ const runtimeAssetTags = [...rootBuild.matchAll(/<script\b[^>]*src="\/assets\/[^
   .map((match) => match[0])
   .filter((tag) => tag.startsWith('<script')
     ? tag.includes('type="module"')
-    : /href="\/(?:legacy-assets|assets)\//.test(tag))
+    : /href="\/assets\//.test(tag))
   .join('\n');
 if (!runtimeAssetTags.includes('type="module"')) throw new Error('Generated root build entry script was not found.');
 {
@@ -434,10 +434,10 @@ function worksAliasDocument() {
 await enhanceRootDocument();
 
 const selectedPages = pages.filter((page) => page.status === 200 && coreRoutes.has(page.route));
-const legacyFallbackPages = selectedPages.filter((page) => page.route !== '/');
-const fallbackDirectory = new URL('legacy-page-fallbacks/', dist);
+const pageFallbackPages = selectedPages.filter((page) => page.route !== '/');
+const fallbackDirectory = new URL('page-data/', dist);
 await mkdir(fallbackDirectory, { recursive: true });
-for (const page of legacyFallbackPages) {
+for (const page of pageFallbackPages) {
   const slug = page.route.replace(/^\/+|\/+$/g, '').replaceAll('/', '--');
   const payload = { route: page.route, status: page.status, children: page.children };
   await writeFile(new URL(`${slug}.json`, fallbackDirectory), `${JSON.stringify(payload)}\n`);

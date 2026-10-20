@@ -32276,7 +32276,7 @@
       "same_origin": true,
       "status": "downloaded",
       "fetched_at": "2026-10-05T07:34:24Z",
-      "local_path": "/legacy-assets/icons/contact-down.png",
+      "local_path": "/media/icons/contact-down.png",
       "content_type": "image/png (original inline data URI)",
       "bytes": 331,
       "sha256": "70382c178d62add4f9c19254de6c13d6091d6b1aed7fc7f703b90cf79c1b42bb",
@@ -32287,7 +32287,7 @@
       "same_origin": true,
       "status": "downloaded",
       "fetched_at": "2026-10-05T07:34:24Z",
-      "local_path": "/legacy-assets/icons/contact-back.png",
+      "local_path": "/media/icons/contact-back.png",
       "content_type": "image/png (original inline data URI)",
       "bytes": 340,
       "sha256": "5bed93379c23cb6b4bf145dcc9ad50e78da04bad95770faf0cdc186e0ba0b30d",
@@ -32298,7 +32298,7 @@
       "same_origin": true,
       "status": "downloaded",
       "fetched_at": "2026-10-05T07:34:24Z",
-      "local_path": "/legacy-assets/icons/contact-forward.png",
+      "local_path": "/media/icons/contact-forward.png",
       "content_type": "image/png (original inline data URI)",
       "bytes": 365,
       "sha256": "34a4b72bdd57c0c81ffb405aa9ebfc69d05c18ca099ce25f326097fee24e3dc9",
@@ -32313,7 +32313,7 @@
       "content_type": "image/x-icon",
       "declared_size": 2292,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/metaverse/TemplateData/favicon.ico",
+      "local_path": "/media/images/metaverse/TemplateData/favicon.ico",
       "bytes": 2305,
       "sha256": "9c13beb90ee8f70580d52a21d5233970d1c89e71e4a34a462c22610941c3c77f"
     },
@@ -32326,7 +32326,7 @@
       "content_type": "image/png",
       "declared_size": 412,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/metaverse/TemplateData/fullscreen-button.png",
+      "local_path": "/media/images/metaverse/TemplateData/fullscreen-button.png",
       "bytes": 412,
       "sha256": "cb1f339edb4099ad73f55a6402ce613ecb413ce83ce65d9bca46916da53cb63a"
     },
@@ -32339,7 +32339,7 @@
       "content_type": "image/png",
       "declared_size": 347,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/metaverse/TemplateData/progress-bar-empty-dark.png",
+      "local_path": "/media/images/metaverse/TemplateData/progress-bar-empty-dark.png",
       "bytes": 347,
       "sha256": "25a0212629fcb6a45ae415e905d9d0e5ba36eb0ae51e72215094ce85881eea20"
     },
@@ -32352,7 +32352,7 @@
       "content_type": "image/png",
       "declared_size": 324,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/metaverse/TemplateData/progress-bar-full-dark.png",
+      "local_path": "/media/images/metaverse/TemplateData/progress-bar-full-dark.png",
       "bytes": 324,
       "sha256": "d143a0052c4451999f52276e17d46afddd3071a78f9a14f0b5207b1a42f7c4e3"
     },
@@ -32378,7 +32378,7 @@
       "content_type": "image/png",
       "declared_size": 3096,
       "status": "downloaded",
-      "local_path": "/legacy-assets/logos/metaverse/TemplateData/unity-logo-dark.png",
+      "local_path": "/media/logos/metaverse/TemplateData/unity-logo-dark.png",
       "bytes": 3096,
       "sha256": "92f9175a39f379f1e6dfc9121f6305c61e4e959642a436c1be02296c45c28c0a"
     },
@@ -32391,7 +32391,7 @@
       "content_type": "image/png",
       "declared_size": 2947,
       "status": "downloaded",
-      "local_path": "/legacy-assets/logos/metaverse/TemplateData/webgl-logo.png",
+      "local_path": "/media/logos/metaverse/TemplateData/webgl-logo.png",
       "bytes": 2947,
       "sha256": "715def00923177861fb5f2dd92f5645ca7e719afd9697c4580f44ec1db7d9285"
     },
@@ -32560,7 +32560,7 @@
       "content_type": "application/vnd.ms-fontobject",
       "declared_size": 6883,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.eot",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.eot",
       "bytes": 13234,
       "sha256": "28fdcaf7d329e97a64a254435c9fb6d7e297b278db08b6e59ddafa803a299c4c"
     },
@@ -32573,7 +32573,7 @@
       "content_type": "image/svg+xml",
       "declared_size": 9011,
       "status": "downloaded",
-      "local_path": "/legacy-assets/svg/wp-content/themes/fleava/assets/fonts/Geograph-Regular.svg",
+      "local_path": "/media/svg/assets/fonts/Geograph-Regular.svg",
       "bytes": 40602,
       "sha256": "2289ed286f54ac5c7279077b73882187f705adfbc01cdc4de3eae8f2abe10bb0"
     },
@@ -32586,7 +32586,7 @@
       "content_type": "application/x-font-ttf",
       "declared_size": 6831,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.ttf",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.ttf",
       "bytes": 12968,
       "sha256": "bff1523bdc9df588526f3017184adfbf26dfe7f65b62bf4c158ad4dde51fa828"
     },
@@ -32599,7 +32599,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff",
       "bytes": 7016,
       "sha256": "3c0b1d5f4e5e15064e5b8bde5981ce6c8c1eede8dfd8ca9aa859dc2e55735481"
     },
@@ -32612,7 +32612,7 @@
       "content_type": "font/woff2",
       "declared_size": 5276,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
       "bytes": 5276,
       "sha256": "686797d293100a1929cfbf16aafd33185a91de11f8e68ec65dc9548ea63454d1"
     },
@@ -32625,7 +32625,7 @@
       "content_type": "application/vnd.ms-fontobject",
       "declared_size": 37787,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.eot",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.eot",
       "bytes": 88178,
       "sha256": "6ee528ca3f5d4b7f98f07c6419f25e70c8bf20f793b1276c40a66833d70708b7"
     },
@@ -32638,7 +32638,7 @@
       "content_type": "image/svg+xml",
       "declared_size": 33715,
       "status": "downloaded",
-      "local_path": "/legacy-assets/svg/wp-content/themes/fleava/assets/fonts/GeographEdit.svg",
+      "local_path": "/media/svg/assets/fonts/GeographEdit.svg",
       "bytes": 267607,
       "sha256": "800ec99cd95b2d7d81f150c9ac9da06b61f22d83c93a73db785da6664e7e895a"
     },
@@ -32651,7 +32651,7 @@
       "content_type": "application/x-font-ttf",
       "declared_size": 37642,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.ttf",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.ttf",
       "bytes": 87900,
       "sha256": "c44ee23d18d97d5367954beb84bfbf839db05a4326a4f5b2ef125e1f592e20fb"
     },
@@ -32664,7 +32664,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff",
       "bytes": 36996,
       "sha256": "88e687ff86fb87018f15f9ef71e4358aa40e9e0f4ca5c1ee823f78a4658b47ff"
     },
@@ -32677,7 +32677,7 @@
       "content_type": "font/woff2",
       "declared_size": 27808,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2",
       "bytes": 27808,
       "sha256": "0d8a433b94c4b03801c7d1a87e5be9df5b8cb5ffbefc94a1d7d834e8568081c7"
     },
@@ -32690,7 +32690,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black-Web.woff",
       "bytes": 48516,
       "sha256": "960fced31c72e6aafc8d6b82f2b60dd29a63427e6828214d972fe26bafa12688"
     },
@@ -32703,7 +32703,7 @@
       "content_type": "font/woff2",
       "declared_size": 36561,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black-Web.woff2",
       "bytes": 36561,
       "sha256": "600136ca5f0e981919ede65754b8e21f7daf1afb85f1a59719bba23932ef9e6e"
     },
@@ -32716,7 +32716,7 @@
       "content_type": "application/vnd.ms-fontobject",
       "declared_size": 55063,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.eot",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.eot",
       "bytes": 153246,
       "sha256": "5c80db675a734811fe13bffd5690db302c64d55c249d947f9f65549112f1be8d"
     },
@@ -32729,7 +32729,7 @@
       "content_type": "image/svg+xml",
       "declared_size": 57855,
       "status": "downloaded",
-      "local_path": "/legacy-assets/svg/wp-content/themes/fleava/assets/fonts/Graphik-Black.svg",
+      "local_path": "/media/svg/assets/fonts/Graphik-Black.svg",
       "bytes": 423565,
       "sha256": "adbf1314ad9f8059f017e279ce556a1e0fb0ad3b29d25f0d995c1e24070dd3b8"
     },
@@ -32742,7 +32742,7 @@
       "content_type": "application/x-font-ttf",
       "declared_size": 54894,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.ttf",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.ttf",
       "bytes": 152960,
       "sha256": "8ee01aa2ccf823390dd1570315a6be702898f26d3ecd8d6d599df852c1403390"
     },
@@ -32755,7 +32755,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff",
       "bytes": 54144,
       "sha256": "d348f147efc5d6510eaef440e1e86bf9bcf00f881cd68ef9d99d8d37c051880c"
     },
@@ -32768,7 +32768,7 @@
       "content_type": "font/woff2",
       "declared_size": 40224,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2",
       "bytes": 40224,
       "sha256": "1a34c0c97205fcd243b19168b28356a8829c32e0438c332d46f4d1c79344774b"
     },
@@ -32781,7 +32781,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BlackItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BlackItalic-Web.woff",
       "bytes": 51818,
       "sha256": "02a6179ef95803d164b51151f8e70a5329304e3cc744b94cbf791f269ea154ce"
     },
@@ -32794,7 +32794,7 @@
       "content_type": "font/woff2",
       "declared_size": 39013,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BlackItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BlackItalic-Web.woff2",
       "bytes": 39013,
       "sha256": "14fa2181616ab8fa30e325eb6fac732d2cb48a99f652335fcf71673887fc1f82"
     },
@@ -32807,7 +32807,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Bold-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Bold-Web.woff",
       "bytes": 50303,
       "sha256": "c6073b98fc3bf65b834b7e96b4e7d7141b3d8f3ebb00bd8ece2c80a77b6cd067"
     },
@@ -32820,7 +32820,7 @@
       "content_type": "font/woff2",
       "declared_size": 37813,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Bold-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Bold-Web.woff2",
       "bytes": 37813,
       "sha256": "59aeff318c49c6add589ce7fcc0fafe21c111dd1706603995da2c5d1cecf949a"
     },
@@ -32833,7 +32833,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BoldItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BoldItalic-Web.woff",
       "bytes": 52528,
       "sha256": "90954cd43b863e8c598be0d0aa44dd7e719318452c36e89e410a3e8ca0434002"
     },
@@ -32846,7 +32846,7 @@
       "content_type": "font/woff2",
       "declared_size": 39337,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BoldItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-BoldItalic-Web.woff2",
       "bytes": 39337,
       "sha256": "8bd691eba68dd71001f18bb1cd81778dafa533fe6fc7bd9fd504f41e1eedd9d7"
     },
@@ -32859,7 +32859,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Extralight-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Extralight-Web.woff",
       "bytes": 48891,
       "sha256": "d780f062211557da489ee262aaf0e177c8cc840a3b8d1ac8966eefa0b3513a5d"
     },
@@ -32872,7 +32872,7 @@
       "content_type": "font/woff2",
       "declared_size": 36049,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Extralight-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Extralight-Web.woff2",
       "bytes": 36049,
       "sha256": "24d92ba08befa49f256f4cc8832f773d9ee87c378ad81543ececb92256f3a01d"
     },
@@ -32885,7 +32885,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ExtralightItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ExtralightItalic-Web.woff",
       "bytes": 50251,
       "sha256": "e1071b7e17b5b0806f51aa78d8f4e6b99d984119f646e8031c802440ec402a46"
     },
@@ -32898,7 +32898,7 @@
       "content_type": "font/woff2",
       "declared_size": 36861,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ExtralightItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ExtralightItalic-Web.woff2",
       "bytes": 36861,
       "sha256": "a7c618be4f90e8388930adf9acfc338dae50d808e09fd0b72b9592a077604cf1"
     },
@@ -32911,7 +32911,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff",
       "bytes": 45410,
       "sha256": "4bd94c7daa6f08f8ac64842b54230dda0242de88ee253943e634c4b56ab7ac64"
     },
@@ -32924,7 +32924,7 @@
       "content_type": "font/woff2",
       "declared_size": 33621,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Light-Web.woff2",
       "bytes": 33621,
       "sha256": "957334ad9a76667ec7325386de9764b851da5122bd6faf6f6d91ebfa48332c20"
     },
@@ -32937,7 +32937,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-LightItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-LightItalic-Web.woff",
       "bytes": 47781,
       "sha256": "a7c0860780510fa413234572e8368e12672e388b8b6dce5429e6933f343f2180"
     },
@@ -32950,7 +32950,7 @@
       "content_type": "font/woff2",
       "declared_size": 35425,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-LightItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-LightItalic-Web.woff2",
       "bytes": 35425,
       "sha256": "10e0e0754afb424da815038ca878619f298da76c044d7676a87f10d165228e70"
     },
@@ -32963,7 +32963,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Medium-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Medium-Web.woff",
       "bytes": 47209,
       "sha256": "193b5f06e35f648ac68e70a54c4bbb760a85d0e5e5754d00adc3f2fa7dabf538"
     },
@@ -32976,7 +32976,7 @@
       "content_type": "font/woff2",
       "declared_size": 35489,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Medium-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Medium-Web.woff2",
       "bytes": 35489,
       "sha256": "bdcd81d26cad7d0bff653995200f8f80816b6b637873e3417f0b45354e5ca07c"
     },
@@ -32989,7 +32989,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-MediumItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-MediumItalic-Web.woff",
       "bytes": 50171,
       "sha256": "d5d9a2d04c1f7eeb39c17a466ae0d39b8d44e93556ae51271c20f6c22fd252f7"
     },
@@ -33002,7 +33002,7 @@
       "content_type": "font/woff2",
       "declared_size": 37789,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-MediumItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-MediumItalic-Web.woff2",
       "bytes": 37789,
       "sha256": "680ae2a73b192261ca3a83b06cbcbb3b9afa2a301a257578609b8383080d63a9"
     },
@@ -33015,7 +33015,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff",
       "bytes": 48534,
       "sha256": "57d5c6502537ee7d430c65b2522beacb9724c39aff909111399446c51440c7b7"
     },
@@ -33028,7 +33028,7 @@
       "content_type": "font/woff2",
       "declared_size": 36525,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Regular-Web.woff2",
       "bytes": 36525,
       "sha256": "7cd84dfdd2f56cb18182b456c9f8c6586ab29fb0cc818b89d1187babb119f4e7"
     },
@@ -33041,7 +33041,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-RegularItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-RegularItalic-Web.woff",
       "bytes": 51575,
       "sha256": "b64686c4a27507e21735e158f9b75d3c4a67b61dff9157214d4d177e9d81f44b"
     },
@@ -33054,7 +33054,7 @@
       "content_type": "font/woff2",
       "declared_size": 38801,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-RegularItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-RegularItalic-Web.woff2",
       "bytes": 38801,
       "sha256": "7b37ec0fbb45f4362cee4d1a0277ef66eb3b8309386ed58e550226184e2992d8"
     },
@@ -33067,7 +33067,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Semibold-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Semibold-Web.woff",
       "bytes": 53523,
       "sha256": "f8a7cd31e070043739487d19a396ef7f9b79b0be59cc136213f51a126be60e0a"
     },
@@ -33080,7 +33080,7 @@
       "content_type": "font/woff2",
       "declared_size": 40841,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Semibold-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Semibold-Web.woff2",
       "bytes": 40841,
       "sha256": "d52ac36549808fb3b3c9ac4b7525998f1f0c6c3064c03da27c5f4454899c1aed"
     },
@@ -33093,7 +33093,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SemiboldItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SemiboldItalic-Web.woff",
       "bytes": 55560,
       "sha256": "7d405ea11a3607645fbc093d2d52ab7a976e42cd6b297f37205e79e5a45a6303"
     },
@@ -33106,7 +33106,7 @@
       "content_type": "font/woff2",
       "declared_size": 42461,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SemiboldItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SemiboldItalic-Web.woff2",
       "bytes": 42461,
       "sha256": "3200e325f2536de05d95bc1c00e399f7b6ab839ff42e73893f2287dc33acdf3f"
     },
@@ -33119,7 +33119,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Super-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Super-Web.woff",
       "bytes": 56256,
       "sha256": "990ba2b5307a17d88f79185843f993685f7091a7dc6378e0861bc5b013eb407f"
     },
@@ -33132,7 +33132,7 @@
       "content_type": "font/woff2",
       "declared_size": 42745,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Super-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Super-Web.woff2",
       "bytes": 42745,
       "sha256": "edb45a52d22fc2414a823a7287bcd3c61056ce946d9516b008b4e3f4a95d53c1"
     },
@@ -33145,7 +33145,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SuperItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SuperItalic-Web.woff",
       "bytes": 48446,
       "sha256": "2bbc291a1bdecce490f111e82ebbaf909a686ffa9780ad8fe44bf5c9b26a6288"
     },
@@ -33158,7 +33158,7 @@
       "content_type": "font/woff2",
       "declared_size": 36005,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SuperItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-SuperItalic-Web.woff2",
       "bytes": 36005,
       "sha256": "a5dac9af26b155fe94c85f49a0b83d3533f4e129d1d123c8c1d0744d75e3e5ee"
     },
@@ -33171,7 +33171,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Thin-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Thin-Web.woff",
       "bytes": 44003,
       "sha256": "6ce308e18fe0df67d702dd10658dae41802f45b762ea7fb0c78d8d0f4d3e6654"
     },
@@ -33184,7 +33184,7 @@
       "content_type": "font/woff2",
       "declared_size": 32037,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Thin-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Thin-Web.woff2",
       "bytes": 32037,
       "sha256": "f03520411f9b70c01946c60ec169f9548ca0c545a8c0f8f227fed195e0f9816c"
     },
@@ -33197,7 +33197,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ThinItalic-Web.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ThinItalic-Web.woff",
       "bytes": 46169,
       "sha256": "79a6bafb81abf1492f155cc14e2fa63c00fa8fd9b4b8e79d00808f3aaeaf0849"
     },
@@ -33210,7 +33210,7 @@
       "content_type": "font/woff2",
       "declared_size": 33465,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ThinItalic-Web.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-ThinItalic-Web.woff2",
       "bytes": 33465,
       "sha256": "d9a52312bd92b2823b3d040f10d85ce4b324ac566b361032450d0b568de5a638"
     },
@@ -33223,7 +33223,7 @@
       "content_type": "application/vnd.ms-fontobject",
       "declared_size": 37161,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.eot",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.eot",
       "bytes": 87430,
       "sha256": "a3510a72de4b54ff1fd5ecf95a7a335618b4a000ffa3505eb1ca00557e6174fa"
     },
@@ -33236,7 +33236,7 @@
       "content_type": "application/x-font-woff",
       "declared_size": 90240,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.otf",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.otf",
       "bytes": 90240,
       "sha256": "73e06c1440f1023943f29cd90d4fcf2fe154ce020e3e299b6227c8fac9672bbb"
     },
@@ -33249,7 +33249,7 @@
       "content_type": "image/svg+xml",
       "declared_size": 32613,
       "status": "downloaded",
-      "local_path": "/legacy-assets/svg/wp-content/themes/fleava/assets/fonts/geographweblight.svg",
+      "local_path": "/media/svg/assets/fonts/geographweblight.svg",
       "bytes": 253928,
       "sha256": "c0144f4c8247ba18abb29b4726ff6c1e3c969137d29f315ee050c0da41ca5261"
     },
@@ -33262,7 +33262,7 @@
       "content_type": "application/x-font-ttf",
       "declared_size": 37003,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.ttf",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.ttf",
       "bytes": 87128,
       "sha256": "cded253a780004d06c08944c35386890cd356538a01d794683ada9a89f09b1f7"
     },
@@ -33275,7 +33275,7 @@
       "content_type": "application/font-woff",
       "declared_size": null,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff",
       "bytes": 36476,
       "sha256": "9a665a003bb8b7e2052ca032c9e37e4646093e2e280269a3f823d7fa264c2c57"
     },
@@ -33288,7 +33288,7 @@
       "content_type": "font/woff2",
       "declared_size": 27144,
       "status": "downloaded",
-      "local_path": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
+      "local_path": "/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
       "bytes": 27144,
       "sha256": "e7609f94832c6ecf33020e25459dbcfb284578a1577251cbbe01c4c5c0bcb5b4"
     },
@@ -33353,7 +33353,7 @@
       "content_type": "image/jpeg",
       "declared_size": 76043,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/about-1024x615.jpg",
+      "local_path": "/media/images/uploads/2022/12/about-1024x615.jpg",
       "bytes": 76043,
       "sha256": "2d0fbbe4282824d188748111de3cf5358f13aa9acf3f56ce0d87d5f5d3b51fdb"
     },
@@ -33366,7 +33366,7 @@
       "content_type": "image/jpeg",
       "declared_size": 153177,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/about-1536x922.jpg",
+      "local_path": "/media/images/uploads/2022/12/about-1536x922.jpg",
       "bytes": 153177,
       "sha256": "9afbb1b9af379a8e78f095311c5e7993939901d1605a8e336ac9d25285e1617f"
     },
@@ -33379,7 +33379,7 @@
       "content_type": "image/jpeg",
       "declared_size": 157964,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/about-1568x941.jpg",
+      "local_path": "/media/images/uploads/2022/12/about-1568x941.jpg",
       "bytes": 157964,
       "sha256": "b649bdc0c6bc3a3f35f7559f827f97e5925b2859f0ab0fd528c873a1ae763017"
     },
@@ -33392,7 +33392,7 @@
       "content_type": "image/jpeg",
       "declared_size": 10522,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/about-300x180.jpg",
+      "local_path": "/media/images/uploads/2022/12/about-300x180.jpg",
       "bytes": 10522,
       "sha256": "510aaa90313efbfc17571f018f57a5c1823f4de64650a9d4caea885ce0ca9a25"
     },
@@ -33405,7 +33405,7 @@
       "content_type": "image/jpeg",
       "declared_size": 47271,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/about-768x461.jpg",
+      "local_path": "/media/images/uploads/2022/12/about-768x461.jpg",
       "bytes": 47271,
       "sha256": "37b1419b7c45927b9ab115ebbc1beba44a8009943191e8bf3feec50b417c1d15"
     },
@@ -33418,7 +33418,7 @@
       "content_type": "image/jpeg",
       "declared_size": 184094,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/about.jpg",
+      "local_path": "/media/images/uploads/2022/12/about.jpg",
       "bytes": 184094,
       "sha256": "3fc6478729c611179f86b3bba0dc726c1df7d7efdcf1a6737d8c8e21583ef7cb"
     },
@@ -33431,7 +33431,7 @@
       "content_type": "image/jpeg",
       "declared_size": 38704,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/human-centric-brand-marketing.jpg",
+      "local_path": "/media/images/uploads/2022/12/human-centric-brand-marketing.jpg",
       "bytes": 38704,
       "sha256": "da713c4b38a1611049ebabd549d59f99d9d6a34f0a173339248c9b7d795d589a"
     },
@@ -33444,7 +33444,7 @@
       "content_type": "image/jpeg",
       "declared_size": 25036,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2022/12/no-code-future-of-tech-1.jpg",
+      "local_path": "/media/images/uploads/2022/12/no-code-future-of-tech-1.jpg",
       "bytes": 25036,
       "sha256": "beed25de2ca88c0f0ba13125c9be6a1489ff763b34a38747af81c0ee31667178"
     },
@@ -33457,7 +33457,7 @@
       "content_type": "image/png",
       "declared_size": 33655,
       "status": "downloaded",
-      "local_path": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png",
+      "local_path": "/media/logos/uploads/2023/01/logo-rectangle-1.png",
       "bytes": 33655,
       "sha256": "e325d7bfaca306a8c6afeeebb96e330d698d06d243713d3d4d44cfbaf4dbf7ac"
     },
@@ -33470,7 +33470,7 @@
       "content_type": "image/webp",
       "declared_size": 1734,
       "status": "downloaded",
-      "local_path": "/legacy-assets/logos/wp-content/uploads/2023/01/logo.webp",
+      "local_path": "/media/logos/uploads/2023/01/logo.webp",
       "bytes": 1734,
       "sha256": "fcaeb876d5ba097ed8b68817ace7ad991f65cda47055f65b512f9b4050a60ae8"
     },
@@ -33483,7 +33483,7 @@
       "content_type": "image/jpeg",
       "declared_size": 9422,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2023/01/lustica-266x300.jpg",
+      "local_path": "/media/images/uploads/2023/01/lustica-266x300.jpg",
       "bytes": 9422,
       "sha256": "617580e7e84aafe09bfa0b65586a0a32c864c9d3e97d2563e4cfcea6d30f1575"
     },
@@ -33496,7 +33496,7 @@
       "content_type": "image/jpeg",
       "declared_size": 78718,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2023/01/lustica-768x866.jpg",
+      "local_path": "/media/images/uploads/2023/01/lustica-768x866.jpg",
       "bytes": 78718,
       "sha256": "efa279815f9dfc1300ab91b021c5f17341e3c0c16f66140fe109c4514dd8f23e"
     },
@@ -33509,7 +33509,7 @@
       "content_type": "image/jpeg",
       "declared_size": 93478,
       "status": "downloaded",
-      "local_path": "/legacy-assets/images/wp-content/uploads/2023/01/lustica.jpg",
+      "local_path": "/media/images/uploads/2023/01/lustica.jpg",
       "bytes": 93478,
       "sha256": "eac62ba72baf51bb88c8b2895e0fb7da18a40723bf076edb133ca8377894ec83"
     },
@@ -33522,7 +33522,7 @@
       "content_type": "video/mp4",
       "declared_size": 14542867,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+      "local_path": "/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
       "bytes": 14542867,
       "sha256": "24764984eb29d413affd932db809546b69b85e207ed8b0bd06493a477cdbf294"
     },
@@ -33535,7 +33535,7 @@
       "content_type": "video/mp4",
       "declared_size": 418433,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+      "local_path": "/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
       "bytes": 418433,
       "sha256": "13ce3d47f9ed0564140e93f68517b19848ca79d1ec01413c9937db6b9591862a"
     },
@@ -33548,7 +33548,7 @@
       "content_type": "video/mp4",
       "declared_size": 1301189,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+      "local_path": "/media/videos/uploads/2023/05/Singing-girl.mp4",
       "bytes": 1301189,
       "sha256": "711581bb2cb3243b0b6db229d4308a66e863d0e876834d95f1263728ec1f4fcc"
     },
@@ -33572,7 +33572,7 @@
       "content_type": "video/mp4",
       "declared_size": 8958400,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+      "local_path": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
       "bytes": 8958400,
       "sha256": "0cbd556e2cdf287a036d2d2504e73b91528f761304acff9a611b37a4115dc82d"
     },
@@ -33585,7 +33585,7 @@
       "content_type": "video/mp4",
       "declared_size": 35997000,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+      "local_path": "/media/videos/uploads/2023/08/Metaverse.mp4",
       "bytes": 35997000,
       "sha256": "da85f34c8ee0727267c98f841c246c2be848fba97b1c81a6c24a4a0dc173d1f3"
     },
@@ -33598,7 +33598,7 @@
       "content_type": "video/mp4",
       "declared_size": 2977950,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+      "local_path": "/media/videos/uploads/2023/08/Mixed-Reality.mp4",
       "bytes": 2977950,
       "sha256": "3013db48cb62235d0f34ec79cc86b21e5e34bf7385925a1a248f1e4be4557228"
     },
@@ -33611,7 +33611,7 @@
       "content_type": "video/mp4",
       "declared_size": 4328989,
       "status": "downloaded",
-      "local_path": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+      "local_path": "/media/videos/uploads/2023/08/Virtual-Reality.mp4",
       "bytes": 4328989,
       "sha256": "130cad93fd5ed6d3d94336afbb0b8492e33920c9a6fea738f12e2ebe768763c2"
     },

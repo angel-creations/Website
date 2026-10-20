@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
-import type { NavigationItem } from '../types/legacy';
+import type { NavigationItem } from '../types/content';
 import { getNetworkInformation, shouldAutoplayAmbientMedia } from '../utils/mediaPreferences';
 import { navigate } from '../utils/routes';
 
-const archive = '/legacy-assets';
-const logo = `${archive}/logos/wp-content/uploads/2023/01/logo-rectangle-1.png`;
-const menuVideo = `${archive}/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4`;
-const menuPoster = `${archive}/images/generated-home-posters/menu-background.jpg`;
+const logo = '/media/logos/logo-rectangle-1.png';
+const menuVideo = '/media/videos/Main-Background-with-sound.mp4';
+const menuPoster = '/media/images/generated-home-posters/menu-background.jpg';
 
 const primaryItems: NavigationItem[] = [
   { label: 'About Us', href: '/about/', number: '01' },

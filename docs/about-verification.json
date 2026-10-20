@@ -80,9 +80,9 @@
           "splitLines": 158
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -184,9 +184,9 @@
           "splitLines": 158
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -288,9 +288,9 @@
           "splitLines": 158
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -330,17 +330,17 @@
         "mediaResponses": [
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           }
         ],
@@ -430,9 +430,9 @@
             "splitLines": 158
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -472,7 +472,7 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             }
           ],
@@ -561,9 +561,9 @@
             "splitLines": 158
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -666,9 +666,9 @@
             "splitLines": 170
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -706,32 +706,32 @@
           "httpErrors": [],
           "failedRequests": [
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
@@ -744,37 +744,37 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "video/mp4"
             },
             {
@@ -864,9 +864,9 @@
           "splitLines": 151
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -968,9 +968,9 @@
           "splitLines": 151
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -1072,9 +1072,9 @@
           "splitLines": 158
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -1114,17 +1114,17 @@
         "mediaResponses": [
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           }
         ],
@@ -1214,9 +1214,9 @@
             "splitLines": 151
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -1256,7 +1256,7 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             }
           ],
@@ -1345,9 +1345,9 @@
             "splitLines": 151
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -1450,9 +1450,9 @@
             "splitLines": 158
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -1490,32 +1490,32 @@
           "httpErrors": [],
           "failedRequests": [
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
@@ -1528,37 +1528,37 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "video/mp4"
             },
             {
@@ -1648,9 +1648,9 @@
           "splitLines": 141
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -1752,9 +1752,9 @@
           "splitLines": 141
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -1856,9 +1856,9 @@
           "splitLines": 141
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -1898,12 +1898,12 @@
         "mediaResponses": [
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           }
         ],
@@ -1993,9 +1993,9 @@
             "splitLines": 135
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -2035,7 +2035,7 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             }
           ],
@@ -2124,9 +2124,9 @@
             "splitLines": 135
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -2229,9 +2229,9 @@
             "splitLines": 141
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -2269,37 +2269,37 @@
           "httpErrors": [],
           "failedRequests": [
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
@@ -2312,42 +2312,42 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "video/mp4"
             },
             {
@@ -2437,9 +2437,9 @@
           "splitLines": 175
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -2541,9 +2541,9 @@
           "splitLines": 175
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -2645,9 +2645,9 @@
           "splitLines": 175
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -2687,17 +2687,17 @@
         "mediaResponses": [
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           }
         ],
@@ -2787,9 +2787,9 @@
             "splitLines": 194
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -2829,7 +2829,7 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             }
           ],
@@ -2918,9 +2918,9 @@
             "splitLines": 175
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -3023,9 +3023,9 @@
             "splitLines": 194
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -3063,32 +3063,32 @@
           "httpErrors": [],
           "failedRequests": [
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
@@ -3101,37 +3101,37 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "video/mp4"
             },
             {
@@ -3221,9 +3221,9 @@
           "splitLines": 161
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -3325,9 +3325,9 @@
           "splitLines": 161
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -3429,9 +3429,9 @@
           "splitLines": 171
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -3471,12 +3471,12 @@
         "mediaResponses": [
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           },
           {
             "status": 206,
-            "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "type": "video/mp4"
           }
         ],
@@ -3566,9 +3566,9 @@
             "splitLines": 171
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -3608,7 +3608,7 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             }
           ],
@@ -3697,9 +3697,9 @@
             "splitLines": 161
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -3802,9 +3802,9 @@
             "splitLines": 171
           },
           "media": {
-            "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+            "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
             "videoReadyState": 4,
-            "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+            "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
           },
           "rotatingWords": [
             {
@@ -3842,32 +3842,32 @@
           "httpErrors": [],
           "failedRequests": [
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
             {
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "media",
               "error": "net::ERR_ABORTED"
             },
@@ -3880,37 +3880,37 @@
           "mediaResponses": [
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Mixed-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Singing-girl.mp4",
               "type": "video/mp4"
             },
             {
               "status": 206,
-              "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+              "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
               "type": "video/mp4"
             },
             {
@@ -4001,9 +4001,9 @@
           "splitLines": 158
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -4217,9 +4217,9 @@
           "splitLines": 151
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -4433,9 +4433,9 @@
           "splitLines": 135
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -4649,9 +4649,9 @@
           "splitLines": 194
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {
@@ -4865,9 +4865,9 @@
           "splitLines": 171
         },
         "media": {
-          "backgroundVideo": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+          "backgroundVideo": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
           "videoReadyState": 4,
-          "logo": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png"
+          "logo": "/media/logos/uploads/2023/01/logo-rectangle-1.png"
         },
         "rotatingWords": [
           {

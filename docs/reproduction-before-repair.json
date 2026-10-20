@@ -280,11 +280,11 @@
     "pageErrors": [],
     "requestFailures": [
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+        "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
         "error": "net::ERR_ABORTED"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+        "url": "http://127.0.0.1:4173/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
         "error": "net::ERR_ABORTED"
       },
       {
@@ -292,11 +292,11 @@
         "error": "net::ERR_CONNECTION_CLOSED"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+        "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Metaverse.mp4",
         "error": "net::ERR_ABORTED"
       },
       {
-        "url": "http://127.0.0.1:4173/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+        "url": "http://127.0.0.1:4173/media/videos/uploads/2023/08/Virtual-Reality.mp4",
         "error": "net::ERR_ABORTED"
       }
     ],

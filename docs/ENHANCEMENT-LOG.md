@@ -14,7 +14,7 @@ This log records implementation work against the preservation audit. It is delib
 
 1. **Home slide presentation — enhanced, not replaced**
    - Retained the same seven capability slides, original sequence, low-left captions, number system, Prev/Next form, source width reveal, and counter-moving media choreography.
-   - Added poster-first authentic frames for the six locally captured source films, plus the authentic menu film. Posters are generated from those exact local source videos and stored under `public/legacy-assets/images/generated-home-posters/`.
+   - Added poster-first authentic frames for the six locally captured source films, plus the authentic menu film. Posters are generated from those exact local source videos and stored under `public/media/images/generated-home-posters/`.
    - Preserved the historic remote Media Production video source. It has an honest black fallback if unavailable rather than a fabricated replacement image.
    - Linked every slide to its corresponding captured Angel route where that route exists: Metaverse, Mixed Reality, Virtual Reality, Augment Reality, Animation, Brand Advertisement, and Media Production.
    - Added touch swipe, ArrowLeft/ArrowRight control within the focused stage, live slide status, accessible control names, queued interruption intent, tab-focusable stage, adjacent metadata preload, inactive-video pausing, document-visibility pause/resume, and reduced-motion poster/static behaviour.
@@ -76,7 +76,7 @@ See `PHASE-2-FORENSIC-AUDIT.md`, `PHASE-2-IMPLEMENTATION-LOG.md`, and `PHASE-2-R
 - Added a shared reduced-motion/data-saver preference helper. The home slide films, About hero film, and menu background now pause or defer ambient playback when reduced motion/data is requested or the document is hidden; the About showreel is user-started. Static posters remain the low-bandwidth fallback.
 - Prioritised the local home poster, lazy-loaded non-active home posters and later Works thumbnails, and removed unused Contact Form 7 / Elementor stylesheet links from the active app shell while retaining the archived assets.
 - Made Company, Phone, Timeline, and Investment optional in the enquiry wizard, constrained free-text lengths, clarified step semantics, and added a permission-aware clipboard fallback. The form still prepares a user-controlled `mailto:` draft; it does not claim server delivery.
-- Reworked route SEO metadata and canonical/social/schema updates. Static core and capability documents now use the same route-specific titles/descriptions as the app, local Open Graph/Twitter images where available, and a local home image sized accurately at 1280×720.
+- Reworked route SEO metadata and canonical/media/social/schema updates. Static core and capability documents now use the same route-specific titles/descriptions as the app, local Open Graph/Twitter images where available, and a local home image sized accurately at 1280×720.
 - Restored a compatibility fallback only for explicitly whitelisted public routes. Its source markup is stored as 13 per-route JSON files and fetched only if no dedicated route component handles a whitelisted route; unknown paths continue to render the 404 screen without downloading the legacy data.
 - Extended the static-output audit to check decoded title/description lengths and route-fallback payload availability/route matching.
 

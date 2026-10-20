@@ -48,7 +48,7 @@ Current live production’s `#loader-wrapper` intermittently covers the desktop 
 
 The generic archived-page renderer passed extractor-retained whitespace children into HTML void tags such as `<br>` and `<source>`. React throws invariant **#137** for that invalid tree. Browser evidence before repair showed blank roots on `/about/`, `/works/`, `/animation/`, and work entries, with the minified React error naming `br`/`source`.
 
-`LegacyRenderer` now emits void tags with props only. After the change, the final desktop/mobile direct and refresh audit reports no root-render failure and no unexpected local console/page error across all rendered inventory routes.
+`ContentBlocks` now emits void tags with props only. After the change, the final desktop/mobile direct and refresh audit reports no root-render failure and no unexpected local console/page error across all rendered inventory routes.
 
 ### Additional functional repairs found during browser testing
 
@@ -77,7 +77,7 @@ These are real observed source behaviors, not local migration regressions:
 
 ## Files changed for this repair
 
-- `src/components/LegacyRenderer.tsx`
+- `src/components/ContentBlocks.tsx`
 - `src/components/HomeSlideshow.tsx`
 - `src/components/PanoramaPage.tsx`
 - `src/components/MetaversePage.tsx`
@@ -101,7 +101,7 @@ These are real observed source behaviors, not local migration regressions:
 
 ### Diagnosed cause and minimal repair
 
-`/about/` was not missing from the local React data and was not a root-render exception after the previous void-element fix. Browser inspection found the exact source About DOM, seven non-empty source headings, source video, and 101 `.reveal-text` nodes in the local document. The remaining visual defect was source CSS: the captured inline About stylesheet sets `.reveal-text { visibility: hidden; }`. On live, the page’s own inline `window.load` script splits these nodes and a GSAP/ScrollTrigger timeline changes them to visible as they enter the viewport. Extracted inline scripts are intentionally not run by `LegacyRenderer`, so that initializer never ran locally.
+`/about/` was not missing from the local React data and was not a root-render exception after the previous void-element fix. Browser inspection found the exact source About DOM, seven non-empty source headings, source video, and 101 `.reveal-text` nodes in the local document. The remaining visual defect was source CSS: the captured inline About stylesheet sets `.reveal-text { visibility: hidden; }`. On live, the page’s own inline `window.load` script splits these nodes and a GSAP/ScrollTrigger timeline changes them to visible as they enter the viewport. Extracted inline scripts are intentionally not run by `ContentBlocks`, so that initializer never ran locally.
 
 `src/components/AboutReveal.tsx` is a narrow, About-scoped equivalent of the captured behavior. It:
 

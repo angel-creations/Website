@@ -27,27 +27,27 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 
 | Route | Local status | Canonical | Page title | Share headline | Social image |
 |---|---:|---|---|---|---|
-| `/` | 200 | https://angelcreations.in/ | Angel Creations \| Immersive Experiences, VR, AR & Film | Immersive worlds. Human stories. | https://angelcreations.in/social/og/home.jpg |
-| `/about/` | 200 | https://angelcreations.in/about/ | About Angel Creations \| Creative & Immersive Studio | Meet the creative studio. | https://angelcreations.in/social/og/about.jpg |
-| `/animation/` | 200 | https://angelcreations.in/animation/ | 2D & 3D Animation, Motion Graphics & VFX \| Angel Creations | Stories in motion. | https://angelcreations.in/social/og/animation.jpg |
-| `/augment-reality/` | 200 | https://angelcreations.in/augment-reality/ | Augmented Reality Experiences & Apps \| Angel Creations | A digital layer on the real world. | https://angelcreations.in/social/og/augmented-reality.jpg |
-| `/brand-advertisement/` | 200 | https://angelcreations.in/brand-advertisement/ | Brand Films & Creative Campaigns \| Angel Creations | Campaigns with a point of view. | https://angelcreations.in/social/og/brand-advertisement.jpg |
-| `/contact/` | 200 | https://angelcreations.in/contact/ | Start a Project Enquiry \| Angel Creations | Let’s start a conversation. | https://angelcreations.in/social/og/contact.jpg |
-| `/media-production/` | 200 | https://angelcreations.in/media-production/ | Film, Video & Media Production \| Angel Creations | From first frame to final cut. | https://angelcreations.in/social/og/media-production.jpg |
-| `/metaverse/` | 200 | https://angelcreations.in/metaverse/ | Metaverse & Virtual World Experiences \| Angel Creations | Virtual worlds, made tangible. | https://angelcreations.in/social/og/metaverse.jpg |
-| `/mixed-reality/` | 200 | https://angelcreations.in/mixed-reality/ | Mixed Reality Experiences & Development \| Angel Creations | Where the real meets digital. | https://angelcreations.in/social/og/mixed-reality.jpg |
-| `/privacy-policy/` | 200 | https://angelcreations.in/privacy-policy/ | Privacy Policy \| Angel Creations | How this site uses your data. | https://angelcreations.in/social/og/privacy-policy.jpg |
-| `/terms-of-service/` | 200 | https://angelcreations.in/terms-of-service/ | Terms of Service \| Angel Creations | The terms for using this site. | https://angelcreations.in/social/og/terms-of-service.jpg |
-| `/virtual-reality/` | 200 | https://angelcreations.in/virtual-reality/ | Virtual Reality Experiences & Development \| Angel Creations | Step inside the story. | https://angelcreations.in/social/og/virtual-reality.jpg |
-| `/works/` | 200 | https://angelcreations.in/works/ | Selected Work \| Angel Creations | Selected work from Angel Creations. | https://angelcreations.in/social/og/works.jpg |
-| `/capabilities/brand/` | 200 | https://angelcreations.in/capabilities/brand/ | Brand & Creative Campaigns \| Angel Creations | Build a vivid brand story. | https://angelcreations.in/social/og/capability-brand.jpg |
-| `/capabilities/design/` | 200 | https://angelcreations.in/capabilities/design/ | Design & Creative Studio \| Angel Creations | Design with purpose and feeling. | https://angelcreations.in/social/og/capability-design.jpg |
-| `/capabilities/content/` | 200 | https://angelcreations.in/capabilities/content/ | Immersive Content Production \| Angel Creations | Content for immersive spaces. | https://angelcreations.in/social/og/capability-content.jpg |
-| `/capabilities/film/` | 200 | https://angelcreations.in/capabilities/film/ | Film & Video Production \| Angel Creations | Shape a story, frame by frame. | https://angelcreations.in/social/og/capability-film.jpg |
-| `/capabilities/animation-3d/` | 200 | https://angelcreations.in/capabilities/animation-3d/ | 2D & 3D Animation and VFX \| Angel Creations | Ideas in motion and dimension. | https://angelcreations.in/social/og/capability-animation-3d.jpg |
-| `/capabilities/digital/` | 200 | https://angelcreations.in/capabilities/digital/ | Digital Experiences & Development \| Angel Creations | Digital experiences, made useful. | https://angelcreations.in/social/og/capability-digital.jpg |
-| `/capabilities/experiences/` | 200 | https://angelcreations.in/capabilities/experiences/ | Immersive Experiences & Events \| Angel Creations | Spaces for shared moments. | https://angelcreations.in/social/og/capability-experiences.jpg |
-| `/capabilities/creative-technology/` | 200 | https://angelcreations.in/capabilities/creative-technology/ | Creative Technology & XR \| Angel Creations | Creative thinking meets technology. | https://angelcreations.in/social/og/capability-creative-technology.jpg |
+| `/` | 200 | https://angelcreations.in/ | Angel Creations \| Immersive Experiences, VR, AR & Film | Immersive worlds. Human stories. | https://angelcreations.in/media/social/og/home.jpg |
+| `/about/` | 200 | https://angelcreations.in/about/ | About Angel Creations \| Creative & Immersive Studio | Meet the creative studio. | https://angelcreations.in/media/social/og/about.jpg |
+| `/animation/` | 200 | https://angelcreations.in/animation/ | 2D & 3D Animation, Motion Graphics & VFX \| Angel Creations | Stories in motion. | https://angelcreations.in/media/social/og/animation.jpg |
+| `/augment-reality/` | 200 | https://angelcreations.in/augment-reality/ | Augmented Reality Experiences & Apps \| Angel Creations | A digital layer on the real world. | https://angelcreations.in/media/social/og/augmented-reality.jpg |
+| `/brand-advertisement/` | 200 | https://angelcreations.in/brand-advertisement/ | Brand Films & Creative Campaigns \| Angel Creations | Campaigns with a point of view. | https://angelcreations.in/media/social/og/brand-advertisement.jpg |
+| `/contact/` | 200 | https://angelcreations.in/contact/ | Start a Project Enquiry \| Angel Creations | Let’s start a conversation. | https://angelcreations.in/media/social/og/contact.jpg |
+| `/media-production/` | 200 | https://angelcreations.in/media-production/ | Film, Video & Media Production \| Angel Creations | From first frame to final cut. | https://angelcreations.in/media/social/og/media-production.jpg |
+| `/metaverse/` | 200 | https://angelcreations.in/metaverse/ | Metaverse & Virtual World Experiences \| Angel Creations | Virtual worlds, made tangible. | https://angelcreations.in/media/social/og/metaverse.jpg |
+| `/mixed-reality/` | 200 | https://angelcreations.in/mixed-reality/ | Mixed Reality Experiences & Development \| Angel Creations | Where the real meets digital. | https://angelcreations.in/media/social/og/mixed-reality.jpg |
+| `/privacy-policy/` | 200 | https://angelcreations.in/privacy-policy/ | Privacy Policy \| Angel Creations | How this site uses your data. | https://angelcreations.in/media/social/og/privacy-policy.jpg |
+| `/terms-of-service/` | 200 | https://angelcreations.in/terms-of-service/ | Terms of Service \| Angel Creations | The terms for using this site. | https://angelcreations.in/media/social/og/terms-of-service.jpg |
+| `/virtual-reality/` | 200 | https://angelcreations.in/virtual-reality/ | Virtual Reality Experiences & Development \| Angel Creations | Step inside the story. | https://angelcreations.in/media/social/og/virtual-reality.jpg |
+| `/works/` | 200 | https://angelcreations.in/works/ | Selected Work \| Angel Creations | Selected work from Angel Creations. | https://angelcreations.in/media/social/og/works.jpg |
+| `/capabilities/brand/` | 200 | https://angelcreations.in/capabilities/brand/ | Brand & Creative Campaigns \| Angel Creations | Build a vivid brand story. | https://angelcreations.in/media/social/og/capability-brand.jpg |
+| `/capabilities/design/` | 200 | https://angelcreations.in/capabilities/design/ | Design & Creative Studio \| Angel Creations | Design with purpose and feeling. | https://angelcreations.in/media/social/og/capability-design.jpg |
+| `/capabilities/content/` | 200 | https://angelcreations.in/capabilities/content/ | Immersive Content Production \| Angel Creations | Content for immersive spaces. | https://angelcreations.in/media/social/og/capability-content.jpg |
+| `/capabilities/film/` | 200 | https://angelcreations.in/capabilities/film/ | Film & Video Production \| Angel Creations | Shape a story, frame by frame. | https://angelcreations.in/media/social/og/capability-film.jpg |
+| `/capabilities/animation-3d/` | 200 | https://angelcreations.in/capabilities/animation-3d/ | 2D & 3D Animation and VFX \| Angel Creations | Ideas in motion and dimension. | https://angelcreations.in/media/social/og/capability-animation-3d.jpg |
+| `/capabilities/digital/` | 200 | https://angelcreations.in/capabilities/digital/ | Digital Experiences & Development \| Angel Creations | Digital experiences, made useful. | https://angelcreations.in/media/social/og/capability-digital.jpg |
+| `/capabilities/experiences/` | 200 | https://angelcreations.in/capabilities/experiences/ | Immersive Experiences & Events \| Angel Creations | Spaces for shared moments. | https://angelcreations.in/media/social/og/capability-experiences.jpg |
+| `/capabilities/creative-technology/` | 200 | https://angelcreations.in/capabilities/creative-technology/ | Creative Technology & XR \| Angel Creations | Creative thinking meets technology. | https://angelcreations.in/media/social/og/capability-creative-technology.jpg |
 
 ## Error and alias probes (local preview)
 
@@ -96,12 +96,12 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 
 Every active target with its source and label is recorded in `END-TO-END-LINK-INVENTORY.json`. Remote HTTP responses were not tested.
 
-- https://thevirtuallife.in/ — src/components/AboutPage.tsx; src/components/Header.tsx; src/components/LegacyFooter.tsx
-- https://thevirtuallife.in/weddinginvite/ — src/components/AboutPage.tsx; src/components/Header.tsx; src/components/LegacyFooter.tsx
-- https://www.facebook.com/angelcreations.digital/ — src/components/LegacyFooter.tsx
-- https://www.instagram.com/angelcreations.digital/ — src/components/LegacyFooter.tsx
-- https://www.linkedin.com/in/angelcreations/ — src/components/LegacyFooter.tsx
-- https://www.youtube.com/AngelCreationsACreativeStudio — src/components/LegacyFooter.tsx
+- https://thevirtuallife.in/ — src/components/AboutPage.tsx; src/components/Header.tsx; src/components/SiteFooter.tsx
+- https://thevirtuallife.in/weddinginvite/ — src/components/AboutPage.tsx; src/components/Header.tsx; src/components/SiteFooter.tsx
+- https://www.facebook.com/angelcreations.digital/ — src/components/SiteFooter.tsx
+- https://www.instagram.com/angelcreations.digital/ — src/components/SiteFooter.tsx
+- https://www.linkedin.com/in/angelcreations/ — src/components/SiteFooter.tsx
+- https://www.youtube.com/AngelCreationsACreativeStudio — src/components/SiteFooter.tsx
 - https://www.youtube.com/watch?v=-h9jRYAjwZw — Static anchor on /works/; Works archive / src/data/videoArchive.json
 - https://www.youtube.com/watch?v=1tO39Xqzh9c — Static anchor on /animation/; Static anchor on /works/; Works archive / src/data/videoArchive.json
 - https://www.youtube.com/watch?v=1xsCfOKk_3s — Static anchor on /works/; Works archive / src/data/videoArchive.json
@@ -149,10 +149,10 @@ Every active target with its source and label is recorded in `END-TO-END-LINK-IN
 - https://www.youtube.com/watch?v=xFaRvdL_0Bg — Static anchor on /works/; Works archive / src/data/videoArchive.json
 - https://www.youtube.com/watch?v=Xm0STB55Udk — Static anchor on /works/; Works archive / src/data/videoArchive.json
 - https://www.youtube.com/watch?v=yzc-7e1zmbc — Static anchor on /works/; Works archive / src/data/videoArchive.json
-- mailto:business@angelcreations.in — src/components/ContactWizard.tsx; src/components/Header.tsx; src/components/LegacyFooter.tsx
+- mailto:business@angelcreations.in — src/components/ContactWizard.tsx; src/components/Header.tsx; src/components/SiteFooter.tsx
 - mailto:business@angelcreations.in?subject=dynamic-form-fields — src/components/ContactWizard.tsx
-- mailto:support@angelcreations.in — src/components/ContactWizard.tsx; src/components/Header.tsx; src/components/LegacyFooter.tsx; src/components/LegalPage.tsx
-- tel:+918058465733 — src/components/ContactWizard.tsx; src/components/Header.tsx; src/components/LegacyFooter.tsx
+- mailto:support@angelcreations.in — src/components/ContactWizard.tsx; src/components/Header.tsx; src/components/SiteFooter.tsx; src/components/LegalPage.tsx
+- tel:+918058465733 — src/components/ContactWizard.tsx; src/components/Header.tsx; src/components/SiteFooter.tsx
 
 ## Error handling and deployment notes
 

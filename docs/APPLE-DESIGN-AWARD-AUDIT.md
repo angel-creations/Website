@@ -60,14 +60,14 @@ While the **7 Homepage Slider Inner Pages** (`/metaverse/`, `/mixed-reality/`, `
 
 ---
 
-### C-04. Broken / Dead Anchor Links (`href="#"`) and Outdated 2023 Copyright in `LegacyFooter.tsx` & `Header.tsx`
+### C-04. Broken / Dead Anchor Links (`href="#"`) and Outdated 2023 Copyright in `SiteFooter.tsx` & `Header.tsx`
 - **Where:**
-  - `src/components/LegacyFooter.tsx:5–7`
+  - `src/components/SiteFooter.tsx:5–7`
   - `src/components/Header.tsx:177–180`
 - **What:**
-  - In `LegacyFooter.tsx`, the Privacy Policy link is `<a href="#">Privacy Policy</a>` (a dead `#` anchor instead of `/privacy-policy/`), and both social links (`Instagram`, `Facebook`) are `<a href="#">` dead links!
+  - In `SiteFooter.tsx`, the Privacy Policy link is `<a href="#">Privacy Policy</a>` (a dead `#` anchor instead of `/privacy-policy/`), and both social links (`Instagram`, `Facebook`) are `<a href="#">` dead links!
   - Furthermore, `.fa-brands.fa-instagram` and `.fa-brands.fa-square-facebook` rely on FontAwesome icon fonts that fail to render when the font is not loaded, leaving invisible empty `<a>` tags.
-  - Both `LegacyFooter.tsx` (`copyright 2023`) and `Header.tsx` (`© 2023 Angelcreations`) display stale 2023 copyright dates and inconsistent brand spelling (`Angelcreations` vs `Angel Creations`).
+  - Both `SiteFooter.tsx` (`copyright 2023`) and `Header.tsx` (`© 2023 Angelcreations`) display stale 2023 copyright dates and inconsistent brand spelling (`Angelcreations` vs `Angel Creations`).
   - `Header.tsx:179–180` links to `/terms-of-service` and `/privacy-policy` without trailing slashes, forcing a history replacement on load.
 - **Why (Citations):**
   - `design-principles.md › Craft`: *"Quality sets the tone. Every element of your design shows people how much you care."*
@@ -100,11 +100,11 @@ While the **7 Homepage Slider Inner Pages** (`/metaverse/`, `/mixed-reality/`, `
   - `emilkowalski/apple-design › §1 Response — kill latency`: *"Be vigilant about every latency."*
   - `dark-mode.md › Best practices`: Consistent semantic dark appearance tokens without conflicting light-theme classes.
 
-### H-02. `LegacyRenderer.tsx` & `legacyPages.json` (854 kB Bundle) Render Raw Captured WordPress DOM on `/about/`, `/works/`, `/privacy-policy/`, and `/terms-of-service/`
-- **Where:** `src/app/App.tsx:66–68`, `src/components/LegacyRenderer.tsx:1–74`, `src/data/legacyPages.json`
+### H-02. `ContentBlocks.tsx` & `pages.json` (854 kB Bundle) Render Raw Captured WordPress DOM on `/about/`, `/works/`, `/privacy-policy/`, and `/terms-of-service/`
+- **Where:** `src/app/App.tsx:66–68`, `src/components/ContentBlocks.tsx:1–74`, `src/data/pages.json`
 - **What:**
-  - `legacyPages.json` is an **854.58 kB** raw AST dump of old WordPress/Elementor HTML (`<div class="elementor-element ...">`, dead `<div id="load_overlay">`, `<div class="cursor">`).
-  - Even on `/` (Homepage), `useLegacyPages` schedules a background download of this 854 kB JSON blob after 3.5–5 seconds (`App.tsx:83–84`).
+  - `pages.json` is an **854.58 kB** raw AST dump of old WordPress/Elementor HTML (`<div class="elementor-element ...">`, dead `<div id="load_overlay">`, `<div class="cursor">`).
+  - Even on `/` (Homepage), `usePageDocuments` schedules a background download of this 854 kB JSON blob after 3.5–5 seconds (`App.tsx:83–84`).
   - On `/about/`, `AboutReveal.tsx` has to manually scrape `.reveal-text` and `.worded` DOM nodes out of the legacy WordPress HTML and animate individual `<span>` letters every 4,000 ms with `setTimeout` chains (`AboutReveal.tsx:111–128`).
   - On `/privacy-policy/` and `/terms-of-service/`, raw WordPress prose renders without the site's modern editorial grid or navigation chrome.
 - **Why (Citations):**

@@ -111,11 +111,11 @@ src/
 │   ├── ContactWizard.tsx       # local non-submitting eight-step legacy form behaviour
 │   ├── PanoramaPage.tsx        # source-preserving 360 fallback
 │   ├── MetaversePage.tsx       # original Unity shell/loader bridge
-│   ├── LegacyRenderer.tsx      # allowlisted typed source DOM renderer
-│   └── LegacyFooter.tsx
-├── data/legacyPages.json       # generated typed-safe capture representation
+│   ├── ContentBlocks.tsx      # allowlisted typed source DOM renderer
+│   └── SiteFooter.tsx
+├── data/pages.json       # generated typed-safe capture representation
 ├── styles/baseline.css         # local font mapping + minimal React state parity
-├── types/legacy.ts
+├── types/content.ts
 └── utils/{routes,seo}.ts
 ```
 

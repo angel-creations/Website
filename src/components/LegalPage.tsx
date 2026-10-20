@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { navigate } from '../utils/routes';
-import { LegacyFooter } from './LegacyFooter';
+import { SiteFooter } from './SiteFooter';
 
 export type LegalDocKind = 'privacy' | 'terms';
 
@@ -635,7 +635,7 @@ export function LegalPage({ kind }: { kind: LegalDocKind }): JSX.Element {
             </div>
           </section>
 
-          <LegacyFooter />
+          <SiteFooter />
         </main>
       </div>
     </div>

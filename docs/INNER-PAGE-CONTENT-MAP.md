@@ -71,7 +71,7 @@ The last two route labels/headings and their precise capability subsets remain g
 | Experience map/process and non-claim work bridge | `src/data/experienceMaps.json` |
 | Topic-to-image references (online-library image map) | `src/data/explorerVisuals.json` |
 | Inner-page hero visual map (online-library photos only) | `src/data/innerHeroVisuals.json` |
-| Downloaded online-library image files | `public/inner-library/*.webp` — 12 local WebP files; only the active selection loads |
+| Downloaded online-library image files | `public/media/library/*.webp` — 12 local WebP files; only the active selection loads |
 | Library URLs and verification note | `docs/INNER-PAGE-IMAGE-SOURCES.json` |
 | Verified Work | `src/data/videoArchive.json` |
 | Static equivalent | `scripts/generateStaticFallbacks.mjs` |

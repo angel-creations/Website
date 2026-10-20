@@ -2,12 +2,12 @@ import { lazy, Suspense, useEffect, useMemo, useState, type MouseEvent as ReactM
 import { FloatingScrollTop } from '../components/FloatingScrollTop';
 import { Header } from '../components/Header';
 import { HomeSlideshow } from '../components/HomeSlideshow';
-import { LegacyFooter } from '../components/LegacyFooter';
+import { SiteFooter } from '../components/SiteFooter';
 import { capabilityForRoute } from '../data/capabilities';
 import { slideExperienceForRoute } from '../data/slideExperiences';
 import innerHeroVisuals from '../data/innerHeroVisuals.json';
 import routeSeo from '../data/routeSeo.json';
-import type { LegacyPage } from '../types/legacy';
+import type { PageDocument } from '../types/content';
 import { currentRoute, isInternalHref, navigate, normaliseRoute, toLocalRoute } from '../utils/routes';
 import { applySeo } from '../utils/seo';
 
@@ -46,12 +46,7 @@ const SliderExperience = lazy(async () => {
   return { default: module.SliderExperience };
 });
 
-const PublicLegacyFallback = lazy(async () => {
-  const module = await import('../components/PublicLegacyFallback');
-  return { default: module.PublicLegacyFallback };
-});
-
-const homeFallback: LegacyPage = {
+const homeFallback: PageDocument = {
   url: 'https://angelcreations.in/', route: '/', status: 200, kind: 'home', bodyClasses: ['home'],
   title: routeSeo['/'].title,
   description: routeSeo['/'].description,
@@ -64,7 +59,7 @@ const homeFallback: LegacyPage = {
   jsonLd: [], children: [],
 };
 
-const notFoundFallback: LegacyPage = {
+const notFoundFallback: PageDocument = {
   ...homeFallback,
   route: '/404/',
   status: 404,
@@ -77,7 +72,7 @@ const notFoundFallback: LegacyPage = {
   bodyClasses: ['error404'],
 };
 
-const retiredFallback: LegacyPage = {
+const retiredFallback: PageDocument = {
   ...notFoundFallback,
   route: '/360-video/',
   status: 410,
@@ -89,7 +84,7 @@ const retiredFallback: LegacyPage = {
 
 const retiredRoutes = new Set(['/360-video/']);
 
-const publicLegacyRoutes = new Set([
+const archivedRoutes = new Set([
   '/', '/about/', '/animation/', '/augment-reality/', '/brand-advertisement/',
   '/contact/', '/media-production/', '/metaverse/', '/mixed-reality/', '/privacy-policy/',
   '/terms-of-service/', '/virtual-reality/', '/works/',
@@ -103,7 +98,7 @@ function RouteLoading({ message }: { message: string }): JSX.Element {
   );
 }
 
-function pageContent(page: LegacyPage, route: string): JSX.Element {
+function pageContent(page: PageDocument, route: string): JSX.Element {
   const capability = capabilityForRoute(route);
   if (capability) {
     return (
@@ -113,7 +108,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
             <CapabilityDetail capability={capability} />
           </Suspense>
         </main>
-        <LegacyFooter />
+        <SiteFooter />
       </>
     );
   }
@@ -125,7 +120,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
         <Suspense fallback={<RouteLoading message="Loading experience." />}>
           <SliderExperience experience={experience} />
         </Suspense>
-        <LegacyFooter />
+        <SiteFooter />
       </>
     );
   }
@@ -151,7 +146,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
               <VideoArchive />
             </Suspense>
           </main>
-          <LegacyFooter />
+          <SiteFooter />
         </div>
       </div>
     );
@@ -166,7 +161,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
               <ContactWizard />
             </Suspense>
           </main>
-          <LegacyFooter />
+          <SiteFooter />
         </div>
       </div>
     );
@@ -194,7 +189,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
         <Suspense fallback={<RouteLoading message="Loading retired experience." />}>
           <NotFoundPage attemptedPath={route} statusCode={410} />
         </Suspense>
-        <LegacyFooter />
+        <SiteFooter />
       </>
     );
   }
@@ -205,16 +200,8 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
         <Suspense fallback={<RouteLoading message="Loading page." />}>
           <NotFoundPage attemptedPath={route} />
         </Suspense>
-        <LegacyFooter />
+        <SiteFooter />
       </>
-    );
-  }
-
-  if (publicLegacyRoutes.has(route)) {
-    return (
-      <Suspense fallback={<RouteLoading message="Loading archived page." />}>
-        <PublicLegacyFallback route={route} />
-      </Suspense>
     );
   }
 
@@ -241,7 +228,7 @@ export function App(): JSX.Element {
       route === '/privacy-policy/' ||
       route === '/terms-of-service/'
   );
-  const routeIsKnown = retiredRoutes.has(route) || publicLegacyRoutes.has(route) || Boolean(capability || experience);
+  const routeIsKnown = retiredRoutes.has(route) || archivedRoutes.has(route) || Boolean(capability || experience);
   const page = useMemo(() => {
     if (route === '/') return homeFallback;
     if (retiredRoutes.has(route)) return retiredFallback;
@@ -285,7 +272,7 @@ export function App(): JSX.Element {
     const imagePath = routeMetadata?.image
       ?? innerHeroVisuals[route as keyof typeof innerHeroVisuals];
     const socialImage = imagePath ? new URL(imagePath, 'https://angelcreations.in').href : undefined;
-    const seoPage: LegacyPage = {
+    const seoPage: PageDocument = {
       ...page,
       title,
       description,
@@ -345,7 +332,7 @@ export function App(): JSX.Element {
   };
 
   return (
-    <div className="legacy-shell" onClick={handleInternalLink}>
+    <div className="archived-content" onClick={handleInternalLink}>
       <div id="page" className="site">
         <Header />
         {pageContent(page, route)}

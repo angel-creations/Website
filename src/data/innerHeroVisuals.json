@@ -1,9 +1,9 @@
 {
-  "/metaverse/": "/inner-library/metaverse/hero-metaverse.webp",
-  "/mixed-reality/": "/inner-library/mixed-reality/hero-mixed-reality.png",
-  "/virtual-reality/": "/inner-library/virtual-reality/hero-virtual-reality.webp",
-  "/augment-reality/": "/inner-library/augment-reality/hero-augment-reality.webp",
-  "/animation/": "/inner-library/animation/hero-animation.jpg",
-  "/brand-advertisement/": "/inner-library/brand-advertisement/hero-brand-advertisement.jpg",
-  "/media-production/": "/inner-library/media-production/hero-media-production.jpg"
+  "/metaverse/": "/media/library/metaverse/hero-metaverse.webp",
+  "/mixed-reality/": "/media/library/mixed-reality/hero-mixed-reality.png",
+  "/virtual-reality/": "/media/library/virtual-reality/hero-virtual-reality.webp",
+  "/augment-reality/": "/media/library/augment-reality/hero-augment-reality.webp",
+  "/animation/": "/media/library/animation/hero-animation.jpg",
+  "/brand-advertisement/": "/media/library/brand-advertisement/hero-brand-advertisement.jpg",
+  "/media-production/": "/media/library/media-production/hero-media-production.jpg"
 }

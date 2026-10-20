@@ -56,8 +56,8 @@
       "ogUrl": "https://angelcreations.in/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/home.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/home.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/home.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/home.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -65,11 +65,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Immersive worlds. Human stories.",
       "twitterDescription": "Angel Creations is an India-based creative studio creating virtual reality, augmented reality, animation, brand films, and immersive digital experiences.",
-      "twitterImage": "https://angelcreations.in/social/og/home.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/home.jpg",
       "twitterImageAlt": "Dark digital-city artwork with the Angel Creations wordmark and the headline “Immersive worlds. Human stories.”",
-      "expectedImage": "/social/og/home.jpg",
+      "expectedImage": "/media/social/og/home.jpg",
       "expectedShareTitle": "Immersive worlds. Human stories.",
-      "imagePath": "/social/og/home.jpg"
+      "imagePath": "/media/social/og/home.jpg"
     },
     {
       "route": "/about/",
@@ -81,8 +81,8 @@
       "ogUrl": "https://angelcreations.in/about/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/about.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/about.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/about.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/about.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -90,11 +90,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Meet the creative studio.",
       "twitterDescription": "Meet Angel Creations, an India-based creative studio working across design, development, storytelling, film, animation, and immersive digital experiences.",
-      "twitterImage": "https://angelcreations.in/social/og/about.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/about.jpg",
       "twitterImageAlt": "Angel Creations wordmark over the existing studio About image with the headline “Meet the creative studio.”",
-      "expectedImage": "/social/og/about.jpg",
+      "expectedImage": "/media/social/og/about.jpg",
       "expectedShareTitle": "Meet the creative studio.",
-      "imagePath": "/social/og/about.jpg"
+      "imagePath": "/media/social/og/about.jpg"
     },
     {
       "route": "/animation/",
@@ -106,8 +106,8 @@
       "ogUrl": "https://angelcreations.in/animation/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/animation.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/animation.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/animation.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/animation.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -115,11 +115,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Stories in motion.",
       "twitterDescription": "Discover 2D and 3D animation, motion graphics, character animation, interactive animation, and visual effects in Angel Creations’ public capability material.",
-      "twitterImage": "https://angelcreations.in/social/og/animation.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/animation.jpg",
       "twitterImageAlt": "Angel Creations-branded animation hero artwork with the headline “Stories in motion.”",
-      "expectedImage": "/social/og/animation.jpg",
+      "expectedImage": "/media/social/og/animation.jpg",
       "expectedShareTitle": "Stories in motion.",
-      "imagePath": "/social/og/animation.jpg"
+      "imagePath": "/media/social/og/animation.jpg"
     },
     {
       "route": "/augment-reality/",
@@ -131,8 +131,8 @@
       "ogUrl": "https://angelcreations.in/augment-reality/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/augmented-reality.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/augmented-reality.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/augmented-reality.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/augmented-reality.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -140,11 +140,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "A digital layer on the real world.",
       "twitterDescription": "Explore Angel Creations’ augmented reality material for industrial applications, navigation, retail, marketing, tourism, education, and entertainment.",
-      "twitterImage": "https://angelcreations.in/social/og/augmented-reality.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/augmented-reality.jpg",
       "twitterImageAlt": "Angel Creations-branded augmented-reality hero artwork with the page headline.",
-      "expectedImage": "/social/og/augmented-reality.jpg",
+      "expectedImage": "/media/social/og/augmented-reality.jpg",
       "expectedShareTitle": "A digital layer on the real world.",
-      "imagePath": "/social/og/augmented-reality.jpg"
+      "imagePath": "/media/social/og/augmented-reality.jpg"
     },
     {
       "route": "/brand-advertisement/",
@@ -156,8 +156,8 @@
       "ogUrl": "https://angelcreations.in/brand-advertisement/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/brand-advertisement.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/brand-advertisement.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/brand-advertisement.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/brand-advertisement.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -165,11 +165,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Campaigns with a point of view.",
       "twitterDescription": "Explore Angel Creations’ brand advertising and marketing material across film, animation, digital, and immersive experiences.",
-      "twitterImage": "https://angelcreations.in/social/og/brand-advertisement.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/brand-advertisement.jpg",
       "twitterImageAlt": "Angel Creations-branded campaign artwork with the headline “Campaigns with a point of view.”",
-      "expectedImage": "/social/og/brand-advertisement.jpg",
+      "expectedImage": "/media/social/og/brand-advertisement.jpg",
       "expectedShareTitle": "Campaigns with a point of view.",
-      "imagePath": "/social/og/brand-advertisement.jpg"
+      "imagePath": "/media/social/og/brand-advertisement.jpg"
     },
     {
       "route": "/contact/",
@@ -181,8 +181,8 @@
       "ogUrl": "https://angelcreations.in/contact/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/contact.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/contact.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/contact.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/contact.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -190,11 +190,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Let’s start a conversation.",
       "twitterDescription": "Start a project enquiry with Angel Creations. Share your goals, creative discipline, timeline, and contact details.",
-      "twitterImage": "https://angelcreations.in/social/og/contact.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/contact.jpg",
       "twitterImageAlt": "Cinematic studio-light artwork with the Angel Creations wordmark and the headline “Let’s start a conversation.”",
-      "expectedImage": "/social/og/contact.jpg",
+      "expectedImage": "/media/social/og/contact.jpg",
       "expectedShareTitle": "Let’s start a conversation.",
-      "imagePath": "/social/og/contact.jpg"
+      "imagePath": "/media/social/og/contact.jpg"
     },
     {
       "route": "/media-production/",
@@ -206,8 +206,8 @@
       "ogUrl": "https://angelcreations.in/media-production/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/media-production.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/media-production.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/media-production.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/media-production.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -215,11 +215,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "From first frame to final cut.",
       "twitterDescription": "Explore Angel Creations’ media production capabilities across film, video, television, photography, live events, and post-production.",
-      "twitterImage": "https://angelcreations.in/social/og/media-production.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/media-production.jpg",
       "twitterImageAlt": "Angel Creations-branded media-production hero artwork with the headline “From first frame to final cut.”",
-      "expectedImage": "/social/og/media-production.jpg",
+      "expectedImage": "/media/social/og/media-production.jpg",
       "expectedShareTitle": "From first frame to final cut.",
-      "imagePath": "/social/og/media-production.jpg"
+      "imagePath": "/media/social/og/media-production.jpg"
     },
     {
       "route": "/metaverse/",
@@ -231,8 +231,8 @@
       "ogUrl": "https://angelcreations.in/metaverse/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/metaverse.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/metaverse.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/metaverse.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/metaverse.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -240,11 +240,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Virtual worlds, made tangible.",
       "twitterDescription": "Explore Angel Creations’ metaverse capabilities, including virtual worlds, events, product showcases, marketplaces, and workspaces.",
-      "twitterImage": "https://angelcreations.in/social/og/metaverse.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/metaverse.jpg",
       "twitterImageAlt": "Angel Creations-branded metaverse hero artwork with the headline “Virtual worlds, made tangible.”",
-      "expectedImage": "/social/og/metaverse.jpg",
+      "expectedImage": "/media/social/og/metaverse.jpg",
       "expectedShareTitle": "Virtual worlds, made tangible.",
-      "imagePath": "/social/og/metaverse.jpg"
+      "imagePath": "/media/social/og/metaverse.jpg"
     },
     {
       "route": "/mixed-reality/",
@@ -256,8 +256,8 @@
       "ogUrl": "https://angelcreations.in/mixed-reality/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/mixed-reality.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/mixed-reality.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/mixed-reality.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/mixed-reality.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -265,11 +265,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Where the real meets digital.",
       "twitterDescription": "Explore Angel Creations’ mixed reality material for training, education, entertainment, architecture, marketing, retail, and collaboration.",
-      "twitterImage": "https://angelcreations.in/social/og/mixed-reality.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/mixed-reality.jpg",
       "twitterImageAlt": "Angel Creations-branded mixed-reality hero artwork with the headline “Where the real meets digital.”",
-      "expectedImage": "/social/og/mixed-reality.jpg",
+      "expectedImage": "/media/social/og/mixed-reality.jpg",
       "expectedShareTitle": "Where the real meets digital.",
-      "imagePath": "/social/og/mixed-reality.jpg"
+      "imagePath": "/media/social/og/mixed-reality.jpg"
     },
     {
       "route": "/privacy-policy/",
@@ -281,8 +281,8 @@
       "ogUrl": "https://angelcreations.in/privacy-policy/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/privacy-policy.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/privacy-policy.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/privacy-policy.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/privacy-policy.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -290,11 +290,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "How this site uses your data.",
       "twitterDescription": "Learn how Angel Creations collects, uses, and safeguards personal information across its website and digital services.",
-      "twitterImage": "https://angelcreations.in/social/og/privacy-policy.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/privacy-policy.jpg",
       "twitterImageAlt": "Angel Creations privacy-policy graphic with abstract orbital lines and the headline “How this site uses your data.”",
-      "expectedImage": "/social/og/privacy-policy.jpg",
+      "expectedImage": "/media/social/og/privacy-policy.jpg",
       "expectedShareTitle": "How this site uses your data.",
-      "imagePath": "/social/og/privacy-policy.jpg"
+      "imagePath": "/media/social/og/privacy-policy.jpg"
     },
     {
       "route": "/terms-of-service/",
@@ -306,8 +306,8 @@
       "ogUrl": "https://angelcreations.in/terms-of-service/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/terms-of-service.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/terms-of-service.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/terms-of-service.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/terms-of-service.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -315,11 +315,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "The terms for using this site.",
       "twitterDescription": "Review the terms for using the Angel Creations website and digital services, including intellectual property, acceptable use, and liability.",
-      "twitterImage": "https://angelcreations.in/social/og/terms-of-service.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/terms-of-service.jpg",
       "twitterImageAlt": "Angel Creations terms graphic with abstract orbital lines and the headline “The terms for using this site.”",
-      "expectedImage": "/social/og/terms-of-service.jpg",
+      "expectedImage": "/media/social/og/terms-of-service.jpg",
       "expectedShareTitle": "The terms for using this site.",
-      "imagePath": "/social/og/terms-of-service.jpg"
+      "imagePath": "/media/social/og/terms-of-service.jpg"
     },
     {
       "route": "/virtual-reality/",
@@ -331,8 +331,8 @@
       "ogUrl": "https://angelcreations.in/virtual-reality/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/virtual-reality.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/virtual-reality.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/virtual-reality.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/virtual-reality.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -340,11 +340,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Step inside the story.",
       "twitterDescription": "Explore Angel Creations’ virtual reality material for content, training, education, gaming, marketing, architecture, healthcare, and broadcasting.",
-      "twitterImage": "https://angelcreations.in/social/og/virtual-reality.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/virtual-reality.jpg",
       "twitterImageAlt": "Angel Creations-branded virtual-reality hero artwork with the headline “Step inside the story.”",
-      "expectedImage": "/social/og/virtual-reality.jpg",
+      "expectedImage": "/media/social/og/virtual-reality.jpg",
       "expectedShareTitle": "Step inside the story.",
-      "imagePath": "/social/og/virtual-reality.jpg"
+      "imagePath": "/media/social/og/virtual-reality.jpg"
     },
     {
       "route": "/works/",
@@ -356,8 +356,8 @@
       "ogUrl": "https://angelcreations.in/works/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/works.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/works.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/works.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/works.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -365,11 +365,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Selected work from Angel Creations.",
       "twitterDescription": "Explore selected Angel Creations work through 47 verified public video records with their original titles, descriptions, links, and available metadata.",
-      "twitterImage": "https://angelcreations.in/social/og/works.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/works.jpg",
       "twitterImageAlt": "Lustica architecture image with the Angel Creations wordmark and a selected-work headline.",
-      "expectedImage": "/social/og/works.jpg",
+      "expectedImage": "/media/social/og/works.jpg",
       "expectedShareTitle": "Selected work from Angel Creations.",
-      "imagePath": "/social/og/works.jpg"
+      "imagePath": "/media/social/og/works.jpg"
     },
     {
       "route": "/capabilities/brand/",
@@ -381,8 +381,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/brand/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-brand.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-brand.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-brand.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-brand.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -390,11 +390,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Build a vivid brand story.",
       "twitterDescription": "Explore Angel Creations’ brand advertising, marketing, and immersive campaign capabilities across virtual, augmented, and mixed-reality experiences.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-brand.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-brand.jpg",
       "twitterImageAlt": "Angel Creations-branded brand-positioning artwork with the headline “Build a vivid brand story.”",
-      "expectedImage": "/social/og/capability-brand.jpg",
+      "expectedImage": "/media/social/og/capability-brand.jpg",
       "expectedShareTitle": "Build a vivid brand story.",
-      "imagePath": "/social/og/capability-brand.jpg"
+      "imagePath": "/media/social/og/capability-brand.jpg"
     },
     {
       "route": "/capabilities/design/",
@@ -406,8 +406,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/design/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-design.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-design.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-design.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-design.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -415,11 +415,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Design with purpose and feeling.",
       "twitterDescription": "Explore Angel Creations’ design and development capabilities across spatial experiences, visual storytelling, and digital environments.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-design.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-design.jpg",
       "twitterImageAlt": "Angel Creations-branded architecture image with the headline “Design with purpose and feeling.”",
-      "expectedImage": "/social/og/capability-design.jpg",
+      "expectedImage": "/media/social/og/capability-design.jpg",
       "expectedShareTitle": "Design with purpose and feeling.",
-      "imagePath": "/social/og/capability-design.jpg"
+      "imagePath": "/media/social/og/capability-design.jpg"
     },
     {
       "route": "/capabilities/content/",
@@ -431,8 +431,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/content/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-content.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-content.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-content.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-content.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -440,11 +440,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Content for immersive spaces.",
       "twitterDescription": "Explore immersive content production across VR, mixed reality, animation, media, and interactive brand experiences.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-content.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-content.jpg",
       "twitterImageAlt": "Angel Creations-branded visual-storytelling artwork with the headline “Content for immersive spaces.”",
-      "expectedImage": "/social/og/capability-content.jpg",
+      "expectedImage": "/media/social/og/capability-content.jpg",
       "expectedShareTitle": "Content for immersive spaces.",
-      "imagePath": "/social/og/capability-content.jpg"
+      "imagePath": "/media/social/og/capability-content.jpg"
     },
     {
       "route": "/capabilities/film/",
@@ -456,8 +456,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/film/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-film.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-film.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-film.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-film.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -465,11 +465,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Shape a story, frame by frame.",
       "twitterDescription": "Explore film and video production across scriptwriting, storyboarding, photography, post-production, live events, and audio.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-film.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-film.jpg",
       "twitterImageAlt": "Angel Creations-branded cinematography artwork with the headline “Shape a story, frame by frame.”",
-      "expectedImage": "/social/og/capability-film.jpg",
+      "expectedImage": "/media/social/og/capability-film.jpg",
       "expectedShareTitle": "Shape a story, frame by frame.",
-      "imagePath": "/social/og/capability-film.jpg"
+      "imagePath": "/media/social/og/capability-film.jpg"
     },
     {
       "route": "/capabilities/animation-3d/",
@@ -481,8 +481,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/animation-3d/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-animation-3d.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-animation-3d.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-animation-3d.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-animation-3d.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -490,11 +490,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Ideas in motion and dimension.",
       "twitterDescription": "Explore Angel Creations’ 2D and 3D animation, motion graphics, visual effects, character animation, and interactive animation.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-animation-3d.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-animation-3d.jpg",
       "twitterImageAlt": "Angel Creations-branded animation artwork with the headline “Ideas in motion and dimension.”",
-      "expectedImage": "/social/og/capability-animation-3d.jpg",
+      "expectedImage": "/media/social/og/capability-animation-3d.jpg",
       "expectedShareTitle": "Ideas in motion and dimension.",
-      "imagePath": "/social/og/capability-animation-3d.jpg"
+      "imagePath": "/media/social/og/capability-animation-3d.jpg"
     },
     {
       "route": "/capabilities/digital/",
@@ -506,8 +506,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/digital/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-digital.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-digital.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-digital.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-digital.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -515,11 +515,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Digital experiences, made useful.",
       "twitterDescription": "Explore digital experiences across virtual worlds, workspaces, marketplaces, education, streaming, navigation, and collaboration.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-digital.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-digital.jpg",
       "twitterImageAlt": "Angel Creations-branded augmented-reality navigation artwork with the headline “Digital experiences, made useful.”",
-      "expectedImage": "/social/og/capability-digital.jpg",
+      "expectedImage": "/media/social/og/capability-digital.jpg",
       "expectedShareTitle": "Digital experiences, made useful.",
-      "imagePath": "/social/og/capability-digital.jpg"
+      "imagePath": "/media/social/og/capability-digital.jpg"
     },
     {
       "route": "/capabilities/experiences/",
@@ -531,8 +531,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/experiences/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-experiences.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-experiences.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-experiences.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-experiences.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -540,11 +540,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Spaces for shared moments.",
       "twitterDescription": "Explore virtual worlds, events platforms, product showcases, live event production, entertainment, and interactive spatial experiences.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-experiences.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-experiences.jpg",
       "twitterImageAlt": "Angel Creations-branded event imagery with the headline “Spaces for shared moments.”",
-      "expectedImage": "/social/og/capability-experiences.jpg",
+      "expectedImage": "/media/social/og/capability-experiences.jpg",
       "expectedShareTitle": "Spaces for shared moments.",
-      "imagePath": "/social/og/capability-experiences.jpg"
+      "imagePath": "/media/social/og/capability-experiences.jpg"
     },
     {
       "route": "/capabilities/creative-technology/",
@@ -556,8 +556,8 @@
       "ogUrl": "https://angelcreations.in/capabilities/creative-technology/",
       "ogType": "website",
       "ogLocale": "en_US",
-      "ogImage": "https://angelcreations.in/social/og/capability-creative-technology.jpg",
-      "ogImageSecureUrl": "https://angelcreations.in/social/og/capability-creative-technology.jpg",
+      "ogImage": "https://angelcreations.in/media/social/og/capability-creative-technology.jpg",
+      "ogImageSecureUrl": "https://angelcreations.in/media/social/og/capability-creative-technology.jpg",
       "ogImageWidth": "1200",
       "ogImageHeight": "630",
       "ogImageType": "image/jpeg",
@@ -565,11 +565,11 @@
       "twitterCard": "summary_large_image",
       "twitterTitle": "Creative thinking meets technology.",
       "twitterDescription": "Explore Angel Creations’ VR, AR, mixed reality, and metaverse capabilities, including training, navigation, virtual worlds, and collaboration.",
-      "twitterImage": "https://angelcreations.in/social/og/capability-creative-technology.jpg",
+      "twitterImage": "https://angelcreations.in/media/social/og/capability-creative-technology.jpg",
       "twitterImageAlt": "Angel Creations-branded mixed-reality artwork with the headline “Creative thinking meets technology.”",
-      "expectedImage": "/social/og/capability-creative-technology.jpg",
+      "expectedImage": "/media/social/og/capability-creative-technology.jpg",
       "expectedShareTitle": "Creative thinking meets technology.",
-      "imagePath": "/social/og/capability-creative-technology.jpg"
+      "imagePath": "/media/social/og/capability-creative-technology.jpg"
     }
   ],
   "staticAnchorInventory": [
@@ -3076,7 +3076,7 @@
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/VideoArchive.tsx",
         "static anchor on /",
         "static anchor on /about/",
@@ -3111,7 +3111,7 @@
         "src/components/AboutPage.tsx",
         "src/components/CapabilityDetail.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/NotFoundPage.tsx",
         "src/components/SliderExperience.tsx",
         "static anchor on /",
@@ -3148,7 +3148,7 @@
         "src/components/ApplicationErrorBoundary.tsx",
         "src/components/CapabilityDetail.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx",
         "src/components/NotFoundPage.tsx",
         "src/components/VideoArchive.tsx",
@@ -3183,7 +3183,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /media-production/",
         "static anchor on /mixed-reality/"
@@ -3197,7 +3197,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /metaverse/",
         "static anchor on /virtual-reality/"
@@ -3211,7 +3211,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /augment-reality/",
         "static anchor on /mixed-reality/"
@@ -3225,7 +3225,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /animation/",
         "static anchor on /virtual-reality/"
@@ -3239,7 +3239,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /augment-reality/",
         "static anchor on /brand-advertisement/"
@@ -3253,7 +3253,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /animation/",
         "static anchor on /media-production/"
@@ -3267,7 +3267,7 @@
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "static anchor on /",
         "static anchor on /brand-advertisement/",
         "static anchor on /metaverse/"
@@ -3281,7 +3281,7 @@
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx",
         "static anchor on /",
         "static anchor on /about/",
@@ -3314,7 +3314,7 @@
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx",
         "static anchor on /",
         "static anchor on /about/",
@@ -3348,7 +3348,7 @@
       "sources": [
         "src/components/ApplicationErrorBoundary.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/NotFoundPage.tsx",
         "src/components/SliderExperience.tsx",
         "src/components/VideoArchive.tsx",
@@ -3527,7 +3527,7 @@
       "sources": [
         "src/components/ApplicationErrorBoundary.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/NotFoundPage.tsx",
         "src/components/SliderExperience.tsx",
         "src/components/VideoArchive.tsx"
@@ -3537,7 +3537,7 @@
       "href": "/about/",
       "sources": [
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/VideoArchive.tsx"
       ]
     },
@@ -3545,21 +3545,21 @@
       "href": "/animation/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
       "href": "/augment-reality/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
       "href": "/brand-advertisement/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
@@ -3625,7 +3625,7 @@
         "src/components/ApplicationErrorBoundary.tsx",
         "src/components/CapabilityDetail.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx",
         "src/components/NotFoundPage.tsx",
         "src/components/VideoArchive.tsx"
@@ -3635,28 +3635,28 @@
       "href": "/media-production/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
       "href": "/metaverse/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
       "href": "/mixed-reality/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
       "href": "/privacy-policy/",
       "sources": [
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx"
       ]
     },
@@ -3664,7 +3664,7 @@
       "href": "/terms-of-service/",
       "sources": [
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx"
       ]
     },
@@ -3672,7 +3672,7 @@
       "href": "/virtual-reality/",
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ]
     },
     {
@@ -3681,7 +3681,7 @@
         "src/components/AboutPage.tsx",
         "src/components/CapabilityDetail.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/NotFoundPage.tsx",
         "src/components/SliderExperience.tsx"
       ]
@@ -3695,7 +3695,7 @@
       "sources": [
         "src/components/AboutPage.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [
         "source-defined link data"
@@ -3709,7 +3709,7 @@
       "sources": [
         "src/components/AboutPage.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [
         "source-defined link data"
@@ -3721,7 +3721,7 @@
       "url": "https://www.facebook.com/angelcreations.digital/",
       "hostname": "www.facebook.com",
       "sources": [
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [
         "source-defined link data"
@@ -3733,7 +3733,7 @@
       "url": "https://www.instagram.com/angelcreations.digital/",
       "hostname": "www.instagram.com",
       "sources": [
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [
         "source-defined link data"
@@ -3745,7 +3745,7 @@
       "url": "https://www.linkedin.com/in/angelcreations/",
       "hostname": "www.linkedin.com",
       "sources": [
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [
         "source-defined link data"
@@ -3757,7 +3757,7 @@
       "url": "https://www.youtube.com/AngelCreationsACreativeStudio",
       "hostname": "www.youtube.com",
       "sources": [
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [
         "source-defined link data"
@@ -4393,7 +4393,7 @@
       "sources": [
         "src/components/ContactWizard.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [],
       "remoteVerification": "Protocol target inventoried from source; no client launch was performed.",
@@ -4415,7 +4415,7 @@
       "sources": [
         "src/components/ContactWizard.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx",
+        "src/components/SiteFooter.tsx",
         "src/components/LegalPage.tsx"
       ],
       "labels": [],
@@ -4428,7 +4428,7 @@
       "sources": [
         "src/components/ContactWizard.tsx",
         "src/components/Header.tsx",
-        "src/components/LegacyFooter.tsx"
+        "src/components/SiteFooter.tsx"
       ],
       "labels": [],
       "remoteVerification": "Protocol target inventoried from source; no client launch was performed.",
@@ -4640,7 +4640,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-01-concept-development.jpg",
+      "url": "/media/library/animation/app-01-concept-development.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4649,7 +4649,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-02-pre-visualization.jpg",
+      "url": "/media/library/animation/app-02-pre-visualization.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4658,7 +4658,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-03-2d-animation.jpg",
+      "url": "/media/library/animation/app-03-2d-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4667,7 +4667,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-04-3d-animation.jpg",
+      "url": "/media/library/animation/app-04-3d-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4676,7 +4676,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-05-motion-graphics.jpg",
+      "url": "/media/library/animation/app-05-motion-graphics.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4685,7 +4685,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-06-visual-effects.jpg",
+      "url": "/media/library/animation/app-06-visual-effects.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4694,7 +4694,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-07-character-animation.jpg",
+      "url": "/media/library/animation/app-07-character-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4703,7 +4703,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-08-interactive-animation.jpg",
+      "url": "/media/library/animation/app-08-interactive-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4712,7 +4712,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-09-explainer-videos.jpg",
+      "url": "/media/library/animation/app-09-explainer-videos.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4721,7 +4721,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/app-10-ar-animation.jpg",
+      "url": "/media/library/animation/app-10-ar-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4730,191 +4730,7 @@
       ]
     },
     {
-      "url": "/inner-library/animation/hero-animation.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "dist/assets/index-tX95GFM7.js (runtime asset path)",
-        "src/components/AboutPage.tsx (active source reference)",
-        "src/data/explorerVisuals.json (active source reference)",
-        "src/data/innerHeroVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/map-01-idea.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/map-02-design.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/map-03-motion.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/map-04-frame.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/map-05-story.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/story-01-visual-storytelling.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/story-02-character-world-design.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/story-03-2d-3d-motion-craft.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/animation/story-04-emotional-rhythm.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-01-industrial-ar.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-02-tourism-travel.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-03-ar-navigation.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-04-retail.webp",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-05-ar-marketing.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-06-ar-gaming.webp",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-07-ar-education.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-08-ar-healthcare.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-09-ar-entertainment.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/app-10-ar-art-creativity.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/augment-reality/hero-augment-reality.webp",
+      "url": "/media/library/animation/hero-animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4927,7 +4743,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/map-01-see.jpg",
+      "url": "/media/library/animation/map-01-idea.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4936,7 +4752,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/map-02-point.jpg",
+      "url": "/media/library/animation/map-02-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4945,7 +4761,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/map-03-discover.jpg",
+      "url": "/media/library/animation/map-03-motion.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4954,7 +4770,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/map-04-interact.jpg",
+      "url": "/media/library/animation/map-04-frame.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4963,7 +4779,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/map-05-continue.jpg",
+      "url": "/media/library/animation/map-05-story.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4972,7 +4788,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/story-01-instant-access.jpg",
+      "url": "/media/library/animation/story-01-visual-storytelling.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4981,7 +4797,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/story-02-contextual-overlay.jpg",
+      "url": "/media/library/animation/story-02-character-world-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4990,7 +4806,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/story-03-interactive-discovery.jpg",
+      "url": "/media/library/animation/story-03-2d-3d-motion-craft.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -4999,7 +4815,7 @@
       ]
     },
     {
-      "url": "/inner-library/augment-reality/story-04-real-world-utility.jpg",
+      "url": "/media/library/animation/story-04-emotional-rhythm.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5008,7 +4824,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/app-01-brand-campaigns.jpg",
+      "url": "/media/library/augment-reality/app-01-industrial-ar.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5017,7 +4833,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/app-02-digital-campaigns.jpg",
+      "url": "/media/library/augment-reality/app-02-tourism-travel.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5026,7 +4842,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/app-03-product-launches.webp",
+      "url": "/media/library/augment-reality/app-03-ar-navigation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5035,7 +4851,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/app-04-brand-films.jpg",
+      "url": "/media/library/augment-reality/app-04-retail.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5044,7 +4860,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/app-05-explainer-communication.jpg",
+      "url": "/media/library/augment-reality/app-05-ar-marketing.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5053,7 +4869,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/app-06-social-digital-content.jpg",
+      "url": "/media/library/augment-reality/app-06-ar-gaming.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5062,7 +4878,43 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/hero-brand-advertisement.jpg",
+      "url": "/media/library/augment-reality/app-07-ar-education.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/augment-reality/app-08-ar-healthcare.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/augment-reality/app-09-ar-entertainment.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/augment-reality/app-10-ar-art-creativity.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/augment-reality/hero-augment-reality.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5075,7 +4927,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/map-01-idea.jpg",
+      "url": "/media/library/augment-reality/map-01-see.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5084,7 +4936,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/map-02-message.jpg",
+      "url": "/media/library/augment-reality/map-02-point.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5093,7 +4945,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/map-03-identity.jpg",
+      "url": "/media/library/augment-reality/map-03-discover.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5102,7 +4954,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/map-04-content.jpg",
+      "url": "/media/library/augment-reality/map-04-interact.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5111,7 +4963,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/map-05-experience.jpg",
+      "url": "/media/library/augment-reality/map-05-continue.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5120,7 +4972,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/map-06-audience.jpg",
+      "url": "/media/library/augment-reality/story-01-instant-access.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5129,7 +4981,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/story-01-strategic-positioning.jpg",
+      "url": "/media/library/augment-reality/story-02-contextual-overlay.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5138,7 +4990,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/story-02-creative-storytelling.jpg",
+      "url": "/media/library/augment-reality/story-03-interactive-discovery.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5147,7 +4999,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/story-03-visual-verbal-identity.jpg",
+      "url": "/media/library/augment-reality/story-04-real-world-utility.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5156,7 +5008,7 @@
       ]
     },
     {
-      "url": "/inner-library/brand-advertisement/story-04-multi-channel-impact.jpg",
+      "url": "/media/library/brand-advertisement/app-01-brand-campaigns.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5165,7 +5017,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-01-video-production.jpg",
+      "url": "/media/library/brand-advertisement/app-02-digital-campaigns.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5174,7 +5026,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-02-film-production.jpg",
+      "url": "/media/library/brand-advertisement/app-03-product-launches.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5183,7 +5035,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-03-television-production.webp",
+      "url": "/media/library/brand-advertisement/app-04-brand-films.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5192,7 +5044,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-04-animation-production.jpg",
+      "url": "/media/library/brand-advertisement/app-05-explainer-communication.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5201,7 +5053,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-05-photography.jpg",
+      "url": "/media/library/brand-advertisement/app-06-social-digital-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5210,7 +5062,20 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-06-live-event-production.jpg",
+      "url": "/media/library/brand-advertisement/hero-brand-advertisement.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
+        "src/components/AboutPage.tsx (active source reference)",
+        "src/data/explorerVisuals.json (active source reference)",
+        "src/data/innerHeroVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/brand-advertisement/map-01-idea.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5219,7 +5084,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-07-audio-production.jpg",
+      "url": "/media/library/brand-advertisement/map-02-message.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5228,7 +5093,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-08-post-production.webp",
+      "url": "/media/library/brand-advertisement/map-03-identity.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5237,7 +5102,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-09-scriptwriting-storyboarding.jpg",
+      "url": "/media/library/brand-advertisement/map-04-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5246,7 +5111,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/app-10-media-consulting.jpg",
+      "url": "/media/library/brand-advertisement/map-05-experience.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5255,7 +5120,142 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/hero-media-production.jpg",
+      "url": "/media/library/brand-advertisement/map-06-audience.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/brand-advertisement/story-01-strategic-positioning.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/brand-advertisement/story-02-creative-storytelling.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/brand-advertisement/story-03-visual-verbal-identity.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/brand-advertisement/story-04-multi-channel-impact.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-01-video-production.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-02-film-production.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-03-television-production.webp",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-04-animation-production.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-05-photography.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-06-live-event-production.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-07-audio-production.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-08-post-production.webp",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-09-scriptwriting-storyboarding.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/app-10-media-consulting.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/media-production/hero-media-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5269,7 +5269,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/map-01-idea.jpg",
+      "url": "/media/library/media-production/map-01-idea.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5278,7 +5278,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/map-02-script.jpg",
+      "url": "/media/library/media-production/map-02-script.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5287,7 +5287,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/map-03-pre-production.jpg",
+      "url": "/media/library/media-production/map-03-pre-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5296,7 +5296,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/map-04-production.webp",
+      "url": "/media/library/media-production/map-04-production.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5305,7 +5305,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/map-05-post.jpg",
+      "url": "/media/library/media-production/map-05-post.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5314,7 +5314,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/map-06-delivery.jpg",
+      "url": "/media/library/media-production/map-06-delivery.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5323,7 +5323,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/story-01-creative-direction.jpg",
+      "url": "/media/library/media-production/story-01-creative-direction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5332,7 +5332,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/story-02-cinematography-capture.jpg",
+      "url": "/media/library/media-production/story-02-cinematography-capture.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5341,7 +5341,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/story-03-editorial-post-production.jpg",
+      "url": "/media/library/media-production/story-03-editorial-post-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5350,7 +5350,7 @@
       ]
     },
     {
-      "url": "/inner-library/media-production/story-04-multi-platform-delivery.jpg",
+      "url": "/media/library/media-production/story-04-multi-platform-delivery.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5359,7 +5359,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-01-virtual-worlds.jpg",
+      "url": "/media/library/metaverse/app-01-virtual-worlds.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5368,7 +5368,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-02-virtual-events.jpg",
+      "url": "/media/library/metaverse/app-02-virtual-events.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5377,7 +5377,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-03-virtual-brand-experiences.webp",
+      "url": "/media/library/metaverse/app-03-virtual-brand-experiences.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5386,7 +5386,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-04-gaming.webp",
+      "url": "/media/library/metaverse/app-04-gaming.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5395,7 +5395,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-05-virtual-marketplaces.jpg",
+      "url": "/media/library/metaverse/app-05-virtual-marketplaces.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5404,7 +5404,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-06-virtual-economies.jpg",
+      "url": "/media/library/metaverse/app-06-virtual-economies.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5413,7 +5413,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-07-virtual-education.png",
+      "url": "/media/library/metaverse/app-07-virtual-education.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5422,7 +5422,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-08-virtual-workspaces.jpg",
+      "url": "/media/library/metaverse/app-08-virtual-workspaces.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5431,7 +5431,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/app-09-virtual-product-showcases.png",
+      "url": "/media/library/metaverse/app-09-virtual-product-showcases.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5440,7 +5440,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/hero-metaverse.webp",
+      "url": "/media/library/metaverse/hero-metaverse.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5454,7 +5454,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/map-01-world.jpg",
+      "url": "/media/library/metaverse/map-01-world.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5463,7 +5463,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/map-02-story.jpg",
+      "url": "/media/library/metaverse/map-02-story.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5472,7 +5472,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/map-03-interaction.jpg",
+      "url": "/media/library/metaverse/map-03-interaction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5481,7 +5481,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/map-04-people.jpg",
+      "url": "/media/library/metaverse/map-04-people.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5490,7 +5490,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/map-05-content.jpg",
+      "url": "/media/library/metaverse/map-05-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5499,7 +5499,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/map-06-return.jpg",
+      "url": "/media/library/metaverse/map-06-return.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5508,7 +5508,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/story-01-spatial-presence.jpg",
+      "url": "/media/library/metaverse/story-01-spatial-presence.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5519,7 +5519,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/story-02-identity-avatars.jpg",
+      "url": "/media/library/metaverse/story-02-identity-avatars.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5528,7 +5528,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/story-03-real-time-interaction.jpg",
+      "url": "/media/library/metaverse/story-03-real-time-interaction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5537,7 +5537,7 @@
       ]
     },
     {
-      "url": "/inner-library/metaverse/story-04-persistent-ecosystem.jpg",
+      "url": "/media/library/metaverse/story-04-persistent-ecosystem.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5546,7 +5546,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-01-training.jpg",
+      "url": "/media/library/mixed-reality/app-01-training.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5555,7 +5555,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-02-education.jpg",
+      "url": "/media/library/mixed-reality/app-02-education.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5564,7 +5564,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-03-entertainment.jpg",
+      "url": "/media/library/mixed-reality/app-03-entertainment.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5573,7 +5573,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-04-gaming.jpg",
+      "url": "/media/library/mixed-reality/app-04-gaming.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5582,7 +5582,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-05-marketing-branding.jpg",
+      "url": "/media/library/mixed-reality/app-05-marketing-branding.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5591,7 +5591,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-06-architecture-design.jpg",
+      "url": "/media/library/mixed-reality/app-06-architecture-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5600,7 +5600,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-07-remote-collaboration.jpg",
+      "url": "/media/library/mixed-reality/app-07-remote-collaboration.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5609,7 +5609,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-08-retail.webp",
+      "url": "/media/library/mixed-reality/app-08-retail.webp",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5618,7 +5618,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/app-09-media.jpg",
+      "url": "/media/library/mixed-reality/app-09-media.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5627,173 +5627,7 @@
       ]
     },
     {
-      "url": "/inner-library/mixed-reality/hero-mixed-reality.png",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "dist/assets/index-tX95GFM7.js (runtime asset path)",
-        "src/components/AboutPage.tsx (active source reference)",
-        "src/data/explorerVisuals.json (active source reference)",
-        "src/data/innerHeroVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/map-01-real-world.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/map-02-digital-layer.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/map-03-interaction.png",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/map-04-purpose.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/story-01-spatial-awareness.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/story-02-anchored-digital-objects.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/story-03-natural-interaction.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/mixed-reality/story-04-real-time-context.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-01-vr-content.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-02-vr-video-conferencing.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-03-vr-gaming.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-04-training-simulation.png",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-05-education.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-06-marketing-branding.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-07-architectural-visualization.webp",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-08-healthcare.webp",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/app-09-streaming-broadcasting.jpg",
-      "existsInBuild": true,
-      "localHttpStatus": 200,
-      "referencedBy": [
-        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
-        "src/data/explorerVisuals.json (active source reference)"
-      ]
-    },
-    {
-      "url": "/inner-library/virtual-reality/hero-virtual-reality.webp",
+      "url": "/media/library/mixed-reality/hero-mixed-reality.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5806,7 +5640,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/map-01-enter.jpg",
+      "url": "/media/library/mixed-reality/map-01-real-world.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5815,7 +5649,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/map-02-discover.jpg",
+      "url": "/media/library/mixed-reality/map-02-digital-layer.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5824,7 +5658,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/map-03-interact.jpg",
+      "url": "/media/library/mixed-reality/map-03-interaction.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5833,7 +5667,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/map-04-understand.jpg",
+      "url": "/media/library/mixed-reality/map-04-purpose.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5842,7 +5676,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/map-05-remember.jpg",
+      "url": "/media/library/mixed-reality/story-01-spatial-awareness.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5851,7 +5685,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/story-01-full-immersion.jpg",
+      "url": "/media/library/mixed-reality/story-02-anchored-digital-objects.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5860,7 +5694,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/story-02-interactive-simulation.jpg",
+      "url": "/media/library/mixed-reality/story-03-natural-interaction.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5869,7 +5703,173 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/story-03-spatial-storytelling.jpg",
+      "url": "/media/library/mixed-reality/story-04-real-time-context.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-01-vr-content.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-02-vr-video-conferencing.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-03-vr-gaming.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-04-training-simulation.png",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-05-education.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-06-marketing-branding.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-07-architectural-visualization.webp",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-08-healthcare.webp",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/app-09-streaming-broadcasting.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/hero-virtual-reality.webp",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/AboutPage-D73VOMJt.js (runtime asset path)",
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "dist/assets/index-tX95GFM7.js (runtime asset path)",
+        "src/components/AboutPage.tsx (active source reference)",
+        "src/data/explorerVisuals.json (active source reference)",
+        "src/data/innerHeroVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/map-01-enter.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/map-02-discover.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/map-03-interact.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/map-04-understand.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/map-05-remember.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/story-01-full-immersion.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/story-02-interactive-simulation.jpg",
+      "existsInBuild": true,
+      "localHttpStatus": 200,
+      "referencedBy": [
+        "dist/assets/SliderExperience-hIOzyUIU.js (runtime asset path)",
+        "src/data/explorerVisuals.json (active source reference)"
+      ]
+    },
+    {
+      "url": "/media/library/virtual-reality/story-03-spatial-storytelling.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5880,7 +5880,7 @@
       ]
     },
     {
-      "url": "/inner-library/virtual-reality/story-04-safe-practice.jpg",
+      "url": "/media/library/virtual-reality/story-04-safe-practice.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5889,7 +5889,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
+      "url": "/fonts/wp-content/themes/fleava/assets/fonts/Geograph-Regular.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5897,7 +5897,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2",
+      "url": "/fonts/wp-content/themes/fleava/assets/fonts/GeographEdit.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5905,7 +5905,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
+      "url": "/fonts/wp-content/themes/fleava/assets/fonts/geographweblight.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5913,7 +5913,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2",
+      "url": "/fonts/wp-content/themes/fleava/assets/fonts/Graphik-Black.woff2",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5921,7 +5921,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/icons/contact-back.png",
+      "url": "/media/icons/contact-back.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5930,7 +5930,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/icons/contact-down.png",
+      "url": "/media/icons/contact-down.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5939,7 +5939,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/icons/contact-forward.png",
+      "url": "/media/icons/contact-forward.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5948,7 +5948,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/animation.jpg",
+      "url": "/media/images/generated-home-posters/animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5957,7 +5957,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/augmented-reality.jpg",
+      "url": "/media/images/generated-home-posters/augmented-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5966,7 +5966,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/brand-advertisement.jpg",
+      "url": "/media/images/generated-home-posters/brand-advertisement.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5975,7 +5975,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/menu-background.jpg",
+      "url": "/media/images/generated-home-posters/menu-background.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5984,7 +5984,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/metaverse.jpg",
+      "url": "/media/images/generated-home-posters/metaverse.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -5994,7 +5994,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/mixed-reality.jpg",
+      "url": "/media/images/generated-home-posters/mixed-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6003,7 +6003,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/generated-home-posters/virtual-reality.jpg",
+      "url": "/media/images/generated-home-posters/virtual-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6012,7 +6012,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/metaverse/TemplateData/fullscreen-button.png",
+      "url": "/media/images/metaverse/TemplateData/fullscreen-button.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6020,7 +6020,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/metaverse/TemplateData/progress-bar-empty-dark.png",
+      "url": "/media/images/metaverse/TemplateData/progress-bar-empty-dark.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6028,7 +6028,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/images/metaverse/TemplateData/progress-bar-full-dark.png",
+      "url": "/media/images/metaverse/TemplateData/progress-bar-full-dark.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6036,7 +6036,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/logos/metaverse/TemplateData/unity-logo-dark.png",
+      "url": "/media/logos/metaverse/TemplateData/unity-logo-dark.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6044,7 +6044,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/logos/metaverse/TemplateData/webgl-logo.png",
+      "url": "/media/logos/metaverse/TemplateData/webgl-logo.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6052,12 +6052,12 @@
       ]
     },
     {
-      "url": "/legacy-assets/logos/wp-content/uploads/2023/01/logo-rectangle-1.png",
+      "url": "/media/logos/uploads/2023/01/logo-rectangle-1.png",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
         "dist/assets/index-tX95GFM7.js (runtime asset path)",
-        "src/components/LegacyFooter.tsx (active source reference)"
+        "src/components/SiteFooter.tsx (active source reference)"
       ]
     },
     {
@@ -6601,7 +6601,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/05/Augmented-Reality-Showroom.mp4",
+      "url": "/media/videos/uploads/2023/05/Augmented-Reality-Showroom.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6610,7 +6610,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/05/Brand-Advertisement.mp4",
+      "url": "/media/videos/uploads/2023/05/Brand-Advertisement.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6619,7 +6619,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/05/Singing-girl.mp4",
+      "url": "/media/videos/uploads/2023/05/Singing-girl.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6628,7 +6628,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Main-Background-with-sound.mp4",
+      "url": "/media/videos/uploads/2023/08/Main-Background-with-sound.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6639,7 +6639,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Metaverse.mp4",
+      "url": "/media/videos/uploads/2023/08/Metaverse.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6648,7 +6648,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Mixed-Reality.mp4",
+      "url": "/media/videos/uploads/2023/08/Mixed-Reality.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6657,7 +6657,7 @@
       ]
     },
     {
-      "url": "/legacy-assets/videos/wp-content/uploads/2023/08/Virtual-Reality.mp4",
+      "url": "/media/videos/uploads/2023/08/Virtual-Reality.mp4",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6666,7 +6666,7 @@
       ]
     },
     {
-      "url": "/social/og/about.jpg",
+      "url": "/media/social/og/about.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6675,7 +6675,7 @@
       ]
     },
     {
-      "url": "/social/og/animation.jpg",
+      "url": "/media/social/og/animation.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6684,7 +6684,7 @@
       ]
     },
     {
-      "url": "/social/og/augmented-reality.jpg",
+      "url": "/media/social/og/augmented-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6693,7 +6693,7 @@
       ]
     },
     {
-      "url": "/social/og/brand-advertisement.jpg",
+      "url": "/media/social/og/brand-advertisement.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6702,7 +6702,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-animation-3d.jpg",
+      "url": "/media/social/og/capability-animation-3d.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6711,7 +6711,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-brand.jpg",
+      "url": "/media/social/og/capability-brand.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6720,7 +6720,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-content.jpg",
+      "url": "/media/social/og/capability-content.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6729,7 +6729,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-creative-technology.jpg",
+      "url": "/media/social/og/capability-creative-technology.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6738,7 +6738,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-design.jpg",
+      "url": "/media/social/og/capability-design.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6747,7 +6747,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-digital.jpg",
+      "url": "/media/social/og/capability-digital.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6756,7 +6756,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-experiences.jpg",
+      "url": "/media/social/og/capability-experiences.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6765,7 +6765,7 @@
       ]
     },
     {
-      "url": "/social/og/capability-film.jpg",
+      "url": "/media/social/og/capability-film.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6774,7 +6774,7 @@
       ]
     },
     {
-      "url": "/social/og/contact.jpg",
+      "url": "/media/social/og/contact.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6783,7 +6783,7 @@
       ]
     },
     {
-      "url": "/social/og/home.jpg",
+      "url": "/media/social/og/home.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6792,7 +6792,7 @@
       ]
     },
     {
-      "url": "/social/og/media-production.jpg",
+      "url": "/media/social/og/media-production.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6801,7 +6801,7 @@
       ]
     },
     {
-      "url": "/social/og/metaverse.jpg",
+      "url": "/media/social/og/metaverse.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6810,7 +6810,7 @@
       ]
     },
     {
-      "url": "/social/og/mixed-reality.jpg",
+      "url": "/media/social/og/mixed-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6819,7 +6819,7 @@
       ]
     },
     {
-      "url": "/social/og/privacy-policy.jpg",
+      "url": "/media/social/og/privacy-policy.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6828,7 +6828,7 @@
       ]
     },
     {
-      "url": "/social/og/terms-of-service.jpg",
+      "url": "/media/social/og/terms-of-service.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6837,7 +6837,7 @@
       ]
     },
     {
-      "url": "/social/og/virtual-reality.jpg",
+      "url": "/media/social/og/virtual-reality.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6846,7 +6846,7 @@
       ]
     },
     {
-      "url": "/social/og/works.jpg",
+      "url": "/media/social/og/works.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6855,7 +6855,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/-h9jRYAjwZw.jpg",
+      "url": "/media/thumbnails/-h9jRYAjwZw.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6863,7 +6863,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/1tO39Xqzh9c.jpg",
+      "url": "/media/thumbnails/1tO39Xqzh9c.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6871,7 +6871,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/1xsCfOKk_3s.jpg",
+      "url": "/media/thumbnails/1xsCfOKk_3s.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6879,7 +6879,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/2AdaMd83ULw.jpg",
+      "url": "/media/thumbnails/2AdaMd83ULw.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6887,7 +6887,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/3PrHierkGoE.jpg",
+      "url": "/media/thumbnails/3PrHierkGoE.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6895,7 +6895,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/50O6nC07BvQ.jpg",
+      "url": "/media/thumbnails/50O6nC07BvQ.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6903,7 +6903,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/7hfMEF-6JDc.jpg",
+      "url": "/media/thumbnails/7hfMEF-6JDc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6911,7 +6911,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/9hQw1pnzyaY.jpg",
+      "url": "/media/thumbnails/9hQw1pnzyaY.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6919,7 +6919,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/Bcvrpn7pzA0.jpg",
+      "url": "/media/thumbnails/Bcvrpn7pzA0.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6927,7 +6927,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/CIZqPGn31nM.jpg",
+      "url": "/media/thumbnails/CIZqPGn31nM.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6935,7 +6935,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/fS992chJV4U.jpg",
+      "url": "/media/thumbnails/fS992chJV4U.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6943,7 +6943,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/GkxPabDVf6o.jpg",
+      "url": "/media/thumbnails/GkxPabDVf6o.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6951,7 +6951,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/gmnLd5YKZ6Y.jpg",
+      "url": "/media/thumbnails/gmnLd5YKZ6Y.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6959,7 +6959,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/gRFpyWS1LIU.jpg",
+      "url": "/media/thumbnails/gRFpyWS1LIU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6967,7 +6967,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/h6REriwKUM4.jpg",
+      "url": "/media/thumbnails/h6REriwKUM4.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6975,7 +6975,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/hHzjY9phuLM.jpg",
+      "url": "/media/thumbnails/hHzjY9phuLM.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6983,7 +6983,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/HVrinNB0RwY.jpg",
+      "url": "/media/thumbnails/HVrinNB0RwY.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6991,7 +6991,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/Icz_vMwFBFA.jpg",
+      "url": "/media/thumbnails/Icz_vMwFBFA.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -6999,7 +6999,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/IE5YNQwfQeo.jpg",
+      "url": "/media/thumbnails/IE5YNQwfQeo.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7007,7 +7007,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/itMJHjIi5aE.jpg",
+      "url": "/media/thumbnails/itMJHjIi5aE.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7015,7 +7015,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/JuDxL6Vx-V4.jpg",
+      "url": "/media/thumbnails/JuDxL6Vx-V4.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7023,7 +7023,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/lkwYiwynaUU.jpg",
+      "url": "/media/thumbnails/lkwYiwynaUU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7031,7 +7031,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/LwU4A0ED6aM.jpg",
+      "url": "/media/thumbnails/LwU4A0ED6aM.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7039,7 +7039,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/M8eKzjTE8sw.jpg",
+      "url": "/media/thumbnails/M8eKzjTE8sw.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7047,7 +7047,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/MRwA-EoLP3I.jpg",
+      "url": "/media/thumbnails/MRwA-EoLP3I.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7055,7 +7055,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/Mwy4zslFCHc.jpg",
+      "url": "/media/thumbnails/Mwy4zslFCHc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7063,7 +7063,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/n8OVCgNDb0c.jpg",
+      "url": "/media/thumbnails/n8OVCgNDb0c.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7071,7 +7071,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/o9vkQOLT7T8.jpg",
+      "url": "/media/thumbnails/o9vkQOLT7T8.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7079,7 +7079,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/ODHBHIhCQck.jpg",
+      "url": "/media/thumbnails/ODHBHIhCQck.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7087,7 +7087,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/omeS_i3ivlk.jpg",
+      "url": "/media/thumbnails/omeS_i3ivlk.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7095,7 +7095,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/OWepxMT5dlU.jpg",
+      "url": "/media/thumbnails/OWepxMT5dlU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7103,7 +7103,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/QR0wJM3En3M.jpg",
+      "url": "/media/thumbnails/QR0wJM3En3M.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7111,7 +7111,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/RXeOJh57bbs.jpg",
+      "url": "/media/thumbnails/RXeOJh57bbs.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7119,7 +7119,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/Sa5mP4ajXyU.jpg",
+      "url": "/media/thumbnails/Sa5mP4ajXyU.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7127,7 +7127,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/tSxmKGesh8k.jpg",
+      "url": "/media/thumbnails/tSxmKGesh8k.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7135,7 +7135,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/UrH3HFH7PQs.jpg",
+      "url": "/media/thumbnails/UrH3HFH7PQs.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7143,7 +7143,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/Vpon7zWFTRE.jpg",
+      "url": "/media/thumbnails/Vpon7zWFTRE.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7151,7 +7151,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/VSw9Zf1Ugjk.jpg",
+      "url": "/media/thumbnails/VSw9Zf1Ugjk.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7159,7 +7159,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/VttjwJFS81s.jpg",
+      "url": "/media/thumbnails/VttjwJFS81s.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7167,7 +7167,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/VvLtnh_z6KI.jpg",
+      "url": "/media/thumbnails/VvLtnh_z6KI.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7175,7 +7175,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/wCTEgu1Hwnc.jpg",
+      "url": "/media/thumbnails/wCTEgu1Hwnc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7183,7 +7183,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/WpykIhD0A-s.jpg",
+      "url": "/media/thumbnails/WpykIhD0A-s.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7191,7 +7191,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/wz1Iea_HUlA.jpg",
+      "url": "/media/thumbnails/wz1Iea_HUlA.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7199,7 +7199,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/X8qqEUgUArI.jpg",
+      "url": "/media/thumbnails/X8qqEUgUArI.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7207,7 +7207,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/xFaRvdL_0Bg.jpg",
+      "url": "/media/thumbnails/xFaRvdL_0Bg.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7215,7 +7215,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/Xm0STB55Udk.jpg",
+      "url": "/media/thumbnails/Xm0STB55Udk.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7223,7 +7223,7 @@
       ]
     },
     {
-      "url": "/work-thumbnails/yzc-7e1zmbc.jpg",
+      "url": "/media/thumbnails/yzc-7e1zmbc.jpg",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "referencedBy": [
@@ -7547,13 +7547,13 @@
       "secureRel": true
     },
     {
-      "source": "src/components/LegacyFooter.tsx",
+      "source": "src/components/SiteFooter.tsx",
       "href": "{product.href}",
       "rel": "noopener noreferrer",
       "secureRel": true
     },
     {
-      "source": "src/components/LegacyFooter.tsx",
+      "source": "src/components/SiteFooter.tsx",
       "href": "{social.href}",
       "rel": "noopener noreferrer",
       "secureRel": true
@@ -7592,7 +7592,7 @@
     "hostErrors": "Custom static documents are generated for 403, 404, 410, 500, 502, 503, and 504. Production server mappings/status codes are unverified and are not inferred from the files."
   },
   "excludedInactiveCapture": {
-    "source": "src/data/legacyPages.json",
+    "source": "src/data/pages.json",
     "note": "This file retains captured legacy HTML/link data for migration reference. Its obsolete WordPress links are not emitted as active anchors in the current generated pages; active link inventory is based on built anchors plus current component/data definitions."
   },
   "limitations": [
