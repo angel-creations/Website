@@ -20,8 +20,11 @@ permissions:
   contents: read
 
 concurrency:
+  # Deploys must never cancel each other: a second run starting mid-deploy used to cancel
+  # the one that was about to publish, which is how main could merge and not deploy at all.
+  # Feature branches still cancel their own superseded runs.
   group: build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build-and-verify:
