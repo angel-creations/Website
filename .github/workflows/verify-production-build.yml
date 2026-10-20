@@ -121,6 +121,10 @@ jobs:
           name: angel-creations-dist
           path: dist/
           if-no-files-found: error
+          # .htaccess is part of the site: it keeps HTML uncached and hides source paths.
+          # upload-artifact omits dotfiles unless asked, and dropping it silently disabled
+          # the cache policy in production.
+          include-hidden-files: true
           retention-days: 14
 
 
@@ -358,6 +362,10 @@ jobs:
           fi
           test -s dist/index.html
           test -d dist/assets
+          if [ ! -f dist/.htaccess ]; then
+            echo "::error title=Incomplete build artifact::dist/.htaccess is missing, so the HTML cache policy cannot be published. Ensure the artifact upload includes hidden files."
+            exit 1
+          fi
           if ! grep -Eq 'src="[^"]*/assets/[^"]+\.js"' dist/index.html; then
             echo "Refusing deployment: dist/index.html does not reference a compiled JavaScript asset."
             exit 1
