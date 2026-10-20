@@ -12,6 +12,7 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 - External web URLs inventoried: 53 across 5 hosts; 4 mail/telephone protocol targets are listed separately. Remote checks were not performed.
 - Same-origin remote media assets inventoried: 1; the 310 MB QuickTime source has historical repository evidence but was not re-fetched.
 - Insecure HTTP web destinations remaining in active source/anchors: 0.
+- Responsive browser matrix: 336 cases (16 viewports × 21 routes, 21 no-JS fallbacks) on Playwright Chromium 153.0.8010.0; issues: 0; console errors: 0; page errors: 0; failed local requests: 0.
 - Error/status probes with unexpected local results: 0; branded 404/410 body markers: 3/3 matched.
 
 ## Verified repairs
@@ -180,7 +181,7 @@ Every active target with its source and label is recorded in `END-TO-END-LINK-IN
 - Production HTTPS is blocked in this sandbox: the target is outside the permitted outbound hosts and TLS ended with curl exit 35 before any certificate or HTTP response. This does not establish a DNS/CDN/origin TLS defect.
 - Production sitemap routes, internal destinations, error URLs, robots/sitemap, social images, metadata, and the remote video were not individually requested; no live status, final URL, content type, or current media response is claimed.
 - The 53 external web destinations and four mail/telephone protocol targets are inventoried, but destination availability and client launch were not verified; none is classified as broken.
-- Browser interactions, Back/Forward, touch/keyboard, responsive screenshots, screen-reader testing, console/network inspection, and form-client launch are blocked by the missing browser binary, automation package, and libnspr4.so.
+- Browser matrix checks verify layout, hydration fallback dismissal, visible H1, and horizontal overflow against the local preview; they do not cover manual Back/Forward, touch gestures, screen-reader announcements, or field performance.
 - A generated HTML error document is not proof that Hostinger maps it while preserving the corresponding production HTTP status; live Hostinger product/settings remain inaccessible.
 
 The JSON file is the full URL, link, asset, route, status, and social-preview inventory.

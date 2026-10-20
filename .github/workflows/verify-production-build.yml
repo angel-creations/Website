@@ -106,6 +106,9 @@ jobs:
           }
           NODE
 
+      - name: Install Playwright browser for responsive matrix audit
+        run: npx playwright install --with-deps chromium
+
       - name: Audit route HTML, SEO, statuses, links and built asset delivery
         shell: bash
         run: |

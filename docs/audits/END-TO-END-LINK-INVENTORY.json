@@ -1,10 +1,10 @@
 {
   "auditDate": "2026-10-19",
   "environment": {
-    "previewBase": "http://127.0.0.1:4173",
+    "previewBase": "http://127.0.0.1:4176",
     "scope": "Built repository output and local Vite preview only; no production crawl or external-service requests were performed.",
     "production": "Production QA is Blocked: DNS resolved, but TLS to angelcreations.in ended before a certificate or HTTP response. The host is blocked by this sandbox's outbound network policy; origin/CDN/TLS configuration remains undiagnosed. See docs/audits/PRODUCTION-QA-2026-10-19.json.",
-    "browser": "Browser QA is blocked: no browser or automation package is installed and libnspr4.so is absent; see the production QA report."
+    "browser": "Browser QA ran on Playwright Chromium 153.0.8010.0 against the local preview. 336 route×viewport cases plus 21 no-JavaScript fallback checks. External and optional video requests were blocked; see browserMatrix in the JSON report."
   },
   "productionVerification": {
     "status": "Blocked",
@@ -37,7 +37,13 @@
     "contactProtocolTargets": 4,
     "remoteMediaAssets": 1,
     "remoteMediaTypeIssues": 0,
-    "statusProbeIssues": 0
+    "statusProbeIssues": 0,
+    "browserViewportCount": 16,
+    "browserRouteCases": 336,
+    "browserMatrixIssues": 0,
+    "browserConsoleErrors": 0,
+    "browserPageErrors": 0,
+    "browserFailedLocalRequests": 0
   },
   "verifiedFixes": [
     "Removed the stale no-JavaScript /360-video/ navigation link; the intentionally retired route now returns a branded 410 in local preview.",
@@ -3078,7 +3084,7 @@
       "href": "/about/",
       "requestedPath": "/about/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/about/",
+      "finalUrl": "http://127.0.0.1:4176/about/",
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
@@ -3111,7 +3117,7 @@
       "href": "/works/",
       "requestedPath": "/works/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/works/",
+      "finalUrl": "http://127.0.0.1:4176/works/",
       "redirected": false,
       "sources": [
         "src/components/AboutPage.tsx",
@@ -3147,7 +3153,7 @@
       "href": "/contact/",
       "requestedPath": "/contact/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/contact/",
+      "finalUrl": "http://127.0.0.1:4176/contact/",
       "redirected": false,
       "sources": [
         "src/components/AboutPage.tsx",
@@ -3185,7 +3191,7 @@
       "href": "/metaverse/",
       "requestedPath": "/metaverse/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/metaverse/",
+      "finalUrl": "http://127.0.0.1:4176/metaverse/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3199,7 +3205,7 @@
       "href": "/mixed-reality/",
       "requestedPath": "/mixed-reality/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/mixed-reality/",
+      "finalUrl": "http://127.0.0.1:4176/mixed-reality/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3213,7 +3219,7 @@
       "href": "/virtual-reality/",
       "requestedPath": "/virtual-reality/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/virtual-reality/",
+      "finalUrl": "http://127.0.0.1:4176/virtual-reality/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3227,7 +3233,7 @@
       "href": "/augment-reality/",
       "requestedPath": "/augment-reality/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/augment-reality/",
+      "finalUrl": "http://127.0.0.1:4176/augment-reality/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3241,7 +3247,7 @@
       "href": "/animation/",
       "requestedPath": "/animation/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/animation/",
+      "finalUrl": "http://127.0.0.1:4176/animation/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3255,7 +3261,7 @@
       "href": "/brand-advertisement/",
       "requestedPath": "/brand-advertisement/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/brand-advertisement/",
+      "finalUrl": "http://127.0.0.1:4176/brand-advertisement/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3269,7 +3275,7 @@
       "href": "/media-production/",
       "requestedPath": "/media-production/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/media-production/",
+      "finalUrl": "http://127.0.0.1:4176/media-production/",
       "redirected": false,
       "sources": [
         "Home slideshow / src/data/slideExperiences.json",
@@ -3283,7 +3289,7 @@
       "href": "/privacy-policy/",
       "requestedPath": "/privacy-policy/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/privacy-policy/",
+      "finalUrl": "http://127.0.0.1:4176/privacy-policy/",
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
@@ -3316,7 +3322,7 @@
       "href": "/terms-of-service/",
       "requestedPath": "/terms-of-service/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/terms-of-service/",
+      "finalUrl": "http://127.0.0.1:4176/terms-of-service/",
       "redirected": false,
       "sources": [
         "src/components/Header.tsx",
@@ -3349,7 +3355,7 @@
       "href": "/",
       "requestedPath": "/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/",
+      "finalUrl": "http://127.0.0.1:4176/",
       "redirected": false,
       "sources": [
         "src/components/ApplicationErrorBoundary.tsx",
@@ -3384,7 +3390,7 @@
       "href": "/capabilities/brand/",
       "requestedPath": "/capabilities/brand/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/brand/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/brand/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3401,7 +3407,7 @@
       "href": "/capabilities/design/",
       "requestedPath": "/capabilities/design/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/design/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/design/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3420,7 +3426,7 @@
       "href": "/capabilities/content/",
       "requestedPath": "/capabilities/content/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/content/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/content/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3439,7 +3445,7 @@
       "href": "/capabilities/film/",
       "requestedPath": "/capabilities/film/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/film/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/film/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3455,7 +3461,7 @@
       "href": "/capabilities/animation-3d/",
       "requestedPath": "/capabilities/animation-3d/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/animation-3d/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/animation-3d/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3473,7 +3479,7 @@
       "href": "/capabilities/digital/",
       "requestedPath": "/capabilities/digital/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/digital/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/digital/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3492,7 +3498,7 @@
       "href": "/capabilities/experiences/",
       "requestedPath": "/capabilities/experiences/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/experiences/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/experiences/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -3511,7 +3517,7 @@
       "href": "/capabilities/creative-technology/",
       "requestedPath": "/capabilities/creative-technology/",
       "status": 200,
-      "finalUrl": "http://127.0.0.1:4173/capabilities/creative-technology/",
+      "finalUrl": "http://127.0.0.1:4176/capabilities/creative-technology/",
       "redirected": false,
       "sources": [
         "Capability related-route data / src/data/capabilities.ts",
@@ -4460,7 +4466,7 @@
   "insecureHttpTargets": [],
   "localAssetInventory": [
     {
-      "url": "/assets/index-BvdTGvW_.js",
+      "url": "/assets/index-BCi8ns9e.js",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "contentType": "text/javascript",
@@ -4490,7 +4496,7 @@
       ]
     },
     {
-      "url": "/assets/index-DKD5S0ri.css",
+      "url": "/assets/index-rFdy3lcl.css",
       "existsInBuild": true,
       "localHttpStatus": 200,
       "contentType": "text/css",
@@ -4525,7 +4531,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4534,7 +4540,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4543,7 +4549,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4552,7 +4558,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4561,7 +4567,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4570,7 +4576,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4579,7 +4585,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4588,7 +4594,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4597,7 +4603,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4606,7 +4612,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4615,7 +4621,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4624,7 +4630,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4633,7 +4639,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4642,7 +4648,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4651,7 +4657,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4660,7 +4666,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -4669,7 +4675,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4679,7 +4685,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4689,7 +4695,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4699,7 +4705,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4709,7 +4715,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4719,7 +4725,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4729,7 +4735,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4739,7 +4745,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4749,7 +4755,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4759,7 +4765,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4769,9 +4775,9 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -4783,7 +4789,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4793,7 +4799,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4803,7 +4809,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4813,7 +4819,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4823,7 +4829,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4833,7 +4839,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4843,7 +4849,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4853,7 +4859,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4863,7 +4869,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4873,7 +4879,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4883,7 +4889,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4893,7 +4899,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4903,7 +4909,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4913,7 +4919,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4923,7 +4929,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4933,7 +4939,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4943,7 +4949,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4953,7 +4959,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4963,7 +4969,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4973,9 +4979,9 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -4987,7 +4993,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -4997,7 +5003,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5007,7 +5013,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5017,7 +5023,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5027,7 +5033,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5037,7 +5043,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5047,7 +5053,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5057,7 +5063,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5067,7 +5073,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5077,7 +5083,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5087,7 +5093,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5097,7 +5103,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5107,7 +5113,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5117,7 +5123,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5127,7 +5133,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5137,9 +5143,9 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -5151,7 +5157,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5161,7 +5167,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5171,7 +5177,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5181,7 +5187,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5191,7 +5197,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5201,7 +5207,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5211,7 +5217,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5221,7 +5227,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5231,7 +5237,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5241,7 +5247,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5251,7 +5257,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5261,7 +5267,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5271,7 +5277,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5281,7 +5287,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5291,7 +5297,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5301,7 +5307,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5311,7 +5317,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5321,7 +5327,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5331,7 +5337,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5341,7 +5347,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5351,9 +5357,9 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)",
@@ -5366,7 +5372,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5376,7 +5382,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5386,7 +5392,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5396,7 +5402,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5406,7 +5412,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5416,7 +5422,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5426,7 +5432,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5436,7 +5442,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5446,7 +5452,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5456,7 +5462,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5466,7 +5472,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5476,7 +5482,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5486,7 +5492,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5496,7 +5502,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5506,7 +5512,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5516,7 +5522,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5526,7 +5532,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5536,7 +5542,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5546,7 +5552,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5556,9 +5562,9 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/components/SliderExperience.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
@@ -5571,7 +5577,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5581,7 +5587,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5591,7 +5597,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5601,7 +5607,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5611,7 +5617,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5621,7 +5627,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5631,8 +5637,8 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
@@ -5643,7 +5649,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5653,7 +5659,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5663,7 +5669,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5673,7 +5679,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5683,7 +5689,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5693,7 +5699,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5703,7 +5709,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5713,7 +5719,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5723,7 +5729,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5733,7 +5739,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5743,7 +5749,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5753,7 +5759,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5763,9 +5769,9 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -5777,7 +5783,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5787,7 +5793,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5797,7 +5803,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5807,7 +5813,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5817,7 +5823,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5827,7 +5833,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5837,7 +5843,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5847,7 +5853,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5857,7 +5863,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5867,7 +5873,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5877,7 +5883,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5887,7 +5893,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5897,7 +5903,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5907,7 +5913,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5917,7 +5923,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5927,7 +5933,7 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5937,7 +5943,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5947,9 +5953,9 @@
       "localHttpStatus": 200,
       "contentType": "image/webp",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)",
         "src/data/innerHeroVisuals.json (active source reference)"
@@ -5961,7 +5967,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5971,7 +5977,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5981,7 +5987,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -5991,7 +5997,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6001,7 +6007,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6011,7 +6017,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6021,7 +6027,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6031,8 +6037,8 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
@@ -6043,7 +6049,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/SliderExperience-D0wCjjj6.js (runtime asset path)",
+        "dist/assets/SliderExperience-CQ8gpN6_.js (runtime asset path)",
         "src/data/explorerVisuals.json (active source reference)"
       ]
     },
@@ -6053,7 +6059,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6062,7 +6068,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6071,7 +6077,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6080,7 +6086,7 @@
       "localHttpStatus": 200,
       "contentType": "font/woff2",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6089,7 +6095,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/ContactWizard-C3bDmupH.js (runtime asset path)",
+        "dist/assets/ContactWizard-BL9kp91F.js (runtime asset path)",
         "src/components/ContactWizard.tsx (active source reference)"
       ]
     },
@@ -6099,7 +6105,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/ContactWizard-C3bDmupH.js (runtime asset path)",
+        "dist/assets/ContactWizard-BL9kp91F.js (runtime asset path)",
         "src/components/ContactWizard.tsx (active source reference)"
       ]
     },
@@ -6109,7 +6115,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/ContactWizard-C3bDmupH.js (runtime asset path)",
+        "dist/assets/ContactWizard-BL9kp91F.js (runtime asset path)",
         "src/components/ContactWizard.tsx (active source reference)"
       ]
     },
@@ -6119,7 +6125,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6129,7 +6135,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6139,7 +6145,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6149,7 +6155,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)"
       ]
     },
@@ -6159,7 +6165,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "dist/index.html (link href)",
         "src/data/slideExperiences.json (active source reference)"
       ]
@@ -6170,7 +6176,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6180,7 +6186,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6190,7 +6196,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6199,7 +6205,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6208,7 +6214,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6217,7 +6223,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6226,7 +6232,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-DKD5S0ri.css (active CSS url())"
+        "dist/assets/index-rFdy3lcl.css (active CSS url())"
       ]
     },
     {
@@ -6235,7 +6241,7 @@
       "localHttpStatus": 200,
       "contentType": "image/png",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/LegacyFooter.tsx (active source reference)"
       ]
     },
@@ -6842,7 +6848,7 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6852,7 +6858,7 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6862,7 +6868,7 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6872,8 +6878,8 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/AboutPage-D01tjAHH.js (runtime asset path)",
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/AboutPage-CW84pWYr.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/components/AboutPage.tsx (active source reference)",
         "src/components/HomeSlideshow.tsx (active source reference)"
       ]
@@ -6884,7 +6890,7 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6894,7 +6900,7 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6904,7 +6910,7 @@
       "localHttpStatus": 200,
       "contentType": "video/mp4",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/slideExperiences.json (active source reference)"
       ]
     },
@@ -6914,7 +6920,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6924,7 +6930,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6934,7 +6940,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6944,7 +6950,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6954,7 +6960,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6964,7 +6970,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6974,7 +6980,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6984,7 +6990,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -6994,7 +7000,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7004,7 +7010,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7014,7 +7020,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7024,7 +7030,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7034,7 +7040,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7044,7 +7050,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7054,7 +7060,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7064,7 +7070,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7074,7 +7080,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7084,7 +7090,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7094,7 +7100,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7104,7 +7110,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7114,7 +7120,7 @@
       "localHttpStatus": 200,
       "contentType": "image/jpeg",
       "referencedBy": [
-        "dist/assets/index-BvdTGvW_.js (runtime asset path)",
+        "dist/assets/index-BCi8ns9e.js (runtime asset path)",
         "src/data/routeSeo.json (active source reference)"
       ]
     },
@@ -7895,12 +7901,174 @@
     }
   ],
   "targetBlankSecurityIssues": [],
+  "browserMatrix": {
+    "browser": "Playwright Chromium 153.0.8010.0",
+    "routes": 21,
+    "viewportCount": 16,
+    "viewportSizes": [
+      "320x568",
+      "360x640",
+      "375x812",
+      "390x844",
+      "430x932",
+      "600x960",
+      "768x1024",
+      "820x1180",
+      "1024x1366",
+      "1280x720",
+      "1366x768",
+      "1440x900",
+      "1600x900",
+      "1920x1080",
+      "2560x1080",
+      "3440x1440"
+    ],
+    "browserRouteCases": 336,
+    "noJavaScriptFallbackRoutes": 21,
+    "noJavaScriptChecks": 21,
+    "reducedMotionEmulatedForLayoutChecks": true,
+    "externalRequestsBlocked": true,
+    "optionalVideoRequestsBlocked": true,
+    "issues": [],
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedLocalRequests": []
+  },
+  "noScriptRouteResults": [
+    {
+      "route": "/",
+      "status": 200,
+      "heading": "Dive into new world, live the world you want.",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "heading": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/animation/",
+      "status": 200,
+      "heading": "Animation",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/augment-reality/",
+      "status": 200,
+      "heading": "Augment Reality",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/brand-advertisement/",
+      "status": 200,
+      "heading": "Brand Advertisement",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/contact/",
+      "status": 200,
+      "heading": "Contact",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/media-production/",
+      "status": 200,
+      "heading": "Media Production",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/metaverse/",
+      "status": 200,
+      "heading": "Metaverse",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/mixed-reality/",
+      "status": 200,
+      "heading": "Mixed Reality",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/privacy-policy/",
+      "status": 200,
+      "heading": "Privacy Policy",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/terms-of-service/",
+      "status": 200,
+      "heading": "Terms of Service",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/virtual-reality/",
+      "status": 200,
+      "heading": "Virtual Reality",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/works/",
+      "status": 200,
+      "heading": "We do amazing things with amazing People.",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/brand/",
+      "status": 200,
+      "heading": "Brand",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/design/",
+      "status": 200,
+      "heading": "Design",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/content/",
+      "status": 200,
+      "heading": "Content",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/film/",
+      "status": 200,
+      "heading": "Film",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/animation-3d/",
+      "status": 200,
+      "heading": "Animation + 3D",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/digital/",
+      "status": 200,
+      "heading": "Digital",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/experiences/",
+      "status": 200,
+      "heading": "Experiences",
+      "fallbackVisible": true
+    },
+    {
+      "route": "/capabilities/creative-technology/",
+      "status": 200,
+      "heading": "Creative Technology",
+      "fallbackVisible": true
+    }
+  ],
   "applicationChecks": {
-    "history": "Source contains pushState navigation, popstate synchronization, and query-preserving route normalization; browser Back/Forward behavior not exercised.",
+    "history": "Source contains pushState navigation, popstate synchronization, and query-preserving route normalization; browser Back/Forward behavior not exercised in automation beyond route navigation.",
     "contact": "Source retains user-controlled mailto flow and telephone links; no form submission backend is configured or claimed.",
     "reactErrorBoundary": "Application root is wrapped in a React render-error boundary; runtime failure injection was not exercised in a browser.",
     "unknownPaths": "Local preview returns 404 for unknown extensionless routes and 410 for intentionally retired /360-video/; both responses were checked for their matching title and branded error-body marker.",
-    "hostErrors": "Custom static documents are generated for 403, 404, 410, 500, 502, 503, and 504. Production server mappings/status codes are unverified and are not inferred from the files."
+    "hostErrors": "Custom static documents are generated for 403, 404, 410, 500, 502, 503, and 504. Production server mappings/status codes are unverified and are not inferred from the files.",
+    "browserMatrix": "Playwright Chromium exercised 336 responsive cases (16 viewports × 21 routes) with reduced-motion, and 21 no-JavaScript fallback checks. External and optional video requests were blocked. Console/page errors and local request failures are recorded in browserMatrix; see the JSON report for per-viewport results."
   },
   "excludedInactiveCapture": {
     "source": "src/data/legacyPages.json",
@@ -7910,7 +8078,7 @@
     "Production HTTPS is blocked in this sandbox: the target is outside the permitted outbound hosts and TLS ended with curl exit 35 before any certificate or HTTP response. This does not establish a DNS/CDN/origin TLS defect.",
     "Production sitemap routes, internal destinations, error URLs, robots/sitemap, social images, metadata, and the remote video were not individually requested; no live status, final URL, content type, or current media response is claimed.",
     "The 53 external web destinations and four mail/telephone protocol targets are inventoried, but destination availability and client launch were not verified; none is classified as broken.",
-    "Browser interactions, Back/Forward, touch/keyboard, responsive screenshots, screen-reader testing, console/network inspection, and form-client launch are blocked by the missing browser binary, automation package, and libnspr4.so.",
+    "Browser matrix checks verify layout, hydration fallback dismissal, visible H1, and horizontal overflow against the local preview; they do not cover manual Back/Forward, touch gestures, screen-reader announcements, or field performance.",
     "A generated HTML error document is not proof that Hostinger maps it while preserving the corresponding production HTTP status; live Hostinger product/settings remain inaccessible."
   ]
 }

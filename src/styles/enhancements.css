@@ -293,6 +293,8 @@ header .logo-bar .link_flex ul li a:focus-visible {
 
 #slideshow.slideshow.ac-home-cinema .ac-home-caption__link {
   display: inline-flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
   flex-direction: column !important;
   align-items: flex-start !important;
   gap: clamp(0.55rem, 1.1vh, 0.85rem) !important;
@@ -376,10 +378,10 @@ header .logo-bar .link_flex ul li a:focus-visible {
   transform-origin: left center;
 }
 
-/* The 1-Line Headline */
+/* The editorial headline stays one line when space allows and wraps safely on narrow screens. */
 #slideshow.slideshow.ac-home-cinema .slide .caption h1.ac-home-caption__headline,
 #slideshow.slideshow.ac-home-cinema .slide .caption h2.ac-home-caption__headline {
-  width: auto !important;
+  width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   font-family: 'Geograph', 'Graphik', -apple-system, BlinkMacSystemFont, sans-serif !important;
@@ -388,7 +390,9 @@ header .logo-bar .link_flex ul li a:focus-visible {
   letter-spacing: -0.03em !important;
   line-height: 1.08 !important;
   color: #7dd3fc !important;
-  white-space: nowrap !important;
+  white-space: normal !important;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
   transition: color 320ms var(--angel-ease-out);
 }
 
@@ -4463,7 +4467,7 @@ footer.ac-footer-v2 {
   .slide
   .caption
   h2.ac-home-caption__headline {
-  width: auto !important;
+  width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0.06em 0 0.14em !important;
@@ -4474,7 +4478,9 @@ footer.ac-footer-v2 {
   letter-spacing: -0.02em !important;
   line-height: 1.16 !important;
   color: #F7F9FF !important;
-  white-space: nowrap !important;
+  white-space: normal !important;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
   transition: color 320ms cubic-bezier(.23, 1, .32, 1);
 }
 

@@ -194,7 +194,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (route === '/privacy-policy/') {
     return (
       <Suspense fallback={<RouteLoading message="Loading privacy policy." />}>
-        <LegalPage kind="privacy" />
+        <><LegalPage kind="privacy" /><DismissStaticFallback /></>
       </Suspense>
     );
   }
@@ -202,7 +202,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (route === '/terms-of-service/') {
     return (
       <Suspense fallback={<RouteLoading message="Loading terms of service." />}>
-        <LegalPage kind="terms" />
+        <><LegalPage kind="terms" /><DismissStaticFallback /></>
       </Suspense>
     );
   }
@@ -211,7 +211,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
     return (
       <>
         <Suspense fallback={<RouteLoading message="Loading retired experience." />}>
-          <NotFoundPage attemptedPath={route} statusCode={410} />
+          <><NotFoundPage attemptedPath={route} statusCode={410} /><DismissStaticFallback /></>
         </Suspense>
         <LegacyFooter />
       </>
@@ -232,7 +232,7 @@ function pageContent(page: LegacyPage, route: string): JSX.Element {
   if (publicLegacyRoutes.has(route)) {
     return (
       <Suspense fallback={<RouteLoading message="Loading archived page." />}>
-        <PublicLegacyFallback route={route} />
+        <><PublicLegacyFallback route={route} /><DismissStaticFallback /></>
       </Suspense>
     );
   }

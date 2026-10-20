@@ -167,7 +167,7 @@ function capabilitySchema(capability) {
 
 // Reuse all local legacy CSS and Vite entry assets from the actual generated root build. This
 // prevents static route files from becoming a no-JS-only experience for JavaScript users.
-const runtimeAssetTags = [...rootBuild.matchAll(/<(?:link|script)\b[^>]*>/g)]
+const runtimeAssetTags = [...rootBuild.matchAll(/<link\b[^>]*>|<script\b[^>]*>[\s\S]*?<\/script\s*>/gi)]
   .map((match) => match[0])
   .filter((tag) => (tag.includes('rel="stylesheet"') && /href="\/(?:legacy-assets|assets)\//.test(tag)) || (tag.includes('type="module"') && /src="\/assets\//.test(tag)))
   .join('\n');

@@ -80,6 +80,8 @@ for (const file of await htmlFiles(root)) {
   });
   const internalLinkTargets = [...new Set(hrefs.filter((href) => href.startsWith('/') && !href.startsWith('//')))];
   const h1 = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((match) => textOnly(match[1]));
+  const moduleEntryOpen = /<script\b(?=[^>]*\btype=["']module["'])(?=[^>]*\bsrc=["']\/assets\/[^"']+["'])[^>]*>/i.exec(html);
+  const moduleEntryScriptClosed = Boolean(moduleEntryOpen && /^\s*<\/script\s*>/i.test(html.slice(moduleEntryOpen.index + moduleEntryOpen[0].length)));
   const fallbackStart = html.indexOf('id="static-route-fallback"');
   const rootStart = html.indexOf('id="root"', Math.max(0, fallbackStart));
   const preHydrationMarkup = fallbackStart >= 0 && rootStart > fallbackStart
@@ -93,7 +95,7 @@ for (const file of await htmlFiles(root)) {
   let httpStatus = null;
   try { httpStatus = (await fetch(`${previewBase}${route}`, { redirect: 'manual' })).status; } catch { /* preview may be intentionally unavailable */ }
   rows.push({
-    route, httpStatus, hasPreHydrationContent, preHydrationH1,
+    route, httpStatus, hasPreHydrationContent, preHydrationH1, moduleEntryScriptClosed,
     title: textOnly(firstMatch(/<title[^>]*>([\s\S]*?)<\/title>/i, html)),
     titleLength: textOnly(firstMatch(/<title[^>]*>([\s\S]*?)<\/title>/i, html)).length,
     description: extractDescription(html),
@@ -211,6 +213,7 @@ const report = {
   canonicalMismatch: publicRows.filter((row) => row.canonical && row.canonical !== `${origin}${row.route}` && row.route !== '/work/').map((row) => [row.route, row.canonical]),
   canonicalAliasExceptions: publicRows.filter((row) => row.route === '/work/' && row.canonical === `${origin}/works/`).map((row) => [row.route, row.canonical]),
   h1Issues: publicRows.filter((row) => row.h1Count !== 1).map((row) => [row.route, row.h1Count]),
+  moduleEntryScriptIssues: publicRows.filter((row) => !row.moduleEntryScriptClosed).map((row) => row.route),
   preHydrationContentIssues: [
     ...publicRows.filter((row) => !row.hasPreHydrationContent).map((row) => `${row.route}: missing visible pre-hydration H1`),
     ...duplicatePreHydrationHeadings.map(([heading, routes]) => `duplicate pre-hydration H1 \"${heading}\" on ${routes.join(', ')}`),
@@ -243,6 +246,7 @@ const auditFailures = {
   missingCanonical: report.missingCanonical,
   canonicalMismatch: report.canonicalMismatch,
   h1Issues: report.h1Issues,
+  moduleEntryScriptIssues: report.moduleEntryScriptIssues,
   preHydrationContentIssues: report.preHydrationContentIssues,
   duplicatePreHydrationHeadings: report.duplicatePreHydrationHeadings,
   schemaIssues: report.schemaIssues,
