@@ -254,7 +254,9 @@ jobs:
     name: Hostinger document root inspection (read-only)
     # Answers "what is actually being served?" without changing anything: prints the
     # remote paths and the first bytes of the live homepage document.
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    # Dispatch is not always available (a token without actions:write cannot trigger it),
+    # so this read-only report also runs with every push to main.
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main') }}
     continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -648,7 +650,8 @@ jobs:
           remote_sum="$("${SSH[@]}" "$TARGET" "sha256sum '$DOCROOT/index.html' 2>/dev/null | cut -d' ' -f1" || true)"
           echo "::notice title=Document identity::disk=$disk_sum remote=$remote_sum live=$live_sum"
           if [ "$remote_sum" != "$disk_sum" ]; then
-            echo "::error title=Document root mismatch::$DOCROOT/index.html does not match the build that was uploaded, so HOSTINGER_DOCUMENT_ROOT is not the directory this domain serves."
+            echo "::error title=Document root mismatch::$DOCROOT/index.html does not match the build that was uploaded, so HOSTINGER_DOCUMENT_ROOT is not the directory this domain serves. Fix the variable rather than the build."
+            exit 1
           elif [ "$live_sum" != "$disk_sum" ]; then
             echo "::error title=Served document differs from disk::The file on the server matches the build but the public site serves a different document, so a cache is in front of the site."
           fi
