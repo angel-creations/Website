@@ -20,8 +20,11 @@ permissions:
   contents: read
 
 concurrency:
+  # Deploys must never cancel each other: a second run starting mid-deploy used to cancel
+  # the one that was about to publish, which is how main could merge and not deploy at all.
+  # Feature branches still cancel their own superseded runs.
   group: build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
   build-and-verify:
@@ -311,10 +314,30 @@ jobs:
           fi
           echo "--- git deploy markers"
           ls -la "$HOME" 2>/dev/null | head -n 20
+          for marker in "$HOME/public_html/.git" "$DOCROOT/.git" "$HOME/.git" "$HOME/repositories" "$HOME/public_html/.gitignore"; do
+            [ -e "$marker" ] && echo "marker present: $marker"
+          done
+          for candidate in "$HOME/public_html" "$HOME/domains"/*/public_html; do
+            [ -d "$candidate" ] || continue
+            resolved="$(readlink -f "$candidate" 2>/dev/null)"
+            echo "resolved: $candidate -> $resolved"
+            if [ -e "$resolved/.git" ]; then echo "git checkout in served directory: $resolved/.git"; fi
+            if [ -f "$resolved/index.html" ]; then
+              echo "index hash: $(sha256sum "$resolved/index.html" | cut -d' ' -f1) $resolved"
+              if grep -q '/src/main.tsx' "$resolved/index.html" 2>/dev/null; then echo "SERVED INDEX IS THE DEV SHELL: $resolved"; fi
+            fi
+          done
+          echo "--- cron (republish suspect)"
+          crontab -l 2>/dev/null | head -n 20 || echo "no crontab"
+          echo "--- recently modified files in the served root"
+          for candidate in "$HOME/public_html" "$HOME/domains"/*/public_html; do
+            [ -d "$candidate" ] || continue
+            find "$candidate" -maxdepth 1 -newermt '-6 hours' -printf '%TY-%Tm-%Td %TH:%TM %p\n' 2>/dev/null | head -n 12
+          done
           REMOTE
 
           # Keep annotations small: emit the most telling lines only.
-          grep -E 'remote home|configured|^==|index.html|main.tsx|about/|assets/|bytes:' /tmp/inspection.txt | head -n 40 | while IFS= read -r line; do
+          grep -E 'remote home|configured|^==|index.html|main.tsx|about/|assets/|bytes:|marker present|resolved:|git checkout|SERVED INDEX|index hash|no crontab|^[0-9]{4}-[0-9]{2}-[0-9]{2} ' /tmp/inspection.txt | head -n 60 | while IFS= read -r line; do
             clean="${line//::/:}"
             echo "::warning title=Server::${clean:0:180}"
           done
@@ -616,5 +639,33 @@ jobs:
             fi
             echo "::notice title=Deploy repaired::the second upload served the verified build"
           fi
+
+          # Prove the served document *is* the file that was just uploaded. A mismatch here
+          # means the live site comes from somewhere other than $DOCROOT (wrong document
+          # root, symlink, or a caching layer), which no amount of re-uploading can fix.
+          disk_sum="$(sha256sum dist/index.html | cut -d' ' -f1)"
+          live_sum="$(curl -sSL --max-time 30 "$SITE_URL/index.html" | sha256sum | cut -d' ' -f1)"
+          remote_sum="$("${SSH[@]}" "$TARGET" "sha256sum '$DOCROOT/index.html' 2>/dev/null | cut -d' ' -f1" || true)"
+          echo "::notice title=Document identity::disk=$disk_sum remote=$remote_sum live=$live_sum"
+          if [ "$remote_sum" != "$disk_sum" ]; then
+            echo "::error title=Document root mismatch::$DOCROOT/index.html does not match the build that was uploaded, so HOSTINGER_DOCUMENT_ROOT is not the directory this domain serves."
+          elif [ "$live_sum" != "$disk_sum" ]; then
+            echo "::error title=Served document differs from disk::The file on the server matches the build but the public site serves a different document, so a cache is in front of the site."
+          fi
+
+          # Hosts and git integrations can republish the directory minutes after a deploy.
+          # Sample again instead of trusting the moment of upload.
+          for wait in 120 120; do
+            sleep "$wait"
+            root_code="$(curl -sS -o /tmp/watch.html -w '%{http_code}' --max-time 30 "$SITE_URL/" || echo 000)"
+            json_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL/package.json" || echo 000)"
+            watch_entry="$(grep -o -m1 'src="[^"]*/assets/[^"]*\.js"' /tmp/watch.html | cut -d'"' -f2 || true)"
+            watch_entry_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL$watch_entry" || echo 000)"
+            if [ "$root_code" != "200" ] || [ "$json_code" != "404" ] || [ "$watch_entry_code" != "200" ]; then
+              echo "::error title=The published site changed after deployment::/=$root_code /package.json=$json_code entry=$watch_entry_code. Something is rewriting $DOCROOT after the upload - check Hostinger hPanel -> Advanced -> GIT for an auto-deploy of this repository, and any cron job that pulls it."
+              exit 1
+            fi
+          done
+          echo "::notice title=Site stable::Homepage, bundle and source-exposure checks still pass four minutes after deployment"
 
           echo "Hostinger files verified. Backup retained at: $BACKUP_PATH"
