@@ -1113,6 +1113,10 @@
     }
   ],
   "auditFailures": {
+    "sourceIndexFleavaCss": [],
+    "builtIndexFleavaCss": [],
+    "sourceIndexMissingRoot": [],
+    "builtIndexMissingRoot": [],
     "documentCount": [],
     "sitemapCount": [],
     "sitemapDeliveryIssues": [],

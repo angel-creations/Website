@@ -115,6 +115,27 @@ rows.sort((a, b) => a.route.localeCompare(b.route));
 const sitemapXml = await readFile(join(root, 'sitemap.xml'), 'utf8');
 const sourceSitemapXml = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8').catch(() => '');
 const robotsTxt = await readFile(join(root, 'robots.txt'), 'utf8').catch(() => '');
+
+// --- Black-screen regression checks: index.html must not load Fleava/WordPress CSS
+// --- and must provide #root for React mounting. ---
+
+const sourceIndexHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8').catch(() => '');
+const builtIndexHtml = await readFile(join(root, 'index.html'), 'utf8').catch(() => '');
+
+const fleavaCssPattern = /wp-content\/themes\/fleava/;
+const hasFleavaCssInSource = fleavaCssPattern.test(sourceIndexHtml);
+const hasFleavaCssInBuilt = fleavaCssPattern.test(builtIndexHtml);
+const hasRootInSource = /id=["']root["']/.test(sourceIndexHtml);
+const hasRootInBuilt = /id=["']root["']/.test(builtIndexHtml);
+
+const sourceIndexHasFleavaCssIssue = hasFleavaCssInSource
+  ? ['source index.html loads Fleava/WordPress CSS (black-screen risk)'] : [];
+const builtIndexHasFleavaCssIssue = hasFleavaCssInBuilt
+  ? ['built dist/index.html loads Fleava/WordPress CSS (black-screen risk)'] : [];
+const sourceIndexMissingRootIssue = !hasRootInSource
+  ? ['source index.html missing #root element (React mount target)'] : [];
+const builtIndexMissingRootIssue = !hasRootInBuilt
+  ? ['built dist/index.html missing #root element (React mount target)'] : [];
 const sitemap = [...sitemapXml.matchAll(/<loc>https:\/\/angelcreations\.in([^<]+)<\/loc>/g)].map((match) => match[1]);
 async function fetchStaticFile(path) {
   try {
@@ -230,6 +251,10 @@ const report = {
 };
 
 const auditFailures = {
+  sourceIndexFleavaCss: sourceIndexHasFleavaCssIssue,
+  builtIndexFleavaCss: builtIndexHasFleavaCssIssue,
+  sourceIndexMissingRoot: sourceIndexMissingRootIssue,
+  builtIndexMissingRoot: builtIndexMissingRootIssue,
   documentCount: report.documents === 29 ? [] : [`expected 29 HTML documents, found ${report.documents}`],
   sitemapCount: report.sitemap === 21 ? [] : [`expected 21 sitemap URLs, found ${report.sitemap}`],
   sitemapDeliveryIssues: report.sitemapDeliveryIssues,
