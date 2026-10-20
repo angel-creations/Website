@@ -11,3 +11,6 @@ skills-lock.json
 # Local operating-system and log files
 .DS_Store
 *.log
+
+# Playwright screenshots and reports
+.playwright-artifacts/

@@ -4663,3 +4663,22 @@ footer.ac-footer-v2 {
     transform: none;
   }
 }
+
+/* Phone widths: the one-line homepage caption rules above run past the
+   viewport, so the trailing line is cropped. This is the last word on the
+   subject and must stay after those rules to win the cascade. */
+@media (max-width: 640px) {
+  #slideshow.slideshow.ac-home-cinema
+    .slide
+    .caption
+    h1.ac-home-caption__headline,
+  #slideshow.slideshow.ac-home-cinema
+    .slide
+    .caption
+    h2.ac-home-caption__headline {
+    font-size: clamp(1.45rem, 6.2vw, 2.05rem) !important;
+    line-height: 1.14 !important;
+    white-space: normal !important;
+    text-wrap: balance !important;
+  }
+}

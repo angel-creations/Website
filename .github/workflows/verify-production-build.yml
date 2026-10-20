@@ -99,6 +99,20 @@ jobs:
           }
           NODE
 
+      - name: Rehearse the deployable site on a static host
+        run: |
+          npx playwright install --with-deps chromium
+          node scripts/playwright-smoke.mjs --static
+
+      - name: Upload static-host screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-static-report
+          path: .playwright-artifacts/
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Upload deployable static site
         uses: actions/upload-artifact@v4
         with:
@@ -162,6 +176,60 @@ jobs:
           printf 'SSH authentication passed.\nDocument root exists and is writable.\nrsync and tar are available.\n'
           printf 'No website files were changed.\n'
           REMOTE
+
+  live-site-diagnostics:
+    name: Live site diagnostics (read-only)
+    # Reports what the public site is actually serving. Fetches over the internet
+    # exactly as a browser does and never changes any file or deployment.
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Inspect the public site over HTTPS
+        shell: bash
+        run: |
+          set -uo pipefail
+          SITE_URL="${{ vars.SITE_URL || 'https://angelcreations.in' }}"
+          echo "Target: $SITE_URL"
+          echo
+
+          for route in / /about/ /works/ /contact/; do
+            echo "=== GET $route"
+            STATUS="$(curl -sS -o /tmp/body -D /tmp/headers -w '%{http_code}' --max-time 30 "$SITE_URL$route" || echo "curl-error")"
+            echo "status: $STATUS  bytes: $(wc -c < /tmp/body 2>/dev/null || echo 0)"
+            head -n 10 /tmp/headers 2>/dev/null || true
+            if [ -s /tmp/body ]; then
+              if grep -q 'id="root"' /tmp/body; then echo 'has #root: yes'; else echo 'has #root: NO'; fi
+              if grep -Eq '<script[^>]*type="module"[^>]*></script>' /tmp/body; then
+                echo 'closed module script: yes'
+                ENTRY="$(grep -o 'src="[^"]*\.js"' /tmp/body | head -n1 | cut -d'"' -f2 || true)"
+                if [ -n "$ENTRY" ]; then
+                  echo "entry script: $ENTRY"
+                  case "$ENTRY" in
+                    http*) ENTRY_URL="$ENTRY" ;;
+                    /*) ENTRY_URL="$SITE_URL$ENTRY" ;;
+                    *) ENTRY_URL="$SITE_URL/$ENTRY" ;;
+                  esac
+                  curl -sS -o /dev/null -w 'entry script HTTP: %{http_code} type: %{content_type} size: %{size_download}\n' --max-time 30 "$ENTRY_URL" || echo 'entry script fetch failed'
+                fi
+              else
+                echo 'closed module script: NO (an unterminated script blanks the page)'
+              fi
+              echo '--- first 800 bytes of the document:'
+              head -c 800 /tmp/body; echo
+            else
+              echo 'empty response body'
+            fi
+            echo
+          done
+
+          echo "=== TLS / HTTP protocol check"
+          curl -sS -I --max-time 30 "$SITE_URL/" | head -n 15 || echo 'header request failed'
+          echo
+          echo "Diagnostics complete. No files were changed."
 
   deploy-to-hostinger:
     name: Deploy verified build to Hostinger
@@ -262,7 +330,11 @@ jobs:
           echo "Rollback completed from the saved backup."
           }
 
-          if ! rsync -az --delay-updates \
+          # Upload immutable hashed assets first and the HTML documents last. If the
+          # connection drops mid-upload the previous documents keep pointing at the
+          # previous assets, so the site never serves HTML whose bundle is missing
+          # (that ordering failure is what produces a blank white page).
+          if ! rsync -az --delay-updates --exclude='*.html' \
             --exclude='.htaccess' \
             --exclude='.well-known/' \
             -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/"; then
@@ -270,17 +342,87 @@ jobs:
             exit 1
           fi
 
+          if ! rsync -az --delay-updates -e "$RSYNC_RSH" dist/index.html "$TARGET:$DOCROOT/index.html"; then
+            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
+            exit 1
+          fi
+
+          if ! rsync -az --delay-updates --include='*/' --include='*.html' --exclude='*' \
+            -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/"; then
+            rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
+            exit 1
+          fi
+
+          # A leftover WordPress index.php wins the directory index on this host and
+          # serves a fatal error (HTTP 500 -> blank page) instead of index.html.
+          "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          set -Eeuo pipefail
+          DOCROOT="$1"
+          if [ -f "$DOCROOT/index.php" ]; then
+            QUARANTINE_DIR="$HOME/angel-creations-deploy-backups"
+            mkdir -p "$QUARANTINE_DIR"
+            chmod 700 "$QUARANTINE_DIR"
+            QUARANTINE="$QUARANTINE_DIR/index.php.$(date -u +%Y%m%dT%H%M%SZ)"
+            mv "$DOCROOT/index.php" "$QUARANTINE"
+            echo "Moved the conflicting document-root index.php to $QUARANTINE so index.html is served."
+          fi
+          REMOTE
+
           if ! "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
           set -Eeuo pipefail
           DOCROOT="$1"
           test -s "$DOCROOT/index.html"
           test -d "$DOCROOT/assets"
           grep -Eq 'src="[^"]*/assets/[^"]+\.js"' "$DOCROOT/index.html"
+          # The entry script must be closed. An unterminated <script> makes browsers
+          # swallow the rest of the document and render a blank page.
+          grep -Eq '<script[^>]*type="module"[^>]*></script>' "$DOCROOT/index.html"
+          grep -q 'id="root"' "$DOCROOT/index.html"
+          for document in about works contact metaverse animation mixed-reality virtual-reality augment-reality brand-advertisement media-production; do
+            test -s "$DOCROOT/$document/index.html" || { echo "Missing route document: $document" >&2; exit 1; }
+            grep -q 'id="root"' "$DOCROOT/$document/index.html"
+            grep -Eq '<script[^>]*type="module"[^>]*></script>' "$DOCROOT/$document/index.html"
+          done
+          ENTRY="$(grep -o 'src="/assets/[^"]*\.js"' "$DOCROOT/index.html" | head -n1 | cut -d'"' -f2)"
+          test -n "$ENTRY"
+          test -s "$DOCROOT$ENTRY"
           REMOTE
           then
             echo "Remote output verification failed."
             rollback || { echo "CRITICAL: automatic rollback failed; restore the backup manually: $BACKUP_PATH"; exit 1; }
             exit 1
           fi
+
+          # Verify what the public internet actually receives, not just the files on disk.
+          SITE_URL="${{ vars.SITE_URL || 'https://angelcreations.in' }}"
+          HOME_FILE="$(mktemp)"
+          HOME_CODE="$(curl -sSL -o "$HOME_FILE" -w '%{http_code}' --retry 5 --retry-delay 5 --max-time 30 "$SITE_URL/" || echo 000)"
+          echo "Live homepage status: $HOME_CODE"
+
+          if [ "$HOME_CODE" != "200" ]; then
+            echo "CRITICAL: $SITE_URL/ returned $HOME_CODE although the deployable files are in place." >&2
+            echo "The website files are correct; the server is not serving them. Check the document root mapping," >&2
+            echo "a stale .htaccess, or a leftover index.php that takes the directory index. Backup: $BACKUP_PATH" >&2
+            exit 1
+          fi
+
+          if ! grep -q 'id="root"' "$HOME_FILE"; then
+            echo "CRITICAL: $SITE_URL/ is not serving the built document (no #root container)." >&2
+            echo "Confirm that HOSTINGER_DOCUMENT_ROOT points at the directory the domain actually serves. Backup: $BACKUP_PATH" >&2
+            exit 1
+          fi
+
+          ENTRY="$(grep -o 'src="[^"]*/assets/[^"]*\.js"' "$HOME_FILE" | head -n1 | cut -d'"' -f2)"
+          test -n "$ENTRY"
+          ENTRY_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --retry 5 --retry-delay 5 "$SITE_URL$ENTRY" || echo 000)"
+          echo "Live entry bundle $ENTRY: HTTP $ENTRY_CODE"
+          test "$ENTRY_CODE" = "200"
+
+          for route in /about/ /works/ /contact/; do
+            PAGE="$(curl -fsSL --retry 5 --retry-delay 5 --max-time 30 "$SITE_URL$route")"
+            printf '%s' "$PAGE" | grep -q 'id="root"'
+            printf '%s' "$PAGE" | grep -Eq '<script[^>]*type="module"[^>]*></script>'
+            echo "Live route $route: mountable document with a closed entry script."
+          done
 
           echo "Hostinger files verified. Backup retained at: $BACKUP_PATH"
