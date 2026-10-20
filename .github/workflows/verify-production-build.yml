@@ -235,6 +235,79 @@ jobs:
 
           echo "Diagnostics complete. No files were changed."
 
+  hostinger-inspect:
+    name: Hostinger document root inspection (read-only)
+    # Answers "what is actually being served?" without changing anything: prints the
+    # remote paths and the first bytes of the live homepage document.
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Describe the served document root
+        shell: bash
+        env:
+          HOSTINGER_HOST: ${{ secrets.HOSTINGER_HOST }}
+          HOSTINGER_PORT: ${{ secrets.HOSTINGER_PORT }}
+          HOSTINGER_USERNAME: ${{ secrets.HOSTINGER_USERNAME }}
+          HOSTINGER_SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+          HOSTINGER_DOCUMENT_ROOT: ${{ vars.HOSTINGER_DOCUMENT_ROOT }}
+        run: |
+          set -uo pipefail
+          echo "::warning title=Deploy config::HOSTINGER_DOCUMENT_ROOT=${HOSTINGER_DOCUMENT_ROOT:-<unset>}"
+          echo "::warning title=Deploy config::HOSTINGER_HOST=${HOSTINGER_HOST:+set}"
+
+          if [ -z "${HOSTINGER_SSH_PRIVATE_KEY:-}" ]; then
+            echo "::warning title=Inspection::No SSH credentials available; skipping."
+            exit 0
+          fi
+
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$HOSTINGER_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          eval "$(ssh-agent -s)" >/dev/null
+          trap 'ssh-agent -k >/dev/null 2>&1 || true' EXIT
+          printf '%s\n' "$HOSTINGER_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - >/dev/null
+
+          ssh -p "$HOSTINGER_PORT" -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            -o "UserKnownHostsFile=$HOME/.ssh/known_hosts" \
+            "$HOSTINGER_USERNAME@$HOSTINGER_HOST" bash -s -- "${HOSTINGER_DOCUMENT_ROOT:-}" <<'REMOTE' > /tmp/inspection.txt 2>&1
+          set -uo pipefail
+          DOCROOT="$1"
+          echo "remote home: $HOME"
+          echo "configured document root: ${DOCROOT:-<unset>}"
+          echo "--- candidate document roots"
+          for candidate in "$HOME/public_html" "$HOME/domains"/*/public_html; do
+            [ -d "$candidate" ] || continue
+            echo "== $candidate"
+            ls -la "$candidate" 2>/dev/null | head -n 20
+            if [ -f "$candidate/index.html" ]; then
+              echo "-- bytes: $(wc -c < "$candidate/index.html")"
+              echo "-- first 12 lines:"
+              head -n 12 "$candidate/index.html"
+            fi
+            if [ -d "$candidate/about" ]; then echo "-- about/ exists"; else echo "-- about/ missing"; fi
+            if [ -d "$candidate/assets" ]; then echo "-- assets/ exists"; else echo "-- assets/ missing"; fi
+          done
+          if [ -n "$DOCROOT" ] && [ -d "$DOCROOT" ]; then
+            echo "--- configured root listing"
+            ls -la "$DOCROOT" 2>/dev/null | head -n 25
+            [ -f "$DOCROOT/index.html" ] && echo "-- configured index.html bytes: $(wc -c < "$DOCROOT/index.html")"
+          fi
+          echo "--- git deploy markers"
+          ls -la "$HOME" 2>/dev/null | head -n 20
+          REMOTE
+
+          # Keep annotations small: emit the most telling lines only.
+          grep -E 'remote home|configured|^==|index.html|main.tsx|about/|assets/|bytes:' /tmp/inspection.txt | head -n 40 | while IFS= read -r line; do
+            clean="${line//::/:}"
+            echo "::warning title=Server::${clean:0:180}"
+          done
+          echo "Inspection finished. No files were changed."
+
   deploy-to-hostinger:
     name: Deploy verified build to Hostinger
     needs: build-and-verify
