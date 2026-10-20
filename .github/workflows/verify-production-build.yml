@@ -240,7 +240,7 @@ jobs:
     name: Hostinger document root inspection (read-only)
     # Answers "what is actually being served?" without changing anything: prints the
     # remote paths and the first bytes of the live homepage document.
-    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 10
