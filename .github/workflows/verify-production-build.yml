@@ -487,43 +487,54 @@ jobs:
           fi
 
           # Verify what the public internet actually receives, not just the files on disk.
+          # Hosts commonly serve a cached copy of the previous document for a short
+          # window after an upload, so retry before declaring failure.
           SITE_URL="${{ vars.SITE_URL || 'https://angelcreations.in' }}"
-          HOME_FILE="$(mktemp)"
-          HOME_CODE="$(curl -sSL -o "$HOME_FILE" -w '%{http_code}' --retry 5 --retry-delay 5 --max-time 30 "$SITE_URL/" || echo 000)"
-          echo "Live homepage status: $HOME_CODE"
+          verify_live() {
+            local attempt route code page entry
+            for attempt in 1 2 3 4 5 6; do
+              local failures=""
+              for route in / /about/ /works/ /contact/; do
+                page="$(mktemp)"
+                code="$(curl -sSL -o "$page" -w '%{http_code}' --max-time 30 "$SITE_URL$route" || echo 000)"
+                if [ "$code" != "200" ]; then
+                  failures="${failures}${route}=${code} "
+                  continue
+                fi
+                if ! grep -q 'id="root"' "$page"; then
+                  if grep -q '/src/main.tsx' "$page"; then
+                    failures="${failures}${route}=source-index.html "
+                  else
+                    failures="${failures}${route}=no-#root "
+                  fi
+                elif ! grep -Eq '<script[^>]*type="module"[^>]*></script>' "$page"; then
+                  failures="${failures}${route}=unclosed-script "
+                fi
+                if [ "$route" = "/" ]; then
+                  entry="$(grep -o -m1 'src="[^"]*/assets/[^"]*\.js"' "$page" | cut -d'"' -f2 || true)"
+                  if [ -z "$entry" ]; then
+                    failures="${failures}${route}=no-bundle "
+                  else
+                    local entry_code
+                    entry_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL$entry" || echo 000)"
+                    [ "$entry_code" = "200" ] || failures="${failures}${entry}=${entry_code} "
+                  fi
+                fi
+              done
 
-          if [ "$HOME_CODE" != "200" ]; then
-            echo "::error title=Live homepage not 200::$SITE_URL/ returned $HOME_CODE after the files were uploaded"
-            head -c 300 "$HOME_FILE" | tr '\n' ' ' | while IFS= read -r line; do echo "::error title=Live body::${line//::/:}"; done
-            exit 1
-          fi
+              if [ -z "$failures" ]; then
+                echo "::notice title=Live site verified::/ , /about/ , /works/ and /contact/ serve mountable documents with a loadable bundle (attempt $attempt)"
+                return 0
+              fi
+              echo "::warning title=Live check attempt $attempt::${failures}"
+              sleep 15
+            done
 
-          if ! grep -q 'id="root"' "$HOME_FILE"; then
-            echo "::error title=Wrong document root::$SITE_URL/ is not serving the built document (no #root container); check HOSTINGER_DOCUMENT_ROOT"
-            exit 1
-          fi
+            echo "::error title=Live site verification failed::${failures}"
+            echo "The files were uploaded; the public site is not serving them. Check the document root mapping, a stale .htaccess, or another deployment resetting the directory. Backup: $BACKUP_PATH" >&2
+            return 1
+          }
 
-          if ! grep -Eq 'src="[^"]*/assets/[^"]*\.js"' "$HOME_FILE"; then
-            if grep -q '/src/main.tsx' "$HOME_FILE"; then
-              echo "::error title=Source tree is being served::$SITE_URL/ serves the repository index.html (it loads /src/main.tsx), not dist/. Another deployment (Hostinger Advanced -> Git) is resetting the document root after this upload."
-            else
-              echo "::error title=Build not served::$SITE_URL/ does not reference a compiled /assets/*.js bundle"
-            fi
-            head -c 300 "$HOME_FILE" | tr '\n' ' ' | while IFS= read -r line; do echo "::error title=Live body::${line//::/:}"; done
-            exit 1
-          fi
-
-          ENTRY="$(grep -o -m1 'src="[^"]*/assets/[^"]*\.js"' "$HOME_FILE" | cut -d'"' -f2)"
-          test -n "$ENTRY"
-          ENTRY_CODE="$(curl -sS -o /dev/null -w '%{http_code}' --retry 5 --retry-delay 5 "$SITE_URL$ENTRY" || echo 000)"
-          echo "Live entry bundle $ENTRY: HTTP $ENTRY_CODE"
-          test "$ENTRY_CODE" = "200"
-
-          for route in /about/ /works/ /contact/; do
-            PAGE="$(curl -fsSL --retry 5 --retry-delay 5 --max-time 30 "$SITE_URL$route")"
-            printf '%s' "$PAGE" | grep -q 'id="root"'
-            printf '%s' "$PAGE" | grep -Eq '<script[^>]*type="module"[^>]*></script>'
-            echo "Live route $route: mountable document with a closed entry script."
-          done
+          verify_live
 
           echo "Hostinger files verified. Backup retained at: $BACKUP_PATH"
