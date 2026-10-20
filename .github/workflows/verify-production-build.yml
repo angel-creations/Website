@@ -179,8 +179,8 @@ jobs:
 
   live-site-diagnostics:
     name: Live site diagnostics (read-only)
-    # Reports what the public site is actually serving. Fetches over the internet
-    # exactly as a browser does and never changes any file or deployment.
+    # Reports what the public site is actually serving, as GitHub runners see it.
+    # Read-only: fetches public URLs and never changes any file or deployment.
     if: ${{ github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     continue-on-error: true
     runs-on: ubuntu-latest
@@ -194,41 +194,45 @@ jobs:
           set -uo pipefail
           SITE_URL="${{ vars.SITE_URL || 'https://angelcreations.in' }}"
           echo "Target: $SITE_URL"
-          echo
 
-          for route in / /about/ /works/ /contact/; do
-            echo "=== GET $route"
-            STATUS="$(curl -sS -o /tmp/body -D /tmp/headers -w '%{http_code}' --max-time 30 "$SITE_URL$route" || echo "curl-error")"
-            echo "status: $STATUS  bytes: $(wc -c < /tmp/body 2>/dev/null || echo 0)"
-            head -n 10 /tmp/headers 2>/dev/null || true
-            if [ -s /tmp/body ]; then
-              if grep -q 'id="root"' /tmp/body; then echo 'has #root: yes'; else echo 'has #root: NO'; fi
-              if grep -Eq '<script[^>]*type="module"[^>]*></script>' /tmp/body; then
-                echo 'closed module script: yes'
-                ENTRY="$(grep -o 'src="[^"]*\.js"' /tmp/body | head -n1 | cut -d'"' -f2 || true)"
-                if [ -n "$ENTRY" ]; then
-                  echo "entry script: $ENTRY"
-                  case "$ENTRY" in
-                    http*) ENTRY_URL="$ENTRY" ;;
-                    /*) ENTRY_URL="$SITE_URL$ENTRY" ;;
-                    *) ENTRY_URL="$SITE_URL/$ENTRY" ;;
-                  esac
-                  curl -sS -o /dev/null -w 'entry script HTTP: %{http_code} type: %{content_type} size: %{size_download}\n' --max-time 30 "$ENTRY_URL" || echo 'entry script fetch failed'
-                fi
-              else
-                echo 'closed module script: NO (an unterminated script blanks the page)'
-              fi
-              echo '--- first 800 bytes of the document:'
-              head -c 800 /tmp/body; echo
-            else
-              echo 'empty response body'
+          probe() {
+            local path="$1"
+            local body; body="$(mktemp)"
+            local meta
+            meta="$(curl -sSL -o "$body" -w '%{http_code} %{content_type} %{size_download} %{time_total}' --max-time 45 "$SITE_URL$path" || echo 'curl-error - - -')"
+            local code="${meta%% *}"
+            local root='no'; grep -q 'id="root"' "$body" 2>/dev/null && root='yes'
+            local closed='no'; grep -Eq '<script[^>]*type="module"[^>]*></script>' "$body" 2>/dev/null && closed='yes'
+            local entry; entry="$(grep -o 'src="[^"]*/assets/[^"]*\.js"' "$body" 2>/dev/null | head -n1 | cut -d'"' -f2 || true)"
+            printf '%s => %s | root=%s closed-script=%s | entry=%s\n' "$path" "$meta" "$root" "$closed" "${entry:-none}"
+          }
+
+          {
+            for path in / /index.html /about/ /about/index.html /works/ /contact/ /metaverse/ /404.html /robots.txt /sitemap.xml; do
+              probe "$path"
+            done
+
+            # Entry bundle the live homepage actually points at.
+            HOME_BODY="$(mktemp)"
+            curl -sSL --max-time 45 "$SITE_URL/" -o "$HOME_BODY" || true
+            ENTRY="$(grep -o 'src="/assets/[^"]*\.js"' "$HOME_BODY" | head -n1 | cut -d'"' -f2 || true)"
+            if [ -n "$ENTRY" ]; then
+              probe "$ENTRY"
+              probe "/assets/"
             fi
-            echo
-          done
 
-          echo "=== TLS / HTTP protocol check"
-          curl -sS -I --max-time 30 "$SITE_URL/" | head -n 15 || echo 'header request failed'
-          echo
+            # A representative archive asset, to separate "documents missing" from "whole tree missing".
+            probe "/legacy-assets/images/generated-home-posters/metaverse.jpg"
+          } | tee /tmp/live-diagnostics.txt
+
+          # Surface the same findings as annotations, which remain readable without
+          # downloading job logs or artifacts.
+          echo "::group::Live diagnostics"
+          while IFS= read -r line; do
+            echo "::warning title=Live site::${line//::/:}"
+          done < /tmp/live-diagnostics.txt
+          echo "::endgroup::"
+
           echo "Diagnostics complete. No files were changed."
 
   deploy-to-hostinger:
