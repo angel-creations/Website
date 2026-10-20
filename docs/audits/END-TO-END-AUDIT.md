@@ -6,7 +6,8 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 
 - Sitemap pages: 21/21 returned HTTP 200 in local preview.
 - Static anchor instances: 293; unique internal anchor targets: 21; broken local targets: 0.
-- Local build asset URLs checked: 305; missing/unserved: 0.
+- Local build asset URLs checked: 305; missing/unserved or MIME-mismatched: 0; recognized-extension MIME mismatches: 0.
+- Public routes with visible pre-hydration route content: 21/21; failures: 0.
 - Social previews: 21/21 unique page-specific images; metadata issues: 0.
 - External web URLs inventoried: 53 across 5 hosts; 4 mail/telephone protocol targets are listed separately. Remote checks were not performed.
 - Same-origin remote media assets inventoried: 1; the 310 MB QuickTime source has historical repository evidence but was not re-fetched.
@@ -22,6 +23,8 @@ Audit date: 2026-10-19. Scope: built repository output and local preview only.
 - Added unique 1200×630 local social-preview images and per-route Open Graph/Twitter headline, description, URL, dimensions, MIME type, and alt metadata for all 21 sitemap routes.
 - Added a React render-error boundary and generated branded 403/404/410/500/502/503/504 documents; only local 404/410 path status behavior was verified.
 - Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion.
+- Added visible route-specific HTML fallbacks outside <noscript> so content appears before React; the app removes each shell only when its route content commits, while runtime errors retain an actionable error state.
+- Replaced the one-line Suspense text with an accessible, motion-aware main-content loading state.
 
 ## Route and social-preview inventory
 

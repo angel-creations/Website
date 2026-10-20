@@ -80,12 +80,20 @@ for (const file of await htmlFiles(root)) {
   });
   const internalLinkTargets = [...new Set(hrefs.filter((href) => href.startsWith('/') && !href.startsWith('//')))];
   const h1 = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((match) => textOnly(match[1]));
+  const fallbackStart = html.indexOf('id="static-route-fallback"');
+  const rootStart = html.indexOf('id="root"', Math.max(0, fallbackStart));
+  const preHydrationMarkup = fallbackStart >= 0 && rootStart > fallbackStart
+    ? html.slice(fallbackStart, rootStart)
+    : '';
+  const preHydrationH1 = decodeHtml(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(preHydrationMarkup)?.[1] || '')
+    .replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  const hasPreHydrationContent = Boolean(preHydrationH1) && !/<noscript\b/i.test(preHydrationMarkup);
   const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
   const jsonld = jsonLdTypes(html);
   let httpStatus = null;
   try { httpStatus = (await fetch(`${previewBase}${route}`, { redirect: 'manual' })).status; } catch { /* preview may be intentionally unavailable */ }
   rows.push({
-    route, httpStatus,
+    route, httpStatus, hasPreHydrationContent, preHydrationH1,
     title: textOnly(firstMatch(/<title[^>]*>([\s\S]*?)<\/title>/i, html)),
     titleLength: textOnly(firstMatch(/<title[^>]*>([\s\S]*?)<\/title>/i, html)).length,
     description: extractDescription(html),
@@ -129,6 +137,7 @@ const sitemapDeliveryIssues = [
 if (sitemap.includes('/360-video/')) sitemapDeliveryIssues.push('removed /360-video/ route remains in the sitemap');
 const errorDocuments = ['/404.html', '/403.html', '/410.html', '/500.html', '/502.html', '/503.html', '/504.html'];
 const publicRows = rows.filter((row) => !errorDocuments.includes(row.route));
+const duplicatePreHydrationHeadings = duplicates(publicRows, 'preHydrationH1');
 const sitemapSet = new Set(sitemap);
 const notFoundHtml = await readFile(join(root, '404.html'), 'utf8').catch(() => '');
 const notFoundDesignIssues = [
@@ -202,6 +211,11 @@ const report = {
   canonicalMismatch: publicRows.filter((row) => row.canonical && row.canonical !== `${origin}${row.route}` && row.route !== '/work/').map((row) => [row.route, row.canonical]),
   canonicalAliasExceptions: publicRows.filter((row) => row.route === '/work/' && row.canonical === `${origin}/works/`).map((row) => [row.route, row.canonical]),
   h1Issues: publicRows.filter((row) => row.h1Count !== 1).map((row) => [row.route, row.h1Count]),
+  preHydrationContentIssues: [
+    ...publicRows.filter((row) => !row.hasPreHydrationContent).map((row) => `${row.route}: missing visible pre-hydration H1`),
+    ...duplicatePreHydrationHeadings.map(([heading, routes]) => `duplicate pre-hydration H1 \"${heading}\" on ${routes.join(', ')}`),
+  ],
+  duplicatePreHydrationHeadings,
   schemaIssues: publicRows.filter((row) => row.route !== '/work/' && (!row.jsonld.some((type) => type === 'WebPage' || type === 'CollectionPage') || !row.jsonld.includes('BreadcrumbList'))).map((row) => [row.route, row.jsonld]),
   rootSchema: rows.find((row) => row.route === '/')?.jsonld || [],
   orphanSitemapRoutes: publicRows.filter((row) => row.route !== '/work/' && !sitemapSet.has(row.route)).map((row) => row.route),
@@ -229,6 +243,8 @@ const auditFailures = {
   missingCanonical: report.missingCanonical,
   canonicalMismatch: report.canonicalMismatch,
   h1Issues: report.h1Issues,
+  preHydrationContentIssues: report.preHydrationContentIssues,
+  duplicatePreHydrationHeadings: report.duplicatePreHydrationHeadings,
   schemaIssues: report.schemaIssues,
   sitemapMissingDocs: report.sitemapMissingDocs,
   orphanSitemapRoutes: report.orphanSitemapRoutes,

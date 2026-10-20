@@ -8,6 +8,22 @@
     <link rel="canonical" href="https://angelcreations.in/" />
     <title>Angel Creations | Immersive Experiences, VR, AR &amp; Film</title>
     <link rel="preload" as="image" href="/legacy-assets/images/generated-home-posters/metaverse.jpg" fetchpriority="high" />
+    <style>
+      html { background: #050609; color-scheme: dark; }
+      body { margin: 0; background: #050609; }
+      #static-route-fallback { box-sizing: border-box; position: fixed; z-index: 100; inset: 0; isolation: isolate; display: flex; min-height: 100svh; flex-direction: column; justify-content: flex-end; gap: 1.35rem; overflow-x: hidden; overflow-y: auto; padding: clamp(2rem, 8vw, 7rem) clamp(1.25rem, 8vw, 8rem); color: #fff; background: #050609 url('/legacy-assets/images/generated-home-posters/metaverse.jpg') center / cover no-repeat; font-family: Arial, sans-serif; }
+      #static-route-fallback::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(5,6,9,.88), rgba(5,6,9,.28) 75%), linear-gradient(0deg, rgba(5,6,9,.84), transparent 76%); content: ''; }
+      #static-route-fallback .static-home__eyebrow, #static-route-fallback .static-home__prompt { margin: 0; color: #dfcda7; font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+      #static-route-fallback .static-home__eyebrow span { padding-left: .65rem; color: rgba(255,255,255,.67); }
+      #static-route-fallback h1 { max-width: 12ch; margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(3rem, 8.5vw, 7.8rem); font-weight: 400; letter-spacing: -.065em; line-height: .94; }
+      #static-route-fallback .static-home__intro { max-width: 39rem; margin: 0; color: rgba(255,255,255,.78); font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; }
+      #static-route-fallback nav { display: flex; max-width: 70rem; flex-wrap: wrap; gap: .55rem; margin-top: .3rem; }
+      #static-route-fallback nav a { display: inline-flex; min-height: 44px; align-items: center; padding: .65rem .85rem; border: 1px solid rgba(255,255,255,.32); border-radius: 999px; color: #fff; background: rgba(5,6,9,.42); font-size: .72rem; letter-spacing: .035em; text-decoration: none; }
+      #static-route-fallback nav a:hover { border-color: #dfcda7; background: rgba(5,6,9,.78); }
+      #static-route-fallback a:focus-visible { outline: 2px solid #dfcda7; outline-offset: 3px; }
+      @media (max-width: 600px) { #static-route-fallback { justify-content: center; gap: 1.1rem; padding: 6rem 1.25rem 2rem; background-position: 62% center; } #static-route-fallback::before { background: linear-gradient(0deg, rgba(5,6,9,.94), rgba(5,6,9,.42)); } #static-route-fallback h1 { max-width: 11ch; font-size: clamp(3.1rem, 13vw, 5rem); } #static-route-fallback nav a { min-height: 44px; } }
+      @media (prefers-reduced-motion: reduce) { #static-route-fallback nav a { scroll-behavior: auto; transition: none; } }
+    </style>
     <!-- Active Angel theme styles only. Preserved WordPress/plugin CSS stays archived locally but is not loaded by the React routes. -->
     <link rel="stylesheet" href="/legacy-assets/other/wp-content/themes/fleava/assets/css/app.css" />
     <link rel="stylesheet" href="/legacy-assets/other/wp-content/themes/fleava/assets/css/custom.css" />
@@ -16,16 +32,21 @@
     <!-- Local preservation baseline. No live analytics, GTM, or third-party scripts are loaded. -->
   </head>
   <body class="is-light-theme no-js">
+    <main id="static-route-fallback" aria-labelledby="static-home-title">
+      <p class="static-home__eyebrow">Angel Creations <span>/ Immersive studio</span></p>
+      <h1 id="static-home-title">Dive into new world, live the world you want.</h1>
+      <p class="static-home__intro">Experience the future with Angel Creations: virtual reality, augmented reality, animation, brand films, and immersive digital experiences.</p>
+      <p class="static-home__prompt">Explore the studio</p>
+      <nav aria-label="Explore Angel Creations">
+        <a href="/about/">About</a><a href="/works/">Works</a><a href="/contact/">Contact</a>
+        <a href="/metaverse/">Metaverse</a><a href="/mixed-reality/">Mixed Reality</a>
+        <a href="/virtual-reality/">Virtual Reality</a><a href="/augment-reality/">Augment Reality</a>
+        <a href="/animation/">Animation</a><a href="/brand-advertisement/">Brand Advertisement</a>
+        <a href="/media-production/">Media Production</a><a href="/privacy-policy/">Privacy Policy</a>
+        <a href="/terms-of-service/">Terms of Service</a>
+      </nav>
+    </main>
     <div id="root"></div>
-    <noscript>
-      <main style="max-width:960px;margin:0 auto;padding:8vw 5vw;background:#000;color:#fff;font-family:Arial,sans-serif">
-        <p style="color:#c5b5a5;font-size:12px;letter-spacing:.12em;text-transform:uppercase">Angel Creations / source fallback</p>
-        <h1 style="max-width:15ch;font-size:clamp(2.5rem,8vw,6.5rem);font-weight:400;letter-spacing:-.05em;line-height:.95">Dive into new world, live the world you want.</h1>
-        <p style="max-width:44rem;line-height:1.6;color:rgba(255,255,255,.75)">Experience the future with Angel Creations, an immersive technology company pushing boundaries with virtual reality, augmented reality, and more.</p>
-        <nav aria-label="Primary" style="display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin-top:3rem"><a href="/about/" style="color:#fff">About</a><a href="/works/" style="color:#fff">Works</a><a href="/contact/" style="color:#fff">Contact</a><a href="/metaverse/" style="color:#fff">Metaverse</a><a href="/mixed-reality/" style="color:#fff">Mixed Reality</a><a href="/virtual-reality/" style="color:#fff">Virtual Reality</a><a href="/augment-reality/" style="color:#fff">Augment Reality</a><a href="/animation/" style="color:#fff">Animation</a><a href="/brand-advertisement/" style="color:#fff">Brand Advertisement</a><a href="/media-production/" style="color:#fff">Media Production</a></nav>
-        <p style="margin-top:2rem;font-size:.85rem"><a href="/privacy-policy/" style="color:#fff">Privacy Policy</a> / <a href="/terms-of-service/" style="color:#fff">Terms of Service</a></p>
-      </main>
-    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

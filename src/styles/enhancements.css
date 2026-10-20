@@ -1226,6 +1226,13 @@ body.menu-open header .nav-menu {
 /* Source-qualified capability depth uses Angel's dark field, numbered rhythm and thin rules. */
 .angel-route-loading,
 .angel-capability-loading { max-width: 1200px; margin: 0 auto; padding: 8rem 15px; color: var(--angel-ink-soft); }
+.angel-route-loading { display: flex; min-height: 52vh; flex-direction: column; justify-content: center; border-block: 1px solid rgba(255,255,255,.12); }
+.angel-route-loading__eyebrow { margin: 0 0 1rem; color: #d6b4ff; font: 600 .65rem/1.5 Arial,sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.angel-route-loading h1 { max-width: 16ch; margin: 0; color: var(--angel-ink, #f7f9ff); font: 400 clamp(2.5rem,6vw,4.5rem)/.98 Georgia,serif; letter-spacing: -.05em; }
+.angel-route-loading__copy { max-width: 34rem; margin: 1rem 0 0; color: var(--angel-ink-soft, rgba(255,255,255,.75)); line-height: 1.6; }
+.angel-route-loading__indicator { width: 2.5rem; height: 2.5rem; margin-top: 1.75rem; border: 1px solid rgba(255,255,255,.22); border-top-color: #d6b4ff; border-radius: 50%; animation: angel-route-loading-spin .9s linear infinite; }
+@keyframes angel-route-loading-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .angel-route-loading__indicator { animation: none; border-top-color: rgba(255,255,255,.22); } }
 .angel-capability-index {
   max-width: 1200px;
   margin: 0 auto;

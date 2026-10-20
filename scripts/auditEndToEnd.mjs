@@ -27,6 +27,8 @@ const assetByUrl = new Map();
 const remoteAssetByUrl = new Map();
 const sourceInternalLinks = new Map();
 const staticAnchorRecords = [];
+const preHydrationFallbackIssues = [];
+const preHydrationHeadings = new Map();
 const assetIssues = [];
 const remoteMediaTypeIssues = [];
 const linkIssues = [];
@@ -176,6 +178,23 @@ async function mapLimit(items, limit, worker) {
 for (const route of routes) {
   const file = pageFile(route);
   const html = await readFile(file, 'utf8');
+  const fallbackStart = html.indexOf('id="static-route-fallback"');
+  const rootStart = html.indexOf('id="root"', Math.max(0, fallbackStart));
+  const preHydrationMarkup = fallbackStart >= 0 && rootStart > fallbackStart
+    ? html.slice(fallbackStart, rootStart)
+    : '';
+  const preHydrationH1 = plainText(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i.exec(preHydrationMarkup)?.[1] || '');
+  if (!preHydrationH1 || /<noscript\b/i.test(preHydrationMarkup)) {
+    preHydrationFallbackIssues.push({ route, issue: 'No visible H1 content before the React root.' });
+  } else if (preHydrationHeadings.has(preHydrationH1)) {
+    preHydrationFallbackIssues.push({
+      route,
+      issue: `Duplicate visible H1 shared with ${preHydrationHeadings.get(preHydrationH1)}.`,
+      heading: preHydrationH1,
+    });
+  } else {
+    preHydrationHeadings.set(preHydrationH1, route);
+  }
   const anchors = [];
   for (const match of html.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a\s*>/gi)) {
     const tag = match[0].slice(0, match[0].indexOf('>') + 1);
@@ -444,18 +463,36 @@ for (const record of assetRecords) {
   try { await access(targetFile); record.exists = true; }
   catch { record.exists = false; assetIssues.push({ url: record.url, sources: [...record.sources].sort() }); }
 }
+const expectedMimeByExtension = new Map([
+  ['.css', ['text/css']], ['.js', ['text/javascript', 'application/javascript']],
+  ['.jpg', ['image/jpeg']], ['.jpeg', ['image/jpeg']], ['.png', ['image/png']],
+  ['.webp', ['image/webp']], ['.avif', ['image/avif']], ['.svg', ['image/svg+xml']],
+  ['.mp4', ['video/mp4']], ['.mov', ['video/quicktime']], ['.webm', ['video/webm']],
+  ['.woff', ['font/woff', 'application/font-woff']], ['.woff2', ['font/woff2']],
+  ['.ttf', ['font/ttf', 'application/x-font-ttf']], ['.json', ['application/json']],
+  ['.xml', ['application/xml', 'text/xml']], ['.txt', ['text/plain']],
+]);
 const localAssetHttpTests = await mapLimit(assetRecords.filter((record) => record.exists), 12, async (record) => {
   try {
     const response = await fetch(new URL(record.url, previewBase), { method: 'GET' });
+    const contentType = (response.headers.get('content-type') || '').split(';', 1)[0].trim().toLowerCase();
     record.localStatus = response.status;
-    return { url: record.url, status: response.status };
+    record.contentType = contentType;
+    const extension = extname(record.url.split(/[?#]/, 1)[0]).toLowerCase();
+    return { url: record.url, status: response.status, contentType, expectedMime: expectedMimeByExtension.get(extension) || null };
   } catch (error) {
     record.localStatus = null;
-    return { url: record.url, status: null, error: error instanceof Error ? error.message : String(error) };
+    return { url: record.url, status: null, contentType: null, error: error instanceof Error ? error.message : String(error) };
   }
 });
 for (const test of localAssetHttpTests) {
-  if (test.status === null || test.status >= 400) assetIssues.push(test);
+  if (test.status === null || test.status >= 400) {
+    assetIssues.push(test);
+    continue;
+  }
+  if (test.expectedMime && !test.expectedMime.includes(test.contentType)) {
+    assetIssues.push({ ...test, issue: 'Unexpected content type for local asset extension.' });
+  }
 }
 
 // 6) Verify route, 404/410, alias, feed and static error-document response behaviour locally.
@@ -552,12 +589,15 @@ const report = {
     sitemapRoutes: routes.length,
     routeResponsesOk: statusProbes.filter((probe) => routes.includes(probe.route) && probe.status === 200).length,
     staticAnchorInstances: staticAnchorRecords.length,
+    preHydrationRoutes: routes.length - preHydrationFallbackIssues.length,
+    preHydrationFallbackIssues: preHydrationFallbackIssues.length,
     uniqueInternalAnchorTargets: internalAnchorUniqueTargets.length,
     internalTargetTests: internalLinkTests.length,
     brokenInternalTargets: linkIssues.length,
     emptyAnchorHrefs: emptyAnchorIssues.length,
     localAssetReferences: assetRecords.length,
     missingOrUnservedLocalAssets: assetIssues.length,
+    localAssetMimeMismatches: localAssetHttpTests.filter((test) => test.expectedMime && !test.expectedMime.includes(test.contentType)).length,
     uniqueSocialImages: [...new Set(socialPreviewInventory.map((item) => item.ogImage).filter(Boolean))].length,
     socialMetadataIssues: socialIssues.length,
     externalWebTargets: externalWebLinks.length,
@@ -575,9 +615,12 @@ const report = {
     'Added unique 1200×630 local social-preview images and per-route Open Graph/Twitter headline, description, URL, dimensions, MIME type, and alt metadata for all 21 sitemap routes.',
     'Added a React render-error boundary and generated branded 403/404/410/500/502/503/504 documents; only local 404/410 path status behavior was verified.',
     'Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion.',
+    'Added visible route-specific HTML fallbacks outside <noscript> so content appears before React; the app removes each shell only when its route content commits, while runtime errors retain an actionable error state.',
+    'Replaced the one-line Suspense text with an accessible, motion-aware main-content loading state.'
   ],
   routeInventory: socialPreviewInventory,
   staticAnchorInventory: sourceAnchorInventory,
+  preHydrationFallbackIssues,
   internalAnchorTargets: internalAnchorUniqueTargets,
   internalTargetTests: internalLinkTests,
   sourceDefinedInternalLinks,
@@ -590,6 +633,7 @@ const report = {
     url: record.url,
     existsInBuild: record.exists,
     localHttpStatus: record.localStatus,
+    contentType: record.contentType || null,
     referencedBy: [...record.sources].sort(),
   })).sort((a, b) => a.url.localeCompare(b.url)),
   assetIssues,
@@ -631,7 +675,8 @@ const markdown = [
   '',
   `- Sitemap pages: ${report.summary.routeResponsesOk}/${routes.length} returned HTTP 200 in local preview.`,
   `- Static anchor instances: ${staticAnchorRecords.length}; unique internal anchor targets: ${internalAnchorUniqueTargets.length}; broken local targets: ${linkIssues.length}.`,
-  `- Local build asset URLs checked: ${assetRecords.length}; missing/unserved: ${assetIssues.length}.`,
+  `- Local build asset URLs checked: ${assetRecords.length}; missing/unserved or MIME-mismatched: ${assetIssues.length}; recognized-extension MIME mismatches: ${report.summary.localAssetMimeMismatches}.`,
+  `- Public routes with visible pre-hydration route content: ${report.summary.preHydrationRoutes}/${routes.length}; failures: ${preHydrationFallbackIssues.length}.`,
   `- Social previews: ${report.summary.uniqueSocialImages}/${routes.length} unique page-specific images; metadata issues: ${socialIssues.length}.`,
   `- External web URLs inventoried: ${externalWebLinks.length} across ${externalWebHosts.length} hosts; ${contactProtocolTargets.length} mail/telephone protocol targets are listed separately. Remote checks were not performed.`,
   `- Same-origin remote media assets inventoried: ${remoteAssets.length}; the 310 MB QuickTime source has historical repository evidence but was not re-fetched.`,
@@ -716,6 +761,6 @@ console.log(JSON.stringify({
   remoteAssets,
   reports: ['docs/audits/END-TO-END-AUDIT.md', 'docs/audits/END-TO-END-LINK-INVENTORY.json'],
 }, null, 2));
-if (linkIssues.length || emptyAnchorIssues.length || assetIssues.length || socialIssues.length || statusIssues.length || errorBodyIssues.length || report.targetBlankSecurityIssues.length || insecureHttpTargets.length || remoteMediaTypeIssues.length) {
+if (linkIssues.length || emptyAnchorIssues.length || preHydrationFallbackIssues.length || assetIssues.length || socialIssues.length || statusIssues.length || errorBodyIssues.length || report.targetBlankSecurityIssues.length || insecureHttpTargets.length || remoteMediaTypeIssues.length) {
   process.exitCode = 1;
 }

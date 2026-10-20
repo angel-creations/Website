@@ -41,7 +41,7 @@
   "legacyFallbackDocuments": 12,
   "legacyFallbackIssues": [],
   "sitemapMissingDocs": [],
-  "previewBase": "http://127.0.0.1:4175",
+  "previewBase": "http://127.0.0.1:4173",
   "httpStatusIssues": [],
   "duplicateTitles": [],
   "duplicateDescriptions": [],
@@ -57,6 +57,8 @@
     ]
   ],
   "h1Issues": [],
+  "preHydrationContentIssues": [],
+  "duplicatePreHydrationHeadings": [],
   "schemaIssues": [],
   "rootSchema": [
     "WebPage",
@@ -77,6 +79,8 @@
     {
       "route": "/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Dive into new world, live the world you want.",
       "title": "Angel Creations | Immersive Experiences, VR, AR & Film",
       "titleLength": 54,
       "description": "Angel Creations is an India-based creative studio creating virtual reality, augmented reality, animation, brand films, and immersive digital experiences.",
@@ -119,6 +123,8 @@
     {
       "route": "/403.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Access unavailable | Angel Creations",
       "titleLength": 36,
       "description": "",
@@ -143,6 +149,8 @@
     {
       "route": "/404.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Page not found | Angel Creations",
       "titleLength": 32,
       "description": "",
@@ -167,6 +175,8 @@
     {
       "route": "/410.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Experience retired | Angel Creations",
       "titleLength": 36,
       "description": "",
@@ -191,6 +201,8 @@
     {
       "route": "/500.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Something went wrong | Angel Creations",
       "titleLength": 38,
       "description": "",
@@ -215,6 +227,8 @@
     {
       "route": "/502.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Temporary connection issue | Angel Creations",
       "titleLength": 44,
       "description": "",
@@ -239,6 +253,8 @@
     {
       "route": "/503.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Temporarily unavailable | Angel Creations",
       "titleLength": 41,
       "description": "",
@@ -263,6 +279,8 @@
     {
       "route": "/504.html",
       "httpStatus": 200,
+      "hasPreHydrationContent": false,
+      "preHydrationH1": "",
       "title": "Request timed out | Angel Creations",
       "titleLength": 35,
       "description": "",
@@ -287,6 +305,8 @@
     {
       "route": "/about/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards",
       "title": "About Angel Creations | Creative & Immersive Studio",
       "titleLength": 51,
       "description": "Meet Angel Creations, an India-based creative studio working across design, development, storytelling, film, animation, and immersive digital experiences.",
@@ -331,6 +351,8 @@
     {
       "route": "/animation/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Animation",
       "title": "2D & 3D Animation, Motion Graphics & VFX | Angel Creations",
       "titleLength": 58,
       "description": "Discover 2D and 3D animation, motion graphics, character animation, interactive animation, and visual effects in Angel Creations’ public capability material.",
@@ -370,6 +392,8 @@
     {
       "route": "/augment-reality/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Augment Reality",
       "title": "Augmented Reality Experiences & Apps | Angel Creations",
       "titleLength": 54,
       "description": "Explore Angel Creations’ augmented reality material for industrial applications, navigation, retail, marketing, tourism, education, and entertainment.",
@@ -409,6 +433,8 @@
     {
       "route": "/brand-advertisement/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Brand Advertisement",
       "title": "Brand Films & Creative Campaigns | Angel Creations",
       "titleLength": 50,
       "description": "Explore Angel Creations’ brand advertising and marketing material across film, animation, digital, and immersive experiences.",
@@ -449,6 +475,8 @@
     {
       "route": "/capabilities/animation-3d/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Animation + 3D",
       "title": "2D & 3D Animation and VFX | Angel Creations",
       "titleLength": 43,
       "description": "Explore Angel Creations’ 2D and 3D animation, motion graphics, visual effects, character animation, and interactive animation.",
@@ -480,6 +508,8 @@
     {
       "route": "/capabilities/brand/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Brand",
       "title": "Brand & Creative Campaigns | Angel Creations",
       "titleLength": 44,
       "description": "Explore Angel Creations’ brand advertising, marketing, and immersive campaign capabilities across virtual, augmented, and mixed-reality experiences.",
@@ -511,6 +541,8 @@
     {
       "route": "/capabilities/content/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Content",
       "title": "Immersive Content Production | Angel Creations",
       "titleLength": 46,
       "description": "Explore immersive content production across VR, mixed reality, animation, media, and interactive brand experiences.",
@@ -542,6 +574,8 @@
     {
       "route": "/capabilities/creative-technology/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Creative Technology",
       "title": "Creative Technology & XR | Angel Creations",
       "titleLength": 42,
       "description": "Explore Angel Creations’ VR, AR, mixed reality, and metaverse capabilities, including training, navigation, virtual worlds, and collaboration.",
@@ -573,6 +607,8 @@
     {
       "route": "/capabilities/design/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Design",
       "title": "Design & Creative Studio | Angel Creations",
       "titleLength": 42,
       "description": "Explore Angel Creations’ design and development capabilities across spatial experiences, visual storytelling, and digital environments.",
@@ -604,6 +640,8 @@
     {
       "route": "/capabilities/digital/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Digital",
       "title": "Digital Experiences & Development | Angel Creations",
       "titleLength": 51,
       "description": "Explore digital experiences across virtual worlds, workspaces, marketplaces, education, streaming, navigation, and collaboration.",
@@ -635,6 +673,8 @@
     {
       "route": "/capabilities/experiences/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Experiences",
       "title": "Immersive Experiences & Events | Angel Creations",
       "titleLength": 48,
       "description": "Explore virtual worlds, events platforms, product showcases, live event production, entertainment, and interactive spatial experiences.",
@@ -666,6 +706,8 @@
     {
       "route": "/capabilities/film/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Film",
       "title": "Film & Video Production | Angel Creations",
       "titleLength": 41,
       "description": "Explore film and video production across scriptwriting, storyboarding, photography, post-production, live events, and audio.",
@@ -697,6 +739,8 @@
     {
       "route": "/contact/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Contact",
       "title": "Start a Project Enquiry | Angel Creations",
       "titleLength": 41,
       "description": "Start a project enquiry with Angel Creations. Share your goals, creative discipline, timeline, and contact details.",
@@ -733,6 +777,8 @@
     {
       "route": "/media-production/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Media Production",
       "title": "Film, Video & Media Production | Angel Creations",
       "titleLength": 48,
       "description": "Explore Angel Creations’ media production capabilities across film, video, television, photography, live events, and post-production.",
@@ -773,6 +819,8 @@
     {
       "route": "/metaverse/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Metaverse",
       "title": "Metaverse & Virtual World Experiences | Angel Creations",
       "titleLength": 55,
       "description": "Explore Angel Creations’ metaverse capabilities, including virtual worlds, events, product showcases, marketplaces, and workspaces.",
@@ -812,6 +860,8 @@
     {
       "route": "/mixed-reality/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Mixed Reality",
       "title": "Mixed Reality Experiences & Development | Angel Creations",
       "titleLength": 57,
       "description": "Explore Angel Creations’ mixed reality material for training, education, entertainment, architecture, marketing, retail, and collaboration.",
@@ -850,6 +900,8 @@
     {
       "route": "/privacy-policy/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Privacy Policy",
       "title": "Privacy Policy | Angel Creations",
       "titleLength": 32,
       "description": "Learn how Angel Creations collects, uses, and safeguards personal information across its website and digital services.",
@@ -886,6 +938,8 @@
     {
       "route": "/terms-of-service/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Terms of Service",
       "title": "Terms of Service | Angel Creations",
       "titleLength": 34,
       "description": "Review the terms for using the Angel Creations website and digital services, including intellectual property, acceptable use, and liability.",
@@ -922,6 +976,8 @@
     {
       "route": "/virtual-reality/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Virtual Reality",
       "title": "Virtual Reality Experiences & Development | Angel Creations",
       "titleLength": 59,
       "description": "Explore Angel Creations’ virtual reality material for content, training, education, gaming, marketing, architecture, healthcare, and broadcasting.",
@@ -961,6 +1017,8 @@
     {
       "route": "/work/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "Continue to the Works archive.",
       "title": "Works archive | Angel Creations",
       "titleLength": 31,
       "description": "Continue to the Angel Creations Works archive.",
@@ -988,6 +1046,8 @@
     {
       "route": "/works/",
       "httpStatus": 200,
+      "hasPreHydrationContent": true,
+      "preHydrationH1": "We do amazing things with amazing People.",
       "title": "Selected Work | Angel Creations",
       "titleLength": 31,
       "description": "Explore selected Angel Creations work through 47 verified public video records with their original titles, descriptions, links, and available metadata.",
@@ -1039,6 +1099,8 @@
     "missingCanonical": [],
     "canonicalMismatch": [],
     "h1Issues": [],
+    "preHydrationContentIssues": [],
+    "duplicatePreHydrationHeadings": [],
     "schemaIssues": [],
     "sitemapMissingDocs": [],
     "orphanSitemapRoutes": [],
