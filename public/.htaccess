@@ -1,0 +1,59 @@
+# Angel Creations — Apache configuration for the published site (public_html).
+#
+# Managed by the GitHub Actions deployment. The file carries a marker so the deploy
+# only replaces an .htaccess it owns; a hand-written one on the server is left alone.
+#
+# Why this file exists: a stale cached HTML document pointed at a bundle that a later
+# deploy had replaced, and the server also published the repository source tree
+# (/src/main.tsx, package.json, docs). Both produced a blank white page.
+
+# angel-creations-htaccess:v1
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Never serve repository source, tooling or build config. A host that publishes the
+# repository root instead of dist/ exposes these paths; nothing here is needed by the
+# published site.
+RedirectMatch 404 ^/(src|scripts|docs|\.github|\.git|node_modules)(/|$)
+RedirectMatch 404 ^/(package|package-lock)\.json$
+RedirectMatch 404 ^/tsconfig[^/]*\.json$
+RedirectMatch 404 ^/vite\.config\.[cm]?[jt]s$
+RedirectMatch 404 ^/(README|CLAUDE|AGENTS)\.md$
+
+<IfModule mod_headers.c>
+  # HTML must revalidate on every visit. If a document is served from cache while its
+  # hashed bundle has been replaced, the browser requests a 404 asset and nothing runs.
+  <FilesMatch "\.(html|htm)$">
+    Header always set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header always set Pragma "no-cache"
+    Header always set Expires "0"
+  </FilesMatch>
+
+  # Build output is content-hashed by Vite and safe to cache forever.
+  <FilesMatch "\.(js|mjs|css|woff2|woff|ttf|otf|eot|svg|png|jpe?g|webp|avif|gif|ico|mp4|webm|json|xml|txt)$">
+    Header always set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Robots, sitemap and the RSS compatibility documents should stay fresh.
+  <FilesMatch "^(robots|sitemap)\.(txt|xml)$">
+    Header always set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+</IfModule>

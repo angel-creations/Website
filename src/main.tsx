@@ -24,11 +24,24 @@ createRoot(container).render(
   </StrictMode>,
 );
 
-// The pre-render fallback in index.html keeps the page readable if this bundle never
-// runs (for example when a host publishes the repository root instead of the built
-// site, so /src/main.tsx cannot execute). Remove it as soon as the app is on screen.
-requestAnimationFrame(() => {
-  if (!container.childElementCount) return;
-  document.documentElement.classList.add('app-booted');
-  document.getElementById('boot-fallback')?.remove();
-});
+// Every document carries a hidden boot fallback that a watchdog reveals when this bundle
+// cannot run (a host publishing the repository root, or a cached document pointing at a
+// bundle a later deploy replaced). Remove it once the app has actually committed; React
+// renders asynchronously, so watch the container instead of assuming the first frame wins.
+function dropBootFallback(): void {
+  const fallback = document.getElementById('boot-fallback');
+  if (!fallback) return;
+  fallback.remove();
+  document.documentElement.removeAttribute('data-boot-stalled');
+}
+
+if (container.childElementCount > 0) {
+  dropBootFallback();
+} else {
+  const observer = new MutationObserver(() => {
+    if (container.childElementCount === 0) return;
+    observer.disconnect();
+    dropBootFallback();
+  });
+  observer.observe(container, { childList: true });
+}

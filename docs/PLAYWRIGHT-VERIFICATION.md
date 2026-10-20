@@ -33,7 +33,12 @@ cannot, because Vite answers every route with `index.html`.
 `npm run test:fallback` serves the repository root and asserts that the source `index.html`
 renders readable content when `/src/main.tsx` cannot execute.
 
-`npm run test:prod` runs the build plus both rehearsals.
+`npm run test:degraded` serves `dist/`, forces every `/assets/*.js` request to 404 (the
+failure mode behind the live white screen: a cached document pointing at a bundle a later
+deploy replaced), and asserts each route reveals the boot fallback with readable content
+instead of rendering blank.
+
+`npm run test:prod` runs the build plus all three rehearsals.
 
 ## Sandboxes without Playwright CDN access
 

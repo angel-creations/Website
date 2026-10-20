@@ -81,6 +81,27 @@ visitors see real content and working links instead of a white page.
 `npm run test:fallback` asserts this by serving the repository root and checking the
 rendered result.
 
+## Defence in depth (added after the second report)
+
+1. **Boot fallback in every document.** `index.html` carries a hidden `#boot-fallback`
+   block with the studio headline, description and navigation, plus a watchdog. The
+   watchdog reveals it when the entry script fails to load, or when the application has
+   not mounted 2.5 s after `load` (6 s hard limit). `src/main.tsx` removes the block once
+   React has committed. The block is copied into every generated route document, so a
+   blank page is no longer possible for either failure mode.
+2. **Cache policy.** `public/.htaccess` (published as `dist/.htaccess`, managed via an
+   `angel-creations-htaccess:` marker) marks HTML `no-cache, no-store, must-revalidate`,
+   marks hashed assets `immutable`, and returns 404 for repository source paths such as
+   `/src/main.tsx`, `/package.json` or `/docs/`. The deploy uploads it only when the
+   server has none or has a previous managed copy, so a hand-written `.htaccess` is never
+   overwritten. The post-deploy check warns when the live `Cache-Control` would let HTML
+   be cached.
+3. **Tests.** `npm run test:degraded` forces every `/assets/*.js` request to 404 and
+   asserts each route still shows readable content; `npm run test:fallback` serves the
+   repository root and asserts the same for a mispublished source tree;
+   `verifyStaticOutput` fails the build if any document lacks the fallback or if
+   `.htaccess` is missing.
+
 ## Verification commands
 
 ```bash
@@ -88,4 +109,16 @@ npm ci
 npm run build          # includes verifyStaticOutput
 npm run test:static    # Playwright against dist/ served like a static host
 npm run test:fallback  # source document must never render blank
+npm run test:degraded  # broken/404 bundle must still show readable content
 ```
+
+## If the domain is blank again
+
+1. `curl -sI https://angelcreations.in/ | grep -i cache-control` — expect `no-cache`.
+2. `curl -s https://angelcreations.in/ | grep -o '/assets/[^"]*\.js'` — the bundle named
+   there must return 200. A 404 means the HTML is cached from an older deploy: purge the
+   host/CDN cache and rebuild.
+3. `curl -sI https://angelcreations.in/src/main.tsx` — must be 404. A 200 means the
+   repository, not `dist/`, is being published.
+4. Actions → *Verify production build* → **Run workflow**; the `Live site diagnostics` job
+   prints status, size, `#root`, closed-script and bundle checks for the main routes.
