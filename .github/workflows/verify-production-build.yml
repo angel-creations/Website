@@ -14,7 +14,7 @@ on:
   # published at the document root). Rebuild, re-upload and re-verify on a schedule so
   # the published site heals itself instead of waiting for someone to notice.
   schedule:
-    - cron: '*/20 * * * *'
+    - cron: '7 * * * *'
 
 permissions:
   contents: read
@@ -469,6 +469,57 @@ jobs:
           echo "Created a pre-deployment backup on the Hostinger account."
           echo "::notice title=Deploy stage::Pre-deployment backup created"
 
+          # A Hostinger GIT deployment keeps a working copy of this repository inside the
+          # document root and resets it (git clean -fdx), which deletes the built site and
+          # restores the development index.html that points at /src/main.tsx - a blank
+          # page. Move the checkout out of the served directory (never deleted) so the
+          # published build survives. Turn the integration off in hPanel -> Advanced -> GIT
+          # to fix this at the source rather than at the symptom.
+          # A full copy of the document root on every deploy fills the account: keep five.
+          if ! "${SSH[@]}" "$TARGET" bash -s <<'REMOTE' 2>/tmp/prune.err
+          set -uo pipefail
+          DIR="$HOME/angel-creations-deploy-backups"
+          [ -d "$DIR" ] || exit 0
+          ls -1t "$DIR"/public_html-*.tar.gz 2>/dev/null | tail -n +6 | while IFS= read -r old_backup; do
+            rm -f "$old_backup" && echo "pruned $(basename "$old_backup")"
+          done
+          REMOTE
+          then
+            annotate 'Old backup cleanup failed' < /tmp/prune.err
+          fi
+
+          GIT_DIR_STATE="$("${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" <<'REMOTE'
+          set -uo pipefail
+          DOCROOT="$1"
+          if [ ! -e "$DOCROOT/.git" ]; then
+            echo 'none'
+            exit 0
+          fi
+          git -C "$DOCROOT" remote -v 2>/dev/null | head -n 2
+          git -C "$DOCROOT" rev-parse --abbrev-ref HEAD 2>/dev/null
+          git -C "$DOCROOT" log -1 --format='%h %ad %s' --date=iso 2>/dev/null
+          QUARANTINE_DIR="$HOME/angel-creations-deploy-backups"
+          mkdir -p "$QUARANTINE_DIR"
+          chmod 700 "$QUARANTINE_DIR"
+          DEST="$QUARANTINE_DIR/docroot-git-$(date -u +%Y%m%dT%H%M%SZ)"
+          if mv "$DOCROOT/.git" "$DEST"; then
+            echo "quarantined:$DEST"
+          else
+            echo "quarantine-failed:$DEST"
+          fi
+          REMOTE
+          )"
+          if [ "$GIT_DIR_STATE" != "none" ]; then
+            while IFS= read -r line; do
+              [ -n "$line" ] || continue
+              line="${line//::/:}"
+              echo "::warning title=A git checkout was found in the document root::${line:0:180}"
+            done <<< "$GIT_DIR_STATE"
+            if grep -q '^quarantine-failed:' <<< "$GIT_DIR_STATE"; then
+              annotate 'Cannot stop the host git deployment' <<< "$DOCROOT/.git could not be moved, so the host can reset the directory again. Disable hPanel -> Advanced -> GIT."
+            fi
+          fi
+
           rollback() {
             echo "Deployment failed; attempting to restore the pre-deployment backup."
             "${SSH[@]}" "$TARGET" bash -s -- "$DOCROOT" "$BACKUP_PATH" <<'REMOTE'
@@ -689,8 +740,20 @@ jobs:
             watch_entry="$(grep -o -m1 'src="[^"]*/assets/[^"]*\.js"' /tmp/watch.html | cut -d'"' -f2 || true)"
             watch_entry_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL$watch_entry" || echo 000)"
             if [ "$root_code" != "200" ] || [ "$json_code" != "404" ] || [ "$watch_entry_code" != "200" ]; then
-              echo "::error title=The published site changed after deployment::/=$root_code /package.json=$json_code entry=$watch_entry_code. Something is rewriting $DOCROOT after the upload - check Hostinger hPanel -> Advanced -> GIT for an auto-deploy of this repository, and any cron job that pulls it."
-              exit 1
+              echo "::warning title=The published site changed after deployment::/=$root_code /package.json=$json_code entry=$watch_entry_code. Re-uploading once."
+              rsync -az --delay-updates --exclude='.htaccess' --exclude='.well-known/' \
+                -e "$RSYNC_RSH" dist/ "$TARGET:$DOCROOT/" || true
+              rsync -az --delay-updates -e "$RSYNC_RSH" dist/.htaccess "$TARGET:$DOCROOT/.htaccess" || true
+              sleep 20
+              root_code="$(curl -sS -o /tmp/watch.html -w '%{http_code}' --max-time 30 "$SITE_URL/" || echo 000)"
+              json_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL/package.json" || echo 000)"
+              watch_entry="$(grep -o -m1 'src="[^"]*/assets/[^"]*\.js"' /tmp/watch.html | cut -d'"' -f2 || true)"
+              watch_entry_code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "$SITE_URL$watch_entry" || echo 000)"
+              if [ "$root_code" != "200" ] || [ "$json_code" != "404" ] || [ "$watch_entry_code" != "200" ]; then
+                echo "::error title=The published site changed after deployment::/=$root_code /package.json=$json_code entry=$watch_entry_code. Something is still rewriting $DOCROOT after the upload - check Hostinger hPanel -> Advanced -> GIT for an auto-deploy of this repository."
+                exit 1
+              fi
+              echo "::notice title=Deploy repaired::the re-upload restored the published site"
             fi
           done
           echo "::notice title=Site stable::Homepage, bundle and source-exposure checks still pass four minutes after deployment"
