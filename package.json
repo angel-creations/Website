@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build && node scripts/generateStaticFallbacks.mjs",
+    "build": "tsc -b && vite build && node scripts/generateStaticFallbacks.mjs && node scripts/verifyStaticOutput.mjs",
     "preview": "vite preview --host 0.0.0.0",
-    "test:smoke": "node scripts/playwright-smoke.mjs"
+    "test:smoke": "node scripts/playwright-smoke.mjs",
+    "test:static": "node scripts/playwright-smoke.mjs --static",
+    "test:prod": "npm run build && npm run test:static"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",

@@ -167,11 +167,22 @@ function capabilitySchema(capability) {
 
 // Reuse all local legacy CSS and Vite entry assets from the actual generated root build. This
 // prevents static route files from becoming a no-JS-only experience for JavaScript users.
-const runtimeAssetTags = [...rootBuild.matchAll(/<(?:link|script)\b[^>]*>/g)]
+//
+// Script elements must be copied with their closing tag. Emitting `<script src="...">` alone
+// makes every browser swallow the remainder of the document as script text, which blanked
+// every route in production (the root document was the only one Vite wrote itself).
+const runtimeAssetTags = [...rootBuild.matchAll(/<script\b[^>]*src="\/assets\/[^"]+"[^>]*>\s*<\/script>|<link\b[^>]*rel="stylesheet"[^>]*>/g)]
   .map((match) => match[0])
-  .filter((tag) => (tag.includes('rel="stylesheet"') && /href="\/(?:legacy-assets|assets)\//.test(tag)) || (tag.includes('type="module"') && /src="\/assets\//.test(tag)))
+  .filter((tag) => tag.startsWith('<script')
+    ? tag.includes('type="module"')
+    : /href="\/(?:legacy-assets|assets)\//.test(tag))
   .join('\n');
 if (!runtimeAssetTags.includes('type="module"')) throw new Error('Generated root build entry script was not found.');
+{
+  const opened = (runtimeAssetTags.match(/<script\b/gi) || []).length;
+  const closed = (runtimeAssetTags.match(/<\/script>/gi) || []).length;
+  if (opened !== closed) throw new Error(`Generated entry asset markup has ${opened} <script> tags but ${closed} </script> tags.`);
+}
 
 const fallbackCss = `<style>html{background:#000;color:#fff;font-family:Arial,sans-serif}body{max-width:960px;margin:0 auto;padding:clamp(2rem,8vw,7rem) clamp(1.25rem,5vw,4rem);background:#000}nav{display:flex;flex-wrap:wrap;gap:1rem 1.5rem;margin-bottom:4rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}a{color:#fff}h1{max-width:17ch;font-size:clamp(2.25rem,6vw,4.8rem);font-weight:400;letter-spacing:-.05em;line-height:.96}h2{margin-top:4rem;font-size:clamp(1.5rem,4vw,3rem);font-weight:400;letter-spacing:-.03em}h3{font-size:1.2rem;font-weight:400}p{max-width:48rem;line-height:1.6;color:rgba(255,255,255,.76)}.eyebrow,.meta{color:#c5b5a5;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}.archive{margin:3rem 0;padding:0;list-style:none}.archive li{padding:2rem 0;border-top:1px solid rgba(255,255,255,.2)}details{margin-top:1rem}.source-text{white-space:pre-line}li{padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.16);list-style:none}ul{padding:0;border-top:1px solid rgba(255,255,255,.2)}.lead{font-size:1.12rem}</style>`;
 
