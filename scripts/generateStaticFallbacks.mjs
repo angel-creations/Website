@@ -434,15 +434,6 @@ function worksAliasDocument() {
 await enhanceRootDocument();
 
 const selectedPages = pages.filter((page) => page.status === 200 && coreRoutes.has(page.route));
-const pageFallbackPages = selectedPages.filter((page) => page.route !== '/');
-const fallbackDirectory = new URL('page-data/', dist);
-await mkdir(fallbackDirectory, { recursive: true });
-for (const page of pageFallbackPages) {
-  const slug = page.route.replace(/^\/+|\/+$/g, '').replaceAll('/', '--');
-  const payload = { route: page.route, status: page.status, children: page.children };
-  await writeFile(new URL(`${slug}.json`, fallbackDirectory), `${JSON.stringify(payload)}\n`);
-}
-
 for (const page of selectedPages) {
   if (page.route === '/') continue; // Vite owns the root document; its local noscript fallback lives in index.html.
   const relative = page.route.replace(/^\//, '');

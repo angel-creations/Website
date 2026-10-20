@@ -3,45 +3,60 @@
   "sitemap": 21,
   "sitemapDelivery": {
     "sourceMatchesGenerated": true,
-    "sitemapHttpStatus": 200,
-    "robotsHttpStatus": 200,
+    "sitemapHttpStatus": null,
+    "robotsHttpStatus": null,
     "robotsReferencesSitemap": true,
     "removed360RouteListed": false
   },
-  "sitemapDeliveryIssues": [],
+  "sitemapDeliveryIssues": [
+    "/sitemap.xml returned HTTP null",
+    "/sitemap.xml response does not match the generated sitemap",
+    "/robots.txt returned HTTP null",
+    "/robots.txt response does not match the generated robots file"
+  ],
   "notFoundDesignIssues": [],
-  "statusDocumentIssues": [],
+  "statusDocumentIssues": [
+    "403.html static document returned HTTP null",
+    "410.html static document returned HTTP null",
+    "500.html static document returned HTTP null",
+    "502.html static document returned HTTP null",
+    "503.html static document returned HTTP null",
+    "504.html static document returned HTTP null"
+  ],
   "errorStatusChecks": [
     {
       "route": "/made-up-route-for-audit/",
       "expected": 404,
-      "actual": 404,
+      "actual": null,
       "location": null
     },
     {
       "route": "/360-video/",
       "expected": 410,
-      "actual": 410,
+      "actual": null,
       "location": null
     },
     {
       "route": "/360-video",
       "expected": 410,
-      "actual": 410,
+      "actual": null,
       "location": null
     },
     {
       "route": "/about",
       "expected": 301,
-      "actual": 301,
-      "location": "/about/"
+      "actual": null,
+      "location": null
     }
   ],
-  "errorStatusIssues": [],
-  "pageFallbackDocuments": 12,
-  "pageFallbackIssues": [],
+  "errorStatusIssues": [
+    "/made-up-route-for-audit/ returned null, expected 404",
+    "/360-video/ returned null, expected 410",
+    "/360-video returned null, expected 410",
+    "/about returned null, expected 301"
+  ],
   "sitemapMissingDocs": [],
-  "previewBase": "http://127.0.0.1:4175",
+  "previewBase": "http://127.0.0.1:4173",
   "httpStatusIssues": [],
   "duplicateTitles": [],
   "duplicateDescriptions": [],
@@ -56,7 +71,96 @@
       "https://angelcreations.in/works/"
     ]
   ],
-  "h1Issues": [],
+  "h1Issues": [
+    [
+      "/",
+      2
+    ],
+    [
+      "/about/",
+      2
+    ],
+    [
+      "/animation/",
+      2
+    ],
+    [
+      "/augment-reality/",
+      2
+    ],
+    [
+      "/brand-advertisement/",
+      2
+    ],
+    [
+      "/capabilities/animation-3d/",
+      2
+    ],
+    [
+      "/capabilities/brand/",
+      2
+    ],
+    [
+      "/capabilities/content/",
+      2
+    ],
+    [
+      "/capabilities/creative-technology/",
+      2
+    ],
+    [
+      "/capabilities/design/",
+      2
+    ],
+    [
+      "/capabilities/digital/",
+      2
+    ],
+    [
+      "/capabilities/experiences/",
+      2
+    ],
+    [
+      "/capabilities/film/",
+      2
+    ],
+    [
+      "/contact/",
+      2
+    ],
+    [
+      "/media-production/",
+      2
+    ],
+    [
+      "/metaverse/",
+      2
+    ],
+    [
+      "/mixed-reality/",
+      2
+    ],
+    [
+      "/privacy-policy/",
+      2
+    ],
+    [
+      "/terms-of-service/",
+      2
+    ],
+    [
+      "/virtual-reality/",
+      2
+    ],
+    [
+      "/work/",
+      2
+    ],
+    [
+      "/works/",
+      2
+    ]
+  ],
   "schemaIssues": [],
   "rootSchema": [
     "WebPage",
@@ -69,21 +173,22 @@
     "ImageObject"
   ],
   "orphanSitemapRoutes": [],
-  "internalLinkCount": 231,
+  "internalLinkCount": 364,
   "missingAlt": [],
   "missingRobots": [],
   "notFoundIndexable": [],
   "rows": [
     {
       "route": "/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Angel Creations | Immersive Experiences, VR, AR & Film",
       "titleLength": 54,
       "description": "Angel Creations is an India-based creative studio creating virtual reality, augmented reality, animation, brand films, and immersive digital experiences.",
       "descriptionLength": 153,
       "canonical": "https://angelcreations.in/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Dive into new world, live the world you want."
       ],
       "h2": 0,
@@ -118,7 +223,7 @@
     },
     {
       "route": "/403.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Access unavailable | Angel Creations",
       "titleLength": 36,
       "description": "",
@@ -142,7 +247,7 @@
     },
     {
       "route": "/404.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Page not found | Angel Creations",
       "titleLength": 32,
       "description": "",
@@ -166,7 +271,7 @@
     },
     {
       "route": "/410.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Experience retired | Angel Creations",
       "titleLength": 36,
       "description": "",
@@ -190,7 +295,7 @@
     },
     {
       "route": "/500.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Something went wrong | Angel Creations",
       "titleLength": 38,
       "description": "",
@@ -214,7 +319,7 @@
     },
     {
       "route": "/502.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Temporary connection issue | Angel Creations",
       "titleLength": 44,
       "description": "",
@@ -238,7 +343,7 @@
     },
     {
       "route": "/503.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Temporarily unavailable | Angel Creations",
       "titleLength": 41,
       "description": "",
@@ -262,7 +367,7 @@
     },
     {
       "route": "/504.html",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Request timed out | Angel Creations",
       "titleLength": 35,
       "description": "",
@@ -286,14 +391,15 @@
     },
     {
       "route": "/about/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "About Angel Creations | Creative & Immersive Studio",
       "titleLength": 51,
       "description": "Meet Angel Creations, an India-based creative studio working across design, development, storytelling, film, animation, and immersive digital experiences.",
       "descriptionLength": 154,
       "canonical": "https://angelcreations.in/about/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "We are One – Stop solution for your business Growth We think design forward We see design as a lens to help looking onwards"
       ],
       "h2": 7,
@@ -308,12 +414,21 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 14,
+      "internalLinks": 21,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/brand/",
         "/capabilities/design/",
         "/capabilities/content/",
@@ -321,23 +436,22 @@
         "/capabilities/animation-3d/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
-        "/capabilities/creative-technology/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/creative-technology/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/animation/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "2D & 3D Animation, Motion Graphics & VFX | Angel Creations",
       "titleLength": 58,
       "description": "Discover 2D and 3D animation, motion graphics, character animation, interactive animation, and visual effects in Angel Creations’ public capability material.",
       "descriptionLength": 157,
       "canonical": "https://angelcreations.in/animation/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Animation"
       ],
       "h2": 11,
@@ -346,37 +460,43 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 15,
+      "internalLinks": 20,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/brand/",
         "/capabilities/design/",
         "/capabilities/content/",
         "/capabilities/film/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
-        "/capabilities/creative-technology/",
-        "/augment-reality/",
-        "/brand-advertisement/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/creative-technology/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/augment-reality/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Augmented Reality Experiences & Apps | Angel Creations",
       "titleLength": 54,
       "description": "Explore Angel Creations’ augmented reality material for industrial applications, navigation, retail, marketing, tourism, education, and entertainment.",
       "descriptionLength": 150,
       "canonical": "https://angelcreations.in/augment-reality/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Augment Reality"
       ],
       "h2": 10,
@@ -385,37 +505,43 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 15,
+      "internalLinks": 20,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/brand/",
         "/capabilities/design/",
         "/capabilities/animation-3d/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
         "/capabilities/creative-technology/",
-        "/capabilities/content/",
-        "/virtual-reality/",
-        "/animation/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/content/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/brand-advertisement/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Brand Films & Creative Campaigns | Angel Creations",
       "titleLength": 50,
       "description": "Explore Angel Creations’ brand advertising and marketing material across film, animation, digital, and immersive experiences.",
       "descriptionLength": 125,
       "canonical": "https://angelcreations.in/brand-advertisement/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Brand Advertisement"
       ],
       "h2": 12,
@@ -424,12 +550,21 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 16,
+      "internalLinks": 21,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/brand/",
         "/capabilities/design/",
         "/capabilities/content/",
@@ -437,25 +572,22 @@
         "/capabilities/animation-3d/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
-        "/capabilities/creative-technology/",
-        "/animation/",
-        "/media-production/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/creative-technology/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/animation-3d/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "2D & 3D Animation and VFX | Angel Creations",
       "titleLength": 43,
       "description": "Explore Angel Creations’ 2D and 3D animation, motion graphics, visual effects, character animation, and interactive animation.",
       "descriptionLength": 126,
       "canonical": "https://angelcreations.in/capabilities/animation-3d/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Animation + 3D"
       ],
       "h2": 4,
@@ -465,28 +597,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/brand/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Brand & Creative Campaigns | Angel Creations",
       "titleLength": 44,
       "description": "Explore Angel Creations’ brand advertising, marketing, and immersive campaign capabilities across virtual, augmented, and mixed-reality experiences.",
       "descriptionLength": 148,
       "canonical": "https://angelcreations.in/capabilities/brand/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Brand"
       ],
       "h2": 4,
@@ -496,28 +636,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/content/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Immersive Content Production | Angel Creations",
       "titleLength": 46,
       "description": "Explore immersive content production across VR, mixed reality, animation, media, and interactive brand experiences.",
       "descriptionLength": 115,
       "canonical": "https://angelcreations.in/capabilities/content/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Content"
       ],
       "h2": 4,
@@ -527,28 +675,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/creative-technology/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Creative Technology & XR | Angel Creations",
       "titleLength": 42,
       "description": "Explore Angel Creations’ VR, AR, mixed reality, and metaverse capabilities, including training, navigation, virtual worlds, and collaboration.",
       "descriptionLength": 142,
       "canonical": "https://angelcreations.in/capabilities/creative-technology/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Creative Technology"
       ],
       "h2": 4,
@@ -558,28 +714,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/design/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Design & Creative Studio | Angel Creations",
       "titleLength": 42,
       "description": "Explore Angel Creations’ design and development capabilities across spatial experiences, visual storytelling, and digital environments.",
       "descriptionLength": 135,
       "canonical": "https://angelcreations.in/capabilities/design/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Design"
       ],
       "h2": 4,
@@ -589,28 +753,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/digital/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Digital Experiences & Development | Angel Creations",
       "titleLength": 51,
       "description": "Explore digital experiences across virtual worlds, workspaces, marketplaces, education, streaming, navigation, and collaboration.",
       "descriptionLength": 129,
       "canonical": "https://angelcreations.in/capabilities/digital/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Digital"
       ],
       "h2": 4,
@@ -620,28 +792,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/experiences/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Immersive Experiences & Events | Angel Creations",
       "titleLength": 48,
       "description": "Explore virtual worlds, events platforms, product showcases, live event production, entertainment, and interactive spatial experiences.",
       "descriptionLength": 135,
       "canonical": "https://angelcreations.in/capabilities/experiences/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Experiences"
       ],
       "h2": 4,
@@ -651,28 +831,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/capabilities/film/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Film & Video Production | Angel Creations",
       "titleLength": 41,
       "description": "Explore film and video production across scriptwriting, storyboarding, photography, post-production, live events, and audio.",
       "descriptionLength": 124,
       "canonical": "https://angelcreations.in/capabilities/film/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Film"
       ],
       "h2": 4,
@@ -682,28 +870,36 @@
         "BreadcrumbList",
         "Service"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/contact/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Start a Project Enquiry | Angel Creations",
       "titleLength": 41,
       "description": "Start a project enquiry with Angel Creations. Share your goals, creative discipline, timeline, and contact details.",
       "descriptionLength": 115,
       "canonical": "https://angelcreations.in/contact/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Contact"
       ],
       "h2": 0,
@@ -718,28 +914,36 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/media-production/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Film, Video & Media Production | Angel Creations",
       "titleLength": 48,
       "description": "Explore Angel Creations’ media production capabilities across film, video, television, photography, live events, and post-production.",
       "descriptionLength": 133,
       "canonical": "https://angelcreations.in/media-production/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Media Production"
       ],
       "h2": 12,
@@ -748,12 +952,21 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 16,
+      "internalLinks": 21,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/brand/",
         "/capabilities/design/",
         "/capabilities/content/",
@@ -761,25 +974,22 @@
         "/capabilities/animation-3d/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
-        "/capabilities/creative-technology/",
-        "/brand-advertisement/",
-        "/metaverse/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/creative-technology/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/metaverse/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Metaverse & Virtual World Experiences | Angel Creations",
       "titleLength": 55,
       "description": "Explore Angel Creations’ metaverse capabilities, including virtual worlds, events, product showcases, marketplaces, and workspaces.",
       "descriptionLength": 131,
       "canonical": "https://angelcreations.in/metaverse/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Metaverse"
       ],
       "h2": 10,
@@ -788,37 +998,43 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 15,
+      "internalLinks": 20,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/brand/",
         "/capabilities/design/",
         "/capabilities/content/",
         "/capabilities/animation-3d/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
-        "/capabilities/creative-technology/",
-        "/media-production/",
-        "/mixed-reality/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/creative-technology/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/mixed-reality/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Mixed Reality Experiences & Development | Angel Creations",
       "titleLength": 57,
       "description": "Explore Angel Creations’ mixed reality material for training, education, entertainment, architecture, marketing, retail, and collaboration.",
       "descriptionLength": 139,
       "canonical": "https://angelcreations.in/mixed-reality/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Mixed Reality"
       ],
       "h2": 10,
@@ -827,36 +1043,42 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 14,
+      "internalLinks": 19,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/design/",
         "/capabilities/animation-3d/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
         "/capabilities/creative-technology/",
-        "/capabilities/content/",
-        "/metaverse/",
-        "/virtual-reality/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/content/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/privacy-policy/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Privacy Policy | Angel Creations",
       "titleLength": 32,
       "description": "Learn how Angel Creations collects, uses, and safeguards personal information across its website and digital services.",
       "descriptionLength": 118,
       "canonical": "https://angelcreations.in/privacy-policy/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Privacy Policy"
       ],
       "h2": 0,
@@ -871,28 +1093,36 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/terms-of-service/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Terms of Service | Angel Creations",
       "titleLength": 34,
       "description": "Review the terms for using the Angel Creations website and digital services, including intellectual property, acceptable use, and liability.",
       "descriptionLength": 140,
       "canonical": "https://angelcreations.in/terms-of-service/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Terms of Service"
       ],
       "h2": 0,
@@ -907,28 +1137,36 @@
         ],
         "ImageObject"
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/virtual-reality/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Virtual Reality Experiences & Development | Angel Creations",
       "titleLength": 59,
       "description": "Explore Angel Creations’ virtual reality material for content, training, education, gaming, marketing, architecture, healthcare, and broadcasting.",
       "descriptionLength": 146,
       "canonical": "https://angelcreations.in/virtual-reality/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Virtual Reality"
       ],
       "h2": 11,
@@ -937,64 +1175,78 @@
         "WebPage",
         "BreadcrumbList"
       ],
-      "internalLinks": 15,
+      "internalLinks": 20,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
+        "/privacy-policy/",
+        "/terms-of-service/",
+        "/",
         "/capabilities/animation-3d/",
         "/capabilities/content/",
         "/capabilities/film/",
         "/capabilities/digital/",
         "/capabilities/experiences/",
         "/capabilities/creative-technology/",
-        "/capabilities/design/",
-        "/mixed-reality/",
-        "/augment-reality/",
-        "/privacy-policy/",
-        "/terms-of-service/"
+        "/capabilities/design/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/work/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Works archive | Angel Creations",
       "titleLength": 31,
       "description": "Continue to the Angel Creations Works archive.",
       "descriptionLength": 46,
       "canonical": "https://angelcreations.in/works/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "Continue to the Works archive."
       ],
       "h2": 0,
       "robots": "noindex, follow",
       "jsonld": [],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
     },
     {
       "route": "/works/",
-      "httpStatus": 200,
+      "httpStatus": null,
       "title": "Selected Work | Angel Creations",
       "titleLength": 31,
       "description": "Explore selected Angel Creations work through 47 verified public video records with their original titles, descriptions, links, and available metadata.",
       "descriptionLength": 151,
       "canonical": "https://angelcreations.in/works/",
-      "h1Count": 1,
+      "h1Count": 2,
       "h1": [
+        "Dive into new world, live the world you want.",
         "We do amazing things with amazing People."
       ],
       "h2": 1,
@@ -1009,14 +1261,21 @@
           "Place"
         ]
       ],
-      "internalLinks": 6,
+      "internalLinks": 13,
       "internalLinkTargets": [
-        "/",
         "/about/",
         "/works/",
         "/contact/",
+        "/metaverse/",
+        "/mixed-reality/",
+        "/virtual-reality/",
+        "/augment-reality/",
+        "/animation/",
+        "/brand-advertisement/",
+        "/media-production/",
         "/privacy-policy/",
-        "/terms-of-service/"
+        "/terms-of-service/",
+        "/"
       ],
       "images": 0,
       "imagesWithoutAlt": 0
@@ -1025,11 +1284,27 @@
   "auditFailures": {
     "documentCount": [],
     "sitemapCount": [],
-    "sitemapDeliveryIssues": [],
+    "sitemapDeliveryIssues": [
+      "/sitemap.xml returned HTTP null",
+      "/sitemap.xml response does not match the generated sitemap",
+      "/robots.txt returned HTTP null",
+      "/robots.txt response does not match the generated robots file"
+    ],
     "notFoundDesignIssues": [],
-    "statusDocumentIssues": [],
-    "errorStatusIssues": [],
-    "pageFallbackIssues": [],
+    "statusDocumentIssues": [
+      "403.html static document returned HTTP null",
+      "410.html static document returned HTTP null",
+      "500.html static document returned HTTP null",
+      "502.html static document returned HTTP null",
+      "503.html static document returned HTTP null",
+      "504.html static document returned HTTP null"
+    ],
+    "errorStatusIssues": [
+      "/made-up-route-for-audit/ returned null, expected 404",
+      "/360-video/ returned null, expected 410",
+      "/360-video returned null, expected 410",
+      "/about returned null, expected 301"
+    ],
     "httpStatusIssues": [],
     "duplicateTitles": [],
     "duplicateDescriptions": [],
@@ -1038,7 +1313,96 @@
     "descriptionLengthIssues": [],
     "missingCanonical": [],
     "canonicalMismatch": [],
-    "h1Issues": [],
+    "h1Issues": [
+      [
+        "/",
+        2
+      ],
+      [
+        "/about/",
+        2
+      ],
+      [
+        "/animation/",
+        2
+      ],
+      [
+        "/augment-reality/",
+        2
+      ],
+      [
+        "/brand-advertisement/",
+        2
+      ],
+      [
+        "/capabilities/animation-3d/",
+        2
+      ],
+      [
+        "/capabilities/brand/",
+        2
+      ],
+      [
+        "/capabilities/content/",
+        2
+      ],
+      [
+        "/capabilities/creative-technology/",
+        2
+      ],
+      [
+        "/capabilities/design/",
+        2
+      ],
+      [
+        "/capabilities/digital/",
+        2
+      ],
+      [
+        "/capabilities/experiences/",
+        2
+      ],
+      [
+        "/capabilities/film/",
+        2
+      ],
+      [
+        "/contact/",
+        2
+      ],
+      [
+        "/media-production/",
+        2
+      ],
+      [
+        "/metaverse/",
+        2
+      ],
+      [
+        "/mixed-reality/",
+        2
+      ],
+      [
+        "/privacy-policy/",
+        2
+      ],
+      [
+        "/terms-of-service/",
+        2
+      ],
+      [
+        "/virtual-reality/",
+        2
+      ],
+      [
+        "/work/",
+        2
+      ],
+      [
+        "/works/",
+        2
+      ]
+    ],
     "schemaIssues": [],
     "sitemapMissingDocs": [],
     "orphanSitemapRoutes": [],

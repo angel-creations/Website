@@ -1226,27 +1226,8 @@ body.menu-open header .nav-menu {
 /* Source-qualified capability depth uses Angel's dark field, numbered rhythm and thin rules. */
 .angel-route-loading,
 .angel-capability-loading { max-width: 1200px; margin: 0 auto; padding: 8rem 15px; color: var(--angel-ink-soft); }
-.angel-capability-index {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: clamp(5rem, 11vw, 11rem) 15px;
-  border-top: 1px solid var(--angel-rule);
-  color: var(--angel-ink);
-}
-.angel-capability-index__intro { max-width: 44rem; }
-.angel-capability-index__intro > p:first-child,
+
 .angel-capability__eyebrow { margin: 0 0 1rem; color: #94a3b8; font: .7rem/1.4 'Graphik', Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-.angel-capability-index__intro h2 { margin: 0; font-size: clamp(2rem, 5vw, 4.4rem); font-weight: 400; letter-spacing: -.045em; line-height: 1; }
-.angel-capability-index__intro > p:last-child { max-width: 40rem; margin: 1.75rem 0 0; color: var(--angel-ink-soft); line-height: 1.55; }
-.angel-capability-index ol { margin: clamp(3rem, 7vw, 6rem) 0 0; padding: 0; border-top: 1px solid var(--angel-rule); list-style: none; }
-.angel-capability-index li { border-bottom: 1px solid var(--angel-rule); }
-.angel-capability-index li a { display: grid; grid-template-columns: 4rem minmax(9rem, .55fr) minmax(0, 1.45fr) 1.5rem; gap: 1rem; align-items: baseline; padding: 1.35rem 0; color: var(--angel-ink); text-decoration: none; }
-.angel-capability-index li a:hover strong { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; }
-.angel-capability-index li a:focus-visible { outline: 2px solid var(--angel-focus); outline-offset: 5px; }
-.angel-capability-index li span { color: #94a3b8; font: .72rem 'Graphik', Arial, sans-serif; letter-spacing: .1em; }
-.angel-capability-index li strong { font-size: clamp(1.15rem, 2vw, 1.65rem); font-weight: 400; letter-spacing: -.025em; }
-.angel-capability-index li em { color: var(--angel-ink-muted); font-size: .9rem; font-style: normal; line-height: 1.45; }
-.angel-capability-index li i { font-style: normal; text-align: right; }
 
 .angel-capability { max-width: 1200px; margin: 0 auto; padding: clamp(9rem, 14vw, 13rem) 15px clamp(7rem, 13vw, 14rem); color: var(--angel-ink); }
 .angel-capability__hero { max-width: 58rem; min-height: min(68svh, 50rem); display: flex; flex-direction: column; justify-content: end; padding-bottom: clamp(4rem, 8vw, 8rem); }
@@ -1297,9 +1278,6 @@ body.menu-open header .nav-menu {
 .angel-capability__cta a:hover { text-decoration: underline; text-underline-offset: .15em; }
 
 @media (max-width: 700px) {
-  .angel-capability-index { padding-inline: max(1.5rem, env(safe-area-inset-left)); }
-  .angel-capability-index li a { grid-template-columns: 2.5rem 1fr 1.5rem; gap: .75rem; }
-  .angel-capability-index li em { grid-column: 2 / -1; }
   .angel-capability { padding-inline: max(1.5rem, env(safe-area-inset-left)); }
   .angel-capability__hero { min-height: 60svh; }
   .angel-capability__section,
