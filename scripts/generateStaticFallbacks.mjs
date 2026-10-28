@@ -569,12 +569,10 @@ function faqSchemaEntity(id, items) {
 const capabilityApproach = 'Every commission is shaped around the audience, the story and the experience it must create—balancing usability, aesthetics, technical precision and craft through close collaboration.';
 
 function staticCapabilityFaqs(capability) {
-  const cluster = seoKeywords.capabilities[capability.route];
-  const audiences = cluster?.audiences || ['brands', 'organisations', 'institutions and experience-led teams'];
   return [
     {
       question: `What ${capability.title} services can Angel Creations create?`,
-      answer: `Depending on the brief, the work can include ${capability.creates.join(', ').toLowerCase()}${cluster ? `, within a wider focus on ${cluster.focus}` : ''}.`,
+      answer: `Depending on the brief, the work can include ${capability.creates.join(', ').toLowerCase()}.`,
     },
     {
       question: `Where can ${capability.title} create value?`,
@@ -582,7 +580,7 @@ function staticCapabilityFaqs(capability) {
     },
     {
       question: `Who hires ${capability.title} services in India and worldwide?`,
-      answer: `Typical clients include ${audiences.join(', ').toLowerCase()}. Angel Creations works from Jaipur, India with organisations across India and internationally.`,
+      answer: 'It is usually commissioned by teams planning a launch, campaign, learning experience, presentation or public-facing moment. Angel Creations works from Jaipur, India with organisations across India and internationally.',
     },
     {
       question: `How much does a ${capability.title} project cost?`,
@@ -596,18 +594,14 @@ function staticCapabilityFaqs(capability) {
 }
 
 function staticExperienceFaqs(experience) {
-  const cluster = seoKeywords.parents[experience.route];
-  const domainTitles = domainRecords.filter((domain) => domain.parentRoute === experience.route).map((domain) => domain.contextualTitle);
-  const services = uniqueSeoTerms(cluster?.services?.length ? cluster.services : domainTitles, 10);
-  const audiences = cluster?.audiences || experience.applications || [];
   return [
     {
       question: `What ${experience.label} services does Angel Creations offer?`,
-      answer: `Angel Creations provides ${naturalSeoList(services)}. Each project is scoped around the audience, setting, platform and outcome rather than forcing a one-size-fits-all package.`,
+      answer: `We design and produce ${experience.label} experiences around a specific audience, setting, platform and outcome, from early prototypes through full production rather than forcing a one-size-fits-all package.`,
     },
     {
       question: `Which industries and teams can use ${experience.label}?`,
-      answer: `${experience.label} can support ${naturalSeoList(audiences)}. The strongest format depends on whether the goal is learning, visualisation, participation, commerce, storytelling or conversion.`,
+      answer: `${experience.label} can help teams teach, demonstrate, visualise, entertain or invite participation. The right format depends on the people it is for, where it will be experienced and what should happen next.`,
     },
     {
       question: `Does Angel Creations provide ${experience.label} services in Jaipur, across India and worldwide?`,
@@ -632,7 +626,7 @@ function staticDomainFaqs(domain) {
     },
     {
       question: `What ${domain.contextualTitle} services does Angel Creations provide?`,
-      answer: `Depending on the brief, the work can include ${domain.deliverables.join(', ').toLowerCase()}. Related forms include ${domain.seoKeywords.slice(4, 7).join(', ').toLowerCase()}.`,
+      answer: `Depending on the brief, the work can include ${domain.deliverables.join(', ').toLowerCase()}.`,
     },
     {
       question: `Which platforms and formats can ${domain.contextualTitle} use?`,
@@ -640,7 +634,7 @@ function staticDomainFaqs(domain) {
     },
     {
       question: `Who is ${domain.contextualTitle} for?`,
-      answer: `It is commonly relevant to ${domain.audiences.join(', ').toLowerCase()}. We shape the experience around the people who will use, watch, visit or share it.`,
+      answer: 'It is for teams who need people to understand, explore, learn from, or act on an idea. We shape the experience around the people who will use, watch, visit or share it.',
     },
     {
       question: `Does Angel Creations offer ${domain.contextualTitle} in Jaipur, across India and worldwide?`,
@@ -1033,12 +1027,9 @@ function experienceWork(experience) {
 }
 
 function experienceServiceGuideMarkup(experience) {
-  const cluster = seoKeywords.parents[experience.route];
-  if (!cluster) return '';
-  const list = (items) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   const childDomains = domainRecords.filter((domain) => domain.parentRoute === experience.route);
   const contactHref = experienceLeadHref(experience);
-  return `<section><p class="eyebrow">Service Guide · Jaipur, India & Worldwide</p><h2>${escapeHtml(cluster.headline || `${experience.label} services in India`)}</h2><p>Angel Creations is a ${escapeHtml(cluster.focus)}. From Jaipur, Rajasthan, we work with clients across India and internationally. Our ${escapeHtml(experience.label)} work spans ${escapeHtml(naturalSeoList(cluster.services.slice(0, 6)))}, shaped around the audience, platform, story and measurable next step.</p><h3>What we can build</h3><p>Popular ${escapeHtml(experience.label)} briefs include:</p>${list(cluster.services)}<h3>Who hires this expertise?</h3>${list(cluster.audiences)}<p>The right route may begin with a focused prototype, pilot, visual proof or full production plan.</p><h3>Other names for this work</h3><p>Depending on the brief, teams may also describe this expertise as:</p>${list(cluster.aliases.slice(0, 8))}<h3>Specialist ${escapeHtml(experience.label)} service pages</h3><ul>${childDomains.map((domain) => `<li><a href="${domain.route}">${escapeHtml(domain.contextualTitle)}</a></li>`).join('')}</ul>${faqFallbackMarkup(`${experience.label} FAQs`, staticExperienceFaqs(experience))}<p>Planning a project? <a href="${escapeHtml(contactHref)}">Get a free ${escapeHtml(experience.label)} project roadmap</a>.</p></section>`;
+  return `<section><h2>Specialist ${escapeHtml(experience.label)} services</h2><ul>${childDomains.map((domain) => `<li><a href="${domain.route}">${escapeHtml(domain.contextualTitle)}</a></li>`).join('')}</ul>${faqFallbackMarkup(`${experience.label} FAQs`, staticExperienceFaqs(experience))}<p>Planning a project? <a href="${escapeHtml(contactHref)}">Get a free ${escapeHtml(experience.label)} project roadmap</a>.</p></section>`;
 }
 
 function metaverseFallback(experience, previous, next) {
@@ -1168,7 +1159,7 @@ function domainDocument(domain) {
     goal: domain.subtitle,
   });
   const faqMarkup = faqFallbackMarkup(`${domain.contextualTitle} FAQs`, staticDomainFaqs(domain));
-  const fallback = `${staticNavigation()}<main><nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="${domain.parentRoute}">${escapeHtml(domain.parentLabel)}</a> / <span aria-current="page">${escapeHtml(domain.title)}</span></nav><p class="eyebrow">${escapeHtml(domain.parentLabel)} Services in India</p><h1>${escapeHtml(domain.contextualTitle)}</h1><p class="lead">${escapeHtml(domain.subtitle)}</p><p>${escapeHtml(domain.description)}</p><h2>${escapeHtml(domain.contextualTitle)} services in India</h2><p>Angel Creations provides ${escapeHtml(domain.seoFocus)} from Jaipur, Rajasthan, working with clients across India and worldwide.</p><h2>What our ${escapeHtml(domain.contextualTitle)} services can include</h2>${list(domain.deliverables)}${domain.closing ? `<p>${escapeHtml(domain.closing)}</p>` : ''}<h2>Where ${escapeHtml(domain.title)} can live</h2>${list(domain.formats)}<h2>Who ${escapeHtml(domain.title)} can serve</h2>${list(domain.audiences)}${journey}${faqMarkup}<h2>Related capabilities</h2><ul>${related.map((capability) => `<li><a href="${capability.route}">${escapeHtml(capability.title)}</a></li>`).join('')}</ul><h2>Related ${escapeHtml(domain.parentLabel)} services</h2><ul>${siblings.map((sibling) => `<li><a href="${sibling.route}">${escapeHtml(sibling.contextualTitle)}</a></li>`).join('')}</ul><p><a href="/domains/">Explore all 63 XR, animation, film and brand services</a> or <a href="${escapeHtml(contactHref)}">get a free ${escapeHtml(domain.title)} project roadmap</a>.</p></main>${staticLegalLinks()}`;
+  const fallback = `${staticNavigation()}<main><nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="${domain.parentRoute}">${escapeHtml(domain.parentLabel)}</a> / <span aria-current="page">${escapeHtml(domain.title)}</span></nav><p class="eyebrow">${escapeHtml(domain.parentLabel)} Services in India</p><h1>${escapeHtml(domain.contextualTitle)}</h1><p class="lead">${escapeHtml(domain.subtitle)}</p><p>${escapeHtml(domain.description)}</p><h2>${escapeHtml(domain.contextualTitle)} services in India</h2><h2>What our ${escapeHtml(domain.contextualTitle)} services can include</h2>${list(domain.deliverables)}${domain.closing ? `<p>${escapeHtml(domain.closing)}</p>` : ''}<h2>Where ${escapeHtml(domain.title)} can live</h2>${list(domain.formats)}<h2>Who ${escapeHtml(domain.title)} can serve</h2>${list(domain.audiences)}${journey}${faqMarkup}<h2>Related capabilities</h2><ul>${related.map((capability) => `<li><a href="${capability.route}">${escapeHtml(capability.title)}</a></li>`).join('')}</ul><h2>Related ${escapeHtml(domain.parentLabel)} services</h2><ul>${siblings.map((sibling) => `<li><a href="${sibling.route}">${escapeHtml(sibling.contextualTitle)}</a></li>`).join('')}</ul><p><a href="/domains/">Explore all 63 XR, animation, film and brand services</a> or <a href="${escapeHtml(contactHref)}">get a free ${escapeHtml(domain.title)} project roadmap</a>.</p></main>${staticLegalLinks()}`;
   return documentShell({ title: domain.seoTitle, description: domain.seoDescription, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: domain.seoTitle, image, imageAlt: domain.imageAlt, schema: domainSchema(domain), fallback });
 }
 
@@ -1223,8 +1214,7 @@ function domainIndexDocument() {
     const items = domainRecords.filter((domain) => domain.parentRoute === parent.route);
     return `<section><h2><a href="${parent.route}">${escapeHtml(parent.label)} services</a></h2><p>${escapeHtml(parent.summary)}</p><ul>${items.map((domain) => `<li><a href="${domain.route}">${escapeHtml(domain.contextualTitle)}</a> — ${escapeHtml(domain.subtitle)}</li>`).join('')}</ul></section>`;
   }).join('');
-  const popular = `<nav aria-labelledby="static-popular-searches"><p class="eyebrow">Popular Service Searches</p><h2 id="static-popular-searches">Start with a high-demand service</h2><ul>${seoKeywords.popularSearches.map((item) => `<li><a href="${item.route}">${escapeHtml(item.label)}</a></li>`).join('')}</ul></nav>`;
-  const fallback = `${staticNavigation()}<main><p class="eyebrow">XR, Animation, VFX & Film Services in India</p><h1>Every domain. Every world we can build.</h1><p>Explore ${domainRecords.length} specialised services from a Jaipur-based studio working across India and worldwide—covering metaverse development, mixed reality, VR, AR and WebAR, 2D and 3D animation, VFX, brand films, ad campaigns, film and video production.</p>${popular}${groups}</main>${staticLegalLinks()}`;
+  const fallback = `${staticNavigation()}<main><p class="eyebrow">XR, Animation, VFX & Film Services in India</p><h1>Every domain. Every world we can build.</h1><p>Explore ${domainRecords.length} specialised services from a Jaipur-based studio working across India and worldwide—covering metaverse development, mixed reality, VR, AR and WebAR, 2D and 3D animation, VFX, brand films, ad campaigns, film and video production.</p>${groups}</main>${staticLegalLinks()}`;
   return documentShell({
     title: metadata.title || '63 XR, Animation, Film & Brand Services | Angel Creations',
     description: metadata.description || 'Explore 63 specialist services across VR, AR, metaverse, animation, brand campaigns and media production. Compare deliverables and start your project.',
@@ -1259,9 +1249,8 @@ function capabilityDocument(capability) {
   const specialistMarkup = specialistDomains.length
     ? `<h2>${escapeHtml(capability.title)} services by domain</h2><ul>${specialistDomains.map((domain) => `<li><a href="${domain.route}">${escapeHtml(domain.contextualTitle)}</a> — ${escapeHtml(domain.subtitle)}</li>`).join('')}</ul>`
     : '';
-  const cluster = seoKeywords.capabilities[capability.route];
   const faqMarkup = faqFallbackMarkup(`Before you brief ${capability.title}`, staticCapabilityFaqs(capability));
-  const fallback = `${staticNavigation()}<main><p class="eyebrow">${escapeHtml(capability.eyebrow)}</p><h1>${escapeHtml(capability.title)}</h1><p>${escapeHtml(description)}</p>${cluster ? `<p>Angel Creations provides ${escapeHtml(cluster.focus)} from Jaipur, India for ${escapeHtml(cluster.audiences.join(', ').toLowerCase())} across India and worldwide.</p><p>Depending on the brief, clients may also describe this expertise as ${escapeHtml(cluster.aliases.slice(0, 4).join(', ').toLowerCase())}.</p>` : ''}<h2>What our ${escapeHtml(capability.title)} services create</h2><p>A focused toolkit for stories, spaces and experiences.</p>${list(capability.creates)}<h2>Where ${escapeHtml(capability.title)} creates value</h2><p>Formats and settings where this craft can help people learn, explore, decide and connect.</p>${list(capability.applications)}${specialistMarkup}${faqMarkup}<h2>From the archive</h2><p>Explore all 47 productions in the <a href="/works/">XR, animation, VFX and film Works archive</a>.</p><p>Ready to begin? <a href="${escapeHtml(contactHref)}">Get a free project roadmap</a>.</p></main>${staticLegalLinks()}`;
+  const fallback = `${staticNavigation()}<main><p class="eyebrow">${escapeHtml(capability.eyebrow)}</p><h1>${escapeHtml(capability.title)}</h1><p>${escapeHtml(description)}</p><h2>What our ${escapeHtml(capability.title)} services create</h2><p>A focused toolkit for stories, spaces and experiences.</p>${list(capability.creates)}<h2>Where ${escapeHtml(capability.title)} creates value</h2><p>Formats and settings where this craft can help people learn, explore, decide and connect.</p>${list(capability.applications)}${specialistMarkup}${faqMarkup}<h2>From the archive</h2><p>Explore all 47 productions in the <a href="/works/">XR, animation, VFX and film Works archive</a>.</p><p>Ready to begin? <a href="${escapeHtml(contactHref)}">Get a free project roadmap</a>.</p></main>${staticLegalLinks()}`;
   return documentShell({ title, description, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: shareTitle, image, imageAlt, schema: capabilitySchema(capability), fallback });
 }
 

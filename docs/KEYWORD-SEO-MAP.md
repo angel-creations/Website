@@ -20,7 +20,7 @@
 | Parent keyword clusters | 7 × 20 phrases |
 | Capability keyword clusters | 145 phrases (17–19 per capability) |
 | FAQ pages / questions | 78 / 453 |
-| Popular-search pathways on `/domains/` | 12 |
+| Popular-search pathways retained in code/discovery files | 12 |
 | Sitemap page URLs / image URLs | 85 / 85 |
 | `llms.txt` | 38,007 bytes; 81 unique canonical links |
 
@@ -48,7 +48,7 @@ The shared source of truth is `src/data/seoKeywords.json`, consumed by `src/util
 | `/about/` | About the Jaipur-based XR, animation, VFX and film studio | About Our XR, Animation & Film Studio \| Angel Creations | Studio credibility, disciplines, sectors, Jaipur HQ and Braintree UK desk |
 | `/works/` | XR, animation, VFX and film portfolio | XR, Animation, VFX & Film Portfolio \| Angel Creations | 47 productions; VFX breakdowns, 2D/3D animation, architectural visualisation, commercials, live events |
 | `/contact/` | Start a project enquiry | Start a Project Enquiry \| Angel Creations | Page restored in full to the original enquiry wizard at the owner’s request (no keyword-pass copy, no FAQ schema) |
-| `/domains/` | Find XR, animation, VFX, brand and film services in India | XR, Animation & Film Services in India \| Angel Creations | 63 searchable specialist services, aliases, formats, audiences, deliverables and 12 popular searches |
+| `/domains/` | Find XR, animation, VFX, brand and film services in India | XR, Animation & Film Services in India \| Angel Creations | 63 searchable specialist services with code-level alias, format, audience and deliverable matching |
 
 ## Parent service keyword map
 
@@ -77,9 +77,9 @@ The shared source of truth is `src/data/seoKeywords.json`, consumed by `src/util
 
 ## Popular-search pathways
 
-These are visible, crawlable shortcuts on `/domains/` and in `llms.txt`; each points to the single most relevant landing page.
+These pathways are retained in source data and `llms.txt` for discovery/search matching; they are no longer rendered as a visible shortcut block on `/domains/`. Each points to the single most relevant landing page.
 
-| Search phrase shown to users | Target URL |
+| Search phrase retained in code/discovery data | Target URL |
 |---|---|
 | Metaverse development company in India | `/metaverse/` |
 | VR training simulator development | `/virtual-reality/training-and-simulation/` |

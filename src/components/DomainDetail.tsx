@@ -187,10 +187,6 @@ export function DomainDetail({ domain }: { domain: DomainRecord }): JSX.Element 
               the creative idea to the audience, the setting and the production system—so the experience is not only
               striking, but clear, usable and ready for the real world.
             </p>
-            <p>
-              Angel Creations provides {domain.seoFocus} from Jaipur, Rajasthan, working with clients
-              across India and worldwide.
-            </p>
             <p>{domain.parent.summary}</p>
             {domain.closing && <blockquote>{domain.closing}</blockquote>}
           </div>

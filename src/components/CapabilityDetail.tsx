@@ -5,7 +5,6 @@ import { capabilityFaqs } from '../data/leadFaqs';
 import { LeadCtaBand } from './LeadCtaBand';
 import { cleanArchiveTitle } from '../utils/archiveCopy';
 import { buildContactHref, disciplineForCapabilityRoute, trackLeadEvent } from '../utils/leads';
-import { capabilitySeoCluster } from '../utils/seoKeywords';
 
 type VideoRecord = {
   id: string;
@@ -47,7 +46,6 @@ export function CapabilityDetail({ capability, includeHero = true }: { capabilit
   const specialistDomains = (capability.domainRoutes ?? [])
     .map(domainForRoute)
     .filter((domain): domain is NonNullable<typeof domain> => Boolean(domain));
-  const seoCluster = capabilitySeoCluster(capability.route);
   const contactHref = buildContactHref({
     discipline: disciplineForCapabilityRoute(capability.route),
     intent: 'project-roadmap',
@@ -108,18 +106,6 @@ export function CapabilityDetail({ capability, includeHero = true }: { capabilit
           <div>
             <h2 id={`${capability.slug}-approach`}>How we work</h2>
             <p>{capability.approach}</p>
-            {seoCluster && (
-              <>
-                <p>
-                  Angel Creations provides {seoCluster.focus} from Jaipur, India for{' '}
-                  {seoCluster.audiences.join(', ').toLowerCase()} across India and worldwide.
-                </p>
-                <p>
-                  Depending on the brief, clients may also describe this expertise as{' '}
-                  {seoCluster.aliases.slice(0, 4).join(', ').toLowerCase()}.
-                </p>
-              </>
-            )}
           </div>
         </section>
 
