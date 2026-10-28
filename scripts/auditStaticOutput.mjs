@@ -96,6 +96,11 @@ for (const file of await htmlFiles(root)) {
 rows.sort((a, b) => a.route.localeCompare(b.route));
 const sitemapXml = await readFile(join(root, 'sitemap.xml'), 'utf8');
 const sourceSitemapXml = await readFile(new URL('../public/sitemap.xml', import.meta.url), 'utf8').catch(() => '');
+const sourceRobotsTxt = await readFile(new URL('../public/robots.txt', import.meta.url), 'utf8').catch(() => '');
+const rootSitemapXml = await readFile(new URL('../sitemap.xml', import.meta.url), 'utf8').catch(() => '');
+const rootRobotsTxt = await readFile(new URL('../robots.txt', import.meta.url), 'utf8').catch(() => '');
+const sourceGoogleVerification = await readFile(new URL('../public/googleb16a568f6f3a241d.html', import.meta.url), 'utf8').catch(() => '');
+const rootGoogleVerification = await readFile(new URL('../googleb16a568f6f3a241d.html', import.meta.url), 'utf8').catch(() => '');
 const robotsTxt = await readFile(join(root, 'robots.txt'), 'utf8').catch(() => '');
 const sitemap = [...sitemapXml.matchAll(/<loc>https:\/\/angelcreations\.in([^<]+)<\/loc>/g)].map((match) => match[1]);
 async function fetchStaticFile(path) {
@@ -112,6 +117,10 @@ const [servedSitemap, servedRobots] = await Promise.all([
 ]);
 const sitemapDeliveryIssues = [
   ...(sourceSitemapXml === sitemapXml ? [] : ['public/sitemap.xml does not match the generated sitemap']),
+  ...(sourceRobotsTxt === robotsTxt ? [] : ['public/robots.txt does not match the generated robots file']),
+  ...(rootSitemapXml === sitemapXml ? [] : ['root sitemap.xml fallback does not match the generated sitemap']),
+  ...(rootRobotsTxt === robotsTxt ? [] : ['root robots.txt fallback does not match the generated robots file']),
+  ...(rootGoogleVerification === sourceGoogleVerification && rootGoogleVerification.startsWith('google-site-verification:') ? [] : ['root Search Console verification fallback does not match the public token file']),
   ...(robotsTxt.includes(`Sitemap: ${origin}/sitemap.xml`) ? [] : ['robots.txt does not reference the sitemap']),
   ...(servedSitemap.status === 200 ? [] : [`/sitemap.xml returned HTTP ${servedSitemap.status}`]),
   ...(servedSitemap.body === sitemapXml ? [] : ['/sitemap.xml response does not match the generated sitemap']),
