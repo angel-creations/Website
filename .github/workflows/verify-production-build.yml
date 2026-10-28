@@ -123,6 +123,8 @@ jobs:
 
       - name: Upload static-host screenshots
         if: always()
+        # Diagnostics only: an artifact-storage problem must never fail verification.
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: playwright-static-report
@@ -131,12 +133,13 @@ jobs:
           retention-days: 2
 
       - name: Upload deployable static site
-        # Only main consumes this artifact (the deploy job downloads it in the same
-        # run). Uploading ~55 MB for every branch push and pull request on top of the
-        # hourly schedule exhausted the account's artifact storage quota, which then
-        # failed this step and skipped deploys. Branch/PR runs still build, verify
-        # and rehearse the site above; they just do not need to retain the artifact.
+        # Best-effort snapshot for manual inspection only. The deploy job builds
+        # from source itself (see below), so production must never depend on this
+        # artifact: hourly ~55 MB uploads exhausted the account's artifact storage
+        # quota, and the resulting step failure skipped deploys while the host's
+        # git checkout had already blanked the published site.
         if: ${{ github.ref == 'refs/heads/main' }}
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: angel-creations-dist
@@ -147,8 +150,7 @@ jobs:
           # the cache policy in production.
           include-hidden-files: true
           # Rollback snapshots live on the host (the deploy script keeps its own
-          # backups); these artifacts only feed the same run's deploy job, so a
-          # short retention is enough and keeps hourly uploads within quota.
+          # backups), so a short retention is enough for these manual snapshots.
           retention-days: 2
 
 
@@ -391,7 +393,7 @@ jobs:
     # SSH credentials, host key, and rollback procedure are configured.
     if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule') && github.ref == 'refs/heads/main' && vars.HOSTINGER_DEPLOY_ENABLED == 'true' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     environment: production
     permissions:
       contents: read
@@ -399,11 +401,27 @@ jobs:
       group: hostinger-production
       cancel-in-progress: false
     steps:
-      - name: Download verified static build
-        uses: actions/download-artifact@v4
+      # Build from source instead of downloading the build-and-verify artifact.
+      # Artifact storage quota must never decide whether production gets healed:
+      # when the quota filled up, the upload step failed, this job was skipped,
+      # and the host's git checkout was left serving the raw repository (white
+      # screen). The build is deterministic (same commit, npm ci from the
+      # lockfile), `npm run build` re-runs the output verification, and
+      # build-and-verify remains the rehearsal gate via `needs`.
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          name: angel-creations-dist
-          path: dist
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build verified static site
+        run: npm run build
 
       - name: Back up and deploy dist over SSH
         shell: bash
