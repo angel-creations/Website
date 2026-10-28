@@ -17,6 +17,7 @@ const experienceMaps = JSON.parse(await readFile(new URL('../src/data/experience
 const innerHeroVisuals = JSON.parse(await readFile(new URL('../src/data/innerHeroVisuals.json', import.meta.url), 'utf8'));
 const explorerVisuals = JSON.parse(await readFile(new URL('../src/data/explorerVisuals.json', import.meta.url), 'utf8'));
 const capabilitySource = await readFile(new URL('../src/data/capabilities.ts', import.meta.url), 'utf8');
+const googleSiteVerification = await readFile(new URL('../public/googleb16a568f6f3a241d.html', import.meta.url), 'utf8');
 const dist = new URL('../dist/', import.meta.url);
 const rootBuild = await readFile(new URL('index.html', dist), 'utf8');
 const coreRoutes = new Set([
@@ -1435,6 +1436,15 @@ await Promise.all([
   writeFile(new URL('../public/sitemap.xml', import.meta.url), sitemapXml),
   writeFile(new URL('../public/robots.txt', import.meta.url), robotsTxt),
   writeFile(new URL('../public/llms.txt', import.meta.url), llmsTxt),
+  // Incident fallbacks: Hostinger's document root is a git checkout. When its
+  // GIT deployment resets public_html, Apache temporarily serves this source
+  // tree instead of dist, moving public/robots.txt and public/sitemap.xml to
+  // /public/... and returning 404 at the canonical crawler paths. Tracked root
+  // copies keep Search Console verification, robots rules and the sitemap
+  // available until the workflow restores the built site.
+  writeFile(new URL('../sitemap.xml', import.meta.url), sitemapXml),
+  writeFile(new URL('../robots.txt', import.meta.url), robotsTxt),
+  writeFile(new URL('../googleb16a568f6f3a241d.html', import.meta.url), googleSiteVerification),
 ]);
 
 console.log(`Generated ${selectedPages.length - 1} enhanced core, ${capabilityRecords.length} capability and ${domainRecords.length} domain static fallbacks, sitemap.xml, robots.txt and llms.txt.`);
