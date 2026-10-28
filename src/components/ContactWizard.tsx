@@ -453,16 +453,17 @@ export function ContactWizard(): JSX.Element {
 
     const env = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {};
     const serviceId = env.VITE_EMAILJS_SERVICE_ID?.trim();
-    const templateId = env.VITE_EMAILJS_TEMPLATE_ID?.trim();
+    const notificationTemplateId = env.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID?.trim();
+    const confirmationTemplateId = env.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID?.trim();
     const publicKey = env.VITE_EMAILJS_PUBLIC_KEY?.trim();
 
-    if (!serviceId || !templateId || !publicKey) {
+    if (!serviceId || !notificationTemplateId || !confirmationTemplateId || !publicKey) {
       setFormStatus('Direct submission is not configured yet. Please use “Open email draft” or copy your enquiry below.');
       return;
     }
 
     setIsSending(true);
-    setFormStatus('Sending your enquiry securely…');
+    setFormStatus('Sending your enquiry…');
     const params = new URLSearchParams(window.location.search);
     const intent = params.get('intent')?.slice(0, 80) || '';
     const source = params.get('source')?.slice(0, 240) || window.location.pathname;
@@ -475,13 +476,28 @@ export function ContactWizard(): JSX.Element {
       `Source route: ${source}`,
     ].filter(Boolean);
 
+    const sendEmail = async (templateId: string, templateParams: Record<string, string>): Promise<void> => {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          template_params: templateParams,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`EmailJS returned HTTP ${response.status}`);
+      }
+    };
+
     try {
       captureLeadAttribution();
       const attribution = getLeadAttribution();
       const attributionLines = formatLeadAttribution(attribution);
       const answerLines = fields
-        .filter((item) => !item.optional || values[item.id].trim())
-        .map((item) => `${item.name}: ${values[item.id].trim()}`);
+        .map((item) => `${item.name}: ${values[item.id].trim() || 'Not provided'}`);
       const message = [
         'New project enquiry from angelcreations.in',
         '',
@@ -491,59 +507,73 @@ export function ContactWizard(): JSX.Element {
         '',
         'Attribution',
         ...(attributionLines.length ? attributionLines : ['No attribution data available']),
-      ].join('\n');
-      const subject = `${intent ? `${intent.replace(/[-_]/g, ' ')} — ` : ''}New Angel Creations Project Enquiry`;
-      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          service_id: serviceId,
-          template_id: templateId,
-          user_id: publicKey,
-          template_params: {
-            to_email: 'business@angelcreations.in',
-            subject,
-            contact_name: values.name.trim(),
-            contact_email: values.email.trim(),
-            reply_to: values.email.trim(),
-            company: values.company.trim(),
-            phone: values.phone.trim(),
-            project_type: values.projectType.trim(),
-            project_description: values.description.trim(),
-            timeline: values.timeline.trim(),
-            investment: values.investment.trim(),
-            intent,
-            topic,
-            goal,
-            source_route: source,
-            first_landing_page: attribution.firstLandingPage || '',
-            last_landing_page: attribution.lastLandingPage || '',
-            referrer: attribution.referrer || '',
-            utm_source: attribution.utmSource || '',
-            utm_medium: attribution.utmMedium || '',
-            utm_campaign: attribution.utmCampaign || '',
-            utm_term: attribution.utmTerm || '',
-            utm_content: attribution.utmContent || '',
-            gclid: attribution.gclid || '',
-            fbclid: attribution.fbclid || '',
-            msclkid: attribution.msclkid || '',
-            message,
-          },
-        }),
+      ].join('\\n');
+      const notificationSubject = `${intent ? `${intent.replace(/[-_]/g, ' ')} — ` : ''}New Angel Creations Project Enquiry`;
+      const commonParams: Record<string, string> = {
+        // Exact identifiers used by the current eight-question form and saved templates.
+        name: values.name.trim(),
+        company: values.company.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        projectType: values.projectType.trim(),
+        description: values.description.trim(),
+        timeline: values.timeline.trim(),
+        investment: values.investment.trim(),
+        // Compatibility aliases for existing template variants.
+        contact_name: values.name.trim(),
+        contact_email: values.email.trim(),
+        reply_to: values.email.trim(),
+        project_type: values.projectType.trim(),
+        project_description: values.description.trim(),
+        intent,
+        topic,
+        goal,
+        source_route: source,
+        first_landing_page: attribution.firstLandingPage || '',
+        last_landing_page: attribution.lastLandingPage || '',
+        referrer: attribution.referrer || '',
+        utm_source: attribution.utmSource || '',
+        utm_medium: attribution.utmMedium || '',
+        utm_campaign: attribution.utmCampaign || '',
+        utm_term: attribution.utmTerm || '',
+        utm_content: attribution.utmContent || '',
+        gclid: attribution.gclid || '',
+        fbclid: attribution.fbclid || '',
+        msclkid: attribution.msclkid || '',
+        message,
+      };
+
+      // Send the internal notification first. Its EmailJS template should use
+      // business@angelcreations.in in To and BCC the three private Gmail inboxes.
+      await sendEmail(notificationTemplateId, {
+        ...commonParams,
+        to_email: 'business@angelcreations.in',
+        subject: notificationSubject,
+        reply_to: values.email.trim(),
       });
 
-      if (!response.ok) {
-        throw new Error(`EmailJS returned HTTP ${response.status}`);
-      }
-
+      // The enquiry is now delivered to the studio. Mark it sent before attempting
+      // the confirmation so a confirmation failure cannot cause duplicate leads.
       setSent(true);
-      setFormStatus('Thank you — your enquiry has been sent to Angel Creations. We will follow up using the email address you provided.');
+      setFormStatus('Your enquiry has been sent to Angel Creations. Sending your confirmation…');
       trackLeadEvent('generate_lead', {
         form_provider: 'emailjs',
         intent: intent || undefined,
         source_route: source,
         discipline: values.projectType || undefined,
       });
+
+      try {
+        await sendEmail(confirmationTemplateId, {
+          ...commonParams,
+          to_email: values.email.trim(),
+          subject: `${values.name.trim()}, your project enquiry with Angel Creations`,
+          reply_to: 'business@angelcreations.in',
+        });
+        setFormStatus('Thank you — your enquiry has been sent to Angel Creations, and a confirmation email has been sent to your inbox.');
+      } catch {
+        setFormStatus('Your enquiry has been sent to Angel Creations, but we could not send the confirmation email. The studio has your enquiry and can follow up using the email address you provided.');
+      }
     } catch {
       setFormStatus('We could not send your enquiry just now. Your answers are still here—please use “Open email draft” or copy the enquiry text below.');
       trackLeadEvent('lead_submit_error', {
