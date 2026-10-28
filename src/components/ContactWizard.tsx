@@ -507,7 +507,7 @@ export function ContactWizard(): JSX.Element {
         '',
         'Attribution',
         ...(attributionLines.length ? attributionLines : ['No attribution data available']),
-      ].join('\\n');
+      ].join('\n');
       const notificationSubject = `${intent ? `${intent.replace(/[-_]/g, ' ')} — ` : ''}New Angel Creations Project Enquiry`;
       const commonParams: Record<string, string> = {
         // Exact identifiers used by the current eight-question form and saved templates.
