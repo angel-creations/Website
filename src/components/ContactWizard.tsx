@@ -5,6 +5,12 @@ import {
   type ChangeEvent,
   type KeyboardEvent,
 } from 'react';
+import {
+  captureLeadAttribution,
+  formatLeadAttribution,
+  getLeadAttribution,
+  trackLeadEvent,
+} from '../utils/leads';
 
 const backIcon = '/media/icons/contact-back.png';
 const nextIcon = '/media/icons/contact-forward.png';
@@ -130,7 +136,7 @@ const fields: EnquiryField[] = [
     name: 'Email',
     category: 'Direct Email',
     label: 'What email address should our studio use to follow up?',
-    hint: 'It is included in the email draft you review at the end; the form does not send it automatically.',
+    hint: 'We will use this address to reply to your project enquiry.',
     kind: 'input',
     inputType: 'email',
     autoComplete: 'email',
@@ -241,6 +247,8 @@ export function ContactWizard(): JSX.Element {
   });
   const [attempted, setAttempted] = useState<Set<number>>(() => new Set());
   const [prepared, setPrepared] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [formStatus, setFormStatus] = useState('');
   const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
@@ -290,6 +298,7 @@ export function ContactWizard(): JSX.Element {
 
   const updateValue = (value: string): void => {
     setFormStatus('');
+    setSent(false);
     setValues((current) => ({ ...current, [field.id]: value }));
   };
 
@@ -319,6 +328,8 @@ export function ContactWizard(): JSX.Element {
 
   const reset = (): void => {
     setPrepared(false);
+    setIsSending(false);
+    setSent(false);
     setDropdownOpen(false);
     setStep(0);
     setAttempted(new Set());
@@ -431,6 +442,118 @@ export function ContactWizard(): JSX.Element {
       .map((item) => `${item.name}: ${values[item.id].trim()}`)
       .join('\n');
     void copyToClipboard(body, 'summary');
+  };
+
+  const sendEnquiry = async (): Promise<void> => {
+    if (isSending || sent) return;
+    if (honeypot.trim()) {
+      setFormStatus('Please review your enquiry and try again.');
+      return;
+    }
+
+    const env = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {};
+    const serviceId = env.VITE_EMAILJS_SERVICE_ID?.trim();
+    const templateId = env.VITE_EMAILJS_TEMPLATE_ID?.trim();
+    const publicKey = env.VITE_EMAILJS_PUBLIC_KEY?.trim();
+
+    if (!serviceId || !templateId || !publicKey) {
+      setFormStatus('Direct submission is not configured yet. Please use “Open email draft” or copy your enquiry below.');
+      return;
+    }
+
+    setIsSending(true);
+    setFormStatus('Sending your enquiry securely…');
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get('intent')?.slice(0, 80) || '';
+    const source = params.get('source')?.slice(0, 240) || window.location.pathname;
+    const topic = params.get('topic')?.slice(0, 180) || '';
+    const goal = params.get('goal')?.slice(0, 220) || '';
+    const contextLines = [
+      intent ? `Enquiry intent: ${intent}` : '',
+      topic ? `Topic: ${topic}` : '',
+      goal ? `Goal: ${goal}` : '',
+      `Source route: ${source}`,
+    ].filter(Boolean);
+
+    try {
+      captureLeadAttribution();
+      const attribution = getLeadAttribution();
+      const attributionLines = formatLeadAttribution(attribution);
+      const answerLines = fields
+        .filter((item) => !item.optional || values[item.id].trim())
+        .map((item) => `${item.name}: ${values[item.id].trim()}`);
+      const message = [
+        'New project enquiry from angelcreations.in',
+        '',
+        ...contextLines,
+        '',
+        ...answerLines,
+        '',
+        'Attribution',
+        ...(attributionLines.length ? attributionLines : ['No attribution data available']),
+      ].join('\n');
+      const subject = `${intent ? `${intent.replace(/[-_]/g, ' ')} — ` : ''}New Angel Creations Project Enquiry`;
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          template_params: {
+            to_email: 'business@angelcreations.in',
+            subject,
+            from_name: values.name.trim(),
+            from_email: values.email.trim(),
+            reply_to: values.email.trim(),
+            company: values.company.trim(),
+            phone: values.phone.trim(),
+            project_type: values.projectType.trim(),
+            project_description: values.description.trim(),
+            timeline: values.timeline.trim(),
+            investment: values.investment.trim(),
+            intent,
+            topic,
+            goal,
+            source_route: source,
+            first_landing_page: attribution.firstLandingPage || '',
+            last_landing_page: attribution.lastLandingPage || '',
+            referrer: attribution.referrer || '',
+            utm_source: attribution.utmSource || '',
+            utm_medium: attribution.utmMedium || '',
+            utm_campaign: attribution.utmCampaign || '',
+            utm_term: attribution.utmTerm || '',
+            utm_content: attribution.utmContent || '',
+            gclid: attribution.gclid || '',
+            fbclid: attribution.fbclid || '',
+            msclkid: attribution.msclkid || '',
+            message,
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`EmailJS returned HTTP ${response.status}`);
+      }
+
+      setSent(true);
+      setFormStatus('Thank you — your enquiry has been sent to Angel Creations. We will follow up using the email address you provided.');
+      trackLeadEvent('generate_lead', {
+        form_provider: 'emailjs',
+        intent: intent || undefined,
+        source_route: source,
+        discipline: values.projectType || undefined,
+      });
+    } catch {
+      setFormStatus('We could not send your enquiry just now. Your answers are still here—please use “Open email draft” or copy the enquiry text below.');
+      trackLeadEvent('lead_submit_error', {
+        form_provider: 'emailjs',
+        intent: intent || undefined,
+        source_route: source,
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const setInputRef = (element: HTMLInputElement | null): void => {
@@ -704,8 +827,7 @@ export function ContactWizard(): JSX.Element {
                   Let’s build what doesn’t exist yet.
                 </h1>
                 <p className="ac-studio-subtitle">
-                  Complete our 8-step brief below, or contact the studio directly. At the end,
-                  review the pre-filled email and send it yourself.
+                  Complete our 8-step brief below and send your project enquiry directly to the studio, or contact us using the details below.
                 </p>
               </div>
 
@@ -747,6 +869,11 @@ export function ContactWizard(): JSX.Element {
 
                 {prepared ? (
                   <section className="contact-prepared" aria-labelledby="enquiry-ready-title">
+                    {formStatus && (
+                      <p className={`contact-send-status${sent ? ' is-success' : ''}`} role="status" aria-live="polite">
+                        {formStatus}
+                      </p>
+                    )}
                     <div className="contact-prepared__header">
                       <div>
                         <p className="contact-prepared__eyebrow">
@@ -791,7 +918,19 @@ export function ContactWizard(): JSX.Element {
                     </dl>
 
                     <div className="contact-prepared__actions">
-                      <a className="contact-prepared__send" href={createMailto(values)}>
+                      {!sent ? (
+                        <button
+                          className="contact-prepared__send"
+                          type="button"
+                          onClick={() => void sendEnquiry()}
+                          disabled={isSending}
+                        >
+                          {isSending ? 'Sending enquiry…' : 'Send enquiry'} <span aria-hidden="true">↗</span>
+                        </button>
+                      ) : (
+                        <span className="contact-prepared__send" aria-label="Enquiry sent">✓ Enquiry sent</span>
+                      )}
+                      <a className="contact-prepared__edit" href={createMailto(values)}>
                         Open email draft <span aria-hidden="true">↗</span>
                       </a>
                       <button
