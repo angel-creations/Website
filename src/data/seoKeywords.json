@@ -1,0 +1,586 @@
+{
+  "organization": {
+    "focus": "XR, animation, VFX and film studio in India",
+    "aliases": [
+      "immersive technology company in India",
+      "XR development company in India",
+      "virtual reality company in India",
+      "augmented reality company in India",
+      "mixed reality company in India",
+      "metaverse development company in India",
+      "2D and 3D animation company in India",
+      "animation and VFX studio in Jaipur",
+      "film and video production company in Jaipur",
+      "immersive experience studio"
+    ],
+    "services": [
+      "virtual reality development",
+      "augmented reality development",
+      "mixed reality development",
+      "metaverse development",
+      "virtual world development",
+      "2D animation",
+      "3D animation",
+      "CGI animation",
+      "visual effects (VFX)",
+      "motion graphics",
+      "animated explainer videos",
+      "brand films",
+      "ad film production",
+      "corporate video production",
+      "film production",
+      "video production",
+      "post-production",
+      "immersive events",
+      "real-time 3D experiences",
+      "architectural visualisation"
+    ],
+    "audiences": [
+      "brands and marketing teams",
+      "enterprise and training teams",
+      "educators and cultural institutions",
+      "architects and real-estate teams",
+      "film, broadcast and event producers"
+    ],
+    "longTail": [
+      "hire an XR development company in India",
+      "animation and VFX studio for global brands",
+      "film and immersive experience studio in Jaipur",
+      "AR VR MR development services in India",
+      "metaverse animation and film production company"
+    ],
+    "locations": [
+      "Jaipur, Rajasthan, India",
+      "India",
+      "Braintree, United Kingdom",
+      "United Kingdom",
+      "Worldwide"
+    ]
+  },
+  "parents": {
+    "/metaverse/": {
+      "label": "Metaverse",
+      "focus": "metaverse development company in India",
+      "headline": "Metaverse development services in India & worldwide",
+      "aliases": [
+        "metaverse development services",
+        "virtual world development company",
+        "3D virtual world development",
+        "metaverse platform development",
+        "virtual event platform development",
+        "virtual workspace development",
+        "metaverse consulting services",
+        "immersive virtual experience development",
+        "metaverse development studio in Jaipur"
+      ],
+      "services": [
+        "virtual worlds",
+        "virtual events",
+        "virtual product showcases",
+        "virtual marketplaces",
+        "virtual education",
+        "virtual workspaces",
+        "virtual brand experiences",
+        "metaverse games"
+      ],
+      "audiences": [
+        "brands and cultural institutions",
+        "event and entertainment producers",
+        "education and enterprise teams",
+        "communities and creators",
+        "retail and commerce teams"
+      ],
+      "longTail": [
+        "metaverse development services for brands",
+        "virtual world development for events",
+        "build a virtual product showcase",
+        "hire metaverse developers in India",
+        "custom virtual world development company",
+        "virtual event platform development company",
+        "metaverse solutions for education",
+        "metaverse development company in Jaipur"
+      ]
+    },
+    "/mixed-reality/": {
+      "label": "Mixed Reality",
+      "focus": "mixed reality development company in India",
+      "headline": "Mixed reality & spatial computing services in India",
+      "aliases": [
+        "mixed reality development services",
+        "MR development company",
+        "mixed reality app development",
+        "spatial computing company",
+        "mixed reality solutions",
+        "holographic experience development",
+        "spatial experience development",
+        "mixed reality training solutions",
+        "MR development studio in Jaipur"
+      ],
+      "services": [
+        "mixed reality training",
+        "mixed reality education",
+        "MR architecture and design",
+        "MR remote collaboration",
+        "MR retail",
+        "MR media",
+        "MR entertainment",
+        "MR gaming"
+      ],
+      "audiences": [
+        "operations and training teams",
+        "designers and architects",
+        "educators and researchers",
+        "retail and media teams",
+        "enterprise collaboration teams"
+      ],
+      "longTail": [
+        "mixed reality training solutions for enterprises",
+        "spatial computing services in India",
+        "MR app development company in India",
+        "mixed reality for architecture and design",
+        "mixed reality remote collaboration solutions",
+        "hire mixed reality developers in India",
+        "mixed reality development company in Jaipur",
+        "holographic training experience development"
+      ]
+    },
+    "/virtual-reality/": {
+      "label": "Virtual Reality",
+      "focus": "virtual reality development company in India",
+      "headline": "Virtual reality development services in India & worldwide",
+      "aliases": [
+        "VR development company",
+        "VR development services",
+        "VR app development company",
+        "virtual reality solutions",
+        "VR simulation development",
+        "VR training development",
+        "virtual reality content development",
+        "VR experience development studio",
+        "VR development company in Jaipur"
+      ],
+      "services": [
+        "VR training and simulation",
+        "VR education",
+        "VR for healthcare",
+        "VR architectural visualisation",
+        "VR gaming",
+        "VR content development",
+        "VR video conferencing",
+        "VR marketing and branding"
+      ],
+      "audiences": [
+        "training and safety teams",
+        "educators and cultural institutions",
+        "healthcare and research teams",
+        "architects and real-estate teams",
+        "entertainment and brand teams"
+      ],
+      "longTail": [
+        "VR training simulator development company",
+        "virtual reality training solutions in India",
+        "VR development services for healthcare",
+        "VR architectural walkthrough services",
+        "hire VR developers in India",
+        "custom VR app development company",
+        "VR development company in Jaipur",
+        "immersive VR learning solutions"
+      ]
+    },
+    "/augment-reality/": {
+      "label": "Augmented Reality",
+      "focus": "augmented reality development company in India",
+      "headline": "Augmented reality & WebAR development services in India",
+      "aliases": [
+        "AR development company",
+        "AR app development company",
+        "augmented reality development services",
+        "WebAR development services",
+        "augmented reality solutions",
+        "mobile AR app development",
+        "AR experience development",
+        "industrial AR solutions",
+        "AR development company in Jaipur"
+      ],
+      "services": [
+        "WebAR experiences",
+        "mobile AR applications",
+        "industrial AR",
+        "AR retail",
+        "AR navigation",
+        "AR tourism and travel",
+        "AR marketing",
+        "AR education and healthcare"
+      ],
+      "audiences": [
+        "retail and consumer brands",
+        "industrial and field-service teams",
+        "tourism and cultural organisations",
+        "educators and healthcare teams",
+        "media and entertainment producers"
+      ],
+      "longTail": [
+        "WebAR development company in India",
+        "AR app development services for retail",
+        "industrial augmented reality solutions",
+        "AR product visualisation services",
+        "AR navigation app development",
+        "hire AR developers in India",
+        "augmented reality development company in Jaipur",
+        "AR marketing campaign development"
+      ]
+    },
+    "/animation/": {
+      "label": "Animation",
+      "focus": "2D and 3D animation studio in India",
+      "headline": "2D, 3D animation, CGI & VFX services in India",
+      "aliases": [
+        "animation company in India",
+        "animation studio in India",
+        "3D animation company",
+        "2D animation studio",
+        "CGI animation services",
+        "VFX studio in India",
+        "animated explainer video company",
+        "character animation studio",
+        "motion graphics studio",
+        "animation studio in Jaipur"
+      ],
+      "services": [
+        "2D animation",
+        "3D animation",
+        "character animation",
+        "motion graphics",
+        "visual effects (VFX)",
+        "animated explainer videos",
+        "concept development",
+        "pre-visualisation",
+        "interactive animation",
+        "AR animation"
+      ],
+      "audiences": [
+        "brands and product teams",
+        "film and episodic producers",
+        "educators and publishers",
+        "game and XR teams",
+        "agencies and marketing teams"
+      ],
+      "longTail": [
+        "3D animation services for brands",
+        "2D animated explainer video company",
+        "3D product animation services",
+        "character animation studio in India",
+        "VFX services for films and commercials",
+        "hire 3D animators in India",
+        "animation and VFX studio in Jaipur",
+        "CGI product visualisation services"
+      ]
+    },
+    "/brand-advertisement/": {
+      "label": "Brand Advertisement",
+      "focus": "brand film and ad campaign production company in India",
+      "headline": "Brand films, ad campaigns & product launch content",
+      "aliases": [
+        "brand advertisement agency",
+        "ad film production company",
+        "brand campaign agency",
+        "brand film production company",
+        "commercial video production",
+        "product launch video production",
+        "digital campaign production",
+        "immersive brand activation agency",
+        "brand film company in Jaipur"
+      ],
+      "services": [
+        "brand campaigns",
+        "digital campaigns",
+        "product launches",
+        "brand films",
+        "explainer communication",
+        "social and digital content",
+        "immersive brand activations",
+        "virtual product showcases"
+      ],
+      "audiences": [
+        "founders and marketing leaders",
+        "consumer and enterprise brands",
+        "product launch teams",
+        "agencies and media partners",
+        "cultural and destination brands"
+      ],
+      "longTail": [
+        "ad film production company in India",
+        "brand film production services in Jaipur",
+        "product launch film production",
+        "digital ad campaign production company",
+        "immersive brand activation services",
+        "commercial video production for brands",
+        "social media brand film production",
+        "hire a brand film studio in India"
+      ]
+    },
+    "/media-production/": {
+      "label": "Media Production",
+      "focus": "film and video production company in Jaipur, India",
+      "headline": "Film, corporate video & media production services",
+      "aliases": [
+        "video production company in Jaipur",
+        "film production company in India",
+        "corporate video production company",
+        "ad film production house",
+        "commercial video production company",
+        "live event production company",
+        "post-production services",
+        "television production services",
+        "media production company in Jaipur"
+      ],
+      "services": [
+        "video production",
+        "film production",
+        "television production",
+        "animation production",
+        "photography",
+        "live event production",
+        "audio production",
+        "post-production",
+        "scriptwriting and storyboarding",
+        "media consulting"
+      ],
+      "audiences": [
+        "brands and institutions",
+        "producers and broadcasters",
+        "event organisers",
+        "agencies and independent creators",
+        "corporate communication teams"
+      ],
+      "longTail": [
+        "corporate video production company in Jaipur",
+        "film production services in India",
+        "commercial video production in Jaipur",
+        "live event video production services",
+        "post-production studio in India",
+        "hire a video production company in Jaipur",
+        "television production services in India",
+        "scriptwriting and storyboarding services"
+      ]
+    }
+  },
+  "capabilities": {
+    "/capabilities/brand/": {
+      "focus": "brand strategy, brand films and ad campaign services",
+      "aliases": [
+        "brand film production",
+        "advertising campaign services",
+        "product launch films",
+        "branded content production",
+        "commercial film production",
+        "immersive brand activations",
+        "AR and VR brand marketing"
+      ],
+      "services": ["brand strategy", "campaign creative", "brand films", "product showcases", "AR marketing", "VR brand experiences"],
+      "audiences": ["founders", "marketing leaders", "product teams", "agencies"],
+      "longTail": ["brand film production company in India", "product launch campaign production", "immersive brand activation services", "AR and VR marketing experiences"]
+    },
+    "/capabilities/design/": {
+      "focus": "spatial experience and immersive design studio",
+      "aliases": [
+        "spatial design services",
+        "experience design studio",
+        "3D environment design",
+        "virtual world design",
+        "immersive interface design",
+        "architectural visualisation design",
+        "spatial storytelling"
+      ],
+      "services": ["spatial design", "visual design", "experience design", "architecture-led digital experiences", "virtual environments", "interactive interfaces"],
+      "audiences": ["architects", "retail brands", "cultural institutions", "product and experience teams"],
+      "longTail": ["spatial experience design company in India", "virtual world design services", "immersive environment design studio", "3D architectural visualisation services"]
+    },
+    "/capabilities/content/": {
+      "focus": "immersive content production company",
+      "aliases": [
+        "VR content production",
+        "mixed reality content creation",
+        "interactive content production",
+        "immersive media production",
+        "animated explainer content",
+        "spatial content production",
+        "360 and interactive video content"
+      ],
+      "services": ["VR content", "MR content", "animation", "film", "explainer videos", "interactive media"],
+      "audiences": ["brands", "educators", "event producers", "broadcasters", "experience teams"],
+      "longTail": ["VR content development company in India", "immersive content production services", "interactive explainer video production", "mixed reality content creation services"]
+    },
+    "/capabilities/film/": {
+      "focus": "film and video production services in India",
+      "aliases": [
+        "corporate film production",
+        "commercial film production",
+        "television production",
+        "live event filming",
+        "video post-production",
+        "scriptwriting and storyboarding",
+        "cinematic video production"
+      ],
+      "services": ["film production", "video production", "television production", "photography", "live events", "audio and post-production"],
+      "audiences": ["brands", "broadcasters", "institutions", "event organisers", "independent producers"],
+      "longTail": ["corporate video production services in Jaipur", "film production company in India", "commercial film production services", "video post-production studio in India"]
+    },
+    "/capabilities/animation-3d/": {
+      "focus": "2D, 3D animation, CGI and VFX services in India",
+      "aliases": [
+        "3D animation services",
+        "2D animation services",
+        "CGI animation studio",
+        "VFX services",
+        "character animation",
+        "motion graphics services",
+        "3D product animation",
+        "animated explainer videos"
+      ],
+      "services": ["concept development", "pre-visualisation", "2D animation", "3D animation", "character animation", "motion graphics", "VFX"],
+      "audiences": ["brands", "film producers", "product teams", "educators", "game and XR teams"],
+      "longTail": ["3D product animation services in India", "2D explainer video production company", "character animation studio in India", "VFX studio in Jaipur"]
+    },
+    "/capabilities/digital/": {
+      "focus": "interactive digital experience development",
+      "aliases": [
+        "interactive experience development",
+        "virtual platform development",
+        "digital world development",
+        "virtual marketplace development",
+        "virtual learning experiences",
+        "spatial collaboration platforms",
+        "interactive media development"
+      ],
+      "services": ["virtual worlds", "virtual marketplaces", "virtual education", "virtual workspaces", "AR navigation", "remote collaboration"],
+      "audiences": ["enterprise teams", "educators", "commerce brands", "cultural institutions", "event producers"],
+      "longTail": ["interactive digital experience company in India", "virtual marketplace development services", "virtual workspace development company", "immersive learning platform development"]
+    },
+    "/capabilities/experiences/": {
+      "focus": "immersive experience and event production company",
+      "aliases": [
+        "immersive event production",
+        "virtual event production",
+        "experiential activation production",
+        "interactive installation services",
+        "virtual product showcase production",
+        "live spatial experiences",
+        "immersive entertainment production"
+      ],
+      "services": ["virtual events", "virtual worlds", "product showcases", "live event production", "immersive entertainment", "spatial activations"],
+      "audiences": ["brands", "event organisers", "cultural institutions", "retail teams", "entertainment producers"],
+      "longTail": ["immersive event production company in India", "virtual event production services", "interactive brand activation production", "virtual product showcase development"]
+    },
+    "/capabilities/creative-technology/": {
+      "focus": "XR development and creative technology company in India",
+      "aliases": [
+        "XR development company",
+        "creative technology studio",
+        "spatial computing development",
+        "real-time 3D development",
+        "Unity and Unreal experience development",
+        "AR VR MR development services",
+        "immersive technology solutions",
+        "interactive 3D development"
+      ],
+      "services": ["metaverse development", "VR development", "AR development", "MR development", "real-time 3D", "interactive simulations"],
+      "audiences": ["enterprise innovation teams", "training teams", "brands", "architects", "educators"],
+      "longTail": ["XR development services in India", "AR VR MR development company in Jaipur", "real-time 3D experience development", "spatial computing solutions for enterprises"]
+    }
+  },
+  "domainParentTerms": {
+    "/metaverse/": {
+      "short": "metaverse",
+      "provider": "metaverse development company",
+      "serviceSuffixes": ["development services", "solutions", "development company in India", "development studio in Jaipur"],
+      "synonyms": ["virtual world", "3D virtual environment", "immersive virtual experience"]
+    },
+    "/mixed-reality/": {
+      "short": "MR",
+      "provider": "mixed reality development company",
+      "serviceSuffixes": ["development services", "solutions", "app development", "development company in India", "development studio in Jaipur"],
+      "synonyms": ["spatial computing", "holographic experience", "physical-digital experience"]
+    },
+    "/virtual-reality/": {
+      "short": "VR",
+      "provider": "virtual reality development company",
+      "serviceSuffixes": ["development services", "solutions", "app development", "development company in India", "development studio in Jaipur"],
+      "synonyms": ["immersive VR", "virtual reality experience", "VR simulation"]
+    },
+    "/augment-reality/": {
+      "short": "AR",
+      "provider": "augmented reality development company",
+      "serviceSuffixes": ["development services", "solutions", "app development", "development company in India", "development studio in Jaipur"],
+      "synonyms": ["WebAR", "mobile AR", "augmented reality experience"]
+    },
+    "/animation/": {
+      "short": "animation",
+      "provider": "animation studio",
+      "serviceSuffixes": ["services", "production services", "studio in India", "studio in Jaipur", "company in India"],
+      "synonyms": ["animated video production", "CGI animation", "motion design"]
+    },
+    "/brand-advertisement/": {
+      "short": "brand campaign",
+      "provider": "brand film and campaign studio",
+      "serviceSuffixes": ["production services", "company in India", "studio in Jaipur", "agency services"],
+      "synonyms": ["advertising campaign", "brand film", "branded content"]
+    },
+    "/media-production/": {
+      "short": "media production",
+      "provider": "film and video production company",
+      "serviceSuffixes": ["services", "production company in India", "production company in Jaipur", "production house"],
+      "synonyms": ["film production", "video production", "media production"]
+    }
+  },
+  "domainOverrides": {
+    "/metaverse/virtual-worlds/": ["custom virtual world development", "3D virtual space development", "persistent virtual environment development"],
+    "/metaverse/virtual-events/": ["virtual event platform development", "3D virtual conference platform", "metaverse event production"],
+    "/metaverse/virtual-brand-experiences/": ["virtual brand activation", "metaverse marketing experiences", "3D brand world development"],
+    "/metaverse/virtual-product-showcases/": ["3D product showcase development", "virtual showroom development", "immersive product demonstration"],
+    "/mixed-reality/training/": ["MR training simulations", "spatial computing training", "holographic training solutions"],
+    "/mixed-reality/architecture-and-design/": ["mixed reality architectural visualisation", "spatial design review", "holographic architecture models"],
+    "/mixed-reality/remote-collaboration/": ["spatial remote collaboration", "holographic telepresence", "MR co-design platform"],
+    "/virtual-reality/training-and-simulation/": ["VR training simulator development", "virtual reality safety training", "immersive employee training", "VR simulation-based learning"],
+    "/virtual-reality/healthcare/": ["VR healthcare training", "medical VR simulation", "surgical rehearsal VR", "therapeutic VR rehabilitation"],
+    "/virtual-reality/architectural-visualization/": ["VR architectural walkthrough", "3D architectural visualisation", "real-estate VR tours", "architectural VR presentation"],
+    "/virtual-reality/vr-gaming/": ["VR game development", "virtual reality game studio", "immersive VR game development"],
+    "/virtual-reality/education/": ["VR learning solutions", "immersive education experiences", "virtual reality classroom content"],
+    "/augment-reality/industrial-ar/": ["industrial AR maintenance", "AR remote assistance", "augmented reality equipment diagnostics", "AR field-service solutions"],
+    "/augment-reality/retail/": ["AR product visualisation", "augmented reality shopping", "virtual try-on experiences", "AR retail activation"],
+    "/augment-reality/ar-navigation/": ["AR wayfinding", "indoor AR navigation", "augmented reality directions", "location-based AR guidance"],
+    "/augment-reality/ar-marketing/": ["AR advertising campaigns", "WebAR marketing", "interactive AR brand experiences"],
+    "/augment-reality/ar-education/": ["AR learning experiences", "augmented reality education apps", "interactive AR learning content"],
+    "/animation/2d-animation/": ["2D animation company in India", "2D animated video production", "hand-drawn and digital 2D animation"],
+    "/animation/3d-animation/": ["3D animation company in India", "3D product animation", "CGI animation services", "3D character animation"],
+    "/animation/visual-effects/": ["VFX company in India", "visual effects studio", "VFX services for film and commercials", "CGI and compositing services"],
+    "/animation/character-animation/": ["3D character animation", "2D character animation", "animated character performance"],
+    "/animation/motion-graphics/": ["motion graphics company", "motion design services", "animated brand graphics"],
+    "/animation/explainer-videos/": ["animated explainer video company", "2D explainer video production", "3D explainer video services", "product explainer videos"],
+    "/brand-advertisement/brand-campaigns/": ["advertising campaign production", "integrated brand campaigns", "brand launch campaigns"],
+    "/brand-advertisement/digital-campaigns/": ["digital ad film production", "online advertising campaigns", "performance creative production"],
+    "/brand-advertisement/product-launches/": ["product launch film production", "product launch campaign videos", "3D product launch experiences"],
+    "/brand-advertisement/brand-films/": ["brand film production company", "corporate brand films", "cinematic brand storytelling"],
+    "/brand-advertisement/social-and-digital-content/": ["social media video production", "digital brand content", "short-form campaign content"],
+    "/media-production/video-production/": ["video production company in Jaipur", "corporate video production", "commercial video production", "promotional video production"],
+    "/media-production/film-production/": ["film production company in India", "cinematic film production", "narrative film production services"],
+    "/media-production/television-production/": ["TV production services", "broadcast content production", "multi-camera television production"],
+    "/media-production/live-event-production/": ["live event video production", "event filming services", "concert and festival production"],
+    "/media-production/post-production/": ["video post-production services", "film editing and colour grading", "sound and finishing services"],
+    "/media-production/scriptwriting-and-storyboarding/": ["scriptwriting services", "storyboard development", "film pre-production services"]
+  },
+  "popularSearches": [
+    { "label": "Metaverse development company in India", "route": "/metaverse/" },
+    { "label": "VR training simulator development", "route": "/virtual-reality/training-and-simulation/" },
+    { "label": "VR for healthcare & medical training", "route": "/virtual-reality/healthcare/" },
+    { "label": "VR architectural walkthroughs", "route": "/virtual-reality/architectural-visualization/" },
+    { "label": "WebAR & AR app development", "route": "/augment-reality/" },
+    { "label": "AR for retail & product visualisation", "route": "/augment-reality/retail/" },
+    { "label": "Industrial AR solutions", "route": "/augment-reality/industrial-ar/" },
+    { "label": "Mixed reality training", "route": "/mixed-reality/training/" },
+    { "label": "3D animation & CGI services", "route": "/animation/3d-animation/" },
+    { "label": "Animated explainer video production", "route": "/animation/explainer-videos/" },
+    { "label": "Brand films & ad campaigns", "route": "/brand-advertisement/brand-films/" },
+    { "label": "Video production company in Jaipur", "route": "/media-production/video-production/" }
+  ]
+}

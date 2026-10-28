@@ -10,7 +10,7 @@ const root = new URL('../', import.meta.url).pathname;
 const dist = join(root, 'dist');
 const previewBase = process.env.PREVIEW_BASE || 'http://127.0.0.1:4174';
 const productionOrigin = 'https://angelcreations.in';
-const reportDate = '2026-10-19';
+const reportDate = new Date().toISOString().slice(0, 10);
 const productionQaFile = 'docs/audits/PRODUCTION-QA-2026-10-19.json';
 let productionQa = null;
 try {
@@ -359,8 +359,8 @@ for (const route of routes) {
     twitterDescription: readMeta(html, 'twitter:description', 'name'),
     twitterImage: readMeta(html, 'twitter:image', 'name'),
     twitterImageAlt: readMeta(html, 'twitter:image:alt', 'name'),
-    expectedImage: routeSeo[route]?.image || '',
-    expectedShareTitle: routeSeo[route]?.shareTitle || routeSeo[route]?.title || '',
+    expectedImage: routeSeo[route]?.image || imagePath,
+    expectedShareTitle: routeSeo[route]?.shareTitle || routeSeo[route]?.title || title,
     imagePath,
   };
   socialPreviewInventory.push(preview);
@@ -368,10 +368,15 @@ for (const route of routes) {
   const expectedCanonical = `${productionOrigin}${route}`;
   if (!preview.title || !preview.description || !preview.ogTitle || !preview.ogDescription) socialIssues.push(`${route}: missing title or description metadata`);
   if (preview.canonical !== expectedCanonical || preview.ogUrl !== expectedCanonical) socialIssues.push(`${route}: canonical or og:url does not match the route`);
-  if (preview.ogType !== 'website' || preview.ogLocale !== 'en_US') socialIssues.push(`${route}: Open Graph type or locale is missing`);
+  if (preview.ogType !== 'website' || preview.ogLocale !== 'en_IN') socialIssues.push(`${route}: Open Graph type or locale is missing`);
   if (!preview.ogImage || !preview.ogImage.startsWith('https://') || preview.imagePath !== preview.expectedImage) socialIssues.push(`${route}: missing or unexpected HTTPS Open Graph image`);
   if (!preview.ogImageAlt || !preview.twitterImageAlt) socialIssues.push(`${route}: missing social image alternative text`);
-  if (preview.ogImageWidth !== '1200' || preview.ogImageHeight !== '630' || preview.ogImageType !== 'image/jpeg') socialIssues.push(`${route}: social image dimensions or MIME type are missing/incorrect`);
+  if (routeSeo[route]?.image) {
+    if (preview.ogImageWidth !== '1200' || preview.ogImageHeight !== '630' || preview.ogImageType !== 'image/jpeg') socialIssues.push(`${route}: social image dimensions or MIME type are missing/incorrect`);
+  } else {
+    const expectedImageType = imagePath.endsWith('.png') ? 'image/png' : imagePath.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
+    if (preview.ogImageType !== expectedImageType) socialIssues.push(`${route}: generated social image MIME type is missing/incorrect`);
+  }
   if (preview.twitterCard !== 'summary_large_image' || preview.twitterImage !== preview.ogImage) socialIssues.push(`${route}: Twitter card image metadata is incomplete`);
   if (preview.ogTitle !== preview.expectedShareTitle || preview.twitterTitle !== preview.expectedShareTitle) socialIssues.push(`${route}: social headline does not match route metadata`);
   const metaImageFile = imagePath ? join(dist, imagePath.replace(/^\/+/, '')) : '';
@@ -572,7 +577,7 @@ const report = {
     'Changed the About and footer Virtual Life destination from HTTP to the same HTTPS URL already used by the header.',
     'Aligned the remote Media Production slide source type with the repository asset manifest’s historical video/quicktime response; the 310 MB source was not re-fetched.',
     'Removed missing SVG font fallback URLs from the site stylesheet while retaining existing WOFF/WOFF2/TTF sources.',
-    'Added unique 1200×630 local social-preview images and per-route Open Graph/Twitter headline, description, URL, dimensions, MIME type, and alt metadata for all 21 sitemap routes.',
+    'Curated core and capability routes use unique 1200×630 social-preview images; generated domain routes use their unique domain visuals with route-specific Open Graph/Twitter metadata.',
     'Added a React render-error boundary and generated branded 403/404/410/500/502/503/504 documents; only local 404/410 path status behavior was verified.',
     'Corrected the production-build CI check to exclude the retired /360-video/ page and require the generated 404/410 documents plus sitemap exclusion.',
   ],

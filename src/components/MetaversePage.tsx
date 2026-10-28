@@ -65,7 +65,12 @@ export function MetaverseRuntime(): JSX.Element {
     };
     script.onerror = () => setMessage('Unity loader could not load.');
     document.body.appendChild(script);
-    return () => script.remove();
+    return () => {
+      script.remove();
+      // Do not let the Unity template's user-scalable=no viewport outlive
+      // the artifact — pinch zoom must keep working on the rest of the site.
+      document.querySelector('meta[data-angel-unity-mobile-viewport]')?.remove();
+    };
   }, [isMobile]);
 
   const ready = progress >= 1 && unity.current !== null;

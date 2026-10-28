@@ -3,6 +3,7 @@ import rawStories from '../data/experienceStories.json';
 import rawMaps from '../data/experienceMaps.json';
 import rawVisuals from '../data/explorerVisuals.json';
 import type { SlideExperience } from '../data/slideExperiences';
+import { domainRouteFor } from '../data/domains';
 import {
   ApplicationExplorer,
   ExperienceMap,
@@ -48,6 +49,84 @@ const explorerVisuals = rawVisuals as unknown as Record<string, RouteVisualBundl
 
 export function experienceStoryForRoute(route: string): Story | undefined {
   return stories[route];
+}
+
+function StoryItemsList({ items }: { items: string[] }): JSX.Element {
+  return (
+    <ul className="apple-capabilities-list apple-context-items">
+      {items.map((item) => (
+        <li key={item} className="apple-capabilities-list__item">
+          <span className="apple-capabilities-list__check" aria-hidden="true">
+            ✓
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function StorySectionBody({
+  section,
+  omitIntro = false,
+  omitStatement = false,
+}: {
+  section: StorySectionData;
+  omitIntro?: boolean;
+  omitStatement?: boolean;
+}): JSX.Element {
+  return (
+    <div className="apple-context-body">
+      {!omitIntro && section.intro && <p className="apple-context-lead">{section.intro}</p>}
+      {!omitStatement && section.statement && (
+        <p className="apple-context-statement">{section.statement}</p>
+      )}
+      {section.paragraphs?.map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+
+      {section.entries && section.entries.length > 0 && (
+        <ol className="apple-context-entry-list">
+          {section.entries.map((entry, index) => (
+            <li key={entry.title} className="apple-context-entry">
+              <span className="apple-context-entry__index" aria-hidden="true">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <strong>{entry.title}</strong>
+                {(entry.description || entry.statement) && (
+                  <p>{entry.description || entry.statement}</p>
+                )}
+                {entry.items && entry.items.length > 0 && (
+                  <ul className="apple-context-entry__items">
+                    {entry.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                {entry.closing && <p>{entry.closing}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+
+      {section.items && section.items.length > 0 && <StoryItemsList items={section.items} />}
+
+      {section.sequence && section.sequence.length > 0 && (
+        <ol className="apple-context-sequence" aria-label={`${section.title} sequence`}>
+          {section.sequence.map((step, index) => (
+            <li key={step}>
+              <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              {step}
+            </li>
+          ))}
+        </ol>
+      )}
+
+      {section.closing && <p className="apple-context-closing">{section.closing}</p>}
+    </div>
+  );
 }
 
 interface PillarMeta {
@@ -211,8 +290,8 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
   const section02 = story.sections[1];
   const section03 = story.sections[2];
   const section04 = story.sections[3];
-  const section05 = story.sections[4];
-  const section06 = story.sections[5];
+  const contextSections = story.sections.slice(4).filter(Boolean);
+  const section01BodyParagraphs = section01?.paragraphs?.slice(1) || [];
 
   return (
     <>
@@ -240,7 +319,7 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
 
           {/* Two-Column Editorial Dossier with Category Visual Plates */}
           <div className="apple-story-compare-grid">
-            {section01 && (
+            {section01 && section01BodyParagraphs.length > 0 && (
               <article className="apple-glass-card apple-glass-card--dossier">
                 {mapVisuals[0] && (
                   <div className="apple-dossier-visual">
@@ -258,9 +337,7 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                   </div>
                 )}
                 <div className="apple-dossier-body">
-                  <span className="apple-card-kicker">{section01.title}</span>
-                  <h3>{experience.heading}</h3>
-                  {(section01.paragraphs?.slice(1) || [experience.summary]).map((p) => (
+                  {section01BodyParagraphs.map((p) => (
                     <p key={p} style={{ marginBottom: '0.75rem' }}>
                       {p}
                     </p>
@@ -295,6 +372,9 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                       {p}
                     </p>
                   ))}
+                  {section02.items && section02.items.length > 0 && (
+                    <StoryItemsList items={section02.items} />
+                  )}
                   {section02.closing && <p>{section02.closing}</p>}
                 </div>
               </article>
@@ -311,9 +391,6 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                     What Powers {experience.label}
                   </h3>
                 </div>
-                <span className="apple-bento-block__meta">
-                  4 Core Layers · Unique Category Visuals
-                </span>
               </div>
 
               <div className="apple-pillars-grid apple-pillars-grid--visual" role="list">
@@ -327,8 +404,11 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                         isSelected ? ' is-selected' : ''
                       }`}
                       role="listitem"
+                      tabIndex={0}
+                      aria-current={isSelected || undefined}
                       onClick={() => setActivePillar(idx)}
                       onMouseEnter={() => setActivePillar(idx)}
+                      onFocus={() => setActivePillar(idx)}
                     >
                       {visual && (
                         <div className="apple-pillar-card__media">
@@ -363,40 +443,51 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
           )}
 
           {/* Section 04: Experience Layer / Core Considerations Bento */}
-          {section04?.entries && section04.entries.length > 0 && (
-            <div className="apple-bento-block">
-              <div className="apple-bento-block__head">
-                <div>
-                  <span className="apple-card-kicker">04 · {section04.title}</span>
-                  <h3 className="apple-bento-block__title">
-                    {section04.intro || section04.title}
-                  </h3>
+          {section04 &&
+            Boolean(
+              section04.entries?.length ||
+                section04.items?.length ||
+                section04.paragraphs?.length ||
+                section04.sequence?.length
+            ) && (
+              <div className="apple-bento-block">
+                <div className="apple-bento-block__head">
+                  <div>
+                    <span className="apple-card-kicker">04 · {section04.title}</span>
+                    <h3 className="apple-bento-block__title">
+                      {section04.intro || section04.title}
+                    </h3>
+                  </div>
                 </div>
-                {section06?.sequence && (
-                  <span className="apple-bento-block__meta">
-                    {section06.sequence.join(' → ')}
-                  </span>
+
+                {section04.entries && section04.entries.length > 0 ? (
+                  <>
+                    <div className="apple-values-grid" role="list">
+                      {section04.entries.map((entry, idx) => (
+                        <article key={entry.title} className="apple-value-card" role="listitem">
+                          <div className="apple-value-card__top">
+                            <span className="apple-value-card__index">
+                              {String(idx + 1).padStart(2, '0')}
+                            </span>
+                          </div>
+                          <h4 className="apple-value-card__title">{entry.title}</h4>
+                          <p className="apple-value-card__desc">
+                            {entry.description || entry.statement}
+                          </p>
+                        </article>
+                      ))}
+                    </div>
+                    {section04.closing && (
+                      <p className="apple-section04-closing">{section04.closing}</p>
+                    )}
+                  </>
+                ) : (
+                  <article className="apple-glass-card apple-section04-card">
+                    <StorySectionBody section={section04} omitIntro />
+                  </article>
                 )}
               </div>
-
-              <div className="apple-values-grid" role="list">
-                {section04.entries.slice(0, 4).map((entry, idx) => (
-                  <article key={entry.title} className="apple-value-card" role="listitem">
-                    <div className="apple-value-card__top">
-                      <span className="apple-value-card__index">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                      <span className="apple-value-card__pill">{experience.label}</span>
-                    </div>
-                    <h4 className="apple-value-card__title">{entry.title}</h4>
-                    <p className="apple-value-card__desc">
-                      {entry.description || entry.statement}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          )}
+            )}
         </div>
       </section>
 
@@ -417,7 +508,10 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
         <div id="inner-domains">
           <ApplicationExplorer
             mode={map.mode}
-            entries={section03.entries}
+            entries={section03.entries.map((entry) => ({
+              ...entry,
+              href: domainRouteFor(experience.route, entry.title),
+            }))}
             visual={routeVisuals?.hero.src}
             visuals={routeVisuals?.applications}
             kicker={`04 · ${experience.label} Domains`}
@@ -430,47 +524,53 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
         </div>
       )}
 
-      {/* 4. WHO CAN USE IT & EVOLUTION */}
-      {(section05 || section06) && (
-        <section className="apple-story-section" aria-label={`${experience.label} contexts`}>
+      {/* 4. CONTEXTS, JOURNEYS, PROCESS NOTES & EVOLUTION */}
+      {contextSections.length > 0 && (
+        <section
+          className="apple-story-section apple-context-section"
+          aria-label={`${experience.label} contexts, journeys and outcomes`}
+        >
           <div className="apple-story-container">
-            <div className="apple-story-compare-grid">
-              {section05 && (
-                <article className="apple-glass-card">
-                  <span className="apple-card-kicker">05 · {section05.title}</span>
-                  <h3>{section05.intro || 'Organizations & Teams We Support'}</h3>
-                  {section05.items && (
-                    <ul className="apple-capabilities-list" style={{ marginTop: '1rem' }}>
-                      {section05.items.map((item) => (
-                        <li key={item} className="apple-capabilities-list__item">
-                          <span className="apple-capabilities-list__check" aria-hidden="true">
-                            ✓
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              )}
+            <header className="apple-context-section__head">
+              <div className="apple-section-eyebrow">
+                <span className="apple-section-eyebrow__dot" aria-hidden="true" />
+                <span>Experience Contexts</span>
+              </div>
+              <h2>Where {experience.label} lives, works and grows</h2>
+              <p>
+                The closing chapters connect the experience to its audiences, environments,
+                creative journey and long-term value.
+              </p>
+            </header>
 
-              {section06 && (
-                <article className="apple-glass-card apple-glass-card--accent">
-                  <span className="apple-card-kicker">06 · {section06.title}</span>
-                  <h3>{section06.statement || section06.title}</h3>
-                  {section06.intro && <p style={{ marginBottom: '0.85rem' }}>{section06.intro}</p>}
-                  {section06.sequence && (
-                    <div className="apple-stage-flow-pills" style={{ marginTop: '1rem' }}>
-                      {section06.sequence.map((step, idx) => (
-                        <span key={step} className="apple-stage-flow-pill is-current">
-                          {idx + 1}. {step}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  {section06.closing && <p style={{ marginTop: '0.75rem' }}>{section06.closing}</p>}
-                </article>
-              )}
+            <div className="apple-story-compare-grid apple-context-grid">
+              {contextSections.map((section, index) => {
+                const displayHeading =
+                  section.statement && section.statement !== section.title
+                    ? section.statement
+                    : section.intro && section.intro !== section.title
+                      ? section.intro
+                      : section.title;
+
+                return (
+                  <article
+                    key={`${section.title}-${index}`}
+                    className={`apple-glass-card apple-context-card${
+                      index % 2 === 1 ? ' apple-glass-card--accent' : ''
+                    }`}
+                  >
+                    {displayHeading !== section.title && (
+                      <span className="apple-card-kicker">{section.title}</span>
+                    )}
+                    <h3>{displayHeading}</h3>
+                    <StorySectionBody
+                      section={section}
+                      omitIntro={displayHeading === section.intro}
+                      omitStatement={displayHeading === section.statement}
+                    />
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>

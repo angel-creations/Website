@@ -254,6 +254,10 @@
   gap: 0.9rem;
 }
 
+.angel-experience .apple-hero-actions :is(.apple-cta-primary, .apple-cta-secondary) {
+  font-size: 0.82rem;
+}
+
 .apple-cta-primary,
 .apple-cta-secondary {
   display: inline-flex;
@@ -3279,7 +3283,7 @@ body .angel-contact-redesign li.action_li button.next-btn img {
 
 /* ==========================================================================
    Redesigned Bottom Direct Contact Section:
-   For Customer Supports · For Customer Business · For Direct Mobile (+91-8058465733)
+   Customer Support · New Business · Direct Line (+91-8058465733)
    ========================================================================== */
 .angel-contact-redesign .ac-support-section {
   position: relative;
@@ -3779,5 +3783,1728 @@ body footer.color_creme .soical a:hover {
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* When a compare grid keeps a single dossier (e.g. Animation, whose first
+   dossier repeated the hero copy and was removed), centre the lone card
+   instead of leaving an empty column. */
+.apple-story-compare-grid:has(> article:only-child) {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+}
+
+/* Dossier cards size to their content now that the first card no longer
+   pads itself with repeated hero copy. */
+.apple-story-compare-grid {
+  align-items: start;
+}
+
+
+/* ==========================================================================
+   INNER-PAGE ENHANCEMENT PASS
+   Scroll progress + scroll-spy navigation, stage progress rail, visual
+   finale/adjacent cards, stronger definition dossier, focus states and
+   progressive scroll-reveal. Scoped to the discipline inner pages.
+   ========================================================================== */
+.apple-inner-page :focus-visible {
+  outline: 2px solid var(--route-accent, #64d2ff);
+  outline-offset: 3px;
+}
+
+.apple-reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 65;
+  pointer-events: none;
+}
+
+.apple-reading-progress > span {
+  display: block;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8)
+  );
+  box-shadow: 0 0 14px rgba(var(--route-accent-rgb, 100, 210, 255), 0.65);
+}
+
+.apple-hero-stage > .apple-hero-container {
+  z-index: 4;
+}
+
+.apple-section-jump-nav {
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.apple-section-jump-nav__link.is-active {
+  color: #ffffff;
+  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.24);
+  box-shadow: inset 0 0 0 1px rgba(var(--route-accent-rgb, 100, 210, 255), 0.35);
+}
+
+@media (min-width: 1025px) {
+  .apple-inner-page [id] {
+    scroll-margin-top: 148px;
+  }
+
+  .apple-section-jump-nav.is-floating {
+    position: fixed;
+    top: 86px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 65;
+    background: rgba(8, 11, 19, 0.84);
+    border-color: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow:
+      0 18px 42px rgba(0, 0, 0, 0.42),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  }
+}
+
+.apple-hero-visual-wrap {
+  touch-action: pan-y;
+}
+
+.apple-hero-visual-card {
+  cursor: grab;
+}
+
+.apple-hero-visual-card:active {
+  cursor: grabbing;
+}
+
+.apple-visual-stage:focus-visible {
+  outline: 2px solid var(--route-accent, #64d2ff);
+  outline-offset: 4px;
+}
+
+.apple-visual-stage__progress {
+  display: flex;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+
+.apple-visual-stage__progress > span {
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.24);
+  transition:
+    background-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.apple-visual-stage__progress > span.is-complete {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.apple-visual-stage__progress > span.is-active {
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8)
+  );
+  box-shadow: 0 0 12px rgba(var(--route-accent-rgb, 100, 210, 255), 0.55);
+}
+
+@keyframes appleWorkbenchCopyIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.apple-workbench-card__title,
+.apple-workbench-card__desc,
+.apple-capabilities-box {
+  animation: appleWorkbenchCopyIn 360ms var(--apple-ease-spring) both;
+}
+
+/* The first dossier now carries a single defining statement instead of
+   repeated hero copy, so typeset it as a definition lead. */
+.apple-inner-page:not([data-inner-route="/metaverse/"])
+  .apple-story-compare-grid
+  > .apple-glass-card--dossier:not(.apple-glass-card--accent)
+  .apple-dossier-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.apple-inner-page:not([data-inner-route="/metaverse/"])
+  .apple-story-compare-grid
+  > .apple-glass-card--dossier:not(.apple-glass-card--accent)
+  .apple-dossier-body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.35rem;
+  bottom: 1.35rem;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8)
+  );
+}
+
+.apple-inner-page:not([data-inner-route="/metaverse/"])
+  .apple-story-compare-grid
+  > .apple-glass-card--dossier:not(.apple-glass-card--accent)
+  .apple-dossier-body
+  p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* Visual finale + adjacent discipline cards */
+.apple-Finale-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.apple-adjacent-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  justify-content: flex-end;
+  min-height: 132px;
+}
+
+.apple-Finale-card__bg,
+.apple-adjacent-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition:
+    transform 450ms var(--apple-ease-spring),
+    opacity 250ms ease;
+}
+
+.apple-Finale-card__bg {
+  opacity: 0.17;
+}
+
+.apple-adjacent-card__bg {
+  opacity: 0.34;
+}
+
+.apple-Finale-card::after,
+.apple-adjacent-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.apple-Finale-card::after {
+  background: linear-gradient(
+    90deg,
+    rgba(5, 7, 12, 0.88) 0%,
+    rgba(5, 7, 12, 0.52) 58%,
+    rgba(var(--route-accent-rgb, 100, 210, 255), 0.18) 100%
+  );
+}
+
+.apple-adjacent-card::after {
+  background: linear-gradient(
+    180deg,
+    rgba(5, 7, 12, 0.2) 0%,
+    rgba(5, 7, 12, 0.88) 100%
+  );
+}
+
+.apple-Finale-card__copy,
+.apple-Finale-card__actions,
+.apple-adjacent-card > :not(.apple-adjacent-card__bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.apple-adjacent-card__dir,
+.apple-adjacent-card__title {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+}
+
+.apple-adjacent-card:hover .apple-adjacent-card__bg,
+.apple-adjacent-card:focus-visible .apple-adjacent-card__bg {
+  transform: scale(1.06);
+  opacity: 0.44;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .apple-inner-page
+    :is(
+      .apple-pillar-card--visual,
+      .apple-sector-card--visual,
+      .apple-glass-card--dossier
+    ) {
+    transition:
+      transform 220ms var(--apple-ease-spring),
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .apple-inner-page
+    :is(
+      .apple-pillar-card--visual,
+      .apple-sector-card--visual,
+      .apple-glass-card--dossier
+    ):is(:hover, :focus-visible) {
+    transform: translateY(-4px);
+    border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.45);
+    box-shadow:
+      0 22px 44px -18px rgba(0, 0, 0, 0.42),
+      0 0 32px -14px rgba(var(--route-accent-rgb, 100, 210, 255), 0.5);
+  }
+}
+
+@keyframes appleInnerReveal {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .apple-inner-page
+    :is(
+      .apple-story-header,
+      .apple-explorer-header,
+      .apple-glass-card,
+      .apple-sector-card,
+      .apple-pillar-card,
+      .apple-value-card,
+      .apple-Finale-card,
+      .apple-adjacent-card
+    ) {
+    animation: appleInnerReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 22%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-inner-page
+    :is(
+      .apple-story-header,
+      .apple-explorer-header,
+      .apple-glass-card,
+      .apple-sector-card,
+      .apple-pillar-card,
+      .apple-value-card,
+      .apple-Finale-card,
+      .apple-adjacent-card,
+      .apple-workbench-card__title,
+      .apple-workbench-card__desc,
+      .apple-capabilities-box
+    ) {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   COMPLETE STORY CONTEXTS & GLOBAL EXPERT PROCESS
+   Renders every authored story field (paragraphs, entries, items and
+   sequences) and adds the route-specific delivery process timeline.
+   ========================================================================== */
+.apple-context-section__head {
+  max-width: 820px;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.apple-context-section__head h2 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.apple-context-section__head p {
+  margin: 0;
+  font-size: clamp(1rem, 1.2vw, 1.13rem);
+  line-height: 1.65;
+}
+
+.apple-context-grid {
+  align-items: start;
+  margin-bottom: 0;
+}
+
+.apple-context-card {
+  overflow: hidden;
+}
+
+.apple-context-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8)
+  );
+  opacity: 0.78;
+}
+
+.apple-context-body {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.apple-context-body > p {
+  margin: 0;
+}
+
+.apple-context-lead {
+  font-size: 1.05rem !important;
+  font-weight: 600;
+  color: #0a0f1f !important;
+}
+
+.apple-context-statement {
+  font-size: 1.13rem !important;
+  font-weight: 650;
+  line-height: 1.45 !important;
+  color: #0a0f1f !important;
+}
+
+.apple-context-entry-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apple-context-entry {
+  display: grid;
+  grid-template-columns: 2.65rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.95rem;
+  border: 1px solid #e4e8f2;
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(var(--route-accent-rgb, 100, 210, 255), 0.07),
+      rgba(255, 255, 255, 0.78) 55%
+    ),
+    #f8faff;
+}
+
+.apple-context-entry__index {
+  display: grid;
+  place-items: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 50%;
+  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.14);
+  border: 1px solid rgba(var(--route-accent-rgb, 100, 210, 255), 0.28);
+  color: color-mix(in srgb, var(--route-accent, #38bdf8) 62%, #0a0f1f) !important;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.apple-context-entry strong {
+  display: block;
+  margin-bottom: 0.28rem;
+  color: #0a0f1f !important;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.apple-context-entry p {
+  margin: 0;
+  font-size: 0.94rem !important;
+  line-height: 1.55 !important;
+}
+
+.apple-context-entry__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apple-context-entry__items li {
+  padding: 0.36rem 0.62rem;
+  border: 1px solid #e4e8f2;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.apple-context-items {
+  margin-top: 0.15rem;
+}
+
+.apple-context-sequence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apple-context-sequence li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 0.5rem 0.78rem;
+  border: 1px solid rgba(var(--route-accent-rgb, 100, 210, 255), 0.3);
+  border-radius: 999px;
+  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.08);
+  color: #0a0f1f !important;
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.apple-context-sequence li span {
+  color: color-mix(in srgb, var(--route-accent, #38bdf8) 62%, #0a0f1f) !important;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.apple-context-closing,
+.apple-section04-closing {
+  padding-left: 1rem;
+  border-left: 3px solid var(--route-accent, #64d2ff);
+  font-weight: 600;
+  color: #0a0f1f !important;
+}
+
+.apple-section04-card {
+  max-width: 900px;
+}
+
+.apple-section04-closing {
+  max-width: 820px;
+  margin: 1.4rem 0 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.apple-process-section {
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: 96px;
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(
+      52rem 34rem at 88% -8%,
+      rgba(var(--route-accent-rgb, 100, 210, 255), 0.18),
+      transparent 62%
+    ),
+    radial-gradient(
+      38rem 28rem at -10% 55%,
+      rgba(var(--route-accent-rgb, 100, 210, 255), 0.1),
+      transparent 60%
+    ),
+    linear-gradient(160deg, #050812 0%, #09101f 52%, #05070d 100%);
+  color: #f7f9ff;
+}
+
+.apple-process-section__ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 78%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 12%,
+    black 78%,
+    transparent
+  );
+}
+
+.apple-process-container {
+  position: relative;
+  z-index: 1;
+  width: min(1340px, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+.apple-process-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.apple-process-intro {
+  position: sticky;
+  top: 118px;
+}
+
+.apple-process-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.apple-process-kicker {
+  margin: 0 0 0.85rem;
+  color: var(--route-accent, #64d2ff);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.apple-process-title {
+  max-width: 11ch;
+  margin: 0 0 1.2rem;
+  color: #ffffff;
+  font-size: clamp(2.45rem, 4.6vw, 4.35rem);
+  font-weight: 750;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.apple-process-lead {
+  margin: 0;
+  color: var(--apple-label-secondary);
+  font-size: clamp(1.04rem, 1.35vw, 1.2rem);
+  line-height: 1.68;
+  text-wrap: pretty;
+}
+
+.apple-process-expert-note {
+  margin: 1.6rem 0 0;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--route-accent, #64d2ff);
+  color: var(--apple-label-tertiary);
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.apple-process-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 50px;
+  margin-top: 2rem;
+  padding: 0 1.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: var(--route-accent, #64d2ff);
+  box-shadow:
+    0 16px 38px -12px rgba(var(--route-accent-rgb, 100, 210, 255), 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  color: #04070d;
+  font-size: 0.95rem;
+  font-weight: 750;
+  text-decoration: none;
+  transition:
+    transform 180ms var(--apple-ease-spring),
+    box-shadow 220ms ease;
+}
+
+.apple-process-cta:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 44px -12px rgba(var(--route-accent-rgb, 100, 210, 255), 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.apple-process-cta:active {
+  transform: scale(0.97);
+}
+
+.apple-process-timeline {
+  position: relative;
+  display: grid;
+  gap: 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apple-process-timeline::before {
+  content: '';
+  position: absolute;
+  top: 34px;
+  bottom: 34px;
+  left: 27px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(var(--route-accent-rgb, 100, 210, 255), 0.55) 12%,
+    rgba(255, 255, 255, 0.16) 82%,
+    transparent
+  );
+}
+
+.apple-process-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 1.1rem;
+  align-items: start;
+}
+
+.apple-process-step__marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(var(--route-accent-rgb, 100, 210, 255), 0.58);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 255, 255, 0.2), transparent 42%),
+    #0a1120;
+  box-shadow:
+    0 0 0 6px rgba(5, 8, 18, 0.86),
+    0 0 28px rgba(var(--route-accent-rgb, 100, 210, 255), 0.24);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.apple-process-step__card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.35rem, 2.4vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.035)),
+    rgba(10, 16, 31, 0.72);
+  box-shadow:
+    0 24px 50px -28px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.apple-process-step__card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8),
+    transparent 78%
+  );
+  opacity: 0.72;
+}
+
+.apple-process-step__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.45rem 1rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.apple-process-step__head span:first-child {
+  color: var(--route-accent, #64d2ff);
+}
+
+.apple-process-step__head span:last-child {
+  color: var(--apple-label-tertiary);
+  text-align: right;
+}
+
+.apple-process-step__card h3 {
+  margin: 0 0 0.7rem;
+  color: #ffffff;
+  font-size: clamp(1.28rem, 1.8vw, 1.55rem);
+  font-weight: 720;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+}
+
+.apple-process-step__card > p {
+  margin: 0;
+  color: var(--apple-label-secondary);
+  font-size: 1rem;
+  line-height: 1.66;
+}
+
+.apple-process-step__outputs {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.apple-process-step__outputs-label {
+  color: var(--apple-label-tertiary);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.apple-process-step__outputs ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.apple-process-step__outputs li {
+  padding: 0.48rem 0.72rem;
+  border: 1px solid rgba(var(--route-accent-rgb, 100, 210, 255), 0.26);
+  border-radius: 999px;
+  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.09);
+  color: #f7f9ff;
+  font-size: 0.8rem;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.apple-process-guardrails {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(3rem, 5vw, 4.5rem);
+}
+
+.apple-process-guardrail {
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.apple-process-guardrail h3 {
+  margin: 0 0 0.55rem;
+  color: #ffffff;
+  font-size: 0.96rem;
+  line-height: 1.3;
+}
+
+.apple-process-guardrail p {
+  margin: 0;
+  color: var(--apple-label-tertiary);
+  font-size: 0.88rem;
+  line-height: 1.58;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .apple-process-step__card {
+    transition:
+      transform 220ms var(--apple-ease-spring),
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .apple-process-step__card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.42);
+    box-shadow:
+      0 28px 54px -28px rgba(0, 0, 0, 0.85),
+      0 0 34px -18px rgba(var(--route-accent-rgb, 100, 210, 255), 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .apple-inner-page
+    :is(
+      .apple-context-section__head,
+      .apple-process-intro,
+      .apple-process-step__card,
+      .apple-process-guardrail
+    ) {
+    animation: appleInnerReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 22%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .apple-process-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .apple-process-intro {
+    position: static;
+    max-width: 760px;
+  }
+
+  .apple-process-title {
+    max-width: 13ch;
+  }
+
+  .apple-process-guardrails {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .apple-context-entry {
+    grid-template-columns: 2.35rem minmax(0, 1fr);
+    gap: 0.72rem;
+    padding: 0.82rem;
+    border-radius: 16px;
+  }
+
+  .apple-context-entry__index {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 0.7rem;
+  }
+
+  .apple-process-section {
+    scroll-margin-top: 76px;
+    padding: 4.5rem 0;
+  }
+
+  .apple-process-container {
+    width: calc(100% - 2rem);
+  }
+
+  .apple-process-layout {
+    gap: 2.5rem;
+  }
+
+  .apple-process-title {
+    font-size: clamp(2.2rem, 11vw, 3rem);
+  }
+
+  .apple-process-cta {
+    width: 100%;
+  }
+
+  .apple-process-timeline::before {
+    left: 23px;
+  }
+
+  .apple-process-step {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 0.72rem;
+  }
+
+  .apple-process-step__marker {
+    width: 48px;
+    height: 48px;
+    font-size: 0.74rem;
+  }
+
+  .apple-process-step__card {
+    padding: 1.08rem;
+    border-radius: 19px;
+  }
+
+  .apple-process-step__head {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .apple-process-step__head span:last-child {
+    text-align: left;
+  }
+
+  .apple-process-step__card > p {
+    font-size: 0.94rem;
+  }
+
+  .apple-process-guardrails {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-inner-page
+    :is(
+      .apple-context-section__head,
+      .apple-process-intro,
+      .apple-process-step__card,
+      .apple-process-guardrail
+    ) {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   INTERACTIVE IMMERSIVE PROCESS JOURNEY
+   Auto-guided visual stage, selectable phases, swipe/keyboard controls,
+   pointer parallax and animated phase progress.
+   ========================================================================== */
+.apple-process-section {
+  --process-pointer-x: 72%;
+  --process-pointer-y: 18%;
+  --process-tilt-x: 0deg;
+  --process-tilt-y: 0deg;
+  --process-progress: 16.66%;
+}
+
+.apple-process-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: var(--process-progress);
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8)
+  );
+  box-shadow: 0 0 18px rgba(var(--route-accent-rgb, 100, 210, 255), 0.65);
+  transition: width 620ms var(--apple-ease-spring);
+}
+
+.apple-process-section__ambient {
+  animation: appleProcessAmbientDrift 20s ease-in-out infinite alternate;
+}
+
+.apple-process-live-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  max-width: 34rem;
+  margin: 1.35rem 0 0;
+  color: var(--apple-label-tertiary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.apple-process-live-status strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.apple-process-live-status__dot {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.42rem;
+  border-radius: 50%;
+  background: var(--route-accent, #64d2ff);
+  box-shadow: 0 0 0 5px rgba(var(--route-accent-rgb, 100, 210, 255), 0.14);
+}
+
+.apple-process-section.is-guided-live .apple-process-live-status__dot {
+  animation: appleProcessPulse 1.65s ease-in-out infinite;
+}
+
+.apple-process-explorer {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+  perspective: 1200px;
+}
+
+.apple-process-stage {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 640px;
+  overflow: hidden;
+  padding: clamp(1.25rem, 2.6vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 30px;
+  background:
+    radial-gradient(
+      34rem circle at var(--process-pointer-x) var(--process-pointer-y),
+      rgba(var(--route-accent-rgb, 100, 210, 255), 0.2),
+      transparent 58%
+    ),
+    linear-gradient(150deg, rgba(14, 22, 42, 0.94), rgba(4, 7, 15, 0.98));
+  box-shadow:
+    0 34px 80px -34px rgba(0, 0, 0, 0.9),
+    0 0 54px -24px rgba(var(--route-accent-rgb, 100, 210, 255), 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transform: perspective(1200px) rotateX(var(--process-tilt-x))
+    rotateY(var(--process-tilt-y));
+  transform-style: preserve-3d;
+  transition:
+    transform 260ms var(--apple-ease-spring),
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.apple-process-stage:active {
+  cursor: grabbing;
+}
+
+.apple-process-stage__visual {
+  position: absolute;
+  inset: -4%;
+  z-index: -2;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      32rem 22rem at 82% 8%,
+      rgba(var(--route-accent-rgb, 100, 210, 255), 0.3),
+      transparent 62%
+    ),
+    #050913;
+}
+
+.apple-process-stage__visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.12)
+    translate3d(
+      calc((50% - var(--process-pointer-x)) * 0.045),
+      calc((50% - var(--process-pointer-y)) * 0.035),
+      0
+    );
+  transition:
+    opacity 900ms ease,
+    transform 900ms var(--apple-ease-spring);
+}
+
+.apple-process-stage__visual img.is-active {
+  opacity: 0.52;
+  transform: scale(1.065)
+    translate3d(
+      calc((50% - var(--process-pointer-x)) * 0.045),
+      calc((50% - var(--process-pointer-y)) * 0.035),
+      0
+    );
+  animation: appleProcessVisualIn 1200ms var(--apple-ease-spring) both;
+}
+
+.apple-process-stage__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(3, 5, 12, 0.2), rgba(3, 5, 12, 0.48) 48%, rgba(3, 5, 12, 0.92)),
+    radial-gradient(
+      28rem circle at var(--process-pointer-x) var(--process-pointer-y),
+      transparent 0%,
+      rgba(3, 5, 12, 0.2) 64%
+    );
+}
+
+.apple-process-stage__rings {
+  position: absolute;
+  top: -7rem;
+  right: -6rem;
+  width: 27rem;
+  height: 27rem;
+  opacity: 0.66;
+}
+
+.apple-process-stage__rings span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(var(--route-accent-rgb, 100, 210, 255), 0.22);
+  border-radius: 50%;
+  animation: appleProcessRingFloat 11s ease-in-out infinite alternate;
+}
+
+.apple-process-stage__rings span:nth-child(2) {
+  inset: 3.4rem;
+  border-style: dashed;
+  animation-duration: 14s;
+  animation-direction: alternate-reverse;
+}
+
+.apple-process-stage__rings span:nth-child(3) {
+  inset: 6.8rem;
+  background: radial-gradient(
+    circle,
+    rgba(var(--route-accent-rgb, 100, 210, 255), 0.14),
+    transparent 68%
+  );
+  animation-duration: 9s;
+}
+
+.apple-process-stage__ghost {
+  position: absolute;
+  right: 1rem;
+  bottom: 7.5rem;
+  max-width: 90%;
+  color: rgba(255, 255, 255, 0.045);
+  font-size: clamp(3.8rem, 7vw, 7.4rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.apple-process-stage__caption {
+  position: absolute;
+  top: 4.3rem;
+  right: 1.35rem;
+  max-width: min(18rem, 58%);
+  padding: 0.48rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(4, 8, 18, 0.58);
+  color: rgba(247, 249, 255, 0.88);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: right;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  animation: appleProcessCaptionIn 620ms var(--apple-ease-spring) both;
+}
+
+.apple-process-stage__topline {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  color: rgba(247, 249, 255, 0.72);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.apple-process-stage__topline span:first-child {
+  color: var(--route-accent, #64d2ff);
+}
+
+.apple-process-stage__panel {
+  position: relative;
+  z-index: 3;
+  max-width: 680px;
+  margin-top: auto;
+  overflow: hidden;
+  padding: clamp(1.3rem, 2.6vw, 2.1rem);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.045)),
+    rgba(5, 9, 20, 0.72);
+  box-shadow:
+    0 28px 58px -28px rgba(0, 0, 0, 0.88),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px) saturate(155%);
+  -webkit-backdrop-filter: blur(20px) saturate(155%);
+  animation: appleProcessPanelIn 620ms var(--apple-ease-spring) both;
+}
+
+.apple-process-stage__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8),
+    transparent 80%
+  );
+}
+
+.apple-process-stage__index {
+  position: absolute;
+  top: 0.4rem;
+  right: 1rem;
+  color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.13);
+  font-size: clamp(4.2rem, 7vw, 6.8rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  pointer-events: none;
+}
+
+.apple-process-stage__meta {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+  margin-bottom: 0.95rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.apple-process-stage__meta span:first-child {
+  color: var(--route-accent, #64d2ff);
+}
+
+.apple-process-stage__meta span:last-child {
+  color: var(--apple-label-tertiary);
+}
+
+.apple-process-stage__panel h3 {
+  position: relative;
+  max-width: 13ch;
+  margin: 0 0 0.8rem;
+  color: #ffffff;
+  font-size: clamp(1.65rem, 3vw, 2.55rem);
+  font-weight: 760;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+}
+
+.apple-process-stage__panel > p {
+  position: relative;
+  max-width: 62ch;
+  margin: 0;
+  color: var(--apple-label-secondary);
+  font-size: clamp(0.98rem, 1.2vw, 1.07rem);
+  line-height: 1.68;
+}
+
+.apple-process-stage__controls {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.apple-process-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 46px;
+  padding: 0.68rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(6, 10, 22, 0.66);
+  color: #f7f9ff;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 750;
+  cursor: pointer;
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  transition:
+    transform 180ms var(--apple-ease-spring),
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.apple-process-control:hover,
+.apple-process-control:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.58);
+  box-shadow: 0 14px 30px -18px rgba(var(--route-accent-rgb, 100, 210, 255), 0.75);
+}
+
+.apple-process-control:active {
+  transform: scale(0.97);
+}
+
+.apple-process-control--play {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: var(--route-accent, #64d2ff);
+  color: #04070d;
+}
+
+.apple-process-stage__segments {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.apple-process-stage__segment {
+  position: relative;
+  display: block;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.apple-process-stage__segment.is-complete {
+  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.48);
+}
+
+.apple-process-stage__segment-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--route-accent, #64d2ff),
+    var(--route-accent-secondary, #38bdf8)
+  );
+  transform-origin: left center;
+}
+
+.apple-process-section.is-guided-live .apple-process-stage__segment-fill {
+  animation: appleProcessSegmentFill 5.6s linear forwards;
+}
+
+.apple-process-selector {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.apple-process-selector__item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.85rem;
+  min-height: 96px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(8, 13, 28, 0.72);
+  color: #f7f9ff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition:
+    transform 220ms var(--apple-ease-spring),
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    opacity 220ms ease;
+}
+
+.apple-process-selector__item:hover,
+.apple-process-selector__item:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.5);
+}
+
+.apple-process-selector__item.is-active {
+  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.72);
+  background:
+    radial-gradient(
+      18rem circle at 12% 0%,
+      rgba(var(--route-accent-rgb, 100, 210, 255), 0.22),
+      transparent 62%
+    ),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04)),
+    rgba(8, 13, 28, 0.9);
+  box-shadow:
+    0 20px 42px -24px rgba(var(--route-accent-rgb, 100, 210, 255), 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+.apple-process-selector__marker {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(var(--route-accent-rgb, 100, 210, 255), 0.38);
+  border-radius: 50%;
+  background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.1);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.apple-process-selector__item.is-active .apple-process-selector__marker {
+  background: var(--route-accent, #64d2ff);
+  color: #04070d;
+  box-shadow: 0 0 24px rgba(var(--route-accent-rgb, 100, 210, 255), 0.45);
+}
+
+.apple-process-selector__item.is-complete .apple-process-selector__marker {
+  color: var(--route-accent, #64d2ff);
+}
+
+.apple-process-selector__body {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.apple-process-selector__body strong {
+  color: #ffffff;
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.apple-process-selector__body small {
+  color: var(--apple-label-tertiary);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.045em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.apple-process-selector__arrow {
+  color: var(--route-accent, #64d2ff);
+  transition: transform 220ms var(--apple-ease-spring);
+}
+
+.apple-process-selector__item:hover .apple-process-selector__arrow,
+.apple-process-selector__item:focus-visible .apple-process-selector__arrow,
+.apple-process-selector__item.is-active .apple-process-selector__arrow {
+  transform: translateX(3px);
+}
+
+.apple-process-explorer__hint {
+  margin: 0;
+  color: var(--apple-label-tertiary);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.apple-process-guardrail {
+  transition:
+    transform 220ms var(--apple-ease-spring),
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.apple-process-guardrail:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.42);
+  box-shadow:
+    0 20px 38px -26px rgba(var(--route-accent-rgb, 100, 210, 255), 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes appleProcessPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.982);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes appleProcessVisualIn {
+  from {
+    opacity: 0;
+    filter: saturate(0.82) contrast(1.04);
+  }
+  to {
+    opacity: 0.52;
+    filter: saturate(1.08) contrast(1.02);
+  }
+}
+
+@keyframes appleProcessCaptionIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appleProcessSegmentFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes appleProcessPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(var(--route-accent-rgb, 100, 210, 255), 0.16);
+  }
+  50% {
+    transform: scale(1.22);
+    box-shadow: 0 0 0 8px rgba(var(--route-accent-rgb, 100, 210, 255), 0.05);
+  }
+}
+
+@keyframes appleProcessRingFloat {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(18deg) scale(1.045);
+  }
+}
+
+@keyframes appleProcessAmbientDrift {
+  from {
+    background-position: 0 0, 0 0;
+    opacity: 0.72;
+  }
+  to {
+    background-position: 42px 24px, -28px 36px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .apple-process-stage {
+    min-height: 590px;
+  }
+}
+
+@media (max-width: 640px) {
+  .apple-process-stage {
+    min-height: 610px;
+    padding: 1rem;
+    border-radius: 22px;
+  }
+
+  .apple-process-stage__ghost {
+    right: 0.35rem;
+    bottom: 9rem;
+    font-size: 3.35rem;
+  }
+
+  .apple-process-stage__caption {
+    top: 4.7rem;
+    right: 0.9rem;
+    max-width: 62%;
+    font-size: 0.64rem;
+  }
+
+  .apple-process-stage__topline {
+    display: grid;
+    gap: 0.25rem;
+    font-size: 0.62rem;
+  }
+
+  .apple-process-stage__panel {
+    padding: 1.08rem;
+    border-radius: 19px;
+  }
+
+  .apple-process-stage__panel h3 {
+    font-size: clamp(1.55rem, 8vw, 2rem);
+  }
+
+  .apple-process-stage__panel > p {
+    font-size: 0.94rem;
+  }
+
+  .apple-process-stage__controls {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .apple-process-control {
+    min-height: 44px;
+    padding: 0.58rem 0.68rem;
+    font-size: 0.75rem;
+  }
+
+  .apple-process-selector {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.2rem 0.1rem 0.75rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+  }
+
+  .apple-process-selector__item {
+    flex: 0 0 min(82%, 320px);
+    scroll-snap-align: start;
+  }
+
+  .apple-process-explorer__hint {
+    margin-top: -0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-process-section__ambient,
+  .apple-process-stage__visual img.is-active,
+  .apple-process-stage__rings span,
+  .apple-process-stage__caption,
+  .apple-process-stage__panel,
+  .apple-process-section.is-guided-live .apple-process-live-status__dot,
+  .apple-process-section.is-guided-live .apple-process-stage__segment-fill {
+    animation: none !important;
+  }
+
+  .apple-process-stage,
+  .apple-process-stage__visual img,
+  .apple-process-selector__item,
+  .apple-process-control,
+  .apple-process-guardrail {
+    transform: none !important;
+    transition: none !important;
   }
 }

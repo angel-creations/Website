@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import type { NavigationItem } from '../types/content';
 import { getNetworkInformation, shouldAutoplayAmbientMedia } from '../utils/mediaPreferences';
-import { navigate } from '../utils/routes';
+import { navigate, navigateHomeFromStart } from '../utils/routes';
 
 const logo = '/media/logos/logo-rectangle-1.png';
 const menuVideo = '/media/videos/Main-Background-with-sound.mp4';
@@ -183,12 +183,13 @@ export function Header(): JSX.Element {
               href="/"
               className="logo"
               id="main-logo"
-              title="Angel — Digital Agency"
+              title="Angel Creations — Homepage from Metaverse"
+              aria-label="Angel Creations — go to the homepage and restart from Metaverse"
               onClick={(event) => {
                 if (!shouldUseClientNavigation(event)) return;
                 event.preventDefault();
                 closeMenu();
-                navigate('/');
+                navigateHomeFromStart();
               }}
             >
               <img src={logo} alt="Angel Creations" />

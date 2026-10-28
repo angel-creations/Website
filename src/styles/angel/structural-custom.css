@@ -64,7 +64,7 @@ html,body,html.has-scroll-smooth {margin: 0 !important; padding: 0 !important; }
 .nav-menu:hover span.line {-webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%); }
 .nav-menu:hover span.text {-webkit-transform: rotate(-90deg) translateX(-60px); -moz-transform: rotate(-90deg) translateX(-60px); -ms-transform: rotate(-90deg) translateX(-60px); -o-transform: rotate(-90deg) translateX(-60px); transform: rotate(-90deg) translateX(-60px); opacity: 1; }
 .nav-menu span.text{text-transform: uppercase; font-size: 10px; letter-spacing: 2px; }
-.menu ol li {display: block; overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, 0.2); font-size: 4.5vw; line-height: 1; margin: 0; padding: 4vh 0 4vh 0; posiion: relative;font-size: 2.5vw;
+.menu ol li {display: block; overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, 0.2); font-size: 4.5vw; line-height: 1; margin: 0; padding: 4vh 0 4vh 0; position: relative;font-size: 2.5vw;
 line-height: 1;width: 80%; }
 .menu ol li a{padding: 0;}
 .menu ol li:hover{border-color: #fff;}
@@ -433,7 +433,7 @@ span.word {
 	text-align: center;
 }
 
-form#booking-form h3{margin-bottom:0px !important}
+form#booking-form h2,form#booking-form h3{margin-bottom:0px !important}
 .video-bg {
 	height: 100vh;
 }

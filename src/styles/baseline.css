@@ -60,7 +60,7 @@ section.section-contact { width: 100%; padding-top: 100px; }
 .genralinformation { width: 60%; margin: auto; }
 .supcom.rightsupport { float: right; }
 .supcom { display: inline-block; }
-.supportmail h4 { line-height: 0; font-size: 25px; color: rgba(255, 255, 255, .3); }
+.supportmail h3, .supportmail h4 { line-height: 0; font-size: 25px; color: rgba(255, 255, 255, .3); }
 .downicon { display: inline-flex; }
 .downicon img { width: 40px; margin-top: -15px; opacity: .3; }
 .downicon p { padding-left: 8px; color: rgba(255, 255, 255, .3); }

@@ -1,0 +1,1280 @@
+/*
+  Angel Creations — responsive layer for tablet, phone and small windows.
+  Loaded LAST (see src/main.tsx) so it can settle cascade ties with the
+  enhancement stylesheets.
+
+  SCOPE GUARANTEE
+  The laptop/desktop design (the site's own desktop breakpoint is 1025px) is
+  finalised and untouched: every rule below lives inside a max-width: 1024px
+  query (or a narrower one). The single exception is the coarse-pointer
+  block, which only applies on devices whose primary pointer cannot hover
+  (touch tablets/phones at any size) — a mouse or trackpad never matches it,
+  so desktop rendering and behaviour are unchanged.
+
+  Breakpoint map (all ceilings, never floors above 1024px):
+    <=1024  tablets, small windows, large phones landscape
+    <=720   large phones portrait / small tablets
+    <=640   phones
+    <=480   small phones
+    <=360   extra-small phones, folded foldables
+    <=1024 + max-height 560px   landscape phones / short windows
+    <=1024 + landscape          notch safe-area insets
+*/
+
+/* ==========================================================================
+   0. Coarse pointers (no hover available, any width)
+   The desktop menu control reveals its "Menu" label on hover only; touch
+   devices can never hover, so keep the label readable there. The custom
+   cursor and the keyboard "Press Enter" hint are meaningless without a
+   mouse/keyboard, so hide them for coarse pointers too.
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+  header .nav-menu span.text {
+    opacity: 1;
+  }
+
+  .cursor,
+  .angel-contact-redesign .ac-enter-hint {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   1. Up to 1024px — tablets and everything smaller
+   ========================================================================== */
+@media (max-width: 1024px) {
+  html {
+    /* Stop mobile browsers inflating text in landscape / dense layouts. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Anchor jumps land clear of the fixed header. */
+    scroll-padding-top: 5.25rem;
+  }
+
+  /* Long unbreakable strings (emails, URLs, requested paths) wrap instead
+     of forcing a layout wider than the screen. */
+  a[href^='mailto:'],
+  .angel-not-found__requested code {
+    overflow-wrap: anywhere;
+  }
+
+  /* --------------------------------------------------------------------
+     Header: a legible top bar.
+     On desktop the menu control is a pair of hairlines pinned to the
+     vertical middle of the right edge with its label shown on hover. At
+     these widths it sat on top of body copy and was undiscoverable on
+     touch. It becomes a glass "Menu" pill beside the logo — the same
+     material as the menu's own Close pill — and the logo gets the same
+     chip so it stays readable over the light editorial sections.
+     -------------------------------------------------------------------- */
+  header .logo-bar {
+    top: max(14px, env(safe-area-inset-top)) !important;
+    padding: 0 max(1rem, env(safe-area-inset-right)) 0 max(1rem, env(safe-area-inset-left)) !important;
+  }
+
+  header .logo-bar .logo {
+    display: inline-flex !important;
+    align-items: center;
+    min-height: 54px;
+    padding: 0.34rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(10, 12, 20, 0.52);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 10px 24px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(16px) saturate(170%);
+    -webkit-backdrop-filter: blur(16px) saturate(170%);
+  }
+
+  header .logo-bar .logo img {
+    width: min(10rem, 40vw) !important;
+    height: auto !important;
+    display: block;
+  }
+
+  header .nav-menu {
+    position: fixed !important;
+    top: max(14px, env(safe-area-inset-top)) !important;
+    right: max(1rem, env(safe-area-inset-right)) !important;
+    left: auto !important;
+    transform: none !important;
+    mix-blend-mode: normal !important;
+    width: auto !important;
+    height: auto !important;
+    min-inline-size: 0;
+    min-block-size: 0;
+    min-height: 48px;
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0.55rem 2.75rem 0.55rem 1.05rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 999px !important;
+    background: rgba(14, 15, 22, 0.55) !important;
+    box-shadow:
+      0 12px 28px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    color: rgba(245, 245, 247, 0.95) !important;
+  }
+
+  header .nav-menu span.text {
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    font-size: 0.68rem !important;
+    font-weight: 500;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase;
+    line-height: 1;
+    color: inherit !important;
+  }
+
+  /* The rotated desktop label carries a 50px decorative rule (::before)
+     that would stick out of the pill — drop it. */
+  header .nav-menu span.text::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  /* The two desktop hairlines become the pill's hamburger glyph. */
+  header .nav-menu span.line {
+    position: absolute !important;
+    left: auto !important;
+    right: 1.05rem !important;
+    width: 18px !important;
+    height: 1.5px !important;
+    background: currentColor !important;
+    transform: none !important;
+  }
+
+  header .nav-menu span.line:nth-child(1) {
+    top: calc(50% - 4px) !important;
+  }
+
+  header .nav-menu span.line:nth-child(2) {
+    top: calc(50% + 3px) !important;
+  }
+
+  header .nav-menu:active {
+    transform: scale(0.96) !important;
+  }
+
+  /* The Close pill takes the exact spot the Menu pill occupied. */
+  #menuNav.menu.ac-menu-screen .ac-menu-close-btn {
+    top: max(14px, env(safe-area-inset-top)) !important;
+    right: max(1rem, env(safe-area-inset-right)) !important;
+    min-height: 48px !important;
+  }
+
+  /* Menu stage tracks the dynamic viewport so mobile browser chrome
+     expanding/collapsing does not clip its footer. Falls back to the
+     existing svh rule where dvh is unsupported. */
+  #menuNav.menu.ac-menu-screen {
+    height: 100dvh !important;
+  }
+
+  #menuNav.menu.ac-menu-screen .nav_bottom.ac-menu-footer .terms-link ul li a,
+  #menuNav.menu.ac-menu-screen .nav_bottom.ac-menu-footer .copyright a {
+    display: inline-block;
+    padding-block: 0.45rem;
+    margin-block: -0.2rem;
+  }
+
+  /* --------------------------------------------------------------------
+     Homepage cinema stage
+     The "crop fix" headline is nowrap; between 641px and ~760px the
+     longest captions ran past the right edge and were cropped. Let them
+     wrap (identical rendering wherever they already fit on one line).
+     -------------------------------------------------------------------- */
+  #slideshow.slideshow.ac-home-cinema .slide .caption h1.ac-home-caption__headline,
+  #slideshow.slideshow.ac-home-cinema .slide .caption h2.ac-home-caption__headline {
+    white-space: normal !important;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+  }
+
+  /* --------------------------------------------------------------------
+     Floating back-to-top: respect the home-indicator safe area.
+     -------------------------------------------------------------------- */
+  .ac-floating-top {
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  /* --------------------------------------------------------------------
+     Touch targets. Several text links/chips rendered 16–28px tall.
+     Padding + equal negative margin enlarges the hit area without
+     changing the visual rhythm.
+     -------------------------------------------------------------------- */
+  footer.ac-footer-v2 .ac-footer-v2__links a {
+    padding-block: 0.45rem;
+    margin-block: -0.45rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__inline-list a {
+    display: inline-block;
+    padding-block: 0.55rem;
+    margin-block: -0.55rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__desk a {
+    display: inline-block;
+    padding-block: 0.35rem;
+    margin-block: -0.35rem;
+  }
+
+  /* Keep the final footer row clear of the floating button. */
+  footer.ac-footer-v2 .ac-footer-v2__bottom {
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom));
+  }
+
+  .apple-work-card__tag-chip {
+    min-height: 34px;
+    padding-inline: 0.7rem;
+  }
+
+  .angel-contact-redesign .supcom__copy-btn {
+    min-width: 64px;
+    min-height: 36px;
+  }
+
+  .angel-capability__hero-cta {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .angel-capability__related-list a,
+  .angel-capability__work-list a {
+    display: inline-block;
+    padding-block: 0.5rem;
+    margin-block: -0.5rem;
+  }
+
+  .ac-legal-v2-toc__btn {
+    min-height: 44px;
+  }
+
+  .ac-legal-v2-print-btn {
+    min-height: 40px;
+  }
+
+  a.ac-legal-v2-desk-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+
+  .apple-section-jump-nav__link {
+    min-height: 40px;
+  }
+
+  .apple-hero-lens-btn {
+    width: 56px;
+    height: 40px;
+  }
+
+  .apple-works-iframe-close {
+    min-height: 40px;
+  }
+
+  .ac-about-v2-theater__btn {
+    min-height: 44px;
+  }
+
+  .angel-contact-redesign .ac-quick-options button {
+    min-height: 40px;
+  }
+
+  /* Wizard step dots: keep the compact visual, expand the hit area. */
+  .angel-contact-redesign .ac-step-dot {
+    position: relative;
+  }
+
+  .angel-contact-redesign .ac-step-dot::after {
+    content: '';
+    position: absolute;
+    inset: -8px -4px;
+  }
+
+  /* --------------------------------------------------------------------
+     About — discipline explorer.
+     The single-column track was `1fr` (= minmax(auto, 1fr)), so the
+     nowrap capability line pushed the column to 543px and the stage ran
+     off the right edge of every phone. Pin the track to the container.
+     -------------------------------------------------------------------- */
+  .ac-about-v2-explorer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ac-about-v2-explorer__nav,
+  .ac-about-v2-explorer__stage,
+  .ac-about-v2-explorer__tab {
+    min-width: 0;
+  }
+
+  /* --------------------------------------------------------------------
+     Inner experience pages (apple-*) and Works.
+     -------------------------------------------------------------------- */
+  /* The embedded film is 16:9; the desktop stage ratio letterboxes it.
+     Match the player at these widths. */
+  .apple-visual-stage.apple-works-cinema-stage {
+    aspect-ratio: 16 / 9;
+  }
+
+  /* Search field: fill the toolbar row instead of shrink-wrapping, and
+     use 16px text so iOS Safari does not auto-zoom on focus. */
+  .apple-works-search {
+    flex: 1 1 17rem;
+  }
+
+  .apple-works-search__input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  /* Embedded Unity WebGL (Metaverse): the preserved shell is a fixed
+     960x600 stage, which overflowed tablets and became a 100vw x 100vh
+     block inside its card on phones. Make it a fluid 960:600 stage. */
+  .unity-page {
+    min-height: 0 !important;
+  }
+
+  #unity-container.unity-desktop,
+  #unity-container.unity-mobile {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 960px;
+    height: auto !important;
+    aspect-ratio: 960 / 600;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  #unity-canvas,
+  .unity-mobile #unity-canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+  }
+
+  #unity-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 0;
+  }
+
+  #unity-warning {
+    max-width: calc(100% - 2rem);
+    box-sizing: border-box;
+  }
+
+  /* --------------------------------------------------------------------
+     Contact
+     -------------------------------------------------------------------- */
+  .angel-contact-redesign .ac-studio-subtitle {
+    max-width: 58ch;
+  }
+
+  /* --------------------------------------------------------------------
+     Capability pages: the 68svh editorial hero pushed the title below
+     the fold on tablets/phones. Keep the drama, lose the void.
+     -------------------------------------------------------------------- */
+  .angel-capability {
+    padding:
+      clamp(6.5rem, 10vw, 9rem)
+      clamp(1.25rem, 5vw, 2.5rem)
+      clamp(5rem, 10vw, 9rem);
+  }
+
+  .angel-capability__hero {
+    min-height: min(38svh, 30rem);
+  }
+}
+
+/* ==========================================================================
+   2. Width bands inside the tablet range
+   ========================================================================== */
+
+/* Denser two-column card work where a single column is mostly air. */
+@media (min-width: 560px) and (max-width: 720px) {
+  .apple-pillars-grid,
+  .apple-values-grid,
+  .apple-sector-grid,
+  .apple-telemetry-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 480px) and (max-width: 559px) {
+  .apple-telemetry-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Contact masthead: stack before the subtitle gets squeezed. */
+@media (max-width: 860px) {
+  .angel-contact-redesign .ac-studio-hero__left {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
+
+/* ==========================================================================
+   3. Up to 720px — large phones / small tablets (portrait)
+   ========================================================================== */
+@media (max-width: 720px) {
+  .apple-works-search {
+    flex-basis: 100%;
+  }
+
+  .angel-capability__hero {
+    min-height: 0;
+    justify-content: flex-start;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ==========================================================================
+   4. Up to 640px — phones
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* Fluid display titles: the 2.65rem floor overflowed small screens on
+     long words ("Advertisement", "Extraordinary"). */
+  .apple-hero-title {
+    font-size: clamp(2rem, 10vw, 2.65rem);
+    overflow-wrap: break-word;
+  }
+
+  /* Explorer stage: taller canvas so the caption HUD does not cover
+     most of the frame; the gesture hint is redundant on touch. */
+  .apple-visual-stage:not(.apple-works-cinema-stage) {
+    aspect-ratio: 10 / 9;
+  }
+
+  .apple-visual-stage__gesture-hint {
+    display: none;
+  }
+
+  .apple-visual-stage__caption-wrap {
+    align-items: flex-start;
+  }
+
+  .apple-visual-stage__caption-group {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .apple-visual-stage__hud-bottom {
+    bottom: 0.7rem;
+    left: 0.7rem;
+    right: 0.7rem;
+  }
+
+  /* Hero visual card on discipline pages: more height for its HUD rows. */
+  .apple-hero-visual-card {
+    aspect-ratio: 4 / 3.7;
+  }
+
+  .apple-hero-visual-card__bottom-bar {
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .apple-hero-visual-card__bottom-bar {
+    bottom: 0.75rem;
+    gap: 0.6rem;
+  }
+
+  .apple-hero-lens-info {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .apple-hero-lens-btn {
+    width: 50px;
+    height: 38px;
+  }
+
+  /* Card interiors: reclaim horizontal room for the stage/content. */
+  .apple-workbench-card {
+    padding: clamp(1.1rem, 4.5vw, 1.75rem);
+  }
+
+  .angel-contact-redesign .ac-wizard-shell {
+    padding: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  /* About explorer tabs: show the full capability line, not an ellipsis. */
+  .ac-about-v2-explorer__tab-body span {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .ac-floating-top {
+    width: 46px;
+    height: 46px;
+  }
+
+  .ac-legal-v2-doc-pill {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Unity shell chrome (loading mark + footer) is fixed-pixel artwork
+     sized for the 960px stage; scale it down with the fluid stage. */
+  #unity-logo {
+    width: 96px;
+    height: 81px;
+    background-size: contain;
+  }
+
+  #unity-progress-bar-empty,
+  #unity-progress-bar-full {
+    width: 110px;
+    background-size: contain;
+  }
+
+  #unity-progress-bar-empty {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #unity-footer {
+    line-height: 28px;
+    font-size: 13px;
+  }
+
+  #unity-webgl-logo {
+    width: 120px;
+    height: 28px;
+    background-size: contain;
+    background-position: left center;
+  }
+
+  #unity-fullscreen-button {
+    width: 30px;
+    height: 28px;
+    background-size: contain;
+  }
+
+  #unity-build-title {
+    margin-right: 6px;
+  }
+}
+
+/* ==========================================================================
+   5. Up to 480px — small phones
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* Full-width stacked hero actions so long labels never clip. */
+  .apple-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .apple-hero-actions .apple-cta-primary,
+  .apple-hero-actions .apple-cta-secondary {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ac-about-v2-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ac-about-v2-hero__actions .ac-about-v2-btn {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Keep the phone number in the direct-contact pill unbroken. */
+  .angel-contact-redesign .ac-studio-hero__right {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .angel-contact-redesign .ac-direct-jump-pill {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.8rem;
+    font-size: 0.72rem;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  /* Wizard Prev/Next share the row instead of overflowing it. */
+  .angel-contact-redesign .ac-nav-group {
+    display: flex;
+    width: 100%;
+  }
+
+  body .angel-contact-redesign li.action_li button.prev-btn,
+  body .angel-contact-redesign li.action_li button.next-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-inline: 0.8rem !important;
+  }
+
+  /* Reel stage: 18rem.tall minimum dwarfed a 280-360px screen. */
+  .ac-about-v2-theater {
+    min-height: 13rem;
+  }
+
+  .apple-segment-btn {
+    padding-inline: 0.45rem;
+    font-size: 0.8rem;
+    gap: 0.35rem;
+  }
+
+  .angel-not-found__actions {
+    flex-wrap: wrap;
+  }
+}
+
+/* ==========================================================================
+   6. Up to 360px — extra-small phones and folded foldables
+   ========================================================================== */
+@media (max-width: 360px) {
+  header .nav-menu {
+    padding-right: 2.5rem !important;
+    padding-left: 0.85rem !important;
+  }
+
+  header .nav-menu span.text {
+    letter-spacing: 0.14em !important;
+  }
+
+  /* Homepage bottom bar: drop the decorative rule so counter + Prev/Next fit. */
+  #slideshow.slideshow.ac-home-cinema .ac-home-counter__line {
+    display: none;
+  }
+
+  #slideshow.slideshow.ac-home-cinema .arrows .arrow {
+    padding-inline: 0.35rem !important;
+    font-size: 0.68rem !important;
+  }
+
+  .apple-hero-badge {
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+  }
+
+  .ac-legal-v2-switcher__tab {
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+  }
+
+  .apple-hero-lens-btn {
+    width: 44px;
+    height: 36px;
+  }
+}
+
+/* ==========================================================================
+   7. Short screens (landscape phones, short windows) — height <= 560px
+   The homepage stage had min-height: 34rem, so at 844x390 the page was
+   544px tall and the caption/controls sat below the fold. Compress the
+   stage furniture instead of scrolling a full-screen slider.
+   ========================================================================== */
+@media (max-width: 1024px) and (max-height: 560px) {
+  .slideshow {
+    min-height: 0 !important;
+    height: 100svh !important;
+    height: 100dvh !important;
+  }
+
+  #slideshow.slideshow.ac-home-cinema .slide-content {
+    padding:
+      3.9rem
+      max(1.25rem, env(safe-area-inset-right))
+      calc(4.4rem + env(safe-area-inset-bottom))
+      max(1.25rem, env(safe-area-inset-left)) !important;
+  }
+
+  #slideshow.slideshow.ac-home-cinema .slide .caption h1.ac-home-caption__headline,
+  #slideshow.slideshow.ac-home-cinema .slide .caption h2.ac-home-caption__headline {
+    font-size: clamp(1.25rem, 6.5svh, 1.9rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  #slideshow.slideshow.ac-home-cinema .ac-home-horizon {
+    left: max(1.25rem, env(safe-area-inset-left));
+    right: max(1.25rem, env(safe-area-inset-right));
+    bottom: calc(3.85rem + env(safe-area-inset-bottom));
+  }
+
+  #slideshow.slideshow.ac-home-cinema .arrows.ac-home-controls {
+    left: max(1.25rem, env(safe-area-inset-left)) !important;
+    right: max(1.25rem, env(safe-area-inset-right)) !important;
+    bottom: max(0.55rem, env(safe-area-inset-bottom)) !important;
+  }
+
+  #slideshow.slideshow.ac-home-cinema .arrows .arrow {
+    min-block-size: 40px;
+  }
+
+  header .logo-bar {
+    top: max(10px, env(safe-area-inset-top)) !important;
+  }
+
+  header .logo-bar .logo {
+    min-height: 48px;
+  }
+
+  header .logo-bar .logo img {
+    width: min(8.1rem, 38vw) !important;
+  }
+
+  header .nav-menu,
+  #menuNav.menu.ac-menu-screen .ac-menu-close-btn {
+    top: max(10px, env(safe-area-inset-top)) !important;
+    min-height: 44px;
+  }
+
+  /* Menu: less ceremonial top spacing and smaller links so the whole
+     navigation stays within a short viewport. */
+  #menuNav.menu.ac-menu-screen {
+    padding-top: 4.25rem !important;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  #menuNav.menu.ac-menu-screen .ac-menu-grid {
+    gap: 1.25rem;
+  }
+
+  #menuNav.menu.ac-menu-screen ol.ac-menu-primary-list li.ac-menu-primary-item a.inner_link {
+    font-size: clamp(1.3rem, 5.5svh, 1.8rem) !important;
+    padding-block: 0.5rem !important;
+  }
+
+  /* Media stages never exceed the visible height in landscape. */
+  .apple-visual-stage,
+  .apple-hero-visual-card,
+  .ac-about-v2-theater {
+    max-height: 82svh;
+    margin-inline: auto;
+  }
+
+  .angel-capability__hero {
+    min-height: 0;
+  }
+}
+
+/* ==========================================================================
+   8. Landscape notch safety — content clears the side cut-out.
+   (Full-bleed stages keep bleeding; only content containers inset.)
+   ========================================================================== */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .apple-hero-container,
+  .apple-story-container,
+  .apple-explorer-container,
+  .apple-inner-footer__container,
+  .angel-contact-redesign .contact-inner {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    box-sizing: border-box;
+  }
+
+  /* These containers already pad inline with a clamp(); keep whichever
+     is larger. */
+  .ac-about-v2-container,
+  .ac-legal-v2-container,
+  footer.ac-footer-v2 .ac-footer-v2__shell {
+    padding-left: max(clamp(1.5rem, 5vw, 4rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1.5rem, 5vw, 4rem), env(safe-area-inset-right));
+  }
+
+  .angel-capability {
+    padding-left: max(clamp(1.25rem, 5vw, 2.5rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1.25rem, 5vw, 2.5rem), env(safe-area-inset-right));
+  }
+
+  .angel-not-found__layout {
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+  }
+
+  #menuNav.menu.ac-menu-screen {
+    padding-left: max(clamp(1.75rem, 7vw, 8.5rem), env(safe-area-inset-left)) !important;
+    padding-right: max(clamp(1.75rem, 7vw, 8.5rem), env(safe-area-inset-right)) !important;
+  }
+}
+
+/* ==========================================================================
+   9. SLIDER INNER PAGES — MOBILE REDESIGN
+   The seven discipline pages reached from the homepage slider
+   (main.angel-experience). Phones get an app-like treatment: poster-first
+   hero, floating glass section dock, snap carousels for card grids.
+   Scoped to .angel-experience so no other page is affected.
+   ========================================================================== */
+@media (max-width: 680px) {
+  /* Anchored sections land clear of the fixed site header. */
+  .angel-experience [id] {
+    scroll-margin-top: 84px;
+  }
+
+  /* Room at the end of the page for the floating section dock. */
+  .angel-experience.apple-inner-page {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Keep the scroll-top button above the dock on these pages. */
+  body:has(main.angel-experience) .ac-floating-top {
+    bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* ---- Hero: poster first, then the story ---- */
+  .angel-experience .apple-hero-stage {
+    padding-bottom: 2.4rem;
+  }
+
+  .angel-experience .apple-hero-topbar {
+    margin-bottom: 1.1rem;
+  }
+
+  .angel-experience .apple-back-pill {
+    min-height: 42px;
+    font-size: 0.82rem;
+  }
+
+  .angel-experience .apple-hero-grid {
+    gap: 1.35rem;
+  }
+
+  .angel-experience .apple-hero-visual-wrap {
+    order: -1;
+    width: 100%;
+  }
+
+  .angel-experience .apple-hero-visual-card {
+    aspect-ratio: 4 / 3.9;
+    border-radius: 26px;
+    transform: none;
+    border-color: rgba(var(--route-accent-rgb, 100, 210, 255), 0.42);
+    box-shadow:
+      0 24px 50px -18px rgba(0, 0, 0, 0.8),
+      0 0 44px -10px rgba(var(--route-accent-rgb, 100, 210, 255), 0.38),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .angel-experience .apple-hero-lens-btn {
+    width: 56px;
+    height: 42px;
+  }
+
+  .angel-experience .apple-hero-badge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.18rem;
+    margin-bottom: 0.9rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 16px;
+    font-size: 0.7rem;
+  }
+
+  .angel-experience .apple-hero-badge__index {
+    white-space: nowrap;
+  }
+
+  .angel-experience .apple-hero-badge__sep {
+    display: none;
+  }
+
+  .angel-experience .apple-hero-badge__cat {
+    font-size: 0.66rem;
+    line-height: 1.45;
+  }
+
+  .angel-experience .apple-hero-title {
+    font-size: clamp(2.45rem, 12.5vw, 3.3rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+
+  .angel-experience .apple-hero-tagline {
+    margin: 0.75rem 0 0;
+    font-size: 1.22rem;
+    line-height: 1.35;
+  }
+
+  .angel-experience .apple-hero-lead {
+    margin: 0.85rem 0 0;
+    font-size: 0.96rem;
+    line-height: 1.68;
+  }
+
+  .angel-experience .apple-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.65rem;
+    margin-top: 1.4rem;
+  }
+
+  .angel-experience .apple-hero-actions :is(.apple-cta-primary, .apple-cta-secondary) {
+    width: 100%;
+    min-height: 54px;
+    justify-content: center;
+    font-size: 0.82rem;
+  }
+
+  /* Floating glass section dock (replaces the hidden desktop jump nav).
+     The hero container creates a stacking context at z-index 1, which
+     would cap the fixed dock below the site footer (z-index 3) — lift
+     the container just above the footer so the dock stays reachable. */
+  .angel-experience .apple-hero-stage > .apple-hero-container {
+    z-index: 4;
+  }
+
+  .angel-experience .apple-section-jump-nav {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    z-index: 70;
+    display: flex;
+    gap: 0.2rem;
+    padding: 0.35rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    border-radius: 999px;
+    background: rgba(10, 14, 24, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+    mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
+  }
+
+  .angel-experience .apple-section-jump-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .angel-experience .apple-section-jump-nav__link {
+    flex: 1 0 auto;
+    scroll-snap-align: start;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 0.5rem;
+    font-size: 0.67rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: rgba(228, 232, 242, 0.88);
+  }
+
+  .angel-experience .apple-section-jump-nav__link.is-active {
+    background: rgba(var(--route-accent-rgb, 100, 210, 255), 0.2);
+    color: #fff;
+  }
+
+  /* ---- Telemetry: compact accent-railed 2 x 2 ---- */
+  .angel-experience .apple-telemetry-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin-top: 1.6rem;
+  }
+
+  .angel-experience .apple-telemetry-tile {
+    position: relative;
+    padding: 0.95rem 1rem 0.85rem 1.1rem;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .angel-experience .apple-telemetry-tile::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: linear-gradient(
+      180deg,
+      var(--route-accent, #64d2ff),
+      var(--route-accent-secondary, #38bdf8)
+    );
+  }
+
+  .angel-experience .apple-telemetry-tile__value {
+    font-size: 1.02rem;
+    line-height: 1.25;
+  }
+
+  .angel-experience .apple-telemetry-tile__label {
+    font-size: 0.62rem;
+    letter-spacing: 0.09em;
+  }
+
+  /* ---- Section rhythm & headers ---- */
+  .angel-experience :is(.apple-story-section, .apple-explorer-section) {
+    padding-block: 2.6rem;
+  }
+
+  .angel-experience :is(.apple-story-title, .apple-explorer-title) {
+    font-size: clamp(1.75rem, 7.6vw, 2.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+  }
+
+  .angel-experience :is(.apple-story-lead, .apple-explorer-lead) {
+    font-size: 0.95rem;
+    line-height: 1.68;
+  }
+
+  .angel-experience .apple-bento-block__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .angel-experience .apple-bento-block__title {
+    font-size: 1.45rem;
+    line-height: 1.15;
+  }
+
+  /* ---- Dossier cards: taller cinema visual ---- */
+  .angel-experience .apple-glass-card--dossier {
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .angel-experience .apple-dossier-visual {
+    aspect-ratio: 16 / 10;
+  }
+
+  .angel-experience .apple-dossier-body {
+    padding: 1.25rem 1.2rem 1.4rem;
+  }
+
+  /* ---- Card grids become edge-to-edge snap carousels ---- */
+  .angel-experience :is(.apple-pillars-grid--visual, .apple-sector-grid--visual) {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.85rem;
+    margin-inline: -1rem;
+    padding: 0.25rem 1rem 1rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .angel-experience :is(.apple-pillars-grid--visual, .apple-sector-grid--visual)::-webkit-scrollbar {
+    display: none;
+  }
+
+  .angel-experience :is(.apple-pillar-card--visual, .apple-sector-card--visual) {
+    flex: 0 0 84%;
+    max-width: 340px;
+    scroll-snap-align: center;
+  }
+
+  .angel-experience .apple-sector-card__summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ---- Values: numbered rows ---- */
+  .angel-experience .apple-values-grid {
+    gap: 0.7rem;
+  }
+
+  .angel-experience .apple-value-card {
+    padding: 1.1rem 1.15rem;
+    border-radius: 20px;
+  }
+
+  .angel-experience .apple-value-card__index {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  /* ---- Explorer: stage first, thumb-driven controls ---- */
+  .angel-experience .apple-explorer-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .angel-experience .apple-segmented-track {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.45rem;
+    padding: 0.4rem;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+
+  .angel-experience .apple-segmented-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .angel-experience .apple-segment-btn {
+    flex: 0 0 auto;
+    min-height: 48px;
+    padding: 0.5rem 0.9rem;
+    scroll-snap-align: start;
+  }
+
+  .angel-experience .apple-filter-dock {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding-bottom: 0.6rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .angel-experience .apple-filter-dock::-webkit-scrollbar {
+    display: none;
+  }
+
+  .angel-experience .apple-filter-pill {
+    flex: 0 0 auto;
+    min-height: 46px;
+    white-space: nowrap;
+  }
+
+  .angel-experience .apple-workbench-card {
+    gap: 1.2rem;
+    padding: 1.1rem;
+    border-radius: 24px;
+  }
+
+  .angel-experience .apple-workbench-card .apple-visual-stage {
+    order: -1;
+  }
+
+  .angel-experience .apple-workbench-card__title {
+    font-size: 1.4rem;
+    line-height: 1.18;
+  }
+
+  .angel-experience .apple-workbench-card__nav {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .angel-experience .apple-workbench-card__nav .apple-tactile-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 50px;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  .angel-experience .apple-capabilities-list {
+    gap: 0.4rem;
+    align-content: start;
+    justify-content: flex-start;
+  }
+
+  .angel-experience .apple-capabilities-list__item {
+    min-height: 44px;
+  }
+
+  /* Stage-flow steps in the (light) story contexts: 2-column chips. */
+  .angel-experience .apple-story-section .apple-stage-flow-pills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .angel-experience .apple-story-section .apple-stage-flow-pill {
+    justify-content: center;
+    text-align: center;
+    min-height: 42px;
+  }
+
+  /* Full-width launch button inside plain glass cards (Unity artifact). */
+  .angel-experience .apple-glass-card .apple-tactile-btn {
+    width: 100%;
+    min-height: 52px;
+    justify-content: center;
+  }
+
+  /* ---- Finale & adjacent disciplines ---- */
+  .angel-experience .apple-Finale-card {
+    padding: 1.7rem 1.25rem;
+    border-radius: 26px;
+  }
+
+  .angel-experience .apple-Finale-card__title {
+    font-size: clamp(1.7rem, 7.4vw, 2.1rem);
+    line-height: 1.12;
+  }
+
+  .angel-experience .apple-Finale-card__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .angel-experience .apple-Finale-card__actions :is(.apple-cta-primary, .apple-cta-secondary) {
+    width: 100%;
+    min-height: 54px;
+    justify-content: center;
+  }
+
+  .angel-experience .apple-adjacent-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .angel-experience .apple-adjacent-card {
+    padding: 1rem;
+    border-radius: 18px;
+    min-height: 96px;
+  }
+
+  .angel-experience .apple-adjacent-card--center {
+    grid-column: 1 / -1;
+    order: -1;
+    align-items: center;
+    text-align: center;
+  }
+
+  .angel-experience .apple-adjacent-card--next {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .angel-experience .apple-adjacent-card__title {
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+}
+
+/* Tablets: keep the stacked layout, add anchor clearance and lead with the
+   interactive stage inside explorer workbenches. */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .angel-experience [id] {
+    scroll-margin-top: 88px;
+  }
+
+  .angel-experience .apple-workbench-card .apple-visual-stage {
+    order: -1;
+  }
+}
+
+/* NOTE: the duplicated / unnecessary inner-page elements found by audit
+   (repeated hero copy in dossier cards, stage HUD badge/caption/counter,
+   filmstrip, filter dock, count/meta filler, repeated label pills) were
+   removed from the components themselves for every viewport, so this
+   file no longer needs hide-rules for them. */

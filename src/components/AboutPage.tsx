@@ -1,7 +1,15 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
+import { buildContactHref, trackLeadEvent } from '../utils/leads';
 import { getNetworkInformation, prefersReducedData, prefersReducedMotion } from '../utils/mediaPreferences';
 import { SiteFooter } from './SiteFooter';
 
+const aboutLeadHref = buildContactHref({
+  discipline: 'Custom Multi-Discipline Commission',
+  intent: 'project-roadmap',
+  sourceRoute: '/about/',
+  topic: 'New immersive project',
+  goal: 'Find the right XR, animation, film or campaign format',
+});
 const showreelVideo = '/media/videos/Main-Background-with-sound.mp4';
 const showreelPoster = '/media/images/generated-home-posters/menu-background.webp';
 
@@ -237,7 +245,7 @@ const pipelinePhases = [
     phase: 'Real-Time Engineering & Principal Craft',
     title: 'Building with precision',
     description:
-      'Bespoke teams of Unity/Unreal engineers, 3D animators, directors, and sound designers assemble around the brief to execute with zero compromise on frame rate or fidelity.',
+      'Bespoke teams of Unity/Unreal engineers, 3D animators, directors, and sound designers assemble around the brief to protect performance, fidelity and the original creative intent.',
   },
   {
     step: '04',
@@ -1110,13 +1118,13 @@ export function AboutPage(): JSX.Element {
               <div className="ac-about-v2-hero__main">
                 <p className="ac-about-v2-eyebrow">01 / Who We Are</p>
                 <h1 id="about-hero-heading" className="ac-about-v2-hero__title">
-                  <span>We are a creative powerhouse</span>
+                  <span>We are a creative powerhouse</span>{' '}
                   <span className="ac-about-v2-hero__title-accent">
                     thinking design forward.
                   </span>
                 </h1>
                 <p className="ac-about-v2-hero__lead">
-                  Angel Creations is an India-based Creative &amp; Spatial Computing Studio partnering with ambitious organizations worldwide. We see design as a lens for looking onwards—uniting real-time 3D worlds, immersive XR simulations, animation, and cinema under one roof.
+                  Angel Creations is a Jaipur-based XR, animation, VFX and film studio in India partnering with ambitious organizations worldwide. We unite metaverse and virtual-world development, VR, AR and mixed-reality experiences, 2D and 3D animation, brand campaigns and cinema under one roof.
                 </p>
 
                 <div className="ac-about-v2-hero__actions">
@@ -1124,12 +1132,21 @@ export function AboutPage(): JSX.Element {
                     href="/works/"
                     className="ac-about-v2-btn ac-about-v2-btn--primary"
                   >
-                    <span>Explore 47+ Works</span>
+                    <span>Explore Selected Work</span>
                     <span aria-hidden="true">↗</span>
                   </a>
                   <a
-                    href="/contact/"
+                    href={aboutLeadHref}
                     className="ac-about-v2-btn ac-about-v2-btn--glass"
+                    data-lead-event="lead_cta_click"
+                    data-lead-intent="project-roadmap"
+                    data-lead-topic="New immersive project"
+                    onClick={() => trackLeadEvent('lead_cta_click', {
+                      intent: 'project-roadmap',
+                      topic: 'New immersive project',
+                      sourceRoute: '/about/',
+                      cta: 'About hero project brief',
+                    })}
                   >
                     <span>Start a Project Brief</span>
                     <span aria-hidden="true">→</span>
@@ -1145,8 +1162,8 @@ export function AboutPage(): JSX.Element {
                 </div>
                 <div className="ac-about-v2-metric">
                   <dt>Public Archive</dt>
-                  <dd>47+</dd>
-                  <span>Verified Film &amp; XR Productions</span>
+                  <dd>47</dd>
+                  <span>Film, Animation &amp; XR Productions</span>
                 </div>
                 <div className="ac-about-v2-metric">
                   <dt>Global Partners</dt>
@@ -1169,7 +1186,7 @@ export function AboutPage(): JSX.Element {
                 <div>
                   <p className="ac-about-v2-eyebrow">02 / Studio Philosophy</p>
                   <h2 id="about-philosophy-heading" className="ac-about-v2-h2">
-                    We see design as a lens to help looking onwards.
+                    Design is how we look ahead.
                   </h2>
                 </div>
                 <p className="ac-about-v2-section__sub">
@@ -1180,7 +1197,7 @@ export function AboutPage(): JSX.Element {
               <div className="ac-about-v2-bento">
                 <article className="ac-about-v2-bento-card ac-about-v2-bento-card--wide">
                   <span className="ac-about-v2-card-index">Manifesto / 01</span>
-                  <h3>One-stop creative &amp; spatial engineering for enduring business growth.</h3>
+                  <h3>Creative and spatial engineering, united under one roof.</h3>
                   <p>
                     Angel Creations was founded with a singular mission: building measurable value through design and development. Although rooted in India, our studio operates without borders—delivering flagship commissions across the United Kingdom, Europe, the Americas, and Asia.
                   </p>
@@ -1243,7 +1260,7 @@ export function AboutPage(): JSX.Element {
                   </h2>
                 </div>
                 <p className="ac-about-v2-section__sub">
-                  Select any discipline below to inspect our 60+ specialized capabilities and enter its dedicated experience stage.
+                  Choose a discipline to explore its craft and dedicated experience, or browse all <a href="/domains/">63 XR, animation, film and brand services</a>.
                 </p>
               </div>
 
@@ -1263,7 +1280,7 @@ export function AboutPage(): JSX.Element {
                         onClick={() => setActiveDisciplineIndex(index)}
                         onMouseEnter={() => setActiveDisciplineIndex(index)}
                       >
-                        <span className="ac-about-v2-explorer__tab-num">{item.number}</span>
+
                         <div className="ac-about-v2-explorer__tab-body">
                           <strong>{item.title}</strong>
                           <span>{item.deliverables}</span>
@@ -1292,7 +1309,7 @@ export function AboutPage(): JSX.Element {
                     />
                     <div className="ac-about-v2-explorer__visual-shade" aria-hidden="true" />
                     <div className="ac-about-v2-explorer__visual-badge">
-                      <span>Discipline {activeDiscipline.number} / 07</span>
+                      <span>Studio Discipline</span>
                       <strong>{activeDiscipline.title}</strong>
                     </div>
                   </div>
@@ -1465,11 +1482,11 @@ export function AboutPage(): JSX.Element {
                 <div>
                   <p className="ac-about-v2-eyebrow">06 / We&apos;re All Around — Global Culture</p>
                   <h2 id="about-global-heading" className="ac-about-v2-h2">
-                    Even in these times, our culture strongly stands for true global commuters.
+                    Borderless by culture. Global by practice.
                   </h2>
                 </div>
                 <p className="ac-about-v2-section__sub">
-                  Different cultures, languages, and landscapes trigger our work. We pack light, move fast, and cherry-pick specialist teams for every commission.
+                  Different cultures, languages and landscapes shape our work. Clients can hire our XR, animation, VFX, brand and film teams in Jaipur, across India, through our United Kingdom desk and for productions delivered worldwide.
                 </p>
               </div>
 
@@ -1515,13 +1532,13 @@ export function AboutPage(): JSX.Element {
                 <div className="ac-about-v2-commuter-col">
                   <span>01 / Borderless Perspective</span>
                   <p>
-                    That’s why we love airports—a hub with lines going to far different points, not in one single direction, but many. Being global isn’t the future of work for us; it’s our everyday reality.
+                    Airports are a useful metaphor for the studio: many routes, cultures and perspectives converging on one destination. Working globally is not an aspiration—it is our everyday practice.
                   </p>
                 </div>
                 <div className="ac-about-v2-commuter-col">
                   <span>02 / Bespoke Team Chemistry</span>
                   <p>
-                    The makeup of the team is the difference between good and great. We cherry-pick directors, sound designers, animators, and event technologists purely around the needs of each client brief.
+                    The makeup of the team is the difference between good and great. We hand-pick directors, sound designers, animators and event technologists around the needs of each brief.
                   </p>
                 </div>
               </div>

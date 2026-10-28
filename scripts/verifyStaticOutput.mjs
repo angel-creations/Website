@@ -7,12 +7,12 @@
 // would get an empty page.
 
 import { readFile, stat } from 'node:fs/promises';
-import { readdirSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const distDirectory = path.resolve(process.argv[2] ?? 'dist');
 
-const requiredRoutes = [
+const coreRequiredRoutes = [
   '/', '/about/', '/works/', '/animation/', '/augment-reality/',
   '/brand-advertisement/', '/media-production/', '/metaverse/', '/mixed-reality/',
   '/virtual-reality/', '/contact/', '/privacy-policy/', '/terms-of-service/',
@@ -20,6 +20,21 @@ const requiredRoutes = [
   '/capabilities/film/', '/capabilities/animation-3d/', '/capabilities/digital/',
   '/capabilities/experiences/', '/capabilities/creative-technology/',
 ];
+
+function slugifyDomainTitle(title) {
+  return String(title || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const explorerVisuals = JSON.parse(readFileSync(path.resolve(process.cwd(), 'src/data/explorerVisuals.json'), 'utf8'));
+const domainRoutes = Object.entries(explorerVisuals).flatMap(([parentRoute, bundle]) =>
+  (bundle.applications || []).map((visual) => `${parentRoute}${slugifyDomainTitle(visual.caption)}/`)
+);
+const requiredRoutes = [...coreRequiredRoutes, '/domains/', ...domainRoutes];
 
 const standaloneDocuments = new Set(['403.html', '404.html', '410.html', '500.html', '502.html', '503.html', '504.html']);
 
@@ -84,6 +99,14 @@ for (const route of requiredRoutes) {
 // 2. Every HTML document in the build must parse as a complete document.
 for (const file of walk(distDirectory)) {
   const html = await readFile(file, 'utf8');
+
+  // Search Console ownership tokens (googleXXXX.html) are plain-text proofs, not
+  // documents: Google requires their exact contents, so verify the token line
+  // instead of the complete-document rules.
+  if (/^google[0-9a-f]+\.html$/i.test(path.basename(file))) {
+    if (!/^google-site-verification:/.test(html)) record(file, 'Search Console token file does not start with its verification string');
+    continue;
+  }
   const opened = (html.match(/<script\b/gi) ?? []).length;
   const closed = (html.match(/<\/script>/gi) ?? []).length;
   if (opened !== closed) record(file, `${opened} <script> tags but ${closed} </script> tags`);

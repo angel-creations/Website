@@ -1,7 +1,7 @@
 {
   "/mixed-reality/": {
     "sections": [
-      {"title":"Real + digital. One experience.","paragraphs":["Mixed Reality brings physical and digital objects into the same experience.","Instead of choosing between the real world and the digital world, MR allows both to interact.","Angel Creations explores Mixed Reality as a medium for training, education, entertainment, gaming, architecture, marketing, collaboration, retail and spatial experiences."]},
+      {"title":"Real + digital. One experience.","paragraphs":["Mixed Reality brings physical and digital objects into the same experience.","Instead of choosing between the real world and the digital world, MR allows both to interact."]},
       {"title":"What is Mixed Reality?","paragraphs":["Mixed Reality creates an experience where digital content can exist within a physical environment and respond to it.","A digital object can become part of a room.","A physical environment can become part of an interaction.","A virtual model can become something people examine, manipulate or understand.","The technology matters. But the experience comes first."]},
       {"title":"What can Mixed Reality do?","entries":[
         {"title":"Training","description":"Complex situations can be recreated without requiring the real environment every time.","items":["technical training","equipment training","safety training","industrial simulation","procedural learning","operational training","maintenance education"]},
@@ -23,7 +23,7 @@
   },
   "/virtual-reality/": {
     "sections": [
-      {"title":"You’re not imagining it. You’re experiencing it.","paragraphs":["Virtual Reality creates a complete digital environment around the audience.","It can place someone inside a story. Inside a simulation. Inside a training environment. Inside a product. Inside a place they cannot physically reach.","Angel Creations develops VR experiences across content, gaming, training, education, marketing, architecture, healthcare, conferencing and immersive communication."]},
+      {"title":"You’re not imagining it. You’re experiencing it.","paragraphs":["Virtual Reality creates a complete digital environment around the audience.","It can place someone inside a story. Inside a simulation. Inside a training environment. Inside a product. Inside a place they cannot physically reach."]},
       {"title":"VR is more than a headset.","paragraphs":["The headset is the interface. The experience is everything behind it.","A successful VR experience requires:"],"items":["concept","story","environment","interaction","sound","animation","user flow","visual design","technical execution"],"closing":"We bring those disciplines together around the purpose of the experience."},
       {"title":"What can VR be used for?","entries":[
         {"title":"VR Content","description":"Create immersive visual experiences that place audiences inside a location, story or environment.","items":["immersive films","360 experiences","branded experiences","destination experiences","documentary experiences","educational content","virtual tours"]},
@@ -46,7 +46,7 @@
   },
   "/augment-reality/": {
     "sections": [
-      {"title":"The real world. With more to discover.","paragraphs":["Augmented Reality adds digital information, interaction and storytelling to the world people already occupy.","Instead of asking people to leave reality, AR brings the experience to them.","Angel Creations explores AR across industrial applications, tourism, navigation, retail, marketing, gaming, education, healthcare, entertainment and creative experiences."]},
+      {"title":"The real world. With more to discover.","paragraphs":["Augmented Reality adds digital information, interaction and storytelling to the world people already occupy.","Instead of asking people to leave reality, AR brings the experience to them."]},
       {"title":"Why AR?","paragraphs":["The physical world already has context. AR adds another layer.","A product can reveal information. A location can tell a story. A printed surface can become interactive. A building can become a guide. A package can become an experience. A classroom can become an interactive environment."]},
       {"title":"AR applications","entries":[
         {"title":"Industrial AR","description":"AR can help bring digital information into operational environments.","items":["equipment information","technical visualization","guided procedures","maintenance assistance","training","assembly guidance","operational information"]},
@@ -69,7 +69,7 @@
   },
   "/animation/": {
     "sections": [
-      {"title":"Bring ideas to life.","paragraphs":["Some ideas can be photographed. Some can be filmed. Some need to be created from nothing. Animation makes that possible.","Angel Creations works across 2D and 3D animation, motion graphics, visual effects, character animation, interactive animation, explainer content, pre-visualization and AR animation."]},
+      {"title":"Bring ideas to life.","paragraphs":["Some ideas can be photographed. Some can be filmed. Some need to be created from nothing. Animation makes that possible."]},
       {"title":"From a thought to a moving image.","paragraphs":["Animation can explain. It can entertain. It can sell. It can demonstrate. It can simplify. It can build worlds that do not exist. It can make invisible things visible.","That makes animation one of the most versatile tools in visual storytelling."]},
       {"title":"What we can create","entries":[
         {"title":"Concept Development","description":"Every animation begins before the first frame.","items":["visual direction","storytelling","characters","environments","sequences","tone","movement","audience","communication objective"]},
@@ -86,14 +86,14 @@
       {"title":"Animation for business","intro":"Animation can help businesses communicate:","entries":[{"title":"Something new","description":"Launch a product or service."},{"title":"Something complex","description":"Explain a process or technology."},{"title":"Something invisible","description":"Visualize data, systems or concepts."},{"title":"Something impossible","description":"Create worlds and scenarios that cannot be filmed."},{"title":"Something important","description":"Make a message easier to understand and remember."}]},
       {"title":"Animation for experiences","intro":"Animation can become part of:","items":["websites","apps","events","experience centers","exhibitions","installations","AR","VR","digital campaigns","presentations"]},
       {"title":"The process","entries":[{"title":"Idea","description":"What needs to be communicated?"},{"title":"Story","description":"How should people experience it?"},{"title":"Design","description":"What should the world look like?"},{"title":"Motion","description":"How should it move?"},{"title":"Production","description":"How should every frame be built?"},{"title":"Delivery","description":"Where will the experience live?"}]},
-      {"title":"From frame one.","paragraphs":["A strong animation is not simply beautiful. It has a reason to move."]}
+      {"title":"From frame one.","paragraphs":["A strong animation is not simply beautiful. It has a reason to move.","That reason may be to explain, persuade, teach or make an audience feel something. When story, design and timing work together, movement becomes meaning — and the final frame stays in memory long after the screen goes dark."]}
     ],
     "relatedCapabilityRoutes":["/capabilities/brand/","/capabilities/design/","/capabilities/content/","/capabilities/film/","/capabilities/digital/","/capabilities/experiences/","/capabilities/creative-technology/"],
     "cta":{"lead":"Give the idea motion.","action":"Let's make something move."}
   },
   "/brand-advertisement/": {
     "sections": [
-      {"title":"Elevating brands through digital innovation.","paragraphs":["Advertising is no longer limited to a message placed in front of an audience.","A brand can become a story. A visual world. An interaction. A film. An experience. A conversation.","Angel Creations brings creative thinking, design, content, animation, film and digital experience together to help brands communicate in ways people notice and remember."]},
+      {"title":"Elevating brands through digital innovation.","paragraphs":["Advertising is no longer limited to a message placed in front of an audience.","A brand can become a story. A visual world. An interaction. A film. An experience. A conversation."]},
       {"title":"From message to experience.","paragraphs":["A strong brand communication begins with a clear idea.","Then comes the question:"],"statement":"What is the best way to make people experience that idea?","items":["Sometimes it is film.","Sometimes animation.","Sometimes a campaign.","Sometimes an interactive experience.","Sometimes an event.","Sometimes something that has never existed before."]},
       {"title":"Brand advertising can include","entries":[
         {"title":"Brand Campaigns","description":"Build a consistent creative idea across multiple touchpoints.","items":["campaign concepts","campaign identity","visual systems","digital content","social content","film","animation","interactive experiences","event experiences"]},
@@ -114,7 +114,7 @@
   },
   "/media-production/": {
     "sections": [
-      {"title":"Think with us. Act with us. Create with us.","paragraphs":["Ideas need production.","A concept becomes real through people, planning, cameras, animation, sound, editing, visual effects and countless decisions between the first frame and the final delivery.","Angel Creations brings media production disciplines together to create visual stories across film, video, animation, photography, events and digital experiences."]},
+      {"title":"Think with us. Act with us. Create with us.","paragraphs":["Ideas need production.","A concept becomes real through people, planning, cameras, animation, sound, editing, visual effects and countless decisions between the first frame and the final delivery."]},
       {"title":"Production is where the idea becomes real.","paragraphs":["A strong production begins long before the camera starts rolling.","It begins with:"],"items":["an idea","an audience","a story","a visual direction","a production plan","the right people"],"closing":"Then the work moves through production and post-production until the original idea becomes something people can see, hear and experience."},
       {"title":"What can we produce?","entries":[
         {"title":"Video Production","description":"Create visual content for:","items":["brands","campaigns","corporate communication","products","events","digital platforms","social media","experiences"]},

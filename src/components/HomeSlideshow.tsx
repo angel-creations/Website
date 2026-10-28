@@ -12,7 +12,7 @@ import {
 import { slideExperiences } from '../data/slideExperiences';
 import { PointerVelocityTracker, projectMomentum } from '../utils/appleSpring';
 import { getNetworkInformation, prefersReducedData as getReducedDataPreference, prefersReducedMotion as getReducedMotionPreference } from '../utils/mediaPreferences';
-import { navigate } from '../utils/routes';
+import { HOME_SLIDESHOW_RESET_EVENT, navigate } from '../utils/routes';
 
 const TRANSITION_MS = 1120;
 const DRAG_SETTLE_MIN_MS = 300;
@@ -442,6 +442,60 @@ export function HomeSlideshow(): JSX.Element {
     transitionToIndex(incomingIndex, offset > 0, startFromProgress, customDurationMs);
   };
 
+  const restartFromFirstSlide = (): void => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    dragSessionRef.current = null;
+    setIsDraggingStage(false);
+
+    const firstVideo = slideRefs.current[0]?.querySelector<HTMLVideoElement>('video') ?? null;
+    if (firstVideo) {
+      try {
+        firstVideo.currentTime = 0;
+      } catch {
+        // A not-yet-loaded remote film can reject seeking; it will still begin at zero.
+      }
+    }
+
+    if (activeRef.current !== 0) {
+      transitionToIndex(0, false);
+      return;
+    }
+
+    clearTimers();
+    if (inFlightSettleRef.current) {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+      inFlightSettleRef.current();
+    }
+
+    if (activeRef.current !== 0) {
+      transitionToIndex(0, false);
+      return;
+    }
+
+    slideRefs.current.forEach((slide, index) => {
+      clearSlideInlineStyles(slide);
+      slide?.classList.toggle('q_current', index === 0);
+    });
+    activeRef.current = 0;
+    retainHomeSlide(0);
+    setActive(0);
+    setStatus(describeSlide(0));
+    setIsTransitioning(false);
+    slideshowRef.current?.setAttribute('wait', 'false');
+    if (canAutoplayVideos() && !document.hidden && !activatePendingFallback(firstVideo)) {
+      playVideo(firstVideo);
+    }
+  };
+
+  useEffect(() => {
+    const onLogoReset = (): void => restartFromFirstSlide();
+    window.addEventListener(HOME_SLIDESHOW_RESET_EVENT, onLogoReset);
+    return () => window.removeEventListener(HOME_SLIDESHOW_RESET_EVENT, onLogoReset);
+  }, []);
+
   const cancelDragAndRevert = (
     outgoing: HTMLDivElement,
     incoming: HTMLDivElement,
@@ -582,7 +636,7 @@ export function HomeSlideshow(): JSX.Element {
     const incoming = session.incomingIndex !== null ? slideRefs.current[session.incomingIndex] : null;
     if (!incoming || session.movingForward === null) return;
 
-    const width = Math.max(320, slideshow.clientWidth || window.innerWidth);
+    const width = Math.max(240, slideshow.clientWidth || window.innerWidth);
     const dragProgress = Math.min(0.94, Math.abs(deltaX) / (width * 0.72));
     session.progress = dragProgress;
     applyTransitionFrame(outgoing, incoming, session.movingForward, dragProgress, false);
@@ -622,7 +676,7 @@ export function HomeSlideshow(): JSX.Element {
 
     const velocityX = velocityTrackerRef.current.getVelocity();
     const projectedX = deltaX + projectMomentum(velocityX, 0.995);
-    const width = Math.max(320, slideshow?.clientWidth || window.innerWidth);
+    const width = Math.max(240, slideshow?.clientWidth || window.innerWidth);
     const alignedProjection = session.movingForward ? -projectedX : projectedX;
     const shouldCommit =
       !cancelled &&
