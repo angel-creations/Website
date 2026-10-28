@@ -45,6 +45,15 @@ jobs:
 
       - name: Type-check and build production site
         run: npm run build
+        env:
+          # EmailJS identifiers are embedded in the client bundle at build
+          # time (the public key is designed for browser use). Set these as
+          # repository Actions variables; without them the contact form
+          # ships in its email-draft fallback mode. See docs/EMAILJS_SETUP.md.
+          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID }}
+          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
 
       - name: Verify generated routes and local assets
         run: |
@@ -422,6 +431,15 @@ jobs:
 
       - name: Build verified static site
         run: npm run build
+        env:
+          # Must match the build-and-verify job: EmailJS identifiers are
+          # baked into the bundle at build time, so the deploy rebuild needs
+          # the same Actions variables or the deployed contact form would
+          # silently fall back to the email draft. See docs/EMAILJS_SETUP.md.
+          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID }}
+          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
 
       - name: Back up and deploy dist over SSH
         shell: bash
