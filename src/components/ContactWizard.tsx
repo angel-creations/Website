@@ -503,8 +503,8 @@ export function ContactWizard(): JSX.Element {
           template_params: {
             to_email: 'business@angelcreations.in',
             subject,
-            from_name: values.name.trim(),
-            from_email: values.email.trim(),
+            contact_name: values.name.trim(),
+            contact_email: values.email.trim(),
             reply_to: values.email.trim(),
             company: values.company.trim(),
             phone: values.phone.trim(),
