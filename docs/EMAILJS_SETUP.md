@@ -10,8 +10,9 @@ In the EmailJS dashboard:
 2. Create an email template and set **To Email** to `{{to_email}}` (the form supplies `business@angelcreations.in`).
 3. Set **Reply-To** to `{{reply_to}}` so replying reaches the prospective client.
 4. Use `{{subject}}` for the subject.
-5. Add these variables to the template body as useful:
-   - `{{from_name}}`, `{{from_email}}`, `{{company}}`, `{{phone}}`
+5. Configure **From Name** as a studio sender label and leave **From Email** on the verified sender provided by your connected email service. Use **Reply-To** = `{{reply_to}}` so replies reach the visitor.
+6. Add these variables to the template body as useful:
+   - `{{contact_name}}`, `{{contact_email}}`, `{{company}}`, `{{phone}}`
    - `{{project_type}}`, `{{project_description}}`, `{{timeline}}`, `{{investment}}`
    - `{{intent}}`, `{{topic}}`, `{{goal}}`, `{{source_route}}`
    - `{{first_landing_page}}`, `{{last_landing_page}}`, `{{referrer}}`
