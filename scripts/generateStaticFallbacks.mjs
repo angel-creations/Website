@@ -891,12 +891,18 @@ const notFoundFallbackCss = `<style>
 </style>`;
 
 const gtmHeadSnippet = `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MMFB2VZ');</script>`;
+// GA4 is installed directly because the published GTM container has no tags.
+// Keep this measurement out of GTM unless this direct tag is removed, or GA4
+// will receive duplicate hits.
+const googleAnalyticsMeasurementId = 'G-T4G74DNBP9';
+const gaHeadSnippet = `<script async src="https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsMeasurementId}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${googleAnalyticsMeasurementId}');</script>`;
+const analyticsHeadSnippet = `${gtmHeadSnippet}${gaHeadSnippet}`;
 const gtmNoScript = `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MMFB2VZ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`;
 
 function documentShell({ title, description, canonical, robots, ogTitle, image, imageAlt, schema = '', extraHead = '', fallback }) {
   return `<!doctype html>
 <html lang="en-IN" class="respect-color-scheme-preference"><head>
-<meta charset="utf-8">${gtmHeadSnippet}<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">${analyticsHeadSnippet}<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${escapeHtml(title)}</title>
 ${description ? `<meta name="description" content="${escapeHtml(description)}">` : ''}
 <meta name="robots" content="${escapeHtml(robots || 'index, follow')}">
@@ -1261,7 +1267,7 @@ function capabilityDocument(capability) {
 
 function statusErrorDocument({ status, title, label, codeLabel, heading, description, footnote }) {
   const pageMarkup = `<main id="main" class="site-main angel-not-found"><section class="angel-not-found__layout" aria-labelledby="status-error-title"><div class="angel-not-found__visual" aria-hidden="true"><span class="angel-not-found__visual-label">SIGNAL / ${status}</span><span class="angel-not-found__orbit"></span><span class="angel-not-found__orbit angel-not-found__orbit--middle"></span><span class="angel-not-found__orbit angel-not-found__orbit--inner"></span><span class="angel-not-found__planet"><span>${status}</span><i></i></span><span class="angel-not-found__visual-coordinate">AC / ${status === 410 ? 'RETIRED' : 'STATUS'}</span></div><div class="angel-not-found__content"><p class="angel-not-found__eyebrow">Angel Creations <span>/ ${escapeHtml(label)}</span></p><p class="angel-not-found__code">${escapeHtml(codeLabel)} <span aria-hidden="true">—</span> ${status}</p><h1 id="status-error-title">${escapeHtml(heading)}</h1><p class="angel-not-found__description">${escapeHtml(description)}</p><nav class="angel-not-found__actions" aria-label="Continue exploring Angel Creations"><a href="/"><span>Back to home</span><span aria-hidden="true">↗</span></a><a href="/works/">Explore the work</a><a href="/contact/">Contact the studio</a></nav><p class="angel-not-found__footnote">${escapeHtml(footnote)} <span aria-hidden="true">·</span> KEEP EXPLORING</p></div></section></main>`;
-  return `<!doctype html><html lang="en-IN"><head><meta charset="utf-8">${gtmHeadSnippet}<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, follow"><title>${escapeHtml(title)}</title>${notFoundFallbackCss}</head><body>${gtmNoScript}${pageMarkup}</body></html>`;
+  return `<!doctype html><html lang="en-IN"><head><meta charset="utf-8">${analyticsHeadSnippet}<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, follow"><title>${escapeHtml(title)}</title>${notFoundFallbackCss}</head><body>${gtmNoScript}${pageMarkup}</body></html>`;
 }
 
 function notFoundDocument() {
