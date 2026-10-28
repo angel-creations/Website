@@ -480,9 +480,11 @@ export function App(): JSX.Element {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [page, capability, domain, experience, route, isDedicatedSpatialRoute]);
 
-  // Virtual pageview for Google Tag Manager: the container's gtm.js event covers
-  // the initial document load; in-site (SPA) navigations push a page_view event
-  // once the SEO effect above has updated the document title.
+  // Virtual pageview for Google Analytics: the direct Google tag's config call
+  // covers the initial document load; in-site (SPA) navigations send a manual
+  // page_view once the SEO effect above has updated the document title. The
+  // matching dataLayer push keeps the event available to Tag Manager without
+  // relying on it for GA4 delivery.
   useEffect(() => {
     if (isInitialRouteRef.current) {
       isInitialRouteRef.current = false;
@@ -490,14 +492,19 @@ export function App(): JSX.Element {
     }
     const browserWindow = window as Window & {
       dataLayer?: Array<Record<string, unknown>>;
+      gtag?: (...args: unknown[]) => void;
+    };
+    const pageView = {
+      page_path: `${window.location.pathname}${window.location.search}`,
+      page_location: window.location.href,
+      page_title: document.title,
     };
     browserWindow.dataLayer = browserWindow.dataLayer || [];
     browserWindow.dataLayer.push({
       event: 'page_view',
-      page_path: `${window.location.pathname}${window.location.search}`,
-      page_location: window.location.href,
-      page_title: document.title,
+      ...pageView,
     });
+    browserWindow.gtag?.('event', 'page_view', pageView);
   }, [route]);
 
   const handleInternalLink = (event: ReactMouseEvent<HTMLDivElement>): void => {

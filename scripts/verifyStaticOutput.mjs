@@ -11,6 +11,12 @@ import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 const distDirectory = path.resolve(process.argv[2] ?? 'dist');
+const googleTagManagerContainerId = 'GTM-MMFB2VZ';
+const googleAnalyticsMeasurementId = 'G-T4G74DNBP9';
+
+function countMatches(value, pattern) {
+  return (value.match(pattern) ?? []).length;
+}
 
 const coreRequiredRoutes = [
   '/', '/about/', '/works/', '/animation/', '/augment-reality/',
@@ -112,6 +118,23 @@ for (const file of walk(distDirectory)) {
   if (opened !== closed) record(file, `${opened} <script> tags but ${closed} </script> tags`);
   if (!/<\/html>\s*$/i.test(html.trimEnd())) record(file, 'document does not end with </html>');
 
+  // Analytics must be present exactly once per real document. GTM is kept for
+  // future tags, while GA4 runs through the direct Google tag because the
+  // published GTM container currently has no tags to forward hits to GA4.
+  const head = html.split(/<\/head>/i)[0] ?? '';
+  if (countMatches(head, new RegExp(googleTagManagerContainerId, 'g')) !== 1) {
+    record(file, 'Google Tag Manager container is missing or duplicated in the document head');
+  }
+  if (countMatches(html, new RegExp(`googletagmanager\\.com/ns\\.html\\?id=${googleTagManagerContainerId}`, 'g')) !== 1) {
+    record(file, 'Google Tag Manager noscript iframe is missing or duplicated');
+  }
+  if (countMatches(head, new RegExp(`googletagmanager\\.com/gtag/js\\?id=${googleAnalyticsMeasurementId}`, 'g')) !== 1) {
+    record(file, 'Google Analytics gtag.js loader is missing or duplicated in the document head');
+  }
+  if (countMatches(head, new RegExp(`gtag\\('config',\\s*'${googleAnalyticsMeasurementId}'\\)`, 'g')) !== 1) {
+    record(file, 'Google Analytics config call is missing or duplicated in the document head');
+  }
+
   if (standaloneDocuments.has(path.basename(file))) {
     if (!/<main\b/i.test(html)) record(file, 'status document has no <main> content');
   }
@@ -134,4 +157,4 @@ if (problems.length > 0) {
   process.exit(1);
 }
 
-console.log(`Verified ${requiredRoutes.length} route documents and ${walk(distDirectory).length} HTML files in ${path.relative(process.cwd(), distDirectory) || '.'}: every route mounts the app, every script is closed, every referenced asset exists, every document carries a boot fallback, and .htaccess enforces no-cache HTML.`);
+console.log(`Verified ${requiredRoutes.length} route documents and ${walk(distDirectory).length} HTML files in ${path.relative(process.cwd(), distDirectory) || '.'}: every route mounts the app, every script is closed, every referenced asset exists, every document carries a boot fallback and the GTM/GA4 tags exactly once, and .htaccess enforces no-cache HTML.`);

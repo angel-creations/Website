@@ -205,9 +205,27 @@ export function trackLeadEvent(eventName: string, payload: Record<string, string
 
   const browserWindow = window as Window & {
     dataLayer?: Array<Record<string, unknown>>;
+    gtag?: (...args: unknown[]) => void;
   };
   browserWindow.dataLayer = browserWindow.dataLayer || [];
   browserWindow.dataLayer.push(event);
+
+  // Send the same lead interaction directly to GA4. The published GTM
+  // container currently has no tags, so a dataLayer push alone would leave
+  // these events stranded in the browser.
+  const analyticsPayload = Object.fromEntries(
+    Object.entries(safePayload).map(([key, value]) => [
+      key.replace(/([a-z0-9])([A-Z])/g, '$1_$2').toLowerCase(),
+      value,
+    ]),
+  );
+  browserWindow.gtag?.('event', eventName, {
+    page_path: window.location.pathname,
+    page_location: window.location.href,
+    page_title: document.title,
+    ...analyticsPayload,
+  });
+
   window.dispatchEvent(new CustomEvent('angel:lead-event', { detail: event }));
 }
 
