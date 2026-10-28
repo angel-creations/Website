@@ -1,39 +1,39 @@
 {
   "/": {
-    "title": "Angel Creations | Immersive Experiences, VR, AR & Film",
-    "description": "Angel Creations is an India-based creative studio creating virtual reality, augmented reality, animation, brand films, and immersive digital experiences.",
+    "title": "XR, Animation & Film Studio in India | Angel Creations",
+    "description": "Hire Angel Creations, a Jaipur-based XR, metaverse, animation, VFX and film studio in India, for VR, AR, brand campaigns and immersive experiences worldwide.",
     "image": "/media/social/og/home.jpg",
     "shareTitle": "Immersive worlds. Human stories.",
     "imageAlt": "Dark digital-city artwork with the Angel Creations wordmark and the headline “Immersive worlds. Human stories.”"
   },
   "/404/": {
     "title": "Page not found | Angel Creations",
-    "description": "This route is out of view. Return home, explore the verified Angel Creations works archive, or start a project."
+    "description": "This page could not be found. Return home, explore selected Angel Creations work, or start a conversation with the studio."
   },
   "/about/": {
-    "title": "About Angel Creations | Creative & Immersive Studio",
-    "description": "Meet Angel Creations, an India-based creative studio working across design, development, storytelling, film, animation, and immersive digital experiences.",
+    "title": "About Our XR, Animation & Film Studio | Angel Creations",
+    "description": "Meet Angel Creations, a Jaipur-based XR, animation and film studio with a UK client desk, partnering worldwide on immersive worlds, campaigns and media.",
     "image": "/media/social/og/about.jpg",
     "shareTitle": "Meet the creative studio.",
-    "imageAlt": "Angel Creations wordmark over the existing studio About image with the headline “Meet the creative studio.”"
+    "imageAlt": "Angel Creations wordmark over studio artwork with the headline “Meet the creative studio.”"
   },
   "/animation/": {
-    "title": "2D & 3D Animation, Motion Graphics & VFX | Angel Creations",
-    "description": "Discover 2D and 3D animation, motion graphics, character animation, interactive animation, and visual effects in Angel Creations’ public capability material.",
+    "title": "2D & 3D Animation Studio in India | Angel Creations",
+    "description": "Hire a 2D and 3D animation studio in India for CGI, character animation, motion graphics, VFX, product animation and explainer videos for global brands.",
     "shareTitle": "Stories in motion.",
     "image": "/media/social/og/animation.jpg",
     "imageAlt": "Angel Creations-branded animation hero artwork with the headline “Stories in motion.”"
   },
   "/augment-reality/": {
-    "title": "Augmented Reality Experiences & Apps | Angel Creations",
-    "description": "Explore Angel Creations’ augmented reality material for industrial applications, navigation, retail, marketing, tourism, education, and entertainment.",
+    "title": "Augmented Reality Development in India | Angel Creations",
+    "description": "Hire an AR development company in India for WebAR, mobile AR apps, retail, navigation, industry, tourism, education and marketing experiences worldwide.",
     "shareTitle": "A digital layer on the real world.",
     "image": "/media/social/og/augmented-reality.jpg",
-    "imageAlt": "Angel Creations-branded augmented-reality hero artwork with the page headline."
+    "imageAlt": "Angel Creations-branded augmented-reality hero artwork with the headline “A digital layer on the real world.”"
   },
   "/brand-advertisement/": {
-    "title": "Brand Films & Creative Campaigns | Angel Creations",
-    "description": "Explore Angel Creations’ brand advertising and marketing material across film, animation, digital, and immersive experiences.",
+    "title": "Brand Films & Ad Campaigns in India | Angel Creations",
+    "description": "Hire a brand film and ad campaign studio in India for product launches, digital campaigns and immersive activations that make brands remembered and chosen.",
     "shareTitle": "Campaigns with a point of view.",
     "image": "/media/social/og/brand-advertisement.jpg",
     "imageAlt": "Angel Creations-branded campaign artwork with the headline “Campaigns with a point of view.”"
@@ -46,22 +46,22 @@
     "imageAlt": "Cinematic studio-light artwork with the Angel Creations wordmark and the headline “Let’s start a conversation.”"
   },
   "/media-production/": {
-    "title": "Film, Video & Media Production | Angel Creations",
-    "description": "Explore Angel Creations’ media production capabilities across film, video, television, photography, live events, and post-production.",
+    "title": "Film & Video Production Company in Jaipur | Angel Creations",
+    "description": "Hire a film and video production company in Jaipur, India for corporate films, commercials, broadcast, live events, post-production and worldwide delivery.",
     "shareTitle": "From first frame to final cut.",
     "image": "/media/social/og/media-production.jpg",
     "imageAlt": "Angel Creations-branded media-production hero artwork with the headline “From first frame to final cut.”"
   },
   "/metaverse/": {
-    "title": "Metaverse & Virtual World Experiences | Angel Creations",
-    "description": "Explore Angel Creations’ metaverse capabilities, including virtual worlds, events, product showcases, marketplaces, and workspaces.",
+    "title": "Metaverse Development Company in India | Angel Creations",
+    "description": "Hire a metaverse development company in India for virtual worlds, events, product showcases, workspaces and marketplaces built for people and participation.",
     "shareTitle": "Virtual worlds, made tangible.",
     "image": "/media/social/og/metaverse.jpg",
     "imageAlt": "Angel Creations-branded metaverse hero artwork with the headline “Virtual worlds, made tangible.”"
   },
   "/mixed-reality/": {
-    "title": "Mixed Reality Experiences & Development | Angel Creations",
-    "description": "Explore Angel Creations’ mixed reality material for training, education, entertainment, architecture, marketing, retail, and collaboration.",
+    "title": "Mixed Reality Development Company India | Angel Creations",
+    "description": "Hire a mixed reality development company in India for spatial computing, MR training, design, retail, collaboration, media and entertainment experiences.",
     "shareTitle": "Where the real meets digital.",
     "image": "/media/social/og/mixed-reality.jpg",
     "imageAlt": "Angel Creations-branded mixed-reality hero artwork with the headline “Where the real meets digital.”"
@@ -81,73 +81,80 @@
     "imageAlt": "Angel Creations terms graphic with abstract orbital lines and the headline “The terms for using this site.”"
   },
   "/virtual-reality/": {
-    "title": "Virtual Reality Experiences & Development | Angel Creations",
-    "description": "Explore Angel Creations’ virtual reality material for content, training, education, gaming, marketing, architecture, healthcare, and broadcasting.",
+    "title": "Virtual Reality Development Company in India | Angel Creations",
+    "description": "Hire a VR development company in India for training simulations, education, architectural visualisation, healthcare, gaming and immersive brand experiences.",
     "shareTitle": "Step inside the story.",
     "image": "/media/social/og/virtual-reality.jpg",
     "imageAlt": "Angel Creations-branded virtual-reality hero artwork with the headline “Step inside the story.”"
   },
   "/works/": {
-    "title": "Selected Work | Angel Creations",
-    "description": "Explore selected Angel Creations work through 47 verified public video records with their original titles, descriptions, links, and available metadata.",
+    "title": "XR, Animation, VFX & Film Portfolio | Angel Creations",
+    "description": "Watch 47 productions from an India-based XR, animation, VFX and film studio—spanning architectural visualisation, commercials, events and immersive media.",
     "image": "/media/social/og/works.jpg",
     "shareTitle": "Selected work from Angel Creations.",
     "imageAlt": "Lustica architecture image with the Angel Creations wordmark and a selected-work headline."
   },
   "/capabilities/brand/": {
-    "title": "Brand & Creative Campaigns | Angel Creations",
-    "description": "Explore Angel Creations’ brand advertising, marketing, and immersive campaign capabilities across virtual, augmented, and mixed-reality experiences.",
+    "title": "Brand Strategy, Films & Campaign Services | Angel Creations",
+    "description": "Brand strategy, campaign creative, films and immersive activations that help ambitious brands launch clearly, be remembered and turn attention into enquiries.",
     "shareTitle": "Build a vivid brand story.",
     "image": "/media/social/og/capability-brand.jpg",
     "imageAlt": "Angel Creations-branded brand-positioning artwork with the headline “Build a vivid brand story.”"
   },
   "/capabilities/design/": {
-    "title": "Design & Creative Studio | Angel Creations",
-    "description": "Explore Angel Creations’ design and development capabilities across spatial experiences, visual storytelling, and digital environments.",
+    "title": "Spatial & Experience Design Studio | Angel Creations",
+    "description": "Spatial, visual and experience design for virtual worlds, interfaces, architecture, retail and story-led environments with a clear audience and purpose.",
     "shareTitle": "Design with purpose and feeling.",
     "image": "/media/social/og/capability-design.jpg",
     "imageAlt": "Angel Creations-branded architecture image with the headline “Design with purpose and feeling.”"
   },
   "/capabilities/content/": {
-    "title": "Immersive Content Production | Angel Creations",
-    "description": "Explore immersive content production across VR, mixed reality, animation, media, and interactive brand experiences.",
+    "title": "Immersive Content Production Services | Angel Creations",
+    "description": "Immersive content production for VR, mixed reality, animation, film, interactive media and explainers—made for spaces, screens, events and campaigns.",
     "shareTitle": "Content for immersive spaces.",
     "image": "/media/social/og/capability-content.jpg",
     "imageAlt": "Angel Creations-branded visual-storytelling artwork with the headline “Content for immersive spaces.”"
   },
   "/capabilities/film/": {
-    "title": "Film & Video Production | Angel Creations",
-    "description": "Explore film and video production across scriptwriting, storyboarding, photography, post-production, live events, and audio.",
+    "title": "Film & Video Production in India | Angel Creations",
+    "description": "Hire film and video production services in India across scriptwriting, storyboarding, photography, live events, audio, post-production and final delivery.",
     "shareTitle": "Shape a story, frame by frame.",
     "image": "/media/social/og/capability-film.jpg",
     "imageAlt": "Angel Creations-branded cinematography artwork with the headline “Shape a story, frame by frame.”"
   },
   "/capabilities/animation-3d/": {
-    "title": "2D & 3D Animation and VFX | Angel Creations",
-    "description": "Explore Angel Creations’ 2D and 3D animation, motion graphics, visual effects, character animation, and interactive animation.",
+    "title": "2D, 3D Animation & VFX in India | Angel Creations",
+    "description": "Hire 2D and 3D animation, CGI, character animation, motion graphics and VFX services in India for explainers, campaigns, products and immersive worlds.",
     "shareTitle": "Ideas in motion and dimension.",
     "image": "/media/social/og/capability-animation-3d.jpg",
     "imageAlt": "Angel Creations-branded animation artwork with the headline “Ideas in motion and dimension.”"
   },
   "/capabilities/digital/": {
-    "title": "Digital Experiences & Development | Angel Creations",
-    "description": "Explore digital experiences across virtual worlds, workspaces, marketplaces, education, streaming, navigation, and collaboration.",
+    "title": "Interactive Digital Experience Development | Angel Creations",
+    "description": "Interactive digital experience development for virtual worlds, learning, commerce, navigation, streaming and collaboration—designed around real user journeys.",
     "shareTitle": "Digital experiences, made useful.",
     "image": "/media/social/og/capability-digital.jpg",
     "imageAlt": "Angel Creations-branded augmented-reality navigation artwork with the headline “Digital experiences, made useful.”"
   },
   "/capabilities/experiences/": {
-    "title": "Immersive Experiences & Events | Angel Creations",
-    "description": "Explore virtual worlds, events platforms, product showcases, live event production, entertainment, and interactive spatial experiences.",
+    "title": "Immersive Experience & Event Production | Angel Creations",
+    "description": "Immersive experience and event production for virtual events, product showcases, live activations and spatial moments people can enter, explore and share.",
     "shareTitle": "Spaces for shared moments.",
     "image": "/media/social/og/capability-experiences.jpg",
     "imageAlt": "Angel Creations-branded event imagery with the headline “Spaces for shared moments.”"
   },
   "/capabilities/creative-technology/": {
-    "title": "Creative Technology & XR | Angel Creations",
-    "description": "Explore Angel Creations’ VR, AR, mixed reality, and metaverse capabilities, including training, navigation, virtual worlds, and collaboration.",
+    "title": "XR Development Company in India | Angel Creations",
+    "description": "Hire an XR development company in India for VR, AR, mixed reality, metaverse and real-time 3D experiences where design, engineering and storytelling meet.",
     "shareTitle": "Creative thinking meets technology.",
     "image": "/media/social/og/capability-creative-technology.jpg",
     "imageAlt": "Angel Creations-branded mixed-reality artwork with the headline “Creative thinking meets technology.”"
+  },
+  "/domains/": {
+    "title": "XR, Animation & Film Services in India | Angel Creations",
+    "description": "Explore 63 services from an India-based XR, animation, VFX, brand and film studio. Compare deliverables, formats and use cases, then start a project.",
+    "shareTitle": "Every domain. Every world we can build.",
+    "image": "/media/social/og/domains.jpg",
+    "imageAlt": "Angel Creations domain directory artwork with the headline “Every domain. Every world we can build.”"
   }
 }

@@ -1,13 +1,22 @@
 import type { MouseEvent as ReactMouseEvent } from 'react';
-import { navigate } from '../utils/routes';
+import { buildContactHref, trackLeadEvent } from '../utils/leads';
+import { navigate, navigateHomeFromStart } from '../utils/routes';
 
 const logo = '/media/logos/logo-rectangle-1.png';
+const footerLeadHref = buildContactHref({
+  discipline: 'Custom Multi-Discipline Commission',
+  intent: 'project-roadmap',
+  sourceRoute: 'site-footer',
+  topic: 'New immersive project',
+  goal: 'Build what doesn’t exist yet',
+});
 
 const primaryLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about/' },
   { label: 'Works', href: '/works/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'All Domains', href: '/domains/' },
+  { label: 'Contact', href: footerLeadHref },
 ];
 
 const capabilityLinks = [
@@ -44,7 +53,8 @@ export function SiteFooter(): JSX.Element {
   const handleInternalNav = (event: ReactMouseEvent<HTMLAnchorElement>, href: string): void => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    navigate(href);
+    if (href === '/') navigateHomeFromStart();
+    else navigate(href);
   };
 
   return (
@@ -55,9 +65,20 @@ export function SiteFooter(): JSX.Element {
           <div className="ac-footer-v2__intro">
             <p className="ac-footer-v2__eyebrow">Angel Creations · Spatial &amp; Creative Studio</p>
             <a
-              href="/contact/"
+              href={footerLeadHref}
               className="ac-footer-v2__headline-link"
-              onClick={(event) => handleInternalNav(event, '/contact/')}
+              data-lead-event="lead_cta_click"
+              data-lead-intent="project-roadmap"
+              data-lead-topic="New immersive project"
+              onClick={(event) => {
+                trackLeadEvent('lead_cta_click', {
+                  intent: 'project-roadmap',
+                  topic: 'New immersive project',
+                  sourceRoute: 'site-footer',
+                  cta: 'Footer headline',
+                });
+                handleInternalNav(event, footerLeadHref);
+              }}
             >
               <span className="ac-footer-v2__headline-text">
                 Let’s build something extraordinary together.
@@ -163,7 +184,7 @@ export function SiteFooter(): JSX.Element {
               href="/"
               className="ac-footer-v2__logo"
               onClick={(event) => handleInternalNav(event, '/')}
-              aria-label="Angel Creations Home"
+              aria-label="Angel Creations — go to the homepage and restart from Metaverse"
             >
               <img src={logo} alt="Angel Creations" />
             </a>

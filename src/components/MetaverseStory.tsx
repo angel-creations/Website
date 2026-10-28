@@ -3,6 +3,7 @@ import metaverseContent from '../data/metaverseContent.json';
 import rawMaps from '../data/experienceMaps.json';
 import rawVisuals from '../data/explorerVisuals.json';
 import { capabilityForRoute } from '../data/capabilities';
+import { domainRouteFor } from '../data/domains';
 import {
   ApplicationExplorer,
   ExperienceMap,
@@ -57,6 +58,7 @@ export function MetaverseStory(): JSX.Element {
     description: type.description,
     items: type.applications,
     closing: type.closing,
+    href: domainRouteFor('/metaverse/', type.title),
   }));
 
   return (
@@ -145,9 +147,6 @@ export function MetaverseStory(): JSX.Element {
                   What Makes a True Metaverse Experience
                 </h3>
               </div>
-              <span className="apple-bento-block__meta">
-                4 Architectural Layers · Unique Category Visuals
-              </span>
             </div>
 
             <div className="apple-pillars-grid apple-pillars-grid--visual" role="list">
@@ -161,8 +160,11 @@ export function MetaverseStory(): JSX.Element {
                       isSelected ? ' is-selected' : ''
                     }`}
                     role="listitem"
+                    tabIndex={0}
+                    aria-current={isSelected || undefined}
                     onClick={() => setActivePillar(idx)}
                     onMouseEnter={() => setActivePillar(idx)}
+                    onFocus={() => setActivePillar(idx)}
                   >
                     {visual && (
                       <div className="apple-pillar-card__media">
@@ -202,9 +204,6 @@ export function MetaverseStory(): JSX.Element {
                   Engineered for Human Presence &amp; Long-Term Value
                 </h3>
               </div>
-              <span className="apple-bento-block__meta">
-                {metaverseContent.evolution.join(' → ')}
-              </span>
             </div>
 
             <div className="apple-values-grid" role="list">
@@ -214,7 +213,6 @@ export function MetaverseStory(): JSX.Element {
                     <span className="apple-value-card__index">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
-                    <span className="apple-value-card__pill">Experience Layer</span>
                   </div>
                   <h4 className="apple-value-card__title">{term}</h4>
                   <p className="apple-value-card__desc">{definition}</p>
@@ -248,7 +246,7 @@ export function MetaverseStory(): JSX.Element {
         <div className="apple-story-container">
           <div className="apple-story-compare-grid">
             <article className="apple-glass-card">
-              <span className="apple-card-kicker">06 · Who Can Use It?</span>
+              <span className="apple-card-kicker">Who Can Use It?</span>
               <h3>Organizations &amp; Communities We Support</h3>
               <ul className="apple-capabilities-list" style={{ marginTop: '1rem' }}>
                 {metaverseContent.whoCanUse.map((context) => (
@@ -263,7 +261,7 @@ export function MetaverseStory(): JSX.Element {
             </article>
 
             <article className="apple-glass-card apple-glass-card--accent">
-              <span className="apple-card-kicker">07 · Related Capabilities</span>
+              <span className="apple-card-kicker">Related Capabilities</span>
               <h3>The Disciplines Behind the Experience</h3>
               <p style={{ marginBottom: '1.25rem' }}>
                 Every persistent virtual world combines real-time 3D engineering, spatial design,

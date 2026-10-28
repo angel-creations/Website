@@ -32,7 +32,7 @@ try {
 
   if (!state.fallbackVisible) failure = 'the boot fallback is not visible when the development entry cannot execute';
   else if (state.visibleText.length < 100) failure = 'the boot fallback shows too little readable content';
-  else if (!/Dive into new world/i.test(state.heading)) failure = 'the boot fallback headline is missing';
+  else if (!/Dive into a new world/i.test(state.heading)) failure = 'the boot fallback headline is missing';
 
   console.log(
     failure

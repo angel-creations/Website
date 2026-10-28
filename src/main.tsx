@@ -16,6 +16,11 @@ import './styles/angel/structural-dark-mode.css';
 import './styles/baseline.css';
 import './styles/enhancements.css';
 import './styles/inner-experiences.css';
+import './styles/immersive.css';
+import './styles/domains.css';
+import './styles/lead-generation.css';
+/* Responsive layer (max-width: 1024px only) — must stay last. */
+import './styles/responsive.css';
 
 const container = document.getElementById('root')!;
 

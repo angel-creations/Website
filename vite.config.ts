@@ -3,6 +3,20 @@ import react from '@vitejs/plugin-react';
 // Plain ESM module shared by this config and scripts/generateStaticFallbacks.mjs.
 // @ts-expect-error the boot fallback has no TypeScript declaration file
 import { bootFallbackBlock } from './scripts/boot-fallback.mjs';
+// @ts-expect-error Vite executes this config in Node; the project intentionally has no @types/node dependency.
+import { createRequire } from 'node:module';
+
+const nodeRequire = createRequire((import.meta as unknown as { url: string }).url);
+const explorerVisuals = nodeRequire('./src/data/explorerVisuals.json') as Record<string, { applications?: Array<{ caption: string }> }>;
+const slugifyDomainTitle = (title: string): string => title
+  .toLowerCase()
+  .replace(/&/g, ' and ')
+  .replace(/['’]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+const domainRoutes = Object.entries(explorerVisuals).flatMap(([parentRoute, bundle]) =>
+  (bundle.applications ?? []).map((visual) => `${parentRoute}${slugifyDomainTitle(visual.caption)}/`)
+);
 
 // Injects the boot fallback into index.html for the dev server and the production build.
 // It is the only defence against a document whose entry script never runs (a host serving
@@ -60,7 +74,7 @@ const knownPageRoutes = new Set([
   '/terms-of-service/', '/virtual-reality/', '/works/', '/work', '/work/',
   '/capabilities/brand/', '/capabilities/design/', '/capabilities/content/', '/capabilities/film/',
   '/capabilities/animation-3d/', '/capabilities/digital/', '/capabilities/experiences/',
-  '/capabilities/creative-technology/',
+  '/capabilities/creative-technology/', '/domains/', ...domainRoutes,
 ]);
 const knownNonPagePaths = new Set(['/feed/', '/comments/feed/']);
 const assetPrefixes = ['/assets/', '/media/', '/media/library/', '/media/social/', '/metaverse/Build/'];

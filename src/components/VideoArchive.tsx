@@ -1,6 +1,8 @@
 import React, { useMemo, useState, useCallback, useRef } from 'react';
 import rawArchive from '../data/videoArchive.json';
+import { buildContactHref, trackLeadEvent } from '../utils/leads';
 import { navigate } from '../utils/routes';
+import { cleanArchiveTitle } from '../utils/archiveCopy';
 
 type VideoRecord = {
   id: string;
@@ -97,33 +99,104 @@ function classifyDiscipline(video: VideoRecord): Exclude<WorkDiscipline, 'All Wo
   return '2D & 3D Animation';
 }
 
+const ARCHIVE_EXCERPT_FALLBACK = 'A selected production from the Angel Creations archive.';
+const ARCHIVE_BOILERPLATE = [
+  /digital marketing/i,
+  /broadcasting\s*&\s*media production/i,
+  /\bit solutions\b/i,
+  /event organi[sz]ers/i,
+  /one\s*['’]?stop['’]?\s+solution/i,
+  /stop['’]?\s+solution/i,
+  /business\s+['’]?growth/i,
+  /designing and media production/i,
+  /web designing/i,
+  /contact us/i,
+  /order your own/i,
+  /subscribe/i,
+  /notification bell/i,
+  /collaborate\s*&\s*create/i,
+  /more than\s+\d+\s+(customers|videos)/i,
+  /mind-boggling/i,
+  /quick turnaround/i,
+  /^by\s+2020\b/i,
+  /we Angel Creations are a studio/i,
+  /group of onlookers/i,
+  /excellent track record/i,
+  /best customer satisfaction/i,
+];
+
 function cleanDescriptionExcerpt(raw?: string): string {
-  if (!raw) return 'Verified production record from the Angel Creations studio archive.';
-  const lines = raw
-    .split('\n')
-    .map((l) => l.trim())
-    .filter(
-      (l) =>
-        l.length > 0 &&
-        !l.startsWith('#') &&
-        !l.startsWith('Mail -') &&
-        !l.startsWith('Call -') &&
-        !l.startsWith('Website -') &&
-        !l.startsWith('Instagram -') &&
-        !l.startsWith('Facebook -') &&
-        !l.startsWith('Google+ -') &&
-        !l.startsWith('Get in touch')
-    );
-  const firstMeaningful =
-    lines.find(
-      (l) =>
-        !l.startsWith('Digital Marketing | Broadcasting') &&
-        !l.startsWith("Angel's Creations - one")
-    ) || lines[0];
-  if (!firstMeaningful) return 'Verified production record from the Angel Creations studio archive.';
-  return firstMeaningful.length > 210
-    ? `${firstMeaningful.slice(0, 207)}…`
-    : firstMeaningful;
+  if (!raw) return ARCHIVE_EXCERPT_FALLBACK;
+
+  const candidates: string[] = [];
+  const paragraphs = raw.replace(/\r\n?/g, '\n').split(/\n+/);
+
+  for (const paragraph of paragraphs) {
+    const cleanedParagraph = paragraph
+      .replace(/https?:\/\/\S+|www\.\S+/gi, ' ')
+      .replace(/\b[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}\b/g, ' ')
+      .replace(/\+?\d[\d\s-]{7,}\d/g, ' ')
+      .replace(/#\S+/g, ' ')
+      .replace(/Angel['’]s Creations/g, 'Angel Creations')
+      .replace(/Angels creations/gi, 'Angel Creations')
+      .replace(/\bwas done for\b/gi, 'was created for')
+      .replace(/,\.(?=\s|$)/g, '.')
+      .replace(/\bone of (his|her|their) most popular track\b/gi, 'one of $1 most popular tracks')
+      .replace(/\bone of most popular track\b/gi, 'one of the most popular tracks')
+      .replace(/\bin purpose of inauguration of\b/gi, 'for the inauguration of')
+      .replace(/\bGiant huge\b/gi, 'Giant')
+      .replace(/([A-Za-z])(\()/g, '$1 $2')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    const sentences = cleanedParagraph.match(/[^.!?]+[.!?]+|[^.!?]+$/g) ?? [];
+    for (const sentence of sentences) {
+      const cleanSentence = sentence
+        .replace(/^[\s\-–—•|]+/, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      if (cleanSentence.length < 24 || /^\d+\)/.test(cleanSentence)) continue;
+      if (/^(mail|call|website|instagram|facebook|google\+|get in touch)\b/i.test(cleanSentence)) {
+        continue;
+      }
+      if (ARCHIVE_BOILERPLATE.some((pattern) => pattern.test(cleanSentence))) continue;
+      candidates.push(cleanSentence);
+    }
+  }
+
+  if (!candidates.length) return ARCHIVE_EXCERPT_FALLBACK;
+
+  let excerpt = candidates[0];
+  let candidateIndex = 1;
+  while (
+    candidates[candidateIndex] &&
+    (excerpt.length < 86 || /,$/.test(excerpt)) &&
+    `${excerpt} ${candidates[candidateIndex]}`.length <= 190
+  ) {
+    const prefix = /,$/.test(excerpt)
+      ? excerpt
+      : /[.!?…]$/.test(excerpt)
+        ? excerpt
+        : `${excerpt}.`;
+    excerpt = `${prefix} ${candidates[candidateIndex]}`;
+    candidateIndex += 1;
+  }
+  excerpt = excerpt.replace(/,\s*$/, '.').replace(/,\.(?=\s|$)/g, '.');
+
+  excerpt = excerpt.replace(/^([^A-Za-z]*)([a-z])/, (_match, prefix: string, letter: string) =>
+    `${prefix}${letter.toUpperCase()}`
+  );
+
+  if (excerpt.length > 194) {
+    const shortened = excerpt.slice(0, 191);
+    const lastSpace = shortened.lastIndexOf(' ');
+    excerpt = `${shortened.slice(0, lastSpace > 120 ? lastSpace : 191).trim()}…`;
+  } else if (!/[.!?…]$/.test(excerpt)) {
+    excerpt = `${excerpt}.`;
+  }
+
+  return excerpt;
 }
 
 function formatDate(value?: string): string | null {
@@ -149,6 +222,21 @@ function webpSource(source: string): string {
   return source.replace(/\.jpe?g$/i, '.webp');
 }
 
+function contactDisciplineForWork(discipline: WorkDiscipline): string {
+  switch (discipline) {
+    case 'VFX & Sci-Fi':
+    case '2D & 3D Animation':
+      return '3D Animation & VFX';
+    case 'Brand & Commercials':
+      return 'Brand Advertisement';
+    case 'Live Events & Stage':
+      return 'Media Production';
+    case 'Architecture & XR':
+    default:
+      return 'Custom Multi-Discipline Commission';
+  }
+}
+
 const DISCIPLINES: WorkDiscipline[] = [
   'All Works',
   'VFX & Sci-Fi',
@@ -171,6 +259,7 @@ export function VideoArchive(): JSX.Element {
     () =>
       archive.map((video, originalIndex) => ({
         ...video,
+        title: cleanArchiveTitle(video.title),
         originalIndex,
         discipline: classifyDiscipline(video),
         cleanExcerpt: cleanDescriptionExcerpt(video.description),
@@ -194,6 +283,19 @@ export function VideoArchive(): JSX.Element {
       enrichedArchive[0],
     [activeVideoId, enrichedArchive, spotlightVideos]
   );
+
+  const totalArchiveViews = useMemo(
+    () => enrichedArchive.reduce((total, video) => total + (video.views || 0), 0),
+    [enrichedArchive]
+  );
+  const formattedTotalViews = formatCount(totalArchiveViews);
+  const activeLeadHref = buildContactHref({
+    discipline: contactDisciplineForWork(activeVideo.discipline),
+    intent: 'scope-estimate',
+    sourceRoute: '/works/',
+    topic: `A production like “${activeVideo.title}”`,
+    goal: `${activeVideo.discipline} reference from the Works archive`,
+  });
 
   const disciplineCounts = useMemo(() => {
     const counts: Record<WorkDiscipline, number> = {
@@ -303,18 +405,18 @@ export function VideoArchive(): JSX.Element {
               <span className="apple-back-pill__arrow" aria-hidden="true">
                 ←
               </span>
-              <span>Return to 3D Stage</span>
+              <span>Back to Home</span>
             </a>
 
             <nav className="apple-section-jump-nav" aria-label="Works page sections">
               <a href="#works-hero" className="apple-section-jump-nav__link">
-                01 Cinema Stage
+                Cinema Stage
               </a>
               <a href="#works-archive-explorer" className="apple-section-jump-nav__link">
-                02 Archive ({enrichedArchive.length})
+                Archive ({enrichedArchive.length})
               </a>
               <a href="#works-collaborate" className="apple-section-jump-nav__link">
-                03 Start a Project
+                Start a Project
               </a>
             </nav>
           </div>
@@ -327,7 +429,7 @@ export function VideoArchive(): JSX.Element {
                 ·
               </span>
               <span className="apple-hero-badge__cat">
-                47 Verified Public Productions &amp; Breakdowns
+                XR, Animation, VFX &amp; Film Portfolio · {enrichedArchive.length} Productions
               </span>
             </div>
 
@@ -336,9 +438,9 @@ export function VideoArchive(): JSX.Element {
             </h1>
 
             <p className="apple-hero-lead">
-              Explore Angel Creations’ verified production archive across VFX breakdowns, 2D &amp;
-              3D animation, architectural walkthroughs, commercial brand films, and live stage
-              productions. Select any production to screen it directly inside the Cinema Stage.
+              Explore the portfolio of an India-based XR, animation, VFX and film studio—featuring
+              films, VFX breakdowns, 2D and 3D animation, architectural visualisation, brand
+              commercials and live-event productions.
             </p>
           </header>
 
@@ -372,7 +474,7 @@ export function VideoArchive(): JSX.Element {
                   <span className="apple-stage-flow-pill">Published {activeDate}</span>
                 )}
                 {activeViews && (
-                  <span className="apple-stage-flow-pill">{activeViews} Archive Views</span>
+                  <span className="apple-stage-flow-pill">{activeViews} views</span>
                 )}
                 {activeVideo.category && (
                   <span className="apple-stage-flow-pill">{activeVideo.category}</span>
@@ -386,7 +488,7 @@ export function VideoArchive(): JSX.Element {
                   className="apple-cta-primary"
                   onClick={() => setIsPlayingInline((prev) => !prev)}
                 >
-                  <span>{isPlayingInline ? '■ Stop Inline Player' : '▶ Screen in Theater'}</span>
+                  <span>{isPlayingInline ? '■ Close Player' : '▶ Play in Cinema'}</span>
                 </button>
                 <a
                   href={activeVideo.url}
@@ -396,6 +498,25 @@ export function VideoArchive(): JSX.Element {
                 >
                   <span>Watch on YouTube</span>
                   <span aria-hidden="true">↗</span>
+                </a>
+                <a
+                  href={activeLeadHref}
+                  className="apple-cta-secondary"
+                  data-lead-event="lead_cta_click"
+                  data-lead-intent="scope-estimate"
+                  data-lead-topic={activeVideo.title}
+                  onClick={(event) => {
+                    trackLeadEvent('lead_cta_click', {
+                      intent: 'scope-estimate',
+                      topic: activeVideo.title,
+                      sourceRoute: '/works/',
+                      cta: 'Create something like this',
+                    });
+                    handleLinkClick(event, activeLeadHref);
+                  }}
+                >
+                  <span>Create Something Like This</span>
+                  <span aria-hidden="true">→</span>
                 </a>
                 <button
                   type="button"
@@ -460,7 +581,7 @@ export function VideoArchive(): JSX.Element {
                     type="button"
                     className="apple-works-play-trigger"
                     onClick={() => setIsPlayingInline(true)}
-                    aria-label={`Play ${activeVideo.title} in theater`}
+                    aria-label={`Play ${activeVideo.title} in the Cinema Stage`}
                   >
                     <span className="apple-works-play-trigger__icon" aria-hidden="true">
                       ▶
@@ -487,7 +608,7 @@ export function VideoArchive(): JSX.Element {
                       <div className="apple-visual-stage__caption-group">
                         <p className="apple-visual-stage__caption">{activeVideo.title}</p>
                         <p className="apple-visual-stage__subcaption">
-                          Flagship Spotlight Reel · Select any frame below
+                          Spotlight Reel · Choose a frame below
                         </p>
                       </div>
                     </div>
@@ -508,7 +629,7 @@ export function VideoArchive(): JSX.Element {
                               setActiveVideoId(vid.id);
                               setIsPlayingInline(false);
                             }}
-                            aria-label={`Spotlight ${idx + 1}: ${vid.title}`}
+                            aria-label={`Show ${vid.title} in the spotlight`}
                             aria-pressed={isSelected}
                           >
                             {vid.thumbnail && (
@@ -536,9 +657,9 @@ export function VideoArchive(): JSX.Element {
           <div className="apple-telemetry-strip" role="list" aria-label="Archive statistics">
             <div className="apple-telemetry-tile" role="listitem">
               <span className="apple-telemetry-tile__label">Production Vault</span>
-              <strong className="apple-telemetry-tile__value">47 Verified Films</strong>
+              <strong className="apple-telemetry-tile__value">{enrichedArchive.length} Productions</strong>
               <span className="apple-telemetry-tile__detail">
-                Original public titles, metadata &amp; source links
+                Films, breakdowns and live productions
               </span>
             </div>
             <div className="apple-telemetry-tile" role="listitem">
@@ -550,16 +671,16 @@ export function VideoArchive(): JSX.Element {
             </div>
             <div className="apple-telemetry-tile" role="listitem">
               <span className="apple-telemetry-tile__label">Audience Reach</span>
-              <strong className="apple-telemetry-tile__value">52,400+ Views</strong>
+              <strong className="apple-telemetry-tile__value">{formattedTotalViews} Views</strong>
               <span className="apple-telemetry-tile__detail">
-                Across flagship animation &amp; VFX breakdowns
+                Recorded across the public archive
               </span>
             </div>
             <div className="apple-telemetry-tile" role="listitem">
               <span className="apple-telemetry-tile__label">Screening Mode</span>
-              <strong className="apple-telemetry-tile__value">Inline + Source</strong>
+              <strong className="apple-telemetry-tile__value">Watch Your Way</strong>
               <span className="apple-telemetry-tile__detail">
-                Instant theater playback or direct YouTube link
+                Play here or continue on YouTube
               </span>
             </div>
           </div>
@@ -577,14 +698,15 @@ export function VideoArchive(): JSX.Element {
             <div className="apple-explorer-header__titles">
               <div className="apple-section-eyebrow">
                 <span className="apple-section-eyebrow__dot" aria-hidden="true" />
-                <span>Archive / {enrichedArchive.length} Public Source Records</span>
+                <span>Archive / {enrichedArchive.length} Productions</span>
               </div>
               <h2 id="angel-archive-title" className="apple-explorer-title">
-                Watch the Work.
+                Watch XR, Animation, VFX & Film Work.
               </h2>
               <p className="apple-explorer-lead">
-                Filter by creative discipline, search by keyword or tag, or sort by audience reach
-                and runtime. Every record preserves its verified source metadata.
+                Filter 3D animation and VFX, brand films, architectural visualisation, XR and live
+                productions by discipline, title, tag, reach or runtime. Choose any frame to bring
+                it to the Cinema Stage.
               </p>
             </div>
 
@@ -598,7 +720,7 @@ export function VideoArchive(): JSX.Element {
                     setSearchQuery(e.target.value);
                     setVisibleCount(ARCHIVE_BATCH_SIZE);
                   }}
-                  placeholder="Search 47 titles, VFX, 3D, events…"
+                  placeholder={`Search ${enrichedArchive.length} titles, VFX, 3D, events…`}
                   aria-label="Search the video archive"
                   className="apple-works-search__input"
                 />
@@ -674,8 +796,8 @@ export function VideoArchive(): JSX.Element {
             <div className="apple-glass-card" style={{ textAlign: 'center', padding: '3.5rem 2rem' }}>
               <h3>No productions match “{searchQuery}”</h3>
               <p style={{ margin: '0.5rem auto 1.5rem', maxWidth: '46ch' }}>
-                Try clearing your search query or switching back to All Works to inspect all 47
-                verified studio productions.
+                Try a broader search, or return to All Works to browse all {enrichedArchive.length}
+                productions.
               </p>
               <button
                 type="button"
@@ -708,7 +830,7 @@ export function VideoArchive(): JSX.Element {
                         onClick={() => handleInspectVideo(video.id, true)}
                         role="button"
                         tabIndex={0}
-                        aria-label={`Play ${video.title} in theater stage`}
+                        aria-label={`Play ${video.title} in the Cinema Stage`}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' || e.key === ' ') {
                             e.preventDefault();
@@ -840,18 +962,30 @@ export function VideoArchive(): JSX.Element {
                 Have a Film, Spatial World, or Campaign Ready for Production?
               </h2>
               <p className="apple-Finale-card__desc">
-                Partner with our directors, 3D artists, VFX supervisors, and spatial engineers to
-                bring your next flagship project from concept to global release.
+                Hire our Jaipur, India-based directors, 3D artists, VFX supervisors and XR engineers
+                for animation, brand films, immersive experiences and media production delivered
+                across India and worldwide.
               </p>
             </div>
 
             <div className="apple-Finale-card__actions">
               <a
-                href="/contact/"
+                href={activeLeadHref}
                 className="apple-cta-primary"
-                onClick={(e) => handleLinkClick(e, '/contact/')}
+                data-lead-event="lead_cta_click"
+                data-lead-intent="scope-estimate"
+                data-lead-topic={activeVideo.title}
+                onClick={(e) => {
+                  trackLeadEvent('lead_cta_click', {
+                    intent: 'scope-estimate',
+                    topic: activeVideo.title,
+                    sourceRoute: '/works/',
+                    cta: 'Works finale enquiry',
+                  });
+                  handleLinkClick(e, activeLeadHref);
+                }}
               >
-                <span>Start a Project Enquiry</span>
+                <span>Get a Production Roadmap</span>
                 <span aria-hidden="true">→</span>
               </a>
               <a

@@ -46,6 +46,11 @@ const routes = [
   { name: 'capability-film', url: '/capabilities/film/' },
   { name: 'capability-digital', url: '/capabilities/digital/' },
   { name: 'capability-creative-technology', url: '/capabilities/creative-technology/' },
+  { name: 'domains', url: '/domains/' },
+  { name: 'domain-metaverse-virtual-worlds', url: '/metaverse/virtual-worlds/' },
+  { name: 'domain-vr-healthcare', url: '/virtual-reality/healthcare/' },
+  { name: 'domain-animation-visual-effects', url: '/animation/visual-effects/' },
+  { name: 'domain-media-film-production', url: '/media-production/film-production/' },
 ];
 
 const viewports = [

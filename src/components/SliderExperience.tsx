@@ -15,7 +15,11 @@ import rawExplorerVisuals from '../data/explorerVisuals.json';
 import { capabilityForRoute } from '../data/capabilities';
 import type { ExperienceMapData, ExplorerVisual } from './ExperienceExplorer';
 import { slideExperiences, type SlideExperience } from '../data/slideExperiences';
+import { buildContactHref, disciplineForExperienceRoute, LEAD_PHONE_DISPLAY, LEAD_PHONE_HREF, trackLeadEvent } from '../utils/leads';
 import { navigate } from '../utils/routes';
+import { cleanArchiveTitle } from '../utils/archiveCopy';
+import { domainsForParent } from '../data/domains';
+import { experienceSeoFaqs, naturalSeoList, parentSeoCluster } from '../utils/seoKeywords';
 
 const MetaverseRuntime = lazy(async () => {
   const module = await import('./MetaversePage');
@@ -28,6 +32,10 @@ const MetaverseStory = lazy(async () => {
 const ExperienceStory = lazy(async () => {
   const module = await import('./ExperienceStory');
   return { default: module.ExperienceStory };
+});
+const ExperienceProcess = lazy(async () => {
+  const module = await import('./ExperienceProcess');
+  return { default: module.ExperienceProcess };
 });
 
 type VideoRecord = {
@@ -48,7 +56,10 @@ type RouteVisualBundle = {
   applications?: ExplorerVisual[];
 };
 
-const archive = rawArchive as VideoRecord[];
+const archive = (rawArchive as VideoRecord[]).map((record) => ({
+  ...record,
+  title: cleanArchiveTitle(record.title),
+}));
 const experienceMaps = rawMaps as unknown as Record<string, ExperienceMapData>;
 const innerHeroVisuals = rawInnerHeroVisuals as Record<string, string>;
 const explorerVisuals = rawExplorerVisuals as Record<string, RouteVisualBundle>;
@@ -187,15 +198,93 @@ function relatedWork(experience: SlideExperience): VideoRecord[] {
     .slice(0, 3);
 }
 
+const INNER_SECTION_IDS = [
+  'inner-overview',
+  'experience-introduction',
+  'inner-flow',
+  'inner-domains',
+  'inner-process',
+] as const;
+
+type InnerSectionId = (typeof INNER_SECTION_IDS)[number];
+
 export function SliderExperience({ experience }: { experience: SlideExperience }): JSX.Element {
   const routePath = experience.route;
   const heroStageRef = useRef<HTMLDivElement | null>(null);
+  const readingProgressRef = useRef<HTMLSpanElement | null>(null);
+  const jumpNavRef = useRef<HTMLElement | null>(null);
+  const heroLensButtonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const heroSwipeRef = useRef<{ pointerId: number; x: number; y: number } | null>(null);
   const [activeHeroLens, setActiveHeroLens] = useState<number>(0);
   const [showMetaverseArtifact, setShowMetaverseArtifact] = useState(false);
+  const [activeSection, setActiveSection] = useState<InnerSectionId>('inner-overview');
+  const [isJumpNavFloating, setIsJumpNavFloating] = useState(false);
 
   useEffect(() => {
     setActiveHeroLens(0);
     setShowMetaverseArtifact(false);
+    setActiveSection('inner-overview');
+    setIsJumpNavFloating(false);
+  }, [routePath]);
+
+  useEffect(() => {
+    if (!window.matchMedia('(max-width: 680px)').matches) return;
+    const nav = jumpNavRef.current;
+    const activeLink = nav?.querySelector<HTMLElement>('.apple-section-jump-nav__link.is-active');
+    if (!nav || !activeLink) return;
+    const navRect = nav.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+    const target =
+      linkRect.left - navRect.left + nav.scrollLeft - (nav.clientWidth - linkRect.width) / 2;
+    nav.scrollTo({
+      left: Math.max(target, 0),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
+    });
+  }, [activeSection]);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const updateScrollState = (): void => {
+      frame = 0;
+      const scrollTop = window.scrollY;
+      const maxScroll = Math.max(
+        document.documentElement.scrollHeight - window.innerHeight,
+        1
+      );
+      const progress = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+      if (readingProgressRef.current) {
+        readingProgressRef.current.style.transform = `scaleX(${progress.toFixed(4)})`;
+      }
+
+      const shouldFloat = scrollTop > Math.min(620, window.innerHeight * 0.72);
+      setIsJumpNavFloating((previous) => (previous === shouldFloat ? previous : shouldFloat));
+
+      const probe = scrollTop + window.innerHeight * 0.38;
+      let current: InnerSectionId = 'inner-overview';
+      for (const id of INNER_SECTION_IDS) {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top + scrollTop <= probe) {
+          current = id;
+        }
+      }
+      setActiveSection((previous) => (previous === current ? previous : current));
+    };
+
+    const requestUpdate = (): void => {
+      if (!frame) frame = window.requestAnimationFrame(updateScrollState);
+    };
+
+    updateScrollState();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+    };
   }, [routePath]);
 
   const index = useMemo(() => {
@@ -216,21 +305,22 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
 
   const work = useMemo(() => relatedWork(experience), [experience]);
   const workPresentation = experienceMaps[routePath]?.work;
+  const childDomains = useMemo(() => domainsForParent(routePath), [routePath]);
+  const seoCluster = parentSeoCluster(routePath);
+  const serviceFaqs = useMemo(
+    () => experienceSeoFaqs(experience, childDomains.map((domain) => domain.contextualTitle)),
+    [childDomains, experience]
+  );
 
   const meta = ROUTE_META[routePath] || ROUTE_META['/metaverse/'];
   const routeBundle = explorerVisuals[routePath];
-  const enquiryDisciplineByRoute: Record<string, string> = {
-    '/metaverse/': 'Metaverse',
-    '/mixed-reality/': 'Mixed Reality (MR)',
-    '/virtual-reality/': 'Virtual Reality (VR)',
-    '/augment-reality/': 'Augmented Reality (AR)',
-    '/animation/': '3D Animation & VFX',
-    '/brand-advertisement/': 'Brand Advertisement',
-    '/media-production/': 'Media Production',
-  };
-  const enquiryHref = `/contact/?discipline=${encodeURIComponent(
-    enquiryDisciplineByRoute[routePath] || 'Custom Multi-Discipline Commission'
-  )}`;
+  const enquiryHref = buildContactHref({
+    discipline: disciplineForExperienceRoute(routePath),
+    intent: 'project-roadmap',
+    sourceRoute: routePath,
+    topic: experience.label,
+    goal: experience.heading,
+  });
 
   // Build a 4-frame multi-angle lens switcher for the Hero Stage, all unique to this route
   const heroLenses = useMemo(() => {
@@ -238,7 +328,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
       innerHeroVisuals[routePath] || '/media/library/metaverse/hero-metaverse.webp';
     const lenses: Array<{ label: string; src: string; caption: string; subtitle: string }> = [
       {
-        label: '01 · Hero Stage',
+        label: 'Hero Stage',
         src: routeBundle?.hero?.src || fallbackSrc,
         caption: routeBundle?.hero?.caption || experience.label,
         subtitle: routeBundle?.hero?.subtitle || meta.category,
@@ -246,7 +336,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
     ];
     if (routeBundle?.story?.[0]) {
       lenses.push({
-        label: '02 · Architecture',
+        label: 'Architecture',
         src: routeBundle.story[0].src,
         caption: routeBundle.story[0].caption,
         subtitle: routeBundle.story[0].subtitle || 'Core Architectural Layer',
@@ -254,7 +344,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
     }
     if (routeBundle?.map?.[0]) {
       lenses.push({
-        label: '03 · Experience Flow',
+        label: 'Experience Flow',
         src: routeBundle.map[0].src,
         caption: routeBundle.map[0].caption,
         subtitle: routeBundle.map[0].subtitle || 'Interactive Stage Sequence',
@@ -262,7 +352,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
     }
     if (routeBundle?.applications?.[0]) {
       lenses.push({
-        label: '04 · Flagship Domain',
+        label: 'Flagship Domain',
         src: routeBundle.applications[0].src,
         caption: routeBundle.applications[0].caption,
         subtitle: routeBundle.applications[0].subtitle || 'Real-World Deployment',
@@ -313,12 +403,66 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
     el.style.setProperty('--hero-glow-y', '50%');
   }, []);
 
+  const handleHeroLensKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLButtonElement>, idx: number) => {
+      let nextIndex: number | null = null;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        nextIndex = (idx + 1) % heroLenses.length;
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        nextIndex = (idx - 1 + heroLenses.length) % heroLenses.length;
+      } else if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = heroLenses.length - 1;
+      }
+      if (nextIndex === null) return;
+      event.preventDefault();
+      setActiveHeroLens(nextIndex);
+      heroLensButtonRefs.current[nextIndex]?.focus();
+    },
+    [heroLenses.length]
+  );
+
+  const handleHeroPointerDown = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    if ((event.target as HTMLElement).closest('button')) return;
+    heroSwipeRef.current = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
+  }, []);
+
+  const handleHeroPointerEnd = useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      const start = heroSwipeRef.current;
+      heroSwipeRef.current = null;
+      if (!start || start.pointerId !== event.pointerId || heroLenses.length < 2) return;
+      const deltaX = event.clientX - start.x;
+      const deltaY = event.clientY - start.y;
+      if (Math.abs(deltaX) < 44 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
+      setActiveHeroLens((current) =>
+        deltaX < 0
+          ? Math.min(current + 1, heroLenses.length - 1)
+          : Math.max(current - 1, 0)
+      );
+    },
+    [heroLenses.length]
+  );
+
   const appCount = routeBundle?.applications?.length || experience.applications.length;
+  const heroCtaLabelByRoute: Record<string, string> = {
+    '/metaverse/': 'Let’s Build a World',
+    '/mixed-reality/': 'Create Mixed Reality',
+    '/virtual-reality/': 'Create Virtual Reality',
+    '/augment-reality/': 'Create Augmented Reality',
+    '/animation/': 'Make Something Move',
+    '/brand-advertisement/': 'Launch Your Campaign',
+    '/media-production/': 'Start Your Production',
+  };
+  const heroCtaLabel = heroCtaLabelByRoute[routePath] || 'Start a Project';
+  const sectionLinkClassName = (id: InnerSectionId): string =>
+    `apple-section-jump-nav__link${activeSection === id ? ' is-active' : ''}`;
 
   return (
     <main
       id="main"
-      className={`site-main apple-inner-page angel-experience angel-experience--${experience.number}`}
+      className={`site-main apple-inner-page angel-experience angel-experience--${experience.route.replace(/\//g, '')}`}
       data-inner-route={routePath}
       style={
         {
@@ -328,6 +472,10 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
         } as React.CSSProperties
       }
     >
+      <div className="apple-reading-progress" aria-hidden="true">
+        <span ref={readingProgressRef} />
+      </div>
+
       {/* 1. SPATIAL HERO STAGE */}
       <section className="apple-hero-stage" id="inner-overview" aria-labelledby="experience-title">
         <div className="apple-hero-stage__ambient" aria-hidden="true" />
@@ -339,26 +487,55 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               href="/"
               className="apple-back-pill"
               onClick={(e) => routeTo(e, '/', index)}
-              aria-label={`Return to homepage slide ${experience.number}`}
+              aria-label={`Return to the ${experience.label} homepage slide`}
             >
               <span className="apple-back-pill__arrow" aria-hidden="true">
                 ←
               </span>
-              <span>Slide {experience.number} · All Experiences</span>
+              <span>{experience.label}</span>
             </a>
 
-            <nav className="apple-section-jump-nav" aria-label="Page sections">
-              <a href="#inner-overview" className="apple-section-jump-nav__link">
-                01 Overview
+            <nav
+              ref={jumpNavRef}
+              className={`apple-section-jump-nav${isJumpNavFloating ? ' is-floating' : ''}`}
+              aria-label="Page sections"
+            >
+              <a
+                href="#inner-overview"
+                className={sectionLinkClassName('inner-overview')}
+                aria-current={activeSection === 'inner-overview' ? 'location' : undefined}
+              >
+                Overview
               </a>
-              <a href="#experience-introduction" className="apple-section-jump-nav__link">
-                02 Architecture
+              <a
+                href="#experience-introduction"
+                className={sectionLinkClassName('experience-introduction')}
+                aria-current={
+                  activeSection === 'experience-introduction' ? 'location' : undefined
+                }
+              >
+                Architecture
               </a>
-              <a href="#inner-flow" className="apple-section-jump-nav__link">
-                03 Experience Map
+              <a
+                href="#inner-flow"
+                className={sectionLinkClassName('inner-flow')}
+                aria-current={activeSection === 'inner-flow' ? 'location' : undefined}
+              >
+                Experience Map
               </a>
-              <a href="#inner-domains" className="apple-section-jump-nav__link">
-                04 Domains ({appCount})
+              <a
+                href="#inner-domains"
+                className={sectionLinkClassName('inner-domains')}
+                aria-current={activeSection === 'inner-domains' ? 'location' : undefined}
+              >
+                Domains
+              </a>
+              <a
+                href="#inner-process"
+                className={sectionLinkClassName('inner-process')}
+                aria-current={activeSection === 'inner-process' ? 'location' : undefined}
+              >
+                Process
               </a>
             </nav>
           </div>
@@ -367,10 +544,6 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
           <div className="apple-hero-grid">
             <div className="apple-hero-copy">
               <div className="apple-hero-badge">
-                <span className="apple-hero-badge__index">Discipline {experience.number}</span>
-                <span className="apple-hero-badge__sep" aria-hidden="true">
-                  ·
-                </span>
                 <span className="apple-hero-badge__cat">{meta.category}</span>
               </div>
 
@@ -387,22 +560,36 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                 <a
                   href={enquiryHref}
                   className="apple-cta-primary"
-                  onClick={(e) => routeTo(e, enquiryHref)}
+                  data-lead-event="lead_cta_click"
+                  data-lead-intent="project-roadmap"
+                  data-lead-topic={experience.label}
+                  onClick={(e) => {
+                    trackLeadEvent('lead_cta_click', {
+                      intent: 'project-roadmap',
+                      topic: experience.label,
+                      sourceRoute: routePath,
+                      cta: heroCtaLabel,
+                    });
+                    routeTo(e, enquiryHref);
+                  }}
                 >
-                  <span>
-                    {routePath === '/metaverse/'
-                      ? 'Let’s Build a World'
-                      : experience.ctaAction || `Start a ${experience.label} Project`}
-                  </span>
+                  <span>{heroCtaLabel}</span>
                   <span aria-hidden="true">→</span>
                 </a>
                 <a
                   href="#inner-domains"
                   className="apple-cta-secondary"
                 >
-                  <span>Explore {appCount} Specialized Domains</span>
+                  <span>Explore {appCount} Domains</span>
                   <span aria-hidden="true">↓</span>
                 </a>
+              </div>
+              <div className="angel-lead-microcopy" aria-label="Project enquiry benefits">
+                <span>Free roadmap</span>
+                <span>No obligation</span>
+                <span>
+                  or call <a href={LEAD_PHONE_HREF}>{LEAD_PHONE_DISPLAY}</a>
+                </span>
               </div>
             </div>
 
@@ -412,6 +599,9 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               className="apple-hero-visual-wrap"
               onPointerMove={handleHeroPointerMove}
               onPointerLeave={handleHeroPointerLeave}
+              onPointerDown={handleHeroPointerDown}
+              onPointerUp={handleHeroPointerEnd}
+              onPointerCancel={handleHeroPointerEnd}
             >
               <div className="apple-hero-visual-card">
                 <picture className="apple-hero-visual-card__picture">
@@ -426,22 +616,12 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                     loading="eager"
                     fetchPriority="high"
                     decoding="async"
+                    draggable={false}
                     width={1920}
                     height={1080}
                   />
                 </picture>
                 <div className="apple-hero-visual-card__vignette" aria-hidden="true" />
-
-                {/* Top Specular Glass Status Pill */}
-                <div className="apple-hero-visual-card__top-bar">
-                  <span className="apple-glass-pill">
-                    <span className="apple-glass-pill__dot" aria-hidden="true" />
-                    <span>{activeLens.caption}</span>
-                  </span>
-                  <span className="apple-glass-pill apple-glass-pill--mono">
-                    {experience.number} / 07
-                  </span>
-                </div>
 
                 {/* Bottom Multi-Angle Lens Switcher & Telemetry Overlay */}
                 <div className="apple-hero-visual-card__bottom-bar">
@@ -461,14 +641,19 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                         return (
                           <button
                             key={lens.src}
+                            ref={(node) => {
+                              heroLensButtonRefs.current[idx] = node;
+                            }}
                             type="button"
                             role="tab"
                             aria-selected={isSelected}
+                            aria-label={`Show ${lens.label}: ${lens.caption}`}
+                            tabIndex={isSelected ? 0 : -1}
                             className={`apple-hero-lens-btn${isSelected ? ' is-active' : ''}`}
                             onClick={() => setActiveHeroLens(idx)}
+                            onKeyDown={(event) => handleHeroLensKeyDown(event, idx)}
                           >
                             <img src={lens.src} alt="" loading="lazy" decoding="async" />
-                            <span>{String(idx + 1).padStart(2, '0')}</span>
                           </button>
                         );
                       })}
@@ -521,18 +706,35 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
         )}
       </div>
 
+      <Suspense
+        fallback={
+          <p className="angel-route-loading" aria-live="polite">
+            Loading the {experience.label} process…
+          </p>
+        }
+      >
+        <ExperienceProcess
+          key={experience.route}
+          experience={experience}
+          enquiryHref={enquiryHref}
+          onEnquiryClick={(event) => routeTo(event, enquiryHref)}
+          visualSrc={heroLenses[0]?.src}
+          visuals={routeBundle?.map}
+        />
+      </Suspense>
+
       {/* 3. VERIFIED ARCHIVE WORK & RELATED CAPABILITIES (NON-METAVERSE) */}
       {routePath !== '/metaverse/' && (work.length > 0 || capabilities.length > 0) && (
         <section
           className="apple-story-section"
-          aria-label={`${experience.label} verified work and capabilities`}
+          aria-label={`${experience.label} selected work and capabilities`}
         >
           <div className="apple-story-container">
             {work.length > 0 && (
               <div className="apple-bento-block" style={{ marginTop: 0, marginBottom: '3.5rem' }}>
                 <div className="apple-bento-block__head">
                   <div>
-                    <span className="apple-card-kicker">Verified Production Archive</span>
+                    <span className="apple-card-kicker">Selected Work</span>
                     <h3 className="apple-bento-block__title">
                       {workPresentation?.title || `Selected ${experience.label} Work`}
                     </h3>
@@ -615,16 +817,90 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
         </section>
       )}
 
+      {seoCluster && (
+        <section className="apple-story-section angel-service-guide" aria-labelledby="service-guide-title">
+          <div className="apple-story-container">
+            <div className="angel-service-guide__intro">
+              <span className="apple-card-kicker">Service Guide · Jaipur, India & Worldwide</span>
+              <h2 id="service-guide-title">{seoCluster.headline || `${experience.label} services in India`}</h2>
+              <p>
+                Angel Creations is a {seoCluster.focus}. From Jaipur, Rajasthan, we work with clients
+                across India and internationally. Our {experience.label} work spans{' '}
+                {naturalSeoList(seoCluster.services.slice(0, 6))}, shaped around the audience,
+                platform, story and measurable next step.
+              </p>
+            </div>
+
+            <div className="angel-service-guide__grid">
+              <article className="angel-service-guide__card">
+                <h3>What we can build</h3>
+                <p>Popular {experience.label} briefs include:</p>
+                <ul className="angel-service-guide__list">
+                  {seoCluster.services.map((service) => (
+                    <li key={service}>{service}</li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="angel-service-guide__card">
+                <h3>Who hires this expertise?</h3>
+                <p>{experience.label} is commonly commissioned by:</p>
+                <ul className="angel-service-guide__list">
+                  {seoCluster.audiences.map((audience) => (
+                    <li key={audience}>{audience}</li>
+                  ))}
+                </ul>
+                <p>
+                  The right route may begin with a focused prototype, pilot, visual proof or full
+                  production plan.
+                </p>
+              </article>
+
+              <article className="angel-service-guide__card">
+                <h3>Other names for this work</h3>
+                <p>Depending on the brief, teams may also describe this expertise as:</p>
+                <ul className="angel-service-guide__terms">
+                  {seoCluster.aliases.slice(0, 8).map((alias) => (
+                    <li key={alias}>{alias}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+
+            <div className="angel-service-guide__faq">
+              <div className="angel-service-guide__faq-head">
+                <span className="apple-card-kicker">{experience.label} FAQs</span>
+                <h3>Common questions before hiring a studio</h3>
+              </div>
+              <div className="angel-service-guide__faq-list">
+                {serviceFaqs.map((faq, index) => (
+                  <details key={faq.question} open={index === 0}>
+                    <summary>{faq.question}</summary>
+                    <p>{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+              <p className="angel-service-guide__cta">
+                Planning a project?{' '}
+                <a href={enquiryHref} onClick={(event) => routeTo(event, enquiryHref)}>
+                  Get a free {experience.label} project roadmap
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* 4. OPTIONAL INTERACTIVE UNITY WEBGL ARTIFACT (METAVERSE) */}
       {experience.hasUnityArtifact && (
         <section className="apple-story-section" aria-label="Original Metaverse environment">
           <div className="apple-story-container">
             <div className="apple-glass-card">
-              <span className="apple-card-kicker">Interactive 3D Artifact</span>
-              <h3>Original MetaScore WebGL Environment</h3>
+              <span className="apple-card-kicker">Interactive 3D Experience</span>
+              <h3>Enter the MetaScore WebGL Environment</h3>
               <p style={{ marginBottom: '1.25rem' }}>
-                Launch the preserved interactive Unity WebGL environment directly inside your
-                browser to inspect spatial navigation and real-time 3D rendering.
+                Explore a real-time Unity WebGL environment in your browser and experience its spatial navigation first-hand.
               </p>
               {!showMetaverseArtifact ? (
                 <button
@@ -632,7 +908,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                   className="apple-tactile-btn apple-tactile-btn--primary"
                   onClick={() => setShowMetaverseArtifact(true)}
                 >
-                  Load Interactive 3D Environment ↓
+                  Enter the 3D Environment ↓
                 </button>
               ) : (
                 <Suspense
@@ -652,6 +928,17 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
       <footer className="apple-inner-footer">
         <div className="apple-inner-footer__container">
           <div className="apple-Finale-card">
+            {heroLenses[0]?.src && (
+              <img
+                className="apple-Finale-card__bg"
+                src={heroLenses[0].src}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
+            )}
             <div className="apple-Finale-card__copy">
               <div className="apple-section-eyebrow">
                 <span className="apple-section-eyebrow__dot" aria-hidden="true" />
@@ -664,17 +951,33 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                     `Ready to Build Something Extraordinary in ${experience.label}?`}
               </h2>
               <p className="apple-Finale-card__desc">
-                From initial spatial concept and interactive prototyping to full-scale production
-                and global deployment, our team crafts experiences that set the standard in your
-                category.
+                From first concept and interactive prototype to production and launch, we build experiences with the clarity, craft and technical care they deserve.
               </p>
+              <div className="angel-lead-microcopy" aria-label="Project enquiry benefits">
+                <span>Free roadmap</span>
+                <span>Prototype-first scope</span>
+                <span>
+                  or call <a href={LEAD_PHONE_HREF}>{LEAD_PHONE_DISPLAY}</a>
+                </span>
+              </div>
             </div>
 
             <div className="apple-Finale-card__actions">
               <a
                 href={enquiryHref}
                 className="apple-cta-primary"
-                onClick={(e) => routeTo(e, enquiryHref)}
+                data-lead-event="lead_cta_click"
+                data-lead-intent="project-roadmap"
+                data-lead-topic={experience.label}
+                onClick={(e) => {
+                  trackLeadEvent('lead_cta_click', {
+                    intent: 'project-roadmap',
+                    topic: experience.label,
+                    sourceRoute: routePath,
+                    cta: 'Experience finale CTA',
+                  });
+                  routeTo(e, enquiryHref);
+                }}
               >
                 <span>
                   {routePath === '/metaverse/'
@@ -706,9 +1009,23 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                 )
               }
             >
+              {innerHeroVisuals[previous.route] && (
+                <img
+                  className="apple-adjacent-card__bg"
+                  src={
+                    optimizedHeroSource(innerHeroVisuals[previous.route]) ||
+                    innerHeroVisuals[previous.route]
+                  }
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+              )}
               <span className="apple-adjacent-card__dir">← Previous Discipline</span>
               <strong className="apple-adjacent-card__title">
-                {previous.number} · {previous.label}
+                {previous.label}
               </strong>
             </a>
 
@@ -717,9 +1034,20 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               className="apple-adjacent-card apple-adjacent-card--center"
               onClick={(e) => routeTo(e, '/', index)}
             >
+              {heroLenses[0]?.src && (
+                <img
+                  className="apple-adjacent-card__bg"
+                  src={heroLenses[0].src}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+              )}
               <span className="apple-adjacent-card__dir">Interactive Stage</span>
               <strong className="apple-adjacent-card__title">
-                Return to Slide {experience.number}
+                Return to {experience.label}
               </strong>
             </a>
 
@@ -728,9 +1056,23 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               className="apple-adjacent-card apple-adjacent-card--next"
               onClick={(e) => routeTo(e, next.route, (index + 1) % slideExperiences.length)}
             >
+              {innerHeroVisuals[next.route] && (
+                <img
+                  className="apple-adjacent-card__bg"
+                  src={
+                    optimizedHeroSource(innerHeroVisuals[next.route]) ||
+                    innerHeroVisuals[next.route]
+                  }
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+              )}
               <span className="apple-adjacent-card__dir">Next Discipline →</span>
               <strong className="apple-adjacent-card__title">
-                {next.number} · {next.label}
+                {next.label}
               </strong>
             </a>
           </nav>

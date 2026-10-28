@@ -52,8 +52,13 @@ jobs:
           import { existsSync, readFileSync } from 'node:fs';
           import { join } from 'node:path';
 
+          const explorerVisuals = JSON.parse(readFileSync('src/data/explorerVisuals.json', 'utf8'));
+          const slugifyDomain = (title) => title.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+          const domainRoutes = Object.entries(explorerVisuals).flatMap(([parentRoute, bundle]) =>
+            (bundle.applications || []).map((item) => `${parentRoute}${slugifyDomain(item.caption)}/`)
+          );
           const requiredRoutes = [
-            '/', '/about/', '/contact/', '/works/', '/metaverse/',
+            '/', '/about/', '/contact/', '/works/', '/domains/', '/metaverse/',
             '/animation/', '/augment-reality/',
             '/brand-advertisement/', '/media-production/',
             '/mixed-reality/', '/virtual-reality/',
@@ -61,7 +66,8 @@ jobs:
             '/capabilities/brand/', '/capabilities/design/',
             '/capabilities/content/', '/capabilities/animation-3d/',
             '/capabilities/digital/', '/capabilities/experiences/',
-            '/capabilities/creative-technology/', '/capabilities/film/'
+            '/capabilities/creative-technology/', '/capabilities/film/',
+            ...domainRoutes
           ];
 
           const missingRoutes = requiredRoutes.filter((route) => {
@@ -122,9 +128,15 @@ jobs:
           name: playwright-static-report
           path: .playwright-artifacts/
           if-no-files-found: ignore
-          retention-days: 7
+          retention-days: 2
 
       - name: Upload deployable static site
+        # Only main consumes this artifact (the deploy job downloads it in the same
+        # run). Uploading ~55 MB for every branch push and pull request on top of the
+        # hourly schedule exhausted the account's artifact storage quota, which then
+        # failed this step and skipped deploys. Branch/PR runs still build, verify
+        # and rehearse the site above; they just do not need to retain the artifact.
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: actions/upload-artifact@v4
         with:
           name: angel-creations-dist
@@ -134,7 +146,10 @@ jobs:
           # upload-artifact omits dotfiles unless asked, and dropping it silently disabled
           # the cache policy in production.
           include-hidden-files: true
-          retention-days: 14
+          # Rollback snapshots live on the host (the deploy script keeps its own
+          # backups); these artifacts only feed the same run's deploy job, so a
+          # short retention is enough and keeps hourly uploads within quota.
+          retention-days: 2
 
 
   hostinger-connection-preflight:

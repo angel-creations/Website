@@ -4,6 +4,10 @@ import { join, relative } from 'node:path';
 const root = new URL('../dist/', import.meta.url).pathname;
 const previewBase = process.env.PREVIEW_BASE || 'http://127.0.0.1:4173';
 const origin = 'https://angelcreations.in';
+const explorerVisuals = JSON.parse(await readFile(new URL('../src/data/explorerVisuals.json', import.meta.url), 'utf8'));
+const domainRouteCount = Object.values(explorerVisuals).reduce((total, bundle) => total + (bundle.applications?.length || 0), 0);
+const expectedSitemapCount = 21 + 1 + domainRouteCount;
+const expectedDocumentCount = 29 + 1 + domainRouteCount;
 
 async function htmlFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -52,6 +56,8 @@ function duplicates(rows, key) {
 
 const rows = [];
 for (const file of await htmlFiles(root)) {
+  // Search Console ownership tokens (googleXXXX.html) are plain-text proofs, not documents.
+  if (/^google[0-9a-f]+\.html$/i.test(relative(root, file).replaceAll('\\', '/'))) continue;
   const html = await readFile(file, 'utf8');
   const route = routeFor(file);
   const anchorTags = [...html.matchAll(/<a\b[^>]*>/gi)].map((match) => match[0]);
@@ -60,7 +66,12 @@ for (const file of await htmlFiles(root)) {
     return match ? [match[1]] : [];
   });
   const internalLinkTargets = [...new Set(hrefs.filter((href) => href.startsWith('/') && !href.startsWith('//')))];
-  const h1 = [...html.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((match) => textOnly(match[1]));
+  // The hidden boot shell and the <noscript> route fallback are mutually exclusive:
+  // the former appears only when JavaScript is enabled but the bundle never mounts,
+  // while the latter is the document crawlers/no-JS users receive. Audit the route H1
+  // from that indexable fallback, not from the emergency boot shell.
+  const contentHtml = html.replace(/<!-- angel-boot-fallback:start -->[\s\S]*?<!-- angel-boot-fallback:end -->/g, '');
+  const h1 = [...contentHtml.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi)].map((match) => textOnly(match[1]));
   const images = [...html.matchAll(/<img\b[^>]*>/gi)].map((match) => match[0]);
   const jsonld = jsonLdTypes(html);
   let httpStatus = null;
@@ -73,7 +84,7 @@ for (const file of await htmlFiles(root)) {
     descriptionLength: extractDescription(html).length,
     canonical: firstMatch(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/i, html) || firstMatch(/<link\s+href=["']([^"']+)["']\s+rel=["']canonical["']/i, html),
     h1Count: h1.length, h1,
-    h2: (html.match(/<h2\b/gi) || []).length,
+    h2: (contentHtml.match(/<h2\b/gi) || []).length,
     robots: firstMatch(/<meta\s+name=["']robots["']\s+content=["']([^"']*)["']/i, html),
     jsonld,
     internalLinks: internalLinkTargets.length,
@@ -187,8 +198,8 @@ const report = {
 };
 
 const auditFailures = {
-  documentCount: report.documents === 29 ? [] : [`expected 29 HTML documents, found ${report.documents}`],
-  sitemapCount: report.sitemap === 21 ? [] : [`expected 21 sitemap URLs, found ${report.sitemap}`],
+  documentCount: report.documents === expectedDocumentCount ? [] : [`expected ${expectedDocumentCount} HTML documents, found ${report.documents}`],
+  sitemapCount: report.sitemap === expectedSitemapCount ? [] : [`expected ${expectedSitemapCount} sitemap URLs, found ${report.sitemap}`],
   sitemapDeliveryIssues: report.sitemapDeliveryIssues,
   notFoundDesignIssues: report.notFoundDesignIssues,
   statusDocumentIssues: report.statusDocumentIssues,

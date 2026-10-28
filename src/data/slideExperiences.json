@@ -2,16 +2,16 @@
   {
     "number": "01",
     "label": "Metaverse",
-    "heading": "Dive into new world, live the world you want.",
+    "heading": "Dive into a new world. Live the one you imagine.",
     "route": "/metaverse/",
     "video": "/media/videos/Metaverse.mp4",
     "poster": "/media/images/generated-home-posters/metaverse.webp",
-    "summary": "Angel Creations creates virtual worlds and connected digital environments designed around how people explore, interact, communicate, learn, play and experience brands.",
+    "summary": "Virtual worlds and connected environments shaped around how people explore, meet, learn, play, shop and experience brands.",
     "creates": [
       "Metaverse",
       "Virtual Worlds",
-      "Virtual events platforms",
-      "Virtual product showcase"
+      "Virtual Events Platforms",
+      "Virtual Product Showcases"
     ],
     "applications": [
       "Virtual Workspaces",
@@ -34,11 +34,11 @@
   {
     "number": "02",
     "label": "Mixed Reality",
-    "heading": "Tech immersion: Real & digital objects interact.",
+    "heading": "Real spaces. Digital possibilities. One experience.",
     "route": "/mixed-reality/",
     "video": "/media/videos/Mixed-Reality.mp4",
     "poster": "/media/images/generated-home-posters/mixed-reality.webp",
-    "summary": "Angel Creations explores Mixed Reality as a medium for training, education, entertainment, gaming, architecture, marketing, collaboration, retail and spatial experiences.",
+    "summary": "Mixed reality that anchors responsive digital content in the physical world—for training, education, design, retail, collaboration and play.",
     "creates": [
       "MR Content Creation",
       "MR Architecture & Design",
@@ -68,16 +68,16 @@
   {
     "number": "03",
     "label": "Virtual Reality",
-    "heading": "You\u2019re not imagining it, you\u2019re experiencing it!",
+    "heading": "You\u2019re not imagining it. You\u2019re inside it.",
     "route": "/virtual-reality/",
     "video": "/media/videos/Virtual-Reality.mp4",
     "poster": "/media/images/generated-home-posters/virtual-reality.webp",
-    "summary": "Angel Creations develops VR experiences across content, gaming, training, education, marketing, architecture, healthcare, conferencing and immersive communication.",
+    "summary": "Immersive VR for training, education, architecture, healthcare, entertainment, communication and brand storytelling—built to be entered, not watched.",
     "creates": [
       "VR Content Development",
       "VR Training & Simulation",
       "VR Streaming & Broadcasting",
-      "VR Video conferencing"
+      "VR Video Conferencing"
     ],
     "applications": [
       "VR Architectural Visualization",
@@ -104,12 +104,12 @@
   },
   {
     "number": "04",
-    "label": "Augment Reality",
-    "heading": "Blending real & virtual worlds, Immersive experience!",
+    "label": "Augmented Reality",
+    "heading": "The real world, with more to discover.",
     "route": "/augment-reality/",
     "video": "/media/videos/Augmented-Reality-Showroom.mp4",
     "poster": "/media/images/generated-home-posters/augmented-reality.webp",
-    "summary": "Angel Creations explores AR across industrial applications, tourism, navigation, retail, marketing, gaming, education, healthcare, entertainment and creative experiences.",
+    "summary": "Augmented reality layers for industry, tourism, navigation, retail, education, healthcare, marketing and entertainment.",
     "creates": [
       "AR Applications",
       "AR Animation",
@@ -142,11 +142,11 @@
   {
     "number": "05",
     "label": "Animation",
-    "heading": "We give you amazing animation in both 2D & 3D.",
+    "heading": "Ideas in motion, crafted frame by frame.",
     "route": "/animation/",
     "video": "/media/videos/Singing-girl.mp4",
     "poster": "/media/images/generated-home-posters/animation.webp",
-    "summary": "Angel Creations works across 2D and 3D animation, motion graphics, visual effects, character animation, interactive animation, explainer content, pre-visualization and AR animation.",
+    "summary": "2D and 3D animation, motion graphics, VFX, character performance and explainer films that turn complex ideas into moving stories.",
     "creates": [
       "Concept Development",
       "Pre-visualization",
@@ -183,11 +183,11 @@
   {
     "number": "06",
     "label": "Brand Advertisement",
-    "heading": "Elevating Brands through Digital Innovation.",
+    "heading": "Brands people notice. Stories people remember.",
     "route": "/brand-advertisement/",
     "video": "/media/videos/Brand-Advertisement.mp4",
     "poster": "/media/images/generated-home-posters/brand-advertisement.webp",
-    "summary": "Angel Creations brings creative thinking, design, content, animation, film and digital experience together to help brands communicate in ways people notice and remember.",
+    "summary": "Campaigns, films and immersive brand experiences that connect strategy, design, animation, content and technology around one memorable idea.",
     "creates": [
       "Marketing & Branding",
       "Brand Advertisement",
@@ -196,7 +196,7 @@
     ],
     "applications": [
       "MR Marketing & Branding",
-      "Virtual product showcase",
+      "Virtual Product Showcases",
       "Virtual Marketplaces",
       "AR Retail"
     ],
@@ -222,13 +222,13 @@
   {
     "number": "07",
     "label": "Media Production",
-    "heading": "Think with us, act with us, create with us!",
+    "heading": "Stories made to be seen, heard and felt.",
     "route": "/media-production/",
     "video": "/media/videos/Main-Background-with-sound.mp4",
     "poster": "/media/library/media-production/hero-media-production.jpg",
     "mediaType": "video/mp4",
     "remote": false,
-    "summary": "Angel Creations brings media production disciplines together to create visual stories across film, video, animation, photography, events and digital experiences.",
+    "summary": "Film, video, photography, animation, live events and post-production—brought together to create stories with lasting visual impact.",
     "creates": [
       "Film Production",
       "Video Production",

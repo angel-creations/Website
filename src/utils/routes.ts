@@ -49,6 +49,29 @@ export function toLocalRoute(href: string): string {
   return normaliseRoute(`${url.pathname}${url.search}${url.hash}`);
 }
 
+export const HOME_SLIDESHOW_RESET_EVENT = 'angel:home-slideshow-reset';
+
+export function navigateHomeFromStart(): void {
+  const state = {
+    angelSlide: 0,
+    angelJourney: 'logo',
+    angelHomeResetAt: Date.now(),
+  };
+
+  if (currentRoute() === '/') {
+    window.history.replaceState(
+      { ...(window.history.state ?? {}), ...state },
+      '',
+      `${window.location.pathname}${window.location.search}`,
+    );
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    window.dispatchEvent(new CustomEvent(HOME_SLIDESHOW_RESET_EVENT));
+    return;
+  }
+
+  navigate('/', state);
+}
+
 export function navigate(route: string, state: Record<string, unknown> = {}): void {
   const nextRoute = toLocalRoute(route);
   const currentHref = `${window.location.pathname}${window.location.search}${window.location.hash}`;

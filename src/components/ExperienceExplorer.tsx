@@ -13,6 +13,7 @@ export type ExplorerItem = {
   statement?: string;
   items?: string[];
   closing?: string;
+  href?: string;
 };
 
 export type ExperienceMapData = {
@@ -35,7 +36,7 @@ const STEP_GLYPHS = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10']
  * InteractiveVisualStage
  * Implements Apple's WWDC18 "Designing Fluid Interfaces" 1:1 pointer tracking,
  * rubber-band boundary resistance, momentum projection, interruptible spring settling,
- * AND a live visual filmstrip scrubber for instant frame inspection.
+ * with keyboard navigation and a segmented progress rail.
  */
 interface InteractiveVisualStageProps {
   items: ExplorerVisual[];
@@ -90,9 +91,17 @@ const InteractiveVisualStage: React.FC<InteractiveVisualStageProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    [activeIndex - 1, activeIndex + 1].forEach((idx) => {
+      const src = items[idx]?.src;
+      if (!src) return;
+      const preload = new Image();
+      preload.src = src;
+    });
+  }, [activeIndex, items]);
+
   const handlePointerDown = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (event.button !== 0 && event.pointerType === 'mouse') return;
-    if ((event.target as HTMLElement).closest('.apple-visual-stage__filmstrip')) return;
 
     const spring = springRef.current;
     spring?.stop();
@@ -171,6 +180,25 @@ const InteractiveVisualStage: React.FC<InteractiveVisualStageProps> = ({
     [activeIndex, onSelectIndex, totalCount]
   );
 
+  const handleStageKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      let nextIndex: number | null = null;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+        nextIndex = (activeIndex + 1) % totalCount;
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+        nextIndex = (activeIndex - 1 + totalCount) % totalCount;
+      } else if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = totalCount - 1;
+      }
+      if (nextIndex === null || totalCount < 2) return;
+      event.preventDefault();
+      onSelectIndex(nextIndex);
+    },
+    [activeIndex, onSelectIndex, totalCount]
+  );
+
   const currentItem = items[activeIndex] || items[0] || (fallbackSrc ? { src: fallbackSrc, caption: activeTitle } : null);
   if (!currentItem) return null;
 
@@ -182,8 +210,11 @@ const InteractiveVisualStage: React.FC<InteractiveVisualStageProps> = ({
       onPointerMove={handlePointerMove}
       onPointerUp={finishPointerGesture}
       onPointerCancel={finishPointerGesture}
+      onKeyDown={handleStageKeyDown}
+      tabIndex={0}
       role="region"
-      aria-label={`${stageLabel} interactive visual stage. Drag horizontally or use the filmstrip to switch items.`}
+      aria-roledescription="carousel"
+      aria-label={`${stageLabel} interactive visual stage. ${activeTitle}, frame ${activeIndex + 1} of ${totalCount}. Use the arrow keys or drag horizontally to switch items.`}
     >
       <div
         className="apple-visual-stage__canvas"
@@ -205,65 +236,32 @@ const InteractiveVisualStage: React.FC<InteractiveVisualStageProps> = ({
         <div className="apple-visual-stage__scrim" aria-hidden="true" />
       </div>
 
-      {/* Top Glass HUD Telemetry Bar */}
-      <div className="apple-visual-stage__hud-top">
-        <span className="apple-visual-stage__badge">
-          <span className="apple-visual-stage__badge-dot" aria-hidden="true" />
-          <span>{currentItem.caption || stageLabel}</span>
-        </span>
-        <span className="apple-visual-stage__counter" aria-live="polite">
-          {String(activeIndex + 1).padStart(2, '0')} / {String(totalCount).padStart(2, '0')}
-        </span>
-      </div>
-
-      {/* Bottom Caption & Filmstrip Scrubber Bar */}
+      {/* Bottom caption and segmented progress rail */}
       <div className="apple-visual-stage__hud-bottom">
         <div className="apple-visual-stage__caption-wrap">
           <div className="apple-visual-stage__caption-group">
-            <p className="apple-visual-stage__caption">{activeTitle}</p>
             {currentItem.subtitle && (
               <p className="apple-visual-stage__subcaption">{currentItem.subtitle}</p>
             )}
           </div>
           <span className="apple-visual-stage__gesture-hint" aria-hidden="true">
-            Drag or select frame ↔
+            Drag to switch frame ↔
           </span>
         </div>
-
-        {/* Live Visual Filmstrip Scrubber */}
-        {items.length > 1 && (
-          <div
-            className="apple-visual-stage__filmstrip"
-            role="group"
-            aria-label={`${stageLabel} visual frame selector`}
-          >
-            {items.slice(0, totalCount).map((item, idx) => {
-              const isSelected = idx === activeIndex;
-              return (
-                <button
-                  key={`${item.src}-${idx}`}
-                  type="button"
-                  className={`apple-filmstrip-thumb${isSelected ? ' is-active' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onSelectIndex(idx);
-                  }}
-                  aria-label={`Inspect frame ${idx + 1}: ${item.caption}`}
-                  aria-pressed={isSelected}
-                >
-                  <img
-                    src={item.src}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    draggable={false}
-                  />
-                  <span className="apple-filmstrip-thumb__index">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                </button>
-              );
-            })}
+        {totalCount > 1 && (
+          <div className="apple-visual-stage__progress" aria-hidden="true">
+            {Array.from({ length: totalCount }, (_, idx) => (
+              <span
+                key={idx}
+                className={
+                  idx === activeIndex
+                    ? 'is-active'
+                    : idx < activeIndex
+                      ? 'is-complete'
+                      : undefined
+                }
+              />
+            ))}
           </div>
         )}
       </div>
@@ -289,6 +287,8 @@ export function ExperienceMap({
 }): JSX.Element | null {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const baseId = useId();
   const steps = map.steps;
   const total = steps.length;
@@ -298,12 +298,30 @@ export function ExperienceMap({
   }, [map.title]);
 
   useEffect(() => {
-    if (!isAutoPlaying || total <= 1) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsAutoPlaying(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.25 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isAutoPlaying || !isInView || total <= 1) return;
     const timer = window.setInterval(() => {
+      if (document.hidden) return;
       setActiveIndex((prev) => (prev + 1) % total);
     }, 6000);
     return () => window.clearInterval(timer);
-  }, [isAutoPlaying, total]);
+  }, [isAutoPlaying, isInView, total]);
 
   const handleSelect = useCallback((idx: number) => {
     setActiveIndex(idx);
@@ -347,6 +365,7 @@ export function ExperienceMap({
 
   return (
     <section
+      ref={sectionRef}
       className={`apple-explorer-section apple-explorer-section--map apple-explorer-mode--${map.mode}`}
       aria-labelledby={`${baseId}-map-title`}
     >
@@ -424,28 +443,14 @@ export function ExperienceMap({
                 Stage {String(activeIndex + 1).padStart(2, '0')} of{' '}
                 {String(total).padStart(2, '0')}
               </span>
-              {activeVisual?.subtitle && (
-                <span className="apple-workbench-card__category-pill">
-                  {activeVisual.subtitle}
-                </span>
-              )}
             </div>
 
-            <h3 className="apple-workbench-card__title">{activeLabel}</h3>
-            <p className="apple-workbench-card__desc">{activeDescription}</p>
-
-            {/* Stage Flow Breadcrumb Pills */}
-            <div className="apple-stage-flow-pills" aria-hidden="true">
-              {steps.map(([label], idx) => (
-                <span
-                  key={label}
-                  className={`apple-stage-flow-pill${idx === activeIndex ? ' is-current' : ''}`}
-                  onClick={() => handleSelect(idx)}
-                >
-                  {idx + 1}. {label}
-                </span>
-              ))}
-            </div>
+            <h3 key={activeLabel} className="apple-workbench-card__title" aria-live="polite">
+              {activeLabel}
+            </h3>
+            <p key={activeDescription} className="apple-workbench-card__desc">
+              {activeDescription}
+            </p>
 
             <div className="apple-workbench-card__nav">
               <button
@@ -508,36 +513,30 @@ export function ApplicationExplorer({
   const [activeIndex, setActiveIndex] = useState(0);
   const baseId = useId();
   const workbenchRef = useRef<HTMLDivElement | null>(null);
+  const sectorGridRef = useRef<HTMLDivElement | null>(null);
+  const sectorCardRefs = useRef<Array<HTMLElement | null>>([]);
   const total = entries.length;
 
   useEffect(() => {
     setActiveIndex(0);
   }, [entries]);
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent, idx: number) => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        const next = (idx + 1) % total;
-        setActiveIndex(next);
-        document.getElementById(`${baseId}-app-tab-${next}`)?.focus();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        const prev = (idx - 1 + total) % total;
-        setActiveIndex(prev);
-        document.getElementById(`${baseId}-app-tab-${prev}`)?.focus();
-      } else if (e.key === 'Home') {
-        e.preventDefault();
-        setActiveIndex(0);
-        document.getElementById(`${baseId}-app-tab-0`)?.focus();
-      } else if (e.key === 'End') {
-        e.preventDefault();
-        setActiveIndex(total - 1);
-        document.getElementById(`${baseId}-app-tab-${total - 1}`)?.focus();
-      }
-    },
-    [baseId, total]
-  );
+  useEffect(() => {
+    if (!window.matchMedia('(max-width: 680px)').matches) return;
+    const grid = sectorGridRef.current;
+    const card = sectorCardRefs.current[activeIndex];
+    if (!grid || !card) return;
+    const gridRect = grid.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const target =
+      cardRect.left - gridRect.left + grid.scrollLeft - (grid.clientWidth - cardRect.width) / 2;
+    grid.scrollTo({
+      left: Math.max(target, 0),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth',
+    });
+  }, [activeIndex]);
 
   const handleCardInspect = useCallback((idx: number) => {
     setActiveIndex(idx);
@@ -571,50 +570,12 @@ export function ApplicationExplorer({
             <h2 className="apple-explorer-title">{heading}</h2>
             <p className="apple-explorer-lead">{lead}</p>
           </div>
-
-          <div className="apple-explorer-controls">
-            <span className="apple-count-badge">
-              {total} Specialized Domains · Unique Category Visuals
-            </span>
-          </div>
-        </div>
-
-        {/* Filter Pill Dock */}
-        <div
-          className="apple-filter-dock"
-          role="tablist"
-          aria-label={`${heading} categories`}
-        >
-          {entries.map((item, idx) => {
-            const isActive = idx === activeIndex;
-            return (
-              <button
-                key={item.title}
-                id={`${baseId}-app-tab-${idx}`}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`${baseId}-app-panel`}
-                tabIndex={isActive ? 0 : -1}
-                className={`apple-filter-pill${isActive ? ' is-active' : ''}`}
-                onClick={() => setActiveIndex(idx)}
-                onKeyDown={(e) => handleKeyDown(e, idx)}
-              >
-                <span className="apple-filter-pill__num">
-                  {String(idx + 1).padStart(2, '0')}
-                </span>
-                <span className="apple-filter-pill__title">{item.title}</span>
-              </button>
-            );
-          })}
         </div>
 
         {/* Featured Application Workbench */}
         <div
           ref={workbenchRef}
           id={`${baseId}-app-panel`}
-          role="tabpanel"
-          aria-labelledby={`${baseId}-app-tab-${activeIndex}`}
           className="apple-workbench-card apple-workbench-card--app"
         >
           <div className="apple-workbench-card__copy">
@@ -623,23 +584,24 @@ export function ApplicationExplorer({
                 Domain {String(activeIndex + 1).padStart(2, '0')} /{' '}
                 {String(total).padStart(2, '0')}
               </span>
-              {activeVisual?.subtitle && (
-                <span className="apple-workbench-card__category-pill">
-                  {activeVisual.subtitle}
-                </span>
-              )}
             </div>
 
-            <h3 className="apple-workbench-card__title">{activeItem.title}</h3>
+            <h3 key={activeItem.title} className="apple-workbench-card__title" aria-live="polite">
+              {activeItem.title}
+            </h3>
             {activeItem.description && (
-              <p className="apple-workbench-card__desc">{activeItem.description}</p>
+              <p key={`desc-${activeItem.title}`} className="apple-workbench-card__desc">
+                {activeItem.description}
+              </p>
             )}
             {activeItem.statement && (
-              <p className="apple-workbench-card__desc">{activeItem.statement}</p>
+              <p key={`statement-${activeItem.title}`} className="apple-workbench-card__desc">
+                {activeItem.statement}
+              </p>
             )}
 
             {activePoints.length > 0 && (
-              <div className="apple-capabilities-box">
+              <div key={`caps-${activeIndex}`} className="apple-capabilities-box">
                 <span className="apple-capabilities-box__label">
                   Key Capabilities &amp; Deliverables
                 </span>
@@ -659,6 +621,7 @@ export function ApplicationExplorer({
             {activeItem.closing && (
               <p className="apple-workbench-card__desc">{activeItem.closing}</p>
             )}
+
 
             <div className="apple-workbench-card__nav">
               <button
@@ -700,11 +663,12 @@ export function ApplicationExplorer({
             </h3>
           </div>
           <span className="apple-sector-grid-header__hint">
-            Select any domain card to inspect in the interactive stage above
+            Select any domain card to open its dedicated inner page
           </span>
         </div>
 
         <div
+          ref={sectorGridRef}
           className="apple-sector-grid apple-sector-grid--visual"
           role="region"
           aria-label="All application domains"
@@ -712,15 +676,16 @@ export function ApplicationExplorer({
           {entries.map((item, idx) => {
             const isSelected = idx === activeIndex;
             const itemVisual = visuals[idx];
-            const itemPoints = item.items || [];
-            return (
-              <article
-                key={item.title}
-                className={`apple-sector-card apple-sector-card--visual${
-                  isSelected ? ' is-selected' : ''
-                }`}
-                onClick={() => handleCardInspect(idx)}
-              >
+            const mediaStatus = item.href
+              ? isSelected
+                ? '● Open page'
+                : 'Open page ↗'
+              : isSelected
+                ? '● Active Stage'
+                : 'Inspect ↗';
+            const fallbackStatus = item.href ? 'Open' : isSelected ? 'Active' : 'Inspect';
+            const cardContent = (
+              <>
                 {itemVisual && (
                   <div className="apple-sector-card__media">
                     <img
@@ -733,9 +698,7 @@ export function ApplicationExplorer({
                     <span className="apple-sector-card__index">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
-                    <span className="apple-sector-card__status">
-                      {isSelected ? '● Active Stage' : 'Inspect ↗'}
-                    </span>
+                    <span className="apple-sector-card__status">{mediaStatus}</span>
                     {itemVisual.subtitle && (
                       <span className="apple-sector-card__media-caption">
                         {itemVisual.subtitle}
@@ -750,25 +713,43 @@ export function ApplicationExplorer({
                       <span className="apple-sector-card__index">
                         {String(idx + 1).padStart(2, '0')}
                       </span>
-                      <span className="apple-sector-card__status">
-                        {isSelected ? 'Active' : 'Inspect'}
-                      </span>
+                      <span className="apple-sector-card__status">{fallbackStatus}</span>
                     </div>
                   )}
                   <h4 className="apple-sector-card__title">{item.title}</h4>
-                  {(item.description || item.statement) && (
-                    <p className="apple-sector-card__summary">
-                      {item.description || item.statement}
-                    </p>
-                  )}
-                  {itemPoints.length > 0 && (
-                    <ul className="apple-sector-card__points">
-                      {itemPoints.slice(0, 4).map((pt) => (
-                        <li key={pt}>{pt}</li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
+              </>
+            );
+
+            return (
+              <article
+                key={item.title}
+                ref={(node) => {
+                  sectorCardRefs.current[idx] = node;
+                }}
+                className={`apple-sector-card apple-sector-card--visual${
+                  isSelected ? ' is-selected' : ''
+                }`}
+              >
+                {item.href ? (
+                  <a
+                    className="apple-sector-card__control"
+                    href={item.href}
+                    aria-label={`Open the ${item.title} domain page`}
+                  >
+                    {cardContent}
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    className="apple-sector-card__control"
+                    aria-pressed={isSelected}
+                    aria-label={`Inspect ${item.title}`}
+                    onClick={() => handleCardInspect(idx)}
+                  >
+                    {cardContent}
+                  </button>
+                )}
               </article>
             );
           })}

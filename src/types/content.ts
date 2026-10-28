@@ -21,6 +21,10 @@ export type SeoData = {
   robots: string;
   meta: Record<string, string>;
   jsonLd: string[];
+  keywords?: string[];
+  alternateNames?: string[];
+  audiences?: string[];
+  relatedRoutes?: string[];
 };
 
 export type PageDocument = SeoData & {
