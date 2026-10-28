@@ -48,14 +48,24 @@ function documentPath(route) {
   return route === '/' ? path.join(distDirectory, 'index.html') : path.join(distDirectory, route.slice(1), 'index.html');
 }
 
-function walk(directory, results = []) {
+function walk(directory, extension = '.html', results = []) {
   for (const entry of readdirSync(directory, { withFileTypes: true })) {
     const full = path.join(directory, entry.name);
-    if (entry.isDirectory()) walk(full, results);
-    else if (entry.name.endsWith('.html')) results.push(full);
+    if (entry.isDirectory()) walk(full, extension, results);
+    else if (entry.name.endsWith(extension)) results.push(full);
   }
   return results;
 }
+
+const visibleSeoKeywordArtifacts = [
+  'Other names for this work',
+  'Popular Service Searches',
+  'Related forms include',
+  'clients may also describe',
+  'teams may also describe',
+  'Service Guide · Jaipur',
+  'Start with a high-demand service',
+];
 
 const problems = [];
 const record = (file, message) => problems.push(`${path.relative(distDirectory, file)}: ${message}`);
@@ -135,12 +145,24 @@ for (const file of walk(distDirectory)) {
     record(file, 'Google Analytics config call is missing or duplicated in the document head');
   }
 
+  for (const phrase of visibleSeoKeywordArtifacts) {
+    if (html.includes(phrase)) record(file, `visible SEO keyword artifact is rendered in page copy: ${phrase}`);
+  }
+
   if (standaloneDocuments.has(path.basename(file))) {
     if (!/<main\b/i.test(html)) record(file, 'status document has no <main> content');
   }
 }
 
-// 3. The Apache policy that keeps HTML revalidating and hides repository source.
+// 3. The same visible keyword labels must not be shipped in client bundles.
+for (const file of walk(distDirectory, '.js')) {
+  const script = await readFile(file, 'utf8');
+  for (const phrase of visibleSeoKeywordArtifacts) {
+    if (script.includes(phrase)) record(file, `visible SEO keyword artifact is shipped in client code: ${phrase}`);
+  }
+}
+
+// 4. The Apache policy that keeps HTML revalidating and hides repository source.
 const htaccess = await stat(path.join(distDirectory, '.htaccess')).then((stats) => stats.isFile()).catch(() => false);
 if (!htaccess) {
   problems.push('.htaccess is missing from the build: HTML would be cacheable, so a cached document can point at a replaced bundle');
@@ -157,4 +179,4 @@ if (problems.length > 0) {
   process.exit(1);
 }
 
-console.log(`Verified ${requiredRoutes.length} route documents and ${walk(distDirectory).length} HTML files in ${path.relative(process.cwd(), distDirectory) || '.'}: every route mounts the app, every script is closed, every referenced asset exists, every document carries a boot fallback and the GTM/GA4 tags exactly once, and .htaccess enforces no-cache HTML.`);
+console.log(`Verified ${requiredRoutes.length} route documents and ${walk(distDirectory).length} HTML files in ${path.relative(process.cwd(), distDirectory) || '.'}: every route mounts the app, every script is closed, every referenced asset exists, every document carries a boot fallback and the GTM/GA4 tags exactly once, no visible SEO keyword artifacts are shipped, and .htaccess enforces no-cache HTML.`);

@@ -3,7 +3,6 @@ import { domains } from '../data/domains';
 import { slideExperiences } from '../data/slideExperiences';
 import { LeadCtaBand } from './LeadCtaBand';
 import { buildContactHref, disciplineForExperienceRoute, LEAD_PHONE_DISPLAY, LEAD_PHONE_HREF, trackLeadEvent } from '../utils/leads';
-import { POPULAR_SERVICE_SEARCHES } from '../utils/seoKeywords';
 
 export function DomainIndex(): JSX.Element {
   const [query, setQuery] = useState('');
@@ -90,22 +89,11 @@ export function DomainIndex(): JSX.Element {
         </div>
       </section>
 
-      <nav className="angel-domain-index__popular" aria-labelledby="popular-domain-searches-title">
-        <p>Popular Service Searches</p>
-        <h2 id="popular-domain-searches-title">Start with a high-demand service</h2>
-        <ul>
-          {POPULAR_SERVICE_SEARCHES.map((item) => (
-            <li key={item.route + item.label}>
-              <a href={item.route}>{item.label}<span aria-hidden="true">↗</span></a>
-            </li>
-          ))}
-        </ul>
-      </nav>
 
       <section className="angel-domain-index__controls" aria-labelledby="domains-filter-title">
         <div>
           <p id="domains-filter-title">Find a domain</p>
-          <span id="domain-search-hint">Search services, aliases, formats, audiences and deliverables—including WebAR, VR training and explainer videos.</span>
+          <span id="domain-search-hint">Search by service, format, outcome or delivery style.</span>
         </div>
         <label className="angel-domain-index__search">
           <span className="sr-only">Search all domains</span>
@@ -113,7 +101,7 @@ export function DomainIndex(): JSX.Element {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Try “VR training”, “WebAR”, “3D animation” or “Jaipur”…"
+            placeholder="Search domains…"
             aria-describedby="domain-search-hint domain-results-count"
           />
           {query && <button type="button" onClick={() => setQuery('')} aria-label="Clear domain search">×</button>}

@@ -19,7 +19,7 @@ import { buildContactHref, disciplineForExperienceRoute, LEAD_PHONE_DISPLAY, LEA
 import { navigate } from '../utils/routes';
 import { cleanArchiveTitle } from '../utils/archiveCopy';
 import { domainsForParent } from '../data/domains';
-import { experienceSeoFaqs, naturalSeoList, parentSeoCluster } from '../utils/seoKeywords';
+import { experienceSeoFaqs } from '../utils/seoKeywords';
 
 const MetaverseRuntime = lazy(async () => {
   const module = await import('./MetaversePage');
@@ -306,7 +306,6 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
   const work = useMemo(() => relatedWork(experience), [experience]);
   const workPresentation = experienceMaps[routePath]?.work;
   const childDomains = useMemo(() => domainsForParent(routePath), [routePath]);
-  const seoCluster = parentSeoCluster(routePath);
   const serviceFaqs = useMemo(
     () => experienceSeoFaqs(experience, childDomains.map((domain) => domain.contextualTitle)),
     [childDomains, experience]
@@ -817,80 +816,31 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
         </section>
       )}
 
-      {seoCluster && (
-        <section className="apple-story-section angel-service-guide" aria-labelledby="service-guide-title">
-          <div className="apple-story-container">
-            <div className="angel-service-guide__intro">
-              <span className="apple-card-kicker">Service Guide · Jaipur, India & Worldwide</span>
-              <h2 id="service-guide-title">{seoCluster.headline || `${experience.label} services in India`}</h2>
-              <p>
-                Angel Creations is a {seoCluster.focus}. From Jaipur, Rajasthan, we work with clients
-                across India and internationally. Our {experience.label} work spans{' '}
-                {naturalSeoList(seoCluster.services.slice(0, 6))}, shaped around the audience,
-                platform, story and measurable next step.
-              </p>
+      <section className="apple-story-section angel-service-guide" aria-labelledby="experience-faq-title">
+        <div className="apple-story-container">
+          <div className="angel-service-guide__faq">
+            <div className="angel-service-guide__faq-head">
+              <span className="apple-card-kicker">{experience.label} FAQs</span>
+              <h3 id="experience-faq-title">Common questions before hiring a studio</h3>
             </div>
-
-            <div className="angel-service-guide__grid">
-              <article className="angel-service-guide__card">
-                <h3>What we can build</h3>
-                <p>Popular {experience.label} briefs include:</p>
-                <ul className="angel-service-guide__list">
-                  {seoCluster.services.map((service) => (
-                    <li key={service}>{service}</li>
-                  ))}
-                </ul>
-              </article>
-
-              <article className="angel-service-guide__card">
-                <h3>Who hires this expertise?</h3>
-                <p>{experience.label} is commonly commissioned by:</p>
-                <ul className="angel-service-guide__list">
-                  {seoCluster.audiences.map((audience) => (
-                    <li key={audience}>{audience}</li>
-                  ))}
-                </ul>
-                <p>
-                  The right route may begin with a focused prototype, pilot, visual proof or full
-                  production plan.
-                </p>
-              </article>
-
-              <article className="angel-service-guide__card">
-                <h3>Other names for this work</h3>
-                <p>Depending on the brief, teams may also describe this expertise as:</p>
-                <ul className="angel-service-guide__terms">
-                  {seoCluster.aliases.slice(0, 8).map((alias) => (
-                    <li key={alias}>{alias}</li>
-                  ))}
-                </ul>
-              </article>
+            <div className="angel-service-guide__faq-list">
+              {serviceFaqs.map((faq, index) => (
+                <details key={faq.question} open={index === 0}>
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
             </div>
-
-            <div className="angel-service-guide__faq">
-              <div className="angel-service-guide__faq-head">
-                <span className="apple-card-kicker">{experience.label} FAQs</span>
-                <h3>Common questions before hiring a studio</h3>
-              </div>
-              <div className="angel-service-guide__faq-list">
-                {serviceFaqs.map((faq, index) => (
-                  <details key={faq.question} open={index === 0}>
-                    <summary>{faq.question}</summary>
-                    <p>{faq.answer}</p>
-                  </details>
-                ))}
-              </div>
-              <p className="angel-service-guide__cta">
-                Planning a project?{' '}
-                <a href={enquiryHref} onClick={(event) => routeTo(event, enquiryHref)}>
-                  Get a free {experience.label} project roadmap
-                </a>
-                .
-              </p>
-            </div>
+            <p className="angel-service-guide__cta">
+              Planning a project?{' '}
+              <a href={enquiryHref} onClick={(event) => routeTo(event, enquiryHref)}>
+                Get a free {experience.label} project roadmap
+              </a>
+              .
+            </p>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 4. OPTIONAL INTERACTIVE UNITY WEBGL ARTIFACT (METAVERSE) */}
       {experience.hasUnityArtifact && (

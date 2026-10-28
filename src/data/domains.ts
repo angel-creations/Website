@@ -460,7 +460,7 @@ export function domainFaqs(domain: DomainRecord): Array<{ question: string; answ
     },
     {
       question: `What ${domain.contextualTitle} services does Angel Creations provide?`,
-      answer: `Depending on the brief, the work can include ${domain.deliverables.join(', ').toLowerCase()}. Related forms include ${domain.seoKeywords.slice(4, 7).join(', ').toLowerCase()}.`,
+      answer: `Depending on the brief, the work can include ${domain.deliverables.join(', ').toLowerCase()}.`,
     },
     {
       question: `Which platforms and formats can ${domain.contextualTitle} use?`,
@@ -468,7 +468,7 @@ export function domainFaqs(domain: DomainRecord): Array<{ question: string; answ
     },
     {
       question: `Who is ${domain.contextualTitle} for?`,
-      answer: `It is commonly relevant to ${domain.audiences.join(', ').toLowerCase()}. We shape the experience around the people who will use, watch, visit or share it.`,
+      answer: 'It is for teams who need people to understand, explore, learn from, or act on an idea. We shape the experience around the people who will use, watch, visit or share it.',
     },
     {
       question: `Does Angel Creations offer ${domain.contextualTitle} in Jaipur, across India and worldwide?`,

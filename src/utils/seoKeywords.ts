@@ -173,20 +173,16 @@ export function naturalSeoList(values: string[]): string {
 
 export function experienceSeoFaqs(
   experience: SlideExperience,
-  domainTitles: string[] = []
+  _domainTitles: string[] = []
 ): Array<{ question: string; answer: string }> {
-  const cluster = parentSeoCluster(experience.route);
-  const services = uniqueTerms(cluster?.services?.length ? cluster.services : domainTitles, 10);
-  const audiences = cluster?.audiences || experience.applications;
-
   return [
     {
       question: `What ${experience.label} services does Angel Creations offer?`,
-      answer: `Angel Creations provides ${naturalSeoList(services)}. Each project is scoped around the audience, setting, platform and outcome rather than forcing a one-size-fits-all package.`,
+      answer: `We design and produce ${experience.label} experiences around a specific audience, setting, platform and outcome, from early prototypes through full production rather than forcing a one-size-fits-all package.`,
     },
     {
       question: `Which industries and teams can use ${experience.label}?`,
-      answer: `${experience.label} can support ${naturalSeoList(audiences)}. The strongest format depends on whether the goal is learning, visualisation, participation, commerce, storytelling or conversion.`,
+      answer: `${experience.label} can help teams teach, demonstrate, visualise, entertain or invite participation. The right format depends on the people it is for, where it will be experienced and what should happen next.`,
     },
     {
       question: `Does Angel Creations provide ${experience.label} services in Jaipur, across India and worldwide?`,
