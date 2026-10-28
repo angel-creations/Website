@@ -4660,3 +4660,21 @@ footer.ac-footer-v2 {
     text-wrap: balance !important;
   }
 }
+
+
+/* EmailJS enquiry submission states — preserve the existing contact art direction. */
+.contact-send-status {
+  width: 100%;
+  margin: 0 0 1.5rem;
+  padding: .9rem 1rem;
+  border: 1px solid var(--angel-ink-soft);
+  border-radius: .75rem;
+  font-size: .95rem;
+}
+.contact-send-status.is-success {
+  border-color: rgba(50, 145, 104, .55);
+}
+.contact-prepared__send:disabled {
+  cursor: wait;
+  opacity: .65;
+}
