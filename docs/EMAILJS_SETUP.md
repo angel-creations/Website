@@ -1,12 +1,19 @@
 # EmailJS contact form setup
 
-The existing eight-question contact wizard sends two emails after the visitor presses **Send enquiry**: an internal enquiry notification first, followed by a personalised confirmation to the visitor. The approved visual design and the mailto/copy fallbacks remain available. No email credentials or real configuration values should be committed to Git.
+The existing eight-question contact wizard sends two emails after the visitor presses **Send enquiry**: an internal enquiry notification first, followed by a personalised confirmation to the visitor. The approved visual design and the mailto/copy fallbacks remain available.
 
-Configured EmailJS identifiers (these ship in the client bundle once deployed; the public key value itself is deliberately not recorded here — it belongs only in `.env.local` and the build environment):
+## Configuration lives in source
+
+All EmailJS identifiers are defined in **`src/config/emailjs.ts`** and imported by `src/components/ContactWizard.tsx`:
 
 - **Service ID:** `service_85q82kl`
 - **Internal notification template ID:** `template_m0s0taz`
 - **Customer confirmation template ID:** `template_xoqfbrj`
+- **Public key:** stored in the same module (see the note below)
+
+**No GitHub Actions variables, no `.env.local`, and no Hostinger settings are required.** The static site builds with this configuration on any machine, and the deployed bundle already contains it. To change an identifier, edit that module and rebuild.
+
+**The public key is not a secret.** EmailJS is designed for browser-side use: this key is compiled into the public JavaScript bundle and is downloadable by any visitor. It grants no access to the mailbox or to the EmailJS account. What actually protects the account is the EmailJS dashboard (allowed origins, rate limits, anti-abuse), which is why those settings matter — see "Security and delivery notes". Never add Microsoft 365 passwords, OAuth tokens, SMTP credentials, private API keys, or recipient addresses to that module; recipients (including the private BCC inboxes) stay in the dashboard.
 
 ## 1. Configure the internal notification template
 
@@ -47,44 +54,48 @@ Include the same eight form fields in the email body and the public company cont
 
 The confirmation send receives **only** the visitor's eight answers (plus the aliases above). Campaign attribution, click IDs (`gclid`/`fbclid`/`msclkid`), referrer/landing-page data, and the composed internal `message` are sent to the internal notification only, so they cannot leak into the customer email even if the template references a variable the code never sends it.
 
-## 3. Configure local development
+## 3. Local development
 
-Copy `.env.example` to `.env.local` and replace the placeholders with:
+Nothing to configure: `npm install && npm run dev` uses the identifiers in `src/config/emailjs.ts`. `.env.example` is kept only for an unrelated optional lead endpoint; the four `VITE_EMAILJS_*` entries have been removed and are no longer read anywhere.
 
-- `VITE_EMAILJS_SERVICE_ID`: EmailJS service ID
-- `VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID`: internal notification template ID
-- `VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID`: customer confirmation template ID
-- `VITE_EMAILJS_PUBLIC_KEY`: EmailJS public key
+To exercise the "configuration unavailable" fallback locally, build with the test-only switch (never set in a real build):
 
-Do not commit `.env.local` or private API keys. The public key is intended for browser use, but should still be configured only for the intended site.
+```bash
+VITE_EMAILJS_FORCE_UNCONFIGURED=true npm run build
+node scripts/checkEmailjsSubmission.mjs --unconfigured
+```
 
-## 4. Configure production builds
+## 4. Production builds
 
-Vite embeds `VITE_*` values at build time. This site is built in GitHub Actions and the static output is deployed to Hostinger, so **Hostinger needs no configuration** — setting variables there has no effect. Instead:
+GitHub Actions and Hostinger need **no EmailJS configuration**. The workflow runs `npm run build` exactly as you would locally, and the identifiers come from source.
 
-1. In the GitHub repository, open **Settings → Secrets and variables → Actions → Variables** and add all four variables (`VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID`, `VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID`, `VITE_EMAILJS_PUBLIC_KEY`). They are embedded in the public client bundle by design, so repository *variables* are appropriate; never put a private EmailJS API key in any `VITE_*` value.
-2. `.github/workflows/verify-production-build.yml` passes these variables to **both** build steps (the verify job and the deploy job, which rebuilds from source). Both must have them, or the deployed bundle will differ from the verified one.
-3. Rebuild and deploy. Changing any value requires a new build; editing variables alone does not update already-built files.
+Two guards keep this honest:
 
-**Merge gate:** set the Actions variables *before* merging the EmailJS feature to `main`. A build without them ships the form in its safe fallback mode (direct sending reports itself unavailable and the visitor uses the email draft), which must not be mistaken for a working launch.
+1. `node scripts/checkEmailjsConfig.mjs` fails the build if the module is missing an identifier, has a wrong-shaped value, contains an email address or credential material, or if client code/workflow still references the old `VITE_EMAILJS_*` variables.
+2. `node scripts/checkEmailjsConfig.mjs --bundle dist` runs after the build and verifies the identifiers actually reached the compiled bundle — a configuration that silently dropped out of the build would otherwise ship the form in fallback mode. It reports presence only and never prints the key.
+
+**Merge gate:** the contact form is only live once a deploy of this code reaches production. Until then production keeps its previous mailto/copy behaviour.
 
 ## 5. Verify before launch
 
 ### Automated checks (mocked — no real email is ever sent)
 
-`scripts/checkEmailjsSubmission.mjs` drives the real wizard against the built site with every EmailJS request intercepted and answered locally. It covers both-sends success and field mapping, internal failure (HTTP 500/429 and network abort), partial failure with confirmation-only retry, empty optional answers, invalid-email validation, double-submission, and the client timeout. Build with the fake identifiers shown in the script header, then run:
+`scripts/checkEmailjsSubmission.mjs` drives the real wizard against the built site with every EmailJS request intercepted and answered locally. Expected identifiers are read from `src/config/emailjs.ts`, so the assertions cannot drift from the real configuration. It covers both-sends success and field mapping, internal failure (HTTP 500/429 and network abort), partial failure with confirmation-only retry, empty optional answers, invalid-email validation, double-submission, the client timeout, and the analytics-isolation regression.
 
 ```bash
-npm run test:emailjs
+npm run build && npm run test:emailjs
 ```
 
-For the missing-configuration case, build without the variables and run:
+Because the build now contains the real identifiers, the suite also installs a catch-all route: anything that is not the local static server is intercepted, fulfilled with an inert stub, or aborted, and each scenario asserts that no unexpected request left the page. A leaked request therefore cannot deliver mail — but the guarantee still comes from interception, never from the identifiers being fake.
+
+The missing-configuration case uses the build switch described in section 3:
 
 ```bash
+VITE_EMAILJS_FORCE_UNCONFIGURED=true npm run build
 node scripts/checkEmailjsSubmission.mjs --unconfigured
 ```
 
-GitHub Actions runs both modes automatically in the `mocked-emailjs-checks` job (see `.github/workflows/verify-production-build.yml`) on every push and pull request: it builds a throwaway copy of the site with hard-coded fake identifiers, runs the suite, then rebuilds without configuration and runs the fallback checks. That job uploads no artifacts and is separate from the deployable build, so its test build can never replace what would be deployed, and no real email can be sent. It also covers the analytics-isolation regression: a deliberately throwing analytics layer must not turn an accepted enquiry into an error message, must not skip the customer confirmation, and must never produce a second internal notification.
+GitHub Actions runs both modes automatically in the `mocked-emailjs-checks` job (see `.github/workflows/verify-production-build.yml`) on every push and pull request: it builds a throwaway copy, runs the suite, rebuilds with the fallback switch on, and runs the fallback checks. That job uploads no artifacts and is separate from the deployable build, so it can never replace what would be deployed. Configuration itself is guarded by `checkEmailjsConfig` (source and bundle) in `build-and-verify` and again in the deploy job.
 
 ### Manual mailbox verification (still required)
 

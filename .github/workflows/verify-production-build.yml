@@ -43,45 +43,22 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Report EmailJS build configuration (names only, never values)
-        # Makes the release gate "are the four build-time variables actually
-        # configured?" answerable from the check-run annotations, without
-        # reading logs and without ever printing a value. Vite embeds these at
-        # build time, so an absent variable silently ships the contact form in
-        # its email-draft fallback mode.
-        continue-on-error: true
-        env:
-          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
-          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID }}
-          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID }}
-          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
-        run: |
-          present=0
-          missing=""
-          for name in VITE_EMAILJS_SERVICE_ID VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID VITE_EMAILJS_PUBLIC_KEY; do
-            if [ -n "${!name}" ]; then
-              present=$((present + 1))
-            else
-              missing="$missing $name"
-            fi
-          done
-          echo "EmailJS build variables configured: $present/4 (values are never printed)."
-          echo "::notice title=EmailJS build configuration::$present/4 build variables configured for this build."
-          if [ -n "$missing" ]; then
-            echo "::warning title=EmailJS build configuration::Missing:$missing - the contact form ships in email-draft fallback mode until these Actions variables are set."
-          fi
+      - name: Validate EmailJS source configuration (no secrets printed)
+        # The EmailJS identifiers now live in src/config/emailjs.ts, so there is
+        # no repository variable to forget. This step fails the build if that
+        # module is missing an identifier or if the compiled bundle does not
+        # actually contain them, and it reports only names and formats — the
+        # public key value is never printed.
+        run: node scripts/checkEmailjsConfig.mjs
 
       - name: Type-check and build production site
         run: npm run build
-        env:
-          # EmailJS identifiers are embedded in the client bundle at build
-          # time (the public key is designed for browser use). Set these as
-          # repository Actions variables; without them the contact form
-          # ships in its email-draft fallback mode. See docs/EMAILJS_SETUP.md.
-          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
-          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID }}
-          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID }}
-          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
+
+      - name: Confirm EmailJS configuration reached the built bundle
+        # Guards the deployed artifact, not just the source: a build that
+        # silently dropped the configuration would ship the contact form in
+        # email-draft fallback mode without failing anything.
+        run: node scripts/checkEmailjsConfig.mjs --bundle dist
 
       - name: Verify generated routes and local assets
         run: |
@@ -198,12 +175,11 @@ jobs:
     # and answered inside the test, so this job cannot send real email; it
     # fails if any assertion fails or if a request ever escapes the mock.
     #
-    # This is a separate job on purpose. It builds with hard-coded fake EmailJS
-    # identifiers (below) and uploads nothing, so its test build can never
-    # replace the deployable artifact produced by build-and-verify. Deployment
-    # gating is unchanged: deploy-to-hostinger still depends on
-    # build-and-verify only, so a failure here is a visible required-style
-    # check without stopping the hourly self-healing deploy.
+    # This is a separate job on purpose. It builds a throwaway copy and uploads
+    # nothing, so its build can never replace the deployable artifact produced
+    # by build-and-verify. Deployment gating is unchanged: deploy-to-hostinger
+    # still depends on build-and-verify only, so a failure here is a visible
+    # required-style check without stopping the hourly self-healing deploy.
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -222,23 +198,22 @@ jobs:
       - name: Install the browser used by the submission checks
         run: npx playwright install --with-deps chromium
 
-      - name: Build with fake EmailJS identifiers (test build only)
-        # Deliberately hard-coded placeholders rather than repository
-        # variables: the form must take the direct-send path for the mocked
-        # checks, and these values only ever exist inside this throwaway build.
-        env:
-          VITE_EMAILJS_SERVICE_ID: test-service
-          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: test-notification-template
-          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: test-confirmation-template
-          VITE_EMAILJS_PUBLIC_KEY: test-public-key
+      - name: Build the site under test
+        # The identifiers are compiled in from src/config/emailjs.ts. The suite
+        # itself fulfils every api.emailjs.com request locally and aborts any
+        # other external request, so no message can leave the runner even though
+        # real identifiers are present. No EmailJS secrets or variables exist.
         run: npm run build
 
       - name: Mocked EmailJS submission checks
         run: npm run test:emailjs
 
-      - name: Rebuild without EmailJS configuration
-        # Same job, sequentially: replaces the fake-identifier build with the
-        # unconfigured build that ships in email-draft fallback mode.
+      - name: Rebuild with the fallback switch on
+        # Test-only build flag, never set in a real build: exercises the
+        # "configuration unavailable" branch so the email-draft/copy fallback
+        # stays covered.
+        env:
+          VITE_EMAILJS_FORCE_UNCONFIGURED: 'true'
         run: npm run build
 
       - name: Missing-configuration fallback checks
@@ -512,16 +487,13 @@ jobs:
         run: npm ci
 
       - name: Build verified static site
+        # EmailJS identifiers come from src/config/emailjs.ts, so this rebuild
+        # needs no repository variables and cannot drift from the verified
+        # build. See docs/EMAILJS_SETUP.md.
         run: npm run build
-        env:
-          # Must match the build-and-verify job: EmailJS identifiers are
-          # baked into the bundle at build time, so the deploy rebuild needs
-          # the same Actions variables or the deployed contact form would
-          # silently fall back to the email draft. See docs/EMAILJS_SETUP.md.
-          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
-          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID }}
-          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID }}
-          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
+
+      - name: Confirm EmailJS configuration reached the deploy bundle
+        run: node scripts/checkEmailjsConfig.mjs --bundle dist
 
       - name: Back up and deploy dist over SSH
         shell: bash

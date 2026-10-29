@@ -27,29 +27,40 @@
 //      (the internal notification is never duplicated) and the conversion is
 //      still counted exactly once.
 //
-// The site under test must be built with these fake test identifiers (they
-// only exist so the form takes the direct-send path; intercepted requests
-// never leave the machine):
+// The identifiers live in src/config/emailjs.ts, so the expected values are
+// read from that single source of truth instead of being passed in as
+// environment variables. Requests are still fully intercepted: nothing is
+// delivered, and no request can leave the machine (see the network guard).
 //
-//   VITE_EMAILJS_SERVICE_ID=test-service \
-//   VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID=test-notification-template \
-//   VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID=test-confirmation-template \
-//   VITE_EMAILJS_PUBLIC_KEY=test-public-key \
 //   npm run build
 //   node scripts/checkEmailjsSubmission.mjs
 //
-// Missing-configuration case: build without the variables, then run:
+// Missing-configuration case: rebuild with VITE_EMAILJS_FORCE_UNCONFIGURED=true
+// (the build-time test switch, never set in a real build), then run:
 //   node scripts/checkEmailjsSubmission.mjs --unconfigured
 
+import { readFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { startStaticServer } from './static-site-server.mjs';
 import { resolveBrowser } from './playwright-browser.mjs';
 
 const UNCONFIGURED = process.argv.includes('--unconfigured');
-const SERVICE_ID = 'test-service';
-const NOTIFICATION_TEMPLATE = 'test-notification-template';
-const CONFIRMATION_TEMPLATE = 'test-confirmation-template';
 const VISITOR_EMAIL = 'asha.verma@example.com';
+
+// Expected identifiers, parsed from the configuration module that the site is
+// built from. Kept in sync automatically, so a changed identifier cannot make
+// the assertions silently pass against stale values.
+function readConfiguredIdentifier(field) {
+  const source = readFileSync('src/config/emailjs.ts', 'utf8');
+  const match = source.match(new RegExp(`${field}\\s*:\\s*'([^']*)'`));
+  if (!match) throw new Error(`src/config/emailjs.ts is missing ${field}`);
+  return match[1];
+}
+
+const SERVICE_ID = readConfiguredIdentifier('serviceId');
+const NOTIFICATION_TEMPLATE = readConfiguredIdentifier('notificationTemplateId');
+const CONFIRMATION_TEMPLATE = readConfiguredIdentifier('confirmationTemplateId');
+const PUBLIC_KEY = readConfiguredIdentifier('publicKey');
 
 const server = await startStaticServer({ root: 'dist', port: Number(process.env.PORT ?? 4312) });
 const browserOptions = await resolveBrowser();
@@ -102,22 +113,46 @@ async function newWizardPage(plan) {
   const page = await context.newPage();
   const calls = [];
   const pageErrors = [];
+  // Any request to a host other than the local static server or the inert
+  // analytics hosts. Must stay empty for every scenario.
+  const externalRequests = [];
   let emailjsRequestsSeen = 0;
+  const isLocalUrl = (url) =>
+    url.startsWith(server.url) || url.startsWith('data:') || url.startsWith('blob:');
+  // Hosts the suite handles itself and answers locally: the inert analytics
+  // stub and the intercepted EmailJS API. Anything else is unexpected.
+  const isHandledHost = (url) =>
+    url.includes('googletagmanager.com')
+    || url.includes('google-analytics.com')
+    || url.includes('api.emailjs.com');
   page.on('pageerror', (error) => pageErrors.push(error.message));
   page.on('request', (request) => {
-    if (request.url().includes('api.emailjs.com')) emailjsRequestsSeen += 1;
+    const url = request.url();
+    if (url.includes('api.emailjs.com')) emailjsRequestsSeen += 1;
+    if (!isLocalUrl(url) && !isHandledHost(url)) externalRequests.push(url);
   });
-  // Third-party analytics is answered locally instead of being fetched. A CI
-  // runner has real network access, so an unblocked GTM would (a) send real
-  // beacons from a test page and (b) install its own dataLayer traffic, which
-  // makes the analytics-sabotage scenarios non-deterministic. Blocking it
-  // here keeps this suite hermetic and identical on every machine.
-  await page.route('**://www.googletagmanager.com/**', (route) =>
-    route.fulfill({ status: 200, contentType: 'application/javascript', body: '/* blocked in tests */' }),
-  );
-  await page.route('**://www.google-analytics.com/**', (route) =>
-    route.fulfill({ status: 204, contentType: 'text/plain', body: '' }),
-  );
+  // Safety net, registered first so it is evaluated last. The build under test
+  // now contains the real EmailJS identifiers, so a request that slipped past
+  // the specific routes below would reach the live API and could deliver mail.
+  // Anything that is not the local static server is aborted (or fulfilled for
+  // the analytics hosts, which need a dummy response to stay inert).
+  await page.route('**/*', (route) => {
+    const url = route.request().url();
+    const isLocal = url.startsWith(server.url) || url.startsWith('data:') || url.startsWith('blob:');
+    if (isLocal) return route.continue();
+    if (url.includes('googletagmanager.com')) {
+      return route.fulfill({ status: 200, contentType: 'application/javascript', body: '/* blocked in tests */' });
+    }
+    if (url.includes('google-analytics.com')) {
+      return route.fulfill({ status: 204, contentType: 'text/plain', body: '' });
+    }
+    return route.abort('blockedbyclient');
+  });
+  // Third-party analytics never runs. A CI runner has real network access, so
+  // an unblocked GTM would (a) send real beacons from a test page and (b)
+  // install its own dataLayer traffic, which makes the analytics-sabotage
+  // scenarios non-deterministic. The catch-all above answers those hosts with
+  // an inert stub; the routes below take priority over it.
   await page.route('**://api.emailjs.com/**', async (route) => {
     let body = {};
     try {
@@ -144,7 +179,7 @@ async function newWizardPage(plan) {
       });
     }
   });
-  return { context, page, calls, pageErrors, emailjsRequestsSeen: () => emailjsRequestsSeen };
+  return { context, page, calls, pageErrors, externalRequests, emailjsRequestsSeen: () => emailjsRequestsSeen };
 }
 
 async function clickNext(page) {
@@ -249,6 +284,10 @@ function assertNoLeaks(label, session) {
     session.emailjsRequestsSeen() === session.calls.length,
     `saw ${session.emailjsRequestsSeen()} requests, intercepted ${session.calls.length}`);
   check(`${label}: no unhandled page errors`, session.pageErrors.length === 0, session.pageErrors.join(' | '));
+  // Belt and braces now that real identifiers are compiled in: even if a route
+  // were misconfigured, nothing may have left the machine.
+  check(`${label}: no unexpected request left the page`,
+    session.externalRequests.length === 0, `unexpected: ${session.externalRequests.join(', ')}`);
 }
 
 async function scenarioBothSucceed() {
@@ -263,7 +302,8 @@ async function scenarioBothSucceed() {
   const [notification, confirmation] = calls;
   check('internal notification sent first', notification?.template_id === NOTIFICATION_TEMPLATE);
   check('customer confirmation sent second', confirmation?.template_id === CONFIRMATION_TEMPLATE);
-  check('test service/public key used', notification?.service_id === SERVICE_ID && notification?.user_id === 'test-public-key');
+  check('configured service and public key used',
+    notification?.service_id === SERVICE_ID && notification?.user_id === PUBLIC_KEY);
 
   const np = notification?.template_params ?? {};
   check('notification carries name', np.name === 'Asha Verma');

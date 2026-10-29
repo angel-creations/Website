@@ -12,6 +12,7 @@ import {
   trackLeadEvent,
   type LeadAttribution,
 } from '../utils/leads';
+import { getEmailJsConfig } from '../config/emailjs';
 
 // Measurement is best-effort. A tag manager, a consent script, or blocked
 // storage can throw from inside the dataLayer/gtag calls. Analytics must never
@@ -485,16 +486,16 @@ export function ContactWizard(): JSX.Element {
       return;
     }
 
-    const env = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env ?? {};
-    const serviceId = env.VITE_EMAILJS_SERVICE_ID?.trim();
-    const notificationTemplateId = env.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID?.trim();
-    const confirmationTemplateId = env.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID?.trim();
-    const publicKey = env.VITE_EMAILJS_PUBLIC_KEY?.trim();
-
-    if (!serviceId || !notificationTemplateId || !confirmationTemplateId || !publicKey) {
+    // Identifiers come from the central module (src/config/emailjs.ts), not
+    // from build-time environment variables, so the static site works without
+    // any host or CI configuration. A `null` result means that module is
+    // incomplete; fall back to the email draft instead of failing silently.
+    const emailJs = getEmailJsConfig();
+    if (!emailJs) {
       setFormStatus('We can’t send this form directly right now. Your answers are ready below—please use “Open email draft” or copy the enquiry text to reach the studio.');
       return;
     }
+    const { serviceId, notificationTemplateId, confirmationTemplateId, publicKey } = emailJs;
 
     const params = new URLSearchParams(window.location.search);
     const intent = params.get('intent')?.slice(0, 80) || '';
