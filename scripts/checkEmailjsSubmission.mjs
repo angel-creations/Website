@@ -57,16 +57,39 @@ const browser = await chromium.launch({ headless: true, ...browserOptions });
 
 const failures = [];
 let passes = 0;
+// In GitHub Actions the job log is not always reachable, so every failed
+// assertion is also emitted as a workflow error annotation: the check run then
+// shows exactly which assertion failed and why.
+const IN_ACTIONS = process.env.GITHUB_ACTIONS === 'true';
 
 function check(label, condition, detail = '') {
   if (condition) {
     passes += 1;
     console.log(`  ✓ ${label}`);
   } else {
-    failures.push(detail ? `${label} — ${detail}` : label);
-    console.log(`  ✗ ${label}${detail ? ` — ${detail}` : ''}`);
+    const message = detail ? `${label} — ${detail}` : label;
+    failures.push(message);
+    console.log(`  ✗ ${message}`);
+    if (IN_ACTIONS) {
+      console.log(`::error title=EmailJS check failed::${message.replace(/[\r\n]+/g, ' ')}`);
+    }
   }
 }
+
+// Unhandled rejections and uncaught exceptions must fail the run instead of
+// being printed as a stray stack trace with a zero exit code.
+process.on('unhandledRejection', (error) => {
+  const message = `unhandled rejection: ${error instanceof Error ? error.message : String(error)}`;
+  failures.push(message);
+  console.error(`  ✗ ${message}`);
+  if (IN_ACTIONS) console.log(`::error title=EmailJS check failed::${message}`);
+});
+process.on('uncaughtException', (error) => {
+  const message = `uncaught exception: ${error instanceof Error ? error.message : String(error)}`;
+  failures.push(message);
+  console.error(`  ✗ ${message}`);
+  if (IN_ACTIONS) console.log(`::error title=EmailJS check failed::${message}`);
+});
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
