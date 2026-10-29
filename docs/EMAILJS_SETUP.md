@@ -84,6 +84,8 @@ For the missing-configuration case, build without the variables and run:
 node scripts/checkEmailjsSubmission.mjs --unconfigured
 ```
 
+GitHub Actions runs both modes automatically in the `mocked-emailjs-checks` job (see `.github/workflows/verify-production-build.yml`) on every push and pull request: it builds a throwaway copy of the site with hard-coded fake identifiers, runs the suite, then rebuilds without configuration and runs the fallback checks. That job uploads no artifacts and is separate from the deployable build, so its test build can never replace what would be deployed, and no real email can be sent. It also covers the analytics-isolation regression: a deliberately throwing analytics layer must not turn an accepted enquiry into an error message, must not skip the customer confirmation, and must never produce a second internal notification.
+
 ### Manual mailbox verification (still required)
 
 An EmailJS API success response means the request was accepted, not that any mailbox received the message. Before launch:

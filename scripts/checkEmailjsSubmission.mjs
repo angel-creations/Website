@@ -18,6 +18,14 @@
 //   6. Rapid repeated submission attempts produce one internal notification.
 //   7. A hung EmailJS request is abandoned by the client timeout and falls
 //      back instead of leaving "Sending…" forever.
+//   9. A throwing analytics layer (dataLayer.push aborts) after the internal
+//      notification is accepted: the enquiry is still reported as sent, the
+//      customer confirmation is still attempted, no false error event is
+//      recorded, and no retry is offered.
+//  10. A throwing analytics layer combined with a failed confirmation: the
+//      partial-success message appears, the retry sends the confirmation only
+//      (the internal notification is never duplicated) and the conversion is
+//      still counted exactly once.
 //
 // The site under test must be built with these fake test identifiers (they
 // only exist so the form takes the direct-send path; intercepted requests
@@ -157,6 +165,25 @@ async function waitForStatus(page, fragment, timeout = 15000) {
 
 async function dataLayerEvents(page) {
   return page.evaluate(() => JSON.stringify(window.dataLayer ?? []));
+}
+
+// Breaks the analytics layer at the exact call the wizard makes: replacing
+// dataLayer.push makes the next lead event throw, just as a broken tag
+// manager, a consent script, or storage-blocked browser would. Every pushed
+// event name is recorded so the checks can prove what was attempted.
+async function breakAnalytics(page) {
+  await page.evaluate(() => {
+    const dataLayer = (window.dataLayer = window.dataLayer || []);
+    window.__analyticsAttempts = [];
+    dataLayer.push = (event) => {
+      window.__analyticsAttempts.push(event && event.event);
+      throw new Error('analytics exploded');
+    };
+  });
+}
+
+async function analyticsAttempts(page) {
+  return page.evaluate(() => window.__analyticsAttempts ?? []);
 }
 
 function assertNoLeaks(label, session) {
@@ -373,6 +400,102 @@ async function scenarioUnconfigured() {
   await session.context.close();
 }
 
+// Regression: a throwing analytics layer must not be able to report an
+// accepted enquiry as failed, and must not skip the customer confirmation.
+async function scenarioAnalyticsThrows() {
+  console.log('\n[9] Analytics throws after the internal notification is accepted');
+  const session = await newWizardPage(() => ({ status: 200 }));
+  const { page, calls } = session;
+  await completeWizard(page);
+  await breakAnalytics(page);
+  await page.locator('button.contact-prepared__send').click();
+  // Reaching this status proves the delivery outcome survived the throw. The
+  // wait is non-fatal so a regression is reported as failed checks rather
+  // than aborting the rest of the scenario.
+  let reportedSuccess = true;
+  try {
+    await waitForStatus(page, 'confirmation email has been sent');
+  } catch {
+    reportedSuccess = false;
+  }
+
+  const notifications = calls.filter((c) => c.template_id === NOTIFICATION_TEMPLATE).length;
+  const confirmations = calls.filter((c) => c.template_id === CONFIRMATION_TEMPLATE).length;
+  check('delivery reported as success, not failure', reportedSuccess, 'status never reported a complete send');
+  check('customer confirmation still sent after the throw', confirmations === 1, `got ${confirmations}`);
+  check('exactly one internal notification', notifications === 1, `got ${notifications}`);
+
+  const statusText = (await page.locator('.contact-send-status').innerText()).toLowerCase();
+  check('no false "could not send" message', !statusText.includes('could not send your enquiry'));
+  check('no false partial-failure message', !statusText.includes('could not send the confirmation'));
+  check('sent state replaces the send button',
+    await page.locator('span.contact-prepared__send', { hasText: 'Enquiry sent' }).isVisible());
+  check('no retry offered after a complete send',
+    (await page.locator('button.contact-prepared__send').count()) === 0);
+  check('email-draft fallback still available',
+    await page.locator('.contact-prepared__actions a[href^="mailto:business@angelcreations.in"]').first().isVisible());
+  check('copy fallback still available', await page.getByRole('button', { name: 'Copy enquiry text' }).isVisible());
+
+  const attempts = await analyticsAttempts(page);
+  check('analytics sabotage was exercised (generate_lead threw)', attempts.filter((e) => e === 'generate_lead').length === 1,
+    `attempts: ${JSON.stringify(attempts)}`);
+  check('no error event recorded for a delivered enquiry', !attempts.includes('lead_submit_error'),
+    `attempts: ${JSON.stringify(attempts)}`);
+  assertNoLeaks('analytics-throws', session);
+  await session.context.close();
+}
+
+// Regression: analytics throwing while the confirmation fails must still
+// allow a confirmation-only retry, and that retry must never resend the
+// internal notification or re-count the conversion.
+async function scenarioAnalyticsThrowsWithPartialFailure() {
+  console.log('\n[10] Analytics throws while the confirmation fails: retry stays confirmation-only');
+  let confirmationAttempts = 0;
+  const session = await newWizardPage((call) => {
+    if (call.template_id === CONFIRMATION_TEMPLATE) {
+      confirmationAttempts += 1;
+      return { status: confirmationAttempts === 1 ? 500 : 200 };
+    }
+    return { status: 200 };
+  });
+  const { page, calls } = session;
+  await completeWizard(page);
+  await breakAnalytics(page);
+  await page.locator('button.contact-prepared__send').click();
+  let reportedPartial = true;
+  try {
+    await waitForStatus(page, 'could not send the confirmation email');
+  } catch {
+    reportedPartial = false;
+  }
+
+  check('partial success reported despite the analytics throw', reportedPartial, 'partial-success copy never appeared');
+  check('retry is labelled confirmation-only',
+    await page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' }).isVisible());
+
+  await page.locator('button.contact-prepared__send').click();
+  let retrySucceeded = true;
+  try {
+    await waitForStatus(page, 'confirmation email has been sent');
+  } catch {
+    retrySucceeded = false;
+  }
+  check('confirmation-only retry succeeds', retrySucceeded, 'retry never reported a completed confirmation');
+
+  const notifications = calls.filter((c) => c.template_id === NOTIFICATION_TEMPLATE).length;
+  const confirmations = calls.filter((c) => c.template_id === CONFIRMATION_TEMPLATE).length;
+  check('retry sent exactly one more confirmation', confirmations === 2, `got ${confirmations}`);
+  check('internal notification was never duplicated', notifications === 1, `got ${notifications}`);
+
+  const attempts = await analyticsAttempts(page);
+  check('conversion counted exactly once across the retry',
+    attempts.filter((e) => e === 'generate_lead').length === 1, `attempts: ${JSON.stringify(attempts)}`);
+  check('no error event recorded for a delivered enquiry', !attempts.includes('lead_submit_error'),
+    `attempts: ${JSON.stringify(attempts)}`);
+  assertNoLeaks('analytics-throws-partial', session);
+  await session.context.close();
+}
+
 try {
   if (UNCONFIGURED) {
     await scenarioUnconfigured();
@@ -386,6 +509,8 @@ try {
     await scenarioInvalidEmail();
     await scenarioDoubleSubmit();
     await scenarioHungRequest();
+    await scenarioAnalyticsThrows();
+    await scenarioAnalyticsThrowsWithPartialFailure();
   }
 } finally {
   await browser.close();

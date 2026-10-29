@@ -163,6 +163,60 @@ jobs:
           retention-days: 2
 
 
+  mocked-emailjs-checks:
+    name: Mocked EmailJS submission checks
+    # Drives the real contact wizard against a throwaway build and asserts the
+    # whole EmailJS sequence. Every request to api.emailjs.com is intercepted
+    # and answered inside the test, so this job cannot send real email; it
+    # fails if any assertion fails or if a request ever escapes the mock.
+    #
+    # This is a separate job on purpose. It builds with hard-coded fake EmailJS
+    # identifiers (below) and uploads nothing, so its test build can never
+    # replace the deployable artifact produced by build-and-verify. Deployment
+    # gating is unchanged: deploy-to-hostinger still depends on
+    # build-and-verify only, so a failure here is a visible required-style
+    # check without stopping the hourly self-healing deploy.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install the browser used by the submission checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Build with fake EmailJS identifiers (test build only)
+        # Deliberately hard-coded placeholders rather than repository
+        # variables: the form must take the direct-send path for the mocked
+        # checks, and these values only ever exist inside this throwaway build.
+        env:
+          VITE_EMAILJS_SERVICE_ID: test-service
+          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: test-notification-template
+          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: test-confirmation-template
+          VITE_EMAILJS_PUBLIC_KEY: test-public-key
+        run: npm run build
+
+      - name: Mocked EmailJS submission checks
+        run: npm run test:emailjs
+
+      - name: Rebuild without EmailJS configuration
+        # Same job, sequentially: replaces the fake-identifier build with the
+        # unconfigured build that ships in email-draft fallback mode.
+        run: npm run build
+
+      - name: Missing-configuration fallback checks
+        run: node scripts/checkEmailjsSubmission.mjs --unconfigured
+
+
   hostinger-connection-preflight:
     name: Hostinger SSH preflight (no deployment)
     # Run manually from this branch to verify credentials and server access only.

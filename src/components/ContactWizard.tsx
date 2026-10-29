@@ -10,7 +10,23 @@ import {
   formatLeadAttribution,
   getLeadAttribution,
   trackLeadEvent,
+  type LeadAttribution,
 } from '../utils/leads';
+
+// Measurement is best-effort. A tag manager, a consent script, or blocked
+// storage can throw from inside the dataLayer/gtag calls. Analytics must never
+// change what the visitor is told about the enquiry, never re-arm a send, and
+// never surface visitor data: a failed measurement is swallowed silently.
+function dispatchLeadEvent(
+  eventName: string,
+  payload: Record<string, string | number | boolean | undefined>,
+): void {
+  try {
+    trackLeadEvent(eventName, payload);
+  } catch {
+    // Intentionally silent: the EmailJS delivery outcome stands on its own.
+  }
+}
 
 const backIcon = '/media/icons/contact-back.png';
 const nextIcon = '/media/icons/contact-forward.png';
@@ -551,12 +567,30 @@ export function ContactWizard(): JSX.Element {
     };
 
     setIsSending(true);
+
+    // Lead events are collected while the enquiry is being delivered and
+    // dispatched only after the delivery state has settled, so measurement
+    // can never influence the outcome reported to the visitor.
+    const pendingLeadEvents: Array<{
+      name: string;
+      payload: Record<string, string | number | boolean | undefined>;
+    }> = [];
+
     try {
       if (!internalSentRef.current) {
         setFormStatus('Sending your enquiry…');
-        captureLeadAttribution();
-        const attribution = getLeadAttribution();
-        const attributionLines = formatLeadAttribution(attribution);
+        // Attribution enriches the studio notification only. A storage or
+        // parsing failure must never stop the enquiry from being sent.
+        let attribution: LeadAttribution = {};
+        let attributionLines: string[] = [];
+        try {
+          captureLeadAttribution();
+          attribution = getLeadAttribution();
+          attributionLines = formatLeadAttribution(attribution);
+        } catch {
+          attribution = {};
+          attributionLines = [];
+        }
         const contextLines = [
           intent ? `Enquiry intent: ${intent}` : '',
           topic ? `Topic: ${topic}` : '',
@@ -608,11 +642,14 @@ export function ContactWizard(): JSX.Element {
         // can duplicate the internal notification.
         internalSentRef.current = true;
         setSent(true);
-        trackLeadEvent('generate_lead', {
-          form_provider: 'emailjs',
-          intent: intent || undefined,
-          source_route: source,
-          discipline: values.projectType || undefined,
+        pendingLeadEvents.push({
+          name: 'generate_lead',
+          payload: {
+            form_provider: 'emailjs',
+            intent: intent || undefined,
+            source_route: source,
+            discipline: values.projectType || undefined,
+          },
         });
       }
 
@@ -627,13 +664,25 @@ export function ContactWizard(): JSX.Element {
       }
     } catch {
       setFormStatus('We could not send your enquiry just now. Your answers are still here—please use “Open email draft” or copy the enquiry text below.');
-      trackLeadEvent('lead_submit_error', {
-        form_provider: 'emailjs',
-        intent: intent || undefined,
-        source_route: source,
+      pendingLeadEvents.push({
+        name: 'lead_submit_error',
+        payload: {
+          form_provider: 'emailjs',
+          intent: intent || undefined,
+          source_route: source,
+        },
       });
     } finally {
       setIsSending(false);
+    }
+
+    // Dispatched strictly after delivery has settled and outside the delivery
+    // try/catch above. EmailJS delivery alone decides what the visitor is
+    // told: a throwing tag manager cannot turn an accepted enquiry into a
+    // failure message, skip the customer confirmation, or resend the internal
+    // notification. Every payload stays PII-free.
+    for (const event of pendingLeadEvents) {
+      dispatchLeadEvent(event.name, event.payload);
     }
   };
 
