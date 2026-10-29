@@ -107,6 +107,17 @@ async function newWizardPage(plan) {
   page.on('request', (request) => {
     if (request.url().includes('api.emailjs.com')) emailjsRequestsSeen += 1;
   });
+  // Third-party analytics is answered locally instead of being fetched. A CI
+  // runner has real network access, so an unblocked GTM would (a) send real
+  // beacons from a test page and (b) install its own dataLayer traffic, which
+  // makes the analytics-sabotage scenarios non-deterministic. Blocking it
+  // here keeps this suite hermetic and identical on every machine.
+  await page.route('**://www.googletagmanager.com/**', (route) =>
+    route.fulfill({ status: 200, contentType: 'application/javascript', body: '/* blocked in tests */' }),
+  );
+  await page.route('**://www.google-analytics.com/**', (route) =>
+    route.fulfill({ status: 204, contentType: 'text/plain', body: '' }),
+  );
   await page.route('**://api.emailjs.com/**', async (route) => {
     let body = {};
     try {
@@ -213,10 +224,18 @@ function waitForVisible(locator, timeout = 5000) {
 async function breakAnalytics(page) {
   await page.evaluate(() => {
     const dataLayer = (window.dataLayer = window.dataLayer || []);
+    const originalPush = dataLayer.push.bind(dataLayer);
     window.__analyticsAttempts = [];
-    dataLayer.push = (event) => {
-      window.__analyticsAttempts.push(event && event.event);
-      throw new Error('analytics exploded');
+    dataLayer.push = (...events) => {
+      const names = events.map((event) => event && event.event);
+      // Only the wizard's own lead events are sabotaged. Anything else (for
+      // example a tag manager's internal pushes) behaves normally so the test
+      // measures the product, not its own interference.
+      if (names.some((name) => name === 'generate_lead' || name === 'lead_submit_error')) {
+        window.__analyticsAttempts.push(...names);
+        throw new Error('analytics exploded');
+      }
+      return originalPush(...events);
     };
   });
 }
