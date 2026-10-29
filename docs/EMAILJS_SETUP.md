@@ -13,7 +13,7 @@ Configured EmailJS identifiers (these ship in the client bundle once deployed; t
 In EmailJS, use the internal notification template ID supplied in the deployment environment.
 
 - **To Email:** `business@angelcreations.in`
-- **BCC:** Add the three private Gmail inboxes in the EmailJS template's BCC field, if supported. Keep them out of To/CC so the recipient list is not exposed.
+- **BCC:** Add the three private Gmail inboxes in the EmailJS template's BCC field, if supported. Keep them out of To/CC so the recipient list is not exposed. **This is the only template that may carry BCC recipients — the customer confirmation template must have none.**
 - **From Name:** `Angel Creations Website`
 - **From Email:** Leave the verified sender associated with the connected Microsoft 365 service.
 - **Reply-To:** `{{email}}`
@@ -98,6 +98,7 @@ An EmailJS API success response means the request was accepted, not that any mai
 - Test a failed internal notification and confirm the visitor can still open the email draft or copy the brief.
 - Test the partial-failure case: if the internal notification succeeds but the customer confirmation fails, the page offers **Resend confirmation email**, which retries only the confirmation. The internal notification is never sent twice for one prepared enquiry — including after editing an answer (edits after a successful send show a notice and leave the sent state locked; amendments go through the email-draft/copy actions).
 - Confirm a hung or very slow connection gives up after ~20 seconds and restores the fallback instead of leaving "Sending…" on screen.
+- In the EmailJS dashboard **History**, confirm a normal enquiry shows exactly two accepted sends (one per template), and that a confirmation-only retry adds one confirmation with **no second notification**.
 - Restrict EmailJS allowed origins to the intended website domains and configure anti-abuse controls.
 
 ## Security and delivery notes

@@ -43,6 +43,34 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      - name: Report EmailJS build configuration (names only, never values)
+        # Makes the release gate "are the four build-time variables actually
+        # configured?" answerable from the check-run annotations, without
+        # reading logs and without ever printing a value. Vite embeds these at
+        # build time, so an absent variable silently ships the contact form in
+        # its email-draft fallback mode.
+        continue-on-error: true
+        env:
+          VITE_EMAILJS_SERVICE_ID: ${{ vars.VITE_EMAILJS_SERVICE_ID }}
+          VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID }}
+          VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID: ${{ vars.VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ vars.VITE_EMAILJS_PUBLIC_KEY }}
+        run: |
+          present=0
+          missing=""
+          for name in VITE_EMAILJS_SERVICE_ID VITE_EMAILJS_NOTIFICATION_TEMPLATE_ID VITE_EMAILJS_CONFIRMATION_TEMPLATE_ID VITE_EMAILJS_PUBLIC_KEY; do
+            if [ -n "${!name}" ]; then
+              present=$((present + 1))
+            else
+              missing="$missing $name"
+            fi
+          done
+          echo "EmailJS build variables configured: $present/4 (values are never printed)."
+          echo "::notice title=EmailJS build configuration::$present/4 build variables configured for this build."
+          if [ -n "$missing" ]; then
+            echo "::warning title=EmailJS build configuration::Missing:$missing - the contact form ships in email-draft fallback mode until these Actions variables are set."
+          fi
+
       - name: Type-check and build production site
         run: npm run build
         env:
