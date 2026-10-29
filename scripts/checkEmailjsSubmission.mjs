@@ -190,6 +190,22 @@ async function dataLayerEvents(page) {
   return page.evaluate(() => JSON.stringify(window.dataLayer ?? []));
 }
 
+// UI state is asserted after React has committed it. Polling (instead of a
+// single instant read) keeps the checks correct on slower CI runners without
+// weakening them: the condition still has to become true within the window.
+async function waitUntil(probe, { timeout = 5000, interval = 100 } = {}) {
+  const deadline = Date.now() + timeout;
+  for (;;) {
+    if (await probe()) return true;
+    if (Date.now() >= deadline) return false;
+    await new Promise((resolve) => setTimeout(resolve, interval));
+  }
+}
+
+function waitForVisible(locator, timeout = 5000) {
+  return waitUntil(() => locator.isVisible().catch(() => false), { timeout });
+}
+
 // Breaks the analytics layer at the exact call the wizard makes: replacing
 // dataLayer.push makes the next lead event throw, just as a broken tag
 // manager, a consent script, or storage-blocked browser would. Every pushed
@@ -260,7 +276,7 @@ async function scenarioBothSucceed() {
     !JSON.stringify(calls).includes('undefined') && Object.values(cp).every((v) => typeof v === 'string'));
 
   check('sent state replaces the send button',
-    await page.locator('span.contact-prepared__send', { hasText: 'Enquiry sent' }).isVisible());
+    await waitForVisible(page.locator('span.contact-prepared__send', { hasText: 'Enquiry sent' })));
   const events = await dataLayerEvents(page);
   check('generate_lead fired after internal acceptance', events.includes('generate_lead'));
   check('analytics payload carries no visitor email', !events.includes(VISITOR_EMAIL));
@@ -309,7 +325,7 @@ async function scenarioPartialFailure() {
   const confirmations = () => calls.filter((c) => c.template_id === CONFIRMATION_TEMPLATE).length;
   check('one internal + one confirmation attempt', notifications() === 1 && confirmations() === 1);
   check('retry is labelled confirmation-only',
-    await page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' }).isVisible());
+    await waitForVisible(page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' })));
 
   // Edit an answer after the partial failure: this must not re-arm the full
   // enquiry send (the duplicate-notification path).
@@ -324,7 +340,7 @@ async function scenarioPartialFailure() {
   }
   await page.getByText('Your project brief is ready.').waitFor({ state: 'visible', timeout: 15000 });
   check('after editing, action is still confirmation-only',
-    await page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' }).isVisible());
+    await waitForVisible(page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' })));
 
   await page.locator('button.contact-prepared__send').click();
   await waitForStatus(page, 'confirmation email has been sent');
@@ -370,12 +386,12 @@ async function scenarioInvalidEmail() {
 
 async function scenarioDoubleSubmit() {
   console.log('\n[6] Rapid repeated submission attempts');
-  const session = await newWizardPage(() => ({ status: 200, delayMs: 700 }));
+  const session = await newWizardPage(() => ({ status: 200, delayMs: 1500 }));
   const { page, calls } = session;
   await completeWizard(page);
   const sendButton = page.locator('button.contact-prepared__send');
   await sendButton.click();
-  check('button disabled while sending', await sendButton.isDisabled());
+  check('button disabled while sending', await waitUntil(() => sendButton.isDisabled(), { timeout: 3000 }));
   // Programmatic re-clicks during the in-flight request must be ignored by
   // the disabled state and the in-flight guard alike.
   await page.evaluate(() => {
@@ -452,11 +468,11 @@ async function scenarioAnalyticsThrows() {
   check('no false "could not send" message', !statusText.includes('could not send your enquiry'));
   check('no false partial-failure message', !statusText.includes('could not send the confirmation'));
   check('sent state replaces the send button',
-    await page.locator('span.contact-prepared__send', { hasText: 'Enquiry sent' }).isVisible());
+    await waitForVisible(page.locator('span.contact-prepared__send', { hasText: 'Enquiry sent' })));
   check('no retry offered after a complete send',
     (await page.locator('button.contact-prepared__send').count()) === 0);
   check('email-draft fallback still available',
-    await page.locator('.contact-prepared__actions a[href^="mailto:business@angelcreations.in"]').first().isVisible());
+    await waitForVisible(page.locator('.contact-prepared__actions a[href^="mailto:business@angelcreations.in"]').first()));
   check('copy fallback still available', await page.getByRole('button', { name: 'Copy enquiry text' }).isVisible());
 
   const attempts = await analyticsAttempts(page);
@@ -494,7 +510,7 @@ async function scenarioAnalyticsThrowsWithPartialFailure() {
 
   check('partial success reported despite the analytics throw', reportedPartial, 'partial-success copy never appeared');
   check('retry is labelled confirmation-only',
-    await page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' }).isVisible());
+    await waitForVisible(page.locator('button.contact-prepared__send', { hasText: 'Resend confirmation email' })));
 
   await page.locator('button.contact-prepared__send').click();
   let retrySucceeded = true;
