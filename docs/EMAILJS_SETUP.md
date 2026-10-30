@@ -16,6 +16,44 @@ All EmailJS identifiers are defined in **`src/config/emailjs.ts`** and imported 
 - **Customer confirmation template ID:** `template_xoqfbrj`
 - **Public key:** stored in the same module (see the note below)
 
+### Recipient separation (read this before editing either template)
+
+The visitor received **both** emails. The cause is a name collision that is easy
+to fall into, and it is worth understanding because it will happen again:
+
+- Both templates receive the same parameters, because both need the visitor's
+  answers in their body. That set includes **`email`** and **`contact_email`**,
+  which are the **visitor's** address.
+- EmailJS resolves a template's **To / Cc / Bcc** fields from those same
+  parameters.
+- So an internal template whose To field reads `{{email}}` resolves to the
+  **visitor**, and the "internal" notification is delivered to the customer
+  instead of the studio.
+
+The code cannot fix that on its own: the recipient of a send is decided by the
+dashboard field, not by `template_params`. `to_email` is a parameter like any
+other — it only takes effect if the field references it.
+
+**Exact required field values**
+
+| | Internal — `template_m0s0taz` | Confirmation — `template_xoqfbrj` |
+| --- | --- | --- |
+| To | `business@angelcreations.in` **literal** (or `{{to_email}}` — **never** `{{email}}`) | `{{email}}` |
+| Cc | empty | empty |
+| Bcc | `angelcreations123@gmail.com, abhijeetvarghese33@gmail.com, write4abhijeet@gmail.com` | empty |
+| Reply-To | `{{email}}` | `business@angelcreations.in` |
+| From Name | `Angel Creations` | `Angel Creations` |
+| Subject | `{{subject}}` | `{{subject}}` |
+
+`ContactWizard.tsx` guards this in code: `assertRecipientSplit()` runs before
+each request and throws if an internal notification is aimed at the visitor or a
+confirmation at the studio, which falls through to the existing email-draft
+fallback instead of sending. The guard protects the *code*; only the dashboard
+values protect *delivery*.
+
+`npm run test:emailjs` asserts the whole matrix at payload level, including that
+none of the three BCC addresses ever appears in a request payload.
+
 ### Verified sending route
 
 Two delivered messages were inspected (see [DELIVERABILITY.md](./DELIVERABILITY.md) §1):

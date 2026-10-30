@@ -508,6 +508,20 @@ export function ContactWizard(): JSX.Element {
     // campaign attribution, click IDs and the composed internal message —
     // is added to the internal notification further below and must never be
     // included in the customer-facing send.
+    // The studio address, in one place, so it can never be confused with the
+    // visitor's address below.
+    const STUDIO_EMAIL = 'business@angelcreations.in';
+
+    // WARNING — recipient collision. EmailJS resolves each template's
+    // To/Cc/Bcc fields from these same parameters. `email` (and its alias
+    // `contact_email`) is the VISITOR's address, because both templates need
+    // it in their body. So a template whose To field reads `{{email}}` sends
+    // to the visitor. That is exactly how the internal notification reached
+    // the customer. The internal template's To field must therefore be the
+    // literal `business@angelcreations.in` or `{{to_email}}` — never
+    // `{{email}}`. assertRecipientSplit() below fails closed if this code ever
+    // starts aiming a notification at the visitor anyway.
+
     const fieldParams: Record<string, string> = {
       // Exact identifiers used by the current eight-question form and saved templates.
       name: values.name.trim(),
@@ -523,6 +537,29 @@ export function ContactWizard(): JSX.Element {
       contact_email: values.email.trim(),
       project_type: values.projectType.trim(),
       project_description: values.description.trim(),
+    };
+
+    // Recipient separation is a security property, not a convention: leaking an
+    // enquiry to the wrong party (or emailing the visitor the studio's internal
+    // notification) is a privacy failure. Fail closed — the wizard's existing
+    // catch turns this into the email-draft/copy fallback rather than sending.
+    const assertRecipientSplit = (
+      kind: 'internal' | 'confirmation',
+      toEmail: string,
+      visitorEmail: string
+    ): void => {
+      const problems: string[] = [];
+      const target = toEmail.trim().toLowerCase();
+      const visitor = visitorEmail.trim().toLowerCase();
+      if (!target) problems.push('recipient is empty');
+      if (kind === 'internal') {
+        if (target !== STUDIO_EMAIL) problems.push(`internal recipient ${toEmail} is not ${STUDIO_EMAIL}`);
+        if (target === visitor) problems.push('internal notification would be delivered to the visitor');
+      } else {
+        if (target !== visitor) problems.push(`confirmation recipient ${toEmail} is not the visitor`);
+        if (target === STUDIO_EMAIL) problems.push('confirmation would be delivered to the studio');
+      }
+      if (problems.length) throw new Error(`recipient separation violated: ${problems.join('; ')}`);
     };
 
     const sendEmail = async (templateId: string, templateParams: Record<string, string>): Promise<void> => {
@@ -554,9 +591,11 @@ export function ContactWizard(): JSX.Element {
     // no attribution, click IDs, internal recipients or studio context.
     const sendConfirmation = async (): Promise<boolean> => {
       try {
+        const visitorEmail = values.email.trim();
+        assertRecipientSplit('confirmation', visitorEmail, visitorEmail);
         await sendEmail(confirmationTemplateId, {
           ...fieldParams,
-          to_email: values.email.trim(),
+          to_email: visitorEmail,
           subject: 'We Received Your Enquiry — Angel Creations',
           reply_to: 'business@angelcreations.in',
         });
@@ -620,8 +659,12 @@ export function ContactWizard(): JSX.Element {
         // Send the internal notification first. Its EmailJS template should
         // use business@angelcreations.in in To and BCC the three private
         // Gmail inboxes. Attribution stays in this studio-facing send only.
+        // Guarded before the request leaves the browser: the notification is
+        // addressed to the studio and must never be aimed at the visitor.
+        assertRecipientSplit('internal', STUDIO_EMAIL, values.email.trim());
         await sendEmail(notificationTemplateId, {
           ...fieldParams,
+          studio_email: STUDIO_EMAIL,
           intent,
           topic,
           goal,
@@ -638,7 +681,7 @@ export function ContactWizard(): JSX.Element {
           fbclid: attribution.fbclid || '',
           msclkid: attribution.msclkid || '',
           message,
-          to_email: 'business@angelcreations.in',
+          to_email: STUDIO_EMAIL,
           subject: notificationSubject,
           reply_to: values.email.trim(),
         });

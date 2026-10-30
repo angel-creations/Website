@@ -337,6 +337,52 @@ async function scenarioBothSucceed() {
   check('confirmation carries the eight answers',
     cp.name === 'Asha Verma' && cp.email === VISITOR_EMAIL && cp.projectType === 'Virtual Reality (VR)'
     && (cp.description ?? '').includes('VR safety-training'));
+  // ---- Recipient separation matrix (spec section 7) -----------------------
+  // EmailJS resolves a template's To/Cc/Bcc from these parameters, so a
+  // recipient-position key carrying the wrong address is a delivery bug, not a
+  // cosmetic one. These assertions pin the split at the payload level. The
+  // dashboard fields must independently be: internal To = business@ (literal or
+  // {{to_email}}), Cc empty, Bcc = the three internal addresses; confirmation
+  // To = {{email}}, Cc empty, Bcc empty.
+  const RECIPIENT_KEYS = ['to_email', 'cc', 'cc_email', 'bcc', 'bcc_email', 'carbon_copy', 'recipient'];
+  const recipientsOf = (params) => RECIPIENT_KEYS
+    .flatMap((key) => String(params[key] ?? '').split(/[,;\s]+/))
+    .map((a) => a.trim().toLowerCase())
+    .filter(Boolean);
+  const INTERNAL_ADDRESSES = [
+    'business@angelcreations.in',
+    'angelcreations123@gmail.com',
+    'abhijeetvarghese33@gmail.com',
+    'write4abhijeet@gmail.com',
+  ];
+
+  const notifRecipients = recipientsOf(np);
+  const confirmRecipients = recipientsOf(cp);
+
+  check('matrix: internal notification is addressed to the studio',
+    notifRecipients.length === 1 && notifRecipients[0] === 'business@angelcreations.in',
+    `got: ${JSON.stringify(notifRecipients)}`);
+  check('matrix: internal notification is NOT addressed to the customer',
+    !notifRecipients.includes(VISITOR_EMAIL.toLowerCase()),
+    `got: ${JSON.stringify(notifRecipients)}`);
+  check('matrix: confirmation is addressed to the customer only',
+    confirmRecipients.length === 1 && confirmRecipients[0] === VISITOR_EMAIL.toLowerCase(),
+    `got: ${JSON.stringify(confirmRecipients)}`);
+  check('matrix: confirmation is NOT addressed to any internal recipient',
+    !confirmRecipients.some((r) => INTERNAL_ADDRESSES.includes(r)),
+    `got: ${JSON.stringify(confirmRecipients)}`);
+
+  // Private recipients live in the dashboard, never in either payload.
+  const flattened = (params) => Object.values(params).join(' \u0000 ').toLowerCase();
+  for (const address of INTERNAL_ADDRESSES.slice(1)) {
+    check(`matrix: ${address} never appears in a request payload`,
+      !flattened(np).includes(address) && !flattened(cp).includes(address));
+  }
+  check('matrix: the customer address is never used as an internal recipient key',
+    !['bcc', 'bcc_email', 'cc', 'cc_email'].some((k) => String(np[k] ?? '').toLowerCase().includes(VISITOR_EMAIL)));
+  check('matrix: neither template receives a bcc/cc key',
+    !('bcc' in np) && !('cc' in np) && !('bcc' in cp) && !('cc' in cp));
+
   const forbidden = ['gclid', 'fbclid', 'msclkid', 'message', 'referrer', 'utm_source', 'utm_medium',
     'utm_campaign', 'utm_term', 'utm_content', 'first_landing_page', 'last_landing_page',
     'source_route', 'intent', 'topic', 'goal'];
