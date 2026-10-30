@@ -664,7 +664,13 @@ export function ContactWizard(): JSX.Element {
         assertRecipientSplit('internal', STUDIO_EMAIL, values.email.trim());
         await sendEmail(notificationTemplateId, {
           ...fieldParams,
+          // Two unambiguous names so the dashboard never has to reach for
+          // `{{email}}` (which is the VISITOR's address) when it means "the
+          // studio" or "the person who wrote in". Use:
+          //   To Email  -> {{to_email}}   (or the literal business@ address)
+          //   Reply-To  -> {{visitor_email}}
           studio_email: STUDIO_EMAIL,
+          visitor_email: values.email.trim(),
           intent,
           topic,
           goal,
