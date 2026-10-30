@@ -557,7 +557,7 @@ export function ContactWizard(): JSX.Element {
         await sendEmail(confirmationTemplateId, {
           ...fieldParams,
           to_email: values.email.trim(),
-          subject: `${values.name.trim()}, your project enquiry with Angel Creations`,
+          subject: 'We Received Your Enquiry — Angel Creations',
           reply_to: 'business@angelcreations.in',
         });
         setConfirmationSent(true);
@@ -610,7 +610,12 @@ export function ContactWizard(): JSX.Element {
           'Attribution',
           ...(attributionLines.length ? attributionLines : ['No attribution data available']),
         ].join('\n');
-        const notificationSubject = `${intent ? `${intent.replace(/[-_]/g, ' ')} — ` : ''}New Angel Creations Project Enquiry`;
+        // Subject copy is fixed by the email specification so both templates
+        // read consistently whichever field ({{subject}} or a literal) the
+        // dashboard uses. The campaign intent stays in the body, not the
+        // subject: a subject that changes shape per campaign looks like
+        // bulk mail to filters and is harder for the studio to triage.
+        const notificationSubject = `New Website Enquiry — ${values.name.trim()} — Angel Creations`;
 
         // Send the internal notification first. Its EmailJS template should
         // use business@angelcreations.in in To and BCC the three private

@@ -16,6 +16,33 @@ All EmailJS identifiers are defined in **`src/config/emailjs.ts`** and imported 
 - **Customer confirmation template ID:** `template_xoqfbrj`
 - **Public key:** stored in the same module (see the note below)
 
+### Verified sending route
+
+Two delivered messages were inspected (see [DELIVERABILITY.md](./DELIVERABILITY.md) §1):
+
+- **Customer confirmation** — sent through Hostinger SMTP
+  (`smtp-svr-02.emailjs.com` → MailChannels), `Return-Path: business@angelcreations.in`,
+  `DKIM d=angelcreations.in s=hostingermail1`, **SPF + DKIM + DMARC all pass.**
+  The Hostinger route works and is fully aligned.
+- **An older internal notification** — sent through a personal **Outlook**
+  account: `Return-Path: outlook.com`, DKIM of `outlook.com`, **DMARC fail**,
+  because the visible From was `business@angelcreations.in` and neither SPF nor
+  DKIM aligned with it. That is the confirmed cause of those messages being
+  filtered.
+
+Both sends in one submission share a single `service_id`, so a mixed pair cannot
+come from one submission. Check EmailJS **Smart Router**: if the old Outlook
+service is still set as **Detour**, it will silently re-send any failed request
+and reintroduce DMARC failures. Remove that assignment.
+
+Fixed subject copy (composed in `ContactWizard.tsx`, so it applies whether the
+template uses `{{subject}}` or a literal):
+
+| Email | Subject |
+| --- | --- |
+| Internal notification | `New Website Enquiry — {name} — Angel Creations` |
+| Customer confirmation | `We Received Your Enquiry — Angel Creations` |
+
 ### Service history
 
 | Service ID | Status | Notes |

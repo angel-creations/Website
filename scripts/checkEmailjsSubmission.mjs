@@ -323,6 +323,8 @@ async function scenarioBothSucceed() {
   check('notification carries investment', np.investment === '$15k – $50k / ₹12L – ₹40L');
   check('notification to_email is the studio', np.to_email === 'business@angelcreations.in');
   check('notification reply_to is the visitor', np.reply_to === VISITOR_EMAIL);
+  check('notification subject follows the email specification',
+    np.subject === 'New Website Enquiry — Asha Verma — Angel Creations', `got: ${np.subject}`);
   check('notification carries attribution (utm_source)', np.utm_source === 'test-source');
   check('notification carries attribution (gclid)', np.gclid === 'test-click-id');
   check('notification message includes answers', (np.message ?? '').includes('Asha Verma'));
@@ -330,6 +332,8 @@ async function scenarioBothSucceed() {
   const cp = confirmation?.template_params ?? {};
   check('confirmation to_email is the visitor', cp.to_email === VISITOR_EMAIL);
   check('confirmation reply_to is the studio', cp.reply_to === 'business@angelcreations.in');
+  check('confirmation subject follows the email specification',
+    cp.subject === 'We Received Your Enquiry — Angel Creations', `got: ${cp.subject}`);
   check('confirmation carries the eight answers',
     cp.name === 'Asha Verma' && cp.email === VISITOR_EMAIL && cp.projectType === 'Virtual Reality (VR)'
     && (cp.description ?? '').includes('VR safety-training'));
