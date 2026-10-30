@@ -43,8 +43,22 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      - name: Validate EmailJS source configuration (no secrets printed)
+        # The EmailJS identifiers now live in src/config/emailjs.ts, so there is
+        # no repository variable to forget. This step fails the build if that
+        # module is missing an identifier or if the compiled bundle does not
+        # actually contain them, and it reports only names and formats — the
+        # public key value is never printed.
+        run: node scripts/checkEmailjsConfig.mjs
+
       - name: Type-check and build production site
         run: npm run build
+
+      - name: Confirm EmailJS configuration reached the built bundle
+        # Guards the deployed artifact, not just the source: a build that
+        # silently dropped the configuration would ship the contact form in
+        # email-draft fallback mode without failing anything.
+        run: node scripts/checkEmailjsConfig.mjs --bundle dist
 
       - name: Verify generated routes and local assets
         run: |
@@ -152,6 +166,58 @@ jobs:
           # Rollback snapshots live on the host (the deploy script keeps its own
           # backups), so a short retention is enough for these manual snapshots.
           retention-days: 2
+
+
+  mocked-emailjs-checks:
+    name: Mocked EmailJS submission checks
+    # Drives the real contact wizard against a throwaway build and asserts the
+    # whole EmailJS sequence. Every request to api.emailjs.com is intercepted
+    # and answered inside the test, so this job cannot send real email; it
+    # fails if any assertion fails or if a request ever escapes the mock.
+    #
+    # This is a separate job on purpose. It builds a throwaway copy and uploads
+    # nothing, so its build can never replace the deployable artifact produced
+    # by build-and-verify. Deployment gating is unchanged: deploy-to-hostinger
+    # still depends on build-and-verify only, so a failure here is a visible
+    # required-style check without stopping the hourly self-healing deploy.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install the browser used by the submission checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Build the site under test
+        # The identifiers are compiled in from src/config/emailjs.ts. The suite
+        # itself fulfils every api.emailjs.com request locally and aborts any
+        # other external request, so no message can leave the runner even though
+        # real identifiers are present. No EmailJS secrets or variables exist.
+        run: npm run build
+
+      - name: Mocked EmailJS submission checks
+        run: npm run test:emailjs
+
+      - name: Rebuild with the fallback switch on
+        # Test-only build flag, never set in a real build: exercises the
+        # "configuration unavailable" branch so the email-draft/copy fallback
+        # stays covered.
+        env:
+          VITE_EMAILJS_FORCE_UNCONFIGURED: 'true'
+        run: npm run build
+
+      - name: Missing-configuration fallback checks
+        run: node scripts/checkEmailjsSubmission.mjs --unconfigured
 
 
   hostinger-connection-preflight:
@@ -421,7 +487,13 @@ jobs:
         run: npm ci
 
       - name: Build verified static site
+        # EmailJS identifiers come from src/config/emailjs.ts, so this rebuild
+        # needs no repository variables and cannot drift from the verified
+        # build. See docs/EMAILJS_SETUP.md.
         run: npm run build
+
+      - name: Confirm EmailJS configuration reached the deploy bundle
+        run: node scripts/checkEmailjsConfig.mjs --bundle dist
 
       - name: Back up and deploy dist over SSH
         shell: bash
