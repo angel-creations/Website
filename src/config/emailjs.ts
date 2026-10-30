@@ -29,7 +29,10 @@ export type EmailJsConfig = {
 };
 
 export const EMAILJS_CONFIG: EmailJsConfig = {
-  // EmailJS service connected to the studio Microsoft 365 sender.
+  // EmailJS service that performs both sends. The sender identity, the
+  // recipients and the BCC list live in the EmailJS dashboard templates, never
+  // here. Mail for this domain is hosted by Hostinger (there is no Microsoft
+  // 365 on this domain) — see docs/DELIVERABILITY.md before changing anything.
   serviceId: 'service_85q82kl',
   // Internal enquiry notification, addressed to the studio (recipients and
   // BCC are defined in the dashboard template, not here).

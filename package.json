@@ -13,7 +13,8 @@
     "test:fallback": "node scripts/checkBootFallback.mjs",
     "test:degraded": "node scripts/checkDegradedBoot.mjs",
     "test:emailjs": "node scripts/checkEmailjsSubmission.mjs",
-    "test:config": "node scripts/checkEmailjsConfig.mjs"
+    "test:config": "node scripts/checkEmailjsConfig.mjs",
+    "test:deliverability": "node scripts/checkEmailDeliverability.mjs"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",
