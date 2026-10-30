@@ -664,11 +664,25 @@ export function ContactWizard(): JSX.Element {
         assertRecipientSplit('internal', STUDIO_EMAIL, values.email.trim());
         await sendEmail(notificationTemplateId, {
           ...fieldParams,
-          // Two unambiguous names so the dashboard never has to reach for
-          // `{{email}}` (which is the VISITOR's address) when it means "the
-          // studio" or "the person who wrote in". Use:
-          //   To Email  -> {{to_email}}   (or the literal business@ address)
-          //   Reply-To  -> {{visitor_email}}
+          // RECIPIENT FAIL-SAFE for this send only.
+          //
+          // In the confirmation payload `email` is the visitor, correctly. Here
+          // it is re-pointed at the studio, so that no recipient field in the
+          // dashboard can deliver this notification to the customer even if it
+          // reads {{email}}, {{contact_email}}, {{from_email}} or {{to_email}}.
+          // The template's own To value remains the source of truth; this only
+          // removes the most likely way of getting it wrong.
+          //
+          // The customer's address is still available to the template, but only
+          // through names that mean "reply to the person who wrote in":
+          //   {{visitor_email}} and {{reply_to}}   -> the visitor
+          // The composed {{message}} block also lists the visitor's address as
+          // text, so the studio can always see who to write back to.
+          email: STUDIO_EMAIL,
+          contact_email: STUDIO_EMAIL,
+          from_email: STUDIO_EMAIL,
+          user_email: STUDIO_EMAIL,
+          sender_email: STUDIO_EMAIL,
           studio_email: STUDIO_EMAIL,
           visitor_email: values.email.trim(),
           intent,

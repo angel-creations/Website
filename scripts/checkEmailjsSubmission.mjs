@@ -315,7 +315,10 @@ async function scenarioBothSucceed() {
   const np = notification?.template_params ?? {};
   check('notification carries name', np.name === 'Asha Verma');
   check('notification carries company', np.company === 'Verma Retail Group');
-  check('notification carries email', np.email === VISITOR_EMAIL);
+  // The visitor's address travels under a reply-semantics name in the internal
+  // payload; `email` is re-pointed at the studio as a recipient fail-safe.
+  check('notification carries the visitor address as visitor_email', np.visitor_email === VISITOR_EMAIL);
+  check('notification generic email params resolve to the studio', np.email === 'business@angelcreations.in');
   check('notification carries phone', np.phone === '+91 98290 00000');
   check('notification carries projectType', np.projectType === 'Virtual Reality (VR)');
   check('notification carries description', (np.description ?? '').includes('VR safety-training'));
@@ -380,6 +383,21 @@ async function scenarioBothSucceed() {
   }
   check('matrix: the customer address is never used as an internal recipient key',
     !['bcc', 'bcc_email', 'cc', 'cc_email'].some((k) => String(np[k] ?? '').toLowerCase().includes(VISITOR_EMAIL)));
+  // Fail-safe: no recipient-position parameter in the internal payload may
+  // carry the visitor's address. Only the two names that mean "reply to the
+  // person who wrote in" may hold it. This is what stops a dashboard field
+  // reading {{email}} from delivering the internal notification to the client.
+  const EMAILISH_KEYS = Object.keys(np).filter((k) => /email/i.test(k));
+  const visitorLeaks = EMAILISH_KEYS.filter(
+    (k) => String(np[k]).toLowerCase().includes(VISITOR_EMAIL.toLowerCase())
+      && !['visitor_email', 'reply_to'].includes(k)
+  );
+  check('matrix: no email-position param in the internal payload holds the visitor address',
+    visitorLeaks.length === 0, `leaking keys: ${JSON.stringify(visitorLeaks)}`);
+  check('matrix: the internal payload points every generic email param at the studio',
+    ['email', 'contact_email', 'from_email', 'user_email', 'sender_email', 'studio_email']
+      .every((k) => np[k] === 'business@angelcreations.in'));
+
   check('matrix: neither template receives a bcc/cc key',
     !('bcc' in np) && !('cc' in np) && !('bcc' in cp) && !('cc' in cp));
 

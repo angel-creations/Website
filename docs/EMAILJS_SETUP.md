@@ -45,6 +45,18 @@ other — it only takes effect if the field references it.
 | From Name | `Angel Creations` | `Angel Creations` |
 | Subject | `{{subject}}` | `{{subject}}` |
 
+**Auto-Reply / Linked Template is a second way to leak the internal email.**
+EmailJS can be told to send another template automatically every time a template
+is used: open the template, **Auto-Reply** tab, link a template. Its docs are
+explicit — *"Each time you send an email using this template, we will
+automatically send another email with the template in the Auto-Reply section"*,
+and it creates **an independent record in the Email History for the linked
+template**. If `template_xoqfbrj` is linked to `template_m0s0taz`, every
+confirmation also fires the internal notification, to whatever the internal
+template's recipient resolves to. Check **both** templates' Auto-Reply tabs are
+empty. A linked template also consumes quota and can produce the doubled History
+rows seen earlier.
+
 `ContactWizard.tsx` guards this in code: `assertRecipientSplit()` runs before
 each request and throws if an internal notification is aimed at the visitor or a
 confirmation at the studio, which falls through to the existing email-draft
@@ -53,6 +65,21 @@ values protect *delivery*.
 
 `npm run test:emailjs` asserts the whole matrix at payload level, including that
 none of the three BCC addresses ever appears in a request payload.
+
+**Recipient fail-safe (code, internal send only).** In the internal payload, every
+generic email parameter is re-pointed at the studio: `email`, `contact_email`,
+`from_email`, `user_email`, `sender_email` and `studio_email` all carry
+`business@angelcreations.in`. The customer's address survives only under
+`visitor_email` and `reply_to`, which mean "reply to the person who wrote in".
+So a dashboard To/Cc/Bcc field reading `{{email}}` now resolves to the studio
+instead of the customer — the most common mistake becomes harmless. A test
+asserts that no email-position parameter in that payload ever holds the visitor's
+address.
+
+Consequence to know about: if the internal template's **body** prints `{{email}}`
+as the customer's address, it will now show `business@angelcreations.in`. Use
+`{{visitor_email}}` there instead — or rely on `{{message}}`, which already lists
+the customer's address as text.
 
 ### Verified sending route
 
