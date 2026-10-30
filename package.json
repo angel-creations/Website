@@ -11,7 +11,9 @@
     "test:static": "node scripts/playwright-smoke.mjs --static",
     "test:prod": "npm run build && npm run test:static && npm run test:fallback && npm run test:degraded",
     "test:fallback": "node scripts/checkBootFallback.mjs",
-    "test:degraded": "node scripts/checkDegradedBoot.mjs"
+    "test:degraded": "node scripts/checkDegradedBoot.mjs",
+    "test:emailjs": "node scripts/checkEmailjsSubmission.mjs",
+    "test:config": "node scripts/checkEmailjsConfig.mjs"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",

@@ -14,3 +14,8 @@ skills-lock.json
 
 # Playwright screenshots and reports
 .playwright-artifacts/
+
+# Local environment configuration (keep EmailJS credentials out of Git)
+.env
+.env.*
+!.env.example

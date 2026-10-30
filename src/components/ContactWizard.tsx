@@ -5,6 +5,29 @@ import {
   type ChangeEvent,
   type KeyboardEvent,
 } from 'react';
+import {
+  captureLeadAttribution,
+  formatLeadAttribution,
+  getLeadAttribution,
+  trackLeadEvent,
+  type LeadAttribution,
+} from '../utils/leads';
+import { getEmailJsConfig } from '../config/emailjs';
+
+// Measurement is best-effort. A tag manager, a consent script, or blocked
+// storage can throw from inside the dataLayer/gtag calls. Analytics must never
+// change what the visitor is told about the enquiry, never re-arm a send, and
+// never surface visitor data: a failed measurement is swallowed silently.
+function dispatchLeadEvent(
+  eventName: string,
+  payload: Record<string, string | number | boolean | undefined>,
+): void {
+  try {
+    trackLeadEvent(eventName, payload);
+  } catch {
+    // Intentionally silent: the EmailJS delivery outcome stands on its own.
+  }
+}
 
 const backIcon = '/media/icons/contact-back.png';
 const nextIcon = '/media/icons/contact-forward.png';
@@ -130,7 +153,7 @@ const fields: EnquiryField[] = [
     name: 'Email',
     category: 'Direct Email',
     label: 'What email address should our studio use to follow up?',
-    hint: 'It is included in the email draft you review at the end; the form does not send it automatically.',
+    hint: 'We will use this address to reply to your project enquiry.',
     kind: 'input',
     inputType: 'email',
     autoComplete: 'email',
@@ -241,6 +264,9 @@ export function ContactWizard(): JSX.Element {
   });
   const [attempted, setAttempted] = useState<Set<number>>(() => new Set());
   const [prepared, setPrepared] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [confirmationSent, setConfirmationSent] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [formStatus, setFormStatus] = useState('');
   const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
@@ -250,6 +276,11 @@ export function ContactWizard(): JSX.Element {
   const controlRef = useRef<HTMLElement | null>(null);
   const dropdownWrapRef = useRef<HTMLDivElement | null>(null);
   const copyFeedbackTimerRef = useRef<number | null>(null);
+  // Duplicate-submission guard. Once the internal studio notification has
+  // been accepted, this stays set for the life of the prepared enquiry:
+  // editing an answer afterwards must never re-arm a second internal
+  // notification. Only a full reset (which wipes every answer) clears it.
+  const internalSentRef = useRef(false);
 
   const field = fields[step];
   const currentValue = values[field.id];
@@ -289,7 +320,16 @@ export function ContactWizard(): JSX.Element {
   }, []);
 
   const updateValue = (value: string): void => {
-    setFormStatus('');
+    // Deliberately no setSent(false) here: once the studio notification has
+    // been accepted, editing an answer must not make the whole enquiry
+    // sendable again, or a retry after a partial failure would duplicate
+    // the internal notification. Amendments go through the email-draft and
+    // copy actions on the prepared screen.
+    setFormStatus(
+      internalSentRef.current
+        ? 'Your enquiry has already been sent to Angel Creations. To share updated answers, please use “Open email draft” or copy the enquiry text.'
+        : ''
+    );
     setValues((current) => ({ ...current, [field.id]: value }));
   };
 
@@ -319,6 +359,12 @@ export function ContactWizard(): JSX.Element {
 
   const reset = (): void => {
     setPrepared(false);
+    setIsSending(false);
+    setSent(false);
+    setConfirmationSent(false);
+    // Every answer is wiped below, so the next submission is a genuinely
+    // new enquiry and the duplicate guard can be released.
+    internalSentRef.current = false;
     setDropdownOpen(false);
     setStep(0);
     setAttempted(new Set());
@@ -431,6 +477,214 @@ export function ContactWizard(): JSX.Element {
       .map((item) => `${item.name}: ${values[item.id].trim()}`)
       .join('\n');
     void copyToClipboard(body, 'summary');
+  };
+
+  const sendEnquiry = async (): Promise<void> => {
+    if (isSending || (internalSentRef.current && confirmationSent)) return;
+    if (honeypot.trim()) {
+      setFormStatus('Please review your enquiry and try again.');
+      return;
+    }
+
+    // Identifiers come from the central module (src/config/emailjs.ts), not
+    // from build-time environment variables, so the static site works without
+    // any host or CI configuration. A `null` result means that module is
+    // incomplete; fall back to the email draft instead of failing silently.
+    const emailJs = getEmailJsConfig();
+    if (!emailJs) {
+      setFormStatus('We can’t send this form directly right now. Your answers are ready below—please use “Open email draft” or copy the enquiry text to reach the studio.');
+      return;
+    }
+    const { serviceId, notificationTemplateId, confirmationTemplateId, publicKey } = emailJs;
+
+    const params = new URLSearchParams(window.location.search);
+    const intent = params.get('intent')?.slice(0, 80) || '';
+    const source = params.get('source')?.slice(0, 240) || window.location.pathname;
+    const topic = params.get('topic')?.slice(0, 180) || '';
+    const goal = params.get('goal')?.slice(0, 220) || '';
+
+    // The eight answers plus template aliases. This is the complete set of
+    // fields the customer confirmation may receive. Studio-only context —
+    // campaign attribution, click IDs and the composed internal message —
+    // is added to the internal notification further below and must never be
+    // included in the customer-facing send.
+    const fieldParams: Record<string, string> = {
+      // Exact identifiers used by the current eight-question form and saved templates.
+      name: values.name.trim(),
+      company: values.company.trim(),
+      email: values.email.trim(),
+      phone: values.phone.trim(),
+      projectType: values.projectType.trim(),
+      description: values.description.trim(),
+      timeline: values.timeline.trim(),
+      investment: values.investment.trim(),
+      // Compatibility aliases for existing template variants.
+      contact_name: values.name.trim(),
+      contact_email: values.email.trim(),
+      project_type: values.projectType.trim(),
+      project_description: values.description.trim(),
+    };
+
+    const sendEmail = async (templateId: string, templateParams: Record<string, string>): Promise<void> => {
+      // Bound every request: a hung connection must fall through to the
+      // email-draft/copy fallback instead of leaving "Sending…" forever.
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 20000);
+      try {
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
+          body: JSON.stringify({
+            service_id: serviceId,
+            template_id: templateId,
+            user_id: publicKey,
+            template_params: templateParams,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`EmailJS returned HTTP ${response.status}`);
+        }
+      } finally {
+        window.clearTimeout(timeoutId);
+      }
+    };
+
+    // The customer confirmation receives only the visitor's own answers —
+    // no attribution, click IDs, internal recipients or studio context.
+    const sendConfirmation = async (): Promise<boolean> => {
+      try {
+        await sendEmail(confirmationTemplateId, {
+          ...fieldParams,
+          to_email: values.email.trim(),
+          subject: `${values.name.trim()}, your project enquiry with Angel Creations`,
+          reply_to: 'business@angelcreations.in',
+        });
+        setConfirmationSent(true);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
+    setIsSending(true);
+
+    // Lead events are collected while the enquiry is being delivered and
+    // dispatched only after the delivery state has settled, so measurement
+    // can never influence the outcome reported to the visitor.
+    const pendingLeadEvents: Array<{
+      name: string;
+      payload: Record<string, string | number | boolean | undefined>;
+    }> = [];
+
+    try {
+      if (!internalSentRef.current) {
+        setFormStatus('Sending your enquiry…');
+        // Attribution enriches the studio notification only. A storage or
+        // parsing failure must never stop the enquiry from being sent.
+        let attribution: LeadAttribution = {};
+        let attributionLines: string[] = [];
+        try {
+          captureLeadAttribution();
+          attribution = getLeadAttribution();
+          attributionLines = formatLeadAttribution(attribution);
+        } catch {
+          attribution = {};
+          attributionLines = [];
+        }
+        const contextLines = [
+          intent ? `Enquiry intent: ${intent}` : '',
+          topic ? `Topic: ${topic}` : '',
+          goal ? `Goal: ${goal}` : '',
+          `Source route: ${source}`,
+        ].filter(Boolean);
+        const answerLines = fields
+          .map((item) => `${item.name}: ${values[item.id].trim() || 'Not provided'}`);
+        const message = [
+          'New project enquiry from angelcreations.in',
+          '',
+          ...contextLines,
+          '',
+          ...answerLines,
+          '',
+          'Attribution',
+          ...(attributionLines.length ? attributionLines : ['No attribution data available']),
+        ].join('\n');
+        const notificationSubject = `${intent ? `${intent.replace(/[-_]/g, ' ')} — ` : ''}New Angel Creations Project Enquiry`;
+
+        // Send the internal notification first. Its EmailJS template should
+        // use business@angelcreations.in in To and BCC the three private
+        // Gmail inboxes. Attribution stays in this studio-facing send only.
+        await sendEmail(notificationTemplateId, {
+          ...fieldParams,
+          intent,
+          topic,
+          goal,
+          source_route: source,
+          first_landing_page: attribution.firstLandingPage || '',
+          last_landing_page: attribution.lastLandingPage || '',
+          referrer: attribution.referrer || '',
+          utm_source: attribution.utmSource || '',
+          utm_medium: attribution.utmMedium || '',
+          utm_campaign: attribution.utmCampaign || '',
+          utm_term: attribution.utmTerm || '',
+          utm_content: attribution.utmContent || '',
+          gclid: attribution.gclid || '',
+          fbclid: attribution.fbclid || '',
+          msclkid: attribution.msclkid || '',
+          message,
+          to_email: 'business@angelcreations.in',
+          subject: notificationSubject,
+          reply_to: values.email.trim(),
+        });
+
+        // EmailJS has accepted the enquiry for the studio. Lock it before
+        // attempting the confirmation so neither a retry nor a later edit
+        // can duplicate the internal notification.
+        internalSentRef.current = true;
+        setSent(true);
+        pendingLeadEvents.push({
+          name: 'generate_lead',
+          payload: {
+            form_provider: 'emailjs',
+            intent: intent || undefined,
+            source_route: source,
+            discipline: values.projectType || undefined,
+          },
+        });
+      }
+
+      if (!confirmationSent) {
+        setFormStatus('Your enquiry has been sent to Angel Creations. Sending your confirmation…');
+        const confirmed = await sendConfirmation();
+        setFormStatus(
+          confirmed
+            ? 'Thank you — your enquiry has been sent to Angel Creations, and a confirmation email has been sent to your inbox.'
+            : 'Your enquiry has been sent to Angel Creations, but we could not send the confirmation email. The studio has your enquiry and can follow up using the email address you provided. You can retry just the confirmation below.'
+        );
+      }
+    } catch {
+      setFormStatus('We could not send your enquiry just now. Your answers are still here—please use “Open email draft” or copy the enquiry text below.');
+      pendingLeadEvents.push({
+        name: 'lead_submit_error',
+        payload: {
+          form_provider: 'emailjs',
+          intent: intent || undefined,
+          source_route: source,
+        },
+      });
+    } finally {
+      setIsSending(false);
+    }
+
+    // Dispatched strictly after delivery has settled and outside the delivery
+    // try/catch above. EmailJS delivery alone decides what the visitor is
+    // told: a throwing tag manager cannot turn an accepted enquiry into a
+    // failure message, skip the customer confirmation, or resend the internal
+    // notification. Every payload stays PII-free.
+    for (const event of pendingLeadEvents) {
+      dispatchLeadEvent(event.name, event.payload);
+    }
   };
 
   const setInputRef = (element: HTMLInputElement | null): void => {
@@ -704,8 +958,7 @@ export function ContactWizard(): JSX.Element {
                   Let’s build what doesn’t exist yet.
                 </h1>
                 <p className="ac-studio-subtitle">
-                  Complete our 8-step brief below, or contact the studio directly. At the end,
-                  review the pre-filled email and send it yourself.
+                  Complete our 8-step brief below and send your project enquiry directly to the studio, or contact us using the details below.
                 </p>
               </div>
 
@@ -747,6 +1000,11 @@ export function ContactWizard(): JSX.Element {
 
                 {prepared ? (
                   <section className="contact-prepared" aria-labelledby="enquiry-ready-title">
+                    {formStatus && (
+                      <p className={`contact-send-status${sent ? ' is-success' : ''}`} role="status" aria-live="polite">
+                        {formStatus}
+                      </p>
+                    )}
                     <div className="contact-prepared__header">
                       <div>
                         <p className="contact-prepared__eyebrow">
@@ -754,8 +1012,8 @@ export function ContactWizard(): JSX.Element {
                         </p>
                         <h2 id="enquiry-ready-title">Your project brief is ready.</h2>
                         <p className="contact-prepared__lead">
-                          Click any answer below to refine it, then launch your pre-addressed email
-                          draft or call our executive line on <strong>+91-8058465733</strong>.
+                          Click any answer below to refine it, then send your enquiry directly to
+                          the studio or call our executive line on <strong>+91-8058465733</strong>.
                         </p>
                       </div>
                       <span className="contact-prepared__badge">08 / 08 Complete</span>
@@ -791,7 +1049,28 @@ export function ContactWizard(): JSX.Element {
                     </dl>
 
                     <div className="contact-prepared__actions">
-                      <a className="contact-prepared__send" href={createMailto(values)}>
+                      {!sent ? (
+                        <button
+                          className="contact-prepared__send"
+                          type="button"
+                          onClick={() => void sendEnquiry()}
+                          disabled={isSending}
+                        >
+                          {isSending ? 'Sending enquiry…' : 'Send enquiry'} <span aria-hidden="true">↗</span>
+                        </button>
+                      ) : confirmationSent ? (
+                        <span className="contact-prepared__send">✓ Enquiry sent</span>
+                      ) : (
+                        <button
+                          className="contact-prepared__send"
+                          type="button"
+                          onClick={() => void sendEnquiry()}
+                          disabled={isSending}
+                        >
+                          {isSending ? 'Sending confirmation…' : 'Resend confirmation email'} <span aria-hidden="true">↗</span>
+                        </button>
+                      )}
+                      <a className="contact-prepared__edit" href={createMailto(values)}>
                         Open email draft <span aria-hidden="true">↗</span>
                       </a>
                       <button
