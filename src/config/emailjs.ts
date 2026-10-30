@@ -35,9 +35,11 @@ export const EMAILJS_CONFIG: EmailJsConfig = {
   // domain is hosted by Hostinger (there is no Microsoft 365 on this domain) —
   // see docs/DELIVERABILITY.md before changing anything.
   //
-  // Replaced service_85q82kl, which pointed at a sender that could not be
-  // authenticated for this domain. The SMTP credentials behind this service are
-  // stored by EmailJS, never in this repository or in the browser bundle.
+  // Replaces the retired service that sent through a personal mailbox and
+  // could not be authenticated for this domain (its history is recorded in
+  // docs/EMAILJS_SETUP.md, which is the only place the old identifier is kept).
+  // The SMTP credentials behind this service are stored by EmailJS, never in
+  // this repository or in the browser bundle.
   serviceId: 'service_0kxsu92',
   // Internal enquiry notification, addressed to the studio (recipients and
   // BCC are defined in the dashboard template, not here).

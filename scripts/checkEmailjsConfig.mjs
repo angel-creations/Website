@@ -93,6 +93,25 @@ check('code contains no credential material',
   !/\b(password|passwd|secret|client[_-]?secret|smtp|oauth|refresh[_-]?token|api[_-]?key)\b/i.test(codeOnly),
   'server credentials must never reach browser code');
 
+// The sending route is part of the contract, not an implementation detail: a
+// service that sends through a personal mailbox produces mail that cannot be
+// DKIM-aligned to this domain, which is how the enquiry notifications ended up
+// in spam with DMARC failing. Nothing in shipped code may reintroduce one.
+const LEGACY_ROUTES = [
+  ['the retired EmailJS service ID', /service_85q82kl/],
+  ['an Outlook.com SMTP endpoint', /smtp-mail\.outlook\.com|smtp\.office365\.com|smtp\.office\.com/i],
+  ['a Microsoft Graph mail call', /graph\.microsoft\.com/i],
+  ['a Microsoft 365 DKIM selector', /selector[12]\._domainkey/i],
+  ['an Outlook sender domain', /@(?:outlook|hotmail|live)\.(?:com|in|co\.uk)\b/i],
+];
+
+console.log('\n[1b] No legacy sending route in shipped code');
+
+for (const [label, pattern] of LEGACY_ROUTES) {
+  const hit = codeOnly.match(pattern);
+  check(`source carries no ${label}`, !hit, hit ? `found: ${hit[0]}` : '');
+}
+
 console.log('\n[2] No build-time variables are required');
 
 const wizard = readFileSync('src/components/ContactWizard.tsx', 'utf8');
@@ -118,6 +137,10 @@ if (bundleDir) {
     // Presence only — the key itself is never printed.
     check('bundle contains the public key (value not printed)', bundleText.includes(config.publicKey ?? '\u0000'));
     check('bundle carries no VITE_EMAILJS_* variable lookups', !/VITE_EMAILJS_(SERVICE|NOTIFICATION|CONFIRMATION|PUBLIC)_/.test(bundleText));
+    for (const [label, pattern] of LEGACY_ROUTES) {
+      const hit = bundleText.match(pattern);
+      check(`bundle carries no ${label}`, !hit, hit ? `found: ${hit[0]}` : '');
+    }
     check('bundle has no public-key-forced fallback build',
       !bundleText.includes('VITE_EMAILJS_FORCE_UNCONFIGURED') || bundleText.includes(config.serviceId ?? '\u0000'));
   }

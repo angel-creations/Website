@@ -16,6 +16,98 @@ All EmailJS identifiers are defined in **`src/config/emailjs.ts`** and imported 
 - **Customer confirmation template ID:** `template_xoqfbrj`
 - **Public key:** stored in the same module (see the note below)
 
+### Recipient separation (read this before editing either template)
+
+The visitor received **both** emails. The cause is a name collision that is easy
+to fall into, and it is worth understanding because it will happen again:
+
+- Both templates receive the same parameters, because both need the visitor's
+  answers in their body. That set includes **`email`** and **`contact_email`**,
+  which are the **visitor's** address.
+- EmailJS resolves a template's **To / Cc / Bcc** fields from those same
+  parameters.
+- So an internal template whose To field reads `{{email}}` resolves to the
+  **visitor**, and the "internal" notification is delivered to the customer
+  instead of the studio.
+
+The code cannot fix that on its own: the recipient of a send is decided by the
+dashboard field, not by `template_params`. `to_email` is a parameter like any
+other — it only takes effect if the field references it.
+
+**Exact required field values**
+
+| | Internal — `template_m0s0taz` | Confirmation — `template_xoqfbrj` |
+| --- | --- | --- |
+| To | `business@angelcreations.in` **literal** (or `{{to_email}}` — **never** `{{email}}`) | `{{email}}` |
+| Cc | empty | empty |
+| Bcc | `angelcreations123@gmail.com, abhijeetvarghese33@gmail.com, write4abhijeet@gmail.com` | empty |
+| Reply-To | `{{email}}` | `business@angelcreations.in` |
+| From Name | `Angel Creations` | `Angel Creations` |
+| Subject | `{{subject}}` | `{{subject}}` |
+
+**Auto-Reply / Linked Template is a second way to leak the internal email.**
+EmailJS can be told to send another template automatically every time a template
+is used: open the template, **Auto-Reply** tab, link a template. Its docs are
+explicit — *"Each time you send an email using this template, we will
+automatically send another email with the template in the Auto-Reply section"*,
+and it creates **an independent record in the Email History for the linked
+template**. If `template_xoqfbrj` is linked to `template_m0s0taz`, every
+confirmation also fires the internal notification, to whatever the internal
+template's recipient resolves to. Check **both** templates' Auto-Reply tabs are
+empty. A linked template also consumes quota and can produce the doubled History
+rows seen earlier.
+
+`ContactWizard.tsx` guards this in code: `assertRecipientSplit()` runs before
+each request and throws if an internal notification is aimed at the visitor or a
+confirmation at the studio, which falls through to the existing email-draft
+fallback instead of sending. The guard protects the *code*; only the dashboard
+values protect *delivery*.
+
+`npm run test:emailjs` asserts the whole matrix at payload level, including that
+none of the three BCC addresses ever appears in a request payload.
+
+**Recipient fail-safe (code, internal send only).** In the internal payload, every
+generic email parameter is re-pointed at the studio: `email`, `contact_email`,
+`from_email`, `user_email`, `sender_email` and `studio_email` all carry
+`business@angelcreations.in`. The customer's address survives only under
+`visitor_email` and `reply_to`, which mean "reply to the person who wrote in".
+So a dashboard To/Cc/Bcc field reading `{{email}}` now resolves to the studio
+instead of the customer — the most common mistake becomes harmless. A test
+asserts that no email-position parameter in that payload ever holds the visitor's
+address.
+
+Consequence to know about: if the internal template's **body** prints `{{email}}`
+as the customer's address, it will now show `business@angelcreations.in`. Use
+`{{visitor_email}}` there instead — or rely on `{{message}}`, which already lists
+the customer's address as text.
+
+### Verified sending route
+
+Two delivered messages were inspected (see [DELIVERABILITY.md](./DELIVERABILITY.md) §1):
+
+- **Customer confirmation** — sent through Hostinger SMTP
+  (`smtp-svr-02.emailjs.com` → MailChannels), `Return-Path: business@angelcreations.in`,
+  `DKIM d=angelcreations.in s=hostingermail1`, **SPF + DKIM + DMARC all pass.**
+  The Hostinger route works and is fully aligned.
+- **An older internal notification** — sent through a personal **Outlook**
+  account: `Return-Path: outlook.com`, DKIM of `outlook.com`, **DMARC fail**,
+  because the visible From was `business@angelcreations.in` and neither SPF nor
+  DKIM aligned with it. That is the confirmed cause of those messages being
+  filtered.
+
+Both sends in one submission share a single `service_id`, so a mixed pair cannot
+come from one submission. Check EmailJS **Smart Router**: if the old Outlook
+service is still set as **Detour**, it will silently re-send any failed request
+and reintroduce DMARC failures. Remove that assignment.
+
+Fixed subject copy (composed in `ContactWizard.tsx`, so it applies whether the
+template uses `{{subject}}` or a literal):
+
+| Email | Subject |
+| --- | --- |
+| Internal notification | `New Website Enquiry — {name} — Angel Creations` |
+| Customer confirmation | `We Received Your Enquiry — Angel Creations` |
+
 ### Service history
 
 | Service ID | Status | Notes |

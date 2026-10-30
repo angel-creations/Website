@@ -20,8 +20,8 @@ label. Re-run `npm run test:deliverability` to refresh the live checks.
 | MX | `5 mx1.hostinger.com`, `10 mx2.hostinger.com` | Mail is **received by Hostinger** |
 | TXT `@` | `v=spf1 include:_spf.mail.hostinger.com ~all` | One SPF record, 3 DNS lookups, softfail |
 | SPF chain | `_spf.mail.hostinger.com` → `relay.mail.hostinger.com` + `relay.mailchannels.net` | Outbound relay is **Hostinger → MailChannels** |
-| DKIM used | `hostingermail-a._domainkey` (CNAME + duplicate TXT, 2048-bit RSA) | Only **Hostinger** signs this domain |
-| DKIM legacy | `hostingermail1._domainkey` (TXT, 2048-bit) | Second key; which one a message uses is only visible in its `s=` tag |
+| **DKIM in use** | `hostingermail1._domainkey` (TXT, 2048-bit RSA) | **Verified from a real message**: `d=angelcreations.in`, `s=hostingermail1`, `dkim=pass`. This is the live signing key. **Do not delete it.** |
+| DKIM not in use | `hostingermail-a._domainkey` (CNAME **and** duplicate TXT) | Not the selector any observed message uses. The CNAME/TXT conflict is latent, not active. |
 | DKIM unused | `hostingermail-b/-c` (empty `p=`) | Revoked placeholders, normal |
 | DMARC | `v=DMARC1; p=none` | **No `rua`, no `ruf`** — no reports, no enforcement |
 | `autodiscover` | `autodiscover.mail.hostinger.com` | Consistent with Hostinger mail |
@@ -39,6 +39,65 @@ wrong for this domain and has been corrected. Do not reintroduce it.
 another provider, a borrowed SMTP server — is unauthenticated for this domain,
 and unauthenticated mail carrying your own domain in `From:` is the most common
 reason it is filed as spam.
+
+### Header evidence from real messages
+
+Two delivered messages were inspected. This is the only empirical evidence in this
+document, and it overturns two earlier assumptions.
+
+| | Internal notification (old route) | Customer confirmation (current route) |
+| --- | --- | --- |
+| Sending infrastructure | **Microsoft Outlook** | **Hostinger SMTP** |
+| EmailJS SMTP server | — | `smtp-svr-02.emailjs.com` |
+| SMTP authentication | — | Hostinger, **successful** |
+| Outbound relay | — | **MailChannels** |
+| `Return-Path` | `outlook.com` | `business@angelcreations.in` |
+| DKIM domain / selector | `outlook.com` | `angelcreations.in` / **`hostingermail1`** |
+| SPF | pass | pass |
+| DKIM | (of outlook.com) | pass |
+| **DMARC** | **FAIL** | **pass** |
+
+Read it plainly: the Hostinger route is **fully authenticated and aligned**
+(`pf=pass`, `dkim=pass` on the sending domain, `dmarc=pass`). The Outlook route
+could never have passed DMARC, because the visible `From:` was
+`business@angelcreations.in` while SPF and DKIM both belonged to `outlook.com` —
+neither aligns. That is the confirmed cause of the internal notifications being
+filtered.
+
+The route is therefore **not** the remaining problem. What must be explained is
+why two messages from the same software used two different routes — see §2b.
+
+---
+
+## 2b. Why two templates could use two different routes
+
+Both sends in one submission carry the **same** `service_id` (one variable in
+`ContactWizard.tsx`), so a single submission cannot produce one Outlook message
+and one Hostinger message. Three explanations survive, in order of likelihood:
+
+1. **EmailJS Smart Router "Detour" is armed with the old Outlook service.**
+   Detour is an account-wide automatic failover: if a send through the requested
+   service errors, EmailJS retries it through the Detour service, and records
+   both attempts in History. That fits the evidence exactly — the confirmation
+   succeeded on Hostinger, the notification hit a transient error and was
+   re-sent through Outlook, arriving with DMARC failing. EmailJS's own docs
+   confirm the History keeps "the original service that dropped the error and
+   the final service that successfully delivered".
+2. **The two messages were captured at different times** — the notification
+   before the service migration was deployed, the confirmation after.
+3. **A stale or cached frontend build** served the old `service_85q82kl` for the
+   notification request.
+
+**How to tell them apart (dashboard, needs your eyes):**
+
+- EmailJS **History**: does one enquiry show *two* service rows, the first
+  failing and the second succeeding? → cause 1.
+- Do the two messages' `Date:`/`Received:` timestamps fall on either side of the
+  merge of PR #32? → cause 2.
+- History for that enquiry shows `service_85q82kl` at all → cause 3.
+
+If cause 1 is confirmed, **the Outlook service must be removed as Detour** or it
+will keep intercepting failed sends and quietly reintroduce DMARC failures.
 
 ---
 
@@ -251,8 +310,8 @@ not weaken it.
 
 | Defect | Risk | Fix | Gate |
 | --- | --- | --- | --- |
-| `hostingermail-a._domainkey` publishes **both** a CNAME and a TXT | A CNAME must be the only record at a name; resolution can differ between resolvers | Keep the CNAME, delete the duplicate TXT | Only after a live message's `s=` tag confirms `hostingermail-a` is the selector in use |
-| `hostingermail1._domainkey` is a second, unused key | If Hostinger rotates selectors, a stale key silently breaks verification | Delete it | Same gate — save the exact value first, it is the rollback |
+| `hostingermail-a._domainkey` publishes **both** a CNAME and a TXT | A CNAME must be the only record at a name; resolution can differ between resolvers | Keep the CNAME, delete the duplicate TXT | **Not urgent.** This selector is not the one in use, so the conflict costs nothing today. Only relevant if Hostinger starts signing with it. |
+| ~~`hostingermail1._domainkey` is a stale key~~ | **CORRECTED — this was wrong.** A real message proves `s=hostingermail1` is the live signing selector. | **DO NOT DELETE.** Deleting it would break DKIM for every message and send both email types to spam. | — |
 | DMARC has no `rua` | Total blindness to authentication failures | §A1 | None — safe to do first |
 | SPF ends `~all` | Unauthorised senders are tolerated | `-all` | Only after 2–4 weeks of clean reports |
 

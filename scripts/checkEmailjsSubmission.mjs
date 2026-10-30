@@ -315,7 +315,10 @@ async function scenarioBothSucceed() {
   const np = notification?.template_params ?? {};
   check('notification carries name', np.name === 'Asha Verma');
   check('notification carries company', np.company === 'Verma Retail Group');
-  check('notification carries email', np.email === VISITOR_EMAIL);
+  // The visitor's address travels under a reply-semantics name in the internal
+  // payload; `email` is re-pointed at the studio as a recipient fail-safe.
+  check('notification carries the visitor address as visitor_email', np.visitor_email === VISITOR_EMAIL);
+  check('notification generic email params resolve to the studio', np.email === 'business@angelcreations.in');
   check('notification carries phone', np.phone === '+91 98290 00000');
   check('notification carries projectType', np.projectType === 'Virtual Reality (VR)');
   check('notification carries description', (np.description ?? '').includes('VR safety-training'));
@@ -323,6 +326,8 @@ async function scenarioBothSucceed() {
   check('notification carries investment', np.investment === '$15k – $50k / ₹12L – ₹40L');
   check('notification to_email is the studio', np.to_email === 'business@angelcreations.in');
   check('notification reply_to is the visitor', np.reply_to === VISITOR_EMAIL);
+  check('notification subject follows the email specification',
+    np.subject === 'New Website Enquiry — Asha Verma — Angel Creations', `got: ${np.subject}`);
   check('notification carries attribution (utm_source)', np.utm_source === 'test-source');
   check('notification carries attribution (gclid)', np.gclid === 'test-click-id');
   check('notification message includes answers', (np.message ?? '').includes('Asha Verma'));
@@ -330,9 +335,72 @@ async function scenarioBothSucceed() {
   const cp = confirmation?.template_params ?? {};
   check('confirmation to_email is the visitor', cp.to_email === VISITOR_EMAIL);
   check('confirmation reply_to is the studio', cp.reply_to === 'business@angelcreations.in');
+  check('confirmation subject follows the email specification',
+    cp.subject === 'We Received Your Enquiry — Angel Creations', `got: ${cp.subject}`);
   check('confirmation carries the eight answers',
     cp.name === 'Asha Verma' && cp.email === VISITOR_EMAIL && cp.projectType === 'Virtual Reality (VR)'
     && (cp.description ?? '').includes('VR safety-training'));
+  // ---- Recipient separation matrix (spec section 7) -----------------------
+  // EmailJS resolves a template's To/Cc/Bcc from these parameters, so a
+  // recipient-position key carrying the wrong address is a delivery bug, not a
+  // cosmetic one. These assertions pin the split at the payload level. The
+  // dashboard fields must independently be: internal To = business@ (literal or
+  // {{to_email}}), Cc empty, Bcc = the three internal addresses; confirmation
+  // To = {{email}}, Cc empty, Bcc empty.
+  const RECIPIENT_KEYS = ['to_email', 'cc', 'cc_email', 'bcc', 'bcc_email', 'carbon_copy', 'recipient'];
+  const recipientsOf = (params) => RECIPIENT_KEYS
+    .flatMap((key) => String(params[key] ?? '').split(/[,;\s]+/))
+    .map((a) => a.trim().toLowerCase())
+    .filter(Boolean);
+  const INTERNAL_ADDRESSES = [
+    'business@angelcreations.in',
+    'angelcreations123@gmail.com',
+    'abhijeetvarghese33@gmail.com',
+    'write4abhijeet@gmail.com',
+  ];
+
+  const notifRecipients = recipientsOf(np);
+  const confirmRecipients = recipientsOf(cp);
+
+  check('matrix: internal notification is addressed to the studio',
+    notifRecipients.length === 1 && notifRecipients[0] === 'business@angelcreations.in',
+    `got: ${JSON.stringify(notifRecipients)}`);
+  check('matrix: internal notification is NOT addressed to the customer',
+    !notifRecipients.includes(VISITOR_EMAIL.toLowerCase()),
+    `got: ${JSON.stringify(notifRecipients)}`);
+  check('matrix: confirmation is addressed to the customer only',
+    confirmRecipients.length === 1 && confirmRecipients[0] === VISITOR_EMAIL.toLowerCase(),
+    `got: ${JSON.stringify(confirmRecipients)}`);
+  check('matrix: confirmation is NOT addressed to any internal recipient',
+    !confirmRecipients.some((r) => INTERNAL_ADDRESSES.includes(r)),
+    `got: ${JSON.stringify(confirmRecipients)}`);
+
+  // Private recipients live in the dashboard, never in either payload.
+  const flattened = (params) => Object.values(params).join(' \u0000 ').toLowerCase();
+  for (const address of INTERNAL_ADDRESSES.slice(1)) {
+    check(`matrix: ${address} never appears in a request payload`,
+      !flattened(np).includes(address) && !flattened(cp).includes(address));
+  }
+  check('matrix: the customer address is never used as an internal recipient key',
+    !['bcc', 'bcc_email', 'cc', 'cc_email'].some((k) => String(np[k] ?? '').toLowerCase().includes(VISITOR_EMAIL)));
+  // Fail-safe: no recipient-position parameter in the internal payload may
+  // carry the visitor's address. Only the two names that mean "reply to the
+  // person who wrote in" may hold it. This is what stops a dashboard field
+  // reading {{email}} from delivering the internal notification to the client.
+  const EMAILISH_KEYS = Object.keys(np).filter((k) => /email/i.test(k));
+  const visitorLeaks = EMAILISH_KEYS.filter(
+    (k) => String(np[k]).toLowerCase().includes(VISITOR_EMAIL.toLowerCase())
+      && !['visitor_email', 'reply_to'].includes(k)
+  );
+  check('matrix: no email-position param in the internal payload holds the visitor address',
+    visitorLeaks.length === 0, `leaking keys: ${JSON.stringify(visitorLeaks)}`);
+  check('matrix: the internal payload points every generic email param at the studio',
+    ['email', 'contact_email', 'from_email', 'user_email', 'sender_email', 'studio_email']
+      .every((k) => np[k] === 'business@angelcreations.in'));
+
+  check('matrix: neither template receives a bcc/cc key',
+    !('bcc' in np) && !('cc' in np) && !('bcc' in cp) && !('cc' in cp));
+
   const forbidden = ['gclid', 'fbclid', 'msclkid', 'message', 'referrer', 'utm_source', 'utm_medium',
     'utm_campaign', 'utm_term', 'utm_content', 'first_landing_page', 'last_landing_page',
     'source_route', 'intent', 'topic', 'goal'];
