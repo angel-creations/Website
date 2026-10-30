@@ -22,6 +22,8 @@
 //      notification is accepted: the enquiry is still reported as sent, the
 //      customer confirmation is still attempted, no false error event is
 //      recorded, and no retry is offered.
+//  11. The full sequence on a 390x844 mobile viewport, including no sideways
+//      scroll and a success state that stays inside the viewport.
 //  10. A throwing analytics layer combined with a failed confirmation: the
 //      partial-success message appears, the retry sends the confirmation only
 //      (the internal notification is never duplicated) and the conversion is
@@ -108,8 +110,8 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // decides each response: { status } to fulfill, { abort: true } for a
 // network failure, { delayMs } to respond slowly. The interceptor never
 // calls route.continue(), so no request can reach the real EmailJS API.
-async function newWizardPage(plan) {
-  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+async function newWizardPage(plan, { viewport = { width: 1280, height: 900 } } = {}) {
+  const context = await browser.newContext({ viewport });
   const page = await context.newPage();
   const calls = [];
   const pageErrors = [];
@@ -304,6 +306,11 @@ async function scenarioBothSucceed() {
   check('customer confirmation sent second', confirmation?.template_id === CONFIRMATION_TEMPLATE);
   check('configured service and public key used',
     notification?.service_id === SERVICE_ID && notification?.user_id === PUBLIC_KEY);
+  check('confirmation uses the same configured service and public key',
+    confirmation?.service_id === SERVICE_ID && confirmation?.user_id === PUBLIC_KEY);
+  check('every EmailJS request uses the configured service',
+    calls.every((call) => call.service_id === SERVICE_ID && call.user_id === PUBLIC_KEY),
+    `saw: ${[...new Set(calls.map((call) => call.service_id))].join(', ')}`);
 
   const np = notification?.template_params ?? {};
   check('notification carries name', np.name === 'Asha Verma');
@@ -584,6 +591,8 @@ async function scenarioAnalyticsThrowsWithPartialFailure() {
   const confirmations = calls.filter((c) => c.template_id === CONFIRMATION_TEMPLATE).length;
   check('retry sent exactly one more confirmation', confirmations === 2, `got ${confirmations}`);
   check('internal notification was never duplicated', notifications === 1, `got ${notifications}`);
+  check('confirmation-only retry uses the configured service',
+    calls.filter((c) => c.template_id === CONFIRMATION_TEMPLATE).every((c) => c.service_id === SERVICE_ID));
 
   const attempts = await analyticsAttempts(page);
   check('conversion counted exactly once across the retry',
@@ -591,6 +600,49 @@ async function scenarioAnalyticsThrowsWithPartialFailure() {
   check('no error event recorded for a delivered enquiry', !attempts.includes('lead_submit_error'),
     `attempts: ${JSON.stringify(attempts)}`);
   assertNoLeaks('analytics-throws-partial', session);
+  await session.context.close();
+}
+
+// The wizard on a phone-sized viewport. The desktop run above proves the
+// sequence; this proves the same sequence still fits and completes at 390x844,
+// where the prepared panel and the send button must remain reachable and the
+// page must not scroll sideways.
+async function scenarioMobile() {
+  const session = await newWizardPage(() => ({ status: 200 }), { viewport: { width: 390, height: 844 } });
+  const { page, calls } = session;
+  await page.goto(`${server.url}/contact/`, { waitUntil: 'networkidle' });
+
+  const overflow = await page.evaluate(() => ({
+    scrollWidth: document.documentElement.scrollWidth,
+    clientWidth: document.documentElement.clientWidth,
+  }));
+  check('mobile: page does not scroll sideways', overflow.scrollWidth <= overflow.clientWidth + 1,
+    `scrollWidth ${overflow.scrollWidth} vs clientWidth ${overflow.clientWidth}`);
+
+  await completeWizard(page);
+  await page.locator('button.contact-prepared__send').click();
+  await waitForStatus(page, 'confirmation email has been sent');
+
+  check('mobile: exactly two EmailJS calls', calls.length === 2, `got ${calls.length}`);
+  check('mobile: internal notification sent first', calls[0]?.template_id === NOTIFICATION_TEMPLATE);
+  check('mobile: customer confirmation sent second', calls[1]?.template_id === CONFIRMATION_TEMPLATE);
+  check('mobile: both sends use the configured service',
+    calls.every((c) => c.service_id === SERVICE_ID && c.user_id === PUBLIC_KEY));
+
+  const buttonBox = await page.locator('span.contact-prepared__send').first().boundingBox();
+  check('mobile: success state is on screen and within the viewport',
+    Boolean(buttonBox) && buttonBox.x >= -1 && buttonBox.x + buttonBox.width <= 391,
+    buttonBox ? `x=${Math.round(buttonBox.x)} w=${Math.round(buttonBox.width)}` : 'success state not rendered');
+
+  const preparedFits = await page.evaluate(() => {
+    const panel = document.querySelector('.contact-prepared');
+    if (!panel) return false;
+    const rect = panel.getBoundingClientRect();
+    return rect.width > 0 && rect.left >= -1 && rect.right <= window.innerWidth + 1;
+  });
+  check('mobile: prepared panel fits the viewport', preparedFits);
+
+  assertNoLeaks('mobile', session);
   await session.context.close();
 }
 
@@ -609,6 +661,7 @@ try {
     await scenarioHungRequest();
     await scenarioAnalyticsThrows();
     await scenarioAnalyticsThrowsWithPartialFailure();
+    await scenarioMobile();
   }
 } finally {
   await browser.close();
