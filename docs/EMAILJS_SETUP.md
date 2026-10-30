@@ -10,10 +10,22 @@ The existing eight-question contact wizard sends two emails after the visitor pr
 
 All EmailJS identifiers are defined in **`src/config/emailjs.ts`** and imported by `src/components/ContactWizard.tsx`:
 
-- **Service ID:** `service_85q82kl`
+- **Service ID:** `service_0kxsu92` — EmailJS service backed by **Hostinger SMTP**
+  for `business@angelcreations.in`
 - **Internal notification template ID:** `template_m0s0taz`
 - **Customer confirmation template ID:** `template_xoqfbrj`
 - **Public key:** stored in the same module (see the note below)
+
+### Service history
+
+| Service ID | Status | Notes |
+| --- | --- | --- |
+| `service_0kxsu92` | **Active** | Hostinger SMTP, authenticating as `business@angelcreations.in`. The SMTP username and password are held by EmailJS only. |
+| `service_85q82kl` | **Retired** | Previous service. Kept here for audit only — it is not referenced by any code, test or workflow. |
+
+**Migrating a service again:** change `serviceId` in `src/config/emailjs.ts`, then run
+`npm run test:config` and `npm run test:emailjs`. The two template IDs travel with the
+templates, not the service, so they do **not** change when the sending service changes.
 
 **No GitHub Actions variables, no `.env.local`, and no Hostinger settings are required.** The static site builds with this configuration on any machine, and the deployed bundle already contains it. To change an identifier, edit that module and rebuild.
 
