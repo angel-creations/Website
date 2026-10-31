@@ -732,11 +732,7 @@ export function ApplicationExplorer({
                 }`}
               >
                 {item.href ? (
-                  <a
-                    className="apple-sector-card__control"
-                    href={item.href}
-                    aria-label={`Open the ${item.title} domain page`}
-                  >
+                  <a className="apple-sector-card__control" href={item.href}>
                     {cardContent}
                   </a>
                 ) : (
@@ -744,7 +740,6 @@ export function ApplicationExplorer({
                     type="button"
                     className="apple-sector-card__control"
                     aria-pressed={isSelected}
-                    aria-label={`Inspect ${item.title}`}
                     onClick={() => handleCardInspect(idx)}
                   >
                     {cardContent}

@@ -1158,22 +1158,22 @@ export function AboutPage(): JSX.Element {
                 <div className="ac-about-v2-metric">
                   <dt>Core Practice Pillars</dt>
                   <dd>07</dd>
-                  <span>Spatial XR, Animation &amp; Film</span>
+                  <dd className="ac-about-v2-metric__note">Spatial XR, Animation &amp; Film</dd>
                 </div>
                 <div className="ac-about-v2-metric">
                   <dt>Public Archive</dt>
                   <dd>47</dd>
-                  <span>Film, Animation &amp; XR Productions</span>
+                  <dd className="ac-about-v2-metric__note">Film, Animation &amp; XR Productions</dd>
                 </div>
                 <div className="ac-about-v2-metric">
                   <dt>Global Partners</dt>
                   <dd>20+</dd>
-                  <span>Broadcast, Luxury &amp; Enterprise</span>
+                  <dd className="ac-about-v2-metric__note">Broadcast, Luxury &amp; Enterprise</dd>
                 </div>
                 <div className="ac-about-v2-metric">
                   <dt>Industry Verticals</dt>
                   <dd>25</dd>
-                  <span>Sectors Transformed Globally</span>
+                  <dd className="ac-about-v2-metric__note">Sectors Transformed Globally</dd>
                 </div>
               </dl>
             </div>
@@ -1452,7 +1452,7 @@ export function AboutPage(): JSX.Element {
                       type="button"
                       className="ac-about-v2-theater__btn"
                       onClick={toggleReelMute}
-                      aria-label={isReelMuted ? 'Unmute showreel' : 'Mute showreel'}
+                      aria-label={isReelMuted ? 'Unmute Audio' : 'Mute Audio'}
                     >
                       {isReelMuted ? 'Unmute Audio' : 'Mute Audio'}
                     </button>
@@ -1625,9 +1625,12 @@ export function AboutPage(): JSX.Element {
               </div>
             </div>
           </section>
-
-          <SiteFooter />
         </main>
+
+        {/* The footer is a contentinfo landmark and must not be nested inside
+            <main>, or assistive technology loses the landmark and axe reports
+            landmark-contentinfo-is-top-level. */}
+        <SiteFooter />
       </div>
     </div>
   );

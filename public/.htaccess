@@ -16,6 +16,13 @@ ErrorDocument 404 /404.html
 # Never serve repository source, tooling or build config. A host that publishes the
 # repository root instead of dist/ exposes these paths; nothing here is needed by the
 # published site.
+# Legacy portfolio route. /works/ is the canonical archive and carries all 190
+# internal links and the sitemap entry; /work/ is an unlinked duplicate that used
+# to return 200 with a different title. A permanent redirect retires it without
+# touching the canonical or the sitemap.
+RedirectMatch 301 ^/work/?$ /works/
+
+# Repository source protection.
 RedirectMatch 404 ^/(src|scripts|docs|\.github|\.git|node_modules)(/|$)
 RedirectMatch 404 ^/(package|package-lock)\.json$
 RedirectMatch 404 ^/tsconfig[^/]*\.json$
@@ -52,6 +59,42 @@ RedirectMatch 404 ^/(README|CLAUDE|AGENTS)\.md$
   <FilesMatch "\.webmanifest$">
     Header always set Cache-Control "public, max-age=86400"
   </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  # ---------------------------------------------------------------------------
+  # Security headers
+  #
+  # Content-Security-Policy notes:
+  #   * script-src needs 'unsafe-inline': the published HTML carries the Google
+  #     Tag Manager bootstrap and the GA4 configuration as inline scripts, and a
+  #     nonce or hash policy is only possible when the server templates the HTML.
+  #     EmailJS, GTM and GA4 all require the origins listed here.
+  #   * 'wasm-unsafe-eval' is required by the Unity WebGL build on the metaverse
+  #     page; without it the loader is blocked under CSP.
+  #   * style-src needs 'unsafe-inline' for React inline styles and the inline
+  #     <style> block in each document's boot fallback.
+  #   * frame-src covers the YouTube privacy-enhanced player used by the work
+  #     archive and frame-ancestors keeps the site out of third-party frames.
+  #   * connect-src must include api.emailjs.com or enquiry submission fails.
+  # Keep this list in sync with the external origins the site actually loads.
+  # ---------------------------------------------------------------------------
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: https:; connect-src 'self' https://api.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://www.googletagmanager.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+
+  # HSTS. max-age is six months and includeSubDomains is deliberately omitted:
+  # the apex and this host are served over HTTPS only, but mail and other
+  # subdomains are not part of this decision and must not inherit it.
+  # env=HTTPS means the header is only ever emitted on an HTTPS response, so a
+  # plain-HTTP request can never be pinned to a scheme the host does not serve.
+  Header always set Strict-Transport-Security "max-age=15552000" env=HTTPS
+
+  Header always set X-Content-Type-Options "nosniff"
+  # Kept in step with CSP frame-ancestors 'self'; the two must not disagree.
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), fullscreen=(self), autoplay=(self)"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
 </IfModule>
 
 <IfModule mod_deflate.c>

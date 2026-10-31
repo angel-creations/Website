@@ -1847,7 +1847,7 @@ body.menu-open header .nav-menu {
   color: rgba(245, 245, 247, 0.54);
 }
 
-.ac-about-v2-metric dd {
+.ac-about-v2-metric dd:not(.ac-about-v2-metric__note) {
   margin: 0;
   font-family: 'Geograph', 'Graphik', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(2rem, 3.4vw, 3rem);
@@ -1857,8 +1857,15 @@ body.menu-open header .nav-menu {
   color: #7dd3fc;
 }
 
-.ac-about-v2-metric span {
+/* The caption under each metric used to be a <span>, which is not allowed
+   inside a <dl>. It is now a second <dd>; this rule keeps the same rendering. */
+.ac-about-v2-metric .ac-about-v2-metric__note {
+  margin: 0;
+  font-family: 'Graphik', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.85rem;
+  font-variant-numeric: normal;
+  letter-spacing: normal;
+  line-height: 1.45;
   color: rgba(245, 245, 247, 0.72);
 }
 
@@ -3140,6 +3147,65 @@ footer.ac-footer-v2 .ac-footer-v2__inline-list a {
 footer.ac-footer-v2 .ac-footer-v2__inline-list a:hover,
 footer.ac-footer-v2 .ac-footer-v2__inline-list a:focus-visible {
   color: #7dd3fc !important;
+}
+
+/* Official social profiles: icon-only links, one consistent 34px target each.
+   Kept compact so the footer does not grow, and the colour/glow hovers match
+   the rest of the footer link treatment. */
+footer.ac-footer-v2 .ac-footer-v2__social {
+  gap: 0.5rem 0.55rem;
+}
+
+footer.ac-footer-v2 .ac-footer-v2__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(245, 245, 247, 0.72);
+  transition:
+    color 220ms var(--angel-ease-out),
+    border-color 220ms var(--angel-ease-out),
+    background-color 220ms var(--angel-ease-out),
+    transform 220ms var(--angel-ease-out);
+}
+
+footer.ac-footer-v2 .ac-footer-v2__social a:hover,
+footer.ac-footer-v2 .ac-footer-v2__social a:focus-visible {
+  color: #7dd3fc !important;
+  border-color: rgba(125, 211, 252, 0.55);
+  background: rgba(125, 211, 252, 0.1);
+  transform: translateY(-1px);
+}
+
+footer.ac-footer-v2 .ac-footer-v2__social a:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
+}
+
+footer.ac-footer-v2 .ac-footer-v2__social-icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+}
+
+footer.ac-footer-v2 .ac-footer-v2__social-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  footer.ac-footer-v2 .ac-footer-v2__social a {
+    transition: none;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__social a:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 1024px) {

@@ -393,7 +393,7 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                 </div>
               </div>
 
-              <div className="apple-pillars-grid apple-pillars-grid--visual" role="list">
+              <div className="apple-pillars-grid apple-pillars-grid--visual" role="group" aria-label="Core practice pillars">
                 {pillars.map((pillar, idx) => {
                   const visual = storyVisuals[idx];
                   const isSelected = activePillar === idx;
@@ -403,7 +403,6 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                       className={`apple-pillar-card apple-pillar-card--visual${
                         isSelected ? ' is-selected' : ''
                       }`}
-                      role="listitem"
                       tabIndex={0}
                       aria-current={isSelected || undefined}
                       onClick={() => setActivePillar(idx)}
@@ -462,9 +461,9 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
 
                 {section04.entries && section04.entries.length > 0 ? (
                   <>
-                    <div className="apple-values-grid" role="list">
+                    <div className="apple-values-grid" role="group" aria-label="How the studio works">
                       {section04.entries.map((entry, idx) => (
-                        <article key={entry.title} className="apple-value-card" role="listitem">
+                        <article key={entry.title} className="apple-value-card">
                           <div className="apple-value-card__top">
                             <span className="apple-value-card__index">
                               {String(idx + 1).padStart(2, '0')}

@@ -635,8 +635,10 @@ export function LegalPage({ kind }: { kind: LegalDocKind }): JSX.Element {
             </div>
           </section>
 
-          <SiteFooter />
         </main>
+
+        {/* Kept outside <main> so the contentinfo landmark stays top level. */}
+        <SiteFooter />
       </div>
     </div>
   );

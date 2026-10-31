@@ -760,7 +760,6 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                           target="_blank"
                           rel="noreferrer"
                           className="apple-sector-card__media"
-                          aria-label={`Watch ${record.title} on YouTube`}
                         >
                           <picture>
                             <source srcSet={webpSource(record.thumbnail)} type="image/webp" />
@@ -776,6 +775,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                             {String(idx + 1).padStart(2, '0')}
                           </span>
                           <span className="apple-sector-card__status">Watch Film ↗</span>
+                          <span className="sr-only"> on YouTube (opens in a new tab)</span>
                         </a>
                       )}
                       <div className="apple-sector-card__body">

@@ -398,10 +398,41 @@ function getFallbackH1(page) {
     || normaliseText(page.meta?.['og:title'] || page.title || 'Angel Creations');
 }
 
+// The captured documents still carry the Organization entity from the previous
+// site, and three of its sameAs entries point at the wrong destinations (a
+// Facebook page handle that does not exist, a YouTube URL without the @-handle
+// and a personal LinkedIn profile instead of the company page). The entity is
+// rewritten in place rather than duplicated, so every page keeps exactly one
+// Organization node and it always agrees with the footer.
+const OFFICIAL_SAME_AS = [
+  'https://www.facebook.com/angelcreations.animation',
+  'https://www.instagram.com/angelcreations.digital/',
+  'https://www.linkedin.com/company/angelcreations-creativestudio/',
+  'https://www.youtube.com/@AngelCreationsACreativeStudio',
+  'https://x.com/angelcreation0',
+];
+
+function isOrganization(node) {
+  const type = node?.['@type'];
+  return Array.isArray(type) ? type.includes('Organization') : type === 'Organization';
+}
+
+function normaliseOrganization(node) {
+  if (!node || typeof node !== 'object') return node;
+  if (isOrganization(node)) {
+    node.sameAs = [...OFFICIAL_SAME_AS];
+  }
+  for (const value of Object.values(node)) {
+    if (Array.isArray(value)) value.forEach(normaliseOrganization);
+    else if (value && typeof value === 'object') normaliseOrganization(value);
+  }
+  return node;
+}
+
 function sourceSchema(page) {
   return (page.jsonLd || []).flatMap((item) => {
     try {
-      const data = JSON.parse(item);
+      const data = normaliseOrganization(JSON.parse(item));
       return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
     } catch {
       return '';
@@ -526,11 +557,16 @@ const organizationSchemaEntity = {
       availableLanguage: ['English'],
     },
   ],
+  // Official profiles only, in the same order as the footer so the two never
+  // contradict each other. Three of the previous values were wrong: the
+  // Facebook page handle, a YouTube URL without the @-handle, and a personal
+  // LinkedIn profile instead of the company page. X was missing entirely.
   sameAs: [
+    'https://www.facebook.com/angelcreations.animation',
     'https://www.instagram.com/angelcreations.digital/',
-    'https://www.facebook.com/angelcreations.digital/',
-    'https://www.youtube.com/AngelCreationsACreativeStudio',
-    'https://www.linkedin.com/in/angelcreations/',
+    'https://www.linkedin.com/company/angelcreations-creativestudio/',
+    'https://www.youtube.com/@AngelCreationsACreativeStudio',
+    'https://x.com/angelcreation0',
   ],
 };
 

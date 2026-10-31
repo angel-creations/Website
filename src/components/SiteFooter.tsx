@@ -1,4 +1,5 @@
 import type { MouseEvent as ReactMouseEvent } from 'react';
+import { socialLinks } from '../data/socialLinks';
 import { buildContactHref, trackLeadEvent } from '../utils/leads';
 import { navigate, navigateHomeFromStart } from '../utils/routes';
 
@@ -42,12 +43,8 @@ const productLinks = [
   },
 ];
 
-const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/angelcreations.digital/' },
-  { label: 'Facebook', href: 'https://www.facebook.com/angelcreations.digital/' },
-  { label: 'YouTube', href: 'https://www.youtube.com/AngelCreationsACreativeStudio' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/angelcreations/' },
-];
+// Official profile URLs, glyphs and ordering live in one place so the footer and
+// the contact page can never drift apart.
 
 export function SiteFooter(): JSX.Element {
   const handleInternalNav = (event: ReactMouseEvent<HTMLAnchorElement>, href: string): void => {
@@ -216,11 +213,21 @@ export function SiteFooter(): JSX.Element {
 
             <span className="ac-footer-v2__divider" aria-hidden="true" />
 
-            <ul className="ac-footer-v2__inline-list" aria-label="Social media">
+            <ul className="ac-footer-v2__inline-list ac-footer-v2__social" aria-label="Angel Creations on social media">
               {socialLinks.map((social) => (
                 <li key={social.label}>
-                  <a href={social.href} target="_blank" rel="noopener noreferrer">
-                    {social.label}
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.label} (opens in a new tab)`}
+                    title={social.label}
+                  >
+                    <span className="ac-footer-v2__social-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" width="18" height="18" focusable="false" aria-hidden="true">
+                        <path d={social.path} fill="currentColor" />
+                      </svg>
+                    </span>
                   </a>
                 </li>
               ))}

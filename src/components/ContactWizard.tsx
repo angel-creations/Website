@@ -13,6 +13,7 @@ import {
   type LeadAttribution,
 } from '../utils/leads';
 import { getEmailJsConfig } from '../config/emailjs';
+import { socialLinks } from '../data/socialLinks';
 
 // Measurement is best-effort. A tag manager, a consent script, or blocked
 // storage can throw from inside the dataLayer/gtag calls. Analytics must never
@@ -1210,7 +1211,7 @@ export function ContactWizard(): JSX.Element {
                                 key={item.id}
                                 type="button"
                                 aria-current={isCurrent ? 'step' : undefined}
-                                aria-label={`Step ${idx + 1}: ${item.name}`}
+                                aria-label={`${String(idx + 1).padStart(2, '0')} — Step ${idx + 1}: ${item.name}`}
                                 title={`Step ${idx + 1}: ${item.name}`}
                                 disabled={!canJump}
                                 className={`ac-step-dot${isCurrent ? ' is-current' : ''}${
@@ -1232,7 +1233,7 @@ export function ContactWizard(): JSX.Element {
                       <ul className="ac-question-list">
                         <li className="ac-question-li">
                           <div className="ac-active ac-label">
-                            <h3 id={currentLabelId}>{field.label}</h3>
+                            <h2 id={currentLabelId}>{field.label}</h2>
                             <span id={currentHintId} className="ac-question-hint">
                               {field.hint}
                             </span>
@@ -1259,7 +1260,7 @@ export function ContactWizard(): JSX.Element {
                             <button
                               className={`prev-btn prev-btn${step + 1}`}
                               type="button"
-                              aria-label="Previous question"
+                              aria-label="Prev question"
                               disabled={step === 0}
                               onClick={previous}
                             >
@@ -1360,7 +1361,7 @@ export function ContactWizard(): JSX.Element {
                   {copiedChannel === 'support' ? '✓ Copied' : 'Copy'}
                 </button>
               </div>
-              <h4>For Customer Supports</h4>
+              <h3>For Customer Supports</h3>
               <div className="downicon">
                 <img src={downIcon} alt="" />
                 <p>
@@ -1386,7 +1387,7 @@ export function ContactWizard(): JSX.Element {
                   {copiedChannel === 'business' ? '✓ Copied' : 'Copy'}
                 </button>
               </div>
-              <h4>For Customer Business</h4>
+              <h3>For Customer Business</h3>
               <div className="downicon">
                 <img src={downIcon} alt="" />
                 <p>
@@ -1410,7 +1411,7 @@ export function ContactWizard(): JSX.Element {
                   {copiedChannel === 'mobile' ? '✓ Copied' : 'Copy'}
                 </button>
               </div>
-              <h4>For Direct Call &amp; Mobile</h4>
+              <h3>For Direct Call &amp; Mobile</h3>
               <div className="downicon">
                 <img src={downIcon} alt="" />
                 <p>
@@ -1421,6 +1422,28 @@ export function ContactWizard(): JSX.Element {
                 Direct producer line · Instant voice &amp; studio consultation
               </span>
             </div>
+          </div>
+
+          <div className="ac-support-social">
+            <span className="ac-support-social__label">Follow the studio</span>
+            <ul className="ac-support-social__list" aria-label="Angel Creations on social media">
+              {socialLinks.map((social) => (
+                <li key={social.label}>
+                  <a
+                    className="ac-support-social__link"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.label} (opens in a new tab)`}
+                    title={social.label}
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" focusable="false" aria-hidden="true">
+                      <path d={social.path} fill="currentColor" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
