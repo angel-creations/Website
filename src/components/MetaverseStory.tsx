@@ -149,7 +149,7 @@ export function MetaverseStory(): JSX.Element {
               </div>
             </div>
 
-            <div className="apple-pillars-grid apple-pillars-grid--visual" role="list">
+            <div className="apple-pillars-grid apple-pillars-grid--visual" role="group" aria-label="Core practice pillars">
               {METAVERSE_PILLARS.map((pillar, idx) => {
                 const visual = storyVisuals[idx];
                 const isSelected = activePillar === idx;
@@ -159,7 +159,6 @@ export function MetaverseStory(): JSX.Element {
                     className={`apple-pillar-card apple-pillar-card--visual${
                       isSelected ? ' is-selected' : ''
                     }`}
-                    role="listitem"
                     tabIndex={0}
                     aria-current={isSelected || undefined}
                     onClick={() => setActivePillar(idx)}
@@ -206,9 +205,9 @@ export function MetaverseStory(): JSX.Element {
               </div>
             </div>
 
-            <div className="apple-values-grid" role="list">
+            <div className="apple-values-grid" role="group" aria-label="Layers of the experience">
               {metaverseContent.experienceLayer.map(([term, definition], idx) => (
-                <article key={term} className="apple-value-card" role="listitem">
+                <article key={term} className="apple-value-card">
                   <div className="apple-value-card__top">
                     <span className="apple-value-card__index">
                       {String(idx + 1).padStart(2, '0')}

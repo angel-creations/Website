@@ -115,7 +115,7 @@ export function CapabilityDetail({ capability, includeHero = true }: { capabilit
             <div className="angel-capability__visual-list">
               {visualExamples.map((record) => (
                 <a href={record.url} target="_blank" rel="noreferrer" key={record.id} className="angel-capability__visual">
-                  {record.thumbnail && <picture><source srcSet={webpSource(record.thumbnail)} type="image/webp" /><img src={record.thumbnail} alt={record.title} loading="lazy" decoding="async" /></picture>}
+                  {record.thumbnail && <picture><source srcSet={webpSource(record.thumbnail)} type="image/webp" /><img src={record.thumbnail} alt="" loading="lazy" decoding="async" /></picture>}
                   <span>{record.title}</span>
                 </a>
               ))}

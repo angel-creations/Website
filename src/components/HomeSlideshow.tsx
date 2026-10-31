@@ -876,7 +876,7 @@ export function HomeSlideshow(): JSX.Element {
                       onClick={() => changeSlide(-1)}
                       onMouseMove={onArrowMagnetMove}
                       onMouseLeave={onArrowMagnetLeave}
-                      aria-label="Previous capability"
+                      aria-label="Prev capability"
                       aria-keyshortcuts="ArrowLeft"
                     >
                       <span className="magnet_circle_fast" />

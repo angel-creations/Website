@@ -623,7 +623,7 @@ export function ExperienceProcess({
                 <span>{experience.label}</span>
               </div>
 
-              <article
+              <div
                 key={active.title}
                 id={panelId}
                 className="apple-process-stage__panel"
@@ -647,7 +647,7 @@ export function ExperienceProcess({
                     ))}
                   </ul>
                 </div>
-              </article>
+              </div>
 
               <div className="apple-process-stage__controls">
                 <button
@@ -667,9 +667,12 @@ export function ExperienceProcess({
                     setIsAutoPlaying((current) => !current);
                   }}
                   aria-pressed={isAutoPlaying}
-                  aria-label={isAutoPlaying ? 'Pause guided process journey' : 'Play guided process journey'}
+                  aria-label={isAutoPlaying ? 'Pause journey — guided process' : 'Play journey — guided process'}
                 >
-                  <span aria-hidden="true">{isAutoPlaying ? '❚❚' : '▶'}</span>
+                  <span
+                    className={`apple-process-control__glyph${isAutoPlaying ? ' is-pause' : ' is-play'}`}
+                    aria-hidden="true"
+                  />
                   <span>{isAutoPlaying ? 'Pause journey' : 'Play journey'}</span>
                 </button>
                 <button

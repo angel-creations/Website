@@ -145,11 +145,15 @@ function buildRouteSchema(page: SeoData): string | null {
           availableLanguage: ['English'],
         },
       ],
+      // Must match the footer (src/components/SiteFooter.tsx) and the static
+      // Organization entity in scripts/generateStaticFallbacks.mjs. This is the
+      // same @id, so it updates that single entity rather than adding a second.
       sameAs: [
+        'https://www.facebook.com/angelcreations.animation',
         'https://www.instagram.com/angelcreations.digital/',
-        'https://www.facebook.com/angelcreations.digital/',
-        'https://www.youtube.com/AngelCreationsACreativeStudio',
-        'https://www.linkedin.com/in/angelcreations/',
+        'https://www.linkedin.com/company/angelcreations-creativestudio/',
+        'https://www.youtube.com/@AngelCreationsACreativeStudio',
+        'https://x.com/angelcreation0',
       ],
     },
     {

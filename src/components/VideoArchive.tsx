@@ -581,7 +581,7 @@ export function VideoArchive(): JSX.Element {
                     type="button"
                     className="apple-works-play-trigger"
                     onClick={() => setIsPlayingInline(true)}
-                    aria-label={`Play ${activeVideo.title} in the Cinema Stage`}
+                    aria-label={`Play Film — ${activeVideo.title} in the Cinema Stage`}
                   >
                     <span className="apple-works-play-trigger__icon" aria-hidden="true">
                       ▶
@@ -629,7 +629,7 @@ export function VideoArchive(): JSX.Element {
                               setActiveVideoId(vid.id);
                               setIsPlayingInline(false);
                             }}
-                            aria-label={`Show ${vid.title} in the spotlight`}
+                            aria-label={`Show ${String(idx + 1).padStart(2, '0')} — ${vid.title} in the spotlight`}
                             aria-pressed={isSelected}
                           >
                             {vid.thumbnail && (
