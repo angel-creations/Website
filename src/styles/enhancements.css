@@ -408,6 +408,86 @@ header .logo-bar .link_flex ul li a:focus-visible {
 }
 
 /* Minimalist Bottom Bar: 01 — 07 on Left, Prev / Next on Right */
+/* ---------------------------------------------------------------------------
+   Homepage social rail
+   Vertical stack of the five official profiles on the right edge. Desktop only:
+   on phones and small tablets the full-bleed stage has no room for a second
+   vertical column and the profiles are reachable from the menu instead. The
+   bottom edge sits a fixed distance above the viewport mid-line, which is where
+   the fixed menu toggle is centred, so the two can never overlap at any height.
+   --------------------------------------------------------------------------- */
+#slideshow.slideshow.ac-home-cinema .ac-home-social {
+  position: absolute;
+  right: clamp(0.85rem, 1.5vw, 1.35rem);
+  bottom: calc(50% + 3.75rem);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#slideshow.slideshow.ac-home-cinema .ac-home-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(4, 7, 13, 0.28);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: rgba(245, 245, 247, 0.72);
+  transition: color 200ms var(--angel-ease-out), border-color 200ms var(--angel-ease-out),
+    background 200ms var(--angel-ease-out), transform 200ms var(--angel-ease-out);
+}
+
+#slideshow.slideshow.ac-home-cinema .ac-home-social a:hover,
+#slideshow.slideshow.ac-home-cinema .ac-home-social a:focus-visible {
+  color: #04070d;
+  border-color: #ffffff;
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+#slideshow.slideshow.ac-home-cinema .ac-home-social a:focus-visible {
+  outline: 2px solid var(--angel-focus);
+  outline-offset: var(--angel-focus-offset);
+}
+
+@media (max-width: 1023px) {
+  #slideshow.slideshow.ac-home-cinema .ac-home-social {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #slideshow.slideshow.ac-home-cinema .ac-home-social a {
+    transition: color 200ms var(--angel-ease-out);
+  }
+
+  #slideshow.slideshow.ac-home-cinema .ac-home-social a:hover,
+  #slideshow.slideshow.ac-home-cinema .ac-home-social a:focus-visible {
+    transform: none;
+  }
+}
+
+/* Reserves the first screen while an experience route loads so the footer is
+   never painted above the fold and then thrown down the page. See App.tsx. */
+.site-main--reserve {
+  min-height: 100svh;
+}
+
+@supports (min-height: 100dvh) {
+  .site-main--reserve {
+    min-height: 100dvh;
+  }
+}
+
 #slideshow.slideshow.ac-home-cinema .arrows.ac-home-controls {
   position: absolute !important;
   top: auto !important;
@@ -1013,10 +1093,66 @@ body.menu-open header .nav-menu {
   outline-offset: 5px;
 }
 
+/* Social profiles in the menu's bottom studio bar. Secondary by construction:
+   the primary list keeps the large type, these stay icon-sized beside it. */
+#menuNav.menu.ac-menu-screen .nav_bottom.ac-menu-footer .col--social {
+  margin-inline-start: auto;
+}
+
+#menuNav.menu.ac-menu-screen .ac-menu-social {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#menuNav.menu.ac-menu-screen .ac-menu-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(245, 245, 247, 0.78);
+  transition: color 200ms var(--angel-ease-out), border-color 200ms var(--angel-ease-out),
+    background 200ms var(--angel-ease-out), transform 200ms var(--angel-ease-out);
+}
+
+#menuNav.menu.ac-menu-screen .ac-menu-social a:hover,
+#menuNav.menu.ac-menu-screen .ac-menu-social a:focus-visible {
+  color: #04070d;
+  border-color: #7dd3fc;
+  background: #7dd3fc;
+  transform: translateY(-1px);
+}
+
 @media (max-width: 960px) {
   #menuNav.menu.ac-menu-screen .ac-menu-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* The bottom studio bar gains a fourth row (social profiles) on phones. Tighten
+     its rhythm so all five icons stay above the fold instead of sitting a scroll
+     below the legal links. */
+  #menuNav.menu.ac-menu-screen .nav_bottom.ac-menu-footer {
+    margin-top: 1rem !important;
+    padding-top: 0.85rem !important;
+    gap: 0.55rem 1.25rem !important;
+  }
+
+  #menuNav.menu.ac-menu-screen .ac-menu-social {
+    gap: 0.45rem;
+  }
+
+  #menuNav.menu.ac-menu-screen .nav_bottom.ac-menu-footer .col--social {
+    margin-inline-start: 0;
   }
 }
 

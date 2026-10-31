@@ -10,9 +10,11 @@ import {
   type WheelEvent as ReactWheelEvent,
 } from 'react';
 import { slideExperiences } from '../data/slideExperiences';
+import { socialLinks } from '../data/socialLinks';
 import { PointerVelocityTracker, projectMomentum } from '../utils/appleSpring';
 import { getNetworkInformation, prefersReducedData as getReducedDataPreference, prefersReducedMotion as getReducedMotionPreference } from '../utils/mediaPreferences';
 import { HOME_SLIDESHOW_RESET_EVENT, navigate } from '../utils/routes';
+import { imageSize } from '../utils/imageDimensions';
 
 const TRANSITION_MS = 1120;
 const DRAG_SETTLE_MIN_MS = 300;
@@ -814,6 +816,7 @@ export function HomeSlideshow(): JSX.Element {
                                 <img
                                   className="slide-poster"
                                   src={slide.poster}
+                                  {...imageSize(slide.poster)}
                                   alt=""
                                   aria-hidden="true"
                                   loading={index === active ? 'eager' : 'lazy'}
@@ -857,6 +860,32 @@ export function HomeSlideshow(): JSX.Element {
                 <div className="ac-home-horizon" aria-hidden="true">
                   <span className="ac-home-horizon__beam" />
                 </div>
+                {/*
+                  Official profiles as a vertical rail on the right edge. It is
+                  deliberately desktop-only: on phones the full-bleed stage has
+                  no room for a second vertical stack, and the profiles stay
+                  reachable from the menu there. The bottom edge is anchored to
+                  the viewport mid-line so the rail can never collide with the
+                  fixed menu toggle, which sits exactly at the vertical centre,
+                  at any window height.
+                */}
+                <ul className="ac-home-social" aria-label="Angel Creations on social media">
+                  {socialLinks.map((social) => (
+                    <li key={social.label}>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${social.label} (opens in a new tab)`}
+                        title={social.label}
+                      >
+                        <svg viewBox="0 0 24 24" width="16" height="16" focusable="false" aria-hidden="true">
+                          <path d={social.path} fill="currentColor" />
+                        </svg>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
                 <div
                   className="arrows menu_fade ac-home-controls"
                   data-scroll

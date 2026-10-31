@@ -6,6 +6,7 @@ import {
   clampWithRubberBand,
   projectMomentum,
 } from '../utils/appleSpring';
+import { imageSize } from '../utils/imageDimensions';
 
 export type ExplorerItem = {
   title: string;
@@ -227,6 +228,7 @@ const InteractiveVisualStage: React.FC<InteractiveVisualStageProps> = ({
         <img
           key={currentItem.src}
           src={currentItem.src}
+          {...imageSize(currentItem.src)}
           alt={`${activeTitle} — ${currentItem.subtitle || currentItem.caption}`}
           className="apple-visual-stage__img"
           loading="lazy"
@@ -690,6 +692,7 @@ export function ApplicationExplorer({
                   <div className="apple-sector-card__media">
                     <img
                       src={itemVisual.src}
+                      {...imageSize(itemVisual.src)}
                       alt={`${item.title} — ${itemVisual.subtitle || itemVisual.caption}`}
                       loading="lazy"
                       decoding="async"

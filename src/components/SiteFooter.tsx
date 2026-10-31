@@ -2,6 +2,7 @@ import type { MouseEvent as ReactMouseEvent } from 'react';
 import { socialLinks } from '../data/socialLinks';
 import { buildContactHref, trackLeadEvent } from '../utils/leads';
 import { navigate, navigateHomeFromStart } from '../utils/routes';
+import { imageSize } from '../utils/imageDimensions';
 
 const logo = '/media/logos/logo-rectangle-1.png';
 const footerLeadHref = buildContactHref({
@@ -183,7 +184,8 @@ export function SiteFooter(): JSX.Element {
               onClick={(event) => handleInternalNav(event, '/')}
               aria-label="Angel Creations — go to the homepage and restart from Metaverse"
             >
-              <img src={logo} alt="Angel Creations" />
+              <img src={logo}
+              {...imageSize(logo)} alt="Angel Creations" />
             </a>
             <span className="ac-footer-v2__divider" aria-hidden="true" />
             <p className="ac-footer-v2__copy">

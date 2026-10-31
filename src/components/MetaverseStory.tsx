@@ -10,6 +10,7 @@ import {
   type ExperienceMapData,
   type ExplorerVisual,
 } from './ExperienceExplorer';
+import { imageSize } from '../utils/imageDimensions';
 
 type RouteVisualBundle = {
   hero: ExplorerVisual;
@@ -88,6 +89,7 @@ export function MetaverseStory(): JSX.Element {
                 <div className="apple-dossier-visual">
                   <img
                     src={visuals.map[0].src}
+                    {...imageSize(visuals.map[0].src)}
                     alt={visuals.map[0].caption}
                     loading="lazy"
                     decoding="async"
@@ -115,6 +117,7 @@ export function MetaverseStory(): JSX.Element {
                 <div className="apple-dossier-visual">
                   <img
                     src={visuals.map[3].src}
+                    {...imageSize(visuals.map[3].src)}
                     alt={visuals.map[3].caption}
                     loading="lazy"
                     decoding="async"
@@ -169,6 +172,7 @@ export function MetaverseStory(): JSX.Element {
                       <div className="apple-pillar-card__media">
                         <img
                           src={visual.src}
+                          {...imageSize(visual.src)}
                           alt={`${pillar.title} — ${visual.subtitle || visual.caption}`}
                           loading="lazy"
                           decoding="async"

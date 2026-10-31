@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 
 import { buildContactHref, trackLeadEvent } from '../utils/leads';
 import { getNetworkInformation, prefersReducedData, prefersReducedMotion } from '../utils/mediaPreferences';
 import { SiteFooter } from './SiteFooter';
+import { imageSize } from '../utils/imageDimensions';
 
 const aboutLeadHref = buildContactHref({
   discipline: 'Custom Multi-Discipline Commission',
@@ -1209,6 +1210,7 @@ export function AboutPage(): JSX.Element {
                 <figure className="ac-about-v2-bento-card ac-about-v2-bento-card--visual">
                   <img
                     src="/media/library/metaverse/hero-metaverse.webp"
+                    {...imageSize('/media/library/metaverse/hero-metaverse.webp')}
                     alt="Spatial worldbuilding at Angel Creations"
                     loading="lazy"
                     decoding="async"
@@ -1303,6 +1305,7 @@ export function AboutPage(): JSX.Element {
                     <img
                       key={activeDiscipline.image}
                       src={activeDiscipline.image}
+                      {...imageSize(activeDiscipline.image)}
                       alt={activeDiscipline.title}
                       loading="lazy"
                       decoding="async"
@@ -1375,7 +1378,8 @@ export function AboutPage(): JSX.Element {
                     className="ac-about-v2-product-card"
                   >
                     <div className="ac-about-v2-product-card__media">
-                      <img src={product.image} alt={product.title} loading="lazy" decoding="async" />
+                      <img src={product.image}
+                      {...imageSize(product.image)} alt={product.title} loading="lazy" decoding="async" />
                       <div className="ac-about-v2-product-card__media-shade" aria-hidden="true" />
                       <span className="ac-about-v2-product-card__badge">
                         {product.number} · {product.badge}

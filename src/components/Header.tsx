@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react';
+import { socialLinks } from '../data/socialLinks';
 import type { NavigationItem } from '../types/content';
 import { getNetworkInformation, shouldAutoplayAmbientMedia } from '../utils/mediaPreferences';
 import { navigate, navigateHomeFromStart } from '../utils/routes';
+import { imageSize } from '../utils/imageDimensions';
 
 const logo = '/media/logos/logo-rectangle-1.png';
 const menuVideo = '/media/videos/Main-Background-with-sound.mp4';
@@ -95,8 +97,35 @@ export function Header(): JSX.Element {
   const menuRef = useRef<HTMLElement>(null);
   const menuVideoRef = useRef<HTMLVideoElement>(null);
   const hadOpenMenuRef = useRef(false);
+  const focusRestoreFrameRef = useRef<number | null>(null);
 
   const closeMenu = (): void => setOpen(false);
+
+  // The trigger keeps `visibility: hidden` for the opening frames of the menu
+  // close transition, and focus() on a hidden element is silently dropped — it
+  // reports as focused for a moment and then falls back to <body>. So retry on
+  // animation frames until the trigger is genuinely visible. Focusing is also
+  // skipped whenever something else has already taken focus, so a restore can
+  // never pull focus away from where the visitor moved it.
+  const restoreTriggerFocus = (): void => {
+    if (focusRestoreFrameRef.current !== null) cancelAnimationFrame(focusRestoreFrameRef.current);
+    const startedAt = performance.now();
+    const step = (): void => {
+      const trigger = triggerRef.current;
+      if (!trigger) return;
+      const active = document.activeElement;
+      const focusIsElsewhere = active !== null && active !== document.body && !menuRef.current?.contains(active);
+      if (focusIsElsewhere) { focusRestoreFrameRef.current = null; return; }
+      if (getComputedStyle(trigger).visibility !== 'hidden') {
+        trigger.focus();
+        focusRestoreFrameRef.current = null;
+        return;
+      }
+      if (performance.now() - startedAt > 600) { focusRestoreFrameRef.current = null; return; }
+      focusRestoreFrameRef.current = requestAnimationFrame(step);
+    };
+    focusRestoreFrameRef.current = requestAnimationFrame(step);
+  };
 
   useEffect(() => {
     const menu = menuRef.current;
@@ -108,7 +137,7 @@ export function Header(): JSX.Element {
       setMenuBackgroundInert(false);
       notifyMenuState(false);
       menuVideoRef.current?.pause();
-      if (hadOpenMenuRef.current) triggerRef.current?.focus();
+      if (hadOpenMenuRef.current) restoreTriggerFocus();
       return undefined;
     }
 
@@ -192,7 +221,8 @@ export function Header(): JSX.Element {
                 navigateHomeFromStart();
               }}
             >
-              <img src={logo} alt="Angel Creations" />
+              <img src={logo}
+              {...imageSize(logo)} alt="Angel Creations" />
               <span>Digital</span>
             </a>
           </div>
@@ -329,6 +359,28 @@ export function Header(): JSX.Element {
                 </li>
               </ul>
             </div>
+          </div>
+          {/* Secondary position: the primary navigation above stays dominant and
+              the five official profiles sit in the bottom studio bar. */}
+          <div className="col col--social">
+            <ul className="ac-menu-social" aria-label="Angel Creations on social media">
+              {socialLinks.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.label} (opens in a new tab)`}
+                    title={social.label}
+                    onClick={closeMenu}
+                  >
+                    <svg viewBox="0 0 24 24" width="18" height="18" focusable="false" aria-hidden="true">
+                      <path d={social.path} fill="currentColor" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </nav>

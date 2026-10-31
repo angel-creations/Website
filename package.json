@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build && node scripts/generateStaticFallbacks.mjs && node scripts/verifyStaticOutput.mjs",
+    "build": "node scripts/generateImageDimensions.mjs && tsc -b && vite build && node scripts/generateStaticFallbacks.mjs && node scripts/verifyStaticOutput.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test:smoke": "node scripts/playwright-smoke.mjs",
     "test:static": "node scripts/playwright-smoke.mjs --static",

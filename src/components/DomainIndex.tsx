@@ -3,6 +3,7 @@ import { domains } from '../data/domains';
 import { slideExperiences } from '../data/slideExperiences';
 import { LeadCtaBand } from './LeadCtaBand';
 import { buildContactHref, disciplineForExperienceRoute, LEAD_PHONE_DISPLAY, LEAD_PHONE_HREF, trackLeadEvent } from '../utils/leads';
+import { imageSize } from '../utils/imageDimensions';
 
 export function DomainIndex(): JSX.Element {
   const [query, setQuery] = useState('');
@@ -145,7 +146,8 @@ export function DomainIndex(): JSX.Element {
               } as React.CSSProperties}
             >
               <span className="angel-domain-index__media">
-                <img src={domain.image} alt="" loading="lazy" decoding="async" />
+                <img src={domain.image}
+                {...imageSize(domain.image)} alt="" loading="lazy" decoding="async" />
                 <span>{domain.parentLabel}</span>
               </span>
               <span className="angel-domain-index__body">

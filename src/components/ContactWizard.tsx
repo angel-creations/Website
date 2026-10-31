@@ -14,6 +14,7 @@ import {
 } from '../utils/leads';
 import { getEmailJsConfig } from '../config/emailjs';
 import { socialLinks } from '../data/socialLinks';
+import { imageSize } from '../utils/imageDimensions';
 
 // Measurement is best-effort. A tag manager, a consent script, or blocked
 // storage can throw from inside the dataLayer/gtag calls. Analytics must never
@@ -1264,7 +1265,8 @@ export function ContactWizard(): JSX.Element {
                               disabled={step === 0}
                               onClick={previous}
                             >
-                              <img src={backIcon} alt="" />
+                              <img src={backIcon}
+                              {...imageSize(backIcon)} alt="" />
                               <span className="ac-btn-label">Prev</span>
                             </button>
 
@@ -1284,7 +1286,8 @@ export function ContactWizard(): JSX.Element {
                               <span className="ac-btn-label">
                                 {step === fields.length - 1 ? 'Prepare Enquiry' : 'Next'}
                               </span>
-                              <img src={nextIcon} alt="" />
+                              <img src={nextIcon}
+                              {...imageSize(nextIcon)} alt="" />
                             </button>
                           </div>
 
@@ -1363,7 +1366,8 @@ export function ContactWizard(): JSX.Element {
               </div>
               <h3>For Customer Supports</h3>
               <div className="downicon">
-                <img src={downIcon} alt="" />
+                <img src={downIcon}
+                {...imageSize(downIcon)} alt="" />
                 <p>
                   <a href="mailto:support@angelcreations.in">support@angelcreations.in</a>
                 </p>
@@ -1389,7 +1393,8 @@ export function ContactWizard(): JSX.Element {
               </div>
               <h3>For Customer Business</h3>
               <div className="downicon">
-                <img src={downIcon} alt="" />
+                <img src={downIcon}
+                {...imageSize(downIcon)} alt="" />
                 <p>
                   <a href="mailto:business@angelcreations.in">business@angelcreations.in</a>
                 </p>
@@ -1413,7 +1418,8 @@ export function ContactWizard(): JSX.Element {
               </div>
               <h3>For Direct Call &amp; Mobile</h3>
               <div className="downicon">
-                <img src={downIcon} alt="" />
+                <img src={downIcon}
+                {...imageSize(downIcon)} alt="" />
                 <p>
                   <a href="tel:+918058465733">+91-8058465733</a>
                 </p>

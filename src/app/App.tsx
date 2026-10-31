@@ -146,9 +146,21 @@ function domainListJsonLd(route: string, name: string, records: typeof domains):
   });
 }
 
-function RouteLoading({ message }: { message: string }): JSX.Element {
+/**
+ * Route-level loading state.
+ *
+ * `reserveViewport` is used by the experience routes, whose layout opens with a
+ * full-height hero. Without the reservation the fallback is only ~150px tall, so
+ * the footer — rendered as a sibling of the Suspense boundary — is painted near
+ * the top of the first screen and then thrown ~11,000px down the page when the
+ * chunk resolves. That single move measured CLS 0.687 on desktop. Reserving one
+ * viewport keeps the footer below the fold in its final position, so nothing
+ * visible moves. Shorter fallbacks do not need it and must not pay for blank
+ * space they never use.
+ */
+function RouteLoading({ message, reserveViewport = false }: { message: string; reserveViewport?: boolean }): JSX.Element {
   return (
-    <main id="main" className="site-main">
+    <main id="main" className={`site-main${reserveViewport ? ' site-main--reserve' : ''}`}>
       <p className="angel-route-loading" aria-live="polite">{message}</p>
     </main>
   );
@@ -200,7 +212,7 @@ function pageContent(page: PageDocument, route: string): JSX.Element {
   if (experience) {
     return (
       <>
-        <Suspense fallback={<RouteLoading message="Loading experience." />}>
+        <Suspense fallback={<RouteLoading message="Loading experience." reserveViewport />}>
           <SliderExperience experience={experience} />
         </Suspense>
         <SiteFooter />
@@ -244,6 +256,9 @@ function pageContent(page: PageDocument, route: string): JSX.Element {
               <ContactWizard />
             </Suspense>
           </main>
+          {/* The homepage stays deliberately footer-free; every other route,
+              the contact page included, closes with the shared site footer. */}
+          <SiteFooter />
         </div>
       </div>
     );
