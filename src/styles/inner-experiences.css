@@ -1888,6 +1888,11 @@
     display: none;
   }
 
+  /* minmax(0, 1fr), not 1fr: a plain `1fr` track floors at min-content, so a
+     long descendant could push the single column far past the container on
+     narrow phones (measured 1048px inside a 288px box) and the overflow was
+     clipped by the page rather than scrollable. minmax(0, …) lets the track
+     shrink and the text wrap, which is the intended single-column layout. */
   .apple-story-compare-grid,
   .apple-telemetry-strip,
   .apple-pillars-grid,
@@ -1895,7 +1900,7 @@
   .apple-sector-grid,
   .apple-adjacent-nav,
   .apple-capabilities-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .apple-segmented-track {
@@ -5468,6 +5473,22 @@ body footer.color_creme .soical a:hover {
     min-height: 44px;
     padding: 0.58rem 0.68rem;
     font-size: 0.75rem;
+    /* Equal tracks so the row always divides the available width evenly
+       instead of sizing each pill to its label. */
+    min-width: 0;
+  }
+
+  /* Below 360px "Previous" and "Pause journey" cannot share a 320px row with
+     44px tap targets, so the words give way to their glyphs. The aria-label
+     still names each control for screen readers. */
+  @media (max-width: 359px) {
+    .apple-process-control > span:not([aria-hidden="true"]) {
+      display: none;
+    }
+
+    .apple-process-control {
+      padding-inline: 0.4rem;
+    }
   }
 
   .apple-process-selector {
