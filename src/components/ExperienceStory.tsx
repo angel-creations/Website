@@ -10,6 +10,7 @@ import {
   type ExperienceMapData,
   type ExplorerVisual,
 } from './ExperienceExplorer';
+import { imageSize } from '../utils/imageDimensions';
 
 type StoryEntry = {
   title: string;
@@ -325,6 +326,7 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                   <div className="apple-dossier-visual">
                     <img
                       src={mapVisuals[0].src}
+                      {...imageSize(mapVisuals[0].src)}
                       alt={mapVisuals[0].caption}
                       loading="lazy"
                       decoding="async"
@@ -353,6 +355,7 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                   <div className="apple-dossier-visual">
                     <img
                       src={mapVisuals[2].src}
+                      {...imageSize(mapVisuals[2].src)}
                       alt={mapVisuals[2].caption}
                       loading="lazy"
                       decoding="async"
@@ -413,6 +416,7 @@ export function ExperienceStory({ experience }: { experience: SlideExperience })
                         <div className="apple-pillar-card__media">
                           <img
                             src={visual.src}
+                            {...imageSize(visual.src)}
                             alt={`${pillar.title} — ${visual.subtitle || visual.caption}`}
                             loading="lazy"
                             decoding="async"

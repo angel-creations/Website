@@ -70,8 +70,10 @@ RedirectMatch 404 ^/(README|CLAUDE|AGENTS)\.md$
   #     Tag Manager bootstrap and the GA4 configuration as inline scripts, and a
   #     nonce or hash policy is only possible when the server templates the HTML.
   #     EmailJS, GTM and GA4 all require the origins listed here.
-  #   * 'wasm-unsafe-eval' is required by the Unity WebGL build on the metaverse
-  #     page; without it the loader is blocked under CSP.
+  #   * 'wasm-unsafe-eval' is deliberately NOT granted. The published bundle is an
+  #     ordinary ES module build with no Unity player, no .wasm payload and no
+  #     eval()/new Function() call, so the relaxation was removed and the policy
+  #     kept strict.
   #   * style-src needs 'unsafe-inline' for React inline styles and the inline
   #     <style> block in each document's boot fallback.
   #   * frame-src covers the YouTube privacy-enhanced player used by the work
@@ -79,7 +81,7 @@ RedirectMatch 404 ^/(README|CLAUDE|AGENTS)\.md$
   #   * connect-src must include api.emailjs.com or enquiry submission fails.
   # Keep this list in sync with the external origins the site actually loads.
   # ---------------------------------------------------------------------------
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: https:; connect-src 'self' https://api.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://www.googletagmanager.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob: https:; connect-src 'self' https://api.emailjs.com https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com https://www.googletagmanager.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
 
   # HSTS. max-age is six months and includeSubDomains is deliberately omitted:
   # the apex and this host are served over HTTPS only, but mail and other

@@ -20,6 +20,7 @@ import { navigate } from '../utils/routes';
 import { cleanArchiveTitle } from '../utils/archiveCopy';
 import { domainsForParent } from '../data/domains';
 import { experienceSeoFaqs } from '../utils/seoKeywords';
+import { imageSize } from '../utils/imageDimensions';
 
 const MetaverseRuntime = lazy(async () => {
   const module = await import('./MetaversePage');
@@ -610,14 +611,13 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                   <img
                     key={activeLens.src}
                     src={activeLens.src}
+                    {...imageSize(activeLens.src)}
                     alt={`${experience.label} — ${activeLens.caption}`}
                     className="apple-hero-visual-card__img"
                     loading="eager"
                     fetchPriority="high"
                     decoding="async"
                     draggable={false}
-                    width={1920}
-                    height={1080}
                   />
                 </picture>
                 <div className="apple-hero-visual-card__vignette" aria-hidden="true" />
@@ -652,7 +652,8 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                             onClick={() => setActiveHeroLens(idx)}
                             onKeyDown={(event) => handleHeroLensKeyDown(event, idx)}
                           >
-                            <img src={lens.src} alt="" loading="lazy" decoding="async" />
+                            <img src={lens.src}
+                            {...imageSize(lens.src)} alt="" loading="lazy" decoding="async" />
                           </button>
                         );
                       })}
@@ -765,6 +766,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                             <source srcSet={webpSource(record.thumbnail)} type="image/webp" />
                             <img
                               src={record.thumbnail}
+                              {...imageSize(record.thumbnail)}
                               alt={record.title}
                               loading="lazy"
                               decoding="async"
@@ -882,6 +884,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
               <img
                 className="apple-Finale-card__bg"
                 src={heroLenses[0].src}
+                {...imageSize(heroLenses[0].src)}
                 alt=""
                 aria-hidden="true"
                 loading="lazy"
@@ -966,6 +969,8 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                     optimizedHeroSource(innerHeroVisuals[previous.route]) ||
                     innerHeroVisuals[previous.route]
                   }
+                  {...imageSize(optimizedHeroSource(innerHeroVisuals[previous.route]) ||
+                    innerHeroVisuals[previous.route])}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
@@ -988,6 +993,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                 <img
                   className="apple-adjacent-card__bg"
                   src={heroLenses[0].src}
+                  {...imageSize(heroLenses[0].src)}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
@@ -1013,6 +1019,8 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                     optimizedHeroSource(innerHeroVisuals[next.route]) ||
                     innerHeroVisuals[next.route]
                   }
+                  {...imageSize(optimizedHeroSource(innerHeroVisuals[next.route]) ||
+                    innerHeroVisuals[next.route])}
                   alt=""
                   aria-hidden="true"
                   loading="lazy"

@@ -233,7 +233,7 @@ function staticDomainSeoProfile({ route, title, contextualTitle, parentRoute, pa
   return { focus, aliases, keywords };
 }
 
-function domainSeoTitle(contextTitle, parentLabel, parentRoute) {
+function domainSeoTitle(contextTitle, parentLabel, parentRoute, plainTitle = '') {
   const context = contextTitle.toLowerCase();
   const parent = parentLabel.toLowerCase();
   const short = seoKeywords.domainParentTerms[parentRoute]?.short;
@@ -255,8 +255,10 @@ function domainSeoTitle(contextTitle, parentLabel, parentRoute) {
       : parentRoute === '/animation/'
         ? [
             `${contextTitle} Animation Services in India | Angel Creations`,
-            `${contextTitle} Services in India | Angel Creations`,
+            // Dropping "India" rather than "Animation": these pages rank for
+            // animation work, so the discipline is the last word to lose.
             `${contextTitle} Animation Services | Angel Creations`,
+            `${contextTitle} Services in India | Angel Creations`,
           ]
         : parentRoute === '/brand-advertisement/' || parentRoute === '/media-production/'
           ? [
@@ -268,7 +270,34 @@ function domainSeoTitle(contextTitle, parentLabel, parentRoute) {
               `${contextTitle} | ${parentLabel} Services in India | Angel Creations`,
               `${contextTitle} Services in India | Angel Creations`,
             ];
-  return candidates.find((candidate) => candidate && candidate.length <= 65) || `${contextTitle} | Angel Creations`;
+  // 60 characters is the length Google renders before truncating a title in
+  // results. Prefer the first candidate that fits. When even the plain form of
+  // the contextual title is too long (e.g. "Streaming & Broadcasting in Virtual
+  // Reality"), fall back to the short catalogue title so the brand suffix and the
+  // service name both survive instead of being truncated mid-word.
+  // Branded fallbacks, most specific first. A domain page must keep the parent
+  // discipline in the title — an /animation/ page whose title drops "Animation"
+  // loses the term it ranks for — so the short parent prefix and the
+  // "Animation" suffix are tried before the plain title. The short prefix is only
+  // used when the contextual title does not already spell the parent out, which
+  // is what produced the redundant "MR Mixed Reality ..." form.
+  const branded = [
+    // The contextual title plus brand is the most descriptive form, so it is
+    // tried first; the short prefix (MR/VR/animation) only takes over when that
+    // would overflow the 60-character budget.
+    `${contextTitle} | Angel Creations`,
+    (() => {
+      if (!short) return undefined;
+      const candidate = `${short} ${plainTitle || contextTitle} | Angel Creations`;
+      const redundant = `${short} ${contextTitle}`.toLowerCase() === contextTitle.toLowerCase();
+      return redundant ? undefined : candidate;
+    })(),
+    parentRoute === '/animation/' && plainTitle ? `${plainTitle} Animation | Angel Creations` : undefined,
+    plainTitle ? `${plainTitle} | Angel Creations` : undefined,
+  ].filter(Boolean);
+  return candidates.find((candidate) => candidate && candidate.length <= 60)
+    || branded.find((candidate) => candidate.length <= 60)
+    || branded[branded.length - 1];
 }
 
 function domainSeoDescription(contextTitle, parentLabel, description, deliverables, subtitle = '') {
@@ -350,7 +379,7 @@ const domainRecords = slideExperiences.flatMap((parent) => {
       subtitle,
       formats: parentContext.formats,
       audiences: parentContext.audiences,
-      seoTitle: domainSeoTitle(contextualTitle, parent.label, parent.route),
+      seoTitle: domainSeoTitle(contextualTitle, parent.label, parent.route, entry.title),
       seoDescription: domainSeoDescription(contextualTitle, parent.label, description, deliverables, subtitle),
       seoFocus: seoProfile.focus,
       seoAliases: seoProfile.aliases,

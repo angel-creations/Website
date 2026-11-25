@@ -91,7 +91,7 @@ All additions are inside one `<IfModule mod_headers.c>` block appended after the
 
 | Header | Value | Rationale |
 |---|---|---|
-| `Content-Security-Policy` | see below | blocking injection while allowing GTM/GA4, EmailJS, YouTube and the Unity build |
+| `Content-Security-Policy` | see below | blocking injection while allowing GTM/GA4, EmailJS and YouTube |
 | `Strict-Transport-Security` | `max-age=15552000` with `env=HTTPS` | 6 months; **no `includeSubDomains`** so mail subdomains never inherit it; `env=HTTPS` guarantees it is only emitted on an HTTPS response |
 | `X-Content-Type-Options` | `nosniff` | |
 | `X-Frame-Options` | `SAMEORIGIN` | kept identical to `frame-ancestors 'self'` — the two must not disagree |
@@ -102,7 +102,7 @@ All additions are inside one `<IfModule mod_headers.c>` block appended after the
 
 ```
 default-src 'self';
-script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'
+script-src 'self' 'unsafe-inline'
             https://www.googletagmanager.com https://www.google-analytics.com
             https://region1.google-analytics.com;
 style-src 'self' 'unsafe-inline';
@@ -122,7 +122,10 @@ frame-ancestors 'self'; upgrade-insecure-requests
 **Why each relaxation exists (all measured against the built output, not guessed):**
 
 - `'unsafe-inline'` in `script-src` — every document ships inline GTM bootstrap + GA4 config + a boot watchdog; a nonce/hash policy needs a templating server. `style-src` inline is needed for React inline styles and the inline `<style>` in each boot fallback.
-- `'wasm-unsafe-eval'` — the Unity WebGL build on `/metaverse/` fails to initialise without it.
+- ~~`'wasm-unsafe-eval'`~~ — **removed.** An earlier draft granted it for an assumed Unity
+  WebGL build on `/metaverse/`. The shipped bundle contains no `.wasm` payload, no
+  Unity player and no `eval()`/`new Function()` call, so the relaxation was withdrawn
+  and the policy is now strict. See `docs/P2-P3-REMEDIATION.md` §9.
 - `api.emailjs.com` in `connect-src` — the enquiry form posts from the browser; without this the form breaks.
 - `youtube-nocookie.com` / `youtube.com` in `frame-src` — the privacy-enhanced player used by the work archive.
 - Fonts are **self-hosted** (`/fonts/*.woff2`, verified in `baseline.css`); no Google Fonts origin is needed.
