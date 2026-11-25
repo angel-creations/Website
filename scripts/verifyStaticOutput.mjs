@@ -173,6 +173,49 @@ if (!htaccess) {
   if (!/RedirectMatch 404[^\n]*\(src\|scripts\|docs/.test(rules)) problems.push('.htaccess does not block repository source paths');
 }
 
+// 5. Sitemap freshness metadata.
+//
+// <lastmod> is a recrawl hint Google is explicitly willing to ignore once it
+// catches the site lying about it. Two failure modes are therefore worth a
+// build failure: a URL that lost its <lastmod>, and a <lastmod> that claims a
+// date in the future (a skewed clock or a hand edit). A third, cheaper check
+// keeps the committed sitemap honest: its dates must match real git history —
+// `npm run sitemap:lastmod` regenerates them from the commits that touched
+// each page's content, and `npm run sitemap:check` reports drift.
+{
+  const sitemapFile = await readFile(path.join(distDirectory, 'sitemap.xml'), 'utf8').catch(() => '');
+  if (!sitemapFile) {
+    problems.push('dist/sitemap.xml is missing: search engines would discover the site through links alone');
+  } else {
+    const urlEntries = [...sitemapFile.matchAll(/<url>(.*?)<\/url>/gs)].map((match) => match[1]);
+    const today = new Date().toISOString().slice(0, 10);
+    let withoutLastmod = 0;
+    const seenDates = new Set();
+    for (const entry of urlEntries) {
+      const loc = entry.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? '(no loc)';
+      const lastmod = entry.match(/<lastmod>([^<]*)<\/lastmod>/)?.[1];
+      if (!lastmod) {
+        withoutLastmod += 1;
+        continue;
+      }
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) problems.push(`sitemap ${loc}: <lastmod> "${lastmod}" is not a W3C date`);
+      if (lastmod > today) {
+        problems.push(`sitemap ${loc}: <lastmod> ${lastmod} is in the future, which Google will discount`);
+      }
+      seenDates.add(lastmod);
+    }
+    if (withoutLastmod > 0) {
+      problems.push(`sitemap: ${withoutLastmod} of ${urlEntries.length} URLs carry no <lastmod>, so no recrawl priority can be inferred`);
+    }
+    if (urlEntries.length > 1 && seenDates.size === 1) {
+      problems.push('sitemap: every URL shares one <lastmod> date, which reads as a synthetic timestamp');
+    }
+    if (!problems.some((problem) => problem.startsWith('sitemap'))) {
+      console.log(`Sitemap: ${urlEntries.length} URLs, every one stamped with a real <lastmod> (${seenDates.size} distinct dates, newest ${[...seenDates].sort().pop()}).`);
+    }
+  }
+}
+
 if (problems.length > 0) {
   console.error(`Static output verification failed with ${problems.length} problem(s):`);
   for (const problem of problems) console.error(` - ${problem}`);

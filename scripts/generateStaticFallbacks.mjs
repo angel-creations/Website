@@ -17,6 +17,14 @@ const experienceMaps = JSON.parse(await readFile(new URL('../src/data/experience
 const innerHeroVisuals = JSON.parse(await readFile(new URL('../src/data/innerHeroVisuals.json', import.meta.url), 'utf8'));
 const explorerVisuals = JSON.parse(await readFile(new URL('../src/data/explorerVisuals.json', import.meta.url), 'utf8'));
 const capabilitySource = await readFile(new URL('../src/data/capabilities.ts', import.meta.url), 'utf8');
+// Real content dates for every sitemap URL, produced by
+// `npm run sitemap:lastmod` from the commits that changed each page's content
+// and committed to src/data/sitemapLastmod.json. Read from disk rather than
+// derived here because the build also runs on CI's shallow clone, where git
+// history is one commit dated "now" and every URL would get a synthetic
+// timestamp. Google discounts a lastmod it can prove is wrong, then ignores it
+// site-wide, so a provable date or none at all is the only safe choice.
+const sitemapLastmod = JSON.parse(await readFile(new URL('../src/data/sitemapLastmod.json', import.meta.url), 'utf8'));
 const googleSiteVerification = await readFile(new URL('../public/googleb16a568f6f3a241d.html', import.meta.url), 'utf8');
 const dist = new URL('../dist/', import.meta.url);
 const rootBuild = await readFile(new URL('index.html', dist), 'utf8');
@@ -1644,7 +1652,15 @@ const sitemapEntries = [
     title: domain.imageAlt,
   })),
 ];
-const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${sitemapEntries.map((entry) => `  <url><loc>${escapeHtml(entry.url)}</loc>${sitemapImageMarkup(entry.image, entry.title)}</url>`).join('\n')}\n</urlset>\n`;
+// <lastmod> sits directly after </loc>, which is the schema order. A URL with
+// no recorded date is emitted undated rather than given a guess:
+// verifyStaticOutput.mjs fails the build when that happens, so the omission is
+// visible here rather than silently shipped.
+const sitemapLastmodMarkup = (url) => {
+  const date = sitemapLastmod[url.replace('https://angelcreations.in', '')];
+  return date ? `<lastmod>${escapeHtml(date)}</lastmod>` : '';
+};
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${sitemapEntries.map((entry) => `  <url><loc>${escapeHtml(entry.url)}</loc>${sitemapLastmodMarkup(entry.url)}${sitemapImageMarkup(entry.image, entry.title)}</url>`).join('\n')}\n</urlset>\n`;
 const robotsTxt = 'User-agent: *\nAllow: /\nSitemap: https://angelcreations.in/sitemap.xml\n';
 const llmsTxt = [
   '# Angel Creations',
