@@ -74,7 +74,7 @@ const knownPageRoutes = new Set([
   '/terms-of-service/', '/virtual-reality/', '/works/', '/work', '/work/',
   '/capabilities/brand/', '/capabilities/design/', '/capabilities/content/', '/capabilities/film/',
   '/capabilities/animation-3d/', '/capabilities/digital/', '/capabilities/experiences/',
-  '/capabilities/creative-technology/', '/domains/', ...domainRoutes,
+  '/capabilities/creative-technology/', '/domains/', '/internship/', '/internship', ...domainRoutes,
 ]);
 const knownNonPagePaths = new Set(['/feed/', '/comments/feed/']);
 const assetPrefixes = ['/assets/', '/media/', '/media/library/', '/media/social/', '/metaverse/Build/'];

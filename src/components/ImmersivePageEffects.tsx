@@ -193,7 +193,12 @@ export function ImmersivePageEffects({ route }: { route: string }): JSX.Element 
     const root = document.getElementById('page');
     if (!root) return undefined;
 
-    const seen = new WeakSet<Element>();
+    // A plain Set (not a WeakSet) so cleanup can un-mark what this pass
+    // touched. React StrictMode runs this effect twice in development: the
+    // first pass tags elements with data-immersive-reveal, its cleanup drops
+    // the observer, and the second pass then refused to re-observe anything
+    // already tagged — leaving those blocks permanently at opacity:0.
+    const seen = new Set<Element>();
     const settleTimers = new Set<number>();
     let scanTimer = 0;
 
@@ -283,6 +288,22 @@ export function ImmersivePageEffects({ route }: { route: string }): JSX.Element 
       settleTimers.forEach((timer) => window.clearTimeout(timer));
       mutationObserver.disconnect();
       observer.disconnect();
+
+      // Release our marks so a re-run of this effect can pick the elements
+      // up again instead of skipping them.
+      seen.forEach((element) => {
+        const node = element as HTMLElement;
+        delete node.dataset.immersiveReveal;
+        node.classList.remove(
+          'angel-immersive-reveal',
+          'is-immersive-visible',
+          'is-immersive-settled',
+          'angel-immersive-tilt'
+        );
+        node.style.removeProperty('--immersive-delay');
+        observer.unobserve(node);
+      });
+      seen.clear();
     };
   }, []);
 

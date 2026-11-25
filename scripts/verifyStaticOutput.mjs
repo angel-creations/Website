@@ -21,7 +21,7 @@ function countMatches(value, pattern) {
 const coreRequiredRoutes = [
   '/', '/about/', '/works/', '/animation/', '/augment-reality/',
   '/brand-advertisement/', '/media-production/', '/metaverse/', '/mixed-reality/',
-  '/virtual-reality/', '/contact/', '/privacy-policy/', '/terms-of-service/',
+  '/virtual-reality/', '/contact/', '/privacy-policy/', '/terms-of-service/', '/internship/',
   '/capabilities/brand/', '/capabilities/design/', '/capabilities/content/',
   '/capabilities/film/', '/capabilities/animation-3d/', '/capabilities/digital/',
   '/capabilities/experiences/', '/capabilities/creative-technology/',

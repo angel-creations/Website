@@ -34,7 +34,7 @@ const disciplines: DisciplineRecord[] = [
     tagline: 'Persistent virtual worlds, digital twins & spatial ecosystems.',
     summary:
       'We architect interactive virtual worlds where communities gather, brands launch flagship destinations, and commerce unfolds in real-time 3D space.',
-    image: '/media/library/metaverse/hero-metaverse.webp',
+    image: '/media/library/metaverse/hero-metaverse-v2.webp',
     deliverables: 'Multi-user 3D worlds · Avatar systems · Spatial commerce',
     capabilities: [
       'Virtual Worlds',
@@ -1208,7 +1208,7 @@ export function AboutPage(): JSX.Element {
 
                 <figure className="ac-about-v2-bento-card ac-about-v2-bento-card--visual">
                   <img
-                    src="/media/library/metaverse/hero-metaverse.webp"
+                    src="/media/library/metaverse/hero-metaverse-v2.webp"
                     alt="Spatial worldbuilding at Angel Creations"
                     loading="lazy"
                     decoding="async"

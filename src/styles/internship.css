@@ -1,0 +1,2824 @@
+/* ==========================================================================
+   INTERNSHIP PROGRAMME — /internship/
+   --------------------------------------------------------------------------
+   Scoped entirely under `.ac-intern`, but built from the site's own global
+   language rather than a parallel one. The values below are measured from the
+   live About / Domains / Capability pages, not invented:
+
+     canvas        #060913  (--angel-void)
+     paper         --ac-pearl   linear-gradient(160deg,#FFF,#EEF1FF 54%,#FDF0F4)
+     accent fills  #00D2FF (--ac-nebula-blue) / --ac-gradient-aurora-flow
+     accent ink    #0b5f86 on paper (cyan measures 1.4:1 there, so it is a fill
+                   colour only — same reason the About page keeps its gradient
+                   text on dark bands)
+     display       Playfair Display 400, tracking ≈ -0.02em, leading 1.16
+     ui            Graphik 400–600
+     eyebrow       0.7rem / .2em uppercase, Graphik 500
+     buttons       999px pill, 48px min height, .76rem / .11em uppercase 600
+     ghost         rgba(255,255,255,.06) on rgba(255,255,255,.18) hairline
+     radii         999px pills / 16px surfaces / 22px outer panels
+     ease          cubic-bezier(.23,1,.32,1)
+
+   Bands still alternate dark → paper → dark so the long page has rhythm, but
+   every band now shares the site's type scale and component language.
+   ========================================================================== */
+
+.ac-intern {
+  /* --- surfaces, dark bands ------------------------------------------- */
+  --intern-bg: var(--angel-void, #060913);
+  --intern-bg-deep: #04060d;
+  --intern-paper: var(--ac-pearl, linear-gradient(160deg, #ffffff 0%, #eef1ff 54%, #fdf0f4 100%));
+  --intern-ink: var(--ac-frost-white, #f7f9ff);
+  --intern-ink-soft: rgba(228, 232, 242, 0.78);
+  --intern-ink-muted: rgba(228, 232, 242, 0.54);
+  --intern-line: rgba(228, 232, 242, 0.16);
+  --intern-line-soft: rgba(228, 232, 242, 0.09);
+  --intern-surface: rgba(255, 255, 255, 0.045);
+  --intern-surface-strong: rgba(255, 255, 255, 0.075);
+  --intern-surface-flat: #0a0e1a;
+
+  /* --- brand accents --------------------------------------------------- */
+  --intern-accent: var(--ac-nebula-blue, #00d2ff);
+  --intern-accent-ink: var(--intern-accent);
+  --intern-gradient: var(--ac-gradient-aurora-flow, linear-gradient(120deg, #38bdf8 0%, #7c5cff 52%, #c86bff 100%));
+  --intern-warm: var(--ac-sunset-peach, #ffc0d0);
+  --intern-danger: var(--ac-coral-radiance, #ff8a9b);
+  --intern-danger-ink: #a3242b;
+
+  /* --- type, matching the measured global scale ------------------------ */
+  --intern-font-display: 'Playfair Display', 'Geograph', Georgia, serif;
+  --intern-font-ui: 'Graphik', -apple-system, BlinkMacSystemFont, sans-serif;
+  --intern-font-italic: 'Playfair Display', Georgia, serif;
+
+  /* --- geometry -------------------------------------------------------- */
+  --intern-radius-pill: var(--ac-radius-pill, 999px);
+  --intern-radius-surface: var(--ac-radius-md, 16px);
+  --intern-radius-panel: 22px;
+  --intern-ease: var(--angel-ease-out, cubic-bezier(0.23, 1, 0.32, 1));
+  --intern-wrap-max: 86rem;
+  --intern-gutter: clamp(1.25rem, 5vw, 4rem);
+  --intern-section-pad: clamp(4rem, 8.5vw, 8rem);
+
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  color-scheme: dark;
+  background: var(--intern-bg);
+  color: var(--intern-ink);
+  font-family: var(--intern-font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ac-intern *,
+.ac-intern *::before,
+.ac-intern *::after { box-sizing: border-box; }
+
+/* Display type is the site's serif. Optical tracking tightens as the size
+   grows, which is what the global headings do. */
+.ac-intern h1,
+.ac-intern h2,
+.ac-intern h3,
+.ac-intern h4 {
+  margin: 0;
+  font-family: var(--intern-font-display);
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.16;
+  color: var(--intern-ink);
+  text-wrap: balance;
+}
+
+.ac-intern h1 { font-size: clamp(2.4rem, 5.4vw, 4.35rem); line-height: 1.06; letter-spacing: -0.028em; }
+.ac-intern h2 { font-size: clamp(1.9rem, 3.9vw, 3.05rem); line-height: 1.1; }
+.ac-intern h3 { font-size: clamp(1.12rem, 1.7vw, 1.38rem); line-height: 1.28; }
+
+.ac-intern :where(p) { margin: 0; }
+.ac-intern :where(ul, ol) { margin: 0; padding: 0; list-style: none; }
+.ac-intern :where(img) { display: block; max-width: 100%; }
+
+.ac-intern__wrap {
+  width: 100%;
+  max-width: var(--intern-wrap-max);
+  margin-inline: auto;
+  padding-inline: var(--intern-gutter);
+}
+
+/* Anchor navigation must clear the fixed site header. */
+.ac-intern > section[id],
+.ac-intern__policy-grid > article[id] {
+  scroll-margin-top: clamp(5.5rem, 11vh, 7.5rem);
+}
+
+/* --------------------------------------------------------------------------
+   PAPER BANDS
+   --------------------------------------------------------------------------
+   The same pearl gradient the About page uses. One class re-declares the ink
+   tokens, so every component below follows its band automatically.
+   -------------------------------------------------------------------------- */
+.ac-intern__philosophy,
+.ac-intern__learning,
+.ac-intern__recognition,
+.ac-intern__apply {
+  --intern-ink: #0a0f1f;
+  --intern-ink-soft: #3f4657;
+  --intern-ink-muted: #5d6475;
+  --intern-line: rgba(10, 15, 31, 0.18);
+  --intern-line-soft: rgba(10, 15, 31, 0.08);
+  --intern-surface: #ffffff;
+  --intern-surface-strong: #f7f8fd;
+  --intern-surface-flat: #ffffff;
+  --intern-accent-ink: #0b5f86;
+  --intern-warm: #8a6a4c;
+  --intern-danger-ink: #a3242b;
+
+  position: relative;
+  color-scheme: light;
+  color: var(--intern-ink);
+  background: var(--intern-paper);
+  border-block: 1px solid rgba(10, 15, 31, 0.06);
+}
+
+/* The FAQ sits on flat paper so it reads as a quieter band than the form. */
+.ac-intern__faq-section {
+  --intern-ink: #0a0f1f;
+  --intern-ink-soft: #3f4657;
+  --intern-ink-muted: #5d6475;
+  --intern-line: rgba(10, 15, 31, 0.18);
+  --intern-line-soft: rgba(10, 15, 31, 0.09);
+  --intern-accent-ink: #0b5f86;
+  --intern-danger-ink: #a3242b;
+
+  position: relative;
+  color-scheme: light;
+  color: var(--intern-ink);
+  background: #f2f4fa;
+  border-block: 1px solid rgba(10, 15, 31, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   SHARED CONTROLS — the global pill button, not a bespoke one
+   -------------------------------------------------------------------------- */
+.ac-intern__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 clamp(0.9rem, 1.8vw, 1.35rem);
+  color: color-mix(in srgb, var(--intern-accent-ink) 82%, var(--intern-ink));
+  font-family: var(--intern-font-ui);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ac-intern__eyebrow > span {
+  width: 1.5rem;
+  height: 1px;
+  flex: none;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.ac-intern__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.75rem 1.45rem;
+  border: 1px solid transparent;
+  border-radius: var(--intern-radius-pill);
+  font-family: var(--intern-font-ui);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 240ms var(--intern-ease),
+    border-color 240ms var(--intern-ease),
+    color 240ms var(--intern-ease),
+    box-shadow 240ms var(--intern-ease),
+    transform 200ms var(--intern-ease);
+}
+
+/* The signature gradient CTA, exactly as .ac-about-v2-btn--primary renders. */
+.ac-intern__btn--primary {
+  border: 0;
+  background: var(--intern-gradient);
+  color: #ffffff;
+  box-shadow: 0 14px 34px rgba(124, 92, 255, 0.32);
+}
+
+.ac-intern__btn--ghost {
+  border-color: var(--intern-line);
+  background: var(--intern-surface);
+  color: var(--intern-ink);
+}
+
+.ac-intern__btn:disabled { cursor: progress; opacity: 0.62; }
+
+.ac-intern__btn:focus-visible,
+.ac-intern__faq-item button:focus-visible,
+.ac-intern__discipline-cta:focus-visible,
+.ac-intern__copy:focus-visible,
+.ac-intern__draft-note button:focus-visible,
+.ac-intern__faq-more:focus-visible,
+.ac-intern__cert-frame:focus-visible {
+  outline: 2px solid var(--intern-accent);
+  outline-offset: 3px;
+}
+
+/* Paper bands: the gradient pill would glare on cream, so its ink inverts to
+   the site's light-band primary (solid indigo), keeping the same pill shape. */
+.ac-intern__philosophy .ac-intern__btn--primary,
+.ac-intern__learning .ac-intern__btn--primary,
+.ac-intern__recognition .ac-intern__btn--primary,
+.ac-intern__apply .ac-intern__btn--primary,
+.ac-intern__faq-section .ac-intern__btn--primary {
+  background: #7c5cff;
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.26);
+}
+
+.ac-intern__philosophy .ac-intern__btn--ghost,
+.ac-intern__learning .ac-intern__btn--ghost,
+.ac-intern__recognition .ac-intern__btn--ghost,
+.ac-intern__apply .ac-intern__btn--ghost,
+.ac-intern__faq-section .ac-intern__btn--ghost {
+  border-color: rgba(10, 15, 31, 0.2);
+  background: rgba(255, 255, 255, 0.72);
+  color: #0a0f1f;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ac-intern__btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 46px rgba(124, 92, 255, 0.42);
+  }
+
+  .ac-intern__btn--ghost:hover {
+    border-color: color-mix(in srgb, var(--intern-ink) 46%, transparent);
+    background: var(--intern-surface-strong);
+    transform: translateY(-2px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   01 — HERO
+   --------------------------------------------------------------------------
+   Mirrors the About hero's composition: aurora mesh over the void, an eyebrow
+   rule, an oversized serif headline with the second sentence in the site's
+   gradient, and the pill button pair. The image is a framed panel rather than
+   a full-bleed backdrop so the type keeps the site's black stage.
+   -------------------------------------------------------------------------- */
+.ac-intern__hero {
+  position: relative;
+  padding: clamp(7.5rem, 14vh, 10.5rem) 0 clamp(2.5rem, 5vw, 4rem);
+  background: var(--intern-bg);
+  isolation: isolate;
+}
+
+/* --ac-aurora-mesh, same three radials the About/Hero layer uses. */
+.ac-intern__hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(52rem 34rem at 88% -8%, rgba(200, 107, 255, 0.2), transparent 62%),
+    radial-gradient(46rem 30rem at -10% 22%, rgba(56, 189, 248, 0.16), transparent 60%),
+    radial-gradient(38rem 26rem at 55% 115%, rgba(251, 113, 133, 0.1), transparent 62%);
+  pointer-events: none;
+}
+
+.ac-intern__hero-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
+  width: 100%;
+  max-width: var(--intern-wrap-max);
+  margin-inline: auto;
+  padding-inline: var(--intern-gutter);
+}
+
+.ac-intern__hero h1 { max-width: 20ch; }
+
+/* The site sets its hero accent as gradient text on the dark band. */
+.ac-intern__hero h1 em {
+  display: block;
+  margin-top: 0.12em;
+  font-family: var(--intern-font-italic);
+  font-style: italic;
+  font-weight: 400;
+  background: var(--intern-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ac-intern__hero-support {
+  max-width: 33rem;
+  margin-top: clamp(1.3rem, 2.4vw, 1.9rem) !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(1rem, 1.15vw, 1.08rem);
+  line-height: 1.7;
+}
+
+.ac-intern__hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.ac-intern__hero-audience {
+  max-width: 30rem;
+  margin-top: clamp(1.5rem, 2.6vw, 2rem) !important;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--intern-line-soft);
+  color: var(--intern-ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+/* The framed panel: a 22px card, the same radius the About bento cards use. */
+.ac-intern__hero-visual {
+  position: relative;
+  margin: 0;
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.ac-intern__hero-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 4.4;
+  object-fit: cover;
+  object-position: 60% 42%;
+  border-radius: var(--intern-radius-panel);
+  border: 1px solid var(--intern-line-soft);
+  box-shadow: 0 32px 80px rgba(3, 6, 15, 0.6);
+}
+
+.ac-intern__hero-inset {
+  position: absolute;
+  left: clamp(-1.25rem, -1.6vw, -2rem);
+  bottom: 0;
+  width: clamp(8rem, 40%, 13.5rem);
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--intern-radius-surface);
+  border: 5px solid var(--intern-bg);
+  box-shadow: 0 24px 60px rgba(3, 6, 15, 0.55);
+}
+
+/* Facts as the site's pill row (see the Domains stat pills). */
+.ac-intern__hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: var(--intern-wrap-max);
+  margin: clamp(2.6rem, 5vw, 4rem) auto 0;
+  padding: clamp(1.3rem, 2.4vw, 1.9rem) var(--intern-gutter) 0;
+  border-top: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__hero-facts > div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--intern-line);
+  border-radius: var(--intern-radius-pill);
+  background: rgba(14, 15, 22, 0.62);
+  backdrop-filter: blur(6px);
+}
+
+.ac-intern__hero-facts dt {
+  color: var(--intern-ink-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ac-intern__hero-facts dd {
+  margin: 0;
+  color: var(--intern-ink);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* --------------------------------------------------------------------------
+   02 — PHILOSOPHY
+   -------------------------------------------------------------------------- */
+.ac-intern__philosophy { padding-block: var(--intern-section-pad); }
+
+.ac-intern__philosophy-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.ac-intern__philosophy-lead h2 {
+  max-width: 13ch;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+
+.ac-intern__philosophy-lead h2 em {
+  display: block;
+  font-style: italic;
+  color: var(--intern-accent-ink);
+}
+
+.ac-intern__philosophy-body {
+  padding-top: clamp(0.4rem, 1.6vw, 1.8rem);
+  max-width: 34rem;
+}
+
+.ac-intern__philosophy-intro {
+  color: var(--intern-ink);
+  font-size: clamp(1.06rem, 1.3vw, 1.2rem);
+  line-height: 1.66;
+}
+
+.ac-intern__philosophy-body p + p {
+  margin-top: 1.1rem !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(0.94rem, 1.05vw, 1rem);
+  line-height: 1.8;
+}
+
+.ac-intern__philosophy-visual {
+  margin: clamp(2.4rem, 4.5vw, 4rem) 0 0;
+}
+
+.ac-intern__philosophy-visual img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  object-position: center 45%;
+  border-radius: var(--intern-radius-panel);
+}
+
+.ac-intern__philosophy-visual figcaption {
+  margin-top: 0.85rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.045em;
+}
+
+/* Four principles, as surface cards in the site's 16px radius. */
+.ac-intern__approach {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.8vw, 1.4rem);
+  margin-top: clamp(2.4rem, 4.5vw, 3.6rem);
+}
+
+.ac-intern__approach li {
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border: 1px solid var(--intern-line-soft);
+  border-radius: var(--intern-radius-surface);
+  background: var(--intern-surface);
+  box-shadow: var(--ac-shadow-card-light, 0 12px 32px rgba(36, 50, 79, 0.08));
+}
+
+.ac-intern__approach-code {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: var(--intern-accent-ink);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.ac-intern__approach h3 {
+  font-family: var(--intern-font-ui);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.4;
+}
+
+.ac-intern__approach p {
+  margin-top: 0.45rem !important;
+  color: var(--intern-ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.62;
+}
+
+/* --------------------------------------------------------------------------
+   03 — DISCIPLINES
+   --------------------------------------------------------------------------
+   Still asymmetric in composition (7+5 · 6+6 · 5+7 · 6+6 · 6+6 · 12), but each
+   entry is now a site surface card: 16px radius, hairline, dark tint. The
+   asymmetry lives in the column spans, not in the component styling.
+   -------------------------------------------------------------------------- */
+.ac-intern__disciplines {
+  position: relative;
+  padding-block: var(--intern-section-pad);
+  background: var(--intern-bg-deep);
+  border-block: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__disciplines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(46rem 30rem at 8% 0%, rgba(0, 210, 255, 0.07), transparent 60%),
+    radial-gradient(38rem 26rem at 96% 100%, rgba(200, 107, 255, 0.07), transparent 62%);
+  pointer-events: none;
+}
+
+.ac-intern__disciplines-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2.4rem, 4.5vw, 3.8rem);
+}
+
+.ac-intern__disciplines-head h2 { max-width: 18ch; }
+
+.ac-intern__disciplines-note {
+  padding-bottom: 0.35rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.ac-intern__discipline-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+/* Standard entry = a card. */
+.ac-intern__discipline {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0.85rem, 1.4vw, 1.1rem);
+  border: 1px solid var(--intern-line-soft);
+  border-radius: var(--intern-radius-panel);
+  background: var(--intern-surface);
+  transition: border-color 320ms var(--intern-ease), background-color 320ms var(--intern-ease), transform 320ms var(--intern-ease);
+}
+
+.ac-intern__discipline img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--intern-radius-surface);
+  filter: saturate(0.94);
+  transition: filter 420ms var(--intern-ease);
+}
+
+.ac-intern__discipline-body { padding: clamp(0.9rem, 1.6vw, 1.15rem) 0.3rem 0.3rem; }
+
+.ac-intern__discipline-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-bottom: 0.5rem !important;
+  color: var(--intern-ink-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ac-intern__discipline-meta > span { color: var(--intern-accent-ink); }
+
+.ac-intern__discipline h3 { font-size: clamp(1.15rem, 1.7vw, 1.42rem); line-height: 1.2; }
+
+.ac-intern__discipline-summary {
+  margin-top: 0.55rem !important;
+  color: var(--intern-ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.ac-intern__rolelist {
+  margin-top: 0.8rem !important;
+  color: var(--intern-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.ac-intern__rolelist li { display: inline; }
+
+.ac-intern__rolelist li + li::before {
+  content: ' · ';
+  color: var(--intern-ink-muted);
+}
+
+/* The row CTA keeps the pill language, at a smaller step. */
+.ac-intern__discipline-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--intern-line);
+  border-radius: var(--intern-radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--intern-ink);
+  font-family: var(--intern-font-ui);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 240ms var(--intern-ease), background-color 240ms var(--intern-ease), color 240ms var(--intern-ease);
+}
+
+.ac-intern__discipline-cta span { transition: transform 240ms var(--intern-ease); }
+
+/* Row 1 — the opening spread: 7 columns of image, 5 of type. */
+.ac-intern__discipline--lead {
+  grid-column: span 7;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 1.6rem);
+  align-items: center;
+}
+
+.ac-intern__discipline--lead img { aspect-ratio: 4 / 3; height: 100%; }
+
+.ac-intern__discipline--lead .ac-intern__discipline-body {
+  padding: 0 clamp(0.4rem, 1vw, 0.9rem) 0 0;
+  align-self: center;
+}
+
+.ac-intern__discipline--lead h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+
+.ac-intern__discipline--lead .ac-intern__discipline-summary { font-size: 0.88rem; max-width: 30ch; }
+
+/* Its partner, closing the first row. */
+.ac-intern__discipline--end { grid-column: span 5; }
+
+.ac-intern__discipline--end h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); }
+
+/* Paired entries. */
+.ac-intern__discipline--half { grid-column: span 6; }
+
+.ac-intern__discipline--half img { aspect-ratio: 16 / 9; }
+
+.ac-intern__discipline--half h3 { font-size: clamp(1.3rem, 2vw, 1.68rem); }
+
+/* Row 3 — mirror of row 1: 5 columns of type, then a 7-column feature. */
+/* The 5-column offset card used to hide its image so the row read as a text
+   panel opposite the feature card. That left AR, VR & XR — a discipline whose
+   whole subject is visual — as the one entry with no picture. It now keeps a
+   portrait frame, which preserves the asymmetry by proportion instead. */
+.ac-intern__discipline--offset {
+  grid-column: span 5;
+  justify-content: center;
+}
+
+.ac-intern__discipline--offset img { aspect-ratio: 4 / 5; }
+
+.ac-intern__discipline--offset h3 { font-size: clamp(1.35rem, 2.1vw, 1.75rem); }
+
+/* `contain` is for artwork with its own margin: the card shows the whole
+   frame over a neutral bed rather than cropping the subject out. */
+.ac-intern__discipline img.is-contain {
+  object-fit: contain;
+  background: #ffffff;
+  padding: clamp(0.5rem, 1.4vw, 0.9rem);
+}
+
+/* The feature card sits opposite the taller offset card, so its image grows to
+   absorb the difference instead of leaving the body stranded at the top. */
+.ac-intern__discipline--feature { grid-column: span 7; }
+
+.ac-intern__discipline--feature img {
+  aspect-ratio: 16 / 9;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ac-intern__discipline--feature h3 { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
+
+/* The closing entry runs the full measure. */
+.ac-intern__discipline--full {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(1rem, 2.6vw, 2.2rem);
+  align-items: center;
+}
+
+.ac-intern__discipline--full img { aspect-ratio: 21 / 9; }
+
+.ac-intern__discipline--full .ac-intern__discipline-body { padding: 0.4rem clamp(0.4rem, 1vw, 1rem) 0.4rem 0; }
+
+.ac-intern__discipline--full h3 { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
+
+.ac-intern__discipline--full .ac-intern__discipline-summary { max-width: 36ch; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ac-intern__discipline:hover {
+    border-color: rgba(0, 210, 255, 0.32);
+    background: var(--intern-surface-strong);
+    transform: translateY(-3px);
+  }
+  .ac-intern__discipline:hover img { filter: saturate(1.05); }
+  .ac-intern__discipline-cta:hover {
+    border-color: rgba(0, 210, 255, 0.4);
+    background: rgba(0, 210, 255, 0.1);
+  }
+  .ac-intern__discipline-cta:hover span { transform: translateX(4px); }
+}
+
+/* --------------------------------------------------------------------------
+   04 — LEARNING EXPERIENCE
+   -------------------------------------------------------------------------- */
+.ac-intern__learning { padding-block: var(--intern-section-pad); }
+
+.ac-intern__learning-head {
+  max-width: 44rem;
+  margin-bottom: clamp(2.4rem, 4.5vw, 3.6rem);
+}
+
+.ac-intern__learning-flow {
+  display: grid;
+  gap: clamp(2.6rem, 6vw, 5.5rem);
+}
+
+.ac-intern__learning-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.ac-intern__learning-row--flip .ac-intern__learning-media { order: 2; }
+
+.ac-intern__learning-media { margin: 0; }
+
+.ac-intern__learning-media img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--intern-radius-panel);
+  box-shadow: 0 18px 44px rgba(36, 50, 79, 0.14);
+}
+
+.ac-intern__learning-row--flip .ac-intern__learning-media img { aspect-ratio: 5 / 4; }
+
+.ac-intern__learning-code {
+  display: block;
+  margin-bottom: 0.9rem;
+  color: var(--intern-accent-ink);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.ac-intern__learning-copy h3 { max-width: 18ch; font-size: clamp(1.45rem, 2.4vw, 2.1rem); }
+
+.ac-intern__learning-copy p {
+  max-width: 33rem;
+  margin-top: 0.95rem !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(0.94rem, 1.05vw, 1rem);
+  line-height: 1.78;
+}
+
+.ac-intern__learning-copy ul {
+  margin-top: 1.2rem !important;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ac-intern__learning-copy li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* Small gradient tick — the site's accent used as a mark, not a surface. */
+.ac-intern__learning-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 0.9rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--intern-gradient);
+}
+
+.ac-intern__learning-caveat {
+  max-width: 58rem;
+  margin-top: clamp(2.6rem, 4.5vw, 4rem) !important;
+  padding: 1.15rem 1.3rem;
+  border: 1px solid var(--intern-line-soft);
+  border-radius: var(--intern-radius-surface);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--intern-ink-muted);
+  font-size: 0.78rem;
+  line-height: 1.75;
+}
+
+/* --------------------------------------------------------------------------
+   05 — 90-DAY JOURNEY
+   --------------------------------------------------------------------------
+   Horizontal on desktop (one rule, three markers), vertical spine below 820px.
+   Markers use the brand accent; the stage bodies are site surface cards.
+   -------------------------------------------------------------------------- */
+.ac-intern__journey {
+  position: relative;
+  padding-block: var(--intern-section-pad);
+  background: var(--intern-bg);
+  border-block: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__journey::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(44rem 30rem at 88% 4%, rgba(200, 107, 255, 0.11), transparent 62%),
+    radial-gradient(38rem 26rem at 4% 96%, rgba(56, 189, 248, 0.09), transparent 60%);
+  pointer-events: none;
+}
+
+.ac-intern__journey-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2.6rem, 4.5vw, 4rem);
+}
+
+.ac-intern__journey-head h2 { max-width: 17ch; }
+
+.ac-intern__journey-note {
+  padding-bottom: 0.35rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.ac-intern__timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+.ac-intern__timeline-stage {
+  position: relative;
+  padding: clamp(1.6rem, 2.4vw, 2rem) clamp(1.1rem, 1.8vw, 1.4rem) clamp(1.2rem, 2vw, 1.5rem);
+  border: 1px solid var(--intern-line-soft);
+  border-radius: var(--intern-radius-panel);
+  background: var(--intern-surface);
+}
+
+/* The connector sits above the cards so the sequence still reads as a line. */
+.ac-intern__timeline-stage::after {
+  content: '';
+  position: absolute;
+  top: -1.05rem;
+  left: 0;
+  right: calc(-1 * clamp(1rem, 2vw, 1.6rem));
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 210, 255, 0.4), rgba(200, 107, 255, 0.28));
+}
+
+.ac-intern__timeline-stage:last-child::after { right: 0; }
+
+.ac-intern__timeline-marker {
+  position: absolute;
+  top: -1.35rem;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 50%;
+  background: var(--intern-accent);
+  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.16);
+}
+
+.ac-intern__timeline-marker > span { display: none; }
+
+/* Layout-transparent on wide screens: the card wrapper only becomes a real box
+   in the stacked stepper (<=1080px). Keeping it a plain block here means the
+   three-column timeline renders exactly as before. */
+.ac-intern__timeline-card { display: block; }
+
+.ac-intern__timeline-month {
+  margin-bottom: 0.6rem !important;
+  color: var(--intern-accent-ink);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ac-intern__timeline-stage h3 { font-size: clamp(1.28rem, 1.9vw, 1.6rem); line-height: 1.22; }
+
+.ac-intern__timeline-summary {
+  margin-top: 0.7rem !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(0.88rem, 1vw, 0.94rem);
+  line-height: 1.72;
+}
+
+.ac-intern__timeline-stage ul {
+  margin-top: 1.15rem !important;
+  display: grid;
+  gap: 0.42rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__timeline-stage li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.79rem;
+  line-height: 1.6;
+}
+
+.ac-intern__timeline-stage li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--intern-line);
+}
+
+/* --------------------------------------------------------------------------
+   06 — RECOGNITION
+   -------------------------------------------------------------------------- */
+.ac-intern__recognition { padding-block: var(--intern-section-pad); }
+
+.ac-intern__recognition-head {
+  max-width: 44rem;
+  margin: 0 auto clamp(2.2rem, 4.5vw, 3.4rem);
+  text-align: center;
+}
+
+.ac-intern__recognition-head > p:last-child {
+  max-width: 34rem;
+  margin: clamp(1rem, 1.8vw, 1.5rem) auto 0 !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(0.94rem, 1.05vw, 1rem);
+  line-height: 1.75;
+}
+
+.ac-intern__cert-figure {
+  width: min(100%, 64rem);
+  margin: 0 auto;
+}
+
+/* The certificate keeps its own proportions; the frame borrows the site radius. */
+.ac-intern__cert-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(10, 15, 31, 0.12);
+  border-radius: var(--intern-radius-panel);
+  background: #ffffff;
+  box-shadow: 0 34px 80px rgba(10, 15, 31, 0.18);
+  cursor: zoom-in;
+  overflow: hidden;
+  transition: box-shadow 320ms var(--intern-ease), border-color 320ms var(--intern-ease);
+}
+
+.ac-intern__cert-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1536 / 1024;
+  object-fit: contain;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ac-intern__cert-frame:hover {
+    border-color: rgba(124, 92, 255, 0.4);
+    box-shadow: 0 44px 96px rgba(10, 15, 31, 0.24);
+  }
+  .ac-intern__cert-frame:hover .ac-intern__cert-zoom {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ac-intern__cert-zoom {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--intern-radius-pill);
+  background: rgba(6, 9, 19, 0.84);
+  color: #f5f5f7;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 280ms var(--intern-ease), transform 280ms var(--intern-ease);
+  pointer-events: none;
+}
+
+@media (hover: none) {
+  .ac-intern__cert-zoom { display: none; }
+}
+
+.ac-intern__cert-disclaimer {
+  max-width: 58rem;
+  margin: clamp(1.5rem, 2.6vw, 2.2rem) auto 0 !important;
+  color: var(--intern-ink-muted);
+  font-size: 0.72rem;
+  line-height: 1.72;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   CERTIFICATE LIGHTBOX (portalled to <body>)
+   -------------------------------------------------------------------------- */
+.ac-intern__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(3, 4, 7, 0.96);
+  overscroll-behavior: contain;
+  animation: acInternLightboxIn 220ms var(--intern-ease) both;
+}
+
+@keyframes acInternLightboxIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ac-intern__lightbox-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.6vw, 1.1rem);
+  width: min(100%, 92rem);
+  max-height: 100%;
+}
+
+.ac-intern__lightbox-panel img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(76svh, 62rem);
+  margin: 0 auto;
+  aspect-ratio: 1536 / 1024;
+  object-fit: contain;
+  border-radius: var(--intern-radius-surface);
+  background: #fff;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+}
+
+.ac-intern__lightbox-close {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: var(--intern-radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f5f5f7;
+  font-family: var(--intern-font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.ac-intern__lightbox-close:hover { background: rgba(255, 255, 255, 0.12); }
+
+.ac-intern__lightbox-close:focus-visible {
+  outline: 2px solid var(--intern-accent);
+  outline-offset: 3px;
+}
+
+.ac-intern__lightbox-caption {
+  max-width: 44rem;
+  margin: 0 auto !important;
+  color: rgba(245, 245, 247, 0.62);
+  font-size: 0.68rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   07 — PROGRAMME DETAILS
+   -------------------------------------------------------------------------- */
+.ac-intern__details {
+  position: relative;
+  padding-block: var(--intern-section-pad);
+  background: var(--intern-bg-deep);
+  border-block: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__details-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  align-items: start;
+}
+
+.ac-intern__details-lead h2 { max-width: 16ch; }
+
+.ac-intern__details-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin-top: clamp(1.4rem, 2.6vw, 2rem) !important;
+}
+
+.ac-intern__details-price > span {
+  font-family: var(--intern-font-display);
+  font-size: clamp(2.4rem, 4.6vw, 3.4rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.ac-intern__details-price > em {
+  color: var(--intern-ink-muted);
+  font-size: 0.78rem;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.ac-intern__details-copy {
+  max-width: 34rem;
+  margin-top: 1.2rem !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(0.92rem, 1.05vw, 1rem);
+  line-height: 1.78;
+}
+
+.ac-intern__checklist {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1.5rem !important;
+  max-width: 34rem;
+}
+
+.ac-intern__checklist li {
+  position: relative;
+  padding-left: 1.7rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* Gradient tick, same mark as the learning list. */
+.ac-intern__checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 0.9rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--intern-gradient);
+}
+
+/* The fact table becomes a site surface card. */
+.ac-intern__details-panel {
+  padding: clamp(1.2rem, 2.2vw, 1.7rem);
+  border: 1px solid var(--intern-line-soft);
+  border-radius: var(--intern-radius-panel);
+  background: var(--intern-surface);
+}
+
+.ac-intern__details-panel > h3 {
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.15rem;
+  border-bottom: 1px solid var(--intern-line);
+  color: var(--intern-ink-muted);
+  font-family: var(--intern-font-ui);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.ac-intern__details-list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 0.9rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__details-list > div:last-of-type { border-bottom: 0; }
+
+.ac-intern__details-list dt {
+  color: var(--intern-ink-muted);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.ac-intern__details-list dd {
+  margin: 0;
+  color: var(--intern-ink);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.ac-intern__details-list dd small {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.ac-intern__details-note {
+  margin-top: 1.1rem !important;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--intern-line-soft);
+  color: var(--intern-ink-muted);
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+/* Policy statements — three small-print columns. */
+.ac-intern__policy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2.6rem, 5vw, 4rem);
+}
+
+.ac-intern__policy-grid > article {
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  border: 1px solid var(--intern-line-soft);
+  border-radius: var(--intern-radius-panel);
+  background: var(--intern-surface);
+}
+
+.ac-intern__policy-grid h3 {
+  margin-bottom: 0.8rem;
+  font-family: var(--intern-font-ui);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.ac-intern__policy-grid ul { display: grid; gap: 0.5rem; }
+
+.ac-intern__policy-grid li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.76rem;
+  line-height: 1.65;
+}
+
+.ac-intern__policy-grid li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 0.4rem;
+  height: 1px;
+  background: var(--intern-accent);
+}
+
+/* --------------------------------------------------------------------------
+   08 — APPLICATION
+   -------------------------------------------------------------------------- */
+.ac-intern__apply { padding-block: var(--intern-section-pad); }
+
+.ac-intern__apply-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  align-items: start;
+}
+
+.ac-intern__apply-lead h2 { max-width: 13ch; }
+
+.ac-intern__apply-intro {
+  max-width: 30rem;
+  margin-top: clamp(1rem, 1.8vw, 1.4rem) !important;
+  color: var(--intern-ink-soft);
+  font-size: clamp(0.96rem, 1.05vw, 1.02rem);
+  line-height: 1.72;
+}
+
+.ac-intern__apply-steps {
+  display: grid;
+  gap: 0;
+  margin-top: clamp(1.6rem, 2.8vw, 2.2rem) !important;
+  max-width: 30rem;
+  counter-reset: acInternApplyStep;
+}
+
+.ac-intern__apply-steps li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.6rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--intern-line-soft);
+  color: var(--intern-ink-muted);
+  font-size: 0.84rem;
+  line-height: 1.6;
+  counter-increment: acInternApplyStep;
+}
+
+.ac-intern__apply-steps li > span { display: block; min-width: 0; }
+
+.ac-intern__apply-steps li::before {
+  content: counter(acInternApplyStep, decimal-leading-zero);
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid rgba(124, 92, 255, 0.35);
+  border-radius: 50%;
+  color: #6b4dff;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ac-intern__apply-steps strong { color: var(--intern-ink); font-weight: 600; }
+
+.ac-intern__apply-alt {
+  margin-top: 1.3rem !important;
+  color: var(--intern-ink-muted);
+  font-size: 0.78rem;
+}
+
+.ac-intern__apply-alt a {
+  color: var(--intern-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ac-intern__apply-panel { position: relative; }
+
+/* --------------------------------------------------------------------------
+   08b — THE FORM
+   --------------------------------------------------------------------------
+   Five questions, one column. The panel and fields now match the site's card
+   and input language: 22px panel, 12px fields, 50px controls, 16px type (the
+   size that stops iOS zooming).
+   -------------------------------------------------------------------------- */
+.ac-intern__form {
+  display: grid;
+  gap: 1.05rem;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  padding: clamp(1.3rem, 2.6vw, 1.9rem);
+  border: 1px solid rgba(10, 15, 31, 0.1);
+  border-radius: var(--intern-radius-panel);
+  background: #ffffff;
+  box-shadow: 0 22px 60px rgba(36, 50, 79, 0.12);
+}
+
+.ac-intern__form--short { gap: 0.9rem; }
+
+.ac-intern__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.ac-intern__field > span {
+  color: var(--intern-ink-soft);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+/* Required marker. #5b3fd6 measures 5.0:1 on white; the lighter #7c5cff
+   brand tint only reaches 3.96:1 at this 11px size. */
+.ac-intern__field em {
+  color: #5b3fd6;
+  font-style: normal;
+}
+
+.ac-intern__field input,
+.ac-intern__field select,
+.ac-intern__field textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.72rem 0.9rem;
+  border: 1px solid rgba(10, 15, 31, 0.16);
+  border-radius: var(--ac-radius-sm, 12px);
+  background: #ffffff;
+  color: var(--intern-ink);
+  font-family: var(--intern-font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  appearance: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.ac-intern__field input,
+.ac-intern__field select { -webkit-appearance: none; }
+
+.ac-intern__field textarea { min-height: 96px; resize: vertical; }
+
+.ac-intern__field input::placeholder,
+.ac-intern__field textarea::placeholder { color: #8b90a0; }
+
+.ac-intern__field input:hover,
+.ac-intern__field select:hover,
+.ac-intern__field textarea:hover { border-color: rgba(10, 15, 31, 0.3); }
+
+.ac-intern__field input:focus-visible,
+.ac-intern__field select:focus-visible,
+.ac-intern__field textarea:focus-visible {
+  border-color: #7c5cff;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.18);
+  outline: none;
+}
+
+.ac-intern__field input[aria-invalid='true'],
+.ac-intern__field select[aria-invalid='true'],
+.ac-intern__field textarea[aria-invalid='true'] {
+  border-color: #c0392f;
+  background: #fff7f6;
+}
+
+/* Chevron on an appearance:none select. */
+.ac-intern__field select {
+  padding-right: 2.4rem;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% + 2px),
+    calc(100% - 0.8rem) calc(50% + 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.ac-intern__field select option { background: #ffffff; color: #0a0f1f; }
+
+.ac-intern__field input:-webkit-autofill,
+.ac-intern__field input:-webkit-autofill:hover,
+.ac-intern__field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--intern-ink);
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+  caret-color: var(--intern-ink);
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.ac-intern__hint {
+  color: var(--intern-ink-muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.ac-intern__error {
+  color: var(--intern-danger-ink);
+  font-size: 0.74rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.ac-intern__declarations { display: grid; gap: 0.5rem; }
+
+.ac-intern__declarations:focus-visible {
+  outline: 2px solid #7c5cff;
+  outline-offset: 4px;
+}
+
+.ac-intern__checkbox {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.7rem;
+  align-items: start;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(10, 15, 31, 0.1);
+  border-radius: var(--ac-radius-sm, 12px);
+  background: #f7f8fd;
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.ac-intern__checkbox:hover { border-color: rgba(10, 15, 31, 0.22); }
+
+.ac-intern__checkbox input {
+  width: 20px;
+  height: 20px;
+  margin: 0.1rem 0 0;
+  accent-color: #7c5cff;
+  cursor: pointer;
+  flex: none;
+}
+
+.ac-intern__checkbox span {
+  color: var(--intern-ink-soft);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.ac-intern__checkbox a {
+  color: var(--intern-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ac-intern__checkbox:has(input:checked) {
+  border-color: rgba(124, 92, 255, 0.4);
+  background: #f4f1ff;
+}
+
+.ac-intern__checkbox:has(input:focus-visible) {
+  outline: 2px solid #7c5cff;
+  outline-offset: 2px;
+}
+
+/* The submit is the signature gradient pill, full width in the panel. */
+.ac-intern__btn--submit {
+  width: 100%;
+  margin-top: 0.25rem;
+  background: var(--intern-gradient);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(124, 92, 255, 0.28);
+}
+
+.ac-intern__status {
+  color: var(--intern-ink-soft);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.ac-intern__status:empty { display: none; }
+
+.ac-intern__status.is-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid rgba(192, 57, 47, 0.3);
+  border-radius: var(--ac-radius-sm, 12px);
+  background: #fff7f6;
+  color: #8a2018;
+}
+
+.ac-intern__copy {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(10, 15, 31, 0.2);
+  border-radius: var(--intern-radius-pill);
+  background: #ffffff;
+  color: var(--intern-ink);
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ac-intern__draft-note {
+  max-width: 34rem;
+  margin: 0 auto 1rem !important;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(124, 92, 255, 0.28);
+  border-radius: var(--ac-radius-sm, 12px);
+  background: #f4f1ff;
+  color: var(--intern-ink-soft);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.ac-intern__draft-note button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #6b4dff;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ac-intern__honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   DISCIPLINE PICKER
+   --------------------------------------------------------------------------
+   Replaces the native <select> for the domain field. The trigger matches the
+   other inputs (12px, 50px, 16px type); the open panel is a site surface card.
+   -------------------------------------------------------------------------- */
+.ac-intern__picker { position: relative; }
+
+.ac-intern__picker-control { position: relative; }
+
+.ac-intern__picker-control input {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.72rem 2.6rem 0.72rem 0.9rem;
+  border: 1px solid rgba(10, 15, 31, 0.16);
+  border-radius: var(--ac-radius-sm, 12px);
+  background: #ffffff;
+  color: var(--intern-ink);
+  font-family: var(--intern-font-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.ac-intern__picker-control input::placeholder { color: #8b90a0; }
+
+.ac-intern__picker-control input:hover { border-color: rgba(10, 15, 31, 0.3); }
+
+.ac-intern__picker-control input:focus-visible {
+  border-color: #7c5cff;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.18);
+  outline: none;
+  cursor: text;
+}
+
+.ac-intern__picker-control input[aria-invalid='true'] {
+  border-color: #c0392f;
+  background: #fff7f6;
+}
+
+/* Chevron: a real glyph, not a background-image, so it rotates cleanly. */
+.ac-intern__picker-chevron {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  width: 0.62rem;
+  height: 0.62rem;
+  margin-top: -0.38rem;
+  border-right: 1.5px solid #5d6475;
+  border-bottom: 1.5px solid #5d6475;
+  transform: rotate(45deg);
+  transform-origin: 70% 70%;
+  transition: transform 220ms var(--intern-ease), margin-top 220ms var(--intern-ease);
+  pointer-events: none;
+}
+
+.ac-intern__picker-control.is-open .ac-intern__picker-chevron {
+  margin-top: -0.16rem;
+  transform: rotate(-135deg);
+}
+
+/* When the panel opens upward the chevron stays pointing down at it, so the
+   arrow always points at the list rather than away from it. */
+.ac-intern__picker.is-above .ac-intern__picker-control.is-open .ac-intern__picker-chevron {
+  margin-top: -0.38rem;
+  transform: rotate(45deg);
+}
+
+.ac-intern__picker-list {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  max-height: 19rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.35rem;
+  border: 1px solid rgba(10, 15, 31, 0.12);
+  border-radius: var(--ac-radius-md, 16px);
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(10, 15, 31, 0.2), 0 2px 6px rgba(10, 15, 31, 0.06);
+  list-style: none;
+  margin: 0;
+  animation: acInternPickerIn 160ms var(--intern-ease) both;
+}
+
+@keyframes acInternPickerIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Opens upward when the field sits too low in the viewport (the usual case on
+   phones and in landscape tablets). The inline max-height comes from the
+   component, which measures the space actually available. */
+.ac-intern__picker-list.is-above {
+  top: auto;
+  bottom: calc(100% + 0.4rem);
+  animation-name: acInternPickerInAbove;
+}
+
+@keyframes acInternPickerInAbove {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ac-intern__picker-option {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+/* the numeric code — kept out of the label itself */
+.ac-intern__picker-mark {
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid rgba(124, 92, 255, 0.26);
+  border-radius: 50%;
+  background: #f6f4ff;
+  color: #5b3fd6;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.ac-intern__picker-text { min-width: 0; }
+
+.ac-intern__picker-title {
+  display: block;
+  color: var(--intern-ink);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.ac-intern__picker-meta {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+/* Selected-state tick, drawn rather than typed. */
+.ac-intern__picker-tick {
+  position: relative;
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
+  opacity: 0;
+}
+
+.ac-intern__picker-tick::before {
+  content: '';
+  position: absolute;
+  left: 0.1rem;
+  top: 0.02rem;
+  width: 0.35rem;
+  height: 0.62rem;
+  border-right: 2px solid #5b3fd6;
+  border-bottom: 2px solid #5b3fd6;
+  transform: rotate(42deg);
+}
+
+.ac-intern__picker-option.is-selected .ac-intern__picker-tick { opacity: 1; }
+
+.ac-intern__picker-option.is-active { background: #f4f1ff; }
+
+.ac-intern__picker-option.is-selected .ac-intern__picker-title { font-weight: 600; }
+
+.ac-intern__picker-empty {
+  padding: 0.9rem 0.8rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.84rem;
+}
+
+.ac-intern__picker-list::-webkit-scrollbar { width: 10px; }
+.ac-intern__picker-list::-webkit-scrollbar-track { background: transparent; }
+.ac-intern__picker-list::-webkit-scrollbar-thumb {
+  border: 3px solid #ffffff;
+  border-radius: 999px;
+  background: rgba(10, 15, 31, 0.22);
+}
+
+/* Confirmation panel */
+.ac-intern__confirm {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  padding: clamp(1.4rem, 2.8vw, 2rem);
+  border: 1px solid rgba(10, 15, 31, 0.1);
+  border-radius: var(--intern-radius-panel);
+  background: #ffffff;
+  box-shadow: 0 22px 60px rgba(36, 50, 79, 0.12);
+}
+
+.ac-intern__confirm-badge {
+  display: inline-block;
+  margin-bottom: 0.85rem !important;
+  padding: 0.32rem 0.8rem;
+  border: 1px solid rgba(124, 92, 255, 0.32);
+  border-radius: var(--intern-radius-pill);
+  background: #f4f1ff;
+  color: #5b3fd6;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ac-intern__confirm h3 { max-width: 24ch; font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
+
+.ac-intern__confirm > p {
+  max-width: 40rem;
+  margin-top: 0.8rem !important;
+  color: var(--intern-ink-soft);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.ac-intern__confirm-steps {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.15rem !important;
+  counter-reset: acInternDone;
+}
+
+.ac-intern__confirm-steps li {
+  position: relative;
+  padding-left: 2rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.ac-intern__confirm-steps li::before {
+  counter-increment: acInternDone;
+  content: counter(acInternDone);
+  position: absolute;
+  left: 0;
+  top: 0.06em;
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1px solid rgba(124, 92, 255, 0.32);
+  border-radius: 50%;
+  color: #5b3fd6;
+  font-size: 0.64rem;
+  font-weight: 600;
+}
+
+.ac-intern__confirm-steps strong { color: var(--intern-ink); font-weight: 600; }
+
+.ac-intern__confirm-note {
+  margin-top: 1rem !important;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(10, 15, 31, 0.08);
+  color: var(--intern-ink-muted) !important;
+  font-size: 0.74rem !important;
+}
+
+.ac-intern__confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.35rem;
+}
+
+.ac-intern__confirm-actions .ac-intern__btn {
+  min-height: 46px;
+  padding: 0.7rem 1.35rem;
+  font-size: 0.72rem;
+}
+
+.ac-intern__confirm-actions .ac-intern__btn--primary {
+  background: var(--intern-gradient);
+  color: #ffffff;
+}
+
+.ac-intern__confirm-actions .ac-intern__btn--ghost {
+  border-color: rgba(10, 15, 31, 0.18);
+  background: #ffffff;
+  color: var(--intern-ink);
+}
+
+/* --------------------------------------------------------------------------
+   09 — FAQ
+   -------------------------------------------------------------------------- */
+.ac-intern__faq-section { padding-block: clamp(3.5rem, 7vw, 6rem); }
+
+.ac-intern__faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 4.5vw, 4.5rem);
+  align-items: start;
+}
+
+.ac-intern__faq-head { position: sticky; top: clamp(6rem, 12vh, 8.5rem); }
+
+.ac-intern__faq-head h2 { max-width: 12ch; }
+
+.ac-intern__faq-intro {
+  max-width: 22rem;
+  margin-top: 1rem !important;
+  color: var(--intern-ink-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* The accordion is one surface card with internal hairlines. */
+.ac-intern__faq {
+  border: 1px solid rgba(10, 15, 31, 0.08);
+  border-radius: var(--intern-radius-panel);
+  background: #ffffff;
+  padding: 0 clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 16px 44px rgba(36, 50, 79, 0.07);
+  overflow: hidden;
+}
+
+.ac-intern__faq-item + .ac-intern__faq-item { border-top: 1px solid rgba(10, 15, 31, 0.08); }
+
+.ac-intern__faq-item h3 { margin: 0; }
+
+.ac-intern__faq-item button {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.4rem;
+  width: 100%;
+  min-height: 56px;
+  padding: 1.1rem 0;
+  border: 0;
+  background: none;
+  color: var(--intern-ink);
+  font-family: var(--intern-font-ui);
+  font-size: clamp(0.92rem, 1.15vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.002em;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+  transition: color 200ms var(--intern-ease);
+}
+
+.ac-intern__faq-icon {
+  position: relative;
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  top: 0.2em;
+}
+
+.ac-intern__faq-icon::before,
+.ac-intern__faq-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  border-radius: 2px;
+  background: #7c5cff;
+  transition: transform 280ms var(--intern-ease);
+}
+
+.ac-intern__faq-icon::after { transform: rotate(90deg); }
+
+.ac-intern__faq-item.is-open .ac-intern__faq-icon::after { transform: rotate(0deg); }
+
+.ac-intern__faq-item > div > p {
+  max-width: 44rem;
+  padding: 0 0 1.2rem;
+  color: var(--intern-ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+.ac-intern__faq-item > div { animation: acInternFaqIn 300ms var(--intern-ease) both; }
+
+@keyframes acInternFaqIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ac-intern__faq-item button:hover { color: #5b3fd6; }
+}
+
+.ac-intern__faq-more {
+  display: block;
+  margin: 1.1rem 0 1.3rem;
+  min-height: 44px;
+  padding: 0.65rem 1.3rem;
+  border: 1px solid rgba(10, 15, 31, 0.18);
+  border-radius: var(--intern-radius-pill);
+  background: #ffffff;
+  color: var(--intern-ink);
+  font-family: var(--intern-font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 220ms var(--intern-ease), background-color 220ms var(--intern-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ac-intern__faq-more:hover {
+    border-color: rgba(124, 92, 255, 0.4);
+    background: #f7f5ff;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   CLOSING
+   --------------------------------------------------------------------------
+   The site's graphite slab closes the page, with the contact colophon beside
+   the call to action.
+   -------------------------------------------------------------------------- */
+.ac-intern__final {
+  position: relative;
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background: var(--intern-bg);
+  border-top: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(48rem 32rem at 82% 0%, rgba(200, 107, 255, 0.16), transparent 62%),
+    radial-gradient(40rem 28rem at 6% 100%, rgba(56, 189, 248, 0.12), transparent 60%);
+  pointer-events: none;
+}
+
+.ac-intern__final-inner {
+  width: 100%;
+  max-width: var(--intern-wrap-max);
+  margin-inline: auto;
+  padding-inline: var(--intern-gutter);
+}
+
+.ac-intern__final h2 { max-width: 21ch; }
+
+.ac-intern__final h2 em {
+  display: block;
+  margin-top: 0.1em;
+  font-style: italic;
+  background: var(--intern-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ac-intern__final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.ac-intern__final-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: start;
+  margin-top: clamp(2.2rem, 4vw, 3.2rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--intern-line-soft);
+}
+
+.ac-intern__final-note {
+  max-width: 30rem;
+  color: var(--intern-ink-muted);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.ac-intern__final-contact { display: grid; gap: 0.75rem; }
+
+.ac-intern__final-contact dt {
+  color: var(--intern-ink-muted);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ac-intern__final-contact dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.92rem;
+}
+
+.ac-intern__final-contact a {
+  color: var(--intern-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--intern-line);
+  transition: border-color 200ms var(--intern-ease), color 200ms var(--intern-ease);
+}
+
+.ac-intern__final-contact a:hover {
+  color: var(--intern-accent);
+  border-bottom-color: var(--intern-accent);
+}
+
+.ac-intern__final-contact a:focus-visible {
+  outline: 2px solid var(--intern-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .ac-intern__final-foot { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------------------------
+   Recomposed at each breakpoint rather than merely stacked: the hero becomes a
+   single reading column with a cropped panel, the discipline grid drops to two
+   columns then one, and the timeline rotates to a vertical spine.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .ac-intern__hero-shell { grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 4.5vw, 2.6rem); }
+
+  .ac-intern__hero-visual { max-width: 36rem; padding-bottom: 2.2rem; }
+
+  .ac-intern__hero-img { aspect-ratio: 16 / 10; }
+
+  .ac-intern__hero-inset {
+    left: auto;
+    right: clamp(0.5rem, 2vw, 1.4rem);
+    width: clamp(7rem, 30%, 10.5rem);
+    border-width: 4px;
+  }
+
+  .ac-intern__philosophy-grid,
+  .ac-intern__details-grid,
+  .ac-intern__apply-grid,
+  .ac-intern__faq-layout { grid-template-columns: minmax(0, 1fr); }
+
+  .ac-intern__philosophy-body { padding-top: 0; max-width: 40rem; }
+
+  .ac-intern__disciplines-head,
+  .ac-intern__journey-head { grid-template-columns: minmax(0, 1fr); align-items: start; }
+
+  .ac-intern__discipline-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+
+  .ac-intern__discipline { grid-column: span 3; }
+
+  .ac-intern__discipline--lead,
+  .ac-intern__discipline--end,
+  .ac-intern__discipline--offset,
+  .ac-intern__discipline--feature,
+  .ac-intern__discipline--full { grid-column: span 6; }
+
+  .ac-intern__discipline--half { grid-column: span 3; }
+
+
+  .ac-intern__approach { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .ac-intern__policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .ac-intern__faq-head { position: static; }
+
+  .ac-intern__apply-panel { max-width: 38rem; }
+
+  .ac-intern__form,
+  .ac-intern__confirm { max-width: none; }
+}
+
+/* --------------------------------------------------------------------------
+   JOURNEY — STACKED STEPPER (tablet + mobile only)
+   --------------------------------------------------------------------------
+   Everything >=1081px is untouched: three cards above one horizontal rail.
+   Narrower than that, that rail stops having room to breathe, so the section
+   becomes a vertical stepper.
+
+   Design decisions, and what they fix:
+     · Each stage owns a numbered node. Once the horizontal rail is gone a bare
+       dot carries no information; the number keeps the sequence legible.
+     · The node sits in a fixed column *outside* the card's border box. The
+       previous version drew the rail inside the card, where it read as a
+       doubled border and ran straight through the body copy.
+     · Each stage draws its own rail segment down to the next node, and the
+       final stage draws nothing — so the line terminates rather than dangling.
+     · The bullet list becomes a chip grid above 560px, which reclaims the empty
+       right-hand half of every tablet card.
+     · Padding, type and node size step down across tablet → phone → small
+       phone instead of one fixed scale.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .ac-intern__hero-shell { grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 2.6rem); }
+
+  .ac-intern__hero-visual {
+    max-width: 38rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .ac-intern__hero-img { aspect-ratio: 16 / 10; }
+
+  .ac-intern__hero-inset {
+    left: auto;
+    right: clamp(0.5rem, 2vw, 1.5rem);
+    width: clamp(7rem, 30%, 11rem);
+    border-width: 4px;
+  }
+
+  .ac-intern__philosophy-grid,
+  .ac-intern__details-grid,
+  .ac-intern__apply-grid,
+  .ac-intern__faq-layout { grid-template-columns: minmax(0, 1fr); }
+
+  .ac-intern__philosophy-body { padding-top: 0; max-width: 40rem; }
+
+  .ac-intern__disciplines-head { grid-template-columns: minmax(0, 1fr); align-items: start; }
+
+  .ac-intern__discipline-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .ac-intern__discipline { grid-column: span 2; }
+
+  .ac-intern__discipline--lead { grid-column: span 4; }
+
+  .ac-intern__discipline--tall { grid-column: span 2; }
+
+  .ac-intern__discipline--tall img { aspect-ratio: 16 / 10; }
+
+  .ac-intern__approach { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .ac-intern__policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .ac-intern__faq-head { position: static; }
+
+  .ac-intern__apply-panel { max-width: 38rem; }
+
+  .ac-intern__journey-head { grid-template-columns: minmax(0, 1fr); align-items: start; }
+
+  .ac-intern__journey-note { max-width: 34rem; padding-bottom: 0; }
+
+  .ac-intern__timeline {
+    --node-col: 2.9rem;          /* column reserved for node + rail */
+    --node-size: 2.15rem;
+    --node-top: clamp(1.35rem, 2.4vw, 1.85rem);  /* node top, from card top */
+    --rail-start: calc(var(--node-top) + var(--node-size));
+    --step-gap: clamp(0.85rem, 2vw, 1.25rem);
+
+    display: grid;
+    grid-template-columns: var(--node-col) minmax(0, 1fr);
+    column-gap: clamp(0.85rem, 2vw, 1.15rem);
+    row-gap: var(--step-gap);
+    padding-left: 0;
+  }
+
+  /* One row per stage: node in column 1, card in column 2. */
+  .ac-intern__timeline-stage {
+    position: relative;          /* containing block for the rail segment */
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: start;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  /* ---- the card ------------------------------------------------------- */
+  .ac-intern__timeline-card {
+    grid-column: 2;
+    grid-row: 1;
+    padding: clamp(1.15rem, 2.1vw, 1.7rem) clamp(1.15rem, 2.2vw, 1.8rem);
+    border: 1px solid var(--intern-line-soft);
+    border-radius: var(--intern-radius-panel);
+    background: var(--intern-surface);
+    box-shadow: 0 18px 44px rgba(3, 6, 15, 0.28);
+  }
+
+  /* ---- the node ------------------------------------------------------- */
+  .ac-intern__timeline-marker {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: var(--node-size);
+    height: var(--node-size);
+    margin-top: var(--node-top);
+    border: 1px solid rgba(0, 210, 255, 0.45);
+    border-radius: 50%;
+    background: #071019;
+    box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.08), 0 10px 24px rgba(3, 6, 15, 0.5);
+    color: #bfe9ff;
+    font-size: 0.66rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .ac-intern__timeline-marker > span { display: block; }
+
+  /* ---- the rail ------------------------------------------------------- */
+  /* Runs from this stage's node down to the next stage's node. */
+  .ac-intern__timeline-stage::after {
+    content: '';
+    position: absolute;
+    top: var(--rail-start);
+    left: calc((var(--node-size) / 2) - 0.5px);
+    width: 1px;
+    /* The segment starts `--rail-start` down from the <li>'s top, so with the
+       height percentage resolving against the <li> itself the start offset is
+       subtracted, not added. It deliberately runs one node-height *past* where
+       the next node begins: the node is opaque and paints above this pseudo, so
+       the rail tucks behind it. That removes any chance of a hairline seam at
+       fractional zoom or non-integer device pixel ratios. */
+    height: calc(100% + var(--step-gap) + var(--node-size) - var(--rail-start));
+    background: linear-gradient(180deg, rgba(0, 210, 255, 0.5), rgba(200, 107, 255, 0.26));
+  }
+
+  .ac-intern__timeline-stage:last-child::after { display: none; }
+
+  /* ---- card type ------------------------------------------------------ */
+  .ac-intern__timeline-month {
+    margin-bottom: clamp(0.5rem, 1.2vw, 0.7rem) !important;
+    color: #7dd3fc;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+  }
+
+  .ac-intern__timeline-card h3 {
+    font-size: clamp(1.28rem, 1.9vw, 1.6rem);
+    line-height: 1.22;
+  }
+
+  .ac-intern__timeline-summary {
+    max-width: 46ch;
+    margin-top: 0.6rem !important;
+    color: var(--intern-ink-soft);
+    font-size: clamp(0.87rem, 1vw, 0.94rem);
+    line-height: 1.7;
+  }
+
+  /* Chips: two tracks on tablet, one on phones. */
+  .ac-intern__timeline-card ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem 1.2rem;
+    margin-top: clamp(0.9rem, 1.8vw, 1.2rem) !important;
+    padding-top: clamp(0.85rem, 1.6vw, 1.05rem);
+    border-top: 1px solid var(--intern-line-soft);
+  }
+
+  .ac-intern__timeline-card li {
+    position: relative;
+    padding-left: 0.9rem;
+    color: var(--intern-ink-muted);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  .ac-intern__timeline-card li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 0.35rem;
+    height: 1px;
+    background: rgba(0, 210, 255, 0.65);
+  }
+}
+
+/* Tablet portrait: the sections that stack a two-column layout at this width
+   (they are not part of the journey stepper above). */
+@media (max-width: 820px) {
+  .ac-intern__learning-row { grid-template-columns: minmax(0, 1fr); gap: clamp(1.2rem, 4vw, 1.8rem); }
+
+  .ac-intern__learning-row--flip .ac-intern__learning-media { order: 0; }
+
+  .ac-intern__learning-row .ac-intern__learning-media img,
+  .ac-intern__learning-row--flip .ac-intern__learning-media img { aspect-ratio: 16 / 10; }
+
+  .ac-intern__philosophy-visual img { aspect-ratio: 16 / 9; }
+
+  .ac-intern__policy-grid { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+
+  .ac-intern__recognition-head { text-align: left; margin-inline: 0; }
+
+  .ac-intern__recognition-head > p:last-child { margin-inline: 0 !important; }
+
+  .ac-intern__cert-disclaimer { text-align: left; }
+}
+
+/* Phones: one chip track, tighter node column. */
+@media (max-width: 560px) {
+  .ac-intern__timeline {
+    --node-col: 2.35rem;
+    --node-size: 1.8rem;
+    --node-top: 1.15rem;
+    --step-gap: 0.85rem;
+    column-gap: 0.8rem;
+  }
+
+  .ac-intern__timeline-card {
+    padding: 1rem 1.05rem 1.1rem;
+    border-radius: var(--intern-radius-surface);
+  }
+
+  .ac-intern__timeline-card ul { grid-template-columns: minmax(0, 1fr); gap: 0.34rem; }
+
+  .ac-intern__timeline-card h3 { font-size: 1.22rem; }
+
+  .ac-intern__timeline-summary { font-size: 0.86rem; }
+
+  .ac-intern__timeline-marker { font-size: 0.6rem; }
+}
+
+/* Small phones: everything shrinks one more step so the card keeps a usable
+   measure instead of being squeezed by the node column. */
+@media (max-width: 360px) {
+  .ac-intern__timeline {
+    --node-col: 2.05rem;
+    --node-size: 1.6rem;
+    --node-top: 1.05rem;
+    column-gap: 0.7rem;
+  }
+
+  .ac-intern__timeline-card { padding: 0.9rem 0.95rem 1rem; }
+
+  .ac-intern__timeline-marker { font-size: 0.55rem; }
+}
+
+@media (max-width: 640px) {
+  .ac-intern__hero { padding-top: clamp(5.25rem, 13vh, 7rem); }
+
+  /* The site keeps a floating menu control in the right gutter at this width;
+     reserve that column so no hero line runs beneath it. */
+  .ac-intern__hero-copy { padding-inline-end: 2.6rem; }
+
+  .ac-intern__hero h1 { font-size: clamp(2rem, 8.4vw, 2.7rem); }
+
+  .ac-intern__hero-actions .ac-intern__btn { flex: 1 1 100%; }
+
+  .ac-intern__hero-facts { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+
+  .ac-intern__hero-facts > div { justify-content: space-between; }
+
+  .ac-intern__discipline-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .ac-intern__discipline,
+  .ac-intern__discipline--lead,
+  .ac-intern__discipline--end,
+  .ac-intern__discipline--half,
+  .ac-intern__discipline--offset,
+  .ac-intern__discipline--feature,
+  .ac-intern__discipline--full {
+    grid-column: span 1;
+    display: flex;
+  }
+
+  .ac-intern__discipline img,
+  .ac-intern__discipline--lead img,
+  .ac-intern__discipline--feature img,
+  .ac-intern__discipline--full img { aspect-ratio: 16 / 10; height: auto; }
+
+  .ac-intern__discipline--lead .ac-intern__discipline-body,
+  .ac-intern__discipline--full .ac-intern__discipline-body { padding: clamp(0.9rem, 1.6vw, 1.15rem) 0.3rem 0.3rem; }
+
+  .ac-intern__discipline--lead h3,
+  .ac-intern__discipline--end h3,
+  .ac-intern__discipline--half h3,
+  .ac-intern__discipline--feature h3,
+  .ac-intern__discipline--full h3 { font-size: clamp(1.2rem, 5vw, 1.5rem); }
+
+  .ac-intern__approach { grid-template-columns: minmax(0, 1fr); }
+
+  .ac-intern__philosophy-lead h2 { font-size: clamp(2rem, 9vw, 2.6rem); }
+
+  .ac-intern__details-list > div { grid-template-columns: minmax(0, 1fr); gap: 0.25rem; padding: 0.75rem 0; }
+
+  .ac-intern__form { padding: 1.15rem; }
+
+  .ac-intern__confirm-actions .ac-intern__btn { flex: 1 1 100%; }
+
+  .ac-intern__final-actions .ac-intern__btn { flex: 1 1 100%; }
+}
+
+@media (max-width: 420px) {
+  .ac-intern__hero-copy { padding-inline-end: 2.1rem; }
+  .ac-intern__hero-inset { display: none; }
+  .ac-intern__hero-visual { padding-bottom: 0; }
+  .ac-intern__checkbox { padding: 0.65rem 0.7rem; }
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY / MOTION / CONTRAST
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .ac-intern *,
+  .ac-intern *::before,
+  .ac-intern *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ac-intern__faq-item > div { animation: none; }
+  .ac-intern__discipline img { filter: none; }
+  .ac-intern__discipline:hover { transform: none; }
+}
+
+@media (prefers-contrast: more) {
+  .ac-intern {
+    --intern-ink-soft: rgba(255, 255, 255, 0.92);
+    --intern-ink-muted: rgba(255, 255, 255, 0.78);
+    --intern-line: rgba(255, 255, 255, 0.46);
+    --intern-line-soft: rgba(255, 255, 255, 0.34);
+  }
+
+  .ac-intern__philosophy,
+  .ac-intern__learning,
+  .ac-intern__recognition,
+  .ac-intern__apply,
+  .ac-intern__faq-section {
+    --intern-ink-soft: #1a1f2b;
+    --intern-ink-muted: #333a47;
+    --intern-line: rgba(10, 15, 31, 0.5);
+    --intern-line-soft: rgba(10, 15, 31, 0.3);
+  }
+
+  .ac-intern__field input,
+  .ac-intern__field select,
+  .ac-intern__field textarea { border-color: rgba(10, 15, 31, 0.55); }
+}
+
+/* Windows High Contrast: gradients and translucent fills are discarded by the
+   UA, so the structure has to come back from system colours. */
+@media (forced-colors: active) {
+  .ac-intern__discipline,
+  .ac-intern__approach li,
+  .ac-intern__policy-grid > article,
+  .ac-intern__details-panel,
+  .ac-intern__form,
+  .ac-intern__confirm,
+  .ac-intern__checkbox,
+  .ac-intern__faq,
+  .ac-intern__cert-frame { border: 1px solid CanvasText; }
+
+  .ac-intern__btn,
+  .ac-intern__discipline-cta,
+  .ac-intern__faq-item button,
+  .ac-intern__faq-more,
+  .ac-intern__copy,
+  .ac-intern__lightbox-close {
+    border: 1px solid ButtonText;
+    color: ButtonText;
+  }
+
+  .ac-intern__hero h1 em,
+  .ac-intern__philosophy-lead h2 em,
+  .ac-intern__final h2 em,
+  .ac-intern__eyebrow,
+  .ac-intern__discipline-meta > span,
+  .ac-intern__learning-code {
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
+    background: none;
+  }
+
+  .ac-intern__checkbox input { accent-color: auto; }
+
+  .ac-intern,
+  .ac-intern__hero,
+  .ac-intern__disciplines,
+  .ac-intern__journey,
+  .ac-intern__details,
+  .ac-intern__final,
+  .ac-intern__philosophy,
+  .ac-intern__learning,
+  .ac-intern__recognition,
+  .ac-intern__apply,
+  .ac-intern__faq-section {
+    --intern-ink: CanvasText;
+    --intern-ink-soft: CanvasText;
+    --intern-ink-muted: GrayText;
+    --intern-accent-ink: LinkText;
+    background: Canvas;
+  }
+
+  .ac-intern__timeline-marker { background: CanvasText; box-shadow: none; }
+  .ac-intern__timeline-stage::after { background: CanvasText; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .ac-intern__form,
+  .ac-intern__confirm,
+  .ac-intern__checkbox,
+  .ac-intern__faq { background-color: #ffffff; }
+  .ac-intern__hero-facts > div,
+  .ac-intern__discipline,
+  .ac-intern__approach li { backdrop-filter: none; }
+}
+
+/* Print: white paper, so every band surrenders its surface and its ink. */
+@media print {
+  .ac-intern {
+    --intern-ink: #111111;
+    --intern-ink-soft: #333333;
+    --intern-ink-muted: #4a4a4a;
+    --intern-line: rgba(0, 0, 0, 0.35);
+    --intern-line-soft: rgba(0, 0, 0, 0.18);
+    --intern-accent-ink: #0b5f86;
+    background: #fff;
+    color: #111111;
+  }
+
+  .ac-intern__form,
+  .ac-intern__final-actions,
+  .ac-intern__final-contact,
+  .ac-intern__hero-actions,
+  .ac-intern__hero-visual,
+  .ac-intern__cert-zoom,
+  .ac-intern__discipline-cta { display: none; }
+
+  .ac-intern__hero::before,
+  .ac-intern__disciplines::before,
+  .ac-intern__journey::before,
+  .ac-intern__final::before { display: none; }
+
+  .ac-intern__hero,
+  .ac-intern__disciplines,
+  .ac-intern__journey,
+  .ac-intern__details,
+  .ac-intern__final,
+  .ac-intern__philosophy,
+  .ac-intern__learning,
+  .ac-intern__recognition,
+  .ac-intern__apply,
+  .ac-intern__faq-section {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .ac-intern__discipline,
+  .ac-intern__faq-item,
+  .ac-intern__cert-frame { break-inside: avoid; }
+}
+
+/* ==========================================================================
+   SITE-WIDE FAQ — one accordion surface, matching the internship page
+   ==========================================================================
+   Domain, capability and slider-experience pages each render their own
+   <details> accordion. Two of those were styled for a DARK panel, but they sit
+   on the pale editorial band, which produced muddy grey bars with a ~4:1
+   contrast ratio on the question text.
+
+   This is one shared skin used by all of them, taken from the internship FAQ:
+   a single white card with internal hairlines, no per-row chrome, and an
+   indigo +/− toggle. It is scoped to those three class families only.
+   ========================================================================== */
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) {
+  display: block;
+  border: 1px solid rgba(10, 15, 31, 0.08);
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 0 clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 0 16px 44px rgba(36, 50, 79, 0.07);
+  overflow: hidden;
+}
+
+/* One row: no box, just a hairline between questions. */
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) details {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) details + details {
+  border-top: 1px solid rgba(10, 15, 31, 0.08);
+}
+
+/* The default disclosure triangle is replaced by the +/− toggle. */
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.4rem;
+  min-height: 56px;
+  padding: 1.1rem 0;
+  color: #0a0f1f;
+  font-family: 'Geograph', 'Montserrat', Arial, sans-serif;
+  font-size: clamp(0.92rem, 1.15vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.002em;
+  line-height: 1.45;
+  list-style: none;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) summary::-webkit-details-marker,
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) summary::marker {
+  display: none;
+  content: '';
+}
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) summary::after {
+  content: '+';
+  flex: none;
+  color: #7c5cff;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 280ms ease;
+}
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) details[open] summary::after {
+  content: '−';
+}
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) details p {
+  max-width: 44rem;
+  margin: 0;
+  padding: 0 0 1.2rem;
+  color: #3f4657;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* Capability sections put the heading in the same column immediately above the
+   card, which left the two touching. Give the card its own breathing room. */
+.angel-capability__section .angel-domain__faq-list {
+  margin-top: 1.75rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.angel-domain__faq-list, .angel-service-guide__faq-list) summary:hover {
+    color: #5b3fd6;
+  }
+}
+
+:is(.angel-domain__faq-list, .angel-service-guide__faq-list) summary:focus-visible {
+  outline: 2px solid #7c5cff;
+  outline-offset: 3px;
+}
+
+/* The slider pages wrapped the accordion in its own rounded panel; the card is
+   the panel now, so that wrapper drops its frame and just supplies spacing. */
+.angel-service-guide__faq {
+  margin-top: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}

@@ -156,5 +156,12 @@
     "shareTitle": "Every domain. Every world we can build.",
     "image": "/media/social/og/domains.jpg",
     "imageAlt": "Angel Creations domain directory artwork with the headline “Every domain. Every world we can build.”"
+  },
+  "/internship/": {
+    "title": "Internship Programme in India | Angel Creations",
+    "description": "Join the Angel Creations 3-month internship programme. Practical projects, professional mentorship and real-world industry exposure across 11 disciplines — design, animation, XR, development, marketing and business. Apply in under a minute.",
+    "image": "/media/social/og/internship.jpg",
+    "shareTitle": "Don’t just learn skills. Experience the industry.",
+    "imageAlt": "Angel Creations internship programme artwork with the headline “Don’t just learn skills. Experience the industry.”"
   }
 }

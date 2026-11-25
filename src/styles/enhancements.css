@@ -226,6 +226,77 @@ header .logo-bar .link_flex ul li a:focus-visible {
   color: #ffffff !important;
 }
 
+/* ==========================================================================
+   Inner pages: the masthead bar
+   ==========================================================================
+   The wordmark is white, and on inner pages the editorial sections below are
+   white too — so without a backing it becomes unreadable and collides with
+   body copy scrolling underneath.
+
+   This is a flat app-bar: full width, flush to the very top edge, one uniform
+   translucent tint, a hairline rule along the bottom. No gradient, no drop
+   shadow, no inset offset — those were what made earlier attempts read as a
+   floating strip pasted over the page. It retracts on scroll-down and returns
+   on scroll-up (the `is-hidden` class from Header.tsx drives that).
+
+   Gated on `.logo-bar--bar`, which Header only renders when the route is not
+   the homepage — nothing here can reach the homepage.
+   ========================================================================== */
+
+header .logo-bar.logo-bar--bar {
+  top: 0 !important;
+  height: auto;
+  background: rgba(7, 11, 20, 0.82) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+  -webkit-mask-image: none;
+  mask-image: none;
+  padding: 0.55rem clamp(1.5rem, 5vw, 4.5rem) 0.55rem clamp(1.35rem, 4vw, 3.6rem) !important;
+  pointer-events: none;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 280ms ease;
+  will-change: transform, opacity;
+}
+
+/* Hidden: lift the bar clear of the viewport. */
+header .logo-bar.logo-bar--bar.is-hidden {
+  transform: translateY(-101%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+header .logo-bar.logo-bar--bar .logo {
+  pointer-events: auto;
+}
+
+/* Respect the OS-level motion preference: fade, do not slide. */
+@media (prefers-reduced-motion: reduce) {
+  header .logo-bar.logo-bar--bar {
+    transition: opacity 120ms linear;
+  }
+
+  header .logo-bar.logo-bar--bar.is-hidden {
+    transform: none;
+  }
+}
+
+/* The menu overlay is open: the bar must not slide away behind it. */
+header .header-wrap.menu_show .logo-bar.logo-bar--bar.is-hidden {
+  transform: none;
+  opacity: 1;
+}
+
+@media screen and (max-width: 1024px) {
+  header .logo-bar.logo-bar--bar {
+    padding: 0.5rem max(1.25rem, env(safe-area-inset-right)) 0.5rem max(1.1rem, env(safe-area-inset-left)) !important;
+  }
+}
+
 /* Full-screen video stage */
 #slideshow.slideshow.ac-home-cinema {
   --ac-horizon-progress: 14.3%;
@@ -284,6 +355,11 @@ header .logo-bar .link_flex ul li a:focus-visible {
   width: auto !important;
   max-width: min(88vw, 82rem) !important;
   height: auto !important;
+  /* The caption can now hold two children (the headline link and the Explore
+     control), so it stacks them instead of laying them out as a row. */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
   padding: 0 !important;
   margin: 0 !important;
   color: #7dd3fc !important;
@@ -407,6 +483,95 @@ header .logo-bar .link_flex ul li a:focus-visible {
   will-change: transform, opacity;
 }
 
+/* --------------------------------------------------------------------------
+   Caption action — "Explore"
+   --------------------------------------------------------------------------
+   The headline block sits directly above the architectural horizon line, so
+   the action lives in the caption's own flow rather than being absolutely
+   positioned. It is a pill, so even on the brightest slide frame it stays
+   legible without a scrim, and it reuses the site's capsule language.
+   -------------------------------------------------------------------------- */
+#slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore {
+  display: inline-flex;
+  align-items: center;
+  margin-top: clamp(0.85rem, 1.9vh, 1.35rem);
+  /* Text-only: padding is symmetric now that the arrow is gone. */
+  padding: 0.62rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: var(--ac-radius-pill, 999px);
+  background: rgba(6, 9, 19, 0.34);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  backdrop-filter: blur(10px) saturate(1.1);
+  color: #f4f6fb;
+  font-family: 'Graphik', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 10px 26px rgba(3, 6, 15, 0.3);
+  transition:
+    background-color 300ms var(--angel-ease-out),
+    border-color 300ms var(--angel-ease-out),
+    color 300ms var(--angel-ease-out),
+    transform 300ms var(--angel-ease-out);
+}
+
+#slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore:focus-visible {
+  outline: 2px solid var(--angel-focus, #7dd3fc);
+  outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore:hover {
+    border-color: rgba(125, 211, 252, 0.85);
+    background: rgba(10, 22, 40, 0.72);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+}
+
+/* Short viewports (landscape phones): tighten so the control, the rule and the
+   Prev/Next bar all still fit above the fold. */
+@media (max-width: 1024px) and (max-height: 560px) {
+  #slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore {
+    margin-top: 0.5rem;
+    padding: 0.45rem 1rem;
+    font-size: 0.64rem;
+  }
+}
+
+@media (max-width: 400px) {
+  #slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore {
+    padding: 0.58rem 1.05rem;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore {
+    transition: none;
+  }
+
+  #slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore:hover {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  #slideshow.slideshow.ac-home-cinema .slide .caption .ac-home-explore {
+    border-color: ButtonText;
+    background: Canvas;
+    color: ButtonText;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 /* Minimalist Bottom Bar: 01 — 07 on Left, Prev / Next on Right */
 #slideshow.slideshow.ac-home-cinema .arrows.ac-home-controls {
   position: absolute !important;
@@ -473,6 +638,19 @@ header .logo-bar .link_flex ul li a:focus-visible {
     transform 240ms var(--angel-ease-out),
     color 240ms var(--angel-ease-out),
     opacity 240ms var(--angel-ease-out);
+}
+
+/* The hover halo is a 4.5vw disc. The legacy rule pinned it with
+   `right: 25px; top: 8px` against a 58x44px button, which parked it half a
+   circle to the left of the label. Centre it on the button instead so the
+   glow lands squarely on whichever arrow is hovered. */
+#slideshow.slideshow.ac-home-cinema .arrows .arrow.magnet .magnet_circle_fast {
+  right: auto;
+  left: 50%;
+  top: 50%;
+  width: clamp(52px, 4.5vw, 68px);
+  height: clamp(52px, 4.5vw, 68px);
+  transform: translate(-50%, -50%);
 }
 
 #slideshow.slideshow.ac-home-cinema .arrows .arrow:hover {
@@ -2909,6 +3087,12 @@ footer.ac-footer-v2 .ac-footer-v2__headline-link:focus-visible .ac-footer-v2__he
   transform: translate3d(4px, -4px, 0);
 }
 
+/* Social handles beside the contact desks: phones only (the <=640px block
+   shows them and hides the bottom-bar copy of the same list). */
+footer.ac-footer-v2 .ac-footer-v2__desk-social {
+  display: none;
+}
+
 /* Direct Studio Desks */
 footer.ac-footer-v2 .ac-footer-v2__desks {
   display: flex;
@@ -3239,19 +3423,165 @@ footer.ac-footer-v2 .ac-footer-v2__social-icon svg {
 }
 
 @media (max-width: 640px) {
-  footer.ac-footer-v2 .ac-footer-v2__columns {
-    grid-template-columns: 1fr;
+  /* --------------------------------------------------------------------
+     Footer, phones.
+     Stacking all four columns ran to ~1900px — more than two full screens
+     of scrolling past content the reader has already decided about. The
+     four link columns now sit two-up, which halves the height and pairs
+     the columns by weight: the two long lists (Navigation, Capabilities)
+     share the first row, the two short ones (Products, Studios) the second.
+     -------------------------------------------------------------------- */
+  footer.ac-footer-v2 .ac-footer-v2__shell {
+    padding-inline: 1.15rem;
   }
+
+  footer.ac-footer-v2 .ac-footer-v2__columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.35rem;
+    align-items: start;
+  }
+
   footer.ac-footer-v2 .ac-footer-v2__col {
-    padding: 1.75rem 0 !important;
+    padding: 1.5rem 0 !important;
     border-right: 0 !important;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 0;
   }
-  footer.ac-footer-v2 .ac-footer-v2__col:first-child {
+
+  /* The first row sits directly under the masthead rule — no second line. */
+  footer.ac-footer-v2 .ac-footer-v2__col:nth-child(1),
+  footer.ac-footer-v2 .ac-footer-v2__col:nth-child(2) {
     border-top: 0;
+    padding-top: 0.9rem !important;
   }
+
+  footer.ac-footer-v2 .ac-footer-v2__col-title {
+    margin-bottom: 0.85rem !important;
+    font-size: 0.6rem;
+  }
+
+  /* Tighter link rhythm; the generous desktop spacing wasted a lot of height. */
+  footer.ac-footer-v2 .ac-footer-v2__links {
+    gap: 0.1rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__links a {
+    font-size: 0.86rem;
+    line-height: 1.35;
+    padding-block: 0.3rem;
+    margin-block: 0;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__links--products {
+    gap: 0.95rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__links--products a {
+    gap: 0.15rem;
+    padding-block: 0.15rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__product-name {
+    font-size: 0.9rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__links--products small {
+    font-size: 0.72rem;
+    line-height: 1.3;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__location + .ac-footer-v2__location {
+    margin-top: 0.85rem;
+  }
+
   footer.ac-footer-v2 .ac-footer-v2__divider {
     display: none;
+  }
+
+  /* Products and Studios carry long, unbreakable names ("Immersive Wedding
+     Invite", "Braintree, United Kingdom"). Half a column forced awkward
+     two-line wraps, so they take the full width below the two long lists. */
+  footer.ac-footer-v2 .ac-footer-v2__col:nth-child(3),
+  footer.ac-footer-v2 .ac-footer-v2__col:nth-child(4) {
+    grid-column: 1 / -1;
+  }
+
+  /* Masthead contact desks stack full width, as they do on desktop. Two
+     half-width columns forced the email addresses to break mid-domain
+     ("angelcreati / ons.in"); at full width each value stays on one line. */
+  footer.ac-footer-v2 .ac-footer-v2__desks {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    /* Explicit, or the grid inherits the masthead's two-row template and
+       stretches each contact block into a huge empty row. */
+    grid-auto-rows: auto;
+    grid-template-rows: none;
+    align-content: start;
+    gap: 0.95rem;
+  }
+
+  /* The social handles belong with the contact details on phones. */
+  footer.ac-footer-v2 .ac-footer-v2__desk-social {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 0.35rem;
+    padding-top: 1.05rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__desk-social > span {
+    color: rgba(245, 245, 247, 0.5);
+    font-family: 'Geograph', 'Montserrat', Arial, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__desk-social .ac-footer-v2__social {
+    gap: 0.5rem;
+  }
+
+  /* ...and the bottom bar drops its duplicate copy. */
+  footer.ac-footer-v2 .ac-footer-v2__meta-row .ac-footer-v2__social,
+  footer.ac-footer-v2 .ac-footer-v2__meta-row > .ac-footer-v2__divider {
+    display: none;
+  }
+
+  /* The email addresses are longer than half a phone width. A slightly
+     smaller size plus a break at the "@" keeps them on two tidy lines instead
+     of splitting mid-domain ("angelcreati / ons.in") or overflowing. */
+  footer.ac-footer-v2 .ac-footer-v2__desk a {
+    font-size: 0.9rem;
+    overflow-wrap: break-word;
+    line-height: 1.45;
+  }
+
+  /* Legal links read as the close of the index: Privacy Policy and Terms of
+     Service sit after the Studios column and before the copyright row, so
+     the order runs contacts -> socials -> link columns -> legal -> copyright. */
+  footer.ac-footer-v2 .ac-footer-v2__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__meta-row {
+    order: 1;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__brand-row {
+    order: 2;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__brand-row,
+  footer.ac-footer-v2 .ac-footer-v2__meta-row {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  footer.ac-footer-v2 .ac-footer-v2__inline-list:not(.ac-footer-v2__social) {
+    gap: 0.35rem 1.15rem;
   }
 }
 
@@ -3324,6 +3654,35 @@ body.menu-open .ac-floating-top {
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+
+/* On narrow screens the button sits directly over body copy — at 390px it
+   covered the ends of lines in the capability and capability-index sections.
+   Shrink it and tuck it into the corner gutter so it clears the text measure,
+   and only reveal it once the reader has actually scrolled. */
+@media (max-width: 640px) {
+  .ac-floating-top {
+    right: max(0.65rem, env(safe-area-inset-right));
+    bottom: max(0.9rem, env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .ac-floating-top.is-scrolled {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .ac-floating-top__icon {
+    width: 17px;
+    height: 17px;
+  }
 }
 
 /* ==========================================================================

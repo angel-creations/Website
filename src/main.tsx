@@ -19,6 +19,8 @@ import './styles/inner-experiences.css';
 import './styles/immersive.css';
 import './styles/domains.css';
 import './styles/lead-generation.css';
+/* Internship programme page — scoped under .ac-intern, no global selectors. */
+import './styles/internship.css';
 /* Responsive layer (max-width: 1024px only) — must stay last. */
 import './styles/responsive.css';
 

@@ -10,7 +10,9 @@ const menuPoster = '/media/images/generated-home-posters/menu-background.webp';
 const primaryItems: NavigationItem[] = [
   { label: 'About Us', href: '/about/', number: '01' },
   { label: 'Works', href: '/works/', number: '02' },
-  { label: 'Contact', href: '/contact/', number: '03' },
+  { label: 'Services', href: '/domains/', number: '03' },
+  { label: 'Internship', href: '/internship/', number: '04' },
+  { label: 'Contact', href: '/contact/', number: '05' },
 ];
 
 type ProductItem = {
@@ -88,15 +90,72 @@ function getFocusableElements(element: HTMLElement): HTMLElement[] {
   ).filter((item) => !item.hasAttribute('inert') && item.getClientRects().length > 0);
 }
 
-export function Header(): JSX.Element {
+interface HeaderProps {
+  pathname: string;
+}
+
+export function Header({ pathname }: HeaderProps): JSX.Element {
   const [open, setOpen] = useState(false);
+  const [logoHidden, setLogoHidden] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLElement>(null);
   const menuVideoRef = useRef<HTMLVideoElement>(null);
   const hadOpenMenuRef = useRef(false);
 
+  // The homepage keeps its logo permanently visible over the full-bleed cinema
+  // stage. Every other route gets a compact dark bar that retracts out of the
+  // way while the reader is scrolling down, and returns as soon as they scroll
+  // back up — the behaviour readers expect from a persistent masthead.
+  const isHomePage = pathname === '/' || pathname === '';
+  const logoBarActive = !isHomePage;
+
   const closeMenu = (): void => setOpen(false);
+
+  useEffect(() => {
+    if (isHomePage) {
+      setLogoHidden(false);
+      return undefined;
+    }
+
+    let lastY = window.scrollY;
+    let frame = 0;
+
+    const update = (): void => {
+      frame = 0;
+      const y = window.scrollY;
+      const delta = y - lastY;
+
+      // Ignore sub-pixel jitter and rubber-band bounce (iOS reports a negative
+      // and then an inflated scrollY at the top of the page).
+      if (Math.abs(delta) < 6) return;
+
+      if (y < 80) {
+        // Near the top the masthead always shows, whatever the direction.
+        setLogoHidden(false);
+      } else if (delta > 0) {
+        setLogoHidden(true);
+      } else {
+        setLogoHidden(false);
+      }
+
+      lastY = y;
+    };
+
+    const onScroll = (): void => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    lastY = window.scrollY;
+    update();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [isHomePage, pathname]);
 
   useEffect(() => {
     const menu = menuRef.current;
@@ -177,8 +236,10 @@ export function Header(): JSX.Element {
   return (
     <>
       <header>
-        <div className={`header-wrap${open ? ' menu_show' : ''}`}>
-          <div className="logo-bar">
+        <div
+          className={`header-wrap${open ? ' menu_show' : ''}${logoBarActive ? ' header-wrap--bar' : ''}`}
+        >
+          <div className={`logo-bar${logoBarActive ? ' logo-bar--bar' : ''}${logoHidden && !open ? ' is-hidden' : ''}`}>
             <a
               href="/"
               className="logo"

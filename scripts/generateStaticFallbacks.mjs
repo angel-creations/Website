@@ -961,7 +961,7 @@ ${runtimeAssetTags}
 }
 
 function staticNavigation() {
-  return `<nav aria-label="Primary"><a href="/">Home</a><a href="/about/">About the Studio</a><a href="/works/">Selected Works & Portfolio</a><a href="/domains/">All 63 Service Domains</a><a href="/contact/">Contact</a></nav>`;
+  return `<nav aria-label="Primary"><a href="/">Home</a><a href="/about/">About the Studio</a><a href="/works/">Selected Works & Portfolio</a><a href="/domains/">Services</a><a href="/internship/">Internship Programme</a><a href="/contact/">Contact</a></nav>`;
 }
 
 function staticLegalLinks() {
@@ -1214,7 +1214,7 @@ function domainIndexSchema() {
       {
         '@type': 'CollectionPage', '@id': `${canonical}#webpage`, url: canonical,
         name: metadata.title || '63 XR, Animation, Film & Brand Services | Angel Creations',
-        description: metadata.description || 'Explore 63 specialist services across VR, AR, metaverse, animation, brand campaigns and media production. Compare deliverables and start your project.',
+        description: metadata.description || 'A three-month internship programme offering practical projects, professional mentorship and real-world industry exposure across eleven creative, technology and business disciplines.',
         keywords,
         isPartOf: { '@id': 'https://angelcreations.in/#website' },
         breadcrumb: { '@id': `${canonical}#breadcrumb` }, inLanguage: 'en-IN',
@@ -1366,6 +1366,167 @@ for (const capability of capabilityRecords) {
   await writeFile(new URL(`${relative}index.html`, dist), capabilityDocument(capability));
 }
 
+
+// ---------------------------------------------------------------------------
+// Internship programme (/internship/)
+//
+// The page itself is React. This is the no-JavaScript / crawler document: it
+// carries the programme facts, the eleven disciplines, the three-month structure, the
+// certificate policy and the FAQ as real HTML plus Course + FAQPage structured
+// data. It also guarantees the route exists as a file on the static host.
+// ---------------------------------------------------------------------------
+const internshipFaqs = [
+  ['What is the duration of the programme?', 'The programme runs for three months from the agreed start date, structured in three stages: discover and learn, apply and collaborate, and deliver and grow.'],
+  ['What is the programme fee?', 'The programme fee is 999 Indian rupees, paid once. It covers the structured learning programme, supervised activities, practical assignments, domain exposure and performance evaluation. Payment is requested only after an application is accepted.'],
+  ['Is there any stipend?', 'No. This is a learning programme, not paid employment, and no stipend is offered at any stage.'],
+  ['Will I work on real projects?', 'Participants are given practical assignments and may be involved in supervised project work. Access to live client projects depends on domain, capability, project availability, supervision and confidentiality requirements, and is not guaranteed.'],
+  ['Can I choose my preferred discipline?', 'Yes. You choose a preferred discipline while applying and confirm your specific role during the review conversation. Final placement depends on your application and your suitability for that discipline.'],
+  ['Do I need prior experience?', 'Prior experience is not mandatory for every domain. Selection depends on the requirements of the domain you choose.'],
+  ['Is the programme available online?', 'Yes. The programme is delivered online and remotely, with opportunities for project collaboration where an arrangement applies.'],
+  ['Will I receive an internship certificate?', 'A completion certificate may be issued after three months, subject to successful performance evaluation and fulfilment of the programme requirements, including attendance, assignments and conduct.'],
+  ['Is the certificate guaranteed?', 'No. Certification is not automatic on payment or enrolment. A certificate is issued only after the programme requirements have been met and performance has been successfully evaluated.'],
+  ['What happens if I do not meet the performance criteria?', 'You will be informed where the requirements were not met. Completion and certification are recorded only for participants who satisfy the attendance, assignment, conduct and performance requirements.'],
+  ['Can I apply while studying in college?', 'Yes. Undergraduate and postgraduate students are welcome to apply, provided they can meet the time commitment the programme requires.'],
+  ['Will I get a job opportunity after completion?', 'No placement or employment is promised. The programme is designed to build practical experience and professional readiness; any future opportunity would depend on the studio needs and your performance, and is never guaranteed.'],
+];
+
+const internshipDomains = [
+  ['Graphic Design & Branding', ['Graphic Design', 'Brand Identity & Visual Communication', 'Social Media Design', 'Presentation Design', 'Marketing & Campaign Design']],
+  ['UI/UX & Product Design', ['UI/UX Design', 'Product Design', 'Interaction Design', 'Design Systems', 'Prototyping & User Testing', 'Experience Design']],
+  ['Animation, Motion Graphics & VFX', ['2D Animation', '3D Animation', 'Motion Graphics', 'Character Animation', 'Video Editing', 'Storyboarding', 'Visual Effects (VFX)']],
+  ['3D Visualisation', ['3D Modelling', '3D Environments', 'Architectural Visualisation', 'Product Visualisation', 'Lighting & Rendering', 'Texture & Look Development']],
+  ['AR, VR & XR', ['Augmented Reality (AR)', 'Virtual Reality (VR)', 'Mixed Reality (MR)', 'Interactive Experiences', 'Metaverse & Virtual Worlds', 'Immersive Experience Design']],
+  ['Web Development', ['Website Development', 'Frontend Development', 'Full-Stack Development', 'HTML, CSS & JavaScript', 'Application Development', 'Backend Development']],
+  ['Digital Marketing', ['Social Media Marketing', 'Digital Campaigns', 'SEO', 'Content Marketing', 'Performance Marketing', 'Digital Strategy', 'Marketing Research']],
+  ['Sales & Business Development', ['Business Development', 'Sales & Client Acquisition', 'Lead Generation', 'Market Research', 'Business Strategy', 'Partnership Development', 'Proposal Development']],
+  ['HR & Operations', ['Human Resource Management', 'Talent Acquisition', 'Recruitment Coordination', 'HR Operations', 'Employee Engagement', 'Business Operations']],
+  ['Content & Copywriting', ['Creative Copywriting', 'Website Content Writing', 'Advertising Copy', 'Scriptwriting', 'Social Media Content', 'Brand Communication']],
+  ['Pre-Sales & Client Relations', ['Pre-Sales Support', 'Client Communication', 'Client Relationship Management', 'Requirement Analysis', 'Solution Presentation', 'Proposal & Pitch Preparation', 'Project Coordination']],
+];
+
+const internshipStages = [
+  ['Month 01', 'Discover & Learn', ['Company orientation', 'Discipline introduction', 'Tools and workflow familiarisation', 'Guided practical assignments', 'Professional expectations']],
+  ['Month 02', 'Apply & Collaborate', ['Supervised project activities', 'Teamwork and collaboration', 'Practical workflows', 'Reviews and feedback', 'Industry working standards']],
+  ['Month 03', 'Deliver & Grow', ['Assigned deliverables', 'Structured feedback', 'Performance assessment', 'Completion review', 'Certificate eligibility where criteria are met']],
+];
+
+function internshipSchema() {
+  const canonical = 'https://angelcreations.in/internship/';
+  const metadata = routeSeo['/internship/'] || {};
+  return jsonLdScript({
+    '@context': 'https://schema.org',
+    '@graph': [
+      organizationSchemaEntity,
+      websiteSchemaEntity,
+      {
+        '@type': 'WebPage', '@id': `${canonical}#webpage`, url: canonical,
+        name: metadata.title || 'Internship Programme | Angel Creations',
+        description: metadata.description,
+        isPartOf: { '@id': 'https://angelcreations.in/#website' },
+        about: { '@id': 'https://angelcreations.in/#organization' },
+        breadcrumb: { '@id': `${canonical}#breadcrumb` },
+        inLanguage: 'en-IN',
+      },
+      {
+        '@type': 'BreadcrumbList', '@id': `${canonical}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://angelcreations.in/' },
+          { '@type': 'ListItem', position: 2, name: 'Internship Programme', item: canonical },
+        ],
+      },
+      {
+        '@type': 'Course', '@id': `${canonical}#course`,
+        name: 'Angel Creations Internship Programme',
+        description: 'A three-month online internship programme offering practical industry experience, professional mentorship and real-world exposure across eleven creative, technology and business disciplines.',
+        url: canonical,
+        provider: { '@id': 'https://angelcreations.in/#organization' },
+        inLanguage: 'en-IN',
+        educationalLevel: 'Undergraduate, postgraduate and fresh graduate',
+        teaches: internshipDomains.map(([title]) => title),
+        offers: {
+          '@type': 'Offer',
+          category: 'Programme fee',
+          price: '999',
+          priceCurrency: 'INR',
+          url: canonical,
+          availability: 'https://schema.org/InStock',
+        },
+        hasCourseInstance: {
+          '@type': 'CourseInstance',
+          courseMode: 'Online',
+          courseWorkload: 'P3M',
+        },
+      },
+      {
+        '@type': 'FAQPage', '@id': `${canonical}#faq`,
+        mainEntity: internshipFaqs.map(([question, answer]) => ({
+          '@type': 'Question', name: question,
+          acceptedAnswer: { '@type': 'Answer', text: answer },
+        })),
+      },
+    ],
+  });
+}
+
+function internshipDocument() {
+  const canonical = 'https://angelcreations.in/internship/';
+  const metadata = routeSeo['/internship/'] || {};
+  const list = (items) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  const domainMarkup = internshipDomains.map(([title, roles]) => `<h3>${escapeHtml(title)}</h3>${list(roles)}`).join('');
+  const stageMarkup = internshipStages.map(([month, title, points]) => `<h3>${escapeHtml(month)} — ${escapeHtml(title)}</h3>${list(points)}`).join('');
+  const faqMarkup = internshipFaqs.map(([question, answer]) => `<h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p>`).join('');
+  const fallback = `${staticNavigation()}<main>
+<nav aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Internship Programme</span></nav>
+<p class="eyebrow">Angel Creations / Industry Learning Programme</p>
+<h1>Your career doesn’t begin after graduation. It begins with experience.</h1>
+<p class="lead">Step beyond classroom learning. Explore your potential through practical projects, professional mentorship and real-world industry exposure at Angel Creations.</p>
+<p>3-Month Programme · Multiple Career Disciplines · Practical Industry Exposure. Open to college students, fresh graduates and aspiring professionals ready to work to professional standards.</p>
+<h2>Less theory. More doing.</h2>
+<p>Nobody learns to make good work by reading about it. Participants here are given supervised practical assignments, held to professional standards, and reviewed the way studio work is reviewed. That means working inside real workflows — briefs, drafts, handoffs, critique and delivery — alongside a team rather than in isolation.</p>
+${list(['Supervised practical assignments', 'Professional workflows', 'Team collaboration', 'Constructive feedback'])}
+<h2>Find your place in the creative industry</h2>
+<p>Choose the discipline you want to be considered for. You will confirm your specific role during the review conversation.</p>
+${domainMarkup}
+<h2>Experience what the classroom can’t teach</h2>
+<p>Studio practice is not a lecture. You are given practical assignments with real constraints, then asked to explain your decisions — the same way work is discussed inside a studio. Guidance arrives while a task is in progress: how to read a brief, where a design is unresolved, what a producer expects before sign-off.</p>
+<p>Beyond your own discipline, you see how projects are scoped, resourced, reviewed and delivered — the commercial and operational context creative work sits inside.</p>
+<p>Participants are given practical assignments and may be involved in supervised project work. Access to live client projects, direct client contact or confidential material depends on discipline, demonstrated capability, project availability, supervision and confidentiality requirements, and is not guaranteed. Independent ownership of client work is not part of this programme.</p>
+<h2>Three months, deliberately structured</h2>
+${stageMarkup}
+<h2>Your effort deserves recognition</h2>
+<p>Participants who complete the programme and satisfy the required evaluation criteria receive an official Certificate of Internship from Angel Creations. Certification is not automatic on payment or enrolment, and is never issued on payment alone.</p>
+<figure><img src="/media/library/internship/angel-creations-internship-certificate.webp" alt="Angel Creations certificate of completion for a three-month internship programme, showing the studio mark, participant name, duration and Training Head signature." width="1536" height="1024" loading="lazy" decoding="async" /><figcaption>Certificate shown for illustrative purposes only. Actual certificates will include the participant&rsquo;s verified details and will be issued only upon successful completion of the internship programme and required performance evaluation.</figcaption></figure>
+<h2>Everything you should know before you apply</h2>
+${list(['Duration: 3 months', 'Programme fee: 999 Indian rupees, one-time, paid only after acceptance', 'Stipend: not provided', 'Internship domains: multiple disciplines', 'Mode: remote / online, with project collaboration where applicable', 'Certificate: subject to successful completion', 'Placement: not guaranteed'])}
+<p>The fee covers the structured programme and supervised learning activities, practical assignments, domain-specific exposure, performance evaluation and certificate eligibility based on successful completion. No payment is collected before an application is reviewed and accepted.</p>
+<h3>Programme terms</h3>
+${list(['The programme runs for three months from the agreed start date.', 'Participation is online and remote, with project collaboration where applicable.', 'Selection is based on application review and suitability for the chosen discipline.', 'Participants are expected to meet attendance, assignment and conduct requirements.'])}
+<h3>Fee and refund policy</h3>
+${list(['The programme fee is 999 Indian rupees, paid once after acceptance.', 'No payment is collected before an application is reviewed and accepted.', 'No stipend, salary or placement is provided in exchange for the fee.', 'Refund eligibility depends on the stage at which a participant withdraws; contact the studio before paying to confirm the current policy.'])}
+<h3>Certificate eligibility criteria</h3>
+${list(['Completion of the three-month programme.', 'Fulfilment of attendance and assignment requirements.', 'Satisfactory conduct throughout the programme.', 'Successful performance evaluation and completion assessment.'])}
+<p>This programme does not imply university accreditation. No stipend, salary, placement or employment is offered or promised.</p>
+<h2>Your next chapter starts here</h2>
+<p>Applications are five details and take under a minute. There is nothing to upload and nothing to pay at this stage. <a href="${canonical}">Open the application form</a> to apply, or <a href="/contact/">contact the studio</a> with a question. JavaScript is required to submit the application form.</p>
+<h2>Answers before you apply</h2>
+${faqMarkup}
+</main>${staticLegalLinks()}`;
+  return documentShell({
+    title: metadata.title || 'Internship Programme | Angel Creations',
+    description: metadata.description || 'A three-month internship programme offering practical industry experience across 12+ creative, technology and business domains.',
+    canonical,
+    robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    ogTitle: metadata.shareTitle || 'Don’t just learn skills. Experience the industry.',
+    image: `https://angelcreations.in${metadata.image || '/media/social/og/internship.jpg'}`,
+    imageAlt: metadata.imageAlt || 'Angel Creations internship programme artwork',
+    schema: internshipSchema(),
+    fallback,
+  });
+}
+
+await mkdir(new URL('internship/', dist), { recursive: true });
+await writeFile(new URL('internship/index.html', dist), internshipDocument());
+
 await mkdir(new URL('domains/', dist), { recursive: true });
 await writeFile(new URL('domains/index.html', dist), domainIndexDocument());
 
@@ -1403,6 +1564,11 @@ const sitemapEntries = [
     url: 'https://angelcreations.in/domains/',
     image: routeSeo['/domains/']?.image,
     title: routeSeo['/domains/']?.imageAlt || routeSeo['/domains/']?.title,
+  },
+  {
+    url: 'https://angelcreations.in/internship/',
+    image: routeSeo['/internship/']?.image,
+    title: routeSeo['/internship/']?.imageAlt || routeSeo['/internship/']?.title,
   },
   ...domainRecords.map((domain) => ({
     url: `https://angelcreations.in${domain.route}`,

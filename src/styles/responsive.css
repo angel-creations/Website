@@ -209,7 +209,11 @@
     margin-block: -0.45rem;
   }
 
-  footer.ac-footer-v2 .ac-footer-v2__inline-list a {
+  /* Text legal links only. The social icons share the __inline-list class
+     but are 34px circles whose icon is centred by flex; this rule used to
+     turn them into inline-blocks with vertical padding, shoving each glyph
+     left of centre. */
+  footer.ac-footer-v2 .ac-footer-v2__inline-list:not(.ac-footer-v2__social) a {
     display: inline-block;
     padding-block: 0.55rem;
     margin-block: -0.55rem;

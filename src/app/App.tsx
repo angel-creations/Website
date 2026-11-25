@@ -67,6 +67,11 @@ const SliderExperience = lazy(async () => {
   return { default: module.SliderExperience };
 });
 
+const InternshipPage = lazy(async () => {
+  const module = await import('../components/InternshipPage');
+  return { default: module.InternshipPage };
+});
+
 const homeFallback: PageDocument = {
   url: 'https://angelcreations.in/', route: '/', status: 200, kind: 'home', bodyClasses: ['home'],
   title: routeSeo['/'].title,
@@ -108,7 +113,7 @@ const retiredRoutes = new Set(['/360-video/']);
 const archivedRoutes = new Set([
   '/', '/about/', '/animation/', '/augment-reality/', '/brand-advertisement/',
   '/contact/', '/media-production/', '/metaverse/', '/mixed-reality/', '/privacy-policy/',
-  '/terms-of-service/', '/virtual-reality/', '/works/',
+  '/terms-of-service/', '/virtual-reality/', '/works/', '/internship/',
 ]);
 
 function faqJsonLd(id: string, items: Array<{ question: string; answer: string }>): string {
@@ -249,6 +254,19 @@ function pageContent(page: PageDocument, route: string): JSX.Element {
     );
   }
 
+  if (route === '/internship/') {
+    return (
+      <>
+        <main id="main" className="site-main">
+          <Suspense fallback={<RouteLoading message="Loading the internship programme." />}>
+            <InternshipPage />
+          </Suspense>
+        </main>
+        <SiteFooter />
+      </>
+    );
+  }
+
   if (route === '/privacy-policy/') {
     return (
       <Suspense fallback={<RouteLoading message="Loading privacy policy." />}>
@@ -317,7 +335,8 @@ export function App(): JSX.Element {
       route === '/works/' ||
       route === '/contact/' ||
       route === '/privacy-policy/' ||
-      route === '/terms-of-service/'
+      route === '/terms-of-service/' ||
+      route === '/internship/'
   );
   const routeIsKnown = retiredRoutes.has(route) || archivedRoutes.has(route) || route === '/domains/' || Boolean(capability || domain || experience);
   const page = useMemo(() => {
@@ -554,7 +573,7 @@ export function App(): JSX.Element {
         >
           Skip to content
         </a>
-        <Header />
+        <Header pathname={route} />
         {pageContent(page, route)}
         <FloatingScrollTop pathname={route} />
         {route !== '/' && <ImmersivePageEffects route={route} />}

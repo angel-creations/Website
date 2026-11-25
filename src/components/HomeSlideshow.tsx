@@ -536,6 +536,28 @@ export function HomeSlideshow(): JSX.Element {
     animationFrameRef.current = window.requestAnimationFrame(animateRevert);
   };
 
+  /**
+   * Shared caption navigation. Both the headline link and the Explore control
+   * route through here so modifier-click, drag-suppression and the retained
+   * slide index behave identically no matter which one is used.
+   */
+  const onCaptionNavigate = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    index: number,
+    href: string,
+  ): void => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return;
+    }
+    if (performance.now() < suppressClickUntilRef.current) {
+      event.preventDefault();
+      return;
+    }
+    event.preventDefault();
+    retainHomeSlide(index);
+    navigate(href, { angelSlide: index, angelJourney: 'slider' });
+  };
+
   const onStageKeyDown = (event: ReactKeyboardEvent<HTMLElement>): void => {
     if (event.defaultPrevented || isEditableTarget(event.target)) return;
     if (event.key === 'ArrowLeft') {
@@ -785,26 +807,21 @@ export function HomeSlideshow(): JSX.Element {
                                 className="ac-home-caption__link"
                                 data-hover={slide.cleanLabel}
                                 data-col="#ddc89d"
-                                onClick={(event) => {
-                                  if (
-                                    event.button !== 0 ||
-                                    event.metaKey ||
-                                    event.ctrlKey ||
-                                    event.shiftKey ||
-                                    event.altKey
-                                  ) return;
-                                  if (performance.now() < suppressClickUntilRef.current) {
-                                    event.preventDefault();
-                                    return;
-                                  }
-                                  event.preventDefault();
-                                  retainHomeSlide(index);
-                                  navigate(slide.href!, { angelSlide: index, angelJourney: 'slider' });
-                                }}
+                                onClick={(event) => onCaptionNavigate(event, index, slide.href!)}
                               >
                                 {captionContents}
                               </a>
                             ) : captionContents}
+                            {slide.href ? (
+                              <a
+                                href={slide.href}
+                                className="ac-home-explore"
+                                aria-label={`Explore ${slide.cleanLabel}`}
+                                onClick={(event) => onCaptionNavigate(event, index, slide.href!)}
+                              >
+                                Explore
+                              </a>
+                            ) : null}
                           </div>
                         </div>
                         <div className="image-container">
