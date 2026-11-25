@@ -570,7 +570,7 @@ export function VideoArchive(): JSX.Element {
                           alt={activeVideo.title}
                           className="apple-visual-stage__img"
                           loading="eager"
-                          fetchPriority="high"
+                          {...{ fetchpriority: 'high' }}
                           decoding="async"
                         />
                       </picture>

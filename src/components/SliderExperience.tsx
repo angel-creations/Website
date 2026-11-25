@@ -615,7 +615,7 @@ export function SliderExperience({ experience }: { experience: SlideExperience }
                     alt={`${experience.label} — ${activeLens.caption}`}
                     className="apple-hero-visual-card__img"
                     loading="eager"
-                    fetchPriority="high"
+                    {...{ fetchpriority: 'high' }}
                     decoding="async"
                     draggable={false}
                   />
