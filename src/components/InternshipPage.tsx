@@ -27,6 +27,7 @@ import {
   sendInternshipApplication,
   type ApplicationPayload,
 } from '../utils/internshipApplication';
+import { trackFormStart } from '../utils/analytics';
 import { trackLeadEvent } from '../utils/leads';
 
 const DRAFT_STORAGE_KEY = 'angel-creations:internship-draft:v1';
@@ -453,6 +454,10 @@ export function InternshipPage(): JSX.Element {
   const totalRoles = INTERNSHIP_DOMAINS.reduce((count, group) => count + group.roles.length, 0);
 
   const setField = useCallback((name: string, value: string) => {
+    if (value.trim()) {
+      // First real interaction with the application form, not first render.
+      trackFormStart('internship_application', { sourceRoute: '/internship/' });
+    }
     setValues((current) => ({ ...current, [name]: value }));
     setErrors((current) => {
       if (!current[name]) return current;
@@ -541,8 +546,10 @@ export function InternshipPage(): JSX.Element {
           : 'Thank you. Your application has been sent to the Angel Creations team. We could not send the confirmation email, but the studio has your application and can reply to the address you provided.',
       );
       track('internship_application_submitted', {
+        form_name: 'internship_application',
         domain: domainLabel,
         form_provider: 'emailjs',
+        source_route: '/internship/',
       });
       window.setTimeout(() => {
         statusRef.current?.scrollIntoView?.({ behavior: 'smooth', block: 'center' });

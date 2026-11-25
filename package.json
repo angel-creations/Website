@@ -13,8 +13,11 @@
     "test:fallback": "node scripts/checkBootFallback.mjs",
     "test:degraded": "node scripts/checkDegradedBoot.mjs",
     "test:emailjs": "node scripts/checkEmailjsSubmission.mjs",
+    "test:analytics": "node scripts/checkAnalytics.mjs",
     "test:config": "node scripts/checkEmailjsConfig.mjs",
-    "test:deliverability": "node scripts/checkEmailDeliverability.mjs"
+    "test:deliverability": "node scripts/checkEmailDeliverability.mjs",
+    "sitemap:lastmod": "node scripts/generateSitemapLastmod.mjs",
+    "sitemap:check": "node scripts/generateSitemapLastmod.mjs --check"
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.3.0",

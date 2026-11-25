@@ -135,6 +135,14 @@ jobs:
           node scripts/checkBootFallback.mjs
           node scripts/checkDegradedBoot.mjs
 
+      - name: Verify the measurement funnel
+        # Organic growth is judged on enquiry volume, and enquiry volume is only
+        # trustworthy if form_start and generate_lead actually fire. This drives
+        # the built pages in a real browser and asserts on window.dataLayer, so a
+        # refactor that silently drops a funnel event fails here rather than
+        # showing up as a mystery traffic-to-lead collapse months later.
+        run: node scripts/checkAnalytics.mjs
+
       - name: Upload static-host screenshots
         if: always()
         # Diagnostics only: an artifact-storage problem must never fail verification.

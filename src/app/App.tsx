@@ -11,6 +11,7 @@ import { slideExperienceForRoute } from '../data/slideExperiences';
 import innerHeroVisuals from '../data/innerHeroVisuals.json';
 import routeSeo from '../data/routeSeo.json';
 import type { PageDocument } from '../types/content';
+import { trackEvent } from '../utils/analytics';
 import { captureLeadAttribution, trackLeadEvent } from '../utils/leads';
 import { currentRoute, isInternalHref, navigate, normaliseRoute, toLocalRoute } from '../utils/routes';
 import { applySeo } from '../utils/seo';
@@ -109,6 +110,29 @@ const retiredFallback: PageDocument = {
 };
 
 const retiredRoutes = new Set(['/360-video/']);
+
+// Classify a non-site link for measurement. Returns null for internal links,
+// in-page anchors and javascript: URLs. `kind` separates a social profile (the
+// storefront) from any other off-site destination, so the two can be reported
+// apart: a rise in social clicks and a rise in enquiries mean very different
+// things.
+const SOCIAL_HOSTS = [
+  'instagram.com', 'facebook.com', 'linkedin.com', 'youtube.com', 'x.com',
+  'twitter.com', 'threads.net', 'behance.net', 'vimeo.com', 'pinterest.com',
+];
+
+function outboundDestination(rawHref: string): { host: string; kind: 'social' | 'outbound' } | null {
+  if (!/^https?:\/\//i.test(rawHref)) return null;
+  try {
+    const url = new URL(rawHref);
+    if (url.hostname === window.location.hostname) return null;
+    const host = url.hostname.replace(/^www\./, '');
+    const isSocial = SOCIAL_HOSTS.some((domain) => host === domain || host.endsWith(`.${domain}`));
+    return { host, kind: isSocial ? 'social' : 'outbound' };
+  } catch {
+    return null;
+  }
+}
 
 const archivedRoutes = new Set([
   '/', '/about/', '/animation/', '/augment-reality/', '/brand-advertisement/',
@@ -516,29 +540,18 @@ export function App(): JSX.Element {
 
   // Virtual pageview for Google Analytics: the direct Google tag's config call
   // covers the initial document load; in-site (SPA) navigations send a manual
-  // page_view once the SEO effect above has updated the document title. The
-  // matching dataLayer push keeps the event available to Tag Manager without
-  // relying on it for GA4 delivery.
+  // page_view once the SEO effect above has updated the document title. Keep
+  // GA4's Enhanced Measurement "page changes based on browser history events"
+  // off, or the same navigation is counted twice.
   useEffect(() => {
     if (isInitialRouteRef.current) {
       isInitialRouteRef.current = false;
       return;
     }
-    const browserWindow = window as Window & {
-      dataLayer?: Array<Record<string, unknown>>;
-      gtag?: (...args: unknown[]) => void;
-    };
-    const pageView = {
-      page_path: `${window.location.pathname}${window.location.search}`,
-      page_location: window.location.href,
-      page_title: document.title,
-    };
-    browserWindow.dataLayer = browserWindow.dataLayer || [];
-    browserWindow.dataLayer.push({
-      event: 'page_view',
-      ...pageView,
-    });
-    browserWindow.gtag?.('event', 'page_view', pageView);
+    // trackEvent() already attaches page_path/page_location/page_title to the
+    // direct GA4 hit, so the virtual pageview goes through the same path as
+    // every other event instead of maintaining a second copy of the payload.
+    trackEvent('page_view');
   }, [route]);
 
   const handleInternalLink = (event: ReactMouseEvent<HTMLDivElement>): void => {
@@ -547,6 +560,10 @@ export function App(): JSX.Element {
     if (!anchor) return;
 
     const rawHref = anchor.getAttribute('href') ?? '';
+    // Delegated measurement for every anchor in the page, including the ones
+    // rendered by data-driven lists that never call trackLeadEvent themselves.
+    // Components that already report their own click set data-lead-event, so
+    // nothing is counted twice.
     if (!anchor.dataset.leadEvent && event.button === 0 && !event.defaultPrevented) {
       if (rawHref.startsWith('/contact/')) {
         trackLeadEvent('lead_cta_click', { sourceRoute: route, destination: rawHref });
@@ -554,6 +571,19 @@ export function App(): JSX.Element {
         trackLeadEvent('lead_email_click', { sourceRoute: route });
       } else if (rawHref.startsWith('tel:')) {
         trackLeadEvent('lead_call_click', { sourceRoute: route });
+      } else {
+        const external = outboundDestination(rawHref);
+        if (external) {
+          // Outbound clicks are how the site learns that a visitor walked to
+          // Instagram, YouTube or LinkedIn instead of converting. That is the
+          // missing half of the picture when organic traffic rises but
+          // enquiries do not.
+          trackLeadEvent('outbound_click', {
+            sourceRoute: route,
+            destinationHost: external.host,
+            linkKind: external.kind,
+          });
+        }
       }
     }
 

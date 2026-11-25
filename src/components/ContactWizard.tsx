@@ -12,6 +12,7 @@ import {
   trackLeadEvent,
   type LeadAttribution,
 } from '../utils/leads';
+import { trackFormStart } from '../utils/analytics';
 import { getEmailJsConfig } from '../config/emailjs';
 import { socialLinks } from '../data/socialLinks';
 import { imageSize } from '../utils/imageDimensions';
@@ -28,6 +29,50 @@ function dispatchLeadEvent(
     trackLeadEvent(eventName, payload);
   } catch {
     // Intentionally silent: the EmailJS delivery outcome stands on its own.
+  }
+}
+
+// Funnel events. The eight-question wizard is the site's only conversion path
+// that spans multiple screens, so its drop-off is the thing measurement has to
+// expose: where people start, which question loses them, and how many of the
+// starts reach the studio.
+//
+// Every payload here is structural — an index, a field id, a discipline name.
+// Answers are never sent: the field ids are stable identifiers, not content.
+const FORM_NAME = 'contact_enquiry';
+
+/**
+ * Map an answer to the preset the studio wrote, or to 'custom'.
+ *
+ * `timeline` and `investment` are text inputs with suggestion chips, so the
+ * visitor may type anything into them. Sending that free text to GA4 would put
+ * visitor-authored content into an analytics property, so only an exact match
+ * against the studio's own chips is reported; everything else becomes a single
+ * 'custom' bucket. The distinction that matters — a preset band versus a typed
+ * answer — survives intact.
+ */
+function presetBand(fieldId: string, value: string): string | undefined {
+  if (!value) return undefined;
+  const definition = fields.find((item) => item.id === fieldId);
+  return definition?.quickSuggestions?.includes(value) ? value : 'custom';
+}
+
+function trackFunnelStep(stepIndex: number, fieldId: string, fieldName: string): void {
+  // Counted once per wizard session, at the drop-off that matters most: the
+  // step the visitor advanced past. Steps are 1-based in the report to match
+  // the "N° 03 / 08" the visitor sees on screen.
+  const stepNumber = stepIndex + 1;
+  const depth = stepNumber === 8 ? 'complete' : stepNumber >= 5 ? 'deep' : stepNumber >= 3 ? 'core' : 'early';
+  try {
+    trackLeadEvent('contact_step_complete', {
+      formName: FORM_NAME,
+      stepNumber,
+      stepId: fieldId,
+      stepLabel: fieldName,
+      depth,
+    });
+  } catch {
+    // Measurement is best-effort and must never block the next question.
   }
 }
 
@@ -332,6 +377,11 @@ export function ContactWizard(): JSX.Element {
         ? 'Your enquiry has already been sent to Angel Creations. To share updated answers, please use “Open email draft” or copy the enquiry text.'
         : ''
     );
+    if (value.trim()) {
+      // First keystroke, not mount: a form that merely rendered has not been
+      // started by the visitor.
+      trackFormStart(FORM_NAME, { sourceRoute: window.location.pathname });
+    }
     setValues((current) => ({ ...current, [field.id]: value }));
   };
 
@@ -347,6 +397,7 @@ export function ContactWizard(): JSX.Element {
       return;
     }
     setDropdownOpen(false);
+    trackFunnelStep(step, field.id, field.name);
     if (step === fields.length - 1) {
       setPrepared(true);
       return;
@@ -716,10 +767,31 @@ export function ContactWizard(): JSX.Element {
         pendingLeadEvents.push({
           name: 'generate_lead',
           payload: {
+            form_name: FORM_NAME,
             form_provider: 'emailjs',
             intent: intent || undefined,
             source_route: source,
             discipline: values.projectType || undefined,
+            // The two commercial qualifiers, so a converted lead can be
+            // segmented by budget band and timeline in GA4 without opening
+            // the EmailJS notification. Both are preset labels the studio
+            // wrote, never free text the visitor typed.
+            investment_band: presetBand('investment', values.investment),
+            timeline: presetBand('timeline', values.timeline),
+            // Which entry intent converted. A plain enquiry carries no ?intent=
+            // parameter, and is reported as general-project rather than dropped,
+            // so the four intents always add up to the total.
+            entry_intent: intent || 'general-project',
+            // The page the visitor first landed on. Without it every enquiry
+            // is reported against /contact/, because that is where the wizard
+            // lives; with it, GA4 can answer "which page produced this lead",
+            // which is the whole point of an organic strategy. Read from the
+            // session-scoped attribution captured on the way in, and empty
+            // when storage is unavailable.
+            landing_page: attribution.firstLandingPage || undefined,
+            utm_source: attribution.utmSource || undefined,
+            utm_medium: attribution.utmMedium || undefined,
+            utm_campaign: attribution.utmCampaign || undefined,
           },
         });
       }
@@ -738,6 +810,7 @@ export function ContactWizard(): JSX.Element {
       pendingLeadEvents.push({
         name: 'lead_submit_error',
         payload: {
+          form_name: FORM_NAME,
           form_provider: 'emailjs',
           intent: intent || undefined,
           source_route: source,
