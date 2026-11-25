@@ -167,7 +167,7 @@ export function DomainDetail({ domain }: { domain: DomainRecord }): JSX.Element 
 
         <figure className="angel-domain__hero-media">
           <img src={domain.image}
-          {...imageSize(domain.image)} alt={domain.imageAlt} decoding="async" fetchPriority="high" />
+          {...imageSize(domain.image)} alt={domain.imageAlt} decoding="async" {...{ fetchpriority: 'high' }} />
           <span className="angel-domain__hero-orbit" aria-hidden="true" />
           <figcaption>
             <span>{domain.imageCaption}</span>

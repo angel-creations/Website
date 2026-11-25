@@ -1003,7 +1003,12 @@ function renderCapabilityIndex() {
 
 function renderVideoArchive() {
   return `<section aria-labelledby="video-archive-title"><p class="eyebrow">XR, Animation, VFX & Film Portfolio · India</p><h2 id="video-archive-title">Watch XR, Animation, VFX & Film Work.</h2><p>Browse films, VFX breakdowns, 2D and 3D animation, architectural visualisation, brand commercials and live productions, then watch each work on YouTube.</p><ol class="archive">${videos.map((video) => {
-    const metadata = [video.category, video.duration, video.publishDate || video.uploadDate, video.views === undefined ? '' : `${video.views} views`, video.likes === undefined || video.likes === '' ? '' : `${video.likes} likes`, video.status].filter(Boolean);
+    // 38 of the 47 captured records carry `likes: null` (the old scrape could not
+    // read a count for most films). Testing only for `undefined` and '' let null
+    // through, so the archive printed the literal string "null likes" for the
+    // majority of its entries.
+    const isBlank = (value) => value === null || value === undefined || value === '' || String(value) === 'null';
+    const metadata = [video.category, video.duration, video.publishDate || video.uploadDate, isBlank(video.views) ? '' : `${video.views} views`, isBlank(video.likes) ? '' : `${video.likes} likes`, video.status].filter(Boolean);
     return `<li><article><h3><a href="${escapeHtml(video.url)}">${escapeHtml(video.title)}</a></h3>${metadata.length ? `<p class="meta">${metadata.map(escapeHtml).join(' / ')}</p>` : ''}<p>${escapeHtml(archiveSummary(video))}</p></article></li>`;
   }).join('')}</ol></section>`;
 }
@@ -1141,12 +1146,46 @@ function experienceDocument(experience) {
   return documentShell({ title, description, canonical, robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1', ogTitle: shareTitle, image, imageAlt, schema: experienceSchema(experience), fallback });
 }
 
+// The captured documents are a scrape of the studio's previous WordPress site, so
+// their raw <h1>/<h2>/<p> nodes still carry pre-rebrand copy — "We are One – Stop
+// solution for your business Growth", "our culture strongly stands for true global
+// commuters", and a paragraph of broken English ("Although we are Indian based
+// Studio but has completed many projects globally"). That text was live in the
+// no-JavaScript and failed-bundle renders of /about/ and /works/ long after the
+// React pages were rewritten. These two routes are fully authored now, so their
+// fallbacks are written out rather than inherited from the scrape. Everything else
+// still derives from the capture.
+const AUTHORED_FALLBACKS = {
+  '/about/': {
+    h1: 'We are a creative powerhouse thinking design forward.',
+    headings: [
+      'Design is how we look ahead.',
+      'Seven interconnected disciplines. One unified studio.',
+      'Borderless by culture. Global by practice.',
+    ],
+    paragraphs: [
+      'Angel Creations is a Jaipur-based XR, animation and film studio with an international client desk in Braintree, United Kingdom, partnering worldwide on immersive worlds, campaigns and media.',
+      'We believe the most resonant work emerges from collaboration, joint ambition and mutual respect — combining artistic direction with engineering rigour so every frame and interaction feels inevitable.',
+    ],
+  },
+  '/works/': {
+    h1: 'We Craft Extraordinary Worlds, Films & Experiences.',
+    headings: ['Watch XR, Animation, VFX & Film Work.'],
+    paragraphs: [
+      'Watch 47 productions from an India-based XR, animation, VFX and film studio — spanning architectural visualisation, commercials, events and immersive media.',
+    ],
+  },
+};
+
 function documentFor(page) {
   const experience = slideExperiences.find((item) => item.route === page.route);
   if (experience) return experienceDocument(experience);
-  const h1 = getFallbackH1(page);
-  const headings = collectNodes(page.children || [], 'h2', 10);
-  const sourceParagraphs = collectNodes(page.children || [], 'p', 8).filter((item) => item.length > 30 && item.length < 600);
+  const authored = AUTHORED_FALLBACKS[page.route];
+  const h1 = authored ? authored.h1 : getFallbackH1(page);
+  const headings = authored ? authored.headings : collectNodes(page.children || [], 'h2', 10);
+  const sourceParagraphs = authored
+    ? authored.paragraphs
+    : collectNodes(page.children || [], 'p', 8).filter((item) => item.length > 30 && item.length < 600);
   const canonical = page.canonical || `https://angelcreations.in${page.route}`;
   const metadata = routeSeo[page.route] || {};
   const title = metadata.title || page.title || h1;

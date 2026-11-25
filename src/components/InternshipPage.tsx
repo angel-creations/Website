@@ -27,7 +27,7 @@ import {
   sendInternshipApplication,
   type ApplicationPayload,
 } from '../utils/internshipApplication';
-import { LEAD_DRAFT_STORAGE_KEY, trackLeadEvent } from '../utils/leads';
+import { trackLeadEvent } from '../utils/leads';
 
 const DRAFT_STORAGE_KEY = 'angel-creations:internship-draft:v1';
 
@@ -632,7 +632,7 @@ export function InternshipPage(): JSX.Element {
               alt={HERO.imageAlt}
               width={HERO.imageWidth}
               height={HERO.imageHeight}
-              fetchPriority="high"
+              {...{ fetchpriority: 'high' }}
               decoding="async"
             />
             <img

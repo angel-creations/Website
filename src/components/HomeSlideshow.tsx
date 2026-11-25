@@ -836,7 +836,7 @@ export function HomeSlideshow(): JSX.Element {
                                   alt=""
                                   aria-hidden="true"
                                   loading={index === active ? 'eager' : 'lazy'}
-                                  fetchPriority={index === active ? 'high' : 'auto'}
+                                  {...{ fetchpriority: index === active ? 'high' : 'auto' }}
                                   decoding="async"
                                 />
                               )}
