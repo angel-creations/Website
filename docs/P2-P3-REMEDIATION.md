@@ -34,10 +34,10 @@ Axe baseline: 85/85 sitemap routes clean (WCAG 2.1 A/AA). Everything below build
 
 | File | Change |
 |---|---|
-| `src/components/HomeSlideshow.tsx` | homepage social rail markup, imports the shared list |
+| `src/components/HomeSlideshow.tsx` | ~~homepage social rail markup~~ (removed — see 3.1) |
 | `src/components/Header.tsx` | menu social column; deferred Escape focus restore |
 | `src/app/App.tsx` | contact page footer; viewport reservation on the experience fallback |
-| `src/styles/enhancements.css` | rail, menu social, mobile menu rhythm, `.site-main--reserve` |
+| `src/styles/enhancements.css` | menu social, mobile menu rhythm, `.site-main--reserve` |
 | `src/utils/imageDimensions.ts` | **new** — `imageSize()` lookup helper |
 | `src/data/imageDimensions.json` | **new, generated** — 356 intrinsic sizes measured from file headers |
 | `scripts/generateImageDimensions.mjs` | **new** — header-level PNG/JPEG/WebP/GIF/SVG dimension reader |
@@ -54,15 +54,13 @@ Nothing was deleted. No dependency was added to `dependencies` or `devDependenci
 
 ## 3. P2 fixes
 
-### 3.1 Homepage social rail — vertical, right edge, desktop only
+### 3.1 Homepage social rail — REMOVED
 
-`HomeSlideshow.tsx` now renders an `<ul class="ac-home-social">` inside the slideshow, immediately after the horizon rule:
-
-- Five profiles from `src/data/socialLinks.ts` (the single shared module), inline 24×24 SVG glyphs at 16px inside 34×34 circular targets.
-- **Position:** right edge, `bottom: calc(50% + 3.75rem)` — the bottom edge is pinned a fixed distance above the viewport mid-line, which is exactly where the fixed menu toggle is centred. The two therefore cannot collide at any window height. Measured overlap vs. menu toggle, bottom controls, headline and eyebrow: **none at 1024, 1280, 1440 and 1920**.
-- **Desktop only:** hidden below 1024px, per the brief ("in mobile do not show social icon on homepage"). The profiles remain reachable on phones through the menu.
-- `aria-label="<Name> (opens in a new tab)"`, `title`, `target="_blank"`, `rel="noopener noreferrer"`, hover lift + `:focus-visible` ring using the site's `--angel-focus` token, `prefers-reduced-motion` guard.
-- **The homepage still has no footer.** Verified: `document.querySelectorAll('footer').length === 0` on `/` at every viewport.
+> **Status: reverted.** A vertical social rail was added to the right edge of the homepage video slider and has since been removed at the owner's request: it read as an overlay on the full-bleed stage rather than part of the composition, and it competed with the PREV / NEXT controls in the same right-hand strip.
+>
+> The markup (`<ul class="ac-home-social">`) and its stylesheet block are both gone, along with the `socialLinks` import in `HomeSlideshow.tsx`.
+>
+> **Nothing was lost:** all five profiles remain in the navigation menu (§3.2) and in the site footer, on every viewport. The homepage still has no footer of its own; `document.querySelectorAll('footer').length === 0` on `/` at every viewport.
 
 ### 3.2 Social icons in the navigation menu
 
