@@ -5,6 +5,7 @@ import { domainFaqs, domainsForParent, siblingDomains, type DomainRecord } from 
 import { LeadCtaBand } from './LeadCtaBand';
 import { cleanArchiveTitle } from '../utils/archiveCopy';
 import { buildContactHref, trackLeadEvent } from '../utils/leads';
+import { imageSize } from '../utils/imageDimensions';
 
 type VideoRecord = {
   id: string;
@@ -165,7 +166,8 @@ export function DomainDetail({ domain }: { domain: DomainRecord }): JSX.Element 
         </div>
 
         <figure className="angel-domain__hero-media">
-          <img src={domain.image} alt={domain.imageAlt} decoding="async" fetchPriority="high" />
+          <img src={domain.image}
+          {...imageSize(domain.image)} alt={domain.imageAlt} decoding="async" fetchPriority="high" />
           <span className="angel-domain__hero-orbit" aria-hidden="true" />
           <figcaption>
             <span>{domain.imageCaption}</span>
@@ -293,7 +295,8 @@ export function DomainDetail({ domain }: { domain: DomainRecord }): JSX.Element 
           <div className="angel-domain__work-grid">
             {work.map((record) => (
               <a key={record.id} className="angel-domain__work-card" href={record.url} target="_blank" rel="noreferrer">
-                {record.thumbnail && <img src={record.thumbnail} alt={record.title} loading="lazy" decoding="async" />}
+                {record.thumbnail && <img src={record.thumbnail}
+                {...imageSize(record.thumbnail)} alt={record.title} loading="lazy" decoding="async" />}
                 <span>{record.category || domain.parentLabel}{record.duration ? ` · ${record.duration}` : ''}</span>
                 <strong>{record.title}</strong>
                 <small>Watch on YouTube ↗</small>
@@ -345,7 +348,8 @@ export function DomainDetail({ domain }: { domain: DomainRecord }): JSX.Element 
         <div className="angel-domain__sibling-grid">
           {relatedSiblings.map((sibling) => (
             <a key={sibling.route} href={sibling.route} className="angel-domain__sibling-card">
-              <img src={sibling.image} alt={sibling.imageAlt} loading="lazy" decoding="async" />
+              <img src={sibling.image}
+              {...imageSize(sibling.image)} alt={sibling.imageAlt} loading="lazy" decoding="async" />
               <span>{sibling.parentLabel} Domain</span>
               <strong>{sibling.contextualTitle}</strong>
               <small>{sibling.subtitle}</small>

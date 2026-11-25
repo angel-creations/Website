@@ -11,6 +11,7 @@ import {
 } from 'react';
 import { prefersReducedMotion, shouldAutoplayAmbientMedia } from '../utils/mediaPreferences';
 import type { SlideExperience } from '../data/slideExperiences';
+import { imageSize } from '../utils/imageDimensions';
 
 type ProcessPhase = {
   title: string;
@@ -597,6 +598,7 @@ export function ExperienceProcess({
                   <img
                     key={`${visual.src}-${index}`}
                     src={visual.src}
+                    {...imageSize(visual.src)}
                     alt=""
                     loading={index === 0 ? 'eager' : 'lazy'}
                     decoding="async"

@@ -3,6 +3,7 @@ import rawArchive from '../data/videoArchive.json';
 import { buildContactHref, trackLeadEvent } from '../utils/leads';
 import { navigate } from '../utils/routes';
 import { cleanArchiveTitle } from '../utils/archiveCopy';
+import { imageSize } from '../utils/imageDimensions';
 
 type VideoRecord = {
   id: string;
@@ -565,6 +566,7 @@ export function VideoArchive(): JSX.Element {
                         <img
                           key={activeVideo.id}
                           src={activeVideo.thumbnail}
+                          {...imageSize(activeVideo.thumbnail)}
                           alt={activeVideo.title}
                           className="apple-visual-stage__img"
                           loading="eager"
@@ -635,6 +637,7 @@ export function VideoArchive(): JSX.Element {
                             {vid.thumbnail && (
                               <img
                                 src={webpSource(vid.thumbnail)}
+                                {...imageSize(webpSource(vid.thumbnail))}
                                 alt=""
                                 loading="lazy"
                                 decoding="async"
@@ -842,6 +845,7 @@ export function VideoArchive(): JSX.Element {
                           <source srcSet={webpSource(video.thumbnail)} type="image/webp" />
                           <img
                             src={video.thumbnail}
+                            {...imageSize(video.thumbnail)}
                             alt={video.title}
                             loading={idx < 2 ? 'eager' : 'lazy'}
                             decoding="async"
