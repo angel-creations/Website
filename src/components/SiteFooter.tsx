@@ -16,7 +16,8 @@ const primaryLinks = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about/' },
   { label: 'Works', href: '/works/' },
-  { label: 'All Domains', href: '/domains/' },
+  { label: 'Services', href: '/domains/' },
+  { label: 'Internship', href: '/internship/' },
   { label: 'Contact', href: footerLeadHref },
 ];
 
@@ -98,6 +99,31 @@ export function SiteFooter(): JSX.Element {
             <div className="ac-footer-v2__desk">
               <span>Direct Mobile</span>
               <a href="tel:+918058465733">+91-8058465733</a>
+            </div>
+
+            {/* Phones show the social handles with the contact details; the
+                bottom bar carries them on wider screens (see CSS). */}
+            <div className="ac-footer-v2__desk-social">
+              <span>Follow the studio</span>
+              <ul className="ac-footer-v2__inline-list ac-footer-v2__social" aria-label="Angel Creations on social media">
+                {socialLinks.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${social.label} (opens in a new tab)`}
+                      title={social.label}
+                    >
+                      <span className="ac-footer-v2__social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="18" height="18" focusable="false" aria-hidden="true">
+                          <path d={social.path} fill="currentColor" />
+                        </svg>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
